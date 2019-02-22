@@ -3,6 +3,7 @@
 ### Fixed
 
 - Fixed selects in admin panel
+- Fixed issue BlizzCMS#418
 
 ### Changed
 
