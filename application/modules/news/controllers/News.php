@@ -37,9 +37,15 @@ class News extends MX_Controller {
     {
         $this->load->model('forum/forum_model');
 
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('nav_news'),
+            'tiny' => $tiny,
         );
 
         $this->load->view('header', $data);

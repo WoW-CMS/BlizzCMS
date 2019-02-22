@@ -535,7 +535,7 @@ class M_general extends CI_Model {
         }
     }
 
-    public function tinyEditor($plugin, $tool)
+    public function tinyEditor($plugin, $tool, $menubar)
     {
         return "<script src=".base_url('includes/core/tinymce/tinymce.min.js')."></script>
                 <script>tinymce.init({
@@ -550,7 +550,7 @@ class M_general extends CI_Model {
     {
         switch ($tool) {
             case 'pluginsADM':
-                return 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount tinymcespellchecker a11ychecker imagetools textpattern help';
+                return 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help';
                 break;
             case 'pluginsUser':
                 return 'advlist autolink lists link image charmap print preview anchor textcolor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount';

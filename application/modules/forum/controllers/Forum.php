@@ -38,9 +38,15 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('nav_forums'),
+            'tiny' => $tiny,
         );
 
         if ($this->forum_model->getType($id) == 2 && $this->m_data->isLogged())
@@ -56,11 +62,6 @@ class Forum extends MX_Controller {
 
     public function topic($id)
     {
-        $data = array(
-            'idlink' => $id,
-            'pagetitle' => $this->lang->line('nav_forums'),
-        );
-
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
@@ -68,6 +69,17 @@ class Forum extends MX_Controller {
             if ($this->m_data->getRank($this->session->userdata('fx_sess_id')) > 0) { }
         else
             redirect(base_url('forum'),'refresh');
+
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'idlink' => $id,
+            'pagetitle' => $this->lang->line('nav_forums'),
+            'tiny' => $tiny,
+        );
         
         $this->load->view('header', $data);
         $this->load->view('topic', $data);
