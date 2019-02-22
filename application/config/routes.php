@@ -57,7 +57,7 @@ $route['login'] = 'user/login';
 $route['register'] = 'user/register';
 $route['panel'] = 'user/panel';
 $route['logout'] = 'user/logout';
-$route['reset'] = 'user/recovery';
+$route['recovery'] = 'user/recovery';
 //forum
 $route['forum/category/(:num)'] = 'forum/category/$1';
 $route['forum/topic/(:num)'] = 'forum/topic/$1';

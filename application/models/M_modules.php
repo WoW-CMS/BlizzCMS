@@ -164,18 +164,6 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusGifts()
-    {
-        $qq = $this->db->select('status')
-                ->where('id', '14')
-                ->get('modules')
-                ->row('status');
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
     public function getStatusLadBugtracker()
     {
         $qq = $this->db->select('status')
