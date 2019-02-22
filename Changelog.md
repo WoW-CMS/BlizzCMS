@@ -1,0 +1,39 @@
+## 1.0.1 WIP
+
+### Fixed
+
+- Fixed selects in admin panel
+
+### Changed
+
+- All complements and images have been moved to a single folder
+- Main configuration file renamed to blizzcms
+- Move arena statistics to the pvp module
+- Change routes to news, pages and shop
+- Simplify changelogs module
+
+### Added
+
+- Add new configuration file **plus**
+- Add SMTP
+- Add Forgot Password
+- Add reCAPTCHA widget to login/register/forgot password
+
+### Removed
+
+- Unnecessary complements removed
+- Language configuration for TinyMCE removed
+- API module removed
+- Table prefix removed
+- Armory module removed
+- Devbar library removed
+- reCAPTCHA library removed
+- Chat library removed
+- Unused function from admin panel removed
+
+### Updated
+
+- Update CI to latest version 3.1.10
+- Update Font Awesome to last version 5.7.2
+- Update TinyMCE to last version 5.0.0
+- Update Install

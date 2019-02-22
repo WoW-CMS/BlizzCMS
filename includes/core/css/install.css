@@ -1,0 +1,122 @@
+/*!
+ * BlizzCMS
+ *
+ * An Open Source CMS for "World of Warcraft"
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * @author  ProjectCMS
+ * @copyright  Copyright (c) 2017 - 2019, ProjectCMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://projectcms.net
+ * @since   Version 1.0.1
+ * @filesource
+ */
+
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'), url('../fonts/lobster-regular-webfont.woff') format('woff');
+}
+
+html {
+  background: transparent;
+  color: #f3f3f3;
+}
+
+body {
+  background-color: #0e1b3e;
+  background-image: url('../../images/backgrounds/background.jpg');
+  background-position: center -120px;
+  background-repeat: no-repeat;
+  font-size: 1rem;
+}
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.uk-h1,
+.uk-h2,
+.uk-h3,
+.uk-h4,
+.uk-h5,
+.uk-h6 {
+  color: #fff;
+}
+
+.blizzcms-logo {
+  font-family:'Lobster', cursive;
+  font-size: 44px;
+  color: #fff;
+}
+
+.uk-alert {
+  padding: 8px 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+}
+
+.uk-alert-danger {
+  background: #b92323;
+  color: #fff;
+}
+
+.uk-alert-success {
+  background: #36b923;
+  color: #fff;
+}
+
+.uk-icon-button {
+  background: rgba(255, 255, 255, .15);
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+}
+
+.uk-icon-button.gitlab {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  border: 1px solid #fc6d26;
+  color: #fc6d26;
+}
+
+.uk-icon-button.discord {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  border: 1px solid #7289DA;
+  color: #7289DA;
+}
+
+.uk-button-primary {
+  background-color: #1b3dbb;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 2px;
+}
+
+.uk-button-primary:focus,
+.uk-button-primary:hover {
+  background: #3251c2;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.uk-button-primary.uk-active,
+.uk-button-primary:active {
+  background: #3251c2;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .1);
+}

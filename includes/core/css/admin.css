@@ -1,0 +1,296 @@
+/*!
+ * BlizzCMS
+ *
+ * An Open Source CMS for "World of Warcraft"
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * @css  Admin
+ * @author  ProjectCMS
+ * @copyright  Copyright (c) 2017 - 2019, ProjectCMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://projectcms.net
+ * @since   Version 1.0
+ * @filesource
+ */
+
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../core/fonts/lobster-regular-webfont.woff2') format('woff2'), url('../../core/fonts/lobster-regular-webfont.woff') format('woff');
+}
+
+html {
+  overflow-y: scroll;
+  background: transparent;
+  color: #686868;
+}
+
+body {
+  background-color: #f2f4f6;
+}
+
+.admin-sidebar {
+  position: fixed;
+  background-color: #161523;
+  border-right: 1px solid #dae0ef;
+  width: 250px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.sidebar-head {
+  padding: .5rem 20px;
+}
+
+.uk-nav-default > li {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+.uk-nav-default > li > a,
+.uk-offcanvas-bar .uk-nav-default > li > a {
+  color: #fff;
+  padding: 15px 25px;
+  transition: all ease-in .15s;
+}
+
+.uk-nav-default > li > a:focus,
+.uk-nav-default > li > a:hover,
+.uk-offcanvas-bar .uk-nav-default > li > a:focus,
+.uk-offcanvas-bar .uk-nav-default > li > a:hover {
+  background-color: #0078ff;
+  color: #fff;
+}
+
+.uk-nav-default > li.uk-open > a,
+.uk-offcanvas-bar .uk-nav-default > li.uk-open > a {
+  background-color: #0078ff;
+  color: #fff;
+  box-shadow: 0 5px 20px 1px #11101b;
+}
+
+.uk-nav-parent-icon > .uk-parent > a::after,
+.uk-offcanvas-bar .uk-nav-parent-icon > .uk-parent > a::after {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.1%22%20points%3D%2210%201%204%207%2010%2013%22%20%2F%3E%0D%0A%3C%2Fsvg%3E");
+}
+
+.uk-nav-parent-icon > .uk-parent.uk-open > a::after,
+.uk-offcanvas-bar .uk-nav-parent-icon > .uk-parent.uk-open > a::after {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.1%22%20points%3D%221%204%207%2010%2013%204%22%20%2F%3E%0D%0A%3C%2Fsvg%3E");
+}
+
+ul.uk-nav-sub {
+  background: rgba(255, 255, 255, .03);
+  padding: 0;
+}
+
+.uk-nav-default .uk-nav-sub a,
+.uk-offcanvas-bar .uk-nav-default .uk-nav-sub a {
+  color: #fff;
+  padding: 10px 15px;
+  transition: all ease-in .15s;
+}
+
+.uk-nav-default .uk-nav-sub a:focus,
+.uk-nav-default .uk-nav-sub a:hover,
+.uk-offcanvas-bar .uk-nav-sub a:focus,
+.uk-offcanvas-bar .uk-nav-sub a:hover {
+  background-color: #0078ff;
+  color: #fff;
+}
+
+[class*="uk-navbar-dropdown-bottom"] {
+  margin-top: -10px;
+}
+
+.uk-navbar-dropdown {
+  width: 160px;
+  border: 1px solid #d9dbdd;
+  border-radius: 3px;
+  padding: 0;
+}
+
+.uk-navbar-dropdown-nav > li > a {
+  padding: 5px 10px;
+  transition: all ease-in .15s;
+}
+
+.uk-navbar-dropdown-nav > li > a:hover,
+.uk-navbar-dropdown-nav > li > a:focus {
+  background: #0078ff;
+  color: #fff;
+}
+
+.admin-content {
+  margin-left: 0;
+  transition: margin .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+@media screen and (min-width: 960px) {
+  .admin-content {
+    margin-left: 250px;
+  }
+}
+
+.uk-navbar-item,
+.uk-navbar-nav > li > a,
+.uk-navbar-toggle {
+  min-height: 69px;
+  padding: 0 16px 0 0;
+}
+
+.uk-offcanvas-bar {
+  background: #161523;
+  padding: 0;
+}
+
+.profile-img {
+  border: 2px solid rgba(0, 0, 0, .1);
+  width: 35px;
+  height: 35px;
+  margin-right: 2px;
+}
+
+.uk-logo {
+  font-family: 'Lobster', cursive;
+  font-size: 35px;
+  color: #fff !important;
+  text-shadow: 1px 1px 2px #0078ff;
+}
+
+.uk-card-default {
+  border: 1px solid #dae0ef;
+  box-shadow: none;
+}
+
+.uk-card-secondary {
+  background: #161523;
+  border: 1px solid #dae0ef;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .08);
+}
+
+.uk-card-header {
+  padding: 15px 20px;
+}
+
+.uk-card-body {
+  padding: 20px 10px;
+}
+
+.uk-card-default .uk-card-header {
+  background: #161523;
+  color: #fff;
+}
+
+.uk-card-default .uk-card-header .uk-h3,
+.uk-card-default .uk-card-header .uk-h4,
+.uk-card-default .uk-card-header .uk-h5 {
+  color: #fff;
+}
+
+.uk-card-default .uk-icon-button {
+  background: rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .2);
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  transition: all ease-in .15s;
+}
+
+.uk-card-default .uk-icon-button:focus,
+.uk-card-default .uk-icon-button:hover {
+  background-color: #0078ff;
+  color: #fff;
+}
+
+.uk-card-default .uk-active > .uk-icon-button,
+.uk-card-default .uk-icon-button:active {
+  background-color: #0078ff;
+  color: #fff;
+}
+
+.uk-card-default .uk-h6 {
+  font-size: 0.75rem;
+}
+
+.uk-card-secondary .uk-hr {
+  border-top-style: dashed;
+}
+
+.uk-navbar-item .uk-icon-button {
+  background: #0078ff;
+  border: 2px solid rgba(255, 255, 255, .3);
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  transition: all ease-in .15s;
+}
+
+.uk-navbar-item .uk-icon-button:focus,
+.uk-navbar-item .uk-icon-button:hover {
+  background: #4da1ff;
+  border-color: #0078ff;
+  color: #fff;
+}
+
+.uk-modal-dialog .uk-close {
+  color: #fff;
+}
+
+.uk-modal-header {
+  background: #161523;
+  border-bottom: 1px solid rgba(255, 255, 255, .15);
+}
+
+.uk-modal-title {
+  color: #fff;
+  font-size: 1.7rem;
+}
+
+.uk-button {
+  padding: 0 20px;
+}
+
+.uk-button-primary {
+  background: #0078ff;
+  transition: all ease .15s;
+}
+
+.uk-button-primary:focus,
+.uk-button-primary:hover {
+  background: #3393ff;
+}
+
+.uk-button-primary.uk-active,
+.uk-button-primary:active {
+  background: #3393ff;
+}
+
+.uk-button-danger {
+  background: #ff1b00;
+  transition: all ease .15s;
+}
+
+.uk-button-danger:focus,
+.uk-button-danger:hover {
+  background: #ff4933;
+}
+
+.uk-button-danger.uk-active,
+.uk-button-danger:active {
+  background: #ff4933;
+}
+
+@media screen and (max-width: 640px) {
+  table .uk-width-medium .uk-input {
+    min-width: 200px;
+  }
+  table .uk-width-small .uk-input {
+    min-width: 100px;
+  }
+}
