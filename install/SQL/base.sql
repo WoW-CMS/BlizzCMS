@@ -422,36 +422,6 @@ CREATE TABLE `ranks_default` (
 
 insert  into `ranks_default`(`id`,`permission`,`comment`) values (1,1,'Rank Admin'),(2,2,'Rank Visitor'),(3,3,'Rank User');
 
-/*Table structure for table `ranks_linked` */
-
-DROP TABLE IF EXISTS `ranks_linked`;
-
-CREATE TABLE `ranks_linked` (
-  `id` int(10) NOT NULL,
-  `permission` int(10) NOT NULL,
-  KEY `ranks_permissions_ibfk_1` (`id`),
-  KEY `permission` (`permission`),
-  CONSTRAINT `ranks_linked_ibfk_1` FOREIGN KEY (`permission`) REFERENCES `ranks_permissions` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `ranks_linked` */
-
-insert  into `ranks_linked`(`id`,`permission`) values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,14),(1,15),(1,16),(1,17),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,14),(2,17),(1,18),(2,18),(3,2),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10),(3,11),(3,12),(3,14),(3,15),(3,16),(3,17),(3,18),(1,19);
-
-/*Table structure for table `ranks_permissions` */
-
-DROP TABLE IF EXISTS `ranks_permissions`;
-
-CREATE TABLE `ranks_permissions` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `ranks_permissions` */
-
-insert  into `ranks_permissions`(`id`,`name`) values (1,'Admin'),(2,'Panel'),(3,'Login'),(4,'Register'),(5,'Faq'),(6,'Bugtracker'),(7,'Pvp Stats'),(8,'Arena Stats'),(9,'News'),(10,'Forums'),(11,'Store'),(14,'Changelogs'),(15,'Donate'),(16,'Vote'),(17,'Events'),(19,'Maintenance');
-
 /*Table structure for table `realms` */
 
 DROP TABLE IF EXISTS `realms`;
@@ -586,18 +556,6 @@ CREATE TABLE `users_annotations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `users_annotations` */
-
-/*Table structure for table `users_permission` */
-
-DROP TABLE IF EXISTS `users_permission`;
-
-CREATE TABLE `users_permission` (
-  `iduser` int(10) NOT NULL,
-  `idrank` int(10) NOT NULL,
-  KEY `idrank` (`idrank`),
-  CONSTRAINT `users_permission_ibfk_1` FOREIGN KEY (`idrank`) REFERENCES `ranks_default` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 /*Table structure for table `votes` */
 
