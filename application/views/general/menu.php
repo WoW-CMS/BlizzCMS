@@ -2,11 +2,7 @@
       <div class="uk-container">
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
-          <?php if($this->config->item('image_logo_header') == TRUE): ?>
-            <a href="<?= base_url(); ?>" class="uk-navbar-item uk-logo uk-margin-small-right"><i class="header-logo"></i></a>
-          <?php else: ?>
             <a href="<?= base_url(); ?>" class="uk-navbar-item uk-logo uk-margin-small-right"><?= $this->config->item('ProjectName'); ?></a>
-          <?php endif; ?>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
@@ -20,7 +16,7 @@
               <?php endif; ?>
               <li class="uk-visible@m">
                 <?php if ($this->m_data->isLogged()): ?>
-                  <a href="#" class="dropdown-cursor">
+                  <a href="#">
                   <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()): ?>
                   <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id')))); ?>" width="30" height="30" alt="Avatar">
                   <?php else: ?>
@@ -57,16 +53,22 @@
               <?php foreach ($this->m_general->getMenu()->result() as $menulist): ?>
               <?php if($menulist->father == '1'): ?>
               <li class="uk-visible@m">
-                <a href="#" class="dropdown-cursor" <?= $menulist->extras ?>>
+                <a href="#">
                   <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>&nbsp;<i class="fas fa-caret-down"></i>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php foreach ($this->m_general->getMenuSon($menulist->id)->result() as $menusonlist): ?>
                       <li>
-                        <a href="<?= base_url($menusonlist->url); ?>" <?= $menusonlist->extras ?>>
+                        <?php if($menusonlist->type == '0'): ?>
+                        <a href="<?= base_url($menusonlist->url); ?>">
                           <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
                         </a>
+                        <?php elseif($menusonlist->type == '1'): ?>
+                        <a target="_blank" href="<?= $menusonlist->url ?>">
+                          <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
+                        </a>
+                        <?php endif; ?>
                       </li>
                     <?php endforeach; ?>
                   </ul>
@@ -74,9 +76,15 @@
               </li>
               <?php elseif($menulist->father == '0' && $menulist->son == '0'): ?>
               <li class="uk-visible@m">
-                <a href="<?= base_url($menulist->url); ?>" <?= $menulist->extras ?>>
+                <?php if($menulist->type == '0'): ?>
+                <a href="<?= base_url($menulist->url); ?>">
                   <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                 </a>
+                <?php elseif($menulist->type == '1'): ?>
+                <a target="_blank" href="<?= $menulist->url ?>">
+                  <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
+                </a>
+                <?php endif; ?>
               </li>
               <?php endif; ?>
               <?php endforeach; ?>
@@ -123,24 +131,36 @@
                       <?php foreach ($this->m_general->getMenu()->result() as $menulist): ?>
                       <?php if($menulist->father == '1'): ?>
                       <li class="uk-parent">
-                        <a href="#" <?= $menulist->extras ?>>
+                        <a href="#">
                           <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                         </a>
                         <ul class="uk-nav-sub">
                           <?php foreach ($this->m_general->getMenuSon($menulist->id)->result() as $menusonlist): ?>
                           <li>
-                            <a href="<?= base_url($menusonlist->url); ?>" <?= $menusonlist->extras ?>>
+                            <?php if($menusonlist->type == '0'): ?>
+                            <a href="<?= base_url($menusonlist->url); ?>">
                               <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
                             </a>
+                            <?php elseif($menusonlist->type == '1'): ?>
+                            <a target="_blank" href="<?= $menusonlist->url ?>">
+                              <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
+                            </a>
+                            <?php endif; ?>
                           </li>
                           <?php endforeach; ?>
                         </ul>
                       </li>
                       <?php elseif($menulist->father == '0' && $menulist->son == '0'): ?>
                       <li>
-                        <a href="<?= base_url($menulist->url); ?>" <?= $menulist->extras ?>>
+                        <?php if($menulist->type == '0'): ?>
+                        <a href="<?= base_url($menulist->url); ?>">
                           <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                         </a>
+                        <?php elseif($menulist->type == '1'): ?>
+                        <a target="_blank" href="<?= $menulist->url ?>">
+                          <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
+                        </a>
+                        <?php endif; ?>
                       </li>
                       <?php endif; ?>
                       <?php endforeach; ?>

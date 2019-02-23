@@ -319,16 +319,15 @@ CREATE TABLE `menu` (
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
   `icon` varchar(100) DEFAULT NULL,
-  `permissions` varchar(100) NOT NULL DEFAULT 'Permission_FREE',
-  `extras` text,
-  `father` int(10) NOT NULL DEFAULT '0',
-  `son` int(10) DEFAULT '0',
+  `father` int(10) NOT NULL DEFAULT 0,
+  `son` int(10) NOT NULL DEFAULT 0,
+  `type` int(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `menu` */
 
-insert  into `menu`(`id`,`name`,`url`,`icon`,`permissions`,`extras`,`father`,`son`) values (1, 'More', '#', 'fas fa-bars', 'Permission_FREE', NULL, 1, 0),(2, 'News', 'news', 'fas fa-newspaper', 'Permission_News', NULL, 0, 0),(3, 'FAQ', 'faq', 'fas fa-question-circle', 'Permission_FREE', NULL, 0, 1),(4, 'PvP', 'pvp', 'fas fa-fist-raised', 'Permission_PVPStats', NULL, 0, 1),(5, 'Forum', 'forum', 'fas fa-comments', 'Permission_Forums', NULL, 0, 0),(6, 'Store', 'store', 'fas fa-store', 'Permission_Store', NULL, 0, 0);
+insert  into `menu`(`id`,`name`,`url`,`icon`,`father`,`son`,`type`) values (1, 'More', '#', 'fas fa-bars', 1, 0, 0),(2, 'News', 'news', 'fas fa-newspaper', 0, 0, 0),(3, 'FAQ', 'faq', 'fas fa-question-circle', 0, 1, 0),(4, 'PvP', 'pvp', 'fas fa-fist-raised', 0, 1, 0),(5, 'Forum', 'forum', 'fas fa-comments', 0, 0, 0),(6, 'Store', 'store', 'fas fa-store', 0, 0, 0);
 
 /*Table structure for table `modules` */
 
@@ -412,15 +411,13 @@ DROP TABLE IF EXISTS `ranks_default`;
 
 CREATE TABLE `ranks_default` (
   `id` int(10) NOT NULL,
-  `permission` int(1) NOT NULL DEFAULT '1',
   `comment` varchar(100) DEFAULT 'Rank BlizzCMS',
-  KEY `id` (`id`),
-  KEY `ranks_ibfk_1` (`permission`)
+  KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `ranks_default` */
 
-insert  into `ranks_default`(`id`,`permission`,`comment`) values (1,1,'Rank Admin'),(2,2,'Rank Visitor'),(3,3,'Rank User');
+insert  into `ranks_default`(`id`,`comment`) values (1, 'Rank Admin'),(2, 'Rank Visitor'),(3, 'Rank User');
 
 /*Table structure for table `realms` */
 
