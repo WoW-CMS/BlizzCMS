@@ -19,6 +19,7 @@
 - Add SMTP
 - Add Forgot Password
 - Add reCAPTCHA widget to login/register/forgot password
+- Add Permissions system using gmlevel
 
 ### Removed
 
@@ -31,6 +32,7 @@
 - reCAPTCHA library removed
 - Chat library removed
 - Unused function from admin panel removed
+- Permissions system removed
 
 ### Updated
 

@@ -12,14 +12,10 @@
             <ul class="uk-navbar-nav">
               <?php if (!$this->m_data->isLogged()): ?>
               <?php if($this->m_modules->getRegisterStatus() == '1'): ?>
-              <?php if($this->m_permissions->getMyPermissions('Permission_Register')): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= $this->lang->line('button_register'); ?></a></li>
               <?php endif; ?>
-              <?php endif; ?>
               <?php if($this->m_modules->getLoginStatus() == '1'): ?>
-              <?php if($this->m_permissions->getMyPermissions('Permission_Login')): ?>
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
-              <?php endif; ?>
               <?php endif; ?>
               <?php endif; ?>
               <li class="uk-visible@m">
@@ -36,12 +32,10 @@
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->m_data->isLogged()): ?>
                     <?php if($this->m_modules->getUCPStatus() == '1'): ?>
-                    <?php if($this->m_permissions->getMyPermissions('Permission_Panel')): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php endif; ?>
                     <?php if($this->m_modules->getACPStatus() == '1'): ?>
-                    <?php if($this->m_permissions->getMyPermissions('Permission_ACP')): ?>
+                    <?php if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel'))): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
@@ -61,7 +55,6 @@
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <?php foreach ($this->m_general->getMenu()->result() as $menulist): ?>
-              <?php if($this->m_permissions->getMyPermissions($menulist->permissions)): ?>
               <?php if($menulist->father == '1'): ?>
               <li class="uk-visible@m">
                 <a href="#" class="dropdown-cursor" <?= $menulist->extras ?>>
@@ -85,7 +78,6 @@
                   <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                 </a>
               </li>
-              <?php endif; ?>
               <?php endif; ?>
               <?php endforeach; ?>
             </ul>
@@ -111,24 +103,18 @@
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                       <?php if (!$this->m_data->isLogged()): ?>
                       <?php if($this->m_modules->getRegisterStatus() == '1'): ?>
-                      <?php if($this->m_permissions->getMyPermissions('Permission_Register')): ?>
                       <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
                       <?php endif; ?>
-                      <?php endif; ?>
                       <?php if($this->m_modules->getLoginStatus() == '1'): ?>
-                      <?php if($this->m_permissions->getMyPermissions('Permission_Login')): ?>
                       <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
-                      <?php endif; ?>
                       <?php endif; ?>
                       <?php endif; ?>
                       <?php if ($this->m_data->isLogged()): ?>
                       <?php if($this->m_modules->getUCPStatus() == '1'): ?>
-                      <?php if($this->m_permissions->getMyPermissions('Permission_Panel')): ?>
                       <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                       <?php endif; ?>
-                      <?php endif; ?>
                       <?php if($this->m_modules->getACPStatus() == '1'): ?>
-                      <?php if($this->m_permissions->getMyPermissions('Permission_ACP')): ?>
+                      <?php if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel'))): ?>
                       <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                       <?php endif; ?>
                       <?php endif; ?>
@@ -138,7 +124,6 @@
                       <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
                       <?php endif; ?>
                       <?php foreach ($this->m_general->getMenu()->result() as $menulist): ?>
-                      <?php if($this->m_permissions->getMyPermissions($menulist->permissions)): ?>
                       <?php if($menulist->father == '1'): ?>
                       <li class="uk-parent">
                         <a href="#" <?= $menulist->extras ?>>
@@ -160,7 +145,6 @@
                           <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                         </a>
                       </li>
-                      <?php endif; ?>
                       <?php endif; ?>
                       <?php endforeach; ?>
                     </ul>

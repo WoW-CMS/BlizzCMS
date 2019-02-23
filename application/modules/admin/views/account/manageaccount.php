@@ -1,12 +1,4 @@
 <?php
-if (isset($_POST['button_removeADM'])):
-  $this->admin_model->getRemoveADMRank($idlink);
-endif;
-
-if (isset($_POST['button_addADM'])):
-  $this->admin_model->getADDADMRank($idlink);
-endif;
-
 if (isset($_POST['action_ban'])):
   $reason = $_POST['action_reason'];
   $this->admin_model->insertBanAcc($idlink, $reason);
@@ -95,24 +87,6 @@ endif;
                         </div>
                         <div class="uk-margin-small">
                           <button class="uk-button uk-button-primary uk-width-1-1" name="button_AddRankACCWeb" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_grant_account'); ?></button>
-                        </div>
-                        <?php endif; ?>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="uk-card uk-card-default">
-                    <div class="uk-card-header uk-card-primary uk-text-center uk-text-uppercase"><i class="fas fa-star"></i> <?= $this->lang->line('panel_admin_web_rank'); ?></div>
-                    <div class="uk-card-body">
-                      <form action="" method="post">
-                        <?php if($this->m_permissions->getMyRank($idlink)->row('idrank') == 1): ?>
-                        <div class="uk-margin-small">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_removeADM" type="submit"><i class="fas fa-user-times"></i> <?= $this->lang->line('button_re_grant_web_acc'); ?></button>
-                        </div>
-                        <?php else: ?>
-                        <div class="uk-margin-small">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_addADM" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_grant_web_acc'); ?></button>
                         </div>
                         <?php endif; ?>
                       </form>

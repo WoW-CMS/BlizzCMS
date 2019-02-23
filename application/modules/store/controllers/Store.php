@@ -19,9 +19,6 @@ class Store extends MX_Controller {
         if (!$this->m_data->isLogged())
             redirect(base_url('login'),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Store'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('store_model');
     }
 

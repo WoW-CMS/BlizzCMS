@@ -404,50 +404,6 @@ class Admin_model extends CI_Model {
                 ->get('account');
     }
 
-    public function getRemoveADMRank($id)
-    {
-        $this->db->where('iduser', $id)
-                ->delete('users_permission');
-
-        $date 	= $this->m_data->getTimestamp();
-        $reason = $this->lang->line('remove_addmAnnoW');
-
-        $data = array(
-            'iduser' => $id,
-            'annotation' => $reason,
-            'date' => $date,
-        );
-
-        $this->db->insert('users_annotations', $data);
-
-        redirect(base_url().'admin/manageaccount/'.$id,'refresh');
-    }
-
-    public function getADDADMRank($id, $type = '')
-    {
-        $data1 = array(
-            'iduser' => $id,
-            'idrank' => '1',
-        );
-
-        $this->db->insert('users_permission', $data1);
-
-        $date 	= $this->m_data->getTimestamp();
-        $reason = $this->lang->line('receive_addmAnnoW');
-
-        $data2 = array(
-            'iduser' => $id,
-            'annotation' => $reason,
-            'date' => $date,
-        );
-
-        $this->db->insert('users_annotations', $data2);
-
-        if ($type == '') {
-            redirect(base_url().'admin/manageaccount/'.$id,'refresh');
-        }
-    }
-
     public function insertForum($name, $category, $description, $icon, $type)
     {
         $data = array(

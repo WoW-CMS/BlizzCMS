@@ -7,9 +7,7 @@
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->m_modules->getUCPStatus() == '1'): ?>
-              <?php if($this->m_permissions->getMyPermissions('Permission_Panel')): ?>
               <li><a href="<?= base_url('panel') ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('nav_account'); ?></a></li>
-              <?php endif; ?>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->m_modules->getDonationStatus() == '1'): ?>

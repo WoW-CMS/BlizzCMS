@@ -19,9 +19,6 @@ class Vote extends MX_Controller {
         if (!$this->m_data->isLogged())
             redirect(base_url('login'),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Vote'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('vote_model');
     }
 

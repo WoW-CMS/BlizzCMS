@@ -16,9 +16,6 @@ class Forum extends MX_Controller {
         if (!$this->m_modules->getForumStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Forums'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('forum_model');
     }
 
@@ -38,7 +35,7 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
@@ -70,7 +67,7 @@ class Forum extends MX_Controller {
         else
             redirect(base_url('forum'),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');

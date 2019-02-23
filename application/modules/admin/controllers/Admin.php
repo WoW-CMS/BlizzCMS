@@ -11,13 +11,13 @@ class Admin extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if (!$this->m_data->isLogged())
+        if(!$this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_ACP'))
+        if(!$this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
             redirect(base_url(),'refresh');
 
-        if ($this->admin_model->getBanSpecify($this->session->userdata('fx_sess_id'))->num_rows())
+        if($this->admin_model->getBanSpecify($this->session->userdata('fx_sess_id'))->num_rows())
             redirect(base_url(),'refresh');
     }
 

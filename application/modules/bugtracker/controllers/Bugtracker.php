@@ -19,9 +19,6 @@ class Bugtracker extends MX_Controller {
 
         if(!$this->m_data->isLogged())
             redirect(base_url(),'refresh');
-
-        if (!$this->m_permissions->getMyPermissions('Permission_Bugtracker'))
-            redirect(base_url(),'refresh');
         
         $this->load->config('bugtracker');
         $this->load->model('bugtracker_model');
@@ -30,7 +27,7 @@ class Bugtracker extends MX_Controller {
     public function index()
     {
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');

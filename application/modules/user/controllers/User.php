@@ -20,9 +20,6 @@ class User extends MX_Controller {
         if ($this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Login'))
-            redirect(base_url(),'refresh');
-
         $data['pagetitle'] = $this->lang->line('nav_login');
 
         $this->load->view('header', $data);
@@ -111,9 +108,6 @@ class User extends MX_Controller {
         if (!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Register'))
-            redirect(base_url(),'refresh');
-
         $data = array(
             'pagetitle' => $this->lang->line('nav_register'),
             'recapKey' => $this->config->item('recaptcha_sitekey'),
@@ -173,9 +167,6 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         if (!$this->m_permissions->getMaintenance())
-            redirect(base_url(),'refresh');
-
-        if (!$this->m_permissions->getMyPermissions('Permission_Panel'))
             redirect(base_url(),'refresh');
 
         $data = array(

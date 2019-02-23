@@ -16,9 +16,6 @@ class Pvp extends MX_Controller {
         if (!$this->m_modules->getPVPStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_PVPStats'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('pvp_model');
     }
 

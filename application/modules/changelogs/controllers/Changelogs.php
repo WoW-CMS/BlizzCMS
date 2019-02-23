@@ -16,9 +16,6 @@ class Changelogs extends MX_Controller {
         if (!$this->m_modules->getChangelogsStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Changelogs'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('changelogs_model');
     }
 

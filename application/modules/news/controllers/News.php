@@ -16,9 +16,6 @@ class News extends MX_Controller {
         if (!$this->m_modules->getNewsStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_News'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('news_model');
     }
 
@@ -37,7 +34,7 @@ class News extends MX_Controller {
     {
         $this->load->model('forum/forum_model');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_id')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');

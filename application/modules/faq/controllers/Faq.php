@@ -16,9 +16,6 @@ class Faq extends MX_Controller {
         if (!$this->m_modules->getFAQStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Faq'))
-            redirect(base_url(),'refresh');
-
         $this->load->model('faq_model');
     }
 

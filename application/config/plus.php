@@ -48,3 +48,24 @@ $config['recovery_email_subject'] = 'Password Recovery';
 | Write the necessary information for use account activation.
 |
 */
+
+
+/*
+|--------------------------------------------------------------------------
+| Administrator Access Level
+|--------------------------------------------------------------------------
+|
+| Minimum gmlevel to access to admin sections.
+|
+*/
+$config['admin_access_level'] = '3';
+
+/*
+|--------------------------------------------------------------------------
+| Moderator Access Level
+|--------------------------------------------------------------------------
+|
+| Minimum gmlevel to access to mod sections.
+|
+*/
+$config['mod_access_level'] = '2';

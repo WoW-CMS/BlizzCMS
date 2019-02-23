@@ -24,9 +24,6 @@ class Donate extends MX_Controller
         if (!$this->m_modules->getDonationStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMyPermissions('Permission_Donate'))
-            redirect(base_url(),'refresh');
-
         $this->load->config('donate');
         $this->load->model('donate_model');
     }
