@@ -118,10 +118,10 @@ endif; ?>
         <div class="uk-container uk-container-expand">
           <div class="uk-card uk-card-default uk-margin-small">
             <div class="uk-card-header">
-              <h4 class="uk-h4"><span data-uk-icon="icon: settings"></span> <?= $this->lang->line('admin_settings'); ?></h4>
+              <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_settings'); ?></h4>
             </div>
             <div class="uk-card-body">
-              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; toggle: > *">
+              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade; toggle: > *">
                 <li><a href="#"><i class="fas fa-cog"></i> Main Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Website Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Database Settings</a></li>
@@ -318,10 +318,10 @@ endif; ?>
           </div>
           <div class="uk-card uk-card-default">
             <div class="uk-card-header">
-              <h4 class="uk-h4"><span data-uk-icon="icon: settings"></span> Module Settings</h4>
+              <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span>Module Settings</h4>
             </div>
             <div class="uk-card-body">
-              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium; toggle: > *">
+              <ul class="uk-subnav uk-subnav-pill" uk-switcher="animation: uk-animation-fade; toggle: > *">
                 <li><a href="#"><i class="fas fa-cog"></i> Recaptcha Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Bugtracker Settings</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> Donate Settings</a></li>

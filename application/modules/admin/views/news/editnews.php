@@ -37,9 +37,11 @@
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: file-edit"></span> <?= $this->lang->line('panel_admin_edit_news'); ?> - <?= $this->admin_model->getNewsSpecifyName($idlink); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_news'); ?> - <?= $this->admin_model->getNewsSpecifyName($idlink); ?></h4>
                 </div>
-                <div class="uk-width-expand"></div>
+                <div class="uk-width-expand uk-text-right">
+                  <a href="<?= base_url('admin/managenews'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+                </div>
               </div>
             </div>
             <div class="uk-card-body">

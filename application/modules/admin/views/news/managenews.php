@@ -42,10 +42,10 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('panel_admin_news_list'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-newspaper"></i></span><?= $this->lang->line('panel_admin_news_list'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
-                  <a href="javascript:void(0)" class="uk-icon-button" uk-icon="icon: pencil" uk-toggle="target: #newNews"></a>
+                  <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newNews"><i class="fas fa-pen"></i></a>
                 </div>
               </div>
             </div>

@@ -33,10 +33,10 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: settings"></span> <?= $this->lang->line('admin_manage_slides'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-images"></i></span><?= $this->lang->line('admin_manage_slides'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
-                  <a href="javascript:void(0)" class="uk-icon-button" uk-icon="icon: cog" uk-toggle="target: #newSlide"></a>
+                  <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newSlide"><i class="fas fa-cog"></i></a>
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@ endif; ?>
                         </form>
                       </td>
                     </tr>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

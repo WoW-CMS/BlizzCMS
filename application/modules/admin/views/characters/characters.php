@@ -4,7 +4,7 @@
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('admin_chars_list'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-ul"></i></span><?= $this->lang->line('admin_chars_list'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -15,7 +15,7 @@
                   $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                 ?>
                 <li>
-                  <a class="uk-accordion-title" href="#"><span data-uk-icon="icon: server"></span> Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a>
+                  <a class="uk-accordion-title" href="#"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a>
                   <div class="uk-accordion-content">
                     <div class="uk-overflow-auto uk-margin-small">
                       <table class="uk-table uk-table-divider uk-table-small">

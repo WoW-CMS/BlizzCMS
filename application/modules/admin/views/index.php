@@ -6,7 +6,7 @@
                 <div class="uk-card-body uk-text-center">
                   <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('account_count'); ?></h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
-                  <h1 class="uk-h1 uk-text-success uk-margin-small"><span data-uk-icon="icon: users; ratio: 2.2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
+                  <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-user-friends"></i></span><span class="counter uk-text-success" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
                   <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_account_registered'); ?></p>
                 </div>
               </div>
@@ -16,7 +16,7 @@
                 <div class="uk-card-body uk-text-center">
                   <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('ban_count'); ?></h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
-                  <h1 class="uk-h1 uk-text-danger uk-margin-small"><span data-uk-icon="icon: ban; ratio: 2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getBanCount(); ?>">0</span></h1>
+                  <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-user-slash"></i></span><span class="counter uk-text-danger" data-count="<?= $this->admin_model->getBanCount(); ?>">0</span></h1>
                   <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_account_banned'); ?></p>
                 </div>
               </div>
@@ -26,7 +26,7 @@
                 <div class="uk-card-body uk-text-center">
                   <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">News Created</h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
-                  <h1 class="uk-h1 uk-text-warning uk-margin-small"><span data-uk-icon="icon: file-text; ratio: 2.2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getNewsCreated(); ?>">0</span></h1>
+                  <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-newspaper"></i></span><span class="counter uk-text-warning" data-count="<?= $this->admin_model->getNewsCreated(); ?>">0</span></h1>
                   <p class="uk-text-small uk-margin-remove">Total news writed</p>
                 </div>
               </div>
@@ -36,7 +36,7 @@
                 <div class="uk-card-body uk-text-center">
                   <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Changelogs Created</h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
-                  <h1 class="uk-h1 uk-text-primary uk-margin-small"><span data-uk-icon="icon: history; ratio: 2" class="uk-margin-small-right"></span><span class="counter" data-count="<?= $this->admin_model->getChangelogsCreated(); ?>">0</span></h1>
+                  <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-scroll"></i></span><span class="counter uk-text-primary" data-count="<?= $this->admin_model->getChangelogsCreated(); ?>">0</span></h1>
                   <p class="uk-text-small uk-margin-remove">Total changelogs writed</p>
                 </div>
               </div>
@@ -51,10 +51,10 @@
                 <div class="uk-card-header">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-auto">
-                      <h4 class="uk-h4"><span data-uk-icon="icon: server"></span> Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
+                      <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
                     </div>
                     <div class="uk-width-expand uk-text-right">
-                      <a href="<?= base_url('admin/managerealms'); ?>" class="uk-icon-button" uk-icon="icon: cog" uk-tooltip="<?= $this->lang->line('admin_manage_realms'); ?>"></a>
+                      <a href="<?= base_url('admin/managerealms'); ?>" class="uk-icon-button" uk-tooltip="<?= $this->lang->line('admin_manage_realms'); ?>"><i class="fas fa-cog"></i></a>
                     </div>
                   </div>
                 </div>
@@ -72,7 +72,7 @@
                     </div>
                   </div>
                   <hr class="uk-divider-icon uk-margin-small">
-                  <h6 class="uk-h6 uk-text-uppercase uk-margin-remove uk-text-center"><span data-uk-icon="icon: users; ratio: .8"></span> <span class="counter uk-text-bold uk-text-warning" data-count="<?= $this->m_characters->getAllCharactersOnline($multiRealm); ?>">0</span> Players playing on realm</h6>
+                  <h6 class="uk-h6 uk-text-uppercase uk-margin-remove uk-text-center"><i class="fas fa-user-friends"></i> <span class="counter uk-text-bold uk-text-warning" data-count="<?= $this->m_characters->getAllCharactersOnline($multiRealm); ?>">0</span> Players playing on realm</h6>
                 </div>
               </div>
             </div>
