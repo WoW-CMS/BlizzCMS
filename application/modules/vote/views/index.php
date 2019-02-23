@@ -29,7 +29,7 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('nav_vote'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?=$this->lang->line('nav_vote'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-4@s uk-child-width-1-4@m" data-uk-grid>
               <?php foreach ($voteList as $key => $voteList): ?>
               <div>
