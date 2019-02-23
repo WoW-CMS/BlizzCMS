@@ -1,6 +1,5 @@
 <?php
 if (isset($_POST['finishingIt'])):
-  $mailUser = $_POST['rankMail'];
   $hostname = $_POST['hostname'];
   $username = $_POST['host_user'];
   $password = $_POST['host_pass'];
@@ -10,11 +9,6 @@ if (isset($_POST['finishingIt'])):
   $soapuser = $_POST['soap_user'];
   $soappass = $_POST['soap_pass'];
   $soapport = $_POST['soap_port'];
-
-  $qq = $this->m_data->getIDEmail($mailUser);
-
-  if ($qq != '0')
-    $this->admin_model->getADDADMRank($qq, '1');
 
   $this->m_modules->insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport);
 
