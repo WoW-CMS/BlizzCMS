@@ -45,6 +45,7 @@ $lang['admin_faq'] = 'Faq';
 $lang['admin_store'] = 'Store';
 $lang['admin_points_system'] = 'Points System';
 $lang['admin_manage_donations'] = 'Manage Donations';
+$lang['admin_manage_topsites'] = 'Manage Topsites';
 $lang['admin_manage_groups'] = 'Manage Groups';
 $lang['admin_manage_items'] = 'Manage Items';
 $lang['admin_forums'] = 'Forums';
@@ -99,6 +100,7 @@ $lang['panel_admin_edit_changelogs'] = 'Edit Changelogs';
 $lang['panel_admin_edit_item'] = 'Edit Item';
 $lang['panel_admin_edit_group'] = 'Edit Group';
 $lang['panel_admin_faq_list'] = 'Faq List';
+$lang['panel_admin_edit_topsite'] = 'Edit Topsite';
 
 /*Column Lang*/
 $lang['column_race'] = 'Race';
@@ -138,6 +140,7 @@ $lang['form_create_group'] = 'Create Group';
 $lang['form_group_title'] = 'Title of the Group';
 $lang['form_create_faq'] = 'Create faq';
 $lang['form_faq_title'] = 'Title of the faq';
+$lang['form_create_topsite'] = 'Create a new Topsite';
 
 /*Placeholder Lang*/
 $lang['panel_admin_reason'] = 'Reason';
