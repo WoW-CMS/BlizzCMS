@@ -89,12 +89,16 @@ class Forum extends MX_Controller {
         $title = $_POST['topic_title'];
         $description = $_POST['topic_description'];
 
-        if (isset($_POST['check_highl']) && $_POST['check_highl'] == '1')
-            $highl = '1'; else $highl = '0';
+        if (isset($_POST['topic_locked']))
+            $locked = '1';
+        else
+            $locked = '0';
 
-        if (isset($_POST['check_lock']) && $_POST['check_lock'] == '1')
-            $lock = '1'; else $lock = '0';
+        if (isset($_POST['topic_pinned']))
+            $pinned = '1';
+        else
+            $pinned = '0';
 
-        $this->forum_model->insertTopic($idlink, $title, $this->session->userdata('fx_sess_id'), $description, $lock, $highl);
+        $this->forum_model->insertTopic($idlink, $title, $this->session->userdata('fx_sess_id'), $description, $locked, $pinned);
     }
 }

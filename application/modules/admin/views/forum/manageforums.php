@@ -31,7 +31,7 @@ endif; ?>
                       <td><?= $list->name; ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                        <a href="<?= base_url('admin/edititems/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                        <a href="<?= base_url('admin/editforum/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                         <form action="" method="post" accept-charset="utf-8">
                           <button class="uk-button uk-button-danger" name="button_deleteForum" value="<?= $list->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
                         </form>

@@ -183,25 +183,26 @@ h6,
 
 .uk-modal-title {
   color: #fff;
+  font-size: 1.625rem;
 }
 
 .uk-modal-dialog {
-  border: 1px solid rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .1);
 }
 
 .uk-modal-dialog,
 .uk-modal-body,
 .uk-modal-header,
 .uk-modal-footer {
-  background: rgba(21, 26, 35, .95);
+  background: rgba(0, 38, 80, .7);
 }
 
 .uk-modal-header{
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .uk-modal-footer {
-  border-top: 1px solid rgba(255, 255, 255, .15);
+  border-top: 1px solid rgba(255, 255, 255, .1);
 }
 
 .slider-section {

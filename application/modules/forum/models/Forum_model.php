@@ -62,7 +62,7 @@ class Forum_model extends CI_Model {
                 ->num_rows();
     }
 
-    public function insertTopic($idlink, $title, $userid, $description, $lock, $highl)
+    public function insertTopic($idlink, $title, $userid, $description, $locked, $pinned)
     {
         $date = $this->m_data->getTimestamp();
 
@@ -72,8 +72,8 @@ class Forum_model extends CI_Model {
             'author' => $userid,
             'date' => $date,
             'content' => $description,
-            'locked' => $lock,
-            'pined' => $highl
+            'locked' => $locked,
+            'pinned' => $pinned
         );
 
 
@@ -92,15 +92,15 @@ class Forum_model extends CI_Model {
                 ->row('id');
     }
 
-    public function updateTopic($idlink, $title, $description, $lock, $highl)
+    public function updateTopic($idlink, $title, $description, $locked, $pinned)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
             'title' => $title,
             'content' => $description,
-            'locked' => $lock,
-            'pined' => $highl
+            'locked' => $locked,
+            'pinned' => $pinned
         );
 
         $this->db->where('id', $idlink)
@@ -177,7 +177,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('*')
                 ->where('forums', $id)
-                ->where('pined', '1')
+                ->where('pinned', '1')
                 ->order_by('id', 'DESC')
                 ->get('forum_topics');
     }
@@ -220,6 +220,14 @@ class Forum_model extends CI_Model {
                 ->where('id', $id)
                 ->get('forum_topics')
                 ->row('locked');
+    }
+
+    public function getTopicPinned($id)
+    {
+        return $this->db->select('pinned')
+                ->where('id', $id)
+                ->get('forum_topics')
+                ->row('pinned');
     }
 
     public function getTopicForum($id)

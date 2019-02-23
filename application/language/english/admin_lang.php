@@ -48,7 +48,7 @@ $lang['admin_manage_donations'] = 'Manage Donations';
 $lang['admin_manage_topsites'] = 'Manage Topsites';
 $lang['admin_manage_groups'] = 'Manage Groups';
 $lang['admin_manage_items'] = 'Manage Items';
-$lang['admin_forums'] = 'Forums';
+$lang['admin_forum'] = 'Forum';
 $lang['admin_manage_categories'] = 'Manage Categories';
 $lang['admin_manege_forums'] = 'Manage Forums';
 

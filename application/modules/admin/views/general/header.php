@@ -60,7 +60,7 @@
             </ul>
           </li>
           <li class="uk-parent">
-            <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_forums'); ?></a>
+            <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_forum'); ?></a>
             <ul class="uk-nav-sub">
               <li><a href="<?= base_url('admin/managecategories'); ?>"><span class="uk-margin-small-right"><i class="fas fa-bookmark"></i></span><?= $this->lang->line('admin_manage_categories'); ?></a></li>
               <li><a href="<?= base_url('admin/manageforums'); ?>"><span class="uk-margin-small-right"><i class="fas fa-comment-dots"></i></span><?= $this->lang->line('admin_manege_forums'); ?></a></li>
@@ -140,7 +140,7 @@
                     </ul>
                   </li>
                   <li class="uk-parent">
-                    <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_forums'); ?></a>
+                    <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_forum'); ?></a>
                     <ul class="uk-nav-sub">
                       <li><a href="<?= base_url('admin/managecategories'); ?>"><span class="uk-margin-small-right"><i class="fas fa-bookmark"></i></span><?= $this->lang->line('admin_manage_categories'); ?></a></li>
                       <li><a href="<?= base_url('admin/manageforums'); ?>"><span class="uk-margin-small-right"><i class="fas fa-comment-dots"></i></span><?= $this->lang->line('admin_manege_forums'); ?></a></li>

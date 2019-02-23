@@ -1,15 +1,19 @@
 <?php
 if (isset($_POST['button_editTopic'])):
-  $title = $_POST['edittopic_title'];
-  $description = $_POST['edittopic_description'];
+  $title = $_POST['edit_title'];
+  $description = $_POST['edit_description'];
 
-  if (isset($_POST['check_highl']) && $_POST['check_highl'] == '1')
-    $highl = '1'; else $highl = '0';
+  if (isset($_POST['topic_locked']))
+    $locked = '1';
+  else
+    $locked = '0';
 
-  if (isset($_POST['check_lock']) && $_POST['check_lock'] == '1')
-    $lock = '1'; else $lock = '0';
+  if (isset($_POST['topic_pinned']))
+    $pinned = '1';
+  else
+    $pinned = '0';
 
-  $this->forum_model->updateTopic($idlink, $title, $description, $lock, $highl);
+  $this->forum_model->updateTopic($idlink, $title, $description, $locked, $pinned);
 endif;
 
 if (isset($_POST['button_addcommentary'])):
