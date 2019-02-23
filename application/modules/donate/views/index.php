@@ -34,14 +34,7 @@ endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <div class="uk-heading-divider uk-margin-remove-top uk-margin-small-bottom">
-              <div class="uk-grid uk-grid-small" data-uk-grid>
-                <div class="uk-width-expand">
-                  <span class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fab fa-cc-paypal"></i> <?=$this->lang->line('nav_donate'); ?></span>
-                </div>
-                <div class="uk-width-auto"></div>
-              </div>
-            </div>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?=$this->lang->line('nav_donate'); ?></h4>
             <div class="uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-3@s uk-flex-center" uk-grid>
               <?php foreach($this->donate_model->getDonations()->result() as $donateList): ?>
               <div>

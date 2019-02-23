@@ -29,7 +29,7 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-history"></i> <?= $this->lang->line('nav_changelogs'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('nav_changelogs'); ?></h4>
             <?php if($this->changelogs_model->getAll()->num_rows()): ?>
             <div class="uk-grid uk-grid-small uk-child-width-1-1" data-uk-grid>
               <?php foreach($this->changelogs_model->getChangelogs()->result() as $changelogsList): ?>

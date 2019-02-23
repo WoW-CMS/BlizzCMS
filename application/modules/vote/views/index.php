@@ -29,14 +29,7 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <div class="uk-heading-divider uk-margin-remove-top uk-margin-small-bottom">
-              <div class="uk-grid uk-grid-small" data-uk-grid>
-                <div class="uk-width-expand">
-                  <span class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('nav_vote'); ?></span>
-                </div>
-                <div class="uk-width-auto"></div>
-              </div>
-            </div>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('nav_vote'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-4@s uk-child-width-1-4@m" data-uk-grid>
               <?php foreach ($voteList as $key => $voteList): ?>
               <div>

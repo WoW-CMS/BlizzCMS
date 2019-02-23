@@ -104,7 +104,7 @@
               </a>
             </div>
             <?php endif ?>
-            <?php if ($this->m_modules->getDiscordStatus() == '1' $this->config->item('discordType') == '2'): ?>
+            <?php if ($this->m_modules->getDiscordStatus() == '1' && $this->config->item('discordType') == '2'): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fab fa-discord fa-sm"></i> <?= $this->lang->line('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <iframe src="{conf_discordwidget}{discord_id}&theme={conf_discordtheme}" width="{discord_width_class}" height="{discord_height_class}" {discord_extras}></iframe>

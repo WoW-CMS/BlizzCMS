@@ -38,7 +38,7 @@
             <div class="uk-margin-remove-top uk-margin-small-bottom">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-expand">
-                  <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-store"></i> <?=$this->lang->line('nav_store'); ?></h4>
+                  <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?=$this->lang->line('nav_store'); ?></h4>
                 </div>
                 <div class="uk-width-auto">
                   <form method="post" action="">

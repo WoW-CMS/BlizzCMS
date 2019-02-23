@@ -32,7 +32,7 @@
           <div class="uk-width-3-4@m">
             <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
               <div class="uk-width-expand">
-                  <h3 class="uk-h3 uk-text-uppercase uk-text-bold"><?= $this->lang->line('nav_bugtracker'); ?></h3>
+                  <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('nav_bugtracker'); ?></h4>
               </div>
               <div class="uk-width-auto">
                 <?php if ($this->m_data->isLogged()): ?>

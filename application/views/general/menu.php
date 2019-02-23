@@ -118,9 +118,6 @@
                       <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                       <?php endif; ?>
                       <?php endif; ?>
-                      <?php if($this->m_modules->getStatusGifts() == '1'): ?>
-                      <li><a href="<?= base_url('user/gifts'); ?>"><i class="fas fa-gift"></i> <?= $this->lang->line('button_gifts'); ?></a></li>
-                      <?php endif; ?>
                       <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
                       <?php endif; ?>
                       <?php foreach ($this->m_general->getMenu()->result() as $menulist): ?>
