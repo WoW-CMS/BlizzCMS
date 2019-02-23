@@ -54,7 +54,9 @@ endif; ?>
               <?php if($this->m_modules->getBugtrackerStatus() == '1'): ?>
               <li><a href="<?= base_url('bugtracker') ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('nav_bugtracker'); ?></a></li>
               <?php endif; ?>
+              <?php if($this->m_modules->getChangelogsStatus() == '1'): ?>
               <li><a href="<?= base_url('changelogs') ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('nav_changelogs'); ?></a></li>
+              <?php endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
