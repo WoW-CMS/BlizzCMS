@@ -303,7 +303,7 @@ CREATE TABLE `forum_topics` (
   `date` int(10) unsigned NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `locked` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `pined` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `pinned` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `archivar` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
