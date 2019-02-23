@@ -14,7 +14,7 @@ class User extends MX_Controller {
 
     public function login()
     {
-        if (!$this->m_modules->getStatusLogin())
+        if (!$this->m_modules->getLoginStatus())
             redirect(base_url(),'refresh');
 
         if ($this->m_data->isLogged())
@@ -105,7 +105,7 @@ class User extends MX_Controller {
 
     public function register()
     {
-        if (!$this->m_modules->getStatusRegister())
+        if (!$this->m_modules->getRegisterStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_permissions->getMaintenance())
@@ -141,7 +141,7 @@ class User extends MX_Controller {
 
     public function recovery()
     {
-        if (!$this->m_modules->getForgotPassword())
+        if (!$this->m_modules->getRecoveryStatus())
             redirect(base_url(),'refresh');
 
         if ($this->m_data->isLogged())
@@ -166,7 +166,7 @@ class User extends MX_Controller {
 
     public function panel()
     {
-        if (!$this->m_modules->getStatusUCP())
+        if (!$this->m_modules->getUCPStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_data->isLogged())

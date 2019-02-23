@@ -343,7 +343,7 @@ CREATE TABLE `modules` (
 
 /*Data for the table `modules` */
 
-insert  into `modules`(`id`,`name`,`status`) values (1,'Discord Experimental',1),(2,'Discord Classic',0),(3,'Register',1),(4,'Login',1),(5,'Realm Status',1),(6,'News',1),(7,'Changelogs',1),(8,'Forums',1),(9,'Store',1),(10,'Slides',1),(11,'Events',1),(12,'Ladder PVP',1),(13,'User Panel',1),(14,'Gifts',0),(15,'Ladder Arena',1),(16,'Bugtracker',1),(17,'Captcha',1),(18,'Messages',1),(19,'Donation',1),(20,'Installation',1),(22,'Vote',1),(23,'Admin',1),(24,'Faq',1);
+insert  into `modules`(`id`,`name`,`status`) values (1, 'Installation', 1),(2, 'Discord', 1),(3, 'reCaptcha', 0),(4, 'Slideshow', 1),(5, 'Realm Status', 1),(6, 'Register', 1),(7, 'Login', 1),(8, 'Recovery', 0),(9, 'User Panel', 1),(10, 'Admin Panel', 1),(11, 'News', 1),(12, 'Forum', 1),(13, 'Store', 1),(14, 'Donation', 1),(15, 'Vote', 1),(16, 'PVP', 1),(17, 'Bugtracker', 1),(18, 'Changelogs', 1),(19, 'FAQ', 1),(20, 'Events', 0);
 
 /*Table structure for table `news` */
 

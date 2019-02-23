@@ -13,7 +13,7 @@ class News extends MX_Controller {
         if(!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getStatusNews())
+        if (!$this->m_modules->getNewsStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_permissions->getMyPermissions('Permission_News'))

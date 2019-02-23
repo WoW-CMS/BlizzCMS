@@ -13,7 +13,7 @@ class Store extends MX_Controller {
         if (!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getStatusStore())
+        if (!$this->m_modules->getStoreStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_data->isLogged())

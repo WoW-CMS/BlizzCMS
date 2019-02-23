@@ -72,3 +72,15 @@ $config['discord_height_classic'] = '300';
 */
 $config['discord_width_experimental'] = '70';
 $config['discord_height_experimental'] = '70';
+
+/*
+|--------------------------------------------------------------------------
+| Discord Type
+|--------------------------------------------------------------------------
+|
+| 1 = Clasic Discord
+| 2 = Banner Discord
+| 3 = Experimental Discord
+|
+*/
+$config['discordType'] = '1';

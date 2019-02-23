@@ -14,7 +14,7 @@ class Bugtracker extends MX_Controller {
         if(!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getStatusLadBugtracker())
+        if (!$this->m_modules->getBugtrackerStatus())
             redirect(base_url(),'refresh');
 
         if(!$this->m_data->isLogged())
@@ -72,7 +72,7 @@ class Bugtracker extends MX_Controller {
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getStatusLadBugtracker())
+        if (!$this->m_modules->getBugtrackerStatus())
             redirect(base_url(),'refresh');
 
         $data = array(

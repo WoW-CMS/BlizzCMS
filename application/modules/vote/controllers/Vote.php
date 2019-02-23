@@ -13,7 +13,7 @@ class Vote extends MX_Controller {
         if (!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getVote())
+        if (!$this->m_modules->getVoteStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_data->isLogged())

@@ -13,7 +13,7 @@ class Faq extends MX_Controller {
         if(!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getFaq())
+        if (!$this->m_modules->getFAQStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_permissions->getMyPermissions('Permission_Faq'))

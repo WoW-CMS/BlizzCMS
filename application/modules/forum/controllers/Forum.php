@@ -13,7 +13,7 @@ class Forum extends MX_Controller {
         if(!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getStatusForums())
+        if (!$this->m_modules->getForumStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_permissions->getMyPermissions('Permission_Forums'))

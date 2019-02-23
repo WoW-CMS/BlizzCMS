@@ -8,7 +8,7 @@ class Admin_model extends CI_Model {
         $this->auth = $this->load->database('auth', TRUE);
         parent::__construct();
 
-        if (!$this->m_modules->getACP())
+        if (!$this->m_modules->getACPStatus())
             redirect(base_url(),'refresh');
     }
 

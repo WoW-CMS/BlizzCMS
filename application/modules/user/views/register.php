@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        <?php if($this->m_modules->getCaptcha() == '1'): ?>
+        <?php if($this->m_modules->getreCaptchaStatus() == '1'): ?>
         <div class="uk-margin">
           <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
         </div>
@@ -59,7 +59,7 @@
     <script>
       $(document).ready(function(){
         $(document).on('click', '#button_register', function(){
-          var restatus = "<?= $this->m_modules->getCaptcha(); ?>";
+          var restatus = "<?= $this->m_modules->getreCaptchaStatus(); ?>";
           if(restatus){
             var ren = grecaptcha.getResponse();
 

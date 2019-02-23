@@ -1,5 +1,5 @@
     <section class="uk-section uk-padding-remove slider-section">
-      <?php if($this->m_modules->getStatusSlides()): ?>
+      <?php if($this->m_modules->getSlideshowStatus()): ?>
       <?php if($this->home_model->getSlides()->num_rows()): ?>
       <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: fade;autoplay: true;autoplay-interval: 6000;min-height: 150;max-height: 300;">
         <ul class="uk-slideshow-items">
@@ -23,7 +23,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
           <div class="uk-width-2-3@s">
-            <?php if ($this->m_modules->getStatusNews()): ?>
+            <?php if ($this->m_modules->getNewsStatus()): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fas fa-newspaper fa-sm"></i> {home_latest_news}</h4>
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($threeNews as $newstree): ?>
@@ -46,7 +46,7 @@
             <?php endif ?>
           </div>
           <div class="uk-width-1-3@s">
-            <?php if($this->m_modules->getStatusRealmStatus()): ?>
+            <?php if($this->m_modules->getRealmStatus()): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fas fa-server fa-sm"></i> {home_server_status}</h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
               <?php foreach ($realmsList as $charsMultiRealm): 
@@ -96,7 +96,7 @@
               <?php endif ?>
             </h5>
             <?php endif ?>
-            <?php if ($this->m_modules->getStatusDiscordExperimental() == '1'): ?>
+            <?php if ($this->m_modules->getDiscordStatus() == '1' && $this->config->item('discordType') == '1'): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fab fa-discord fa-sm"></i> <?= $this->lang->line('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <a class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_inv'); ?>" title="Join us on Discord">
@@ -104,7 +104,7 @@
               </a>
             </div>
             <?php endif ?>
-            <?php if ($this->m_modules->getStatusDiscordClassic() == '1'): ?>
+            <?php if ($this->m_modules->getDiscordStatus() == '1' $this->config->item('discordType') == '2'): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fab fa-discord fa-sm"></i> <?= $this->lang->line('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <iframe src="{conf_discordwidget}{discord_id}&theme={conf_discordtheme}" width="{discord_width_class}" height="{discord_height_class}" {discord_extras}></iframe>

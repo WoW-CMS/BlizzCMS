@@ -22,7 +22,7 @@ class Home extends MX_Controller {
 
     public function index()
     {
-        if ($this->m_modules->getInstallation())
+        if ($this->m_modules->getInstallationStatus())
         {
             $this->load->model('admin/admin_model');
             $this->load->view('installation');

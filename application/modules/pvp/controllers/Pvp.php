@@ -13,7 +13,7 @@ class Pvp extends MX_Controller {
         if(!$this->m_permissions->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getStatusLadPVP())
+        if (!$this->m_modules->getPVPStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->m_permissions->getMyPermissions('Permission_PVPStats'))

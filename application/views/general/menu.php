@@ -11,12 +11,12 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <?php if (!$this->m_data->isLogged()): ?>
-              <?php if($this->m_modules->getStatusRegister() == '1'): ?>
+              <?php if($this->m_modules->getRegisterStatus() == '1'): ?>
               <?php if($this->m_permissions->getMyPermissions('Permission_Register')): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= $this->lang->line('button_register'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
-              <?php if($this->m_modules->getStatusLogin() == '1'): ?>
+              <?php if($this->m_modules->getLoginStatus() == '1'): ?>
               <?php if($this->m_permissions->getMyPermissions('Permission_Login')): ?>
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
               <?php endif; ?>
@@ -35,12 +35,12 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->m_data->isLogged()): ?>
-                    <?php if($this->m_modules->getStatusUCP() == '1'): ?>
+                    <?php if($this->m_modules->getUCPStatus() == '1'): ?>
                     <?php if($this->m_permissions->getMyPermissions('Permission_Panel')): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
-                    <?php if($this->m_modules->getACP() == '1'): ?>
+                    <?php if($this->m_modules->getACPStatus() == '1'): ?>
                     <?php if($this->m_permissions->getMyPermissions('Permission_ACP')): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
@@ -110,24 +110,24 @@
                     <?php endif; ?>
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                       <?php if (!$this->m_data->isLogged()): ?>
-                      <?php if($this->m_modules->getStatusRegister() == '1'): ?>
+                      <?php if($this->m_modules->getRegisterStatus() == '1'): ?>
                       <?php if($this->m_permissions->getMyPermissions('Permission_Register')): ?>
                       <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
                       <?php endif; ?>
                       <?php endif; ?>
-                      <?php if($this->m_modules->getStatusLogin() == '1'): ?>
+                      <?php if($this->m_modules->getLoginStatus() == '1'): ?>
                       <?php if($this->m_permissions->getMyPermissions('Permission_Login')): ?>
                       <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
                       <?php endif; ?>
                       <?php endif; ?>
                       <?php endif; ?>
                       <?php if ($this->m_data->isLogged()): ?>
-                      <?php if($this->m_modules->getStatusUCP() == '1'): ?>
+                      <?php if($this->m_modules->getUCPStatus() == '1'): ?>
                       <?php if($this->m_permissions->getMyPermissions('Permission_Panel')): ?>
                       <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                       <?php endif; ?>
                       <?php endif; ?>
-                      <?php if($this->m_modules->getACP() == '1'): ?>
+                      <?php if($this->m_modules->getACPStatus() == '1'): ?>
                       <?php if($this->m_permissions->getMyPermissions('Permission_ACP')): ?>
                       <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                       <?php endif; ?>

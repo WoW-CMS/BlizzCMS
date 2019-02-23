@@ -27,7 +27,7 @@ class Home_model extends CI_Model {
     public function updateInstallation()
     {
         $this->db->set('status', '0')
-                ->where('id', '20')
+                ->where('id', '1')
                 ->update('modules');
     }
 }

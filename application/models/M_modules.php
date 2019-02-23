@@ -8,7 +8,7 @@ class M_modules extends CI_Model {
         parent::__construct();
     }
 
-    public function getStatusDiscordExperimental()
+    public function getInstallationStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '1')
@@ -20,7 +20,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusDiscordClassic()
+    public function getDiscordStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '2')
@@ -32,7 +32,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusRegister()
+    public function getreCaptchaStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '3')
@@ -44,7 +44,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusLogin()
+    public function getSlideshowStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '4')
@@ -56,7 +56,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusRealmStatus()
+    public function getRealmStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '5')
@@ -68,7 +68,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusNews()
+    public function getRegisterStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '6')
@@ -80,7 +80,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusChangelogs()
+    public function getLoginStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '7')
@@ -92,7 +92,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusForums()
+    public function getRecoveryStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '8')
@@ -104,7 +104,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusStore()
+    public function getUCPStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '9')
@@ -116,7 +116,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusSlides()
+    public function getACPStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '10')
@@ -128,7 +128,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusEvents()
+    public function getNewsStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '11')
@@ -140,7 +140,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusLadPVP()
+    public function getForumStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '12')
@@ -152,7 +152,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusUCP()
+    public function getStoreStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '13')
@@ -164,7 +164,31 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getStatusLadBugtracker()
+    public function getDonationStatus()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '14')
+                ->get('modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function getVoteStatus()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '15')
+                ->get('modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function getPVPStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '16')
@@ -176,7 +200,7 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getCaptcha()
+    public function getBugtrackerStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '17')
@@ -188,7 +212,19 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getDonation()
+    public function getChangelogsStatus()
+    {
+        $qq = $this->db->select('status')
+                ->where('id', '18')
+                ->get('modules')
+                ->row('status');
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
+
+    public function getFAQStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '19')
@@ -200,58 +236,10 @@ class M_modules extends CI_Model {
             return false;
     }
 
-    public function getInstallation()
+    public function getEventsStatus()
     {
         $qq = $this->db->select('status')
                 ->where('id', '20')
-                ->get('modules')
-                ->row('status');
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
-    public function getVote()
-    {
-        $qq = $this->db->select('status')
-                ->where('id', '22')
-                ->get('modules')
-                ->row('status');
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
-    public function getACP()
-    {
-        $qq = $this->db->select('status')
-                ->where('id', '23')
-                ->get('modules')
-                ->row('status');
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
-    public function getFaq()
-    {
-        $qq = $this->db->select('status')
-                ->where('id', '24')
-                ->get('modules')
-                ->row('status');
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
-    public function getForgotPassword()
-    {
-        $qq = $this->db->select('status')
-                ->where('id', '25')
                 ->get('modules')
                 ->row('status');
         if($qq == '1')
