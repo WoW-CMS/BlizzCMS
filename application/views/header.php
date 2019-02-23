@@ -9,7 +9,7 @@
     <script src="<?= base_url('includes/core/uikit/js/uikit.min.js'); ?>"></script>
     <script src="<?= base_url('includes/core/uikit/js/uikit-icons.min.js'); ?>"></script>
     <script src="<?= base_url('includes/core/fontawesome/js/all.js'); ?>" defer></script>
-    <link rel="stylesheet" href="<?= base_url('theme/'.$this->config->item('theme_name').'/css/'.$this->config->item('theme_name').'.css'); ?>"/>
+    <link rel="stylesheet" href="<?= base_url('theme/'.$this->config->item('theme_name').'/css/main.css'); ?>"/>
     <script src="<?= base_url('includes/core/js/jquery-3.3.1.min.js'); ?>"></script>
     <link rel="stylesheet" href="<?= base_url('includes/core/amaranjs/css/amaran.min.css'); ?>"/>
     <script src="<?= base_url('includes/core/amaranjs/js/jquery.amaran.min.js'); ?>"></script>
