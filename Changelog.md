@@ -20,6 +20,7 @@
 - Add Forgot Password
 - Add reCAPTCHA widget to login/register/forgot password
 - Add Permissions system using gmlevel
+- Add type to menu (internal and external url)
 
 ### Removed
 
