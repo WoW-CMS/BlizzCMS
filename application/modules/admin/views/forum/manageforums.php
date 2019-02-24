@@ -22,6 +22,7 @@ endif; ?>
                   <thead>
                     <tr>
                       <th class="uk-table-expand"><?= $this->lang->line('form_title'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('form_category'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
                     </tr>
                   </thead>
@@ -29,6 +30,7 @@ endif; ?>
                     <?php foreach($this->admin_model->getForumForumList()->result() as $list): ?>
                     <tr>
                       <td><?= $list->name; ?></td>
+                      <td><?= $this->admin_model->getSpecifyForumCategory($list->category); ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
                         <a href="<?= base_url('admin/editforum/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>

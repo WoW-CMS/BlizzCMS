@@ -118,19 +118,20 @@ endif; ?>
               <div uk-grid>
                 <div class="uk-width-auto@m">
                   <ul class="uk-tab-right" uk-tab="connect: #settings; animation: uk-animation-fade">
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Main Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Website Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Database Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> reCaptcha Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Bugtracker Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Donate Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-cog"></i> Store Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-sliders-h"></i> Main Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-sliders-h"></i> Website Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-database"></i> Databases Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-shield-alt"></i> reCaptcha Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-bug"></i> Bugtracker Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fab fa-paypal"></i> Donate Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-store"></i> Store Settings</a></li>
                   </ul>
                 </div>
                 <div class="uk-width-expand@m">
                   <ul id="settings" class="uk-switcher">
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Main</span> Settings</span></h5>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
@@ -177,13 +178,14 @@ endif; ?>
                         </div>
                         <div class="uk-margin">
                           <div class="uk-form-controls">
-                            <button class="uk-button uk-button-primary uk-width-1-1" name="submitConfig" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                            <button class="uk-button uk-button-primary uk-width-1-1" name="submitConfig" type="submit"><i class="fas fa-sync"></i> Update</button>
                           </div>
                         </div>
                       </form>
                     </li>
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Website</span> Settings</span></h5>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
@@ -251,28 +253,29 @@ endif; ?>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitFixCore" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitFixCore" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Website</span> Database Settings</span></h5>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Website</strong> Database Hostname</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Hostname</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsHost" value="<?= $this->admin_model->getDatabaseCmsHost($fileDatabase); ?>" required>
                                 </div>
                               </div>
                             </div>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Website</strong> Database Name</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Name</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsName" value="<?= $this->admin_model->getDatabaseCmsName($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -282,42 +285,42 @@ endif; ?>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Website</strong> Database Username</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Username</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsUser" value="<?= $this->admin_model->getDatabaseCmsUser($fileDatabase); ?>" required>
                                 </div>
                               </div>
                             </div>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Website</strong> Database Password</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Password</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsPassword" value="<?= $this->admin_model->getDatabaseCmsPassword($fileDatabase); ?>" required>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <hr class="uk-divider-icon">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-top uk-margin-small-bottom"><span><span class="uk-text-primary uk-text-bold">Auth</span> Database Settings</span></h5>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Auth</strong> Database Hostname</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Hostname</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthHost" value="<?= $this->admin_model->getDatabaseAuthHost($fileDatabase); ?>" required>
                                 </div>
                               </div>
                             </div>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Auth</strong> Database Name</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Name</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthName" value="<?= $this->admin_model->getDatabaseAuthName($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -327,19 +330,19 @@ endif; ?>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Auth</strong> Database Username</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Username</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthUser" value="<?= $this->admin_model->getDatabaseAuthUser($fileDatabase); ?>" required>
                                 </div>
                               </div>
                             </div>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase"><strong>Auth</strong> Database Password</label>
+                              <label class="uk-form-label uk-text-uppercase">Database Password</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthPassword" value="<?= $this->admin_model->getDatabaseAuthPassword($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -347,14 +350,15 @@ endif; ?>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitDatabase" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitDatabase" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">reCaptcha</span> Settings</span></h5>
                         <div class="uk-margin-small">
-                          <label class="uk-form-label uk-text-uppercase">Recaptcha Site Key</label>
+                          <label class="uk-form-label uk-text-uppercase">reCaptcha Site Key</label>
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
                               <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
@@ -363,12 +367,13 @@ endif; ?>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitCaptcha" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitCaptcha" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Bugtracker</span> Settings</span></h5>
                         <div class="uk-margin-small">
                           <label class="uk-form-label uk-text-uppercase">Description Text</label>
                           <div class="uk-form-controls">
@@ -378,12 +383,13 @@ endif; ?>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitBugtracker" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitBugtracker" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Donate</span> Settings</span></h5>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
@@ -425,12 +431,13 @@ endif; ?>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitDonate" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitDonate" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
                     <li>
                       <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Store</span> Settings</span></h5>
                         <div class="uk-margin-small">
                           <label class="uk-form-label uk-text-uppercase">Store Type</label>
                           <div class="uk-form-controls">
@@ -441,7 +448,7 @@ endif; ?>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitStore" type="submit"><i class="fas fa-sync-alt"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitStore" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>

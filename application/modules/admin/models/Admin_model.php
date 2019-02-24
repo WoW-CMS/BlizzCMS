@@ -426,6 +426,14 @@ class Admin_model extends CI_Model {
             ->get('forum_category');
     }
 
+    public function getSpecifyForumCategory($id)
+    {
+        return $this->db->select('categoryName')
+                ->where('id', $id)
+                ->get('forum_category')
+                ->row_array()['categoryName'];
+    }
+
     public function insertCategoryAjax($name)
     {
         $data = array(
