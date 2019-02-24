@@ -14,9 +14,8 @@ if (isset($_POST['button_createItem'])):
   $itemid     = $_POST['itemID'];
   $iconname   = $_POST['iconName'];
   $imagename  = $_POST['imageName'];
-  $description = $_POST['description'];
 
-  $this->admin_model->insertShop($itemid, $type, $itemname, $pricedp, $pricevp, $iconname, $category, $imagename, $description);
+  $this->admin_model->insertShop($itemid, $type, $itemname, $pricedp, $pricevp, $iconname, $category, $imagename);
 endif; ?>
 
       <div id="newGroup" uk-modal="bg-close: false">
@@ -70,12 +69,6 @@ endif; ?>
                     <option value="<?= $groupsStore->id ?>"><?= $groupsStore->name ?></option>
                     <?php endforeach; ?>
                   </select>
-                </div>
-              </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
-                <div class="uk-form-controls">
-                  <textarea class="uk-textarea" name="description" rows="5" cols="80" required></textarea>
                 </div>
               </div>
               <div class="uk-margin-small">

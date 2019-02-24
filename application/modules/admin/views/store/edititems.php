@@ -52,12 +52,6 @@ endif; ?>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
-                  <div class="uk-form-controls">
-                    <textarea class="uk-textarea" name="description" rows="5" cols="80" required><?= $this->admin_model->getItemSpecifyDescription($idlink); ?></textarea>
-                  </div>
-                </div>
-                <div class="uk-margin-small">
                   <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('form_type');?></label>
                   <div class="uk-form-controls">
                     <label><input class="uk-radio" type="radio" name="type_store" id="item1" value="1" checked> <?=$this->lang->line('option_item');?></label>

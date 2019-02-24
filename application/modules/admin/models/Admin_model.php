@@ -276,14 +276,6 @@ class Admin_model extends CI_Model {
                 ->row_array()['groups'];
     }
 
-    public function getItemSpecifyDescription($id)
-    {
-        return $this->db->select('description')
-                ->where('id', $id)
-                ->get('store')
-                ->row('description');
-    }
-
     public function getGroupName($id)
     {
         return $this->db->select('name')

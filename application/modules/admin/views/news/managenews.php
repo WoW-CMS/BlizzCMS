@@ -3,13 +3,7 @@ if (isset($_POST['button_delNew'])):
   $this->admin_model->delSpecifyNew($_POST['button_delNew']);
 endif; ?>
 
-    <script src="<?= base_url(); ?>core/tinymce/tinymce.min.js"></script>
-    <script>tinymce.init({
-        selector: '.tinyeditor',
-        menubar: false,
-        plugins: ['advlist autolink autosave link image lists charmap preview hr searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media table contextmenu directionality emoticons textcolor paste fullpage textcolor colorpicker textpattern'],
-        toolbar: 'insert unlink emoticons | undo redo | formatselect fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | blockquote | removeformat'});
-    </script>
+      <?= $tiny ?>
       <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-expand">
           <?php if(isset($_POST['button_createNew'])) {

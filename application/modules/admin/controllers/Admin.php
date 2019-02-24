@@ -30,8 +30,17 @@ class Admin extends MX_Controller {
 
     public function settings()
     {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'tiny' => $tiny,
+        );
+
         $this->load->view('general/header');
-        $this->load->view('settings/index');
+        $this->load->view('settings/index', $data);
         $this->load->view('general/footer');
     }
 
@@ -269,8 +278,17 @@ class Admin extends MX_Controller {
 
     public function managenews()
     {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'tiny' => $tiny,
+        );
+
         $this->load->view('general/header');
-        $this->load->view('news/managenews');
+        $this->load->view('news/managenews', $data);
         $this->load->view('general/footer');
         $this->load->view('news/modal');
     }
@@ -283,7 +301,15 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getNewsSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'idlink' => $id,
+            'tiny' => $tiny,
+        );
 
         $this->load->view('general/header');
         $this->load->view('news/editnews', $data);
@@ -292,8 +318,17 @@ class Admin extends MX_Controller {
 
     public function managechangelogs()
     {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'tiny' => $tiny,
+        );
+
         $this->load->view('general/header');
-        $this->load->view('changelogs/managechangelogs');
+        $this->load->view('changelogs/managechangelogs', $data);
         $this->load->view('general/footer');
         $this->load->view('changelogs/modal');
     }
@@ -306,7 +341,15 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'idlink' => $id,
+            'tiny' => $tiny,
+        );
 
         $this->load->view('general/header');
         $this->load->view('changelogs/editchangelogs', $data);
@@ -315,8 +358,17 @@ class Admin extends MX_Controller {
 
     public function managepages()
     {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'tiny' => $tiny,
+        );
+
         $this->load->view('general/header');
-        $this->load->view('page/managepages');
+        $this->load->view('page/managepages', $data);
         $this->load->view('general/footer');
         $this->load->view('page/modal');
     }
@@ -329,7 +381,15 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getPagesSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'idlink' => $id,
+            'tiny' => $tiny,
+        );
 
         $this->load->view('general/header');
         $this->load->view('page/editpages', $data);
@@ -338,8 +398,17 @@ class Admin extends MX_Controller {
 
     public function managefaq()
     {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'tiny' => $tiny,
+        );
+
         $this->load->view('general/header');
-        $this->load->view('faq/managefaq');
+        $this->load->view('faq/managefaq', $data);
         $this->load->view('general/footer');
         $this->load->view('faq/modal');
     }
@@ -352,7 +421,15 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getFaqSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'idlink' => $id,
+            'tiny' => $tiny,
+        );
 
         $this->load->view('general/header');
         $this->load->view('faq/editfaq', $data);
@@ -426,52 +503,6 @@ class Admin extends MX_Controller {
         $this->load->view('forum/manageforums');
         $this->load->view('general/footer');
         $this->load->view('forum/modal');
-    }
-
-    public function managechallenges()
-    {
-        $this->load->view('general/header');
-        $this->load->view('challenges/managechallenges');
-        $this->load->view('general/footer');
-        $this->load->view('challenges/modal');
-    }
-
-    public function editchallenge($id)
-    {
-        if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        if ($this->admin_model->getChallengesSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
-
-        $data['idlink'] = $id;
-
-        $this->load->view('general/header');
-        $this->load->view('challenges/editchallenge', $data);
-        $this->load->view('general/footer');
-    }
-
-    public function managerequirements()
-    {
-        $this->load->view('general/header');
-        $this->load->view('challenges/managerequirements');
-        $this->load->view('general/footer');
-        $this->load->view('challenges/modal');
-    }
-
-    public function editrequirement($id)
-    {
-        if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        if ($this->admin_model->getRequirementsSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
-
-        $data['idlink'] = $id;
-
-        $this->load->view('general/header');
-        $this->load->view('challenges/editrequirement', $data);
-        $this->load->view('general/footer');
     }
 
     public function managetopsites()
