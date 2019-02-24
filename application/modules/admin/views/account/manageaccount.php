@@ -23,7 +23,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: user"></span> <?= $this->lang->line('panel_admin_user_manage'); ?> - <?= $this->m_data->getUsernameID($idlink) ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_user_manage'); ?> - <span class="uk-text-bold"><?= $this->m_data->getUsernameID($idlink) ?></span></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -33,8 +33,8 @@ endif;
                 <?php if($this->admin_model->getBanSpecify($idlink)->num_rows()): ?>
                 <div>
                   <div class="uk-card uk-card-default">
-                    <div class="uk-card-header uk-card-primary uk-text-center uk-text-uppercase">
-                      <i class="fas fa-check-circle"></i> <?= $this->lang->line('panel_admin_unban_account'); ?>
+                    <div class="uk-card-header uk-card-primary">
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-check-circle"></i> <?= $this->lang->line('panel_admin_unban_account'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
@@ -48,8 +48,8 @@ endif;
                 <?php else: ?>
                 <div>
                   <div class="uk-card uk-card-default">
-                    <div class="uk-card-header uk-card-secondary uk-text-center uk-text-uppercase">
-                      <i class="fas fa-ban"></i> <?= $this->lang->line('panel_admin_ban_account'); ?>
+                    <div class="uk-card-header uk-card-secondary">
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-ban"></i> <?= $this->lang->line('panel_admin_ban_account'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post" accept-charset="utf-8">
@@ -70,7 +70,9 @@ endif;
                 <?php endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
-                    <div class="uk-card-header uk-card-primary uk-text-center uk-text-uppercase"><i class="fas fa-gamepad"></i> <?= $this->lang->line('panel_admin_rank_account'); ?></div>
+                    <div class="uk-card-header uk-card-primary">
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-gamepad"></i> <?= $this->lang->line('panel_admin_rank_account'); ?></h5>
+                    </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
                         <?php if($this->m_data->getGmSpecify($idlink)->num_rows()): ?>
@@ -100,7 +102,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: user"></span> <?= $this->lang->line('panel_admin_general_info'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_general_info'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -132,7 +134,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: user"></span> <?= $this->lang->line('panel_admin_donate_history'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_donate_history'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -170,7 +172,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: user"></span> <?= $this->lang->line('panel_chars_list'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('panel_chars_list'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -181,7 +183,7 @@ endif;
                   $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                 ?>
                 <li>
-                  <a href="#" class="uk-accordion-title"><span data-uk-icon="icon: server"></span> Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a>
+                  <a href="#" class="uk-accordion-title"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a>
                   <div class="uk-accordion-content">
                     <div class="uk-overflow-auto uk-margin-small">
                       <table class="uk-table uk-table-divider uk-table-small">
@@ -221,7 +223,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span data-uk-icon="icon: list"></span> <?= $this->lang->line('panel_admin_annotations'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= $this->lang->line('panel_admin_annotations'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>

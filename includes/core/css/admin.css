@@ -330,6 +330,32 @@ ul.uk-nav-sub {
   color: #ff2e2e !important;
 }
 
+.uk-tab > * > a {
+  color: #424242;
+  text-transform: none;
+  transition: all ease-in .2s;
+}
+
+.uk-tab > * > a:focus,
+.uk-tab > * > a:hover {
+  color: #fff;
+  background-color: #002650;
+}
+
+.uk-tab > .uk-active > a {
+  color: #fff;
+  border-color: #002650;
+  background-color: #002650;
+}
+
+.uk-tab-right::before {
+  border-left: 2px solid rgba(0, 0, 0, .2);
+}
+
+.uk-tab-right > * > a {
+  border-left: 2px solid transparent;
+}
+
 @media screen and (max-width: 640px) {
   table .uk-width-medium .uk-input {
     min-width: 200px;
