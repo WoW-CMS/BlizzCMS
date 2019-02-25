@@ -98,14 +98,12 @@
                     <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('ProjectName'); ?></p>
                     <?php if ($this->m_data->isLogged()): ?>
                     <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                        <a href="<?= base_url('profile/'.$this->session->userdata('fx_sess_id')); ?>">
-                          <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()): ?>
-                          <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id')))); ?>" width="36" height="36" alt="" uk-tooltip="title: Profile; pos: right">
-                          <?php else: ?>
-                          <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/default.png'); ?>" width="36" height="36" alt="" uk-tooltip="title: Profile; pos: right">
-                          <?php endif; ?>
-                        </a>
-                        <span class="uk-label"><?= $this->session->userdata('fx_sess_username'); ?> #<?= $this->session->userdata('fx_sess_tag'); ?></span>
+                      <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()): ?>
+                      <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id')))); ?>" width="36" height="36" alt="Avatar">
+                      <?php else: ?>
+                      <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
+                      <?php endif; ?>
+                      <span class="uk-label"><?= $this->session->userdata('fx_sess_username'); ?> #<?= $this->session->userdata('fx_sess_tag'); ?></span>
                     </div>
                     <?php endif; ?>
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
