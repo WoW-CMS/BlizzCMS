@@ -1,8 +1,8 @@
 <?php
   $fileConfig = FCPATH.'application/config/config.php';
-  $fileFixCore = FCPATH.'application/config/blizzcms.php';
+  $fileBlizzCMS = FCPATH.'application/config/blizzcms.php';
   $fileDatabase = FCPATH.'application/config/database.php';
-  $fileCaptcha = FCPATH.'application/config/plus.php';
+  $filePlus = FCPATH.'application/config/plus.php';
   $fileBugtracker = FCPATH.'application/modules/bugtracker/config/bugtracker.php';
   $fileDonate = FCPATH.'application/modules/donate/config/donate.php';
   $fileStore = FCPATH.'application/modules/store/config/store.php';
@@ -22,24 +22,24 @@ if (isset($_POST['submitConfig'])):
   $this->admin_model->settingConfig($data);
 endif;
 
-if (isset($_POST['submitFixCore'])):
+if (isset($_POST['submitBlizzCMS'])):
   $datafx = array(
-    'filename' => $fileFixCore,
+    'filename' => $fileBlizzCMS,
     'blizzcmsName' => str_replace(' ', '', $_POST['blizzcmsProjectName']),
-    'actualName' => $this->admin_model->getFixCoreProjectName($fileFixCore),
+    'actualName' => $this->admin_model->getProjectName($fileBlizzCMS),
     'blizzcmsTimeZone' => str_replace(' ', '', $_POST['blizzcmsTimeZone']),
-    'actualTimeZone' => $this->admin_model->getFixCoreTimeZone($fileFixCore),
+    'actualTimeZone' => $this->admin_model->getTimeZone($fileBlizzCMS),
     'blizzcmsDiscord' => str_replace(' ', '', $_POST['blizzcmsDiscordInv']),
-    'actualDiscord' => $this->admin_model->getFixCoreDiscordInv($fileFixCore),
+    'actualDiscord' => $this->admin_model->getDiscordInv($fileBlizzCMS),
     'blizzcmsRealmlist' => str_replace(' ', '', $_POST['blizzcmsRealmlist']),
-    'actualRealmlist' => $this->admin_model->getFixCoreRealmlist($fileFixCore),
+    'actualRealmlist' => $this->admin_model->getRealmlist($fileBlizzCMS),
     'blizzcmsStaffColor' => str_replace(' ', '', $_POST['blizzcmsStaffColor']),
-    'actualStaffColor' => $this->admin_model->getFixCoreStaffColor($fileFixCore),
+    'actualStaffColor' => $this->admin_model->getStaffColor($fileBlizzCMS),
     'blizzcmsThemeName' => str_replace(' ', '', $_POST['blizzcmsTheme']),
-    'actualTheme' => $this->admin_model->getFixCoreThemeName($fileFixCore),
+    'actualTheme' => $this->admin_model->getThemeName($fileBlizzCMS),
   );
 
-  $this->admin_model->settingFixCore($datafx);
+  $this->admin_model->settingBlizzCMS($datafx);
 endif;
 
 if (isset($_POST['submitDatabase'])):
@@ -67,11 +67,28 @@ endif;
 
 if (isset($_POST['submitCaptcha'])):
   $datacaptcha = array(
-    'filename' => $fileCaptcha,
+    'filename' => $filePlus,
     'recaptchaKey' => str_replace(' ', '', $_POST['recaptchaKey']),
-    'actualrecaptchaKey' => $this->admin_model->getRecaptchaKey($fileCaptcha),
+    'actualrecaptchaKey' => $this->admin_model->getRecaptchaKey($filePlus),
   );
   $this->admin_model->settingRecaptcha($datacaptcha);
+endif;
+
+if (isset($_POST['submitSMTP'])):
+  $datasmtp = array(
+    'filename' => $filePlus,
+    'smtpHost' => str_replace(' ', '', $_POST['smtpHost']),
+    'actualsmtpHost' => $this->admin_model->getSMTPHost($filePlus),
+    'smtpUser' => str_replace(' ', '', $_POST['smtpUser']),
+    'actualsmtpUser' => $this->admin_model->getSMTPUser($filePlus),
+    'smtpPass' => str_replace(' ', '', $_POST['smtpPass']),
+    'actualsmtpPass' => $this->admin_model->getSMTPPass($filePlus),
+    'smtpPort' => str_replace(' ', '', $_POST['smtpPort']),
+    'actualsmtpPort' => $this->admin_model->getSMTPPort($filePlus),
+    'smtpCrypto' => str_replace(' ', '', $_POST['smtpCrypto']),
+    'actualsmtpCrypto' => $this->admin_model->getSMTPCrypto($filePlus),
+  );
+  $this->admin_model->settingRecaptcha($datasmtp);
 endif;
 
 if (isset($_POST['submitBugtracker'])):
@@ -122,6 +139,7 @@ endif; ?>
                     <li><a href="javascript:void(0)"><i class="fas fa-sliders-h"></i> Website Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-database"></i> Databases Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-shield-alt"></i> reCaptcha Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-mail-bulk"></i> SMTP Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-bug"></i> Bugtracker Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fab fa-paypal"></i> Donate Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-store"></i> Store Settings</a></li>
@@ -138,7 +156,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Base Site URL</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
                                   <input class="uk-input" type="text" name="configURL" value="<?= $this->admin_model->getConfigBaseUrl($fileConfig); ?>" required>
                                 </div>
                               </div>
@@ -160,7 +178,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Default Character Set</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-code"></i></span>
                                   <input class="uk-input" type="text" name="configCharSet" value="<?= $this->admin_model->getConfigCharSet($fileConfig); ?>" required>
                                 </div>
                               </div>
@@ -169,7 +187,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Session Expiration</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user-slash"></i></span>
                                   <input class="uk-input" type="text" name="configSessExpiration" value="<?= $this->admin_model->getConfigSessExpiration($fileConfig); ?>" required>
                                 </div>
                               </div>
@@ -192,8 +210,8 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Project Name</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
-                                  <input class="uk-input" type="text" name="blizzcmsProjectName" value="<?= $this->admin_model->getFixCoreProjectName($fileFixCore); ?>" required>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
+                                  <input class="uk-input" type="text" name="blizzcmsProjectName" value="<?= $this->admin_model->getProjectName($fileBlizzCMS); ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -201,8 +219,8 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Realmlist</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
-                                  <input class="uk-input" type="text" name="blizzcmsRealmlist" value="<?= $this->admin_model->getFixCoreRealmlist($fileFixCore); ?>" required>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
+                                  <input class="uk-input" type="text" name="blizzcmsRealmlist" value="<?= $this->admin_model->getRealmlist($fileBlizzCMS); ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -214,8 +232,8 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Discord ID</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
-                                  <input class="uk-input" type="text" name="blizzcmsDiscordInv" value="<?= $this->admin_model->getFixCoreDiscordInv($fileFixCore); ?>" required>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
+                                  <input class="uk-input" type="text" name="blizzcmsDiscordInv" value="<?= $this->admin_model->getDiscordInv($fileBlizzCMS); ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -223,8 +241,8 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Timezone</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
-                                  <input class="uk-input" type="text" name="blizzcmsTimeZone" value="<?= $this->admin_model->getFixCoreTimeZone($fileFixCore); ?>" required>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="far fa-clock"></i></span>
+                                  <input class="uk-input" type="text" name="blizzcmsTimeZone" value="<?= $this->admin_model->getTimeZone($fileBlizzCMS); ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -236,8 +254,8 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Forum STAFF Color</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
-                                  <input class="uk-input" type="text" name="blizzcmsStaffColor" value="<?= $this->admin_model->getFixCoreStaffColor($fileFixCore); ?>" required>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-palette"></i></span>
+                                  <input class="uk-input" type="text" name="blizzcmsStaffColor" value="<?= $this->admin_model->getStaffColor($fileBlizzCMS); ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -245,15 +263,15 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Theme Name</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
-                                  <input class="uk-input" type="text" name="blizzcmsTheme" value="<?= $this->admin_model->getFixCoreThemeName($fileFixCore); ?>" required>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
+                                  <input class="uk-input" type="text" name="blizzcmsTheme" value="<?= $this->admin_model->getThemeName($fileBlizzCMS); ?>" required>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitFixCore" type="submit"><i class="fas fa-sync"></i> Update</button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitBlizzCMS" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
@@ -266,7 +284,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Hostname</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsHost" value="<?= $this->admin_model->getDatabaseCmsHost($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -275,7 +293,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Name</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsName" value="<?= $this->admin_model->getDatabaseCmsName($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -288,7 +306,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Username</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsUser" value="<?= $this->admin_model->getDatabaseCmsUser($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -297,7 +315,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Password</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
                                   <input class="uk-input" type="text" name="databaseCmsPassword" value="<?= $this->admin_model->getDatabaseCmsPassword($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -311,7 +329,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Hostname</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthHost" value="<?= $this->admin_model->getDatabaseAuthHost($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -320,7 +338,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Name</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthName" value="<?= $this->admin_model->getDatabaseAuthName($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -333,7 +351,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Username</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthUser" value="<?= $this->admin_model->getDatabaseAuthUser($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -342,7 +360,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">Database Password</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
                                   <input class="uk-input" type="text" name="databaseAuthPassword" value="<?= $this->admin_model->getDatabaseAuthPassword($fileDatabase); ?>" required>
                                 </div>
                               </div>
@@ -362,12 +380,72 @@ endif; ?>
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
                               <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                              <input class="uk-input" type="text" name="recaptchaKey" value="<?= $this->admin_model->getRecaptchaKey($fileCaptcha); ?>" required>
+                              <input class="uk-input" type="text" name="recaptchaKey" value="<?= $this->admin_model->getRecaptchaKey($filePlus); ?>" required>
                             </div>
                           </div>
                         </div>
                         <div class="uk-margin">
                           <button class="uk-button uk-button-primary uk-width-1-1" name="submitCaptcha" type="submit"><i class="fas fa-sync"></i> Update</button>
+                        </div>
+                      </form>
+                    </li>
+                    <li>
+                      <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">SMTP</span> Settings</span></h5>
+                        <div class="uk-margin-small">
+                          <div class="uk-grid uk-grid-small" data-uk-grid>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">SMTP Hostname</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mail-bulk"></i></span>
+                                  <input class="uk-input" type="text" name="smtpHost" value="<?= $this->admin_model->getSMTPHost($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="uk-width-1-4@s">
+                              <label class="uk-form-label uk-text-uppercase">SMTP Port</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <input class="uk-input" type="number" name="smtpPort" value="<?= $this->admin_model->getSMTPPort($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="uk-width-1-4@s">
+                              <label class="uk-form-label uk-text-uppercase">SMTP Encryption</label>
+                              <div class="uk-form-controls">
+                                <select class="uk-select" name="smtpCrypto">
+                                  <option value="ssl" <?php if($this->admin_model->getSMTPCrypto($filePlus) == 'ssl') echo 'selected'; ?>>SSL</option>
+                                  <option value="tls" <?php if($this->admin_model->getSMTPCrypto($filePlus) == 'tls') echo 'selected'; ?>>TLS</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="uk-margin-small">
+                          <div class="uk-grid uk-grid-small" data-uk-grid>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">SMTP Username</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
+                                  <input class="uk-input" type="text" name="smtpUser" value="<?= $this->admin_model->getSMTPUser($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">SMTP Password</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
+                                  <input class="uk-input" type="text" name="smtpPass" value="<?= $this->admin_model->getSMTPPass($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitSMTP" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
@@ -396,7 +474,7 @@ endif; ?>
                               <label class="uk-form-label uk-text-uppercase">PayPal Currency</label>
                               <div class="uk-form-controls">
                                 <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-edit"></i></span>
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-file-invoice-dollar"></i></span>
                                   <input class="uk-input" type="text" name="paypalCurrency" value="<?= $this->admin_model->getPaypalCurrency($fileDonate); ?>" required>
                                 </div>
                               </div>

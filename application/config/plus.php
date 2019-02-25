@@ -22,11 +22,11 @@ $config['recaptcha_sitekey'] = '6LfJFEAUAAAAAKBrGYQaX-TeWGBG1vTNlqUuNyNA';
 | and account activation.
 |
 */
-$config['smtp_protocol'] = 'smtp';
-$config['smtp_host'] = 'ssl://cp162176.hpdns.net';
-$config['smtp_port'] = 465;
+$config['smtp_host'] = 'cp162176.hpdns.net';
 $config['smtp_user'] = 'dzy@dzywolf.me';
 $config['smtp_pass'] = 'r5hxfIazAXmn';
+$config['smtp_port'] = '465';
+$config['smtp_crypto'] = 'ssl';
 
 /*
 |--------------------------------------------------------------------------

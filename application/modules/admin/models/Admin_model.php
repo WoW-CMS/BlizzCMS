@@ -1032,7 +1032,7 @@ class Admin_model extends CI_Model {
     }
 
     //blizzcms
-    public function settingFixCore($data)
+    public function settingBlizzCMS($data)
     {
         $filename = $data['filename'];
 
@@ -1063,7 +1063,7 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/settings'),'refresh');
     }
 
-    public function getFixCoreProjectName($filename)
+    public function getProjectName($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[11], 26);
@@ -1071,7 +1071,7 @@ class Admin_model extends CI_Model {
         return str_replace("'", "", $fileHandle[0]);
     }
 
-    public function getFixCoreTimeZone($filename)
+    public function getTimeZone($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[21], 23);
@@ -1079,7 +1079,7 @@ class Admin_model extends CI_Model {
         return str_replace("'", "", $fileHandle[0]);
     }
 
-    public function getFixCoreDiscordInv($filename)
+    public function getDiscordInv($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[42], 25);
@@ -1087,7 +1087,7 @@ class Admin_model extends CI_Model {
         return str_replace("'", "", $fileHandle[0]);
     }
 
-    public function getFixCoreRealmlist($filename)
+    public function getRealmlist($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[52], 24);
@@ -1095,7 +1095,7 @@ class Admin_model extends CI_Model {
         return str_replace("'", "", $fileHandle[0]);
     }
 
-    public function getFixCoreStaffColor($filename)
+    public function getStaffColor($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[65], 31);
@@ -1103,7 +1103,7 @@ class Admin_model extends CI_Model {
         return str_replace("'", "", $fileHandle[0]);
     }
 
-    public function getFixCoreThemeName($filename)
+    public function getThemeName($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[96], 25);
@@ -1237,6 +1237,76 @@ class Admin_model extends CI_Model {
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[13], 31);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //smtp
+    public function settingSMTP($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualsmtpHost'],
+            $data['actualsmtpUser'],
+            $data['actualsmtpPass'],
+            $data['actualsmtpPort'],
+            $data['actualsmtpCrypto']
+        );
+
+        $Configreplace = array(
+            $data['smtpHost'],
+            $data['smtpUser'],
+            $data['smtpPass'],
+            $data['smtpPort'],
+            $data['smtpCrypto']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getSMTPHost($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[24], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getSMTPUser($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[25], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getSMTPPass($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[26], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getSMTPPort($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[27], 23);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getSMTPCrypto($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[28], 25);
         $fileHandle = explode(";", $fileHandle);
         return str_replace("'", "", $fileHandle[0]);
     }

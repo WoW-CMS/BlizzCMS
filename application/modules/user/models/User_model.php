@@ -331,11 +331,12 @@ class User_model extends CI_Model {
         $this->load->library('email');
 
         $econf = array(
-            'protocol'  => $this->config->item('smtp_protocol'),
+            'protocol'  => 'smtp',
             'smtp_host' => $this->config->item('smtp_host'),
-            'smtp_port' => $this->config->item('smtp_port'),
             'smtp_user' => $this->config->item('smtp_user'),
             'smtp_pass' => $this->config->item('smtp_pass'),
+            'smtp_port' => $this->config->item('smtp_port'),
+            'smtp_crypto' => $this->config->item('smtp_crypto'),
             'mailtype'  => 'html',
             'charset'   => 'utf-8'
         );
