@@ -6,7 +6,6 @@ class Store_model extends CI_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->auth = $this->load->database('auth', TRUE);
     }
 
     public function getShopTop10()
@@ -188,7 +187,7 @@ class Store_model extends CI_Model {
         if ($method == "dp")
             $this->db->query("UPDATE credits SET dp = (dp-$price) WHERE accountid = $accountid");
         else
-            $this->auth->query("UPDATE account SET game_point = (game_point-$price) WHERE id = $accountid");
+            $this->db->query("UPDATE credits SET vp = (vp-$price) WHERE accountid = $accountid");
 
         redirect(base_url('store?complete'),'refresh');
     }
