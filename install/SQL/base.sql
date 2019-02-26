@@ -405,6 +405,23 @@ CREATE TABLE `pages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Table structure for table `pending_users` */
+
+DROP TABLE IF EXISTS `pending_users`;
+
+CREATE TABLE `pending_users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `password_bnet` varchar(100) DEFAULT NULL,
+  `location` int(10) DEFAULT NULL,
+  `expansion` int(10) DEFAULT NULL,
+  `date` int(10) DEFAULT NULL,
+  `key` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 /*Table structure for table `ranks_default` */
 
 DROP TABLE IF EXISTS `ranks_default`;
