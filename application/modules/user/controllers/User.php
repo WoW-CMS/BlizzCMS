@@ -158,6 +158,11 @@ class User extends MX_Controller {
         echo $this->user_model->sendpassword($username, $email);
     }
 
+    public function activate($key)
+    {
+        echo $this->user_model->activateAccount($key);
+    }
+
     public function panel()
     {
         if (!$this->m_modules->getUCPStatus())

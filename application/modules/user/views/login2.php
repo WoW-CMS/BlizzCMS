@@ -4,6 +4,17 @@
     <section class="uk-section uk-section-small main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></span></h4>
+        <?php if($this->session->flashdata('account_activation') == 'true'): ?>
+        <div class="uk-alert-success" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p><i class="far fa-check-circle"></i> <span class="uk-text-bold">Account Activated</span>. Now you can sign in with your account.</p>
+        </div>
+        <?php elseif($this->session->flashdata('account_activation') == 'false'): ?>
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p><i class="far fa-times-circle"></i> The activation key provided is not valid.</p>
+        </div>
+        <?php endif; ?>
         <div class="uk-margin" uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-inline; delay: 300; repeat: true">
           <div class="uk-form-controls uk-light">
             <div class="uk-inline uk-width-1-1">

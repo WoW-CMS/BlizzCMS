@@ -220,5 +220,6 @@ $lang['gender_female'] = 'Female';
 $lang['faction_alliance'] = 'Alliance';
 $lang['faction_horde'] = 'Horde';
 
-/*Recovery Lang*/
-$lang['rec_account_information'] = 'Account Information';
+/*Email Lang*/
+$lang['email_password_recovery'] = 'Password Recovery';
+$lang['email_account_activation'] = 'Account Activation';

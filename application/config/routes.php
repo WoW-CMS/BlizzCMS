@@ -58,6 +58,7 @@ $route['register'] = 'user/register';
 $route['panel'] = 'user/panel';
 $route['logout'] = 'user/logout';
 $route['recovery'] = 'user/recovery';
+$route['activate/(:any)'] = 'user/activate/$1';
 //forum
 $route['forum/category/(:num)'] = 'forum/category/$1';
 $route['forum/topic/(:num)'] = 'forum/topic/$1';

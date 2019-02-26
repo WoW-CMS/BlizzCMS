@@ -30,25 +30,27 @@ $config['smtp_crypto'] = 'ssl';
 
 /*
 |--------------------------------------------------------------------------
-| Recovery Passowrd
+| Email Settings
 |--------------------------------------------------------------------------
 |
-| Write the necessary information for use recovery password.
+| Write the necessary information to use in sending emails.
 |
 */
-$config['recovery_email_from'] = 'dzy@dzywolf.me';
-$config['recovery_email_name'] = 'BlizzCMS';
-$config['recovery_email_subject'] = 'Password Recovery';
+$config['email_settings_sender'] = 'dzy@dzywolf.me';
+$config['email_settings_sender_name'] = 'BlizzCMS';
 
 /*
 |--------------------------------------------------------------------------
 | Account Activation
 |--------------------------------------------------------------------------
 |
-| Write the necessary information for use account activation.
+| Enable or Disable the option to activate accounts by email.
+| 
+| TRUE  = Enable
+| FALSE = Disable
 |
 */
-
+$config['account_activation_required'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------

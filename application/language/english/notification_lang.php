@@ -110,3 +110,4 @@ $lang['notify_checking'] = 'Checking...';
 $lang['notify_redirection'] = 'Connecting to your account...';
 $lang['notify_new_account'] = 'New account created. redirecting to login...';
 $lang['notify_email_sent'] = 'Email sent. please check your email...';
+$lang['notify_account_activation'] = 'Email sent. please check your email for activate your account.';

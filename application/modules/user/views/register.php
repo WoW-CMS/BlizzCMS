@@ -214,6 +214,23 @@
                 return false;
               }
 
+              if (response == 'regAct') {
+                $.amaran({
+                  'theme': 'awesome ok',
+                  'content': {
+                    title: '<?= $this->lang->line('notify_title_success'); ?>',
+                    message: '<?= $this->lang->line('notify_account_activation'); ?>',
+                    info: '',
+                    icon: 'fas fa-check-circle'
+                  },
+                  'delay': 5000,
+                  'position': 'top right',
+                  'inEffect': 'slideRight',
+                  'outEffect': 'slideRight'
+                });
+                return true;
+              }
+
               if (response) {
                 $.amaran({
                   'theme': 'awesome ok',

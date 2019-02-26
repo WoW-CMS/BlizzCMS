@@ -231,71 +231,99 @@ class User_model extends CI_Model {
 
         $checkuser = $this->m_data->getIDAccount($username);
         $checkemail = $this->m_data->getIDEmail($email);
+        $pendinguser = $this->getIDPendingUsername($username);
+        $pendingemail = $this->getIDPendingEmail($email);
 
-        if($checkuser == "0") {
-            if($checkemail == "0") {
+        if($checkuser == "0" && $pendinguser == "0") {
+            if($checkemail == "0" && $pendingemail == "0") {
                 if(strlen($password) >= 5 && strlen($password) <= 16 || strlen($repassword) >= 5 && strlen($repassword) <= 16) {
                     if($password == $repassword)
                     {
-
-                        $tag = rand(1111, 9999);
-                        if ($this->m_general->getExpansionAction($this->config->item('expansion_id')) == 1)
+                        if($this->config->item('account_activation_required') == TRUE)
                         {
                             $data = array(
                                 'username' => $username,
-                                'sha_pass_hash' => $passwordAc,
                                 'email' => $email,
+                                'password' => $passwordAc,
+                                'password_bnet' => $passwordBn,
+                                'location' => $country,
                                 'expansion' => $expansion,
+                                'date' => $date,
+                                'key' => sha1($username.$email.$date)
                             );
 
-                            $this->auth->insert('account', $data);
+                            $this->db->insert('pending_users', $data);
+
+                            $link = base_url().'activate/'.$data['key'];
+
+                            $mail_message = 'Hi, You have created the account <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> please use this link to activate your account: <a target="_blank" href="'.$link.'" class="font-weight: bold;">Activate Now</a><br>';
+                            $mail_message .= 'Kind regards,<br>';
+                            $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
+
+                            $this->m_general->smtpSendEmail($email, $this->lang->line('email_account_activation'), $mail_message);
+                            return 'regAct';
                         }
                         else
                         {
-                            $data = array(
-                                'username' => $username,
-                                'sha_pass_hash' => $passwordAc,
-                                'email' => $email,
-                                'expansion' => $expansion,
-                                'battlenet_index' => '1',
-                            );
+                            $tag = rand(1111, 9999);
+                            if ($this->m_general->getExpansionAction($this->config->item('expansion_id')) == 1)
+                            {
+                                $data = array(
+                                    'username' => $username,
+                                    'sha_pass_hash' => $passwordAc,
+                                    'email' => $email,
+                                    'expansion' => $expansion,
+                                );
 
-                            $this->auth->insert('account', $data);
+                                $this->auth->insert('account', $data);
+                            }
+                            else
+                            {
+                                $data = array(
+                                    'username' => $username,
+                                    'sha_pass_hash' => $passwordAc,
+                                    'email' => $email,
+                                    'expansion' => $expansion,
+                                    'battlenet_index' => '1',
+                                );
+
+                                $this->auth->insert('account', $data);
+
+                                $id = $this->m_data->getIDAccount($username);
+
+                                $data1 = array(
+                                    'id' => $id,
+                                    'email' => $email,
+                                    'sha_pass_hash' => $passwordBn,
+                                );
+
+                                $this->auth->insert('battlenet_accounts', $data1);
+
+                                $this->auth->set('battlenet_account', $id)
+                                            ->where('id', $id)
+                                            ->update('account');
+                            }
 
                             $id = $this->m_data->getIDAccount($username);
 
-                            $data1 = array(
+                            $data3 = array(
                                 'id' => $id,
+                                'username' => $username,
                                 'email' => $email,
-                            'sha_pass_hash' => $passwordBn,
+                                'date' => $date,
+                                'location' => $country,
                             );
 
-                            $this->auth->insert('battlenet_accounts', $data1);
+                            $this->db->insert('users', $data3);
 
-                            $this->auth->set('battlenet_account', $id)
-                                        ->where('id', $id)
-                                        ->update('account');
+                            $data4 = array(
+                                'id' => $id,
+                                'tag' => $tag,
+                            );
+
+                            $this->db->insert('tags', $data4);
+                            return true;
                         }
-
-                        $id = $this->m_data->getIDAccount($username);
-
-                        $data3 = array(
-                            'id' => $id,
-                            'username' => $username,
-                            'email' => $email,
-                            'date' => $date,
-                            'location' => $country,
-                        );
-
-                        $this->db->insert('users', $data3);
-
-                        $data4 = array(
-                            'id' => $id,
-                            'tag' => $tag,
-                        );
-
-                        $this->db->insert('tags', $data4);
-                        return true;
                     }
                     else
                         return 'regPass';
@@ -328,22 +356,6 @@ class User_model extends CI_Model {
 
     public function sendpassword($username, $email)
     {
-        $this->load->library('email');
-
-        $econf = array(
-            'protocol'  => 'smtp',
-            'smtp_host' => $this->config->item('smtp_host'),
-            'smtp_user' => $this->config->item('smtp_user'),
-            'smtp_pass' => $this->config->item('smtp_pass'),
-            'smtp_port' => $this->config->item('smtp_port'),
-            'smtp_crypto' => $this->config->item('smtp_crypto'),
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8'
-        );
-        $this->email->initialize($econf);
-        $this->email->set_mailtype("html");
-        $this->email->set_newline("\r\n");
-
         $ucheck = $this->checkuserid($username);
         $echeck = $this->checkemailid($email);
 
@@ -380,17 +392,125 @@ class User_model extends CI_Model {
             $mail_message .= 'Your new password is: <span style="font-weight: bold;">'.$password_generated.'</span><br>';
             $mail_message .= 'Please change your password again as soon as you log in!<br>';
             $mail_message .= 'Kind regards,<br>';
-            $mail_message .= $this->config->item('recovery_email_name').' Support.';
+            $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
 
-            $this->email->to($email);
-            $this->email->from($this->config->item('recovery_email_from'), $this->config->item('recovery_email_name'));
-            $this->email->subject($this->config->item('recovery_email_subject'));
-            $this->email->message($mail_message);
-
-            $this->email->send();
+            $this->m_general->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
             return true;
         }
         else
             return 'sendErr';
+    }
+
+    public function getIDPendingUsername($account)
+    {
+        return $this->db->select('id')
+                ->where('username', $account)
+                ->get('pending_users')
+                ->num_rows();
+    }
+
+    public function getIDPendingEmail($email)
+    {
+        return $this->db->select('id')
+                ->where('email', $email)
+                ->get('pending_users')
+                ->num_rows();
+    }
+
+    public function checkPendingUser($key)
+    {
+        return $this->db->select('id')
+                ->where('key', $key)
+                ->get('pending_users')
+                ->num_rows();
+    }
+
+    public function getTempUser($key)
+    {
+        return $this->db->select('*')
+                ->where('key', $key)
+                ->get('pending_users')
+                ->row_array();
+    }
+
+    public function removeTempUser($key)
+    {
+        return $this->db->where('key', $key)
+                ->delete('pending_users');
+    }
+
+    public function activateAccount($key)
+    {
+
+        $check = $this->checkPendingUser($key);
+        $temp  = $this->getTempUser($key);
+
+        if($check == "1") {
+            $tag = rand(1111, 9999);
+            if ($this->m_general->getExpansionAction($this->config->item('expansion_id')) == 1)
+            {
+                $data = array(
+                    'username' => $temp['username'],
+                    'sha_pass_hash' => $temp['password'],
+                    'email' => $temp['email'],
+                    'expansion' => $temp['expansion'],
+                );
+
+                $this->auth->insert('account', $data);
+            }
+            else
+            {
+                $data = array(
+                    'username' => $temp['username'],
+                    'sha_pass_hash' => $temp['password'],
+                    'email' => $temp['email'],
+                    'expansion' => $temp['expansion'],
+                    'battlenet_index' => '1',
+                );
+
+                $this->auth->insert('account', $data);
+
+                $id = $this->m_data->getIDAccount($temp['username']);
+
+                $data1 = array(
+                    'id' => $id,
+                    'email' => $temp['email'],
+                    'sha_pass_hash' => $temp['password_bnet']
+                );
+
+                $this->auth->insert('battlenet_accounts', $data1);
+
+                $this->auth->set('battlenet_account', $id)
+                            ->where('id', $id)
+                            ->update('account');
+            }
+
+            $id = $this->m_data->getIDAccount($temp['username']);
+
+            $data3 = array(
+                'id' => $id,
+                'username' => $temp['username'],
+                'email' => $temp['email'],
+                'date' => $temp['date'],
+                'location' => $temp['location']
+            );
+
+            $this->db->insert('users', $data3);
+
+            $data4 = array(
+                'id' => $id,
+                'tag' => $tag,
+            );
+
+            $this->db->insert('tags', $data4);
+
+            $this->removeTempUser($key);
+
+            $this->session->set_flashdata('account_activation','true');
+            redirect(base_url('login'));
+        }
+        else
+            $this->session->set_flashdata('account_activation','false');
+            redirect(base_url('login'));
     }
 }

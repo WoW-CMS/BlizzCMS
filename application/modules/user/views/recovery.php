@@ -5,7 +5,6 @@
       <div class="uk-container">
         <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold"><span><i class="fas fa-user-cog"></i> <?= $this->lang->line('nav_reset'); ?></span></h4>
         <div class="uk-margin-small uk-light">
-          <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('rec_account_information'); ?></label>
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
