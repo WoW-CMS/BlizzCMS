@@ -15,11 +15,12 @@
           <p><i class="far fa-times-circle"></i> The activation key provided is not valid.</p>
         </div>
         <?php endif; ?>
+        <?= form_open('', 'id="loginForm" onsubmit="LoginForm(event)"'); ?>
         <div class="uk-margin" uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-inline; delay: 300; repeat: true">
           <div class="uk-form-controls uk-light">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-              <?= form_input($email_form); ?>
+              <input class="uk-input" id="login_email" name="login_email" type="email" placeholder="<?= $this->lang->line('form_username'); ?>" required>
             </div>
           </div>
         </div>
@@ -27,7 +28,7 @@
           <div class="uk-form-controls uk-light">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-unlock-alt fa-lg"></i></span>
-              <?= form_input($password_form); ?>
+              <input class="uk-input" id="login_password" name="login_password" type="password" placeholder="<?= $this->lang->line('form_password'); ?>" required>
             </div>
           </div>
         </div>
@@ -42,82 +43,122 @@
           </div>
           <div class="uk-width-1-2@m"></div>
           <div class="uk-width-1-4@m">
-            <button class="uk-button uk-button-default uk-width-1-1 uk-align-right@m" id="button_log" name="button_log"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></button>
+            <button class="uk-button uk-button-default uk-width-1-1 uk-align-right@m" id="button_log" name="button_log" type="submit"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></button>
           </div>
         </div>
+        <?= form_close(); ?>
       </div>
     </section>
 
     <script>
-      $(document).ready(function(){
-        $(document).on('click', '#button_log', function(){
-          var restatus = "<?= $this->m_modules->getreCaptchaStatus(); ?>";
-          if(restatus){
-            var ren = grecaptcha.getResponse();
-            if(ren.length == 0)
-            {
+      function LoginForm(e) {
+        e.preventDefault();
+
+        var restatus = "<?= $this->m_modules->getreCaptchaStatus(); ?>";
+
+        if(restatus){
+          var ren = grecaptcha.getResponse();
+          if(ren.length == 0)
+          {
+            $.amaran({
+              'theme': 'awesome error',
+              'content': {
+                title: '<?= $this->lang->line('notify_title_error'); ?>',
+                message: '<?= $this->lang->line('captcha_error'); ?>',
+                info: '',
+                icon: 'fas fa-shield-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+            return false;
+          }
+        }
+
+        var email = $('#login_email').val();
+        var password = $('#login_password').val();
+        if(email == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notify_title_error'); ?>',
+              message: '<?= $this->lang->line('notify_email_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(password == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notify_title_error'); ?>',
+              message: '<?= $this->lang->line('notify_password_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url('user/verify2'); ?>",
+          method:"POST",
+          data:{email, password},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notify_title_info'); ?>',
+                message: '<?= $this->lang->line('notify_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response == 'empErr') {
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
                   title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('captcha_error'); ?>',
+                  message: '<?= $this->lang->line('notify_email_error'); ?>',
                   info: '',
-                  icon: 'fas fa-shield-alt'
+                  icon: 'fas fa-times-circle'
                 },
                 'delay': 5000,
                 'position': 'top right',
                 'inEffect': 'slideRight',
                 'outEffect': 'slideRight'
               });
+              $('#loginForm')[0].reset();
               return false;
             }
-          }
 
-          var email = $('#login_email').val();
-          var password = $('#login_password').val();
-          if(email == ''){
-            $.amaran({
-              'theme': 'awesome error',
-              'content': {
-                title: '<?= $this->lang->line('notify_title_error'); ?>',
-                message: '<?= $this->lang->line('notify_email_empty'); ?>',
-                info: '',
-                icon: 'fas fa-times-circle'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-            return false;
-          }
-          if(password == ''){
-            $.amaran({
-              'theme': 'awesome error',
-              'content': {
-                title: '<?= $this->lang->line('notify_title_error'); ?>',
-                message: '<?= $this->lang->line('notify_password_empty'); ?>',
-                info: '',
-                icon: 'fas fa-times-circle'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-            return false;
-          }
-          $.ajax({
-            url:"<?= base_url('user/verify2'); ?>",
-            method:"POST",
-            data:{email, password},
-            dataType:"text",
-            beforeSend: function(){
+            if (response) {
               $.amaran({
-                'theme': 'awesome info',
-                'content': {
-                  title: '<?= $this->lang->line('notify_title_info'); ?>',
-                  message: '<?= $this->lang->line('notify_checking'); ?>',
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notify_title_success'); ?>',
+                  message: '<?= $this->lang->line('notify_redirection'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -126,46 +167,10 @@
                 'inEffect': 'slideRight',
                 'outEffect': 'slideRight'
               });
-            },
-            success:function(response){
-              if(!response)
-                 alert(response);
-
-              if (response == 'empErr') {
-                $.amaran({
-                  'theme': 'awesome error',
-                  'content': {
-                    title: '<?= $this->lang->line('notify_title_error'); ?>',
-                    message: '<<?= $this->lang->line('notify_email_error'); ?>',
-                    info: '',
-                    icon: 'fas fa-exclamation-circle'
-                  },
-                  'delay': 5000,
-                  'position': 'top right',
-                  'inEffect': 'slideRight',
-                  'outEffect': 'slideRight'
-                });
-                return false;
-              }
-
-              if (response) {
-                $.amaran({
-                  'theme': 'awesome ok',
-                  'content': {
-                    title: '<?= $this->lang->line('notify_title_success'); ?>',
-                    message: '<?= $this->lang->line('notify_redirection'); ?>',
-                    info: '',
-                    icon: 'fas fa-check-circle'
-                  },
-                  'delay': 5000,
-                  'position': 'top right',
-                  'inEffect': 'slideRight',
-                  'outEffect': 'slideRight'
-                });
-              }
-              window.location.replace("<?= base_url(); ?>");
             }
-          });
+            $('#loginForm')[0].reset();
+            window.location.replace("<?= base_url(); ?>");
+          }
         });
-      });
+      }
     </script>

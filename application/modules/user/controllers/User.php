@@ -27,59 +27,15 @@ class User extends MX_Controller {
         if ($this->m_general->getExpansionAction() == 1)
         {
             $data = array(
-                "username_form" => array(
-                    'id' => 'login_username',
-                    'name' => 'login_username',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_username'),
-                    'type' => 'text'),
-
-                "password_form" => array(
-                    'id' => 'login_password',
-                    'name' => 'login_password',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_password'),
-                    'type' => 'password'),
-
-                "submit_form" => array(
-                    'id' => 'button_log',
-                    'name' => 'button_log',
-                    'value' => $this->lang->line('button_login'),
-                    'class' => 'uk-button uk-button-default uk-width-1-1 uk-width-1-6@m'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
+                'recapKey' => $this->config->item('recaptcha_sitekey')
             );
-
             $this->load->view('login1', $data);
         }
         else
         {
             $data = array(
-                "email_form" => array(
-                    'id' => 'login_email',
-                    'name' => 'login_email',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_email'),
-                    'type' => 'email'),
-
-                "password_form" => array(
-                    'id' => 'login_password',
-                    'name' => 'login_password',
-                    'class' => 'uk-input',
-                    'required' => 'required',
-                    'placeholder' => $this->lang->line('form_password'),
-                    'type' => 'password'),
-
-                "submit_form" => array(
-                    'id' => 'button_log',
-                    'name' => 'button_log',
-                    'value' => $this->lang->line('button_login'),
-                    'class' => 'uk-button uk-button-default uk-width-1-1 uk-width-1-6@m'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
+                'recapKey' => $this->config->item('recaptcha_sitekey')
             );
-
             $this->load->view('login2', $data);
         }
 
