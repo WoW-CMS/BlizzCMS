@@ -8,7 +8,7 @@
         <div class="uk-margin uk-light">
           <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_user_info'); ?></label>
           <div class="uk-form-controls">
-            <select class="uk-select" id="reg_country" name="reg_country">
+            <select class="uk-select" id="register_country">
               <?php foreach($this->user_model->getCountry()->result() as $countrys): ?>
               <option value="<?= $countrys->id; ?>"><?= $countrys->country_name ?></option>
               <?php endforeach; ?>
@@ -20,7 +20,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
-              <input class="uk-input" type="text" id="reg_username" name="reg_username" pattern=".{3,}" title="3 characters minimum" placeholder="<?= $this->lang->line('form_username'); ?>" required>
+              <input class="uk-input" type="text" id="register_username" pattern=".{3,}" title="3 characters minimum" placeholder="<?= $this->lang->line('form_username'); ?>" required>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-              <input class="uk-input" type="email" id="reg_email" name="reg_email" placeholder="<?= $this->lang->line('form_email'); ?>" required>
+              <input class="uk-input" type="email" id="register_email" placeholder="<?= $this->lang->line('form_email'); ?>" required>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-unlock-alt fa-lg"></i></span>
-              <input class="uk-input" type="password" id="reg_password" name="reg_password" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= $this->lang->line('form_password'); ?>" required>
+              <input class="uk-input" type="password" id="register_password" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= $this->lang->line('form_password'); ?>" required>
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-lock fa-lg"></i></span>
-              <input class="uk-input" type="password" id="reg_pascword" name="reg_pascword" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= $this->lang->line('form_re_password'); ?>" required>
+              <input class="uk-input" type="password" id="register_repassword" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= $this->lang->line('form_re_password'); ?>" required>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
           <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
         </div>
         <?php endif; ?>
-        <button class="uk-button uk-button-default uk-width-1-1 uk-width-1-5@m" id="button_register" name="button_register" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></button>
+        <button class="uk-button uk-button-default uk-width-1-1 uk-width-1-5@m" id="button_register" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>
@@ -86,11 +86,11 @@
           }
         }
 
-        var country = $('#reg_country').val();
-        var username = $('#reg_username').val();
-        var email = $('#reg_email').val();
-        var password = $('#reg_password').val();
-        var repassword = $('#reg_pascword').val();
+        var country = $('#register_country').val();
+        var username = $('#register_username').val();
+        var email = $('#register_email').val();
+        var password = $('#register_password').val();
+        var repassword = $('#register_repassword').val();
 
         if(username == ''){
           $.amaran({
