@@ -87,6 +87,10 @@ if (isset($_POST['submitSMTP'])):
     'actualsmtpPort' => $this->admin_model->getSMTPPort($filePlus),
     'smtpCrypto' => str_replace(' ', '', $_POST['smtpCrypto']),
     'actualsmtpCrypto' => $this->admin_model->getSMTPCrypto($filePlus),
+    'senderEmail' => str_replace(' ', '', $_POST['senderEmail']),
+    'actualsenderEmail' => $this->admin_model->getSenderEmail($filePlus),
+    'senderName' => str_replace(' ', '', $_POST['senderName']),
+    'actualsenderName' => $this->admin_model->getSenderName($filePlus),
   );
   $this->admin_model->settingRecaptcha($datasmtp);
 endif;
@@ -439,6 +443,29 @@ endif; ?>
                                 <div class="uk-inline uk-width-1-1">
                                   <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
                                   <input class="uk-input" type="text" name="smtpPass" value="<?= $this->admin_model->getSMTPPass($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Email</span> Settings</span></h5>
+                        <div class="uk-margin-small">
+                          <div class="uk-grid uk-grid-small" data-uk-grid>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">Sender Email</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-envelope"></i></span>
+                                  <input class="uk-input" type="email" name="senderEmail" value="<?= $this->admin_model->getSenderEmail($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">Sender Name</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user-circle"></i></span>
+                                  <input class="uk-input" type="text" name="senderName" value="<?= $this->admin_model->getSenderName($filePlus); ?>" required>
                                 </div>
                               </div>
                             </div>

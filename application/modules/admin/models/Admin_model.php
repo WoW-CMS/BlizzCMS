@@ -1251,7 +1251,9 @@ class Admin_model extends CI_Model {
             $data['actualsmtpUser'],
             $data['actualsmtpPass'],
             $data['actualsmtpPort'],
-            $data['actualsmtpCrypto']
+            $data['actualsmtpCrypto'],
+            $data['actualsenderEmail'],
+            $data['actualsenderName']
         );
 
         $Configreplace = array(
@@ -1259,7 +1261,9 @@ class Admin_model extends CI_Model {
             $data['smtpUser'],
             $data['smtpPass'],
             $data['smtpPort'],
-            $data['smtpCrypto']
+            $data['smtpCrypto'],
+            $data['senderEmail'],
+            $data['senderName']
         );
 
         $fileConfig = file_get_contents($filename);
@@ -1307,6 +1311,22 @@ class Admin_model extends CI_Model {
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[28], 25);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getSenderEmail($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[38], 35);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getSenderName($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[39], 40);
         $fileHandle = explode(";", $fileHandle);
         return str_replace("'", "", $fileHandle[0]);
     }
