@@ -50,6 +50,9 @@ $lang['expansion_not_found'] = 'Expansion not found.';
 $lang['image_upload_error'] = 'Your image must be in jpg or png format';
 $lang['changelog_not_found'] = 'The server does not have changelogs to inform at this time';
 $lang['faq_not_found'] = 'The server does not have frequently asked questions to show';
+$lang['activate_valid_key'] = 'Account Activated';
+$lang['activate_valid_key_desc'] = 'Now you can sign in with your account.';
+$lang['activate_invalid_key'] = 'The activation key provided is not valid.';
 
 $lang['char_newlevel'] = 'Receive a new level';
 $lang['char_oldlevel'] = 'Before it was';

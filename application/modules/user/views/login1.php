@@ -7,12 +7,12 @@
         <?php if($this->session->flashdata('account_activation') == 'true'): ?>
         <div class="uk-alert-success" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          <p><i class="far fa-check-circle"></i> <span class="uk-text-bold">Account Activated</span>. Now you can sign in with your account.</p>
+          <p><i class="far fa-check-circle"></i> <span class="uk-text-bold"><?= $this->lang->line('activate_valid_key'); ?></span>. <?= $this->lang->line('activate_valid_key_desc'); ?></p>
         </div>
         <?php elseif($this->session->flashdata('account_activation') == 'false'): ?>
         <div class="uk-alert-danger" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          <p><i class="far fa-times-circle"></i> The activation key provided is not valid.</p>
+          <p><i class="far fa-times-circle"></i> <?= $this->lang->line('activate_invalid_key'); ?></p>
         </div>
         <?php endif; ?>
         <?= form_open('', 'id="loginForm" onsubmit="LoginForm(event)"'); ?>
