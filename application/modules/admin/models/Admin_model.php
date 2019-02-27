@@ -51,13 +51,12 @@ class Admin_model extends CI_Model {
                 ->get('store_groups');
     }
 
-    public function insertChangelog($title, $image, $desc)
+    public function insertChangelog($title, $desc)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
             'title' => $title,
-            'image' => $image,
             'description' => $desc,
             'date' => $date,
         );
@@ -91,14 +90,13 @@ class Admin_model extends CI_Model {
                 ->row_array()['description'];
     }
 
-    public function updateSpecifyChangelog($id, $title, $description, $image)
+    public function updateSpecifyChangelog($id, $title, $description)
     {
         $date = $this->m_data->getTimestamp();
 
         $update = array(
             'title' => $title,
             'description' => $description,
-            'image' => $image,
             'date' => $date
         );
 

@@ -1,4 +1,11 @@
 <?php
+if(isset($_POST['button_createChangelog'])):
+  $title  = $_POST['chang_title'];
+  $desc = $_POST['chang_description'];
+
+  $this->admin_model->insertChangelog($title, $desc);
+endif; 
+
 if (isset($_POST['button_delChangelog'])):
   $this->admin_model->delChangelog($_POST['button_delChangelog']);
 endif; ?>
@@ -6,23 +13,6 @@ endif; ?>
       <?= $tiny ?>
       <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-expand">
-          <?php if(isset($_POST['button_createChangelog'])) {
-            $title  = $_POST['chang_title'];
-            $desc = $_POST['chang_description'];
-            $image = $_FILES["chang_imageup"];
-
-            if ($image['type'] == 'image/jpeg')
-            {
-              $random = $this->m_data->randomUTF();
-              $name_img = sha1($image['name'].$random).'.jpg';
-
-              move_uploaded_file($image["tmp_name"], "./includes/images/changelogs/" . $name_img);
-
-              $this->admin_model->insertChangelog($title, $name_img, $desc);
-            }
-            else
-              echo '<div class="uk-width-1-1@l uk-width-1-1@xl"><div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p><i class="fas fa-exclamation-circle"></i> '.$this->lang->line('image_upload_error').'</p></div></div>';
-          } ?>
           <div class="uk-card uk-card-default">
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">

@@ -21,18 +21,6 @@
                   <textarea class="uk-textarea tinyeditor" name="chang_description" rows="10" cols="80"></textarea>
                 </div>
               </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_upload_file'); ?></label>
-                <div class="uk-form-controls">
-                  <div class="uk-inline uk-width-1-1">
-                    <div uk-form-custom="target: true">
-                      <input type="file" required name="chang_imageup">
-                      <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> Select</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="uk-modal-footer uk-text-right actions">
               <button class="uk-button uk-button-danger uk-modal-close" type="button"><?= $this->lang->line('button_cancel'); ?></button>

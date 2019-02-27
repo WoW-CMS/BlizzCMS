@@ -119,7 +119,6 @@ CREATE TABLE `changelogs` (
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `date` int(10) NOT NULL,
-  `image` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
