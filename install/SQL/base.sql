@@ -351,7 +351,7 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `image` varchar(100) NOT NULL DEFAULT 'new.jpg' COMMENT 'assets/images/news',
+  `image` varchar(100) NOT NULL DEFAULT 'news.jpg' COMMENT 'includes/images/news',
   `description` text NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
@@ -359,7 +359,7 @@ CREATE TABLE `news` (
 
 /*Data for the table `news` */
 
-insert  into `news`(`id`,`title`,`image`,`description`,`date`) values (1,'Welcome to BlizzCMS','new1.jpg','<h1 style=\"color: white;\">This IS BlizzCMS!!</h1>',0);
+insert  into `news`(`id`,`title`,`image`,`description`,`date`) values (1,'Welcome to your new website!','news.jpg','<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title="ProjectCMS" href="https://discord.gg/7QcXfJE" target="_blank" rel="noopener">Discord</a></p>\r\n</body>\r\n</html>',1551283156);
 
 /*Table structure for table `news_comments` */
 
@@ -469,7 +469,7 @@ CREATE TABLE `store` (
   `iconname` varchar(255) NOT NULL,
   `groups` int(1) NOT NULL,
   `qquery` text CHARACTER SET utf8,
-  `image` varchar(100) NOT NULL DEFAULT 'image1.jpg',
+  `image` varchar(100) NOT NULL DEFAULT 'item1.jpg',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -523,7 +523,7 @@ DROP TABLE IF EXISTS `slides`;
 CREATE TABLE `slides` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
-  `image` varchar(100) NOT NULL DEFAULT 'image.jpg' COMMENT 'assets/images/slides',
+  `image` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
