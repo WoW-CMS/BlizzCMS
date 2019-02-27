@@ -1,12 +1,13 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * BlizzCMS
  *
- * An open source application based on CodeIgniter for PHP
+ * An Open Source CMS for "World of Warcraft"
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2018, British Columbia Institute of Technology
+ * Copyright (c) 2017 - 2019, ProjectCMS
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +26,14 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * @author  ProjectCMS
+ * @copyright  Copyright (c) 2017 - 2019, ProjectCMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://projectcms.net
+ * @since   Version 1.0.1
+ * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*Navigation Menu*/
 $lang['nav_menu'] = 'Menú';

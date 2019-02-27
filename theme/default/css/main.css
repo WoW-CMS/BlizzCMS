@@ -499,6 +499,10 @@ h6,
   padding: 8px 16px;
 }
 
+.uk-alert-close {
+  top: 14px;
+}
+
 .uk-alert-danger {
   background: #ff3636;
   color: #fff;
