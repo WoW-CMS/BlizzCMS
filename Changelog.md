@@ -22,6 +22,7 @@
 - Add reCAPTCHA widget to login/register/forgot password
 - Add Permissions system using gmlevel
 - Add type to menu (internal and external url)
+- Add configuration for SMTP (ACP)
 
 ### Removed
 
@@ -42,3 +43,4 @@
 - Update Font Awesome to last version 5.7.2
 - Update TinyMCE to last version 5.0.0
 - Update Install
+- Update User module
