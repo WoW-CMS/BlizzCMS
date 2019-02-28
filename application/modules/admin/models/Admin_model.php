@@ -1673,6 +1673,13 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/managetopsites'),'refresh');
     }
 
+    public function getModules()
+    {
+        return $this->db->select('*')
+                ->get('modules')
+                ->result();
+    }
+
     public function enableSpecifyModule($id)
     {
         $update = array(
