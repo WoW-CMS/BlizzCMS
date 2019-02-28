@@ -39,6 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['admin_dashboard'] = 'Dashboard';
 $lang['admin_settings'] = 'Settings';
 $lang['admin_website_settings'] = 'Website Settings';
+$lang['admin_manage_modules'] = 'Manage Modules';
 $lang['admin_manage_realms'] = 'Manage Realms';
 $lang['admin_manage_slides'] = 'Manage Slides';
 $lang['admin_users'] = 'Users';
@@ -78,6 +79,8 @@ $lang['button_grant_account'] = 'Grant GM';
 $lang['button_grant_web_acc'] = 'Grant ADM';
 $lang['button_re_grant_web_acc'] = 'Remove ADM';
 $lang['button_change_level'] = 'Change Level';
+$lang['button_disable'] = 'Disable';
+$lang['button_enable'] = 'Enable';
 
 /*Panel Lang*/
 $lang['panel_admin_user_manage'] = 'Manage user';
@@ -122,6 +125,7 @@ $lang['column_realm_char_database'] = 'Character Database Name';
 $lang['column_tax'] = 'Tax';
 $lang['column_points'] = 'Points';
 $lang['column_type'] = 'Type';
+$lang['column_module'] = 'Module';
 
 /*Form Lang*/
 $lang['form_create_changelog'] = 'Create a new Changelog';

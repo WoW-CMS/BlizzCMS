@@ -241,6 +241,14 @@ class Admin extends MX_Controller {
         echo $output;
     }
 
+    public function managemodules()
+    {
+        $this->load->view('general/header');
+        $this->load->view('settings/managemodules');
+        $this->load->view('general/footer');
+        $this->load->view('settings/modal');
+    }
+
     public function managerealms()
     {
         $this->load->view('general/header');

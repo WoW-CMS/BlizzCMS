@@ -25,6 +25,7 @@
             <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= $this->lang->line('admin_settings'); ?></a>
             <ul class="uk-nav-sub">
               <li><a href="<?= base_url('admin/settings'); ?>"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_website_settings'); ?></a></li>
+              <li><a href="<?= base_url('admin/managemodules'); ?>"><span class="uk-margin-small-right"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_manage_modules'); ?></a></li>
               <li><a href="<?= base_url('admin/managerealms'); ?>"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span><?= $this->lang->line('admin_manage_realms'); ?></a></li>
               <li><a href="<?= base_url('admin/manageslides'); ?>"><span class="uk-margin-small-right"><i class="fas fa-images"></i></span><?= $this->lang->line('admin_manage_slides'); ?></a></li>
             </ul>
@@ -105,6 +106,7 @@
                     <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= $this->lang->line('admin_settings'); ?></a>
                     <ul class="uk-nav-sub">
                       <li><a href="<?= base_url('admin/settings'); ?>"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_website_settings'); ?></a></li>
+                      <li><a href="<?= base_url('admin/managemodules'); ?>"><span class="uk-margin-small-right"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_manage_modules'); ?></a></li>
                       <li><a href="<?= base_url('admin/managerealms'); ?>"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span><?= $this->lang->line('admin_manage_realms'); ?></a></li>
                       <li><a href="<?= base_url('admin/manageslides'); ?>"><span class="uk-margin-small-right"><i class="fas fa-images"></i></span><?= $this->lang->line('admin_manage_slides'); ?></a></li>
                     </ul>

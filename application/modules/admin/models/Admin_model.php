@@ -1672,4 +1672,28 @@ class Admin_model extends CI_Model {
 
         redirect(base_url('admin/managetopsites'),'refresh');
     }
+
+    public function enableSpecifyModule($id)
+    {
+        $update = array(
+            'status' => '1'
+        );
+
+        $this->db->where('id', $id)
+                ->update('modules', $update);
+
+        redirect(base_url('admin/managemodules'),'refresh');
+    }
+
+    public function disableSpecifyModule($id)
+    {
+        $update = array(
+            'status' => '0'
+        );
+
+        $this->db->where('id', $id)
+                ->update('modules', $update);
+
+        redirect(base_url('admin/managemodules'),'refresh');
+    }
 }
