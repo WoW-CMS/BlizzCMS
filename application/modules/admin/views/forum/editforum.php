@@ -1,10 +1,10 @@
 <?php
 if (isset($_POST['button_updateForum'])):
   $name = $_POST['forum_name'];
+  $cate = $_POST['forum_cate'];
   $desc = $_POST['forum_description'];
   $icon = $_POST['forum_icon'];
   $type = $_POST['forum_type'];
-  $cate = $_POST['forum_cate'];
 
   $this->admin_model->updateSpecifyForum($idlink, $name, $cate, $desc, $icon, $type);
 endif; ?>

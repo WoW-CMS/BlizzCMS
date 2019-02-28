@@ -480,6 +480,22 @@ class Admin_model extends CI_Model {
                 ->num_rows();
     }
 
+    public function updateSpecifyForum($id, $name, $category, $description, $icon, $type)
+    {
+        $update = array(
+            'name' => $name,
+            'category' => $category,
+            'description' => $description,
+            'icon' => $icon,
+            'type' => $type
+        );
+
+        $this->db->where('id', $id)
+                ->update('forum_forums', $update);
+
+        redirect(base_url('admin/manageforums'),'refresh');
+    }
+
     public function insertCategoryAjax($name)
     {
         $data = array(
