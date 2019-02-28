@@ -111,6 +111,7 @@ $lang['panel_admin_edit_item'] = 'Edit Item';
 $lang['panel_admin_edit_group'] = 'Edit Group';
 $lang['panel_admin_faq_list'] = 'Faq List';
 $lang['panel_admin_edit_topsite'] = 'Edit Topsite';
+$lang['panel_admin_edit_forum'] = 'Edit Forum';
 
 /*Column Lang*/
 $lang['column_race'] = 'Race';

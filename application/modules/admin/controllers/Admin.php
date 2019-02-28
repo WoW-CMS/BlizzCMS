@@ -547,6 +547,29 @@ class Admin extends MX_Controller {
         $this->load->view('forum/modal');
     }
 
+    public function editforum($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getSpecifyForumRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'idlink' => $id,
+            'tiny' => $tiny,
+        );
+
+        $this->load->view('general/header');
+        $this->load->view('forum/editforum', $data);
+        $this->load->view('general/footer');
+    }
+
     public function managetopsites()
     {
         $this->load->view('general/header');

@@ -424,12 +424,60 @@ class Admin_model extends CI_Model {
             ->get('forum_category');
     }
 
-    public function getSpecifyForumCategory($id)
+    public function getSpecifyForumCategoryName($id)
     {
         return $this->db->select('categoryName')
                 ->where('id', $id)
                 ->get('forum_category')
                 ->row_array()['categoryName'];
+    }
+
+    public function getSpecifyForumName($id)
+    {
+        return $this->db->select('name')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['name'];
+    }
+
+    public function getSpecifyForumDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['description'];
+    }
+
+    public function getSpecifyForumIcon($id)
+    {
+        return $this->db->select('icon')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['icon'];
+    }
+
+    public function getSpecifyForumCategory($id)
+    {
+        return $this->db->select('category')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['category'];
+    }
+
+    public function getSpecifyForumType($id)
+    {
+        return $this->db->select('type')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['type'];
+    }
+
+    public function getSpecifyForumRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->num_rows();
     }
 
     public function insertCategoryAjax($name)
