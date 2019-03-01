@@ -42,6 +42,17 @@ if (isset($_POST['submitBlizzCMS'])):
   $this->admin_model->settingBlizzCMS($datafx);
 endif;
 
+if (isset($_POST['submitRanks'])):
+  $dataranks = array(
+    'filename' => $filePlus,
+    'adminLevel' => $_POST['adminLevel'],
+    'actualadminLevel' => $this->admin_model->getRankAdminLevel($filePlus),
+    'modLevel' => $_POST['modLevel'],
+    'actualmodLevel' => $this->admin_model->getRankModLevel($filePlus),
+  );
+  $this->admin_model->settingRegister($dataranks);
+endif;
+
 if (isset($_POST['submitDatabase'])):
   $datadb = array(
     'filename' => $fileDatabase,
@@ -95,6 +106,15 @@ if (isset($_POST['submitSMTP'])):
   $this->admin_model->settingRecaptcha($datasmtp);
 endif;
 
+if (isset($_POST['submitRegister'])):
+  $dataregister = array(
+    'filename' => $filePlus,
+    'registerType' => $_POST['registerType'],
+    'actualregisterType' => $this->admin_model->getRegisterType($filePlus),
+  );
+  $this->admin_model->settingRegister($dataregister);
+endif;
+
 if (isset($_POST['submitBugtracker'])):
   $databugtracker = array(
     'filename' => $fileBugtracker,
@@ -140,10 +160,12 @@ endif; ?>
                 <div class="uk-width-auto@m">
                   <ul class="uk-tab-right" uk-tab="connect: #settings; animation: uk-animation-fade">
                     <li><a href="javascript:void(0)"><i class="fas fa-sliders-h"></i> Main Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-sliders-h"></i> Website Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-mouse-pointer"></i> Website Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-crown"></i> Ranks Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-database"></i> Databases Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-shield-alt"></i> reCaptcha Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-mail-bulk"></i> SMTP Settings</a></li>
+                    <li><a href="javascript:void(0)"><i class="fas fa-user-plus"></i> Register Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-bug"></i> Bugtracker Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fab fa-paypal"></i> Donate Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-store"></i> Store Settings</a></li>
@@ -276,6 +298,36 @@ endif; ?>
                         </div>
                         <div class="uk-margin">
                           <button class="uk-button uk-button-primary uk-width-1-1" name="submitBlizzCMS" type="submit"><i class="fas fa-sync"></i> Update</button>
+                        </div>
+                      </form>
+                    </li>
+                    <li>
+                      <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Ranks</span> Settings</span></h5>
+                        <div class="uk-margin-small">
+                          <div class="uk-grid uk-grid-small" data-uk-grid>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">Administrator GMLevel</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-crown"></i></span>
+                                  <input class="uk-input" type="text" name="adminLevel" value="<?= $this->admin_model->getRankAdminLevel($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="uk-width-1-2@s">
+                              <label class="uk-form-label uk-text-uppercase">Moderator GMLevel</label>
+                              <div class="uk-form-controls">
+                                <div class="uk-inline uk-width-1-1">
+                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-gavel"></i></span>
+                                  <input class="uk-input" type="text" name="modLevel" value="<?= $this->admin_model->getRankModLevel($filePlus); ?>" required>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitRanks" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>
@@ -473,6 +525,26 @@ endif; ?>
                         </div>
                         <div class="uk-margin">
                           <button class="uk-button uk-button-primary uk-width-1-1" name="submitSMTP" type="submit"><i class="fas fa-sync"></i> Update</button>
+                        </div>
+                      </form>
+                    </li>
+                    <li>
+                      <form action="" method="post" accept-charset="utf-8">
+                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Register</span> Settings</span></h5>
+                        <div class="uk-alert-primary uk-margin-small" uk-alert>
+                          <p><i class="fas fa-info-circle"></i> If you enable this option is necessary that you configure SMTP for sending emails.</p>
+                        </div>
+                        <div class="uk-margin-small">
+                          <label class="uk-form-label uk-text-uppercase">Account Activation</label>
+                          <div class="uk-form-controls">
+                            <select class="uk-select" name="registerType">
+                              <option value="TRUE" <?php if($this->admin_model->getRegisterType($filePlus) == TRUE) echo 'selected'; ?>>Enabled</option>
+                              <option value="FALSE" <?php if($this->admin_model->getRegisterType($filePlus) == FALSE) echo 'selected'; ?>>Disabled</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitRegister" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>

@@ -1393,6 +1393,36 @@ class Admin_model extends CI_Model {
         return str_replace("'", "", $fileHandle[0]);
     }
 
+    //register
+    public function settingRegister($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualregisterType']
+        );
+
+        $Configreplace = array(
+            $data['registerType']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getRegisterType($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[52], 41);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
     //bugtracker
     public function settingBugtracker($data)
     {
@@ -1509,6 +1539,46 @@ class Admin_model extends CI_Model {
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[14], 24);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    //ranks
+    public function settingRanks($data)
+    {
+        $filename = $data['filename'];
+
+        $Configsearch = array(
+            $data['actualadminLevel'],
+            $data['actualmodLevel']
+        );
+
+        $Configreplace = array(
+            $data['adminLevel'],
+            $data['modLevel']
+        );
+
+        $fileConfig = file_get_contents($filename);
+        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
+        $openConfig = fopen($filename,"w");
+        fwrite($openConfig, $newConfig);
+        fclose($openConfig);
+
+        redirect(base_url('admin/settings'),'refresh');
+    }
+
+    public function getRankAdminLevel($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[62], 32);
+        $fileHandle = explode(";", $fileHandle);
+        return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function getRankModLevel($filename)
+    {
+        $fileHandle = file($filename);
+        $fileHandle = substr($fileHandle[72], 30);
         $fileHandle = explode(";", $fileHandle);
         return str_replace("'", "", $fileHandle[0]);
     }
