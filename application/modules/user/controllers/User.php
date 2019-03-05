@@ -87,7 +87,7 @@ class User extends MX_Controller {
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        echo $this->user_model->checkloginbattle($username, $password);
+        echo $this->user_model->checkloginbattle($email, $password);
     }
 
     public function register()
