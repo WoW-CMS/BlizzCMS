@@ -70,7 +70,7 @@ class Vote extends MX_Controller {
 
     public function voteNow($id)
     {
-        echo $this->fxvote->voteNow($id);
+        echo $this->vote_model->voteNow($id);
     }
 
     public function voteNowCount()
