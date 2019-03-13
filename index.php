@@ -319,3 +319,12 @@ switch (ENVIRONMENT)
  * And away we go...
  */
 require_once BASEPATH.'core/CodeIgniter.php';
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE LICENSE FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ */
+require_once BASEPATH.'libraries/license.php';

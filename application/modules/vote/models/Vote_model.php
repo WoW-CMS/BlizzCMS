@@ -89,7 +89,7 @@ class Vote_model extends CI_Model {
             }
 
             echo '<script type="text/javascript">
-                    window.open( "'.$url.'" )
+                    window.open( "'.$url.'","_self")
                 </script>';
 
             redirect(base_url('vote'),'refresh');
