@@ -103,7 +103,7 @@ $autoload['helper'] = array('url', 'file', 'text','form', 'html');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('blizzcms', 'plus');
+$autoload['config'] = array('blizzcms', 'plus', 'seo');
 
 /*
 | -------------------------------------------------------------------
