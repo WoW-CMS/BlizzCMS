@@ -3,6 +3,12 @@
 application/cache/*
 !application/cache/index.html
 
+# Configuration files
+application/config/config.php
+application/config/blizzcms.php
+application/config/database.php
+application/config/plus.php
+
 application/logs/*
 !application/logs/index.html
 
