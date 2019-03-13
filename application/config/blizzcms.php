@@ -9,17 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Write the name of your website this will appear by default.
 |
 */
-$config['ProjectName'] = 'BlizzCMS Plus';
-
-/*
-|--------------------------------------------------------------------------
-| BlizzCMS Plus License
-|--------------------------------------------------------------------------
-|
-| Still not licensed? Generate at projectcms.net/requestLicense
-|
-*/
-$config['license_plus'] = 'G1QCJ-ALIG4-JL1V8-1YNT9';
+$config['ProjectName'] = '%PROJECTNAME%';
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +40,7 @@ $config['maintenance_mode'] = '0';
 | Write the invitation of your discord channel.
 |
 */
-$config['discord_inv'] = 'V2382g7';
+$config['discord_inv'] = '%DISCORD_INV%';
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +50,7 @@ $config['discord_inv'] = 'V2382g7';
 | Write the realmlist used on your server to publish it on the website.
 |
 */
-$config['realmlist'] = 'logo.plus.test';
+$config['realmlist'] = '%REALMLIST%';
 
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +82,7 @@ $config['staff_forum_color'] = '00b4ff';
 | 8 = Battle for Azeroth
 |
 */
-$config['expansion_id'] = '8';
+$config['expansion_id'] = '%EXPANSION_ID%';
 
 /*
 |--------------------------------------------------------------------------
@@ -117,3 +107,13 @@ $config['theme_name'] = 'default';
 $config['social_facebook'] = "";
 $config['social_twitter'] = "";
 $config['social_youtube'] = "";
+
+/*
+|--------------------------------------------------------------------------
+| BlizzCMS Plus License
+|--------------------------------------------------------------------------
+|
+| Still not licensed? Generate at projectcms.net/requestLicense
+|
+*/
+$config['license_plus'] = '%LICENSE_KEY%';
