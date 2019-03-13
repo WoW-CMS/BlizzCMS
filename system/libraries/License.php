@@ -53,14 +53,14 @@ class CI_License {
        $license_key = $this->ci->config->item('license_plus');
        $website = substr($this->ci->config->item('base_url'),  7);
 
-       $url = "http://hub.test/api/key/$website/$license_key";
+       $url = "http://nucleus.projectcms.net/api/key/$website/$license_key";
        $nucleus = curl_init();
        curl_setopt($nucleus, CURLOPT_URL, $url);
        curl_setopt($nucleus, CURLOPT_RETURNTRANSFER,1);
        $nucleusResult=curl_exec ($nucleus);
        curl_close ($nucleus);
        if ($nucleusResult == "INVALID") {
-         redirect('http://projectcms.net/');
+         redirect('http://nucleus.projectcms.net/');
        }
      }
 }
