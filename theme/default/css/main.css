@@ -697,6 +697,12 @@ h6,
   color: #fff;
 }
 
+.uk-table-small td,
+.uk-table-small th {
+  padding: 10px 8px;
+  font-size: .875rem;
+}
+
 .status-dot {
   display: inline-block;
   border-radius: 50%;
