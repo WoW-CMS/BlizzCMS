@@ -1,11 +1,11 @@
 <?php
 require_once 'config/config.php';
 require_once 'class/Core.php';
-require_once 'class/Remove.php';
 
 $isCompleted = FALSE;
 $core = new Core;
 $check = $core->init($config);
+$target = '../install/';
 
 if ($_POST):
     $core->setInput($_POST);
@@ -19,9 +19,7 @@ if ($_POST):
 endif;
 
 if (isset($_POST['delete_install'])):
-    $install_folder = '../install/';
-    targetFiles($install_folder);
-    echo '<script>window.location.href = "/";</script>';
+    $core->removeFiles($target);
 endif;
 ?>
 
@@ -45,40 +43,40 @@ endif;
         <h3 class="uk-h3 blizzcms-logo uk-text-center uk-margin-small-top">BlizzCMS<sup class="uk-text-success">+</sup></h3>
         <p class="uk-text-center">We are pleased to present a new improved version of <span class="uk-text-bold">BlizzCMS v1</span>. This version has recent updates in framework, module reworks and more also in the same way this version include a new <span class="uk-text-bold uk-text-success">licensing system</span> and will be strictly in <span class="uk-text-bold uk-text-danger">closed source</span> so if you find any bug this can be reported in the main repository of BlizzCMS.</p>
         <div class="uk-card uk-card-body">
+          <?php if ($core->getError()): ?>
+            <?php echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>"; ?>
+            <?php foreach ($core->getError() as $item): ?>
+              <?php echo "<li>$item</li>"; ?>
+            <?php endforeach; ?>
+            <?php echo "</ul></div>"; ?>
+          <?php endif; ?>
           <form id="form_install" action="" method="POST" accept-charset="utf-8" autocomplete="off">
-            <?php
-              if ($core->getError()):
-                echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>";
-                foreach ($core->getError() as $item):
-                  echo "<li>$item</li>";
-                endforeach;
-                echo "</ul></div>";
-              endif;
-            ?>
-            <?php if ($isCompleted):
-              echo "<div class='uk-alert-success' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='far fa-check-circle'></i> Successful</h3>The installation was successful, Now press the button <span class='uk-text-bold'>Continue installation</span> for delete install folder and continue</div><div class='uk-margin'><button class='uk-button uk-button-primary uk-width-1-1' type='submit' name='delete_install'><i class='fas fa-spinner fa-spin'></i> Continue installation</button></div>";
-            else:
-            if ($check):
-              echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>";
-              foreach ($check as $item):
-                echo "<li>$item</li>";
-              endforeach;
-              echo "</ul></div>";
-            else:
-            ?>
+            <?php if ($isCompleted): ?>
+              <?php echo "<div class='uk-alert-success' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='far fa-check-circle'></i> Successful</h3>The installation was successful, Now press the button <span class='uk-text-bold'>Continue installation</span> for delete install folder and continue</div><div class='uk-margin'><button class='uk-button uk-button-primary uk-width-1-1' type='submit' name='delete_install'><i class='fas fa-spinner fa-spin'></i> Continue installation</button></div>"; ?>
+            <?php elseif ($check): ?>
+              <?php echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>"; ?>
+              <?php foreach ($check as $item): ?>
+                <?php echo "<li>$item</li>"; ?>
+              <?php endforeach; ?>
+              <?php echo "</ul></div>"; ?>
+            <?php else: ?>
             <div class="uk-grid uk-grid-large uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
               <div>
                 <h4 class="uk-h4 uk-heading-line uk-margin-small uk-text-uppercase uk-text-bold"><span><i class="fas fa-cogs"></i> Website Settings</span></h4>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label uk-text-uppercase">Server Name:</label>
-                  <div class="uk-form-controls">
-                    <input name="ProjectName" class="uk-input" type="text" id="ProjectName" placeholder="Example: MyServer" required>
-                  </div>
-                </div>
-                <div class="uk-margin uk-light">
-                  <label class="uk-form-label uk-text-uppercase">Url of Website:</label>
-                  <div class="uk-form-controls">
-                    <input name="base_url" class="uk-input" type="url" id="base_url" placeholder="Example: http://domain.com/ or https://domain.com/" required>
+                  <div class="uk-grid-small" uk-grid>
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label uk-text-uppercase">Server Name:</label>
+                      <div class="uk-form-controls">
+                        <input name="ProjectName" class="uk-input" type="text" id="ProjectName" placeholder="Example: MyServer" required>
+                      </div>
+                    </div>
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label uk-text-uppercase">Url of Website:</label>
+                      <div class="uk-form-controls">
+                        <input name="base_url" class="uk-input" type="url" id="base_url" placeholder="Example: http://domain.com/" required>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="uk-margin uk-light">
@@ -123,6 +121,12 @@ endif;
                         <input name="discord_inv" class="uk-input" type="text" id="discord_inv" placeholder="Example: WGGGVgX" required>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="uk-margin uk-light">
+                  <label class="uk-form-label uk-text-uppercase">License Key:</label>
+                  <div class="uk-form-controls">
+                    <input name="license_plus" class="uk-input" type="text" id="license_plus" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" required>
                   </div>
                 </div>
               </div>
@@ -197,7 +201,7 @@ endif;
                 </div>
               </div>
             </div>
-            <?php endif;endif; ?>
+            <?php endif; ?>
           </form>
         </div>
       </div>

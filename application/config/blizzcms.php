@@ -107,13 +107,3 @@ $config['theme_name'] = 'default';
 $config['social_facebook'] = "";
 $config['social_twitter'] = "";
 $config['social_youtube'] = "";
-
-/*
-|--------------------------------------------------------------------------
-| BlizzCMS Plus License
-|--------------------------------------------------------------------------
-|
-| Still not licensed? Generate at projectcms.net/requestLicense
-|
-*/
-$config['license_plus'] = '%LICENSE_KEY%';

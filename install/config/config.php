@@ -21,3 +21,4 @@ $config['ProjectName'] = '%PROJECTNAME%';
 $config['discord_inv'] = '%DISCORD_INV%';
 $config['realmlist'] = '%REALMLIST%';
 $config['expansion_id'] = '%EXPANSION_ID%';
+$config['license_plus'] = '%LICENSE_KEY%';

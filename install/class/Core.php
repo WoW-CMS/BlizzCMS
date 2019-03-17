@@ -6,7 +6,8 @@ class Core {
         $dbFile,
         $reConfig,
         $reDatabase,
-        $reBlizzcms,
+        $reBlizzCMS,
+        $rePlus,
         $db,
         $input,
         $error = [];
@@ -17,7 +18,8 @@ class Core {
         $this->dbFile = $config['db_file'];
         $this->reConfig = [$config['base_url'], $config['language']];
         $this->reDatabase = [$config['hostname'], $config['username'], $config['password'], $config['database'], $config['hostname2'], $config['username2'], $config['password2'], $config['database2']];
-        $this->reBlizzcms = [$config['ProjectName'], $config['discord_inv'], $config['realmlist'], $config['expansion_id']];
+        $this->reBlizzCMS = [$config['ProjectName'], $config['discord_inv'], $config['realmlist'], $config['expansion_id']];
+        $this->rePlus = [$config['license_plus']];
 
         if (!is_dir($this->appPath))
             $this->error[] = "Incorrect application folder";
@@ -34,7 +36,7 @@ class Core {
 
     public function reWrite()
     {
-        $reWriteFile = ['config', 'database', 'blizzcms'];
+        $reWriteFile = ['config', 'database', 'blizzcms', 'plus'];
 
         foreach ($reWriteFile as $fileName):
             $filePath = "$this->appPath/config/$fileName.php";
@@ -50,8 +52,12 @@ class Core {
                         $replace = [$this->input->hostname, $this->input->username, $this->input->password, $this->input->database, $this->input->hostname2, $this->input->username2, $this->input->password2, $this->input->database2];
                         break;
                     case 'blizzcms':
-                        $find = $this->reBlizzcms;
+                        $find = $this->reBlizzCMS;
                         $replace = [$this->input->ProjectName, $this->input->discord_inv, $this->input->realmlist, $this->input->expansion_id];
+                        break;
+                    case 'plus':
+                        $find = $this->rePlus;
+                        $replace = [$this->input->license_plus];
                         break;
                     default:
                         break;
@@ -90,5 +96,25 @@ class Core {
     public function getError()
     {
         return $this->error;
+    }
+
+    public function removeFiles($target)
+    {
+        $host = $_SERVER['HTTP_HOST'];
+        if(is_writeable($target)):
+            if (is_dir($target)):
+                $files = glob($target . '*', GLOB_MARK);
+
+                foreach($files as $file):
+                    $this->removeFiles($file);
+                endforeach;
+                rmdir($target);
+            elseif (is_file($target)):
+                unlink($target);
+            endif;
+            header('Location: http://'.$host);
+        else:
+            $this->error[] = "Folder is not writable, please enable mod_rewrite and set permissions";
+        endif;
     }
 }
