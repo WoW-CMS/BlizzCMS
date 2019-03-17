@@ -530,18 +530,6 @@ CREATE TABLE `slides` (
 
 insert  into `slides`(`id`,`title`,`image`) values (1,'BlizzCMS','slide1.jpg'),(2,'Constant updates!','slide2.jpg');
 
-/*Table structure for table `tags` */
-
-DROP TABLE IF EXISTS `tags`;
-
-CREATE TABLE `tags` (
-  `id` int(10) NOT NULL,
-  `tag` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `tags` */
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;

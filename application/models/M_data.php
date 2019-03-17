@@ -20,7 +20,6 @@ class M_data extends CI_Model {
             'fx_sess_last_login'=> $this->getLastLoginID($id),
             'fx_sess_gmlevel'   => $this->getRank($id),
             'fx_sess_ban_status'=> $this->getBanStatus($id),
-            'fx_sess_tag'       => $this->getTag($id),
             'logged_in' => TRUE
         );
 
@@ -32,20 +31,6 @@ class M_data extends CI_Model {
         return $this->auth->select('id')
                 ->where('id', $id)
                 ->get('account_access');
-    }
-
-    public function getTag($id)
-    {
-        $this->db = $this->load->database('default', TRUE);
-
-        $qq = $this->db->select('tag')
-                ->where('id', $id)
-                ->get('tags');
-
-        if ($qq->num_rows())
-            return $qq->row()->tag;
-        else
-            return '0';
     }
 
     public function randomUTF()

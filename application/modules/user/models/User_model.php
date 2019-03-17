@@ -114,15 +114,6 @@ class User_model extends CI_Model {
 
         $this->db->insert('users', $data);
 
-        $tag = rand(1111, 9999);
-
-        $data1 = array(
-            'id' => $id,
-            'tag' => $tag,
-        );
-
-        $this->db->insert('tags', $data1);
-
         redirect(base_url('panel'),'refresh');
     }
 
@@ -265,7 +256,6 @@ class User_model extends CI_Model {
                         }
                         else
                         {
-                            $tag = rand(1111, 9999);
                             if ($this->m_general->getExpansionAction($this->config->item('expansion_id')) == 1)
                             {
                                 $data = array(
@@ -315,13 +305,6 @@ class User_model extends CI_Model {
                             );
 
                             $this->db->insert('users', $data3);
-
-                            $data4 = array(
-                                'id' => $id,
-                                'tag' => $tag,
-                            );
-
-                            $this->db->insert('tags', $data4);
                             return true;
                         }
                     }
@@ -446,7 +429,6 @@ class User_model extends CI_Model {
         $temp  = $this->getTempUser($key);
 
         if($check == "1") {
-            $tag = rand(1111, 9999);
             if ($this->m_general->getExpansionAction($this->config->item('expansion_id')) == 1)
             {
                 $data = array(
@@ -496,13 +478,6 @@ class User_model extends CI_Model {
             );
 
             $this->db->insert('users', $data3);
-
-            $data4 = array(
-                'id' => $id,
-                'tag' => $tag,
-            );
-
-            $this->db->insert('tags', $data4);
 
             $this->removeTempUser($key);
 

@@ -22,7 +22,7 @@
                   <?php else: ?>
                   <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('fx_sess_username'); ?> #<?= $this->session->userdata('fx_sess_tag'); ?>&nbsp;<i class="fas fa-caret-down"></i></span></a>
+                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('fx_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span></a>
                 <?php endif; ?>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -103,7 +103,7 @@
                       <?php else: ?>
                       <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
                       <?php endif; ?>
-                      <span class="uk-label"><?= $this->session->userdata('fx_sess_username'); ?> #<?= $this->session->userdata('fx_sess_tag'); ?></span>
+                      <span class="uk-label"><?= $this->session->userdata('fx_sess_username'); ?></span>
                     </div>
                     <?php endif; ?>
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
