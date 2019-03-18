@@ -11,18 +11,30 @@ class User_model extends CI_Model {
 
     public function changePasswordI($id, $password)
     {
-        $this->auth->set('sha_pass_hash', $password)
-             ->where('id', $id)
-             ->update('account');
+        $change = array(
+            'sha_pass_hash' => $password,
+            'sessionkey' => '',
+            'v' => '',
+            's' => ''
+        );
+
+        $this->auth->where('id', $id)
+                ->update('account', $change);
 
         redirect(base_url('logout'),'refresh');
     }
 
     public function changePasswordII($id, $password, $passbnet)
     {
-        $this->auth->set('sha_pass_hash', $password)
-             ->where('id', $id)
-             ->update('account');
+        $change = array(
+            'sha_pass_hash' => $password,
+            'sessionkey' => '',
+            'v' => '',
+            's' => ''
+        );
+
+        $this->auth->where('id', $id)
+                ->update('account', $change);
 
         $this->auth->set('sha_pass_hash', $passbnet)
              ->where('id', $id)
