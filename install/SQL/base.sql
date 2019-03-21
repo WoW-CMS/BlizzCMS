@@ -398,9 +398,11 @@ DROP TABLE IF EXISTS `pages`;
 
 CREATE TABLE `pages` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `uri_friendly` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `date` int(10) NOT NULL,
+  UNIQUE ('uri_friendly');
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

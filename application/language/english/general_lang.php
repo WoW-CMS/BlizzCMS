@@ -96,6 +96,7 @@ $lang['form_title'] = 'Title';
 $lang['form_type'] = 'Type';
 $lang['form_description'] = 'Description';
 $lang['form_url'] = 'URL';
+$lang['form_uri'] = 'Friendly URL (Example: tos)';
 $lang['form_highl'] = 'Highlight';
 $lang['form_lock'] = 'Lock';
 $lang['form_subject'] = 'Subject';

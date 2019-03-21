@@ -71,6 +71,6 @@ $route['store'] = 'store/index';
 $route['store/(:num)'] = 'store/index/$1';
 $route['cart/(:num)'] = 'store/cart/$1';
 //pages
-$route['page/(:num)'] = 'page/index/$1';
+$route['page/(:any)'] = 'page/index/$1';
 //admin - managecharacter
 $route['admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';

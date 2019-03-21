@@ -1,9 +1,16 @@
 <?php
 if (isset($_POST['button_createPage'])):
   $desc = $_POST['page_description'];
+  $uri  = $_POST['page_uri'];
   $title  = $_POST['page_title'];
-
-  $this->admin_model->insertPage($title, $desc);
+  if($this->admin_model->pagecheckUri($uri) == TRUE){
+    $uri = $_POST['page_uri'];
+    $rand = rand(5, 15);
+    $uri2 = $uri."-".$rand;
+    $this->admin_model->insertPage($uri2, $title, $desc);
+  } else {
+    $this->admin_model->insertPage($uri, $title, $desc);
+  }
 endif; ?>
 
       <div id="newPage" uk-modal="bg-close: false">
@@ -22,6 +29,14 @@ endif; ?>
                     <input class="uk-input" name="page_title" required type="text" placeholder="<?= $this->lang->line('form_title'); ?>">
                   </div>
                 </div>
+
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_uri'); ?></label>
+                  <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
+                      <input class="uk-input" name="page_uri" required type="text" placeholder="<?= $this->lang->line('form_uri'); ?>">
+                    </div>
+                  </div>
               </div>
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>

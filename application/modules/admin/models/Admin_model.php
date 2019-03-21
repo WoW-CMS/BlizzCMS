@@ -106,11 +106,25 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/managechangelogs'),'refresh');
     }
 
-    public function insertPage($title, $desc)
+    public function pagecheckUri($uri)
+    {
+      $qq = $this->db->select('uri_friendly')
+                  ->where('uri_friendly', $uri)
+                  ->get('pages')->row('uri_friendly');
+      if($qq == $uri)
+      {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public function insertPage($uri, $title, $desc)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
+            'uri_friendly' => $uri,
             'title' => $title,
             'description' => $desc,
             'date' => $date,
@@ -118,12 +132,12 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('pages', $data);
 
-        $idd = $this->db->select('id')
-                ->where('title', $title)
+        $uris = $this->db->select('uri_friendly')
+                ->where('uri_friendly', $uri)
                 ->get('pages')
-                ->row('id');
+                ->row('uri_friendly');
 
-        redirect(base_url('admin/managepages?newpage='.$idd),'refresh');
+        redirect(base_url('admin/managepages?newpage='.$uris),'refresh');
     }
 
     public function getPagesSpecifyRows($id)

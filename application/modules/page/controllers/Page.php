@@ -50,19 +50,19 @@ class Page extends MX_Controller {
         $this->load->model('page_model');
     }
 
-    public function index($id)
+    public function index($uri)
     {
-        if (empty($id) || is_null($id) || $id == '0')
+        if (empty($uri) || is_null($uri) || $uri == NULL)
             redirect(base_url(),'refresh');
 
-        if ($this->page_model->getVerifyExist($id) < 1)
+        if ($this->page_model->getVerifyExist($uri) < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
-            'idlink' => $id,
-            'pagetitle' => $this->page_model->getName($id),
+            'uri' => $uri,
+            'pagetitle' => $this->page_model->getName($uri),
         );
-        
+
         $this->load->view('header', $data);
         $this->load->view('index', $data);
         $this->load->view('footer');

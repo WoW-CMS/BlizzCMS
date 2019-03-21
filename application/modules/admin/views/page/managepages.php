@@ -9,7 +9,7 @@ endif; ?>
           <?php if (isset($_GET['newpage'])) { ?>
           <div class="uk-alert-primary uk-margin-small" uk-alert>
             <a class="uk-alert-close" uk-close></a>
-            <p><?= $this->lang->line('panel_admin_new_page_url'); ?>: <b><a href="<?= base_url('pages/').$_GET['newpage']; ?>"><?= base_url('pages/').$_GET['newpage']; ?></a></b></p>
+            <p><?= $this->lang->line('panel_admin_new_page_url'); ?>: <b><a href="<?= base_url('page/').$_GET['newpage']; ?>"><?= base_url('page/').$_GET['newpage']; ?></a></b></p>
           </div>
           <?php } ?>
           <div class="uk-card uk-card-default">
@@ -31,6 +31,8 @@ endif; ?>
                       <th class="uk-table-expand"><?= $this->lang->line('form_title'); ?></th>
                       <th class="uk-width-small"><?= $this->lang->line('column_date'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
+
+                        <?= $this->admin_model->pagecheckUri('tos'); ?>
                     </tr>
                   </thead>
                   <tbody>
