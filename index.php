@@ -36,12 +36,6 @@
  * @filesource
  */
 
-/* Check if index on install folder exist */
-if (file_exists("install/index.php")):
-    header("Location: install");
-    die();
-endif;
-
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
