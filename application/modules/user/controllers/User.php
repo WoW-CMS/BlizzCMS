@@ -110,12 +110,11 @@ class User extends MX_Controller {
 
     public function newaccount()
     {
-        $country = $this->input->post('country');
         $username = $this->input->post('username');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $repassword = $this->input->post('repassword');
-        echo $this->user_model->insertRegister($username, $email, $password, $repassword, $country);
+        echo $this->user_model->insertRegister($username, $email, $password, $repassword);
     }
 
     public function logout()
