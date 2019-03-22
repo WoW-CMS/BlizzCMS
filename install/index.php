@@ -210,11 +210,11 @@ endif;
       <div class="uk-container">
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-2@s">
-            <h5 class="uk-h5 uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">ProjectCMS</span>. All rights reserved</h5>
+            <h5 class="uk-h5 uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</h5>
           </div>
           <div class="uk-width-1-2@s">
             <div class="uk-align-center uk-align-right@s uk-light">
-              <a target="_blank" href="https://gitlab.com/ProjectCMS/BlizzCMS" class="uk-icon-button gitlab uk-margin-small-right"><i class="fab fa-gitlab"></i></a>
+              <a target="_blank" href="https://gitlab.com/WoW-CMS" class="uk-icon-button gitlab uk-margin-small-right"><i class="fab fa-gitlab"></i></a>
               <a target="_blank" href="https://discord.gg/7QcXfJE" class="uk-icon-button discord"><i class="fab fa-discord"></i></a>
             </div>
           </div>
