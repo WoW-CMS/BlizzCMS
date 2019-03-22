@@ -1,9 +1,8 @@
 /*
-SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.1.29-MariaDB : Database - blizzcms
+SQLyog Ultimate v13.1.2 (64 bit)
+MySQL - 10.2.6-MariaDB-log : Database - blizzcms
 *********************************************************************
 */
-
 
 /*!40101 SET NAMES utf8 */;
 
@@ -20,33 +19,31 @@ DROP TABLE IF EXISTS `avatars`;
 CREATE TABLE `avatars` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT '1' COMMENT '1 = user | 2 = staff',
+  `type` int(1) NOT NULL DEFAULT 1 COMMENT '1 = user | 2 = staff',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 /*Data for the table `avatars` */
 
-DELETE FROM `avatars` WHERE `id` BETWEEN 1 AND 17;
-
-INSERT INTO `avatars` (`id`, `name`, `type`) VALUES
-(1, 'default.png', 1),
-(2, 'arthas.png', 1),
-(3, 'deathwing.png', 1),
-(4, 'garrosh.png', 1),
-(5, 'ghoul.png', 1),
-(6, 'hogger.png', 1),
-(7, 'illidan.png', 1),
-(8, 'kelthuzad.png', 1),
-(9, 'kiljeaden.png', 1),
-(10, 'lurker.png', 1),
-(11, 'maiev.png', 1),
-(12, 'malfurion.png', 1),
-(13, 'neptulon.png', 1),
-(14, 'nerzhul.png', 1),
-(15, 'velen.png', 1),
-(16, 'worgen.png', 1),
-(17, 'imp.png', 1),
-(18, 'vault_guardian.png', 1);
+insert  into `avatars`(`id`,`name`,`type`) values 
+(1,'default.png',1),
+(2,'arthas.png',1),
+(3,'deathwing.png',1),
+(4,'garrosh.png',1),
+(5,'ghoul.png',1),
+(6,'hogger.png',1),
+(7,'illidan.png',1),
+(8,'kelthuzad.png',1),
+(9,'kiljeaden.png',1),
+(10,'lurker.png',1),
+(11,'maiev.png',1),
+(12,'malfurion.png',1),
+(13,'neptulon.png',1),
+(14,'nerzhul.png',1),
+(15,'velen.png',1),
+(16,'worgen.png',1),
+(17,'imp.png',1),
+(18,'vault_guardian.png',1);
 
 /*Table structure for table `bugtracker` */
 
@@ -56,13 +53,13 @@ CREATE TABLE `bugtracker` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `url` text,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `type` int(1) NOT NULL DEFAULT '1',
-  `priority` int(1) NOT NULL DEFAULT '1',
+  `url` text DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT 1,
+  `type` int(1) NOT NULL DEFAULT 1,
+  `priority` int(1) NOT NULL DEFAULT 1,
   `date` int(10) NOT NULL,
   `author` int(10) NOT NULL,
-  `close` int(1) NOT NULL DEFAULT '0',
+  `close` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -76,11 +73,14 @@ CREATE TABLE `bugtracker_priority` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `bugtracker_priority` */
 
-insert  into `bugtracker_priority`(`id`,`title`) values (1,'High'),(2,'Medium'),(3,'Low');
+insert  into `bugtracker_priority`(`id`,`title`) values 
+(1,'High'),
+(2,'Medium'),
+(3,'Low');
 
 /*Table structure for table `bugtracker_status` */
 
@@ -90,11 +90,19 @@ CREATE TABLE `bugtracker_status` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `bugtracker_status` */
 
-insert  into `bugtracker_status`(`id`,`title`) values (1,'New Report'),(2,'Waiting more information'),(3,'Report confirmed'),(4,'In progress'),(5,'Fix need test'),(6,'Fix need review'),(7,'Invalid'),(8,'Resolved');
+insert  into `bugtracker_status`(`id`,`title`) values 
+(1,'New Report'),
+(2,'Waiting more information'),
+(3,'Report confirmed'),
+(4,'In progress'),
+(5,'Fix need test'),
+(6,'Fix need review'),
+(7,'Invalid'),
+(8,'Resolved');
 
 /*Table structure for table `bugtracker_type` */
 
@@ -104,11 +112,25 @@ CREATE TABLE `bugtracker_type` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 /*Data for the table `bugtracker_type` */
 
-insert  into `bugtracker_type`(`id`,`title`) values (1,'Achievements'),(2,'Battle Pets'),(3,'Battlegrounds - Arena'),(4,'Classes'),(5,'Creatures'),(6,'Exploits/Usebugs'),(7,'Garrison'),(8,'Guilds'),(9,'Instances'),(10,'Items'),(11,'Other'),(12,'Professions'),(13,'Quests'),(14,'Website');
+insert  into `bugtracker_type`(`id`,`title`) values 
+(1,'Achievements'),
+(2,'Battle Pets'),
+(3,'Battlegrounds - Arena'),
+(4,'Classes'),
+(5,'Creatures'),
+(6,'Exploits/Usebugs'),
+(7,'Garrison'),
+(8,'Guilds'),
+(9,'Instances'),
+(10,'Items'),
+(11,'Other'),
+(12,'Professions'),
+(13,'Quests'),
+(14,'Website');
 
 /*Table structure for table `changelogs` */
 
@@ -121,6 +143,8 @@ CREATE TABLE `changelogs` (
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `changelogs` */
 
 /*Table structure for table `chars_annotations` */
 
@@ -135,6 +159,8 @@ CREATE TABLE `chars_annotations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+/*Data for the table `chars_annotations` */
+
 /*Table structure for table `credits` */
 
 DROP TABLE IF EXISTS `credits`;
@@ -142,10 +168,10 @@ DROP TABLE IF EXISTS `credits`;
 CREATE TABLE `credits` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `accountid` int(11) unsigned NOT NULL,
-  `dp` int(11) NOT NULL DEFAULT '0',
-  `vp` int(11) NOT NULL DEFAULT '0',
-  `lastVote` int(10) NOT NULL DEFAULT '1490579700',
-  `maxVotes` int(10) unsigned NOT NULL DEFAULT '5',
+  `dp` int(11) NOT NULL DEFAULT 0,
+  `vp` int(11) NOT NULL DEFAULT 0,
+  `lastVote` int(10) NOT NULL DEFAULT 1490579700,
+  `maxVotes` int(10) unsigned NOT NULL DEFAULT 5,
   UNIQUE KEY `id_2` (`id`),
   UNIQUE KEY `accountId` (`accountid`),
   KEY `id` (`id`)
@@ -162,13 +188,16 @@ CREATE TABLE `donate` (
   `name` varchar(100) NOT NULL,
   `price` varchar(10) NOT NULL,
   `tax` varchar(10) NOT NULL DEFAULT '0.00',
-  `points` int(10) NOT NULL DEFAULT '1',
+  `points` int(10) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `donate` */
 
-insert  into `donate`(`id`,`name`,`price`,`tax`,`points`) values (1,'Simple','10.00','0.00',20),(2,'Normal','20.00','2.00',22),(3,'Professional','30.00','0.00',40);
+insert  into `donate`(`id`,`name`,`price`,`tax`,`points`) values 
+(1,'Simple','10.00','0.00',20),
+(2,'Normal','20.00','2.00',22),
+(3,'Professional','30.00','0.00',40);
 
 /*Table structure for table `donate_history` */
 
@@ -185,6 +214,8 @@ CREATE TABLE `donate_history` (
   `points` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `donate_history` */
 
 /*Table structure for table `events` */
 
@@ -209,7 +240,7 @@ DROP TABLE IF EXISTS `faq`;
 CREATE TABLE `faq` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT '1',
+  `type` int(1) NOT NULL DEFAULT 1,
   `description` text NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
@@ -225,11 +256,14 @@ CREATE TABLE `faq_type` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `faq_type` */
 
-insert  into `faq_type`(`id`,`title`) values (1,'General'),(2,'Server'),(3,'Website');
+insert  into `faq_type`(`id`,`title`) values 
+(1,'General'),
+(2,'Server'),
+(3,'Website');
 
 /*Table structure for table `forum_category` */
 
@@ -268,7 +302,7 @@ CREATE TABLE `forum_forums` (
   `category` int(10) NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `icon` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'icon1.png',
-  `type` int(1) NOT NULL DEFAULT '1' COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
+  `type` int(1) NOT NULL DEFAULT 1 COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
   PRIMARY KEY (`id`),
   KEY `category` (`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -286,9 +320,9 @@ CREATE TABLE `forum_topics` (
   `author` int(10) unsigned NOT NULL,
   `date` int(10) unsigned NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `locked` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `pinned` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `archivar` int(1) NOT NULL DEFAULT '0',
+  `locked` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `pinned` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `archivar` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -311,7 +345,13 @@ CREATE TABLE `menu` (
 
 /*Data for the table `menu` */
 
-insert  into `menu`(`id`,`name`,`url`,`icon`,`father`,`son`,`type`) values (1, 'More', '#', 'fas fa-bars', 1, 0, 0),(2, 'News', 'news', 'fas fa-newspaper', 0, 0, 0),(3, 'FAQ', 'faq', 'fas fa-question-circle', 0, 1, 0),(4, 'PvP', 'pvp', 'fas fa-fist-raised', 0, 1, 0),(5, 'Forum', 'forum', 'fas fa-comments', 0, 0, 0),(6, 'Store', 'store', 'fas fa-store', 0, 0, 0);
+insert  into `menu`(`id`,`name`,`url`,`icon`,`father`,`son`,`type`) values 
+(1,'More','#','fas fa-bars',1,0,0),
+(2,'News','news','fas fa-newspaper',0,0,0),
+(3,'FAQ','faq','fas fa-question-circle',0,1,0),
+(4,'PvP','pvp','fas fa-fist-raised',0,1,0),
+(5,'Forum','forum','fas fa-comments',0,0,0),
+(6,'Store','store','fas fa-store',0,0,0);
 
 /*Table structure for table `modules` */
 
@@ -320,13 +360,33 @@ DROP TABLE IF EXISTS `modules`;
 CREATE TABLE `modules` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
+  `status` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 /*Data for the table `modules` */
 
-insert  into `modules`(`id`,`name`,`status`) values (1, 'Installation', 1),(2, 'Discord', 1),(3, 'reCaptcha', 0),(4, 'Slideshow', 1),(5, 'Realm Status', 1),(6, 'Register', 1),(7, 'Login', 1),(8, 'Recovery', 0),(9, 'User Panel', 1),(10, 'Admin Panel', 1),(11, 'News', 1),(12, 'Forum', 1),(13, 'Store', 1),(14, 'Donation', 1),(15, 'Vote', 1),(16, 'PVP', 1),(17, 'Bugtracker', 1),(18, 'Changelogs', 1),(19, 'FAQ', 1),(20, 'Events', 0);
+insert  into `modules`(`id`,`name`,`status`) values 
+(1,'Installation',1),
+(2,'Discord',1),
+(3,'reCaptcha',0),
+(4,'Slideshow',1),
+(5,'Realm Status',1),
+(6,'Register',1),
+(7,'Login',1),
+(8,'Recovery',0),
+(9,'User Panel',1),
+(10,'Admin Panel',1),
+(11,'News',1),
+(12,'Forum',1),
+(13,'Store',1),
+(14,'Donation',1),
+(15,'Vote',1),
+(16,'PVP',1),
+(17,'Bugtracker',1),
+(18,'Changelogs',1),
+(19,'FAQ',1),
+(20,'Events',0);
 
 /*Table structure for table `news` */
 
@@ -343,7 +403,8 @@ CREATE TABLE `news` (
 
 /*Data for the table `news` */
 
-insert  into `news`(`id`,`title`,`image`,`description`,`date`) values (1,'Welcome to your new website!','news.jpg','<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title="WoW-CMS" href="https://discord.gg/7QcXfJE" target="_blank" rel="noopener">Discord</a></p>\r\n</body>\r\n</html>',1551283156);
+insert  into `news`(`id`,`title`,`image`,`description`,`date`) values 
+(1,'Welcome to your new website!','news.jpg','<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title=\"ProjectCMS\" href=\"https://discord.gg/7QcXfJE\" target=\"_blank\" rel=\"noopener\">Discord</a></p>\r\n</body>\r\n</html>',1551283156);
 
 /*Table structure for table `news_comments` */
 
@@ -375,7 +436,8 @@ CREATE TABLE `news_top` (
 
 /*Data for the table `news_top` */
 
-insert  into `news_top`(`id`,`id_new`) values (1,1);
+insert  into `news_top`(`id`,`id_new`) values 
+(1,1);
 
 /*Table structure for table `pages` */
 
@@ -387,9 +449,11 @@ CREATE TABLE `pages` (
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `date` int(10) NOT NULL,
-  UNIQUE ('uri_friendly');
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `URI` (`uri_friendly`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `pages` */
 
 /*Table structure for table `pending_users` */
 
@@ -408,6 +472,8 @@ CREATE TABLE `pending_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*Data for the table `pending_users` */
+
 /*Table structure for table `ranks_default` */
 
 DROP TABLE IF EXISTS `ranks_default`;
@@ -420,7 +486,10 @@ CREATE TABLE `ranks_default` (
 
 /*Data for the table `ranks_default` */
 
-insert  into `ranks_default`(`id`,`comment`) values (1, 'Rank Admin'),(2, 'Rank Visitor'),(3, 'Rank User');
+insert  into `ranks_default`(`id`,`comment`) values 
+(1,'Rank Admin'),
+(2,'Rank Visitor'),
+(3,'Rank User');
 
 /*Table structure for table `realms` */
 
@@ -436,10 +505,29 @@ CREATE TABLE `realms` (
   `console_hostname` varchar(100) DEFAULT '127.0.0.1',
   `console_username` varchar(255) DEFAULT NULL,
   `console_password` varchar(255) DEFAULT NULL,
-  `console_port` int(6) DEFAULT '7878',
+  `console_port` int(6) DEFAULT 7878,
   `emulator` varchar(255) DEFAULT 'TC',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `realms` */
+
+/*Table structure for table `slides` */
+
+DROP TABLE IF EXISTS `slides`;
+
+CREATE TABLE `slides` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `image` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `slides` */
+
+insert  into `slides`(`id`,`title`,`image`) values 
+(1,'BlizzCMS','slide1.jpg'),
+(2,'Constant updates!','slide2.jpg');
 
 /*Table structure for table `store` */
 
@@ -454,11 +542,13 @@ CREATE TABLE `store` (
   `price_vp` int(10) DEFAULT NULL,
   `iconname` varchar(255) NOT NULL,
   `groups` int(1) NOT NULL,
-  `qquery` text CHARACTER SET utf8,
+  `qquery` text DEFAULT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'item1.jpg',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `store` */
 
 /*Table structure for table `store_groups` */
 
@@ -502,21 +592,6 @@ CREATE TABLE `store_top` (
 
 /*Data for the table `store_top` */
 
-/*Table structure for table `slides` */
-
-DROP TABLE IF EXISTS `slides`;
-
-CREATE TABLE `slides` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) DEFAULT NULL,
-  `image` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
-/*Data for the table `slides` */
-
-insert  into `slides`(`id`,`title`,`image`) values (1,'BlizzCMS','slide1.jpg'),(2,'Constant updates!','slide2.jpg');
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
@@ -526,10 +601,12 @@ CREATE TABLE `users` (
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `date` int(10) NOT NULL,
-  `profile` int(10) NOT NULL DEFAULT '1',
+  `profile` int(10) NOT NULL DEFAULT 1,
   `location` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `users` */
 
 /*Table structure for table `users_annotations` */
 
@@ -548,19 +625,24 @@ CREATE TABLE `users_annotations` (
 /*Table structure for table `votes` */
 
 DROP TABLE IF EXISTS `votes`;
-CREATE TABLE IF NOT EXISTS `votes` (
+
+CREATE TABLE `votes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
   `time` int(10) NOT NULL,
-  `points` int(10) NOT NULL DEFAULT '1',
+  `points` int(10) NOT NULL DEFAULT 1,
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
+/*Data for the table `votes` */
+
 /*Table structure for table `votes_logs` */
+
 DROP TABLE IF EXISTS `votes_logs`;
-CREATE TABLE IF NOT EXISTS `votes_logs` (
+
+CREATE TABLE `votes_logs` (
   `id` int(14) NOT NULL AUTO_INCREMENT,
   `idaccount` int(10) NOT NULL,
   `idvote` int(10) NOT NULL,
@@ -569,6 +651,8 @@ CREATE TABLE IF NOT EXISTS `votes_logs` (
   `expired_at` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `votes_logs` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
