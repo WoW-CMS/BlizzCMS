@@ -495,6 +495,10 @@ h6,
   color: #00aeff !important;
 }
 
+.uk-text-meta {
+  color: #d1d1d1;
+}
+
 .uk-alert {
   padding: 8px 16px;
 }
@@ -830,25 +834,53 @@ h6,
  */
 .uk-card-forum {
   background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .05);
   color: rgba(255, 255, 255, .7);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .6);
 }
 
 .uk-card-forum .uk-card-title {
   color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-.uk-card-forum.uk-card-hover:hover {
-  background-color: rgba(255, 255, 255, .1);
-  box-shadow: 0 0 0 1px #000;
+.uk-card-forum .uk-card-header {
+  padding: 8px 16px;
+  background: #032041;
+  border-bottom: 1px solid rgba(255, 255, 255, .15);
 }
 
 .uk-card-forum .uk-card-body {
-  padding: 18px;
+  padding: 16px;
 }
 
-.uk-card-forum .uk-card-body .card-icon {
+.uk-list-divider > li:nth-child(n+2) {
+  border-top-color: rgba(255, 255, 255, .15);
+}
+
+.forum-who-icon {
+  display: inline-block;
+  position: relative;
+  background-color: rgba(3, 32, 65, .25);
+  border: 1px solid rgba(255, 255, 255, .05);
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, .05), inset 0 2px 20px #001933;
+  color: #fff;
+  line-height: 48px;
+  margin-right: 8px;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.forum-who-text {
+  display: inline-block;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.forum-icon {
   display: block;
   background-repeat: no-repeat;
   background-size: contain;
@@ -856,12 +888,42 @@ h6,
   height: 50px;
 }
 
+.forum-table .uk-table caption {
+  background: #032041;
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, .15);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 8px 16px;
+  text-transform: uppercase;
+}
+
+.forum-table .uk-table tbody tr {
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.forum-table .uk-table tbody tr:first-child {
+  border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+.forum-table .uk-table tbody tr:first-child {
+  border-bottom: 1px solid rgba(255, 255, 255, .15);
+}
+
+.forum-table .uk-table-hover tbody tr:hover,
+.forum-table .uk-table-hover > tr:hover {
+  background: rgba(255, 255, 255, .08);
+}
+
 tbody tr:first-child {
-  border-top: 1px solid rgba(255, 255, 255, .3);
+  border-top: 1px solid rgba(255, 255, 255, .25);
 }
 
 tbody tr:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, .3);
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
 }
 
 .uk-table-hover tbody tr:hover,
