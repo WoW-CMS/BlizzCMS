@@ -58,22 +58,22 @@
                   <?php foreach($bugtrackerList as $tracker): ?>
                     <tr>
                       <td class="uk-table-link">
-                        <a href="<?= base_url('bugtracker/post/'.$tracker->id); ?>" class="uk-link-reset">
+                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
                           <?= $tracker->id ?>
                         </a>
                       </td>
                       <td class="uk-table-link uk-text-center">
-                        <a href="<?= base_url('bugtracker/post/'.$tracker->id); ?>" class="uk-link-reset">
+                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
                           <?= $tracker->title ?>
                         </a>
                       </td>
                       <td class="uk-table-link uk-text-center">
-                        <a href="<?= base_url('bugtracker/post/'.$tracker->id); ?>" class="uk-link-reset">
+                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
                           <span class="uk-label"><?= $this->bugtracker_model->getType($tracker->type); ?></span>
                         </a>
                       </td>
                       <td class="uk-table-link uk-text-center">
-                        <a href="<?= base_url('bugtracker/post/'.$tracker->id); ?>" class="uk-link-reset">
+                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
                           <?php if ($tracker->status == 1 || $tracker->status == 8 || $tracker->status == 3): ?>
                           <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
                           <?php elseif($tracker->status == 2 || $tracker->status == 5 || $tracker->status == 6): ?>
@@ -84,7 +84,7 @@
                         </a>
                       </td>
                       <td class="uk-text-center">
-                        <a href="<?= base_url('bugtracker/post/'.$tracker->id); ?>">
+                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>">
                           <?php if ($tracker->priority == 1): ?>
                           <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
                           <?php elseif($tracker->priority == 2): ?>

@@ -98,7 +98,7 @@ class Bugtracker extends MX_Controller {
         $this->load->view('modal');
     }
 
-    public function post($id)
+    public function report($id)
     {
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
@@ -112,7 +112,7 @@ class Bugtracker extends MX_Controller {
         );
 
         $this->load->view('header', $data);
-        $this->load->view('post', $data);
+        $this->load->view('report', $data);
         $this->load->view('footer');
     }
 
