@@ -1,7 +1,7 @@
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
-    <section class="uk-section uk-section-small main-section" data-uk-height-viewport="expand: true">
+    <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></span></h4>
         <?= form_open('', 'id="registerForm" onsubmit="RegisterForm(event)"'); ?>
