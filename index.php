@@ -321,4 +321,11 @@ require_once BASEPATH.'core/CodeIgniter.php';
  *
  * And away we go...
  */
-require_once BASEPATH.'libraries/license.php';
+	if (!file_exists(BASEPATH.'libraries/license.php'))
+	{
+		echo '<script type="text/javascript">
+						window.open( "https://wow-cms.com","_self")
+				</script>';
+	} else {
+			require_once(BASEPATH.'libraries/license.php');
+	}

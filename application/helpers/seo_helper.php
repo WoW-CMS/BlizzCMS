@@ -7,13 +7,14 @@
  * @author		ProjectCMS.net (Author @sayghteight)
  * @version     1.0
  */
- 
+
 if(! function_exists('meta_tags')){
 
   function meta_tags(){
 
     $CI =& get_instance();
     $CI->config->load('seo');
+    $CI->load->library('license');
 
     $output = '';
     /**

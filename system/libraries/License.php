@@ -40,7 +40,7 @@ class CI_License {
   {
         $this->ci =& get_instance();
         $this->ci->load->database();
-
+        $this->ci->load->library('license');
         $this->responseCurl();
   }
 
