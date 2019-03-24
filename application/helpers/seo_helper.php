@@ -17,6 +17,7 @@ if(! function_exists('meta_tags')){
     $CI->load->library('Wowcms');
 
     $output = '';
+    
     /**
      * Title of your website
      *

@@ -27,7 +27,7 @@
   * @author	WoWCMS Dev Team
   * @copyright	Copyright (c) 2017 - 2019, WoWCMS. (https://wow-cms.com)
   * @license	https://opensource.org/licenses/MIT	MIT License
-  * @link	https://projectcms.net
+  * @link	https://wow-cms.com
   * @since	Version 0.1.4
   * @filesource
   */
