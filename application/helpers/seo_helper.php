@@ -14,7 +14,7 @@ if(! function_exists('meta_tags')){
 
     $CI =& get_instance();
     $CI->config->load('seo');
-    $CI->load->library('license');
+    $CI->load->library('Wowcms');
 
     $output = '';
     /**
