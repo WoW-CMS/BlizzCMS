@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2017 - 2019, ProjectCMS
+ * Copyright (c) 2017 - 2019, WoW-CMS
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @author  ProjectCMS
- * @copyright  Copyright (c) 2017 - 2019, ProjectCMS.
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2019, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
- * @link    https://projectcms.net
+ * @link    https://wow-cms.com
  * @since   Version 1.0.1
  * @filesource
  */
@@ -98,7 +98,7 @@ class Bugtracker extends MX_Controller {
         $this->load->view('modal');
     }
 
-    public function post($id)
+    public function report($id)
     {
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
@@ -112,7 +112,7 @@ class Bugtracker extends MX_Controller {
         );
 
         $this->load->view('header', $data);
-        $this->load->view('post', $data);
+        $this->load->view('report', $data);
         $this->load->view('footer');
     }
 

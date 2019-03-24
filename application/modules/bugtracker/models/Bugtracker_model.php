@@ -25,7 +25,7 @@ class Bugtracker_model extends CI_Model {
                 ->where('id', $id)
                 ->update('bugtracker');
 
-        redirect(base_url('bugtracker/post/').$id,'refresh');
+        redirect(base_url('bugtracker/report/').$id,'refresh');
     }
 
     public function closeIssue($id)
@@ -34,7 +34,7 @@ class Bugtracker_model extends CI_Model {
                 ->where('id', $id)
                 ->update('bugtracker');
 
-        redirect(base_url('bugtracker/post/').$id,'refresh');
+        redirect(base_url('bugtracker/report/').$id,'refresh');
     }
 
     public function changeType($id, $type)
@@ -43,7 +43,7 @@ class Bugtracker_model extends CI_Model {
                 ->where('id', $id)
                 ->update('bugtracker');
 
-        redirect(base_url('bugtracker/post/').$id,'refresh');
+        redirect(base_url('bugtracker/report/').$id,'refresh');
     }
 
     public function changeStatus($id, $status)
@@ -52,7 +52,7 @@ class Bugtracker_model extends CI_Model {
                 ->where('id', $id)
                 ->update('bugtracker');
 
-        redirect(base_url('bugtracker/post/').$id,'refresh');
+        redirect(base_url('bugtracker/report/').$id,'refresh');
     }
 
     public function setLimit($limit)
@@ -104,7 +104,7 @@ class Bugtracker_model extends CI_Model {
 
         $getIDPost = $this->getIDPostPerDate($date);
 
-        redirect(base_url('bugtracker/post/').$getIDPost,'refresh');
+        redirect(base_url('bugtracker/report/').$getIDPost,'refresh');
     }
 
     public function getIDPostPerDate($date)

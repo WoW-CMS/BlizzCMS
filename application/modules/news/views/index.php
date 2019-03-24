@@ -1,7 +1,7 @@
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
-    <section class="uk-section uk-section-small main-section" data-uk-height-viewport="expand: true">
+    <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-archive"></i> <?= $this->lang->line('news_recent_list'); ?></h4>
         <?php if ($this->news_model->getNewsList()->num_rows()): ?>

@@ -112,7 +112,7 @@ class User_model extends CI_Model {
                 ->get('users');
     }
 
-    public function updateInformation($id, $username, $email, $country)
+    public function updateInformation($id, $username, $email)
     {
         $this->db->where('id', $id)
              ->delete('users');
@@ -120,9 +120,8 @@ class User_model extends CI_Model {
         $data = array(
             'id' => $id,
             'username' => $username,
-            'email' => $email,
-            'location' => $country,
-            );
+            'email' => $email
+        );
 
         $this->db->insert('users', $data);
 
@@ -163,24 +162,6 @@ class User_model extends CI_Model {
             return $qq->row('expansion');
         else
             return 'Unknow';
-    }
-
-    public function getCountry()
-    {
-        return $this->db->select('*')->get('country');
-    }
-
-    public function getLocation($id)
-    {
-        $qq = $this->db->select('location')
-               ->where('id', $id)
-               ->get('users')
-               ->row('location');
-
-        return $this->db->select('country_name')
-                ->where('id', $qq)
-                ->get('country')
-                ->row_array()['country_name'];
     }
 
     public function getLastIp($id)
@@ -225,7 +206,7 @@ class User_model extends CI_Model {
         }
     }
 
-    public function insertRegister($username, $email, $password, $repassword, $country)
+    public function insertRegister($username, $email, $password, $repassword)
     {
         $date       = $this->m_data->getTimestamp();
         $expansion  = $this->m_general->getRealExpansionDB();
@@ -249,7 +230,6 @@ class User_model extends CI_Model {
                                 'email' => $email,
                                 'password' => $passwordAc,
                                 'password_bnet' => $passwordBn,
-                                'location' => $country,
                                 'expansion' => $expansion,
                                 'date' => $date,
                                 'key' => sha1($username.$email.$date)
@@ -312,8 +292,7 @@ class User_model extends CI_Model {
                                 'id' => $id,
                                 'username' => $username,
                                 'email' => $email,
-                                'date' => $date,
-                                'location' => $country,
+                                'date' => $date
                             );
 
                             $this->db->insert('users', $data3);

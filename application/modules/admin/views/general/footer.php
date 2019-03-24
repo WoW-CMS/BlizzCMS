@@ -1,7 +1,7 @@
       <footer class="uk-section uk-section-xsmall">
         <div class="uk-container uk-container-expand">
           <hr class="uk-hr">
-          <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">ProjectCMS</span>. All rights reserved</p>
+          <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</p>
         </div>
       </footer>
     </div>

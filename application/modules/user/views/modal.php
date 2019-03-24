@@ -5,12 +5,11 @@ if (isset($_POST['button_changeavatar'])):
 endif;
 
 if (isset($_POST['button_uppdateinfo'])):
-  $country = $_POST['country_us'];
   $user = $this->session->userdata('fx_sess_username');
   $mail = $this->session->userdata('fx_sess_email');
   $id = $this->session->userdata('fx_sess_id');
 
-  $this->user_model->updateInformation($id, $user, $mail, $country);
+  $this->user_model->updateInformation($id, $user, $mail);
 endif; ?>
 
     <div id="changePassword" uk-modal="bg-close: false">
@@ -147,17 +146,6 @@ endif; ?>
                   <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
                   <input class="uk-input" type="text" placeholder="<?= $this->session->userdata('fx_sess_email'); ?>" disabled>
                 </div>
-              </div>
-            </div>
-            <hr class="uk-divider-icon">
-            <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_user_info'); ?></label>
-              <div class="uk-form-controls">
-                <select class="uk-select" name="country_us">
-                  <?php foreach($this->user_model->getCountry()->result() as $country_us): ?>
-                  <option value="<?= $country_us->id; ?>"><?= $country_us->country_name ?></option>
-                  <?php endforeach; ?>
-                </select>
               </div>
             </div>
           </div>

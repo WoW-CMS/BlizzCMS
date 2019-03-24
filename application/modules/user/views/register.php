@@ -1,20 +1,10 @@
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
-    <section class="uk-section uk-section-small main-section" data-uk-height-viewport="expand: true">
+    <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></span></h4>
         <?= form_open('', 'id="registerForm" onsubmit="RegisterForm(event)"'); ?>
-        <div class="uk-margin uk-light">
-          <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_user_info'); ?></label>
-          <div class="uk-form-controls">
-            <select class="uk-select" id="register_country">
-              <?php foreach($this->user_model->getCountry()->result() as $countrys): ?>
-              <option value="<?= $countrys->id; ?>"><?= $countrys->country_name ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-        </div>
         <div class="uk-margin uk-light">
           <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_login_info'); ?></label>
           <div class="uk-form-controls">
@@ -86,7 +76,6 @@
           }
         }
 
-        var country = $('#register_country').val();
         var username = $('#register_username').val();
         var email = $('#register_email').val();
         var password = $('#register_password').val();
@@ -129,7 +118,7 @@
         $.ajax({
           url:"<?= base_url('user/newaccount'); ?>",
           method:"POST",
-          data:{username, email, password, repassword, country},
+          data:{username, email, password, repassword},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2017 - 2019, ProjectCMS
+ * Copyright (c) 2017 - 2019, WoW-CMS
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @author  ProjectCMS
- * @copyright  Copyright (c) 2017 - 2019, ProjectCMS.
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2019, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
- * @link    https://projectcms.net
+ * @link    https://wow-cms.com
  * @since   Version 1.0.1
  * @filesource
  */
@@ -110,12 +110,11 @@ class User extends MX_Controller {
 
     public function newaccount()
     {
-        $country = $this->input->post('country');
         $username = $this->input->post('username');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $repassword = $this->input->post('repassword');
-        echo $this->user_model->insertRegister($username, $email, $password, $repassword, $country);
+        echo $this->user_model->insertRegister($username, $email, $password, $repassword);
     }
 
     public function logout()
