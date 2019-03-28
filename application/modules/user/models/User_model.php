@@ -67,8 +67,8 @@ class User_model extends CI_Model {
              ->update('users');
 
         $update = array(
-        'sha_pass_hash' => $password,
-        'email' => $email
+            'sha_pass_hash' => $password,
+            'email' => $email
         );
 
         $this->auth->where('id', $id)
@@ -344,22 +344,34 @@ class User_model extends CI_Model {
 
             if ($this->m_general->getExpansionAction($this->config->item('expansion_id')) == 1)
             {
-                $this->auth->set('sha_pass_hash', $newpassI)
-                            ->where('id', $ucheck)
-                            ->where('email', $email)
-                            ->update('account');
+                $accupdate = array(
+                    'sha_pass_hash' => $newpassI,
+                    'sessionkey' => '',
+                    'v' => '',
+                    's' => ''
+                );
+
+                $this->auth->where('id', $ucheck)
+                        ->where('email', $email)
+                        ->update('account', $accupdate);
             }
             else
             {
-                $this->auth->set('sha_pass_hash', $newpassI)
-                            ->where('id', $ucheck)
-                            ->where('email', $email)
-                            ->update('account');
+                $accupdate = array(
+                    'sha_pass_hash' => $newpassI,
+                    'sessionkey' => '',
+                    'v' => '',
+                    's' => ''
+                );
+
+                $this->auth->where('id', $ucheck)
+                        ->where('email', $email)
+                        ->update('account', $accupdate);
 
                 $this->auth->set('sha_pass_hash', $newpassII)
-                            ->where('id', $ucheck)
-                            ->where('email', $email)
-                            ->update('battlenet_accounts');
+                        ->where('id', $ucheck)
+                        ->where('email', $email)
+                        ->update('battlenet_accounts');
             }
 
             $mail_message = 'Hi, <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> You have sent a request for your account password to be reset.<br>';
