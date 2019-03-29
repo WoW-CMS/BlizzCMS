@@ -1,4 +1,32 @@
-## 1.0.1 WIP
+## _WIP_
+
+### Fixed
+
+- Fixed change password (doesn't correctly change the 
+password in-game)
+- Fixed popup blocked in vote module
+- Fixed parameter for the correct deactivation of discord
+
+### Changed
+
+- Rewrite change email/password
+
+### Added
+
+- Add URL friendly to page module
+- Add SEO configs
+
+### Removed
+
+- Remove location parameter from register and structure
+
+### Updated
+
+- Update Font Awesome to last version 5.8.1
+- Update TinyMCE to last version 5.0.3
+- Update forum views
+
+## 1.0.1
 
 ### Fixed
 
