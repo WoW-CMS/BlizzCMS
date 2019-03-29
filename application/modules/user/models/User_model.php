@@ -9,72 +9,141 @@ class User_model extends CI_Model {
         $this->auth = $this->load->database('auth', TRUE);
     }
 
-    public function changePasswordI($id, $password)
+    public function changePassword($oldpass, $newpass, $renewpass)
     {
-        $change = array(
-            'sha_pass_hash' => $password,
-            'sessionkey' => '',
-            'v' => '',
-            's' => ''
-        );
+        $passnobnet = $this->m_data->Account($this->session->userdata('fx_sess_username'), $oldpass);
+        $passbnet = $this->m_data->Battlenet($this->session->userdata('fx_sess_email'), $oldpass);
+        $newaccpass = $this->m_data->Account($this->session->userdata('fx_sess_username'), $newpass);
+        $newaccbnetpass = $this->m_data->Battlenet($this->session->userdata('fx_sess_email'), $newpass);
 
-        $this->auth->where('id', $id)
-                ->update('account', $change);
+        if($this->m_general->getExpansionAction() == 1) {
+            if ($this->m_data->getPasswordAccountID($this->session->userdata('fx_sess_id')) == strtoupper($passnobnet)) {
+                if($newaccpass == $this->m_data->getPasswordAccountID($this->session->userdata('fx_sess_id'))) {
+                    return 'samePass';
+                }
+                else
+                    if(strlen($newpass) >= 5 && strlen($newpass) <= 16) {
+                        if ($newpass == $renewpass) {
+                                $change = array(
+                                    'sha_pass_hash' => $newaccpass,
+                                    'sessionkey' => '',
+                                    'v' => '',
+                                    's' => ''
+                                );
 
-        redirect(base_url('logout'),'refresh');
+                                $this->auth->where('id', $this->session->userdata('fx_sess_id'))
+                                            ->update('account', $change);
+
+                                return true;
+                        }
+                        else
+                            return 'noMatch';
+                    }
+                    else
+                        return 'lengError';
+            }
+            else
+                return 'passnotMatch';
+        }
+        elseif($this->m_general->getExpansionAction() == 2) {
+            if ($this->m_data->getPasswordBnetID($this->session->userdata('fx_sess_id')) == strtoupper($passbnet)) {
+                if ($newaccbnetpass == $this->m_data->getPasswordBnetID($this->session->userdata('fx_sess_id'))) {
+                    return 'samePass';
+                }
+                else
+                    if(strlen($newpass) >= 5 && strlen($newpass) <= 16) {
+                        if($newpass == $renewpass) {
+                            $change = array(
+                                'sha_pass_hash' => $newaccpass,
+                                'sessionkey' => '',
+                                'v' => '',
+                                's' => ''
+                            );
+
+                            $this->auth->where('id', $this->session->userdata('fx_sess_id'))
+                                        ->update('account', $change);
+
+                            $this->auth->set('sha_pass_hash', $newaccbnetpass)
+                                        ->where('id', $this->session->userdata('fx_sess_id'))
+                                        ->update('battlenet_accounts');
+
+                            return true;
+                        }
+                        else
+                            return 'noMatch';
+                    }
+                    else
+                        return 'lengError';
+            }
+            else
+                return 'passnotMatch';
+        }
+        else
+            return 'expError';
     }
 
-    public function changePasswordII($id, $password, $passbnet)
+    public function changeEmail($newemail, $renewemail, $password)
     {
-        $change = array(
-            'sha_pass_hash' => $password,
-            'sessionkey' => '',
-            'v' => '',
-            's' => ''
-        );
+        $nobnet = $this->m_data->Account($this->session->userdata('fx_sess_username'), $password);
+        $bnet = $this->m_data->Battlenet($this->session->userdata('fx_sess_email'), $password);
+        $newbnetpass = $this->m_data->Battlenet($newemail, $password);
 
-        $this->auth->where('id', $id)
-                ->update('account', $change);
+        if($this->m_general->getExpansionAction() == 1) {
+            if ($this->m_data->getPasswordAccountID($this->session->userdata('fx_sess_id')) == strtoupper($nobnet)) {
+                if($newemail == $renewemail) {
+                    if($this->getExistEmail(strtoupper($newemail)) > 0) {
+                        return 'usedEmail';
+                    }
+                    else
+                        $this->auth->set('email', $newemail)
+                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->update('account');
 
-        $this->auth->set('sha_pass_hash', $passbnet)
-             ->where('id', $id)
-             ->update('battlenet_accounts');
+                        $this->db->set('email', $newemail)
+                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->update('users');
 
-        redirect(base_url('logout'),'refresh');
-    }
+                        return true;
+                }
+                else
+                    return 'enoMatch';
+            }
+            else
+                return 'epassnotMatch';
+        }
+        elseif($this->m_general->getExpansionAction() == 2) {
+            if ($this->m_data->getPasswordBnetID($this->session->userdata('fx_sess_id')) == strtoupper($bnet)) {
+                if($newemail == $renewemail) {
+                    if($this->getExistEmail(strtoupper($newemail)) > 0) {
+                        return 'usedEmail';
+                    }
+                    else
+                        $this->auth->set('email', $newemail)
+                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->update('account');
 
-    public function changeEmailI($id, $email)
-    {
-        $this->auth->set('email', $email)
-             ->where('id', $id)
-             ->update('account');
+                        $this->db->set('email', $newemail)
+                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->update('users');
 
-        $this->db->set('email', $email)
-             ->where('id', $id)
-             ->update('users');
+                        $update = array(
+                            'sha_pass_hash' => $newbnetpass,
+                            'email' => $newemail
+                        );
 
-        redirect(base_url('logout'),'refresh');
-    }
+                        $this->auth->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->update('battlenet_accounts', $update);
 
-    public function changeEmailII($id, $email, $password)
-    {
-        $this->auth->set('email', $email)
-             ->where('id', $id)
-             ->update('account');
-
-        $this->db->set('email', $email)
-             ->where('id', $id)
-             ->update('users');
-
-        $update = array(
-            'sha_pass_hash' => $password,
-            'email' => $email
-        );
-
-        $this->auth->where('id', $id)
-             ->update('battlenet_accounts', $update);
-
-        redirect(base_url('logout'),'refresh');
+                        return true;
+                }
+                else
+                    return 'enoMatch';
+            }
+            else
+                return 'epassnotMatch';
+        }
+        else
+            return 'expaError';
     }
 
     public function getExistEmail($email)

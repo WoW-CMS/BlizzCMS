@@ -172,4 +172,41 @@ class User extends MX_Controller {
         $this->load->view('footer');
         $this->load->view('modal');
     }
+
+    public function settings()
+    {
+        if (!$this->m_modules->getUCPStatus())
+            redirect(base_url(),'refresh');
+
+        if (!$this->m_data->isLogged())
+            redirect(base_url(),'refresh');
+
+        if (!$this->m_permissions->getMaintenance())
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            "pagetitle" => $this->lang->line('nav_account'),
+        );
+        
+        $this->load->view('header', $data);
+        $this->load->view('settings', $data);
+        $this->load->view('footer');
+        $this->load->view('modal');
+    }
+
+    public function newpass()
+    {
+        $oldpass = $this->input->post('oldpass');
+        $newpass = $this->input->post('newpass');
+        $renewpass = $this->input->post('renewpass');
+        echo $this->user_model->changePassword($oldpass, $newpass, $renewpass);
+    }
+
+    public function newemail()
+    {
+        $newemail = $this->input->post('newemail');
+        $renewemail = $this->input->post('renewemail');
+        $password = $this->input->post('password');
+        echo $this->user_model->changeEmail($newemail, $renewemail, $password);
+    }
 }

@@ -931,8 +931,12 @@ tbody tr:last-child {
   background: rgba(255, 255, 255, .05);
 }
 
+.uk-grid-divider > :not(.uk-first-column)::before {
+  border-left-color: rgba(255, 255, 255, .2);
+}
+
 .uk-grid-divider.uk-grid-stack > .uk-grid-margin::before {
-  border-top: 1px solid rgba(255, 255, 255, .3);
+  border-top-color: rgba(255, 255, 255, .2);
 }
 
 .topic-author {
