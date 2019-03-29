@@ -465,7 +465,6 @@ CREATE TABLE `pending_users` (
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `password_bnet` varchar(100) DEFAULT NULL,
-  `location` int(10) DEFAULT NULL,
   `expansion` int(10) DEFAULT NULL,
   `date` int(10) DEFAULT NULL,
   `key` varchar(255) DEFAULT NULL,
@@ -602,7 +601,6 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `date` int(10) NOT NULL,
   `profile` int(10) NOT NULL DEFAULT 1,
-  `location` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

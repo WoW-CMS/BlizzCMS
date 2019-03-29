@@ -545,8 +545,7 @@ class User_model extends CI_Model {
                 'id' => $id,
                 'username' => $temp['username'],
                 'email' => $temp['email'],
-                'date' => $temp['date'],
-                'location' => $temp['location']
+                'date' => $temp['date']
             );
 
             $this->db->insert('users', $data3);
