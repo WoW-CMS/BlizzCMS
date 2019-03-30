@@ -56,6 +56,11 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+/*
+ * Website ROUTES
+ *
+*/
+
 $route[$lang.'$'] = $route['default_controller'];
 //user
 $route[$lang.'/login'] = 'user/login';
@@ -94,8 +99,15 @@ $route[$lang.'/store/(:num)'] = 'store/index/$2';
 $route[$lang.'/cart/(:num)'] = 'store/cart/$2';
 //pages
 $route[$lang.'/page/(:any)'] = 'page/index/$2/';
+//pvp
+$route[$lang.'/faq'] = 'faq/index';
+//faq
+$route[$lang.'/pvp'] = 'pvp/index';
 
-//admin routes
+/*
+ * Admin ROUTES
+ *
+*/
 
 // General
 $route[$lang.'/admin'] = 'admin/index';
