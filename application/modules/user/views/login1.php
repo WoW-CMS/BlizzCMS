@@ -112,7 +112,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url('user/verify1'); ?>",
+          url:"<?= base_url($lang.'/classicverify'); ?>",
           method:"POST",
           data:{username, password},
           dataType:"text",

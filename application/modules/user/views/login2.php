@@ -112,7 +112,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url('user/verify2'); ?>",
+          url:"<?= base_url($lang.'/bnetverify'); ?>",
           method:"POST",
           data:{email, password},
           dataType:"text",

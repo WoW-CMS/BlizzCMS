@@ -93,7 +93,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url('user/forgotpassword'); ?>",
+          url:"<?= base_url($lang.'/forgotpassword'); ?>",
           method:"POST",
           data:{username, email},
           dataType:"text",

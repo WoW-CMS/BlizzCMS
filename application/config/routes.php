@@ -63,6 +63,9 @@ $route[$lang.'/panel'] = 'user/panel';
 $route[$lang.'/register'] = 'user/register';
 $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/recovery'] = 'user/recovery';
+$route[$lang.'/classicverify'] = 'user/verify1';
+$route[$lang.'/bnetverify'] = 'user/verify2';
+$route[$lang.'/forgotpassword'] = 'user/forgotpassword';
 $route[$lang.'/logout'] = 'user/logout';
 $route[$lang.'/activate/(:any)'] = 'user/activate/$2';
 // Vote

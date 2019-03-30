@@ -54,21 +54,25 @@ class User extends MX_Controller {
         if ($this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
-        $data['pagetitle'] = $this->lang->line('nav_login');
+        $data = array(
+          'pagetitle' => $this->lang->line('nav_login'),
+        );
 
         $this->load->view('header', $data);
 
         if ($this->m_general->getExpansionAction() == 1)
         {
             $data = array(
-                'recapKey' => $this->config->item('recaptcha_sitekey')
+                'recapKey' => $this->config->item('recaptcha_sitekey'),
+                'lang' => $this->lang->lang(),
             );
             $this->load->view('login1', $data);
         }
         else
         {
             $data = array(
-                'recapKey' => $this->config->item('recaptcha_sitekey')
+                'recapKey' => $this->config->item('recaptcha_sitekey'),
+                'lang' => $this->lang->lang(),
             );
             $this->load->view('login2', $data);
         }
@@ -101,6 +105,7 @@ class User extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('nav_register'),
             'recapKey' => $this->config->item('recaptcha_sitekey'),
+            'lang' => $this->lang->lang(),
         );
 
         $this->load->view('header', $data);
@@ -133,6 +138,7 @@ class User extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('nav_reset'),
             'recapKey' => $this->config->item('recaptcha_sitekey'),
+            'lang' => $this->lang->lang(),
         );
 
         $this->load->view('header', $data);
@@ -165,8 +171,9 @@ class User extends MX_Controller {
 
         $data = array(
             "pagetitle" => $this->lang->line('nav_account'),
+            'lang' => $this->lang->lang(),
         );
-        
+
         $this->load->view('header', $data);
         $this->load->view('panel', $data);
         $this->load->view('footer');
@@ -186,8 +193,9 @@ class User extends MX_Controller {
 
         $data = array(
             "pagetitle" => $this->lang->line('nav_account'),
+            'lang' => $this->lang->lang(),
         );
-        
+
         $this->load->view('header', $data);
         $this->load->view('settings', $data);
         $this->load->view('footer');
