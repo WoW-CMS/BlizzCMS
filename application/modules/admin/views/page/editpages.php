@@ -16,7 +16,7 @@ endif; ?>
                   <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_pages'); ?> - <?= $this->admin_model->getPagesSpecifyName($idlink); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
-                  <a href="<?= base_url('admin/managepages'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+                  <a href="<?= base_url('admin/pages'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
                 </div>
               </div>
             </div>

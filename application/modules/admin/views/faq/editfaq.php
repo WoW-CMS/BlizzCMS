@@ -17,7 +17,7 @@ endif; ?>
                   <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_faq'); ?> - <?= $this->admin_model->getFaqSpecifyName($idlink); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
-                  <a href="<?= base_url('admin/managefaq'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+                  <a href="<?= base_url('admin/faq'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
                 </div>
               </div>
             </div>

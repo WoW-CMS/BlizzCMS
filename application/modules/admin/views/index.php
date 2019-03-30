@@ -54,7 +54,7 @@
                       <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
                     </div>
                     <div class="uk-width-expand uk-text-right">
-                      <a href="<?= base_url('admin/managerealms'); ?>" class="uk-icon-button" uk-tooltip="<?= $this->lang->line('admin_manage_realms'); ?>"><i class="fas fa-cog"></i></a>
+                      <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button" uk-tooltip="<?= $this->lang->line('admin_manage_realms'); ?>"><i class="fas fa-cog"></i></a>
                     </div>
                   </div>
                 </div>
