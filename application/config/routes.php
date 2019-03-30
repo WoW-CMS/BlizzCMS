@@ -65,7 +65,10 @@ $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/recovery'] = 'user/recovery';
 $route[$lang.'/logout'] = 'user/logout';
 $route[$lang.'/activate/(:any)'] = 'user/activate/$2';
+// Vote
 $route[$lang.'/vote'] = 'vote/index';
+$route[$lang.'/vote/votenow/(:num)'] = 'vote/votenow/$2';
+// DONATE
 $route[$lang.'/donate'] = 'donate/index';
 // Changelog
 $route[$lang.'/changelogs'] = 'changelogs/index';
