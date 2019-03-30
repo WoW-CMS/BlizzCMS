@@ -49,11 +49,11 @@ html {
 }
 
 body {
-  background-color: #002650;
-  background-image: url('../images/bg-bottom-left.png'), url('../images/bg-bottom-right.png');
-  background-repeat: no-repeat, no-repeat;
-  background-position: bottom left, bottom right;
-  background-size: auto;
+  background-color: #031135;
+  background-image: url('../images/background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 img {
@@ -230,10 +230,7 @@ h6,
 }
 
 .main-section {
-  background-image: url('../images/bg-main.png');
-  background-repeat: no-repeat;
-  background-position: top center;
-  border-top: 1px solid rgba(63, 102, 133, .7);
+  border-top: 1px solid rgba(63, 102, 133, .5);
 }
 
 .header-section {
@@ -244,11 +241,11 @@ h6,
 .uk-card-default {
   background: rgba(0, 0, 0, .25);
   color: #ccc;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, .15);
 }
 
 .uk-card-default.news-card {
-  background: rgba(0, 174, 255, .1);
+  background: rgba(9, 85, 135, .1);
   color: rgba(255, 255, 255, .7);
   box-shadow: none;
 }
@@ -275,7 +272,7 @@ h6,
 }
 
 .uk-card-default.news-card.uk-card-hover:hover {
-  background-color: rgba(0, 174, 255, .1);
+  background-color: rgba(9, 85, 135, .2);
   box-shadow: none;
 }
 
@@ -306,7 +303,7 @@ h6,
 .dotted-divider:after {
   content: "";
   display: inline-block;
-  border-top: 2px dotted rgba(0, 174, 255, .7);
+  border-top: 2px dotted rgba(0, 174, 255, .8);
   width: 200px;
   max-width: 100%;
   padding-bottom: 10px;
@@ -314,12 +311,12 @@ h6,
 
 .card-status {
   border: 1px solid transparent;
-  box-shadow: 0 15px 10px -15px rgba(0, 0, 0, .8), inset 0 0 5px rgba(0, 0, 0, .4);
-  border-image: linear-gradient(to left, rgba(255, 255, 255, .2) 0%, rgba(0, 174, 255, .7) 100%);
+  box-shadow: 0 15px 10px -15px rgba(0, 0, 0, .6), inset 0 0 5px rgba(0, 0, 0, .4);
+  border-image: linear-gradient(to left, rgba(255, 255, 255, .2) 0%, rgba(0, 174, 255, .8) 100%);
   border-image-slice: 1;
   border-image-width: 1px;
   padding: 15px 20px;
-  background: rgba(0, 0, 0, .1);
+  background: rgba(9, 85, 135, .05);
   color: #ccc;
 }
 
@@ -457,7 +454,7 @@ h6,
 }
 
 .uk-icon-button {
-  background: rgba(0, 174, 255, .15);
+  background: rgba(0, 174, 255, .1);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .07);
 }
@@ -614,8 +611,8 @@ h6,
 }
 
 .uk-nav-default.myaccount-nav {
-  background: rgba(0, 0, 0, .6);
-  box-shadow: 0 0 2px rgba(255, 255, 255, .15);
+  background: rgba(0, 0, 0, .45);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .15);
 }
 
 .uk-nav-default.myaccount-nav > li > a {
@@ -833,7 +830,7 @@ h6,
  * Forum
  */
 .uk-card-forum {
-  background: rgba(255, 255, 255, .05);
+  background: rgba(9, 85, 135, .1);
   border: 1px solid rgba(255, 255, 255, .05);
   color: rgba(255, 255, 255, .7);
 }
@@ -846,8 +843,8 @@ h6,
 
 .uk-card-forum .uk-card-header {
   padding: 8px 16px;
-  background: #032041;
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  background: rgba(19, 76, 114, .1);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .uk-card-forum .uk-card-body {
@@ -861,7 +858,7 @@ h6,
 .forum-who-icon {
   display: inline-block;
   position: relative;
-  background-color: rgba(3, 32, 65, .25);
+  background-color: rgba(24, 60, 101, 0.6);
   border: 1px solid rgba(255, 255, 255, .05);
   border-radius: 50%;
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, .05), inset 0 2px 20px #001933;
@@ -889,10 +886,8 @@ h6,
 }
 
 .forum-table .uk-table caption {
-  background: #032041;
-  border-width: 1px 1px 0 1px;
-  border-style: solid;
-  border-color: rgba(255, 255, 255, .15);
+  background: rgba(19, 76, 114, .1);
+  border: 1px solid rgba(255, 255, 255, .1);
   color: #fff;
   cursor: pointer;
   font-weight: 700;
@@ -901,21 +896,21 @@ h6,
 }
 
 .forum-table .uk-table tbody tr {
-  background: rgba(255, 255, 255, .05);
+  background: rgba(9, 85, 135, .1);
   border: 1px solid rgba(255, 255, 255, .1);
 }
 
 .forum-table .uk-table tbody tr:first-child {
-  border-top: 1px solid rgba(255, 255, 255, .15);
+  border-top: none;
 }
 
 .forum-table .uk-table tbody tr:first-child {
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .forum-table .uk-table-hover tbody tr:hover,
 .forum-table .uk-table-hover > tr:hover {
-  background: rgba(255, 255, 255, .08);
+  background: rgba(9, 85, 135, .2);
 }
 
 tbody tr:first-child {
@@ -995,8 +990,7 @@ tbody tr:last-child {
 
 .glass-box {
   background-color: rgba(255, 255, 255, .02);
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .05);
   padding: 1rem 0;
 }
 
