@@ -159,7 +159,7 @@
         }
 
         $.ajax({
-          url:"<?= base_url('user/newemail'); ?>",
+          url:"<?= base_url($lang.'/changemail'); ?>",
           method:"POST",
           data:{newemail, renewemail, password},
           dataType:"text",
@@ -298,7 +298,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url('user/newpass'); ?>",
+          url:"<?= base_url($lang.'/changepass'); ?>",
           method:"POST",
           data:{oldpass, newpass, renewpass},
           dataType:"text",
