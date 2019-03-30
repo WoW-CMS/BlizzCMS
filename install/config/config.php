@@ -7,7 +7,6 @@ $config['application'] = '../application';
 $config['db_file'] = 'SQL/base.sql';
 
 // Name settings to be replaced
-$config['base_url'] = '%BASE_URL%';
 $config['language'] = '%LANGUAGE%';
 $config['hostname'] = '%HOSTNAME%';
 $config['username'] = '%USERNAME%';

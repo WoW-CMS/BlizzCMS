@@ -16,7 +16,7 @@ class Core {
     {
         $this->appPath = $config['application'];
         $this->dbFile = $config['db_file'];
-        $this->reConfig = [$config['base_url'], $config['language']];
+        $this->reConfig = [$config['language']];
         $this->reDatabase = [$config['hostname'], $config['username'], $config['password'], $config['database'], $config['hostname2'], $config['username2'], $config['password2'], $config['database2']];
         $this->reBlizzCMS = [$config['ProjectName'], $config['discord_inv'], $config['realmlist'], $config['expansion_id']];
         $this->rePlus = [$config['license_plus']];
@@ -45,7 +45,7 @@ class Core {
                 switch ($fileName):
                     case 'config':
                         $find = $this->reConfig;
-                        $replace = [$this->input->base_url, $this->input->language];
+                        $replace = [$this->input->language];
                         break;
                     case 'database':
                         $find = $this->reDatabase;

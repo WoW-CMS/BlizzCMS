@@ -64,19 +64,9 @@ endif;
               <div>
                 <h4 class="uk-h4 uk-heading-line uk-margin-small uk-text-uppercase uk-text-bold"><span><i class="fas fa-cogs"></i> Website Settings</span></h4>
                 <div class="uk-margin uk-light">
-                  <div class="uk-grid-small" uk-grid>
-                    <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Server Name:</label>
-                      <div class="uk-form-controls">
-                        <input name="ProjectName" class="uk-input" type="text" id="ProjectName" placeholder="Example: MyServer" required>
-                      </div>
-                    </div>
-                    <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Url of Website:</label>
-                      <div class="uk-form-controls">
-                        <input name="base_url" class="uk-input" type="url" id="base_url" placeholder="Example: http://domain.com/" required>
-                      </div>
-                    </div>
+                  <label class="uk-form-label uk-text-uppercase">Server Name:</label>
+                  <div class="uk-form-controls">
+                    <input name="ProjectName" class="uk-input" type="text" id="ProjectName" placeholder="Example: MyServer" required>
                   </div>
                 </div>
                 <div class="uk-margin uk-light">
