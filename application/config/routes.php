@@ -64,7 +64,7 @@ $route[$lang.'/register'] = 'user/register';
 $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/recovery'] = 'user/recovery';
 $route[$lang.'/logout'] = 'user/logout';
-$route[$lang.'/activate/(:any)'] = 'user/activate/$1';
+$route[$lang.'/activate/(:any)'] = 'user/activate/$2';
 $route[$lang.'/vote'] = 'vote/index';
 $route[$lang.'/donate'] = 'donate/index';
 // Changelog
@@ -72,16 +72,17 @@ $route[$lang.'/changelogs'] = 'changelogs/index';
 // Bugtracker
 $route[$lang.'/bugtracker'] = 'bugtracker/index';
 //forum
-$route[$lang.'/forum/category/(:num)'] = 'forum/category/$1';
-$route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$1';
+$route[$lang.'/forum/category/(:num)'] = 'forum/category/$2';
+$route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$2';
+$route[$lang.'/forum/newTopic/(:num)'] = 'forum/newTopic/$2';
 $route[$lang.'/forum'] = 'forum/index';
 //news
-$route[$lang.'/news/(:num)'] = 'news/article/$1';
+$route[$lang.'/news/(:num)'] = 'news/article/$2';
 $route[$lang.'/news'] = 'news/index';
 //store
 $route[$lang.'/store'] = 'store/index';
-$route[$lang.'/store/(:num)'] = 'store/index/$1';
-$route[$lang.'/cart/(:num)'] = 'store/cart/$1';
+$route[$lang.'/store/(:num)'] = 'store/index/$2';
+$route[$lang.'/cart/(:num)'] = 'store/cart/$2';
 //pages
 $route[$lang.'/page/(:any)'] = 'page/index/$1';
 

@@ -58,7 +58,7 @@ class Forum extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('nav_forums'),
         );
-        
+
         $this->load->view('header', $data);
         $this->load->view('index');
         $this->load->view('footer');
@@ -111,7 +111,7 @@ class Forum extends MX_Controller {
             'pagetitle' => $this->lang->line('nav_forums'),
             'tiny' => $tiny,
         );
-        
+
         $this->load->view('header', $data);
         $this->load->view('topic', $data);
         $this->load->view('footer');
@@ -120,8 +120,8 @@ class Forum extends MX_Controller {
 
     public function newTopic($idlink)
     {
-        $title = $_POST['topic_title'];
-        $description = $_POST['topic_description'];
+        $title = $this->input->post('topic_title');
+        $description = $this->input->post('topic_description');
 
         if (isset($_POST['topic_locked']))
             $locked = '1';
