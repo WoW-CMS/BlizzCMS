@@ -65,6 +65,13 @@ $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/recovery'] = 'user/recovery';
 $route[$lang.'/logout'] = 'user/logout';
 $route[$lang.'/activate/(:any)'] = 'user/activate/$1';
+$route[$lang.'/vote'] = 'vote/index';
+$route[$lang.'/donate'] = 'donate/index';
+// Changelog
+$route[$lang.'/changelogs'] = 'changelogs/index';
+// Bugtracker
+$route[$lang.'/bugtracker'] = 'bugtracker/index';
+
 //forum
 $route[$lang.'/forum/category/(:num)'] = 'forum/category/$1';
 $route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$1';
