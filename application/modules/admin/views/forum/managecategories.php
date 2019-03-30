@@ -22,7 +22,7 @@
         $(document).ready(function(){
           function fetch_data(){
             $.ajax({
-              url:"<?= base_url('admin/getCategoryList'); ?>",
+              url:"<?= base_url($lang.'/admin/categorylist'); ?>",
               method:"POST",
               success:function(data){
                 $('#categoryList').html(data);
@@ -33,7 +33,7 @@
 
           function edit_data(id, text, colum_name){
             $.ajax({
-              url:"<?= base_url('admin/updateCategory'); ?>",
+              url:"<?= base_url($lang.'/admin/editcategory'); ?>",
               method:"POST",
               data:{id:id, text:text, colum_name:colum_name},
               dataType:"text",
@@ -76,7 +76,7 @@
               return false;
             }
             $.ajax({
-              url:"<?= base_url('admin/insertCategory'); ?>",
+              url:"<?= base_url($lang.'/admin/addcategory'); ?>",
               method:"POST",
               data:{categoryname:categoryname},
               dataType:"text",
@@ -100,7 +100,7 @@
           $(document).on('click', '#button_deleteCategory', function(){
             var id = $(this).data("id3");
             $.ajax({
-                url:"<?= base_url('admin/deleteCategory'); ?>",
+                url:"<?= base_url($lang.'/admin/deletecategory'); ?>",
                 method:"POST",
                 data:{id:id},
                 dataType:"text",

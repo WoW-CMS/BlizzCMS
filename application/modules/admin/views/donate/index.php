@@ -22,7 +22,7 @@
         $(document).ready(function(){
           function fetch_data(){
             $.ajax({
-              url:"<?= base_url('admin/getDonateList'); ?>",
+              url:"<?= base_url($lang.'/admin/donatelist'); ?>",
               method:"POST",
               success:function(data){
                 $('#categoryList').html(data);
@@ -33,7 +33,7 @@
 
           function edit_data(id, text, colum_name){
             $.ajax({
-              url:"<?= base_url('admin/updateDonation'); ?>",
+              url:"<?= base_url($lang.'/admin/editdonation'); ?>",
               method:"POST",
               data:{id:id, text:text, colum_name:colum_name},
               dataType:"text",
@@ -170,7 +170,7 @@
               return false;
             }
             $.ajax({
-              url:"<?= base_url('admin/insertDonation'); ?>",
+              url:"<?= base_url($lang.'/admin/adddonation'); ?>",
               method:"POST",
               data:{donationname:donationname, donationprice:donationprice, donationtax:donationtax, donationpoints:donationpoints},
               dataType:"text",
@@ -194,7 +194,7 @@
           $(document).on('click', '#button_deleteDonate', function(){
             var id = $(this).data("id3");
             $.ajax({
-              url:"<?= base_url('admin/deleteDonation'); ?>",
+              url:"<?= base_url($lang.'/admin/deletedonation'); ?>",
               method:"POST",
               data:{id:id},
               dataType:"text",

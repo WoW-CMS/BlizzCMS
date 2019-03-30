@@ -136,8 +136,12 @@ $route[$lang.'/admin/editchangelogs/(:num)'] = 'admin/editchangelogs/$2';
 $route[$lang.'/admin/pages'] = 'admin/managepages';
 $route[$lang.'/admin/editpages/(:num)'] = 'admin/editpages/$2';
 
-// FAQ
+// Donate
 $route[$lang.'/admin/donate'] = 'admin/donate';
+$route[$lang.'/admin/donatelist'] = 'admin/getDonateList';
+$route[$lang.'/admin/editdonation'] = 'admin/updateDonation';
+$route[$lang.'/admin/adddonation'] = 'admin/insertDonation';
+$route[$lang.'/admin/deletedonation'] = 'admin/deleteDonation';
 
 // FAQ
 $route[$lang.'/admin/faq'] = 'admin/managefaq';
@@ -151,6 +155,10 @@ $route[$lang.'/admin/edittopsite/(:num)'] = 'admin/edittopsite/$2';
 $route[$lang.'/admin/forums'] = 'admin/manageforums';
 $route[$lang.'/admin/editforum/(:num)'] = 'admin/editforum/$2';
 $route[$lang.'/admin/categories'] = 'admin/managecategories';
+$route[$lang.'/admin/categorylist'] = 'admin/getCategoryList';
+$route[$lang.'/admin/editcategory'] = 'admin/updateCategory';
+$route[$lang.'/admin/addcategory'] = 'admin/insertCategory';
+$route[$lang.'/admin/deletecategory'] = 'admin/deleteCategory';
 
 // Store
 $route[$lang.'/admin/groups'] = 'admin/managegroups';

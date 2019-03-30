@@ -526,15 +526,23 @@ class Admin extends MX_Controller {
 
     public function donate()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('donate/index');
+        $this->load->view('donate/index', $data);
         $this->load->view('general/footer');
     }
 
     public function managecategories()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('forum/managecategories');
+        $this->load->view('forum/managecategories', $data);
         $this->load->view('general/footer');
     }
 
