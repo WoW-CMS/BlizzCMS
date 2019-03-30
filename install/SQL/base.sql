@@ -404,7 +404,7 @@ CREATE TABLE `news` (
 /*Data for the table `news` */
 
 insert  into `news`(`id`,`title`,`image`,`description`,`date`) values 
-(1,'Welcome to your new website!','news.jpg','<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title=\"ProjectCMS\" href=\"https://discord.gg/7QcXfJE\" target=\"_blank\" rel=\"noopener\">Discord</a></p>\r\n</body>\r\n</html>',1551283156);
+(1,'Welcome to your new website!','news.jpg','<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title=\"WoW-CMS\" href=\"https://discord.gg/vZG9vpS\" target=\"_blank\" rel=\"noopener\">Discord</a></p>\r\n</body>\r\n</html>',1551283156);
 
 /*Table structure for table `news_comments` */
 
