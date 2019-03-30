@@ -58,25 +58,25 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route[$lang.'$'] = $route['default_controller'];
 //user
-$route[$lang.'login'] = 'user/login';
-$route[$lang.'register'] = 'user/register';
-$route[$lang.'panel'] = 'user/panel';
-$route[$lang.'settings'] = 'user/settings';
-$route[$lang.'logout'] = 'user/logout';
-$route[$lang.'recovery'] = 'user/recovery';
-$route[$lang.'activate/(:any)'] = 'user/activate/$1';
+$route[$lang.'/login'] = 'user/login';
+$route[$lang.'/panel'] = 'user/panel';
+$route[$lang.'/register'] = 'user/register';
+$route[$lang.'/settings'] = 'user/settings';
+$route[$lang.'/recovery'] = 'user/recovery';
+$route[$lang.'/logout'] = 'user/logout';
+$route[$lang.'/activate/(:any)'] = 'user/activate/$1';
 //forum
-$route[$lang.'forum/category/(:num)'] = 'forum/category/$1';
-$route[$lang.'forum/topic/(:num)'] = 'forum/topic/$1';
-$route[$lang.'forum'] = 'forum/index';
+$route[$lang.'/forum/category/(:num)'] = 'forum/category/$1';
+$route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$1';
+$route[$lang.'/forum'] = 'forum/index';
 //news
-$route[$lang.'news/(:num)'] = 'news/article/$1';
-$route[$lang.'news'] = 'news/index';
+$route[$lang.'/news/(:num)'] = 'news/article/$1';
+$route[$lang.'/news'] = 'news/index';
 //store
-$route[$lang.'store'] = 'store/index';
-$route[$lang.'store/(:num)'] = 'store/index/$1';
-$route[$lang.'cart/(:num)'] = 'store/cart/$1';
+$route[$lang.'/store'] = 'store/index';
+$route[$lang.'/store/(:num)'] = 'store/index/$1';
+$route[$lang.'/cart/(:num)'] = 'store/cart/$1';
 //pages
-$route[$lang.'page/(:any)'] = 'page/index/$1';
+$route[$lang.'/page/(:any)'] = 'page/index/$1';
 //admin - managecharacter
 $route['admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';
