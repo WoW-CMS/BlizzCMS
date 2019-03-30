@@ -116,7 +116,7 @@
         }
 
         $.ajax({
-          url:"<?= base_url('user/newaccount'); ?>",
+          url:"<?= base_url($lang.'/newacc'); ?>",
           method:"POST",
           data:{username, email, password, repassword},
           dataType:"text",

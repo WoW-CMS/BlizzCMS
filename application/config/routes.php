@@ -61,6 +61,7 @@ $route[$lang.'$'] = $route['default_controller'];
 $route[$lang.'/login'] = 'user/login';
 $route[$lang.'/panel'] = 'user/panel';
 $route[$lang.'/register'] = 'user/register';
+$route[$lang.'/newacc'] = 'user/newaccount';
 $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/recovery'] = 'user/recovery';
 $route[$lang.'/classicverify'] = 'user/verify1';
