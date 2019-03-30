@@ -103,5 +103,13 @@ $route[$lang.'/admin/characters'] = 'admin/characters';
 $route[$lang.'/admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';
 
 // News
-
 $route[$lang.'/admin/news'] = 'admin/managenews';
+$route[$lang.'/admin/editnews/(:num)'] = 'admin/editnews/$2';
+
+// Changelog
+$route[$lang.'/admin/changelogs'] = 'admin/managechangelogs';
+$route[$lang.'/admin/editchangelogs/(:num)'] = 'admin/editchangelogs/$2';
+
+// Pages
+$route[$lang.'/admin/pages'] = 'admin/managepages';
+$route[$lang.'/admin/editpages/(:num)'] = 'admin/editpages/$2';

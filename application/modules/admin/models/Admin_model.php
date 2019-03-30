@@ -63,7 +63,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('changelogs', $data);
 
-        redirect(base_url('admin/managechangelogs'),'refresh');
+        redirect(base_url('admin/changelogs'),'refresh');
     }
 
     public function getChangelogSpecifyRows($id)
@@ -103,7 +103,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('changelogs', $update);
 
-        redirect(base_url('admin/managechangelogs'),'refresh');
+        redirect(base_url('admin/changelogs'),'refresh');
     }
 
     public function pagecheckUri($uri)
@@ -137,7 +137,7 @@ class Admin_model extends CI_Model {
                 ->get('pages')
                 ->row('uri_friendly');
 
-        redirect(base_url('admin/managepages?newpage='.$uris),'refresh');
+        redirect(base_url('admin/pages?newpage='.$uris),'refresh');
     }
 
     public function getPagesSpecifyRows($id)
@@ -177,7 +177,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('pages', $update);
 
-        redirect(base_url('admin/managepages'),'refresh');
+        redirect(base_url('admin/pages'),'refresh');
     }
 
     public function delShopItm($id)
@@ -355,7 +355,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('pages');
 
-        redirect(base_url('admin/managepages'),'refresh');
+        redirect(base_url('admin/pages'),'refresh');
     }
 
     public function delChangelog($id)
@@ -363,7 +363,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('changelogs');
 
-        redirect(base_url('admin/managechangelogs'),'refresh');
+        redirect(base_url('admin/changelogs'),'refresh');
     }
 
     public function delSpecifyNew($id)
