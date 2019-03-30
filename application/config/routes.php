@@ -84,7 +84,7 @@ $route[$lang.'/store'] = 'store/index';
 $route[$lang.'/store/(:num)'] = 'store/index/$2';
 $route[$lang.'/cart/(:num)'] = 'store/cart/$2';
 //pages
-$route[$lang.'/page/(:any)'] = 'page/index/$1';
+$route[$lang.'/page/(:any)'] = 'page/index/$2/';
 
 //admin routes
 
