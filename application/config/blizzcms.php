@@ -82,7 +82,7 @@ $config['staff_forum_color'] = '00b4ff';
 | 8 = Battle for Azeroth
 |
 */
-$config['expansion_id'] = '%EXPANSION_ID%';
+$config['expansion_id'] = '3';
 
 /*
 |--------------------------------------------------------------------------

@@ -49,29 +49,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$lang = '^(en|es|bl|fr|de|ru)';
+
+
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route[$lang.'$'] = $route['default_controller'];
 //user
-$route['login'] = 'user/login';
-$route['register'] = 'user/register';
-$route['panel'] = 'user/panel';
-$route['settings'] = 'user/settings';
-$route['logout'] = 'user/logout';
-$route['recovery'] = 'user/recovery';
-$route['activate/(:any)'] = 'user/activate/$1';
+$route[$lang.'login'] = 'user/login';
+$route[$lang.'register'] = 'user/register';
+$route[$lang.'panel'] = 'user/panel';
+$route[$lang.'settings'] = 'user/settings';
+$route[$lang.'logout'] = 'user/logout';
+$route[$lang.'recovery'] = 'user/recovery';
+$route[$lang.'activate/(:any)'] = 'user/activate/$1';
 //forum
-$route['forum/category/(:num)'] = 'forum/category/$1';
-$route['forum/topic/(:num)'] = 'forum/topic/$1';
-$route['forum'] = 'forum/index';
+$route[$lang.'forum/category/(:num)'] = 'forum/category/$1';
+$route[$lang.'forum/topic/(:num)'] = 'forum/topic/$1';
+$route[$lang.'forum'] = 'forum/index';
 //news
-$route['news/(:num)'] = 'news/article/$1';
-$route['news'] = 'news/index';
+$route[$lang.'news/(:num)'] = 'news/article/$1';
+$route[$lang.'news'] = 'news/index';
 //store
-$route['store'] = 'store/index';
-$route['store/(:num)'] = 'store/index/$1';
-$route['cart/(:num)'] = 'store/cart/$1';
+$route[$lang.'store'] = 'store/index';
+$route[$lang.'store/(:num)'] = 'store/index/$1';
+$route[$lang.'cart/(:num)'] = 'store/cart/$1';
 //pages
-$route['page/(:any)'] = 'page/index/$1';
+$route[$lang.'page/(:any)'] = 'page/index/$1';
 //admin - managecharacter
 $route['admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';
