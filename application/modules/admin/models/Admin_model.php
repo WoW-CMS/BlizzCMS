@@ -12,16 +12,10 @@ class Admin_model extends CI_Model {
             redirect(base_url(),'refresh');
     }
 
-    public function currentVersion()
-    {
-        $version = 'v_0_013';
-        return $version;
-    }
-
     public function insertShop($itemid, $type, $name, $pricedp, $pricevp, $iconname, $groups, $image)
     {
         if ($pricevp == '0' && $pricedp == '0')
-        redirect(base_url('admin/manageitems?p'),'refresh');
+        redirect(base_url('admin/items?p'),'refresh');
 
         if ($pricedp == '0')
             $pricedp = NULL;
@@ -42,7 +36,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('store', $data);
 
-        redirect(base_url('admin/manageitems'),'refresh');
+        redirect(base_url('admin/items'),'refresh');
     }
 
     public function getCategoryStore()
@@ -188,7 +182,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id_store', $id)
                 ->delete('store_top');
 
-        redirect(base_url('admin/manageitems'),'refresh');
+        redirect(base_url('admin/items'),'refresh');
     }
 
     public function getShopGroupList()
@@ -203,7 +197,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('store_groups');
 
-        redirect(base_url('admin/managegroups'),'refresh');
+        redirect(base_url('admin/groups'),'refresh');
     }
 
     public function insertGroup($name)
@@ -214,7 +208,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('store_groups', $data);
 
-        redirect(base_url('admin/managegroups'),'refresh');
+        redirect(base_url('admin/groups'),'refresh');
     }
 
     public function getShopAll()
@@ -321,7 +315,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('store', $update);
 
-        redirect(base_url('admin/manageitems'),'refresh');
+        redirect(base_url('admin/items'),'refresh');
     }
 
     public function updateSpecifyGroup($idlink, $group)
@@ -333,7 +327,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $idlink)
                 ->update('store_groups', $update);
 
-        redirect(base_url('admin/managegroups'),'refresh');
+        redirect(base_url('admin/groups'),'refresh');
     }
 
     public function getChangelogs()
@@ -374,7 +368,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id_new', $id)
                 ->delete('news_top');
 
-        redirect(base_url('admin/managenews'),'refresh');
+        redirect(base_url('admin/news'),'refresh');
     }
 
     public function getNewsSpecifyName($id)
@@ -420,7 +414,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('forum_forums', $data);
 
-        redirect(base_url('admin/manageforums'),'refresh');
+        redirect(base_url('admin/forums'),'refresh');
     }
 
     public function deleteForum($id)
@@ -428,7 +422,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('forum_forums');
 
-        redirect(base_url('admin/manageforums'),'refresh');
+        redirect(base_url('admin/forums'),'refresh');
     }
 
     public function getForumCategoryListAjax()
@@ -507,7 +501,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('forum_forums', $update);
 
-        redirect(base_url('admin/manageforums'),'refresh');
+        redirect(base_url('admin/forums'),'refresh');
     }
 
     public function insertCategoryAjax($name)
@@ -565,8 +559,8 @@ class Admin_model extends CI_Model {
 
     public function insertBanChar($id, $reason, $multirealm, $idrealm)
     {
-        $date 		= $this->m_data->getTimestamp();
-        $idsession	= $this->session->userdata('fx_sess_id');
+        $date       = $this->m_data->getTimestamp();
+        $idsession  = $this->session->userdata('fx_sess_id');
 
         if (empty($reason))
             $reason = $this->lang->line('was_ban');
@@ -600,7 +594,7 @@ class Admin_model extends CI_Model {
         if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
-        $date 		= $this->m_data->getTimestamp();
+        $date       = $this->m_data->getTimestamp();
         $annotation = $this->lang->line('char_customAction');
 
         $data = array(
@@ -703,7 +697,7 @@ class Admin_model extends CI_Model {
             $this->db->insert('news_top', $data);
         }
 
-        redirect(base_url('admin/managenews'),'refresh');
+        redirect(base_url('admin/news'),'refresh');
     }
 
     public function updateSpecifyNews($id, $title, $image, $description, $type)
@@ -733,7 +727,7 @@ class Admin_model extends CI_Model {
             $this->db->insert('news_top', $data);
         }
 
-        redirect(base_url('admin/managenews'),'refresh');
+        redirect(base_url('admin/news'),'refresh');
     }
 
     public function getNewIDperDate($date)
@@ -757,7 +751,7 @@ class Admin_model extends CI_Model {
         if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
-        $date 		= $this->m_data->getTimestamp();
+        $date       = $this->m_data->getTimestamp();
         $annotation = $this->lang->line('char_chanfactAction');
 
         $data = array(
@@ -782,7 +776,7 @@ class Admin_model extends CI_Model {
         if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
-        $date 		= $this->m_data->getTimestamp();
+        $date       = $this->m_data->getTimestamp();
         $annotation = $this->lang->line('char_chanraceAction');
 
         $data = array(
@@ -808,7 +802,7 @@ class Admin_model extends CI_Model {
         $this->multirealm->where('guid', $id)
                 ->delete('character_banned');
 
-        $date 		= $this->m_data->getTimestamp();
+        $date       = $this->m_data->getTimestamp();
         $annotation = $this->lang->line('unbanned');
 
         $data = array(
@@ -831,7 +825,7 @@ class Admin_model extends CI_Model {
         if ($this->m_characters->getCharNameAlreadyExist($name, $multirealm)->num_rows())
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?name','refresh');
 
-        $date 		= $this->m_data->getTimestamp();
+        $date       = $this->m_data->getTimestamp();
         $annotation = $this->lang->line('char_newname').' -> '.$name.' | '.$this->lang->line('char_oldname').' -> '.$this->m_characters->getCharName($id, $multirealm);
 
         $data = array(
@@ -856,7 +850,7 @@ class Admin_model extends CI_Model {
         if ($this->m_characters->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
 
-        $date 		= $this->m_data->getTimestamp();
+        $date       = $this->m_data->getTimestamp();
         $annotation = $this->lang->line('char_newlevel').' -> '.$level.' | '.$this->lang->line('char_oldlevel').' -> '.$this->m_characters->getCharLevel($id, $multirealm);
 
         $data = array(
@@ -895,7 +889,7 @@ class Admin_model extends CI_Model {
 
         $this->auth->insert('account_access', $data);
 
-        $date 	= $this->m_data->getTimestamp();
+        $date   = $this->m_data->getTimestamp();
         $reason = $this->lang->line('receive_gmAnno');
 
         $data = array(
@@ -946,7 +940,7 @@ class Admin_model extends CI_Model {
         $this->auth->where('id', $id)
                 ->delete('account_access');
 
-        $date 	= $this->m_data->getTimestamp();
+        $date   = $this->m_data->getTimestamp();
         $reason = $this->lang->line('remove_gmAnnotation');
 
         $data = array(
@@ -1614,7 +1608,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('slides', $data);
 
-        redirect(base_url('admin/manageslides'),'refresh');
+        redirect(base_url('admin/slides'),'refresh');
     }
 
     public function delSpecifySlide($id)
@@ -1622,7 +1616,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('slides');
 
-        redirect(base_url('admin/manageslides'),'refresh');
+        redirect(base_url('admin/slides'),'refresh');
     }
 
     public function getAdminSlideList()
@@ -1637,7 +1631,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('faq');
 
-        redirect(base_url('admin/managefaq'),'refresh');
+        redirect(base_url('admin/faq'),'refresh');
     }
 
     public function getFaqSpecifyName($id)
@@ -1707,7 +1701,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('faq', $data);
 
-        redirect(base_url('admin/managefaq'),'refresh');
+        redirect(base_url('admin/faq'),'refresh');
     }
 
     public function updateSpecifyFaq($id, $title, $type, $description)
@@ -1724,7 +1718,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('faq', $update);
 
-        redirect(base_url('admin/managefaq'),'refresh');
+        redirect(base_url('admin/faq'),'refresh');
     }
 
     public function getTopsites()
@@ -1739,7 +1733,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->delete('votes');
 
-        redirect(base_url('admin/managetopsites'),'refresh');
+        redirect(base_url('admin/topsites'),'refresh');
     }
 
     public function insertTopsite($name, $url, $time, $points, $image)
@@ -1754,7 +1748,7 @@ class Admin_model extends CI_Model {
 
         $this->db->insert('votes', $data);
 
-        redirect(base_url('admin/managetopsites'),'refresh');
+        redirect(base_url('admin/topsites'),'refresh');
     }
 
     public function getTopsitesSpecifyRows($id)
@@ -1818,7 +1812,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('votes', $update);
 
-        redirect(base_url('admin/managetopsites'),'refresh');
+        redirect(base_url('admin/topsites'),'refresh');
     }
 
     public function getModules()
@@ -1837,7 +1831,7 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('modules', $update);
 
-        redirect(base_url('admin/managemodules'),'refresh');
+        redirect(base_url('admin/modules'),'refresh');
     }
 
     public function disableSpecifyModule($id)
@@ -1849,6 +1843,6 @@ class Admin_model extends CI_Model {
         $this->db->where('id', $id)
                 ->update('modules', $update);
 
-        redirect(base_url('admin/managemodules'),'refresh');
+        redirect(base_url('admin/modules'),'refresh');
     }
 }

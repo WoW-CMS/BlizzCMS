@@ -135,3 +135,25 @@ $route[$lang.'/admin/editchangelogs/(:num)'] = 'admin/editchangelogs/$2';
 // Pages
 $route[$lang.'/admin/pages'] = 'admin/managepages';
 $route[$lang.'/admin/editpages/(:num)'] = 'admin/editpages/$2';
+
+// FAQ
+$route[$lang.'/admin/donate'] = 'admin/donate';
+
+// FAQ
+$route[$lang.'/admin/faq'] = 'admin/managefaq';
+$route[$lang.'/admin/editfaq/(:num)'] = 'admin/editfaq/$2';
+
+// Topsites
+$route[$lang.'/admin/topsites'] = 'admin/managetopsites';
+$route[$lang.'/admin/edittopsite/(:num)'] = 'admin/edittopsite/$2';
+
+// Forum
+$route[$lang.'/admin/forums'] = 'admin/manageforums';
+$route[$lang.'/admin/editforum/(:num)'] = 'admin/editforum/$2';
+$route[$lang.'/admin/categories'] = 'admin/managecategories';
+
+// Store
+$route[$lang.'/admin/groups'] = 'admin/managegroups';
+$route[$lang.'/admin/editgroups/(:num)'] = 'admin/editgroups/$2';
+$route[$lang.'/admin/items'] = 'admin/manageitems';
+$route[$lang.'/admin/edititems/(:num)'] = 'admin/edititems/$2';
