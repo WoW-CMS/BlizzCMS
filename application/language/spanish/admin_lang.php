@@ -39,6 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['admin_dashboard'] = 'Panel';
 $lang['admin_settings'] = 'Ajustes';
 $lang['admin_website_settings'] = 'Ajustes del Sitio';
+$lang['admin_manage_modules'] = 'Administrar Modulos';
 $lang['admin_manage_realms'] = 'Administrar Reinos';
 $lang['admin_manage_slides'] = 'Administrar Slides';
 $lang['admin_users'] = 'Usuarios';

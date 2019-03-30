@@ -71,7 +71,6 @@ $route[$lang.'/donate'] = 'donate/index';
 $route[$lang.'/changelogs'] = 'changelogs/index';
 // Bugtracker
 $route[$lang.'/bugtracker'] = 'bugtracker/index';
-
 //forum
 $route[$lang.'/forum/category/(:num)'] = 'forum/category/$1';
 $route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$1';
@@ -85,5 +84,24 @@ $route[$lang.'/store/(:num)'] = 'store/index/$1';
 $route[$lang.'/cart/(:num)'] = 'store/cart/$1';
 //pages
 $route[$lang.'/page/(:any)'] = 'page/index/$1';
-//admin - managecharacter
-$route['admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';
+
+//admin routes
+
+// General
+$route[$lang.'/admin'] = 'admin/index';
+$route[$lang.'/admin/settings'] = 'admin/settings';
+$route[$lang.'/admin/modules'] = 'admin/managemodules';
+$route[$lang.'/admin/slides'] = 'admin/manageslides';
+$route[$lang.'/admin/realms'] = 'admin/managerealms';
+
+// Manage Accounts
+$route[$lang.'/admin/accounts'] = 'admin/accounts';
+$route[$lang.'/admin/manageaccount/(:num)'] = 'admin/manageaccount/$2';
+
+// Manage character
+$route[$lang.'/admin/characters'] = 'admin/characters';
+$route[$lang.'/admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';
+
+// News
+
+$route[$lang.'/admin/news'] = 'admin/managenews';
