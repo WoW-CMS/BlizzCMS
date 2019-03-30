@@ -21,7 +21,7 @@ class News_model extends CI_Model {
 
         $this->db->insert('news_comments', $data);
 
-        redirect(base_url('article/'.$idlink),'refresh');
+        redirect(base_url('news/'.$idlink),'refresh');
     }
 
     public function removeComment($id, $link)
@@ -29,7 +29,7 @@ class News_model extends CI_Model {
         $this->db->where('id', $id)
             ->delete('news_comments');
 
-        redirect(base_url('article/'.$link),'refresh');
+        redirect(base_url('news/'.$link),'refresh');
     }
 
     public function getComments($idlink)
