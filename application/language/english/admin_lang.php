@@ -61,23 +61,16 @@ $lang['admin_manage_categories'] = 'Manage Categories';
 $lang['admin_manege_forums'] = 'Manage Forums';
 
 /*Count Lang*/
-$lang['players_count'] = 'Players Online';
 $lang['account_count'] = 'Accounts created';
-$lang['staff_count'] = 'STAFF accounts';
 $lang['ban_count'] = 'Banned accounts';
-$lang['total_players_playing'] = 'Total players playing on realm. ';
 $lang['total_account_registered'] = 'Total accounts registered.';
-$lang['total_account_banned'] = 'Total accounts banned. ';
-$lang['total_account_gm'] = 'Total accounts with GM access. ';
+$lang['total_account_banned'] = 'Total accounts banned.';
 
 /*Button Lang*/
-$lang['button_server_restart'] = 'Restart Server';
 $lang['button_unban'] = 'Unban';
 $lang['button_ban'] = 'Ban';
 $lang['button_re_grant_account'] = 'Remove GM';
 $lang['button_grant_account'] = 'Grant GM';
-$lang['button_grant_web_acc'] = 'Grant ADM';
-$lang['button_re_grant_web_acc'] = 'Remove ADM';
 $lang['button_change_level'] = 'Change Level';
 $lang['button_disable'] = 'Disable';
 $lang['button_enable'] = 'Enable';
@@ -91,8 +84,6 @@ $lang['panel_admin_web_rank'] = 'Web Rank';
 $lang['panel_admin_general_info'] = 'General information';
 $lang['panel_admin_donate_history'] = 'Donate History';
 $lang['panel_admin_annotations'] = 'Annotations';
-$lang['panel_admin_mov_forum'] = 'Movements in the forum';
-$lang['panel_admin_last_comments'] = 'Last comments';
 $lang['panel_admin_char_manage'] = 'Manage character';
 $lang['panel_admin_change_level'] = 'Change Level';
 $lang['panel_admin_rename'] = 'Rename';

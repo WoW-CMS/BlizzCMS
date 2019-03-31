@@ -60,23 +60,16 @@ $lang['admin_manage_categories'] = 'Gestionar categorías';
 $lang['admin_manege_forums'] = 'Gestionar Foros';
 
 /*Count Lang*/
-$lang['players_count'] = 'Jugadores Online';
 $lang['account_count'] = 'Cuentas Creadas';
-$lang['staff_count'] = 'Cuentas del STAFF';
 $lang['ban_count'] = 'Cuentas Baneadas';
-$lang['total_players_playing'] = 'Total jugadores conectados en el reino. ';
 $lang['total_account_registered'] = 'Total cuentas registradas.';
-$lang['total_account_banned'] = 'Total cuentas baneadas. ';
-$lang['total_account_gm'] = 'Total cuentas con Rango GM. ';
+$lang['total_account_banned'] = 'Total cuentas baneadas.';
 
 /*Button Lang*/
-$lang['button_server_restart'] = 'Reiniciar Servidor';
 $lang['button_unban'] = 'Desbanear';
 $lang['button_ban'] = 'Banear';
 $lang['button_re_grant_account'] = 'Borrar GM';
 $lang['button_grant_account'] = 'Conceder GM';
-$lang['button_grant_web_acc'] = 'Conceder ADM';
-$lang['button_re_grant_web_acc'] = 'Borrar ADM';
 $lang['button_change_level'] = 'Cambiar Nivel';
 
 /*Panel Lang*/
@@ -88,8 +81,6 @@ $lang['panel_admin_web_rank'] = 'Rango en Web';
 $lang['panel_admin_general_info'] = 'Información General';
 $lang['panel_admin_donate_history'] = 'Historial de Donación';
 $lang['panel_admin_annotations'] = 'Anotaciones';
-$lang['panel_admin_mov_forum'] = 'Cambios en el foro';
-$lang['panel_admin_last_comments'] = 'Últimos comentarios';
 $lang['panel_admin_char_manage'] = 'Administrar Personaje';
 $lang['panel_admin_change_level'] = 'Cambiar Nivel';
 $lang['panel_admin_rename'] = 'Renombrar';
