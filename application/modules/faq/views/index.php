@@ -3,7 +3,7 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="far fa-question-circle"></i> <?= $this->lang->line('nav_faq'); ?></h4>
+        <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="far fa-question-circle"></i> <?= $this->lang->line('tab_faq'); ?></h4>
         <?php if($this->faq_model->getAll()->num_rows()): ?>
         <div class="uk-margin-small-top">
           <ul uk-tab="connect: #faq">

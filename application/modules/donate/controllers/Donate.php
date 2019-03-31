@@ -66,7 +66,7 @@ class Donate extends MX_Controller
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_donate'),
+            'pagetitle' => $this->lang->line('tab_donate'),
         );
 
         $this->load->view('header', $data);

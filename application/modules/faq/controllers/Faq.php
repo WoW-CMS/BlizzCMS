@@ -56,7 +56,7 @@ class Faq extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_faq'),
+            'pagetitle' => $this->lang->line('tab_faq'),
         );
 
         $this->load->view('header', $data);

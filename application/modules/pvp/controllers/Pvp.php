@@ -56,11 +56,11 @@ class Pvp extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_pvp_statistics'),
-            'nav_arena_statistics' => $this->lang->line('nav_arena_statistics'),
-            'lang_2v2' => $this->lang->line('arena_top_2v2'),
-            'lang_3v3' => $this->lang->line('arena_top_3v3'),
-            'lang_5v5' => $this->lang->line('arena_top_5v5'),
+            'pagetitle' => $this->lang->line('tab_pvp_statistics'),
+            'tab_arena_statistics' => $this->lang->line('tab_arena_statistics'),
+            'lang_2v2' => $this->lang->line('statistics_top_2v2'),
+            'lang_3v3' => $this->lang->line('statistics_top_3v3'),
+            'lang_5v5' => $this->lang->line('statistics_top_5v5'),
             'column_team_name' => $this->lang->line('column_team_name'),
             'column_members' => $this->lang->line('column_members'),
             'column_rating' => $this->lang->line('column_rating'),

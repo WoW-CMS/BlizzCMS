@@ -60,7 +60,7 @@ class Store extends MX_Controller {
     {
         $data = array(
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('nav_store'),
+            'pagetitle' => $this->lang->line('tab_store'),
         );
 
         $this->load->config('store');
@@ -85,7 +85,7 @@ class Store extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('nav_cart'),
+            'pagetitle' => $this->lang->line('tab_cart'),
         );
 
         $this->load->view('header', $data);

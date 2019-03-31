@@ -66,7 +66,7 @@ class Home extends MX_Controller {
             $discord = $this->home_model->getDiscordInfo();
 
             $data = array(
-                'pagetitle' => $this->lang->line('nav_home'),
+                'pagetitle' => $this->lang->line('tab_home'),
                 'slides' => $this->home_model->getSlides()->result(),
                 'principalNew' => $this->news_model->getNewSpecifyID($this->news_model->getPrincipalNew())->result(),
                 'threeNews' => $this->news_model->getNewsTree()->result(),

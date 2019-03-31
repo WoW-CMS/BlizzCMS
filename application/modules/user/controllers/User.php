@@ -55,7 +55,7 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-          'pagetitle' => $this->lang->line('nav_login'),
+          'pagetitle' => $this->lang->line('tab_login'),
         );
 
         $this->load->view('header', $data);
@@ -103,7 +103,7 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            'pagetitle' => $this->lang->line('nav_register'),
+            'pagetitle' => $this->lang->line('tab_register'),
             'recapKey' => $this->config->item('recaptcha_sitekey'),
             'lang' => $this->lang->lang(),
         );
@@ -136,7 +136,7 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            'pagetitle' => $this->lang->line('nav_reset'),
+            'pagetitle' => $this->lang->line('tab_reset'),
             'recapKey' => $this->config->item('recaptcha_sitekey'),
             'lang' => $this->lang->lang(),
         );
@@ -170,7 +170,7 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            "pagetitle" => $this->lang->line('nav_account'),
+            "pagetitle" => $this->lang->line('tab_account'),
             'lang' => $this->lang->lang(),
         );
 
@@ -192,7 +192,7 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            "pagetitle" => $this->lang->line('nav_account'),
+            "pagetitle" => $this->lang->line('tab_account'),
             'lang' => $this->lang->lang(),
         );
 

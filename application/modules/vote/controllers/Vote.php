@@ -59,7 +59,7 @@ class Vote extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_vote'),
+            'pagetitle' => $this->lang->line('tab_vote'),
             'voteList' => $this->vote_model->getVotes(),
         );
 

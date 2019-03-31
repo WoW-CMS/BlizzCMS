@@ -56,7 +56,7 @@ class News extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_news'),
+            'pagetitle' => $this->lang->line('tab_news'),
         );
 
         $this->load->view('header', $data);
@@ -75,7 +75,7 @@ class News extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('nav_news'),
+            'pagetitle' => $this->lang->line('tab_news'),
             'tiny' => $tiny,
         );
 

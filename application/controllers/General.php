@@ -41,7 +41,7 @@ class General extends CI_Controller {
     public function error404()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_error'),
+            'pagetitle' => $this->lang->line('tab_error'),
         );
 
         $this->load->view('header', $data);

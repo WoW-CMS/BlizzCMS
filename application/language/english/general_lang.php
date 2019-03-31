@@ -35,14 +35,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @filesource
  */
 
+/*Browser Tab Menu*/
+$lang['tab_news'] = 'News';
+$lang['tab_forum'] = 'Forum';
+$lang['tab_store'] = 'Store';
+$lang['tab_faq'] = 'FAQ';
+$lang['tab_bugtracker'] = 'Bugtracker';
+$lang['tab_changelogs'] = 'Changelogs';
+$lang['tab_pvp_statistics'] = 'PvP Statistics';
+$lang['tab_login'] = 'Login';
+$lang['tab_register'] = 'Register';
+$lang['tab_home'] = 'Home';
+$lang['tab_donate'] = 'Donate';
+$lang['tab_vote'] = 'Vote';
+$lang['tab_cart'] = 'Cart';
+$lang['tab_account'] = 'My Account';
+$lang['tab_reset'] = 'Password Recovery';
+$lang['tab_error'] = 'Error 404';
+
+/*Panel Navbar*/
+$lang['navbar_vote_panel'] = 'Vote Panel';
+$lang['navbar_donate_panel'] = 'Donate Panel';
+
 /*Button Lang*/
 $lang['button_register'] = 'Register';
 $lang['button_login'] = 'Log In';
 $lang['button_logout'] = 'Log Out';
 $lang['button_user_panel'] = 'User Panel';
 $lang['button_admin_panel'] = 'Admin Panel';
-$lang['button_vote_panel'] = 'Vote Panel';
-$lang['button_donate_panel'] = 'Donate Panel';
 $lang['button_change_avatar'] = 'Change Avatar';
 $lang['button_add_personal_info'] = 'Add Personal Information';
 $lang['button_change_password'] = 'Change Password';
@@ -64,16 +84,16 @@ $lang['button_reply'] = 'Reply';
 $lang['button_donate'] = 'Donate';
 
 /*Footer Lang*/
-$lang['footer_rights'] = 'ALL RIGHTS RESERVED.';
-$lang['footer_privacy'] = 'Privacy';
-$lang['footer_terms'] = 'Terms';
+$lang['footer_rights'] = 'All rights reserved.';
+
+/*Label Lang*/
+$lang['label_login_info'] = 'Login Information';
 
 /*Form Lang*/
 $lang['form_username'] = 'Username';
 $lang['form_email'] = 'Email';
 $lang['form_password'] = 'Password';
 $lang['form_re_password'] = 'Repeat Password';
-$lang['form_login_info'] = 'Login Information';
 $lang['form_old_password'] = 'Current Password';
 $lang['form_new_password'] = 'New Password';
 $lang['form_new_email'] = 'New Email';
@@ -132,14 +152,14 @@ $lang['store_item_price'] = 'Price';
 $lang['store_all_categories'] = 'All Categories';
 $lang['store_select_categories'] = 'Select an Category';
 
-/*PvP-Arena Lang*/
-$lang['pvp_top'] = 'TOP 20';
-$lang['arena_top_2v2'] = 'TOP 2V2';
-$lang['arena_top_3v3'] = 'TOP 3V3';
-$lang['arena_top_5v5'] = 'TOP 5V5';
+/*PvP Statistics Lang*/
+$lang['statistics_top_20'] = 'TOP 20';
+$lang['statistics_top_2v2'] = 'TOP 2V2';
+$lang['statistics_top_3v3'] = 'TOP 3V3';
+$lang['statistics_top_5v5'] = 'TOP 5V5';
 
 /*News Lang*/
-$lang['news_recent_list'] = 'RECENT NEWS LIST';
+$lang['news_recent_list'] = 'Recent news list';
 $lang['news_comment'] = 'comment';
 
 /*Bugtracker Lang*/
@@ -193,13 +213,13 @@ $lang['class_monk'] = 'Monk';
 $lang['class_druid'] = 'Druid';
 $lang['class_demonhunter'] = 'Demon Hunter';
 
-/*Gender Lang*/
-$lang['gender_male'] = 'Male';
-$lang['gender_female'] = 'Female';
-
 /*Faction Lang*/
 $lang['faction_alliance'] = 'Alliance';
 $lang['faction_horde'] = 'Horde';
+
+/*Gender Lang*/
+$lang['gender_male'] = 'Male';
+$lang['gender_female'] = 'Female';
 
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Password Recovery';

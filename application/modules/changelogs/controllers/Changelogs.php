@@ -56,7 +56,7 @@ class Changelogs extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_changelogs'),
+            'pagetitle' => $this->lang->line('tab_changelogs'),
         );
         
         $this->load->view('header', $data);

@@ -6,7 +6,7 @@
         <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></span></h4>
         <?= form_open('', 'id="registerForm" onsubmit="RegisterForm(event)"'); ?>
         <div class="uk-margin uk-light">
-          <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_login_info'); ?></label>
+          <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('label_login_info'); ?></label>
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
