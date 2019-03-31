@@ -9,7 +9,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
-              <input class="uk-input" type="text" id="recovery_username" placeholder="<?= $this->lang->line('form_username'); ?>" required>
+              <input class="uk-input" type="text" id="recovery_username" placeholder="<?= $this->lang->line('placeholder_username'); ?>" required>
             </div>
           </div>
         </div>
@@ -17,7 +17,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-              <input class="uk-input" type="email" id="recovery_email" placeholder="<?= $this->lang->line('form_email'); ?>" required>
+              <input class="uk-input" type="email" id="recovery_email" placeholder="<?= $this->lang->line('placeholder_email'); ?>" required>
             </div>
           </div>
         </div>

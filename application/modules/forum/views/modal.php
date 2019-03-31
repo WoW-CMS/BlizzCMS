@@ -7,16 +7,16 @@
         <form action="<?= base_url('forum/newTopic/'.$idlink); ?>" method="post" accept-charset="utf-8" autocomplete="off">
           <div class="uk-modal-body">
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_title'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
-                  <input class="uk-input" name="topic_title" type="text" placeholder="<?= $this->lang->line('form_title'); ?>" required>
+                  <input class="uk-input" name="topic_title" type="text" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                 </div>
               </div>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-width-1-1">
                   <textarea class="uk-textarea tinyeditor" name="topic_description" rows="10" cols="80"></textarea>
@@ -27,8 +27,8 @@
             <div class="uk-margin">
               <div class="uk-form-controls">
                 <div class="uk-grid uk-grid-small uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>
-                  <label><input class="uk-checkbox" type="checkbox" name="topic_pinned"> <?= $this->lang->line('form_highl'); ?></label>
-                  <label><input class="uk-checkbox" type="checkbox" name="topic_locked"> <?= $this->lang->line('form_lock'); ?></label>
+                  <label><input class="uk-checkbox" type="checkbox" name="topic_pinned"> <?= $this->lang->line('placeholder_highl'); ?></label>
+                  <label><input class="uk-checkbox" type="checkbox" name="topic_locked"> <?= $this->lang->line('placeholder_lock'); ?></label>
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@
         <form action="" method="post" accept-charset="utf-8">
           <div class="uk-modal-body">
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_title'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-width-1-1">
                   <textarea class="uk-textarea tinyeditor" name="edit_description" rows="10" cols="80"><?= $this->forum_model->getTopicDescription($idlink); ?></textarea>
@@ -71,8 +71,8 @@
             <div class="uk-margin">
               <div class="uk-form-controls">
                 <div class="uk-grid uk-grid-small uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>
-                  <label><input class="uk-checkbox" type="checkbox" name="topic_pinned" <?php if($this->forum_model->getTopicPinned($idlink) == '1') echo 'checked'; ?>> <?= $this->lang->line('form_highl'); ?></label>
-                  <label><input class="uk-checkbox" type="checkbox" name="topic_locked" <?php if($this->forum_model->getTopicLocked($idlink) == '1') echo 'checked'; ?>> <?= $this->lang->line('form_lock'); ?></label>
+                  <label><input class="uk-checkbox" type="checkbox" name="topic_pinned" <?php if($this->forum_model->getTopicPinned($idlink) == '1') echo 'checked'; ?>> <?= $this->lang->line('placeholder_highl'); ?></label>
+                  <label><input class="uk-checkbox" type="checkbox" name="topic_locked" <?php if($this->forum_model->getTopicLocked($idlink) == '1') echo 'checked'; ?>> <?= $this->lang->line('placeholder_lock'); ?></label>
                 </div>
               </div>
             </div>

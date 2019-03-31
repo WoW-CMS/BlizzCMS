@@ -40,7 +40,7 @@ class Admin extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('admin_model');
+        $this->load->model('admin_nav_model');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -129,11 +129,11 @@ class Admin extends MX_Controller {
         <table class="uk-table uk-table-divider uk-table-small">
             <thead>
                 <tr>
-                    <th class="uk-width-medium">'.$this->lang->line('form_title').'</th>
+                    <th class="uk-width-medium">'.$this->lang->line('placeholder_title').'</th>
                     <th class="uk-width-small">'.$this->lang->line('store_item_price').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('column_tax').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('column_points').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('column_action').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('table_header_tax').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('table_header_points').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
                 </tr>
             </thead>
             <tbody>';
@@ -196,8 +196,8 @@ class Admin extends MX_Controller {
         <table class="uk-table uk-table-divider uk-table-small">
             <thead>
                 <tr>
-                    <th class="uk-table-expand">'.$this->lang->line('form_title').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('column_action').'</th>
+                    <th class="uk-table-expand">'.$this->lang->line('placeholder_title').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
                 </tr>
             </thead>
             <tbody>';

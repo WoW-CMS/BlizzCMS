@@ -4,7 +4,7 @@
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-ul"></i></span><?= $this->lang->line('admin_users_list'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-ul"></i></span><?= $this->lang->line('admin_nav_users_list'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -14,8 +14,8 @@
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><?= $this->lang->line('form_username'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('form_email'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('placeholder_username'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('placeholder_email'); ?></th>
                     </tr>
                   </thead>
                   <tbody>

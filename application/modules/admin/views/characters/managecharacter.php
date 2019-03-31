@@ -48,7 +48,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_char_manage'); ?> - <span class="uk-text-bold"><?= $this->m_characters->getNameCharacterSpecifyGuid($multiRealm, $idlink); ?></span></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_char_manage'); ?> - <span class="uk-text-bold"><?= $this->m_characters->getNameCharacterSpecifyGuid($multiRealm, $idlink); ?></span></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -58,14 +58,14 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_change_level'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_change_level'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post" accept-charset="utf-8">
                         <div class="uk-margin-small">
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                              <input class="uk-input" name="newLevel" type="number" min="1" max="<?= $this->m_general->getMaxLevel(); ?>" placeholder="<?= $this->lang->line('column_level'); ?>" required>
+                              <input class="uk-input" name="newLevel" type="number" min="1" max="<?= $this->m_general->getMaxLevel(); ?>" placeholder="<?= $this->lang->line('table_header_level'); ?>" required>
                             </div>
                           </div>
                         </div>
@@ -79,19 +79,19 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_rename'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_rename'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post" accept-charset="utf-8">
                         <div class="uk-margin-small">
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                              <input class="uk-input" name="newName" type="text" placeholder="<?= $this->lang->line('panel_admin_rename'); ?>" required>
+                              <input class="uk-input" name="newName" type="text" placeholder="<?= $this->lang->line('card_title_rename'); ?>" required>
                             </div>
                           </div>
                         </div>
                         <div class="uk-margin-small">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_renamechar" type="submit"><i class="fas fa-edit"></i> <?= $this->lang->line('panel_admin_rename'); ?></button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_renamechar" type="submit"><i class="fas fa-edit"></i> <?= $this->lang->line('card_title_rename'); ?></button>
                         </div>
                       </form>
                     </div>
@@ -101,7 +101,7 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_unban_char'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_unban_char'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
@@ -116,14 +116,14 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_ban_char'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_ban_char'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post" accept-charset="utf-8">
                         <div class="uk-margin-small">
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                              <input class="uk-input" name="banchar_reason" type="text" placeholder="<?= $this->lang->line('panel_admin_reason'); ?>" required>
+                              <input class="uk-input" name="banchar_reason" type="text" placeholder="<?= $this->lang->line('placeholder_reason'); ?>" required>
                             </div>
                           </div>
                         </div>
@@ -138,12 +138,12 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_customize'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_customize'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
                         <div class="uk-margin-small">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_customize" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('panel_admin_customize'); ?></button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_customize" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('card_title_customize'); ?></button>
                         </div>
                       </form>
                     </div>
@@ -152,12 +152,12 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_change_race'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_change_race'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
                         <div class="uk-margin-small">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_changerace" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('panel_admin_change_race'); ?></button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_changerace" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('card_title_change_race'); ?></button>
                         </div>
                       </form>
                     </div>
@@ -166,12 +166,12 @@ endif; ?>
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('panel_admin_change_faction'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-cog"></i> <?= $this->lang->line('card_title_change_faction'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
                         <div class="uk-margin-small">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_changefaction" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('panel_admin_change_faction'); ?></button>
+                          <button class="uk-button uk-button-primary uk-width-1-1" name="button_changefaction" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('card_title_change_faction'); ?></button>
                         </div>
                       </form>
                     </div>
@@ -184,7 +184,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= $this->lang->line('panel_admin_annotations'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= $this->lang->line('card_title_annotations'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>

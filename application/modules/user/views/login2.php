@@ -20,7 +20,7 @@
           <div class="uk-form-controls uk-light">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-              <input class="uk-input" id="login_email" type="email" placeholder="<?= $this->lang->line('form_email'); ?>" required>
+              <input class="uk-input" id="login_email" type="email" placeholder="<?= $this->lang->line('placeholder_email'); ?>" required>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
           <div class="uk-form-controls uk-light">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-unlock-alt fa-lg"></i></span>
-              <input class="uk-input" id="login_password" type="password" placeholder="<?= $this->lang->line('form_password'); ?>" required>
+              <input class="uk-input" id="login_password" type="password" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
             </div>
           </div>
         </div>

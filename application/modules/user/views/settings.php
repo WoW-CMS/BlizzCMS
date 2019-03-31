@@ -50,7 +50,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
-                          <input class="uk-input" id="change_newemail" type="email" placeholder="<?= $this->lang->line('form_new_email'); ?> Address" required>
+                          <input class="uk-input" id="change_newemail" type="email" placeholder="<?= $this->lang->line('placeholder_new_email'); ?> Address" required>
                         </div>
                       </div>
                     </div>
@@ -66,7 +66,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                          <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('form_password'); ?>" required>
+                          <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -83,7 +83,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                          <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('form_old_password'); ?>" required>
+                          <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_old_password'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -92,7 +92,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-unlock fa-lg"></i></span>
-                          <input class="uk-input" id="change_newpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('form_new_password'); ?>" required>
+                          <input class="uk-input" id="change_newpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_new_password'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -100,7 +100,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-lock fa-lg"></i></span>
-                          <input class="uk-input" id="change_renewpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('form_re_password'); ?>" required>
+                          <input class="uk-input" id="change_renewpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_re_password'); ?>" required>
                         </div>
                       </div>
                     </div>

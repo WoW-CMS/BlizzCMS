@@ -579,7 +579,7 @@ class Admin_model extends CI_Model {
 
         $data1 = array(
             'idchar' => $id,
-            'annotation' => $this->lang->line('is_banned_reason').' '.$reason,
+            'annotation' => $this->lang->line('alert_banned_reason').' '.$reason,
             'date' => $date,
             'realmid' => $idrealm
         );

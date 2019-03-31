@@ -23,7 +23,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_user_manage'); ?> - <span class="uk-text-bold"><?= $this->m_data->getUsernameID($idlink) ?></span></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_user_manage'); ?> - <span class="uk-text-bold"><?= $this->m_data->getUsernameID($idlink) ?></span></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -34,7 +34,7 @@ endif;
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header uk-card-primary">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-check-circle"></i> <?= $this->lang->line('panel_admin_unban_account'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-check-circle"></i> <?= $this->lang->line('card_title_unban_account'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
@@ -49,14 +49,14 @@ endif;
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header uk-card-secondary">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-ban"></i> <?= $this->lang->line('panel_admin_ban_account'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-ban"></i> <?= $this->lang->line('card_title_ban_account'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post" accept-charset="utf-8">
                         <div class="uk-margin-small">
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                              <input class="uk-input" name="action_reason" type="text" placeholder="<?= $this->lang->line('panel_admin_reason'); ?>" required>
+                              <input class="uk-input" name="action_reason" type="text" placeholder="<?= $this->lang->line('placeholder_reason'); ?>" required>
                             </div>
                           </div>
                         </div>
@@ -71,7 +71,7 @@ endif;
                 <div>
                   <div class="uk-card uk-card-default">
                     <div class="uk-card-header uk-card-primary">
-                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-gamepad"></i> <?= $this->lang->line('panel_admin_rank_account'); ?></h5>
+                      <h5 class="uk-h5 uk-text-uppercase uk-text-center"><i class="fas fa-gamepad"></i> <?= $this->lang->line('card_title_rank_account'); ?></h5>
                     </div>
                     <div class="uk-card-body">
                       <form action="" method="post">
@@ -83,7 +83,7 @@ endif;
                         <div class="uk-margin-small">
                           <div class="uk-form-controls">
                             <div class="uk-inline uk-width-1-1">
-                              <input class="uk-input" name="gmlevel" type="number" min="1" placeholder="<?= $this->lang->line('panel_admin_gmlevel'); ?>" required>
+                              <input class="uk-input" name="gmlevel" type="number" min="1" placeholder="<?= $this->lang->line('placeholder_gmlevel'); ?>" required>
                             </div>
                           </div>
                         </div>
@@ -102,7 +102,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_general_info'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_general_info'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -112,8 +112,8 @@ endif;
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-medium"><?= $this->lang->line('form_username'); ?></th>
-                      <th class="uk-width-medium"><?= $this->lang->line('form_email'); ?></th>
+                      <th class="uk-width-medium"><?= $this->lang->line('placeholder_username'); ?></th>
+                      <th class="uk-width-medium"><?= $this->lang->line('placeholder_email'); ?></th>
                       <th class="uk-width-small"><?= $this->lang->line('panel_member'); ?></th>
                     </tr>
                   </thead>
@@ -134,7 +134,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('panel_admin_donate_history'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_donate_history'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -190,12 +190,12 @@ endif;
                         <thead>
                           <tr>
                             <th class="uk-width-small">Guid</th>
-                            <th class="uk-width-medium"><?= $this->lang->line('column_name'); ?></th>
-                            <th class="uk-width-small"><?= $this->lang->line('column_race'); ?></th>
-                            <th class="uk-width-small"><?= $this->lang->line('column_class'); ?></th>
-                            <th class="uk-width-small"><?= $this->lang->line('column_level'); ?></th>
-                            <th class="uk-width-small"><?= $this->lang->line('column_money'); ?></th>
-                            <th class="uk-width-small"><?= $this->lang->line('column_total_kills'); ?></th>
+                            <th class="uk-width-medium"><?= $this->lang->line('table_header_name'); ?></th>
+                            <th class="uk-width-small"><?= $this->lang->line('table_header_race'); ?></th>
+                            <th class="uk-width-small"><?= $this->lang->line('table_header_class'); ?></th>
+                            <th class="uk-width-small"><?= $this->lang->line('table_header_level'); ?></th>
+                            <th class="uk-width-small"><?= $this->lang->line('table_header_money'); ?></th>
+                            <th class="uk-width-small"><?= $this->lang->line('table_header_total_kills'); ?></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -223,7 +223,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= $this->lang->line('panel_admin_annotations'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= $this->lang->line('card_title_annotations'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>

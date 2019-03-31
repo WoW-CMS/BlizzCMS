@@ -14,7 +14,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_faq'); ?> - <?= $this->admin_model->getFaqSpecifyName($idlink); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('card_title_edit_faq'); ?> - <?= $this->admin_model->getFaqSpecifyName($idlink); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="<?= base_url('admin/faq'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -24,16 +24,16 @@ endif; ?>
             <div class="uk-card-body">
               <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_faq_title'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_faq_title'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                      <input class="uk-input" name="faq_title" type="text" value="<?= $this->admin_model->getFaqSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('form_faq_title'); ?>" required>
+                      <input class="uk-input" name="faq_title" type="text" value="<?= $this->admin_model->getFaqSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_faq_title'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_type'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="faq_type">
                       <?php foreach ($this->admin_model->getFaqTypeList()->result() as $faqType): ?>
@@ -47,7 +47,7 @@ endif; ?>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
                   <div class="uk-form-controls">
                     <textarea class="uk-textarea tinyeditor" name="faq_description" rows="10" cols="80"><?= $this->admin_model->getFaqSpecifyDesc($idlink); ?></textarea>
                   </div>

@@ -15,7 +15,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_forum'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('card_title_edit_forum'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="<?= base_url('admin/forums'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -25,24 +25,24 @@ endif; ?>
             <div class="uk-card-body">
               <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_forum_title'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_title'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                      <input class="uk-input" name="forum_name" type="text" value="<?= $this->admin_model->getSpecifyForumName($idlink); ?>" placeholder="<?= $this->lang->line('form_forum_title'); ?>" required>
+                      <input class="uk-input" name="forum_name" type="text" value="<?= $this->admin_model->getSpecifyForumName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_title'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_forum_description'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_description'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
-                      <input class="uk-input" name="forum_description" type="text" value="<?= $this->admin_model->getSpecifyForumDesc($idlink); ?>" placeholder="<?= $this->lang->line('form_forum_description'); ?>" required>
+                      <input class="uk-input" name="forum_description" type="text" value="<?= $this->admin_model->getSpecifyForumDesc($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_description'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_forum_icon_name'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_icon_name'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <input class="uk-input" name="forum_icon" type="text" value="<?= $this->admin_model->getSpecifyForumIcon($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_icon'); ?>" required>
@@ -50,7 +50,7 @@ endif; ?>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_type'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="forum_type">
                       <option value="1" <?php if($this->admin_model->getSpecifyForumType($idlink) == '1') echo 'selected'; ?>><?= $this->lang->line('option_everyone'); ?></option>
@@ -60,7 +60,7 @@ endif; ?>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_category'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="forum_cate">
                       <?php foreach($this->admin_model->getForumCategoryListAjax()->result() as $categ): ?>

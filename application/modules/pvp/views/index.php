@@ -21,9 +21,9 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=$this->lang->line('column_team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=$this->lang->line('column_members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=$this->lang->line('column_rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?=$this->lang->line('table_header_team_name');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=$this->lang->line('table_header_members');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=$this->lang->line('table_header_rating');?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -48,9 +48,9 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=$this->lang->line('column_team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=$this->lang->line('column_members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=$this->lang->line('column_rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?=$this->lang->line('table_header_team_name');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=$this->lang->line('table_header_members');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=$this->lang->line('table_header_rating');?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -75,9 +75,9 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=$this->lang->line('column_team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=$this->lang->line('column_members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=$this->lang->line('column_rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?=$this->lang->line('table_header_team_name');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=$this->lang->line('table_header_members');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=$this->lang->line('table_header_rating');?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -103,12 +103,12 @@
                 <table class="uk-table dark-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?=$this->lang->line('column_name');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=$this->lang->line('column_race');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?=$this->lang->line('column_faction');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('column_total_kills');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=$this->lang->line('column_today_kills');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=$this->lang->line('column_yersterday_kills');?></th>
+                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?=$this->lang->line('table_header_name');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=$this->lang->line('table_header_race');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?=$this->lang->line('table_header_faction');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('table_header_total_kills');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=$this->lang->line('table_header_today_kills');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=$this->lang->line('table_header_yersterday_kills');?></th>
                     </tr>
                   </thead>
                   <tbody>

@@ -31,7 +31,7 @@
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_news'); ?> - <?= $this->admin_model->getNewsSpecifyName($idlink); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('card_title_edit_news'); ?> - <?= $this->admin_model->getNewsSpecifyName($idlink); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="<?= base_url('admin/news'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -41,22 +41,22 @@
             <div class="uk-card-body">
               <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_news_title'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_news_title'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                      <input class="uk-input" name="new_title" type="text" value="<?= $this->admin_model->getNewsSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('form_news_title'); ?>" required>
+                      <input class="uk-input" name="new_title" type="text" value="<?= $this->admin_model->getNewsSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_news_title'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
                   <div class="uk-form-controls">
                     <textarea class="uk-textarea tinyeditor" name="new_description" rows="10" cols="80"><?= $this->admin_model->getNewsSpecifyDesc($idlink); ?></textarea>
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_highl'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_highl'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="new_destac">
                       <option value="1"><?= $this->lang->line('option_no'); ?></option>
@@ -65,7 +65,7 @@
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_upload_file'); ?></label>
+                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_upload_file'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <div uk-form-custom="target: true">

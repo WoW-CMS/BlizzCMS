@@ -153,7 +153,7 @@ endif; ?>
         <div class="uk-container uk-container-expand">
           <div class="uk-card uk-card-default uk-margin-small">
             <div class="uk-card-header">
-              <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_website_settings'); ?></h4>
+              <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_nav_website_settings'); ?></h4>
             </div>
             <div class="uk-card-body">
               <div uk-grid>

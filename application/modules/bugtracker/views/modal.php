@@ -2,21 +2,21 @@
       <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="uk-modal-header">
-          <h2 class="uk-modal-title uk-text-uppercase"><i class="fas fa-bug"></i> <?= $this->lang->line('form_create_bug_report'); ?></h2>
+          <h2 class="uk-modal-title uk-text-uppercase"><i class="fas fa-bug"></i> <?= $this->lang->line('placeholder_create_bug_report'); ?></h2>
         </div>
         <form action="<?= base_url('bugtracker/create'); ?>" method="post" accept-charset="utf-8" autocomplete="off">
           <div class="uk-modal-body">
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_title'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
-                  <input class="uk-input" name="bug_title" type="text" placeholder="<?= $this->lang->line('form_title'); ?>" required>
+                  <input class="uk-input" name="bug_title" type="text" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                 </div>
               </div>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_type'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
               <div class="uk-form-controls">
                 <select class="uk-select" name="bug_type">
                   <?php foreach($this->bugtracker_model->getTypes()->result() as $types): ?>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_description'); ?></label>
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-width-1-1">
                   <textarea class="uk-textarea tinyeditor" name="bug_description" rows="10" cols="80"></textarea>

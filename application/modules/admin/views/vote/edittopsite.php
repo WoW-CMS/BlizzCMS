@@ -14,7 +14,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('panel_admin_edit_topsite'); ?> - <?= $this->admin_model->getTopsiteSpecifyName($idlink); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-edit"></i></span><?= $this->lang->line('card_title_edit_topsite'); ?> - <?= $this->admin_model->getTopsiteSpecifyName($idlink); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="<?= base_url('admin/topsites'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -26,7 +26,7 @@ endif; ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Topsite <?= $this->lang->line('column_name'); ?></label>
+                      <label class="uk-form-label uk-text-uppercase">Topsite <?= $this->lang->line('table_header_name'); ?></label>
                       <div class="uk-form-controls">
                         <input class="uk-input" name="topsite_name" type="text" placeholder="Name" value="<?= $this->admin_model->getTopsiteSpecifyName($idlink); ?>" required>
                       </div>
@@ -42,15 +42,15 @@ endif; ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('column_time'); ?> (Hours)</label>
+                      <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_time'); ?> (Hours)</label>
                       <div class="uk-form-controls">
                         <input class="uk-input" name="topsite_time" type="number" min="1" placeholder="Hours" value="<?= $this->admin_model->getTopsiteSpecifyTime($idlink); ?>" required>
                       </div>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('column_points'); ?></label>
+                      <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_points'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" name="topsite_points" type="number" min="1" placeholder="<?= $this->lang->line('column_points'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyPoints($idlink); ?>" required>
+                        <input class="uk-input" name="topsite_points" type="number" min="1" placeholder="<?= $this->lang->line('table_header_points'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyPoints($idlink); ?>" required>
                       </div>
                     </div>
                   </div>

@@ -46,11 +46,11 @@
               <table class="uk-table uk-table-hover uk-table-divider">
                 <thead>
                   <tr>
-                    <th><i class="fas fa-book"></i> <?=$this->lang->line('column_id'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-bookmark"></i> <?= $this->lang->line('form_title'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-list"></i> <?= $this->lang->line('form_type'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('column_priority'); ?></th>
+                    <th><i class="fas fa-book"></i> <?=$this->lang->line('table_header_id'); ?></th>
+                    <th class="uk-text-center"><i class="fas fa-bookmark"></i> <?= $this->lang->line('placeholder_title'); ?></th>
+                    <th class="uk-text-center"><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?></th>
+                    <th class="uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_status'); ?></th>
+                    <th class="uk-text-center"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?></th>
                   </tr>
                 </thead>
                 <tbody>

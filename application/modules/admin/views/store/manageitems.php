@@ -9,7 +9,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-boxes"></i></span><?= $this->lang->line('admin_manage_items'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-boxes"></i></span><?= $this->lang->line('admin_nav_manage_items'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newItem"><i class="fas fa-pen"></i></a>
@@ -21,11 +21,11 @@ endif; ?>
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-small"><?= $this->lang->line('column_id'); ?></th>
-                      <th class="uk-width-medium"><?= $this->lang->line('column_name'); ?></th>
+                      <th class="uk-width-small"><?= $this->lang->line('table_header_id'); ?></th>
+                      <th class="uk-width-medium"><?= $this->lang->line('table_header_name'); ?></th>
                       <th class="uk-width-small"><?= $this->lang->line('store_item_price'); ?> DP</th>
                       <th class="uk-width-small"><?= $this->lang->line('store_item_price'); ?> VP</th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
                     </tr>
                   </thead>
                   <tbody>

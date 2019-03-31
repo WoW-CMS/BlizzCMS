@@ -8,7 +8,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-tasks"></i></span><?= $this->lang->line('admin_manage_topsites'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-tasks"></i></span><?= $this->lang->line('admin_nav_manage_topsites'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newTopsite"><i class="fas fa-pen"></i></a>
@@ -20,10 +20,10 @@ endif; ?>
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand">Topsite <?= $this->lang->line('column_name'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_time'); ?> (Hours)</th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_points'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
+                      <th class="uk-table-expand">Topsite <?= $this->lang->line('table_header_name'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_time'); ?> (Hours)</th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_points'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
                     </tr>
                   </thead>
                   <tbody>

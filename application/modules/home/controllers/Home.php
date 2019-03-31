@@ -80,7 +80,6 @@ class Home extends MX_Controller {
                 'button_read_more' => $this->lang->line('button_read_more'),
                 'home_server_status' => $this->lang->line('home_server_status'),
                 'users_on' => $this->lang->line('users_on'),
-                'home_store_top' => $this->lang->line('home_store_top'),
                 'button_buy' => $this->lang->line('button_buy'),
                 //configs
                 'conf_realmlist' => $this->config->item('realmlist'),

@@ -13,29 +13,29 @@ endif; ?>
         <div class="uk-modal-dialog">
           <button class="uk-modal-close-default" type="button" uk-close></button>
           <div class="uk-modal-header">
-            <h3 class="uk-modal-title uk-text-uppercase"><i class="far fa-comments"></i> <?= $this->lang->line('form_create_forums'); ?></h3>
+            <h3 class="uk-modal-title uk-text-uppercase"><i class="far fa-comments"></i> <?= $this->lang->line('placeholder_create_forums'); ?></h3>
           </div>
           <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
             <div class="uk-modal-body">
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_forum_title'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_title'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="forum_name" type="text" placeholder="<?= $this->lang->line('form_forum_title'); ?>" required>
+                    <input class="uk-input" name="forum_name" type="text" placeholder="<?= $this->lang->line('placeholder_forum_title'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_forum_description'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_description'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" name="forum_description" required type="text" placeholder="<?= $this->lang->line('form_forum_description'); ?>" required>
+                    <input class="uk-input" name="forum_description" required type="text" placeholder="<?= $this->lang->line('placeholder_forum_description'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_forum_icon_name'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_icon_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" name="forum_icon" required type="text" placeholder="<?= $this->lang->line('placeholder_forum_icon'); ?>" required>
@@ -43,7 +43,7 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_type'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" name="forum_type">
                     <option value="1"><?= $this->lang->line('option_everyone'); ?></option>
@@ -53,7 +53,7 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_category'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" name="forum_cate">
                     <?php foreach($this->admin_model->getForumCategoryListAjax()->result() as $categ): ?>

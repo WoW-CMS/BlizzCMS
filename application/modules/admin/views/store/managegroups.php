@@ -9,7 +9,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-tags"></i></span><?= $this->lang->line('admin_manage_groups'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-tags"></i></span><?= $this->lang->line('admin_nav_manage_groups'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newGroup"><i class="fas fa-pen"></i></a>
@@ -21,8 +21,8 @@ endif; ?>
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><?= $this->lang->line('form_title'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('placeholder_title'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
                     </tr>
                   </thead>
                   <tbody>

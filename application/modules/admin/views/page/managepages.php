@@ -9,14 +9,14 @@ endif; ?>
           <?php if (isset($_GET['newpage'])) { ?>
           <div class="uk-alert-primary uk-margin-small" uk-alert>
             <a class="uk-alert-close" uk-close></a>
-            <p><?= $this->lang->line('panel_admin_new_page_url'); ?>: <b><a href="<?= base_url('page/').$_GET['newpage']; ?>"><?= base_url('page/').$_GET['newpage']; ?></a></b></p>
+            <p><?= $this->lang->line('alert_new_page_url'); ?>: <b><a href="<?= base_url('page/').$_GET['newpage']; ?>"><?= base_url('page/').$_GET['newpage']; ?></a></b></p>
           </div>
           <?php } ?>
           <div class="uk-card uk-card-default">
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-file-alt"></i></span><?= $this->lang->line('panel_admin_pages_list'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-file-alt"></i></span><?= $this->lang->line('card_title_pages_list'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newPage"><i class="fas fa-pen"></i></a>
@@ -28,9 +28,9 @@ endif; ?>
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><?= $this->lang->line('form_title'); ?></th>
-                      <th class="uk-width-small"><?= $this->lang->line('column_date'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('placeholder_title'); ?></th>
+                      <th class="uk-width-small"><?= $this->lang->line('table_header_date'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
 
                         <?= $this->admin_model->pagecheckUri('tos'); ?>
                     </tr>

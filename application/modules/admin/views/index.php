@@ -4,20 +4,20 @@
             <div>
               <div class="uk-card uk-card-secondary">
                 <div class="uk-card-body uk-text-center">
-                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('account_count'); ?></h5>
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('count_accounts_created'); ?></h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
                   <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-user-friends"></i></span><span class="counter uk-text-success" data-count="<?= $this->admin_model->getAccCreated(); ?>">0</span></h1>
-                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_account_registered'); ?></p>
+                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_accounts_registered'); ?></p>
                 </div>
               </div>
             </div>
             <div>
               <div class="uk-card uk-card-secondary">
                 <div class="uk-card-body uk-text-center">
-                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('ban_count'); ?></h5>
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('count_accounts_banned'); ?></h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
                   <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-user-slash"></i></span><span class="counter uk-text-danger" data-count="<?= $this->admin_model->getBanCount(); ?>">0</span></h1>
-                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_account_banned'); ?></p>
+                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_accounts_banned'); ?></p>
                 </div>
               </div>
             </div>
@@ -54,7 +54,7 @@
                       <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
                     </div>
                     <div class="uk-width-expand uk-text-right">
-                      <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button" uk-tooltip="<?= $this->lang->line('admin_manage_realms'); ?>"><i class="fas fa-cog"></i></a>
+                      <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button" uk-tooltip="<?= $this->lang->line('admin_nav_manage_realms'); ?>"><i class="fas fa-cog"></i></a>
                     </div>
                   </div>
                 </div>

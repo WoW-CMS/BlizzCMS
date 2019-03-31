@@ -68,7 +68,7 @@
               <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
                 <thead>
                   <tr>
-                    <th class="uk-width-small"><i class="fas fa-book"></i> <?=$this->lang->line('column_icon');?></th>
+                    <th class="uk-width-small"><i class="fas fa-book"></i> <?=$this->lang->line('table_header_icon');?></th>
                     <th class="uk-width-medium uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('store_item_name');?></th>
                     <th class="uk-width-medium uk-text-center"><i class="fas fa-cart-plus"></i> <?=$this->lang->line('store_item_price');?></th>
                   </tr>

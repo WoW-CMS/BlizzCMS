@@ -22,7 +22,7 @@ endif; ?>
           <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
             <div class="uk-modal-body">
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('column_realm_id'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_realm_id'); ?></label>
                 <div class="uk-form-controls">
                   <input class="uk-input" type="number" name="realmid" placeholder="Auth -> realmlist -> ID" required>
                 </div>
@@ -109,13 +109,13 @@ endif; ?>
           <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
             <div class="uk-modal-body">
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_title'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
                 <div class="uk-form-controls">
-                  <input class="uk-input" type="text" name="slide_title" placeholder="<?= $this->lang->line('form_title'); ?>" required>
+                  <input class="uk-input" type="text" name="slide_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('form_upload_file'); ?></label>
+                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_upload_file'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <div uk-form-custom="target: true">

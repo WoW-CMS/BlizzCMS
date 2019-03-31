@@ -58,28 +58,28 @@ endif; ?>
             </div>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
               <dir>
-                <p class="text-misc"><i class="far fa-user-circle"></i> <?= $this->lang->line('column_author'); ?>: <?= $this->m_data->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></p>
+                <p class="text-misc"><i class="far fa-user-circle"></i> <?= $this->lang->line('table_header_author'); ?>: <?= $this->m_data->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></p>
               </dir>
               <dir>
-                <p class="text-misc"><i class="far fa-clock"></i> <?= $this->lang->line('column_date'); ?>: <?= date('Y-m-d', $this->bugtracker_model->getDate($idlink)) ?></p>
+                <p class="text-misc"><i class="far fa-clock"></i> <?= $this->lang->line('table_header_date'); ?>: <?= date('Y-m-d', $this->bugtracker_model->getDate($idlink)) ?></p>
               </dir>
               <dir>
-                <p><span class="text-misc"><i class="fas fa-info-circle"></i> <?= $this->lang->line('column_status'); ?>:</span>
+                <p><span class="text-misc"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_status'); ?>:</span>
                   <?php if ($this->bugtracker_model->closeStatus($idlink) == '0'): ?>
-                    <span class="uk-label uk-label-success"><?= $this->lang->line('option_open'); ?></span>
+                    <span class="uk-label uk-label-success"><?= $this->lang->line('label_open'); ?></span>
                   <?php else: ?>
-                    <span class="uk-label uk-label-danger"><?= $this->lang->line('option_closed'); ?></span>
+                    <span class="uk-label uk-label-danger"><?= $this->lang->line('label_closed'); ?></span>
                   <?php endif; ?>
                 </p>
               </dir>
               <dir>
-                <p><span class="text-misc"><i class="fas fa-list"></i> <?= $this->lang->line('form_type'); ?>:</span> <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></p>
+                <p><span class="text-misc"><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?>:</span> <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></p>
               </dir>
               <dir>
-                <p><span class="text-misc"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('column_priority'); ?>:</span> <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></p>
+                <p><span class="text-misc"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?>:</span> <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></p>
               </dir>
               <dir>
-                <p><span class="text-misc"><i class="fas fa-tags"></i> <?= $this->lang->line('column_status'); ?>:</span> <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></p>
+                <p><span class="text-misc"><i class="fas fa-tags"></i> <?= $this->lang->line('table_header_status'); ?>:</span> <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></p>
               </dir>
             </div>
             <hr>

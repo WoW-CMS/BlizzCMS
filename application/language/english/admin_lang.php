@@ -35,36 +35,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @filesource
  */
 
-/*Navigation Menu Lang*/
-$lang['admin_dashboard'] = 'Dashboard';
-$lang['admin_settings'] = 'Settings';
-$lang['admin_website_settings'] = 'Website Settings';
-$lang['admin_manage_modules'] = 'Manage Modules';
-$lang['admin_manage_realms'] = 'Manage Realms';
-$lang['admin_manage_slides'] = 'Manage Slides';
-$lang['admin_users'] = 'Users';
-$lang['admin_users_list'] = 'Users List';
-$lang['admin_chars_list'] = 'Characters List';
-$lang['admin_website'] = 'Website';
-$lang['admin_news'] = 'News';
-$lang['admin_changelogs'] = 'Changelogs';
-$lang['admin_pages'] = 'Pages';
-$lang['admin_faq'] = 'Faq';
-$lang['admin_store'] = 'Store';
-$lang['admin_points_system'] = 'Points System';
-$lang['admin_manage_donations'] = 'Manage Donations';
-$lang['admin_manage_topsites'] = 'Manage Topsites';
-$lang['admin_manage_groups'] = 'Manage Groups';
-$lang['admin_manage_items'] = 'Manage Items';
-$lang['admin_forum'] = 'Forum';
-$lang['admin_manage_categories'] = 'Manage Categories';
-$lang['admin_manege_forums'] = 'Manage Forums';
-
-/*Count Lang*/
-$lang['account_count'] = 'Accounts created';
-$lang['ban_count'] = 'Banned accounts';
-$lang['total_account_registered'] = 'Total accounts registered.';
-$lang['total_account_banned'] = 'Total accounts banned.';
+/*Navbar Lang*/
+$lang['admin_nav_dashboard'] = 'Dashboard';
+$lang['admin_nav_settings'] = 'Settings';
+$lang['admin_nav_website_settings'] = 'Website Settings';
+$lang['admin_nav_manage_modules'] = 'Manage Modules';
+$lang['admin_nav_manage_realms'] = 'Manage Realms';
+$lang['admin_nav_manage_slides'] = 'Manage Slides';
+$lang['admin_nav_users'] = 'Users';
+$lang['admin_nav_users_list'] = 'Users List';
+$lang['admin_nav_chars_list'] = 'Characters List';
+$lang['admin_nav_website'] = 'Website';
+$lang['admin_nav_news'] = 'News';
+$lang['admin_nav_changelogs'] = 'Changelogs';
+$lang['admin_nav_pages'] = 'Pages';
+$lang['admin_nav_faq'] = 'Faq';
+$lang['admin_nav_store'] = 'Store';
+$lang['admin_nav_points_system'] = 'Points System';
+$lang['admin_nav_manage_donations'] = 'Manage Donations';
+$lang['admin_nav_manage_topsites'] = 'Manage Topsites';
+$lang['admin_nav_manage_groups'] = 'Manage Groups';
+$lang['admin_nav_manage_items'] = 'Manage Items';
+$lang['admin_nav_forum'] = 'Forum';
+$lang['admin_nav_manage_categories'] = 'Manage Categories';
+$lang['admin_nav_manege_forums'] = 'Manage Forums';
 
 /*Button Lang*/
 $lang['button_unban'] = 'Unban';
@@ -75,80 +69,76 @@ $lang['button_change_level'] = 'Change Level';
 $lang['button_disable'] = 'Disable';
 $lang['button_enable'] = 'Enable';
 
-/*Panel Lang*/
-$lang['panel_admin_user_manage'] = 'Manage user';
-$lang['panel_admin_unban_account'] = 'Unban Account';
-$lang['panel_admin_ban_account'] = 'Ban Account';
-$lang['panel_admin_rank_account'] = 'GM Rank';
-$lang['panel_admin_web_rank'] = 'Web Rank';
-$lang['panel_admin_general_info'] = 'General information';
-$lang['panel_admin_donate_history'] = 'Donate History';
-$lang['panel_admin_annotations'] = 'Annotations';
-$lang['panel_admin_char_manage'] = 'Manage character';
-$lang['panel_admin_change_level'] = 'Change Level';
-$lang['panel_admin_rename'] = 'Rename';
-$lang['panel_admin_unban_char'] = 'Unban Character';
-$lang['panel_admin_ban_char'] = 'Ban Character';
-$lang['panel_admin_customize'] = 'Customize Character';
-$lang['panel_admin_change_race'] = 'Change Race';
-$lang['panel_admin_change_faction'] = 'Change Faction';
-$lang['panel_admin_changelogs_list'] = 'List of Changelogs';
-$lang['panel_admin_pages_list'] = 'List of Pages';
-$lang['panel_admin_news_list'] = 'News List';
-$lang['panel_admin_edit_news'] = 'Edit News';
-$lang['panel_admin_edit_pages'] = 'Edit Pages';
-$lang['panel_admin_edit_changelogs'] = 'Edit Changelogs';
-$lang['panel_admin_edit_item'] = 'Edit Item';
-$lang['panel_admin_edit_group'] = 'Edit Group';
-$lang['panel_admin_faq_list'] = 'Faq List';
-$lang['panel_admin_edit_topsite'] = 'Edit Topsite';
-$lang['panel_admin_edit_forum'] = 'Edit Forum';
+/*Card Title Lang*/
+$lang['card_title_user_manage'] = 'Manage user';
+$lang['card_title_unban_account'] = 'Unban Account';
+$lang['card_title_ban_account'] = 'Ban Account';
+$lang['card_title_rank_account'] = 'GM Rank';
+$lang['card_title_general_info'] = 'General information';
+$lang['card_title_donate_history'] = 'Donate History';
+$lang['card_title_annotations'] = 'Annotations';
+$lang['card_title_char_manage'] = 'Manage character';
+$lang['card_title_change_level'] = 'Change Level';
+$lang['card_title_rename'] = 'Rename';
+$lang['card_title_unban_char'] = 'Unban Character';
+$lang['card_title_ban_char'] = 'Ban Character';
+$lang['card_title_customize'] = 'Customize Character';
+$lang['card_title_change_race'] = 'Change Race';
+$lang['card_title_change_faction'] = 'Change Faction';
+$lang['card_title_changelogs_list'] = 'List of Changelogs';
+$lang['card_title_pages_list'] = 'List of Pages';
+$lang['card_title_news_list'] = 'News List';
+$lang['card_title_edit_news'] = 'Edit News';
+$lang['card_title_edit_pages'] = 'Edit Pages';
+$lang['card_title_edit_changelogs'] = 'Edit Changelogs';
+$lang['card_title_edit_item'] = 'Edit Item';
+$lang['card_title_edit_group'] = 'Edit Group';
+$lang['card_title_faq_list'] = 'Faq List';
+$lang['card_title_edit_topsite'] = 'Edit Topsite';
+$lang['card_title_edit_forum'] = 'Edit Forum';
 
-/*Column Lang*/
-$lang['column_race'] = 'Race';
-$lang['column_class'] = 'Class';
-$lang['column_level'] = 'Level';
-$lang['column_money'] = 'Money';
-$lang['column_own'] = 'Own';
-$lang['column_action'] = 'Action';
-$lang['column_realm_id'] = 'Realm ID';
-$lang['column_realm_name'] = 'Realm Name';
-$lang['column_realm_char_database'] = 'Character Database Name';
-$lang['column_tax'] = 'Tax';
-$lang['column_points'] = 'Points';
-$lang['column_type'] = 'Type';
-$lang['column_module'] = 'Module';
+/*Table header Lang*/
+$lang['table_header_race'] = 'Race';
+$lang['table_header_class'] = 'Class';
+$lang['table_header_level'] = 'Level';
+$lang['table_header_money'] = 'Money';
+$lang['table_header_own'] = 'Own';
+$lang['table_header_action'] = 'Action';
+$lang['table_header_realm_id'] = 'Realm ID';
+$lang['table_header_realm_name'] = 'Realm Name';
+$lang['table_header_realm_char_database'] = 'Character Database Name';
+$lang['table_header_tax'] = 'Tax';
+$lang['table_header_points'] = 'Points';
+$lang['table_header_type'] = 'Type';
+$lang['table_header_module'] = 'Module';
 
-/*Form Lang*/
-$lang['form_create_changelog'] = 'Create a new Changelog';
-$lang['form_changelog_title'] = 'Title of the Changelog';
-$lang['form_create_pages'] = 'Create a new Page';
-$lang['form_create_news'] = 'Create a new News';
-$lang['form_create_donation'] = 'Create Donation';
-$lang['form_donation_title'] = 'Title of the donation';
-$lang['form_news_title'] = 'Title of the news';
-$lang['form_upload_file'] = 'File upload';
-$lang['form_create_category'] = 'Create Category';
-$lang['form_create_forums'] = 'Create Forums';
-$lang['form_category_title'] = 'Title of the Category';
-$lang['form_forum_title'] = 'Title of the Forum';
-$lang['form_forum_description'] = 'Enter a brief description of the forum';
-$lang['form_forum_icon_name'] = 'Icon Name';
-$lang['form_category'] = 'Category';
-$lang['form_create_item'] = 'Create a item';
-$lang['form_store_item_name'] = 'Product Name';
-$lang['form_store_item_id'] = 'Item Id';
-$lang['form_store_image_name'] = 'Image File Name';
-$lang['form_create_group'] = 'Create Group';
-$lang['form_group_title'] = 'Title of the Group';
-$lang['form_create_faq'] = 'Create faq';
-$lang['form_faq_title'] = 'Title of the faq';
-$lang['form_create_topsite'] = 'Create a new Topsite';
-
-/*Placeholder Lang*/
-$lang['panel_admin_reason'] = 'Reason';
-$lang['panel_admin_gmlevel'] = 'Gm Level';
-$lang['panel_admin_new_page_url'] = 'Your new Page URL is';
+/*Input Placeholder Lang*/
+$lang['placeholder_create_changelog'] = 'Create a new Changelog';
+$lang['placeholder_changelog_title'] = 'Title of the Changelog';
+$lang['placeholder_create_pages'] = 'Create a new Page';
+$lang['placeholder_create_news'] = 'Create a new News';
+$lang['placeholder_create_donation'] = 'Create Donation';
+$lang['placeholder_donation_title'] = 'Title of the donation';
+$lang['placeholder_news_title'] = 'Title of the news';
+$lang['placeholder_upload_file'] = 'File upload';
+$lang['placeholder_create_category'] = 'Create Category';
+$lang['placeholder_create_forums'] = 'Create Forums';
+$lang['placeholder_category_title'] = 'Title of the Category';
+$lang['placeholder_forum_title'] = 'Title of the Forum';
+$lang['placeholder_forum_description'] = 'Enter a brief description of the forum';
+$lang['placeholder_forum_icon_name'] = 'Icon Name';
+$lang['placeholder_category'] = 'Category';
+$lang['placeholder_create_item'] = 'Create a item';
+$lang['placeholder_store_item_name'] = 'Product Name';
+$lang['placeholder_store_item_id'] = 'Item Id';
+$lang['placeholder_store_image_name'] = 'Image File Name';
+$lang['placeholder_create_group'] = 'Create Group';
+$lang['placeholder_group_title'] = 'Title of the Group';
+$lang['placeholder_create_faq'] = 'Create faq';
+$lang['placeholder_faq_title'] = 'Title of the faq';
+$lang['placeholder_create_topsite'] = 'Create a new Topsite';
+$lang['placeholder_reason'] = 'Reason';
+$lang['placeholder_gmlevel'] = 'Gm Level';
 $lang['placeholder_forum_icon'] = 'foldername/image.jpg or foldername/image.png';
 
 /*Status Lang*/
@@ -165,5 +155,12 @@ $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Everyone';
 $lang['option_item'] = 'Item';
 
+/*Count Lang*/
+$lang['count_accounts_created'] = 'Accounts created';
+$lang['count_accounts_banned'] = 'Banned accounts';
+$lang['total_accounts_registered'] = 'Total accounts registered.';
+$lang['total_accounts_banned'] = 'Total accounts banned.';
+
 /*Info Lang*/
-$lang['is_banned_reason'] = 'Is banned, reason:';
+$lang['alert_new_page_url'] = 'Your new Page URL is';
+$lang['alert_banned_reason'] = 'Is banned, reason:';

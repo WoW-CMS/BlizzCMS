@@ -15,7 +15,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_manage_modules'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_nav_manage_modules'); ?></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
@@ -25,8 +25,8 @@ endif; ?>
                 <table class="uk-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><?= $this->lang->line('column_module'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('column_action'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('table_header_module'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
