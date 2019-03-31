@@ -57,15 +57,7 @@ class Pvp extends MX_Controller {
     {
         $data = array(
             'pagetitle' => $this->lang->line('tab_pvp_statistics'),
-            'tab_arena_statistics' => $this->lang->line('tab_arena_statistics'),
-            'lang_2v2' => $this->lang->line('statistics_top_2v2'),
-            'lang_3v3' => $this->lang->line('statistics_top_3v3'),
-            'lang_5v5' => $this->lang->line('statistics_top_5v5'),
-            'table_header_team_name' => $this->lang->line('table_header_team_name'),
-            'table_header_members' => $this->lang->line('table_header_members'),
-            'table_header_rating' => $this->lang->line('table_header_rating'),
-            //general
-            'realms' => $this->m_data->getRealms()->result(),
+            'realms' => $this->m_data->getRealms()->result()
         );
 
         $this->load->view('header', $data);

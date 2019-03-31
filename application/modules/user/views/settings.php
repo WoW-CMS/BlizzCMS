@@ -29,15 +29,15 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h3 class="uk-h3 uk-text-uppercase uk-text-bold">Account Settings</h3>
+            <h3 class="uk-h3 uk-text-uppercase uk-text-bold"><?= $this->lang->line('button_account_settings'); ?></h3>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-body">
                 <div class="uk-grid uk-grid-divider uk-grid-medium" data-uk-grid>
                   <div class="uk-width-1-2@s">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> Change Email Address</h5>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h5>
                     <?= form_open('', 'id="changeemailForm" onsubmit="ChangeEmailForm(event)"'); ?>
                     <div class="uk-margin uk-light">
-                      <label class="uk-form-label">Current Email Address:</label>
+                      <label class="uk-form-label"><?= $this->lang->line('panel_current_email'); ?>:</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
@@ -46,11 +46,11 @@
                       </div>
                     </div>
                     <div class="uk-margin uk-light">
-                      <label class="uk-form-label">Replace Email by:</label>
+                      <label class="uk-form-label"><?= $this->lang->line('panel_replace_email_by'); ?>:</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
-                          <input class="uk-input" id="change_newemail" type="email" placeholder="<?= $this->lang->line('placeholder_new_email'); ?> Address" required>
+                          <input class="uk-input" id="change_newemail" type="email" placeholder="<?= $this->lang->line('placeholder_new_email'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -58,7 +58,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
-                          <input class="uk-input" id="change_renewemail" type="email" placeholder="Confirm New Email Address" required>
+                          <input class="uk-input" id="change_renewemail" type="email" placeholder="<?= $this->lang->line('placeholder_confirm_email'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -71,24 +71,24 @@
                       </div>
                     </div>
                     <div class="uk-margin">
-                      <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> Save Changes</button>
+                      <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                     </div>
                     <?= form_close(); ?>
                   </div>
                   <div class="uk-width-1-2@s">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> Change Password</h5>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_password'); ?></h5>
                     <?= form_open('', 'id="changepasswordForm" onsubmit="ChangePasswordForm(event)"'); ?>
                     <div class="uk-margin uk-light">
-                      <label class="uk-form-label">Current Password:</label>
+                      <label class="uk-form-label"><?= $this->lang->line('placeholder_current_password'); ?>:</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                          <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_old_password'); ?>" required>
+                          <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_current_password'); ?>" required>
                         </div>
                       </div>
                     </div>
                     <div class="uk-margin uk-light">
-                      <label class="uk-form-label">Replace password by:</label>
+                      <label class="uk-form-label"><?= $this->lang->line('panel_replace_pass_by'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-unlock fa-lg"></i></span>
@@ -105,7 +105,7 @@
                       </div>
                     </div>
                     <div class="uk-margin">
-                      <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> Save Changes</button>
+                      <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                     </div>
                     <?= form_close(); ?>
                   </div>

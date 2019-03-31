@@ -28,9 +28,9 @@
       },
       "theme": "classic",
       "content": {
-        "message": "This website uses cookies to ensure you get the best experience on our website. ",
-        "dismiss": "Got it!",
-        "link": "Read more",
+        "message": "<?= $this->lang->line('header_cookie_message'); ?>",
+        "dismiss": "<?= $this->lang->line('header_cookie_button'); ?>",
+        "link": "<?= $this->lang->line('button_read_more'); ?>",
         "href": "<?= base_url('cookies'); ?>"
       }
     })});

@@ -35,7 +35,7 @@ endif; ?>
           </div>
           <div class="uk-modal-footer uk-text-right actions">
             <button class="uk-button uk-button-danger uk-modal-close" type="button"><i class="fas fa-times-circle"></i> <?= $this->lang->line('button_cancel'); ?></button>
-            <button class="uk-button uk-button-default" type="submit" name="button_changeavatar"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_change'); ?></button>
+            <button class="uk-button uk-button-default" type="submit" name="button_changeavatar"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
           </div>
         </form>
       </div>
@@ -69,7 +69,7 @@ endif; ?>
           </div>
           <div class="uk-modal-footer uk-text-right actions">
             <button class="uk-button uk-button-danger uk-modal-close" type="button"><i class="fas fa-times-circle"></i> <?= $this->lang->line('button_cancel'); ?></button>
-            <button class="uk-button uk-button-default" type="submit" name="button_uppdateinfo"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_change'); ?></button>
+            <button class="uk-button uk-button-default" type="submit" name="button_uppdateinfo"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
           </div>
         </form>
       </div>

@@ -36,7 +36,7 @@
                 <div class="uk-card uk-card-vote uk-card-body uk-text-center">
                   <img src="<?= $voteList->image ?>" alt="<?= $voteList->name ?>">
                   <div class="uk-card-badge uk-label" uk-tooltip="<?= $this->lang->line('panel_vp'); ?>"><i class="fas fa-coins"></i> <?= $voteList->points ?></div>
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-margin-remove-bottom uk-margin-small-top">Next vote in:</h5>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-margin-remove-bottom uk-margin-small-top"><?= $this->lang->line('vote_next_time'); ?></h5>
                     <div class="uk-grid-collapse uk-child-width-auto uk-flex-center uk-margin-small-bottom" uk-grid uk-countdown="date: <?= date('c', $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('fx_sess_id'))) ?>">
                       <div>
                         <div class="uk-countdown-number uk-countdown-days"></div>

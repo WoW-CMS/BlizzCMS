@@ -24,7 +24,7 @@
                     </td>
                     <td class="uk-width-small uk-text-center">
                       <span class="uk-display-block uk-text-bold">100</span>
-                      <span class="uk-text-small">Post</span>
+                      <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
                       <a href="" class="uk-display-block">[Dev] Icecrown Citadel...</a>
@@ -47,7 +47,7 @@
                     </td>
                     <td class="uk-width-small uk-text-center">
                       <span class="uk-display-block uk-text-bold">100</span>
-                      <span class="uk-text-small">Post</span>
+                      <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
                       <a href="" class="uk-display-block">[Dev] Icecrown Citadel...</a>
@@ -67,23 +67,23 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-forum">
               <div class="uk-card-header">
-                <h3 class="uk-card-title"><i class="fas fa-book-open"></i> Latest activity</h3>
+                <h3 class="uk-card-title"><i class="fas fa-book-open"></i> <?= $this->lang->line('forum_last_activity'); ?></h3>
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider">
                   <li>
                     <a href="">Lorem ipsum dolor sit amet, consectetur</a>
-                    <p class="uk-text-small uk-margin-remove">Last Post by <span class="uk-text-primary">Username</span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary">Username</span></p>
                     <p class="uk-text-small uk-margin-remove">03-21-2019, 10:49 PM</p>
                   </li>
                   <li>
                     <a href="">Lorem ipsum dolor sit amet, consectetur</a>
-                    <p class="uk-text-small uk-margin-remove">Last Post by <span class="uk-text-primary">Username</span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary">Username</span></p>
                     <p class="uk-text-small uk-margin-remove">03-21-2019, 10:49 PM</p>
                   </li>
                   <li>
                     <a href="">Lorem ipsum dolor sit amet, consectetur</a>
-                    <p class="uk-text-small uk-margin-remove">Last Post by <span class="uk-text-primary">Username</span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary">Username</span></p>
                     <p class="uk-text-small uk-margin-remove">03-21-2019, 10:49 PM</p>
                   </li>
                 </ul>
@@ -93,7 +93,7 @@
         </div>
         <div class="uk-card uk-card-forum uk-margin-small">
           <div class="uk-card-header">
-            <h3 class="uk-card-title"><i class="fas fa-users"></i> Who's Online</h3>
+            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= $this->lang->line('forum_whos_online'); ?></h3>
           </div>
           <div class="uk-card-body">
             <p class="uk-margin-remove">0 users active in the past 15 minutes (0 members, 0 of whom are invisible, and 0 guests).</p>

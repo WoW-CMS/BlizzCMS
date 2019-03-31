@@ -139,7 +139,7 @@ endif; ?>
           <div class="uk-width-1-2@s">
             <div class="uk-align-center uk-align-right@s uk-light">
               <a target="_blank" href="https://gitlab.com/WoW-CMS" class="uk-icon-button gitlab uk-margin-small-right"><i class="fab fa-gitlab"></i></a>
-              <a target="_blank" href="https://discord.gg/7QcXfJE" class="uk-icon-button discord"><i class="fab fa-discord"></i></a>
+              <a target="_blank" href="https://discord.gg/vZG9vpS" class="uk-icon-button discord"><i class="fab fa-discord"></i></a>
             </div>
           </div>
         </div>

@@ -56,7 +56,7 @@
                 <div class="uk-card uk-card-default uk-card-body card-status">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-expand">
-                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><i class="fas fa-server"></i> Realm <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h5>
+                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><i class="fas fa-server"></i> <?= $this->lang->line('table_header_realm'); ?> <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h5>
                     </div>
                     <div class="uk-width-auto">
                       <?php if ($this->m_data->realm_status($charsMultiRealm->realmID, $this->m_general->realmGetHostname($charsMultiRealm->realmID))): ?>

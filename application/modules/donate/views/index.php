@@ -44,7 +44,7 @@ endif; ?>
                     <h2 class="uk-margin-small uk-text-bold"><?= $donateList->name ?><br>
                       <sup><?= $this->config->item('currencySymbol'); ?></sup><?= $donateList->price ?>
                     </h2>
-                    <h5 class="uk-margin-small"><span uk-icon="icon: plus-circle"></span> Get <span class="uk-text-bold"><?= $donateList->points ?></span> <?= $this->lang->line('panel_dp') ?>
+                    <h5 class="uk-margin-small"><span uk-icon="icon: plus-circle"></span> <?= $this->lang->line('donate_get'); ?> <span class="uk-text-bold"><?= $donateList->points ?></span> <?= $this->lang->line('panel_dp'); ?>
                     </h5>
                     <form action="" method="post" accept-charset="utf-8">
                       <div class="uk-margin">

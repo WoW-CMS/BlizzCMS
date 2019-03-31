@@ -34,10 +34,10 @@
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
                   <div class="uk-width-expand@m">
-                    <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> Account Details</h4>
+                    <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h4>
                   </div>
                   <div class="uk-width-auto@m">
-                    <a href="<?= base_url('settings') ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> Account Settings</a>
+                    <a href="<?= base_url('settings') ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= $this->lang->line('button_account_settings'); ?></a>
                   </div>
                 </div>
               </div>
@@ -46,15 +46,15 @@
                   <table class="uk-table uk-table-small">
                     <tbody>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold">Username</span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_username'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->m_data->getUsernameID($this->session->userdata('fx_sess_id')); ?></td>
                       </tr>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold">Email</span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_email'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->m_data->getEmailID($this->session->userdata('fx_sess_id')); ?></td>
                       </tr>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold">Last IP</span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('panel_last_ip'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('fx_sess_id')); ?></td>
                       </tr>
                     </tbody>

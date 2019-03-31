@@ -97,7 +97,7 @@ endif; ?>
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changePriory"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_change'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changePriory"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                 </form>
               </dir>
@@ -113,7 +113,7 @@ endif; ?>
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changeStatus"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_change'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changeStatus"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                 </form>
               </dir>
@@ -129,7 +129,7 @@ endif; ?>
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changetypes"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_change'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changetypes"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                 </form>
               </dir>
