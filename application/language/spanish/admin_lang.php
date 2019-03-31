@@ -158,8 +158,12 @@ $lang['option_item'] = 'Artículo';
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Cuentas Creadas';
 $lang['count_accounts_banned'] = 'Cuentas Baneadas';
+$lang['count_news_created'] = 'Noticias Creadas';
+$lang['count_changelogs_created'] = 'Changelogs Creados';
 $lang['total_accounts_registered'] = 'Total cuentas registradas.';
 $lang['total_accounts_banned'] = 'Total cuentas baneadas.';
+$lang['total_news_writed'] = 'Total de noticias escritas.';
+$lang['total_changelogs_writed'] = 'Total changelogs escritos.';
 
 /*Alert Lang*/
 $lang['alert_new_page_url'] = 'La URL de la nueva página es';

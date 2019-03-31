@@ -61,6 +61,7 @@ $lang['navbar_donate_panel'] = 'Panel de Donaciones';
 $lang['button_register'] = 'Registrar';
 $lang['button_login'] = 'Iniciar sesión';
 $lang['button_logout'] = 'Cerrar sesión';
+$lang['button_forgot_password'] = '¿Olvidaste tu contraseña?';
 $lang['button_user_panel'] = 'Panel de Usuario';
 $lang['button_admin_panel'] = 'Panel de Administración';
 $lang['button_change_avatar'] = 'Cambiar Avatar';
@@ -68,7 +69,7 @@ $lang['button_add_personal_info'] = 'Añadir información personal';
 $lang['button_create_report'] = 'Crear informe';
 $lang['button_new_topic'] = 'Nuevo tema';
 $lang['button_edit_topic'] = 'Editar tema';
-$lang['button_save_changes'] = 'Cambiar';
+$lang['button_save_changes'] = 'Guardar Cambios';
 $lang['button_cancel'] = 'Cancelar';
 $lang['button_send'] = 'Enviar';
 $lang['button_buy'] = 'Comprar';
@@ -80,6 +81,7 @@ $lang['button_save'] = 'Guardar';
 $lang['button_close'] = 'Cerrar';
 $lang['button_reply'] = 'Responder';
 $lang['button_donate'] = 'Donar';
+$lang['button_account_settings'] = 'Configuraciones de la cuenta';
 
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
@@ -101,12 +103,13 @@ $lang['label_login_info'] = 'Información de registro';
 
 /*Input Placeholder Lang*/
 $lang['placeholder_username'] = 'Nombre de usuario';
-$lang['placeholder_email'] = 'Correo';
+$lang['placeholder_email'] = 'Correo electrónico';
 $lang['placeholder_password'] = 'Contraseña';
 $lang['placeholder_re_password'] = 'Repetir contraseña';
 $lang['placeholder_current_password'] = 'Contraseña actual';
 $lang['placeholder_new_password'] = 'Nueva Contraseña';
 $lang['placeholder_new_email'] = 'Nuevo correo';
+$lang['placeholder_confirm_email'] = 'Confirmar nuevo correo';
 $lang['placeholder_create_bug_report'] = 'Crear informe de error';
 $lang['placeholder_title'] = 'Título';
 $lang['placeholder_type'] = 'Tipo';
@@ -134,6 +137,7 @@ $lang['table_header_date'] = 'Fecha';
 $lang['table_header_author'] = 'Autor';
 $lang['table_header_time'] = 'Hora';
 $lang['table_header_icon'] = 'Icono';
+$lang['table_header_realm'] = 'Reino';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Guerrero';
@@ -180,8 +184,16 @@ $lang['race_highmountain_tauren'] = 'Tauren monte alto';
 $lang['race_dark_iron_dwarf'] = 'Enano Hierro Negro';
 $lang['race_maghar_orc'] = 'Orco Maghar';
 
+/*Header Lang*/
+$lang['header_cookie_message'] = 'Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web. ';
+$lang['header_cookie_button'] = '¡Lo tengo!';
+
 /*Footer Lang*/
 $lang['footer_rights'] = 'Todos los derechos reservados.';
+
+/*Page 404 Lang*/
+$lang['page_404_title'] = '404 Pagina no encontrada';
+$lang['page_404_description'] = 'Parece que la página que estás buscando no se pudo encontrar';
 
 /*User Panel Lang*/
 $lang['panel_acc_rank'] = 'Rango de cuenta';
@@ -190,6 +202,13 @@ $lang['panel_vp'] = 'Puntos de Votos';
 $lang['panel_expansion'] = 'Expansión';
 $lang['panel_member'] = 'Miembro desde';
 $lang['panel_chars_list'] = 'Lista de Personajes';
+$lang['panel_account_details'] = 'Detalles de la cuenta';
+$lang['panel_last_ip'] = 'Última IP';
+$lang['panel_change_email'] = 'Cambiar Correo electrónico';
+$lang['panel_change_password'] = 'Cambiar Contraseña';
+$lang['panel_replace_pass_by'] = 'Reemplazar contraseña por';
+$lang['panel_current_email'] = 'Dirección de correo electrónico actual';
+$lang['panel_replace_email_by'] = 'Reemplazar correo electrónico por';
 
 /*Home Lang*/
 $lang['home_latest_news'] = 'Últimas Noticias';
@@ -209,6 +228,12 @@ $lang['news_recent_list'] = 'Lista de noticias recientes';
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Reportes no encontrados';
 
+/*Donate Lang*/
+$lang['donate_get'] = 'Obtenen';
+
+/*Vote Lang*/
+$lang['vote_next_time'] = 'Siguiente voto en:';
+
 /*Forum Lang*/
 $lang['forum_post_count'] = 'publicaciones';
 $lang['forum_topic_locked'] = 'Este tema está cerrado.';
@@ -217,6 +242,9 @@ $lang['forum_comment_header'] = 'Unirse a la conversación';
 $lang['forum_not_authorized'] = 'No Autorizado';
 $lang['forum_post_history'] = 'Ver historial de temas';
 $lang['forum_topic_list'] = 'Lista Temas';
+$lang['forum_last_activity'] = 'Última actividad';
+$lang['forum_last_post_by'] = 'Último mensaje por';
+$lang['forum_whos_online'] = 'Quién está en línea';
 
 /*Store Lang*/
 $lang['store_cart_description'] = 'Comprar artículo';
@@ -226,10 +254,10 @@ $lang['store_item_price'] = 'Precio';
 $lang['store_all_categories'] = 'Todas las Categorías';
 $lang['store_select_categories'] = 'Selecciona una Categoría';
 
-/*Email Lang*/
-$lang['email_password_recovery'] = 'Recuperación de contraseña';
-$lang['email_account_activation'] = 'Activación de cuenta';
-
 /*Soap Lang*/
 $lang['store_senditem_subject'] = 'Compra online';
 $lang['store_senditem_text'] = 'Gracias por hacer la transacción, aquí está tu compra';
+
+/*Email Lang*/
+$lang['email_password_recovery'] = 'Recuperación de contraseña';
+$lang['email_account_activation'] = 'Activación de cuenta';

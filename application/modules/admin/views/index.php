@@ -24,20 +24,20 @@
             <div>
               <div class="uk-card uk-card-secondary">
                 <div class="uk-card-body uk-text-center">
-                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">News Created</h5>
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('count_news_created'); ?></h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
                   <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-newspaper"></i></span><span class="counter uk-text-warning" data-count="<?= $this->admin_model->getNewsCreated(); ?>">0</span></h1>
-                  <p class="uk-text-small uk-margin-remove">Total news writed</p>
+                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_news_writed'); ?></p>
                 </div>
               </div>
             </div>
             <div>
               <div class="uk-card uk-card-secondary">
                 <div class="uk-card-body uk-text-center">
-                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Changelogs Created</h5>
+                  <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('count_changelogs_created'); ?></h5>
                   <hr class="uk-hr uk-margin-small-top uk-margin-remove-bottom">
                   <h1 class="uk-h1 uk-margin-small"><span class="uk-margin-small-right"><i class="fas fa-scroll"></i></span><span class="counter uk-text-primary" data-count="<?= $this->admin_model->getChangelogsCreated(); ?>">0</span></h1>
-                  <p class="uk-text-small uk-margin-remove">Total changelogs writed</p>
+                  <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('total_changelogs_writed'); ?></p>
                 </div>
               </div>
             </div>
