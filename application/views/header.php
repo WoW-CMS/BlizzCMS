@@ -20,17 +20,17 @@
     window.cookieconsent.initialise({
       "palette": {
         "popup": {
-          "background": "#002650"
+          "background": "#001b3c"
         },
         "button": {
           "background": "#0e86ca"
         }
       },
-      "theme": "edgeless",
+      "theme": "classic",
       "content": {
         "message": "This website uses cookies to ensure you get the best experience on our website. ",
         "dismiss": "Got it!",
-        "link": "Learn more",
+        "link": "Read more",
         "href": "<?= base_url('cookies'); ?>"
       }
     })});
