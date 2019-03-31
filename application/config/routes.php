@@ -53,7 +53,7 @@ $lang = '^(en|es|bl|fr|de|ru)';
 
 
 $route['default_controller'] = 'home';
-$route['404_override'] = '';
+$route['404_override'] = 'general/error404';
 $route['translate_uri_dashes'] = FALSE;
 
 /*

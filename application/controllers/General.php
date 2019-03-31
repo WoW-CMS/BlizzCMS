@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * BlizzCMS
  *
@@ -35,23 +36,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @filesource
  */
 
-/*Navigation Menu*/
-$lang['nav_news'] = 'News';
-$lang['nav_forum'] = 'Forum';
-$lang['nav_store'] = 'Store';
-$lang['nav_faq'] = 'FAQ';
-$lang['nav_bugtracker'] = 'Bugtracker';
-$lang['nav_changelogs'] = 'Changelogs';
-$lang['nav_pvp_statistics'] = 'PvP Statistics';
-$lang['nav_arena_statistics'] = 'Arena Statistics';
+class General extends CI_Controller {
 
-$lang['nav_login'] = 'Login';
-$lang['nav_register'] = 'Register';
-$lang['nav_home'] = 'Home';
-$lang['nav_donate'] = 'Donate';
-$lang['nav_vote'] = 'Vote';
-$lang['nav_cart'] = 'Cart';
+    public function error404()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('nav_error'),
+        );
 
-$lang['nav_account'] = 'My Account';
-$lang['nav_error'] = 'Error 404';
-$lang['nav_reset'] = 'Password Recovery';
+        $this->load->view('header', $data);
+        $this->load->view('404');
+        $this->load->view('footer');
+    }
+}
