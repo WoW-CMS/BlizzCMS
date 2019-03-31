@@ -161,6 +161,19 @@ $lang['count_accounts_banned'] = 'Cuentas Baneadas';
 $lang['total_accounts_registered'] = 'Total cuentas registradas.';
 $lang['total_accounts_banned'] = 'Total cuentas baneadas.';
 
-/*Info Lang*/
+/*Alert Lang*/
 $lang['alert_new_page_url'] = 'La URL de la nueva página es';
 $lang['alert_banned_reason'] = 'Está baneado, razón:';
+
+/*Logs Lang*/
+$lang['log_new_level'] = 'Recibe un nuevo nivel';
+$lang['log_old_level'] = 'Antes era';
+$lang['log_new_name'] = 'Tiene un nuevo nombre';
+$lang['log_old_name'] = 'Antes era';
+$lang['log_unbanned'] = 'Unbanned';
+$lang['log_customization'] = 'Obtener una personalización';
+$lang['log_change_race'] = 'Obtener cambio de Raza';
+$lang['log_change_faction'] = 'Obtener cambio de Facción';
+$lang['log_banned'] = 'Fué Baneado';
+$lang['log_gm_assigned'] = 'Recibido rango de GM';
+$lang['log_gm_removed'] = 'El rango de GM fué eliminado';

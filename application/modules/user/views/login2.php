@@ -7,12 +7,12 @@
         <?php if($this->session->flashdata('account_activation') == 'true'): ?>
         <div class="uk-alert-success" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          <p><i class="far fa-check-circle"></i> <span class="uk-text-bold"><?= $this->lang->line('activate_valid_key'); ?></span>. <?= $this->lang->line('activate_valid_key_desc'); ?></p>
+          <p><i class="far fa-check-circle"></i> <span class="uk-text-bold"><?= $this->lang->line('notification_valid_key'); ?></span>. <?= $this->lang->line('notification_valid_key_desc'); ?></p>
         </div>
         <?php elseif($this->session->flashdata('account_activation') == 'false'): ?>
         <div class="uk-alert-danger" uk-alert>
           <a class="uk-alert-close" uk-close></a>
-          <p><i class="far fa-times-circle"></i> <?= $this->lang->line('activate_invalid_key'); ?></p>
+          <p><i class="far fa-times-circle"></i> <?= $this->lang->line('notification_invalid_key'); ?></p>
         </div>
         <?php endif; ?>
         <?= form_open('', 'id="loginForm" onsubmit="LoginForm(event)"'); ?>
@@ -63,8 +63,8 @@
             $.amaran({
               'theme': 'awesome error',
               'content': {
-                title: '<?= $this->lang->line('notify_title_error'); ?>',
-                message: '<?= $this->lang->line('captcha_error'); ?>',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                message: '<?= $this->lang->line('notification_captcha_error'); ?>',
                 info: '',
                 icon: 'fas fa-shield-alt'
               },
@@ -83,8 +83,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notify_title_error'); ?>',
-              message: '<?= $this->lang->line('notify_email_empty'); ?>',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_email_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -99,8 +99,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notify_title_error'); ?>',
-              message: '<?= $this->lang->line('notify_password_empty'); ?>',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_password_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -120,8 +120,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notify_title_info'); ?>',
-                message: '<?= $this->lang->line('notify_checking'); ?>',
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -139,8 +139,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('notify_email_error'); ?>',
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_email_error'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -157,8 +157,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notify_title_success'); ?>',
-                  message: '<?= $this->lang->line('notify_redirection'); ?>',
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_redirection'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

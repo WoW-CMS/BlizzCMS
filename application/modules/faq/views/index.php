@@ -30,7 +30,7 @@
         </ul>
         <?php else: ?>
         <div class="uk-alert-warning" uk-alert>
-          <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('faq_not_found'); ?></p>
+          <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('alert_faq_not_found'); ?></p>
         </div>
         <?php endif; ?>
       </div>

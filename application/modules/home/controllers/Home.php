@@ -79,8 +79,6 @@ class Home extends MX_Controller {
                 'home_latest_news' => $this->lang->line('home_latest_news'),
                 'button_read_more' => $this->lang->line('button_read_more'),
                 'home_server_status' => $this->lang->line('home_server_status'),
-                'users_on' => $this->lang->line('users_on'),
-                'button_buy' => $this->lang->line('button_buy'),
                 //configs
                 'conf_realmlist' => $this->config->item('realmlist'),
                 'conf_discordurl' => $this->config->item('discordUrl'),

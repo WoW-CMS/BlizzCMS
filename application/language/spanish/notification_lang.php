@@ -35,63 +35,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @filesource
  */
 
-/*Soap Lang*/
-$lang['store_senditem_subject'] = 'Compra online';
-$lang['store_senditem_text'] = 'Gracias por hacer la transacción, aquí está tu compra';
+/*Notification Title Lang*/
+$lang['notification_title_success'] = 'Éxito';
+$lang['notification_title_warning'] = 'Advertencia';
+$lang['notification_title_error'] = 'Error';
+$lang['notification_title_info'] = 'Información';
 
-/*Error Lang*/
-$lang['captcha_error'] = 'Revisa el captcha';
+/*Notification Message (Login/Register) Lang*/
+$lang['notification_username_empty'] = 'El nombre de usuario está vacío';
+$lang['notification_email_empty'] = 'El correo electrónico está vacío';
+$lang['notification_password_empty'] = 'La contraseña esta vacia';
+$lang['notification_user_error'] = 'El nombre de usuario o contraseña son incorrectos. Inténtalo de nuevo!';
+$lang['notification_email_error'] = 'El correo electrónico o la contraseña es incorrecta. Inténtalo de nuevo!';
+$lang['notification_check_email'] = 'El nombre de usuario o correo electrónico es incorrecto. Inténtalo de nuevo!';
+$lang['notification_checking'] = 'Comprobación...';
+$lang['notification_redirection'] = 'Conectándose a su cuenta...';
+$lang['notification_new_account'] = 'Nueva cuenta creada. redirigiendo al inicio de sesión...';
+$lang['notification_email_sent'] = 'Email enviado. Por favor revise su correo electrónico...';
+$lang['notification_account_activation'] = 'Email enviado. Por favor revise su correo electrónico para activar su cuenta.';
+$lang['notification_captcha_error'] = 'Por favor revise el captcha';
+$lang['notification_password_lenght_error'] = 'Longitud de contraseña incorrecta. Por favor, use una contraseña entre 5 y 16 caracteres';
+$lang['notification_account_already_exist'] = 'Esta cuenta ya existe';
+$lang['notification_password_not_match'] = 'Las contraseñas no coinciden';
+$lang['notification_same_password'] = 'La contraseña es la misma.';
+$lang['notification_currentpass_not_match'] = 'La contraseña actual no es correcta';
+$lang['notification_used_email'] = 'El Correo ya está en uso';
+$lang['notification_email_not_match'] = 'Los correos electrónicos no coinciden';
+$lang['notification_expansion_not_found'] = 'Expansión no encontrada';
+$lang['notification_valid_key'] = 'Cuenta activada';
+$lang['notification_valid_key_desc'] = 'Ahora puedes iniciar sesión con tu cuenta.';
+$lang['notification_invalid_key'] = 'La clave de activación proporcionada no es válida.';
 
-/*Message Lang*/
-$lang['store_success'] = 'Artículo comprado con éxito.';
-$lang['account_already_exist'] = 'Esta cuenta ya existe';
-$lang['password_not_match'] = 'Las contraseñas no coinciden';
-$lang['password_same'] = 'La contraseña es la misma.';
-$lang['opassword_not_match'] = 'La contraseña antigua no es correcta';
-$lang['email_used'] = 'El Correo ya está en uso';
-$lang['expansion_not_found'] = 'Expansión no encontrada.';
-$lang['image_upload_error'] = 'Tu imagen debe estar en formato .jpg';
-$lang['changelog_not_found'] = 'El servidor no tiene registros de cambios para informar en este momento';
-$lang['faq_not_found'] = 'El servidor no tiene preguntas frecuentes para mostrar';
-
-$lang['char_newlevel'] = 'Recibe un nuevo nivel';
-$lang['char_oldlevel'] = 'Antes era';
-$lang['char_newname'] = 'Tiene un nuevo nombre';
-$lang['char_oldname'] = 'Antes era';
-$lang['unbanned'] = 'Unbanned';
-$lang['char_customAction'] = 'Obtener una personalización';
-$lang['char_chanraceAction'] = 'Obtener cambio de Raza';
-$lang['char_chanfactAction'] = 'Obtener cambio de Facción';
-$lang['was_ban'] = 'Fué Baneado';
-$lang['receive_gmAnno'] = 'Recibido rango de GM';
-$lang['remove_gmAnnotation'] = 'El rango de GM fué eliminado';
-$lang['points_insuff'] = 'Puntos insuficientes';
-$lang['users_on'] = 'Usuarios Online';
-$lang['realm_notification'] = 'Actualmente el reino esta';
-$lang['offline'] = 'Offline';
-$lang['online'] = 'Online';
-
-/*Notify Title Lang*/
-$lang['notify_title_success'] = 'Éxito!';
-$lang['notify_title_warning'] = 'Advertencia!';
-$lang['notify_title_error'] = 'Error!';
-
-/*Notify Message Lang*/
-$lang['notify_donation_added'] = 'Donación agregada';
-$lang['notify_donation_deleted'] = 'Donación eliminada';
-$lang['notify_donation_updated'] = 'Donación actualizada';
-$lang['notify_name_empty'] = 'El nombre esta vacio';
-$lang['notify_points_empty'] = 'Puntos esta vacio';
-$lang['notify_tax_empty'] = 'El impuesto esta vacio';
-$lang['notify_price_empty'] = 'El precio esta vacio';
-$lang['notify_incorrect_update'] = 'Actualización inesperada';
-$lang['notify_news_deleted'] = 'Noticias eliminadas';
-$lang['notify_news_updated'] = 'Noticias actualizadas';
-$lang['notify_title_empty'] = 'El título está vacío';
-$lang['notify_description_empty'] = 'La descripción está vacía';
-$lang['notify_category_added'] = 'Categoría añadida';
-$lang['notify_category_deleted'] = 'Categoría eliminada';
-$lang['notify_category_updated'] = 'Categoría actualizada';
-$lang['notify_username_empty'] = 'El nombre de usuario está vacío';
-$lang['notify_password_empty'] = 'La contraseña esta vacia';
-$lang['notify_connecting'] = 'Conectando...!';
+/*Notification Message (Admin) Lang*/
+$lang['notification_donation_added'] = 'Donación agregada';
+$lang['notification_donation_deleted'] = 'Donación eliminada';
+$lang['notification_donation_updated'] = 'Donación actualizada';
+$lang['notification_name_empty'] = 'El nombre esta vacio';
+$lang['notification_points_empty'] = 'Puntos esta vacio';
+$lang['notification_tax_empty'] = 'El impuesto esta vacio';
+$lang['notification_price_empty'] = 'El precio esta vacio';
+$lang['notification_incorrect_update'] = 'Actualización inesperada';
+$lang['notification_news_deleted'] = 'Noticias eliminadas';
+$lang['notification_news_updated'] = 'Noticias actualizadas';
+$lang['notification_title_empty'] = 'El título está vacío';
+$lang['notification_description_empty'] = 'La descripción está vacía';
+$lang['notification_category_added'] = 'Categoría añadida';
+$lang['notification_category_deleted'] = 'Categoría eliminada';
+$lang['notification_category_updated'] = 'Categoría actualizada';

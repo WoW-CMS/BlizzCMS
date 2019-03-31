@@ -35,78 +35,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @filesource
  */
 
-/*Soap Lang*/
-$lang['store_senditem_subject'] = 'Purchase online';
-$lang['store_senditem_text'] = 'Thank you for making your purchase, here is your purchase';
+/*Notification Title Lang*/
+$lang['notification_title_success'] = 'Success';
+$lang['notification_title_warning'] = 'Warning';
+$lang['notification_title_error'] = 'Error';
+$lang['notification_title_info'] = 'Information';
 
-/*Error Lang*/
-$lang['captcha_error'] = 'Please check the captcha';
-$lang['password_lenght_error'] = 'Wrong password length. please use a password between 5 and 16 characters';
+/*Notification Message (Login/Register) Lang*/
+$lang['notification_username_empty'] = 'Username is empty';
+$lang['notification_email_empty'] = 'Email is empty';
+$lang['notification_password_empty'] = 'Password is empty';
+$lang['notification_user_error'] = 'The username or password is incorrect. please try again!';
+$lang['notification_email_error'] = 'The email or password is incorrect. please try again!';
+$lang['notification_check_email'] = 'The username or email is incorrect. please try again!';
+$lang['notification_checking'] = 'Checking...';
+$lang['notification_redirection'] = 'Connecting to your account...';
+$lang['notification_new_account'] = 'New account created. redirecting to login...';
+$lang['notification_email_sent'] = 'Email sent. please check your email...';
+$lang['notification_account_activation'] = 'Email sent. please check your email for activate your account.';
+$lang['notification_captcha_error'] = 'Please check the captcha';
+$lang['notification_password_lenght_error'] = 'Wrong password length. please use a password between 5 and 16 characters';
+$lang['notification_account_already_exist'] = 'This account already exists';
+$lang['notification_password_not_match'] = 'Passwords do not match';
+$lang['notification_same_password'] = 'The password is the same.';
+$lang['notification_currentpass_not_match'] = 'Old Password do not match';
+$lang['notification_used_email'] = 'Email in use';
+$lang['notification_email_not_match'] = 'Email do not match';
+$lang['notification_expansion_not_found'] = 'Expansion not found';
+$lang['notification_valid_key'] = 'Account Activated';
+$lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';
+$lang['notification_invalid_key'] = 'The activation key provided is not valid.';
 
-/*Message Lang*/
-$lang['store_success'] = 'Item purchased successfully.';
-$lang['account_already_exist'] = 'This account already exists';
-$lang['password_not_match'] = 'Passwords do not match';
-$lang['password_same'] = 'The password is the same.';
-$lang['opassword_not_match'] = 'Old Password do not match';
-$lang['email_used'] = 'Email in use';
-$lang['email_not_match'] = 'Email do not match';
-$lang['expansion_not_found'] = 'Expansion not found.';
-$lang['image_upload_error'] = 'Your image must be in jpg or png format';
-$lang['changelog_not_found'] = 'The server does not have changelogs to inform at this time';
-$lang['faq_not_found'] = 'The server does not have frequently asked questions to show';
-$lang['activate_valid_key'] = 'Account Activated';
-$lang['activate_valid_key_desc'] = 'Now you can sign in with your account.';
-$lang['activate_invalid_key'] = 'The activation key provided is not valid.';
-
-$lang['char_newlevel'] = 'Receive a new level';
-$lang['char_oldlevel'] = 'Before it was';
-$lang['char_newname'] = 'It has a new name';
-$lang['char_oldname'] = 'Before it was';
-$lang['unbanned'] = 'Unbanned';
-$lang['char_customAction'] = 'Get a customization';
-$lang['char_chanraceAction'] = 'Get a Race Change';
-$lang['char_chanfactAction'] = 'Get a Faction Change';
-$lang['was_ban'] = 'Was banned';
-$lang['receive_gmAnno'] = 'Received GM rank';
-$lang['remove_gmAnnotation'] = 'The GM rank was removed';
-$lang['points_insuff'] = 'Insufficient points';
-$lang['users_on'] = 'Users Online';
-$lang['realm_notification'] = 'Currently the realm is';
-$lang['offline'] = 'Offline';
-$lang['online'] = 'Online';
-
-/*Notify Title Lang*/
-$lang['notify_title_success'] = 'Success';
-$lang['notify_title_warning'] = 'Warning';
-$lang['notify_title_error'] = 'Error';
-$lang['notify_title_info'] = 'Info';
-
-/*Notify Message Lang*/
-$lang['notify_donation_added'] = 'Added donation';
-$lang['notify_donation_deleted'] = 'Deleted donation';
-$lang['notify_donation_updated'] = 'Updated donation';
-$lang['notify_name_empty'] = 'Name is empty';
-$lang['notify_points_empty'] = 'Points is empty';
-$lang['notify_tax_empty'] = 'Tax is empty';
-$lang['notify_price_empty'] = 'Price is empty';
-$lang['notify_incorrect_update'] = 'Unexpected update';
-$lang['notify_news_deleted'] = 'News deleted';
-$lang['notify_news_updated'] = 'News updated';
-$lang['notify_title_empty'] = 'Title is Empty';
-$lang['notify_description_empty'] = 'Description is Empty';
-$lang['notify_category_added'] = 'Category added';
-$lang['notify_category_deleted'] = 'Category deleted';
-$lang['notify_category_updated'] = 'Category updated';
-$lang['notify_username_empty'] = 'Username is empty';
-$lang['notify_email_empty'] = 'Email is empty';
-$lang['notify_password_empty'] = 'Password is empty';
-
-$lang['notify_user_error'] = 'The username or password is incorrect. please try again!';
-$lang['notify_email_error'] = 'The email or password is incorrect. please try again!';
-$lang['notify_check_email'] = 'The username or email is incorrect. please try again!';
-$lang['notify_checking'] = 'Checking...';
-$lang['notify_redirection'] = 'Connecting to your account...';
-$lang['notify_new_account'] = 'New account created. redirecting to login...';
-$lang['notify_email_sent'] = 'Email sent. please check your email...';
-$lang['notify_account_activation'] = 'Email sent. please check your email for activate your account.';
+/*Notification Message (Admin) Lang*/
+$lang['notification_donation_added'] = 'Added donation';
+$lang['notification_donation_deleted'] = 'Deleted donation';
+$lang['notification_donation_updated'] = 'Updated donation';
+$lang['notification_name_empty'] = 'Name is empty';
+$lang['notification_points_empty'] = 'Points is empty';
+$lang['notification_tax_empty'] = 'Tax is empty';
+$lang['notification_price_empty'] = 'Price is empty';
+$lang['notification_incorrect_update'] = 'Unexpected update';
+$lang['notification_news_deleted'] = 'News deleted';
+$lang['notification_news_updated'] = 'News updated';
+$lang['notification_title_empty'] = 'Title is Empty';
+$lang['notification_description_empty'] = 'Description is Empty';
+$lang['notification_category_added'] = 'Category added';
+$lang['notification_category_deleted'] = 'Category deleted';
+$lang['notification_category_updated'] = 'Category updated';

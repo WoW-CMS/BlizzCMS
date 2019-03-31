@@ -32,7 +32,7 @@
             <?php if(isset($_GET['complete'])): ?>
             <div class="uk-alert-success" uk-alert>
               <a class="uk-alert-close" uk-close></a>
-              <p><i class="far fa-check-circle"></i> <?=$this->lang->line('store_success');?></p>
+              <p><i class="far fa-check-circle"></i> <?=$this->lang->line('alert_successful_purchase');?></p>
             </div>
             <?php endif; ?>
             <div class="uk-margin-remove-top uk-margin-small-bottom">

@@ -44,8 +44,8 @@
             $.amaran({
               'theme': 'awesome error',
               'content': {
-                title: '<?= $this->lang->line('notify_title_error'); ?>',
-                message: '<?= $this->lang->line('captcha_error'); ?>',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                message: '<?= $this->lang->line('notification_captcha_error'); ?>',
                 info: '',
                 icon: 'fas fa-shield-alt'
               },
@@ -64,8 +64,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notify_title_error'); ?>',
-              message: '<?= $this->lang->line('notify_username_empty'); ?>',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_username_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -80,8 +80,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notify_title_error'); ?>',
-              message: '<?= $this->lang->line('notify_email_empty'); ?>',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_email_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -101,8 +101,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notify_title_info'); ?>',
-                message: '<?= $this->lang->line('notify_checking'); ?>',
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -120,8 +120,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('notify_check_email'); ?>',
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_check_email'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -138,8 +138,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_success'); ?>',
-                  message: '<?= $this->lang->line('notify_email_sent'); ?>',
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_email_sent'); ?>',
                   info: '',
                   icon: 'fas fa-envelope'
                 },

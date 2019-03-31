@@ -81,8 +81,16 @@ $lang['button_close'] = 'Close';
 $lang['button_reply'] = 'Reply';
 $lang['button_donate'] = 'Donate';
 
-/*Footer Lang*/
-$lang['footer_rights'] = 'All rights reserved.';
+/*Alert Lang*/
+$lang['alert_successful_purchase'] = 'Item purchased successfully.';
+$lang['alert_upload_error'] = 'Your image must be in jpg or png format';
+$lang['alert_changelog_not_found'] = 'The server does not have changelogs to inform at this time';
+$lang['alert_faq_not_found'] = 'The server does not have frequently asked questions to show';
+$lang['alert_points_insufficient'] = 'Insufficient points';
+
+/*Status Lang*/
+$lang['offline'] = 'Offline';
+$lang['online'] = 'Online';
 
 /*Label Lang*/
 $lang['label_open'] = 'Open';
@@ -172,6 +180,9 @@ $lang['race_highmountain_tauren'] = 'Highmountain Tauren';
 $lang['race_dark_iron_dwarf'] = 'Dark Iron Dwarf';
 $lang['race_maghar_orc'] = 'Maghar Orc';
 
+/*Footer Lang*/
+$lang['footer_rights'] = 'All rights reserved.';
+
 /*User Panel Lang*/
 $lang['panel_acc_rank'] = 'Account Rank';
 $lang['panel_dp'] = 'Donor Points';
@@ -181,9 +192,10 @@ $lang['panel_member'] = 'Member since';
 $lang['panel_chars_list'] = 'Characters List';
 
 /*Home Lang*/
-$lang['home_server_status'] = 'Server Status';
 $lang['home_latest_news'] = 'Latest News';
 $lang['home_discord'] = 'Discord';
+$lang['home_server_status'] = 'Server Status';
+$lang['home_realm_info'] = 'Currently the realm is';
 
 /*PvP Statistics Lang*/
 $lang['statistics_top_20'] = 'TOP 20';
@@ -213,6 +225,10 @@ $lang['store_select_character'] = 'Select Character';
 $lang['store_item_price'] = 'Price';
 $lang['store_all_categories'] = 'All Categories';
 $lang['store_select_categories'] = 'Select an Category';
+
+/*Soap Lang*/
+$lang['store_senditem_subject'] = 'Purchase online';
+$lang['store_senditem_text'] = 'Thank you for making your purchase, here is your purchase';
 
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Password Recovery';

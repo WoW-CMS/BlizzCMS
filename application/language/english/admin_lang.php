@@ -161,6 +161,19 @@ $lang['count_accounts_banned'] = 'Banned accounts';
 $lang['total_accounts_registered'] = 'Total accounts registered.';
 $lang['total_accounts_banned'] = 'Total accounts banned.';
 
-/*Info Lang*/
+/*Alert Lang*/
 $lang['alert_new_page_url'] = 'Your new Page URL is';
 $lang['alert_banned_reason'] = 'Is banned, reason:';
+
+/*Logs Lang*/
+$lang['log_new_level'] = 'Receive a new level';
+$lang['log_old_level'] = 'Before it was';
+$lang['log_new_name'] = 'It has a new name';
+$lang['log_old_name'] = 'Before it was';
+$lang['log_unbanned'] = 'Unbanned';
+$lang['log_customization'] = 'Get a customization';
+$lang['log_change_race'] = 'Get a Race Change';
+$lang['log_change_faction'] = 'Get a Faction Change';
+$lang['log_banned'] = 'Was banned';
+$lang['log_gm_assigned'] = 'Received GM rank';
+$lang['log_gm_removed'] = 'The GM rank was removed';

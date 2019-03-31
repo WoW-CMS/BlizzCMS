@@ -563,7 +563,7 @@ class Admin_model extends CI_Model {
         $idsession  = $this->session->userdata('fx_sess_id');
 
         if (empty($reason))
-            $reason = $this->lang->line('was_ban');
+            $reason = $this->lang->line('log_banned');
 
         $data2 = array(
             'guid' => $id,
@@ -595,7 +595,7 @@ class Admin_model extends CI_Model {
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
         $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_customAction');
+        $annotation = $this->lang->line('log_customization');
 
         $data = array(
             'idchar' => $id,
@@ -752,7 +752,7 @@ class Admin_model extends CI_Model {
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
         $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_chanfactAction');
+        $annotation = $this->lang->line('log_change_faction');
 
         $data = array(
                 'idchar' => $id,
@@ -777,7 +777,7 @@ class Admin_model extends CI_Model {
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
         $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_chanraceAction');
+        $annotation = $this->lang->line('log_change_race');
 
         $data = array(
                'idchar' => $id,
@@ -803,7 +803,7 @@ class Admin_model extends CI_Model {
                 ->delete('character_banned');
 
         $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('unbanned');
+        $annotation = $this->lang->line('log_unbanned');
 
         $data = array(
                 'idchar' => $id,
@@ -826,7 +826,7 @@ class Admin_model extends CI_Model {
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?name','refresh');
 
         $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_newname').' -> '.$name.' | '.$this->lang->line('char_oldname').' -> '.$this->m_characters->getCharName($id, $multirealm);
+        $annotation = $this->lang->line('log_new_name').' -> '.$name.' | '.$this->lang->line('log_old_name').' -> '.$this->m_characters->getCharName($id, $multirealm);
 
         $data = array(
                 'idchar' => $id,
@@ -851,7 +851,7 @@ class Admin_model extends CI_Model {
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
 
         $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('char_newlevel').' -> '.$level.' | '.$this->lang->line('char_oldlevel').' -> '.$this->m_characters->getCharLevel($id, $multirealm);
+        $annotation = $this->lang->line('log_new_level').' -> '.$level.' | '.$this->lang->line('log_old_level').' -> '.$this->m_characters->getCharLevel($id, $multirealm);
 
         $data = array(
                 'idchar' => $id,
@@ -890,7 +890,7 @@ class Admin_model extends CI_Model {
         $this->auth->insert('account_access', $data);
 
         $date   = $this->m_data->getTimestamp();
-        $reason = $this->lang->line('receive_gmAnno');
+        $reason = $this->lang->line('log_gm_assigned');
 
         $data = array(
                 'iduser' => $id,
@@ -915,7 +915,7 @@ class Admin_model extends CI_Model {
         $date = $this->m_data->getTimestamp();
 
         if (empty($reason))
-            $reason = $this->lang->line('unbanned');
+            $reason = $this->lang->line('log_unbanned');
 
         $data = array(
                 'iduser' => $id,
@@ -941,7 +941,7 @@ class Admin_model extends CI_Model {
                 ->delete('account_access');
 
         $date   = $this->m_data->getTimestamp();
-        $reason = $this->lang->line('remove_gmAnnotation');
+        $reason = $this->lang->line('log_gm_removed');
 
         $data = array(
                 'iduser' => $id,
@@ -960,7 +960,7 @@ class Admin_model extends CI_Model {
         $id   = $this->session->userdata('fx_sess_id');
 
         if (empty($reason))
-            $reason = $this->lang->line('was_ban');
+            $reason = $this->lang->line('log_banned');
 
         $data1 = array(
                 'iduser' => $iduser,

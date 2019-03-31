@@ -102,7 +102,7 @@ endif; ?>
                         <?php if ($qqs >= $this->store_model->getPriceType($idlink, $_GET['tp'])): ?>
                         <button type="submit" name="buyNowGetItem" class="uk-button uk-button-default uk-width-3-4 uk-button-small" title="<?= $this->lang->line('button_buy'); ?>"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('button_buy'); ?></button>
                         <?php else: ?>
-                        <div class="uk-alert-warning" uk-alert><p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('points_insuff');?></p></div>
+                        <div class="uk-alert-warning" uk-alert><p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('alert_points_insufficient');?></p></div>
                         <?php endif; ?>
                       </td>
                     </tr>

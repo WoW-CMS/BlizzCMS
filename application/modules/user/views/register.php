@@ -62,8 +62,8 @@
             $.amaran({
               'theme': 'awesome error',
               'content': {
-                title: '<?= $this->lang->line('notify_title_error'); ?>',
-                message: '<?= $this->lang->line('captcha_error'); ?>',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                message: '<?= $this->lang->line('notification_captcha_error'); ?>',
                 info: '',
                 icon: 'fas fa-shield-alt'
               },
@@ -85,8 +85,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notify_title_error'); ?>',
-              message: '<?= $this->lang->line('notify_username_empty'); ?>',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_username_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -102,8 +102,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notify_title_error'); ?>',
-              message: '<?= $this->lang->line('notify_password_empty'); ?>',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_password_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -124,8 +124,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notify_title_info'); ?>',
-                message: '<?= $this->lang->line('notify_checking'); ?>',
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -143,8 +143,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('account_already_exist'); ?>',
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_account_already_exist'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -161,8 +161,8 @@
                 $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('email_used'); ?>',
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_used_email'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -179,8 +179,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('password_lenght_error'); ?>',
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_password_lenght_error'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -197,8 +197,8 @@
                 $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_error'); ?>',
-                  message: '<?= $this->lang->line('password_not_match'); ?>',
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_password_not_match'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -215,8 +215,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_success'); ?>',
-                  message: '<?= $this->lang->line('notify_account_activation'); ?>',
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_account_activation'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -233,8 +233,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_success'); ?>',
-                  message: '<?= $this->lang->line('notify_new_account'); ?>',
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_new_account'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

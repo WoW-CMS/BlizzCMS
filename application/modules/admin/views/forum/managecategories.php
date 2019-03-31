@@ -41,8 +41,8 @@
                 $.amaran({
                   'theme': 'awesome ok',
                   'content': {
-                    title: '<?= $this->lang->line('notify_title_success'); ?>',
-                    message: '<?= $this->lang->line('notify_category_updated'); ?>',
+                    title: '<?= $this->lang->line('notification_title_success'); ?>',
+                    message: '<?= $this->lang->line('notification_category_updated'); ?>',
                     info: '',
                     icon: 'fas fa-check-circle'
                   },
@@ -64,8 +64,8 @@
               $.amaran({
                 'theme': 'awesome warning',
                 'content': {
-                  title: '<?= $this->lang->line('notify_title_warning'); ?>',
-                  message: '<?= $this->lang->line('notify_title_empty'); ?>',
+                  title: '<?= $this->lang->line('notification_title_warning'); ?>',
+                  message: '<?= $this->lang->line('notification_title_empty'); ?>',
                   info: '',
                   icon: 'fas fa-exclamation-circle',
                 },
@@ -84,8 +84,8 @@
                 $.amaran({
                   'theme': 'awesome ok',
                   'content': {
-                    title: '<?= $this->lang->line('notify_title_success'); ?>',
-                    message: '<?= $this->lang->line('notify_category_added'); ?>',
+                    title: '<?= $this->lang->line('notification_title_success'); ?>',
+                    message: '<?= $this->lang->line('notification_category_added'); ?>',
                     info: '',
                     icon: 'fas fa-plus-circle'
                   },
@@ -108,8 +108,8 @@
                   $.amaran({
                     'theme': 'awesome error',
                     'content': {
-                      title: '<?= $this->lang->line('notify_title_success'); ?>',
-                      message: '<?= $this->lang->line('notify_category_deleted'); ?>',
+                      title: '<?= $this->lang->line('notification_title_success'); ?>',
+                      message: '<?= $this->lang->line('notification_category_deleted'); ?>',
                       info: '',
                       icon: 'fas fa-minus-circle'
                     },
