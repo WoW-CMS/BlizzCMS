@@ -40,8 +40,6 @@ $lang['store_senditem_subject'] = 'Purchase online';
 $lang['store_senditem_text'] = 'Thank you for making your purchase, here is your purchase';
 
 /*Error Lang*/
-$lang['account_error'] = 'Invalid account or password';
-$lang['password_error'] = 'Invalid password';
 $lang['captcha_error'] = 'Please check the captcha';
 $lang['password_lenght_error'] = 'Wrong password length. please use a password between 5 and 16 characters';
 
@@ -51,7 +49,6 @@ $lang['account_already_exist'] = 'This account already exists';
 $lang['password_not_match'] = 'Passwords do not match';
 $lang['password_same'] = 'The password is the same.';
 $lang['opassword_not_match'] = 'Old Password do not match';
-$lang['oemail_not_match'] = 'The current email is not correct';
 $lang['email_used'] = 'Email in use';
 $lang['email_not_match'] = 'Email do not match';
 $lang['expansion_not_found'] = 'Expansion not found.';
@@ -73,13 +70,7 @@ $lang['char_chanfactAction'] = 'Get a Faction Change';
 $lang['was_ban'] = 'Was banned';
 $lang['receive_gmAnno'] = 'Received GM rank';
 $lang['remove_gmAnnotation'] = 'The GM rank was removed';
-$lang['receive_addmAnnoW'] = 'Received ADM Web rank';
-$lang['remove_addmAnnoW'] = 'The ADM Web rank was removed';
-$lang['buy_frist'] = 'You must first add items to your car.';
 $lang['points_insuff'] = 'Insufficient points';
-$lang['shopping_cart'] = 'Shopping Cart';
-$lang['store_see'] = 'See the Store';
-$lang['no_players'] = 'No players Online';
 $lang['users_on'] = 'Users Online';
 $lang['realm_notification'] = 'Currently the realm is';
 $lang['offline'] = 'Offline';

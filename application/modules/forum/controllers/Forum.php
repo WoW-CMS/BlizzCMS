@@ -56,7 +56,7 @@ class Forum extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('nav_forums'),
+            'pagetitle' => $this->lang->line('nav_forum'),
         );
 
         $this->load->view('header', $data);
@@ -76,7 +76,7 @@ class Forum extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('nav_forums'),
+            'pagetitle' => $this->lang->line('nav_forum'),
             'tiny' => $tiny,
         );
 
@@ -108,7 +108,7 @@ class Forum extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('nav_forums'),
+            'pagetitle' => $this->lang->line('nav_forum'),
             'tiny' => $tiny,
         );
 

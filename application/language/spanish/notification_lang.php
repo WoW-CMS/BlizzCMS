@@ -40,8 +40,6 @@ $lang['store_senditem_subject'] = 'Compra online';
 $lang['store_senditem_text'] = 'Gracias por hacer la transacción, aquí está tu compra';
 
 /*Error Lang*/
-$lang['account_error'] = 'Cuenta o contraseña inválida';
-$lang['password_error'] = 'Contraseña invalida';
 $lang['captcha_error'] = 'Revisa el captcha';
 
 /*Message Lang*/
@@ -50,7 +48,6 @@ $lang['account_already_exist'] = 'Esta cuenta ya existe';
 $lang['password_not_match'] = 'Las contraseñas no coinciden';
 $lang['password_same'] = 'La contraseña es la misma.';
 $lang['opassword_not_match'] = 'La contraseña antigua no es correcta';
-$lang['oemail_not_match'] = 'El correo electrónico no es correcto';
 $lang['email_used'] = 'El Correo ya está en uso';
 $lang['expansion_not_found'] = 'Expansión no encontrada.';
 $lang['image_upload_error'] = 'Tu imagen debe estar en formato .jpg';
@@ -68,13 +65,7 @@ $lang['char_chanfactAction'] = 'Obtener cambio de Facción';
 $lang['was_ban'] = 'Fué Baneado';
 $lang['receive_gmAnno'] = 'Recibido rango de GM';
 $lang['remove_gmAnnotation'] = 'El rango de GM fué eliminado';
-$lang['receive_addmAnnoW'] = 'Recibido rango de ADM Web';
-$lang['remove_addmAnnoW'] = 'El rango de ADM Web fué eliminado';
-$lang['buy_frist'] = 'Primero debes introducir artículos en tu carrito.';
 $lang['points_insuff'] = 'Puntos insuficientes';
-$lang['shopping_cart'] = 'Comprar carrito';
-$lang['store_see'] = 'Ver la tienda';
-$lang['no_players'] = 'No hay jugadores online';
 $lang['users_on'] = 'Usuarios Online';
 $lang['realm_notification'] = 'Actualmente el reino esta';
 $lang['offline'] = 'Offline';

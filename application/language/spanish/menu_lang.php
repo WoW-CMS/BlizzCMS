@@ -36,10 +36,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 /*Navigation Menu*/
-$lang['nav_menu'] = 'Menú';
-$lang['nav_more'] = 'Más';
 $lang['nav_news'] = 'Noticias';
-$lang['nav_forums'] = 'Foros';
+$lang['nav_forum'] = 'Foro';
 $lang['nav_store'] = 'Tienda';
 $lang['nav_faq'] = 'Faq';
 $lang['nav_bugtracker'] = 'Bugtracker';
