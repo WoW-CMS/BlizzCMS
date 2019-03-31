@@ -36,16 +36,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 /*Button Lang*/
+$lang['button_register'] = 'Registrar';
 $lang['button_login'] = 'Iniciar sesión';
-$lang['button_account_create'] = 'Crear una cuenta';
+$lang['button_logout'] = 'Cerrar sesión';
 $lang['button_user_panel'] = 'Panel de Usuario';
 $lang['button_admin_panel'] = 'Panel de Administración';
-$lang['button_logout'] = 'Cerrar sesión';
-$lang['button_gifts'] = 'Mis regalos';
-$lang['button_register'] = 'Registrar';
 $lang['button_vote_panel'] = 'Panel de Votos';
 $lang['button_donate_panel'] = 'Panel de Donaciones';
-$lang['button_support'] = 'Soporte';
 $lang['button_change_avatar'] = 'Cambiar Avatar';
 $lang['button_add_personal_info'] = 'Añadir información personal';
 $lang['button_change_password'] = 'Cambiar contraseña';
@@ -53,7 +50,6 @@ $lang['button_change_email'] = 'Cambiar correo';
 $lang['button_create_report'] = 'Crear informe';
 $lang['button_new_topic'] = 'Nuevo tema';
 $lang['button_edit_topic'] = 'Editar tema';
-$lang['button_create_ticket'] = 'Crear Ticket';
 $lang['button_change'] = 'Cambiar';
 $lang['button_cancel'] = 'Cancelar';
 $lang['button_send'] = 'Enviar';
@@ -72,25 +68,15 @@ $lang['footer_rights'] = 'Todos los derechos reservados.';
 $lang['footer_privacy'] = 'Privacidad';
 $lang['footer_terms'] = 'Legal';
 
-/*Login Lang*/
-$lang['login_description'] = 'Disfruta de todas las opciones que tenemos para ti';
-
-/*Register Lang*/
-$lang['register_description'] = 'Rellene el siguiente formulario para registrarse con una cuenta nueva';
-
 /*Form Lang*/
 $lang['form_username'] = 'Nombre de usuario';
 $lang['form_email'] = 'Correo';
 $lang['form_password'] = 'Contraseña';
 $lang['form_re_password'] = 'Repetir contraseña';
-$lang['form_user_info'] = 'Información de Usuario';
 $lang['form_login_info'] = 'Información de registro';
-$lang['form_old_password'] = 'Contraseña antigua';
+$lang['form_old_password'] = 'Contraseña actual';
 $lang['form_new_password'] = 'Nueva Contraseña';
-$lang['form_old_email'] = 'Correo antiguo';
 $lang['form_new_email'] = 'Nuevo correo';
-$lang['form_new_message'] = 'Nuevo mensaje';
-$lang['form_message'] = 'Mensaje';
 $lang['form_create_bug_report'] = 'Crear informe de error';
 $lang['form_title'] = 'Título';
 $lang['form_type'] = 'Tipo';
@@ -123,11 +109,9 @@ $lang['option_open'] = 'Abierto';
 $lang['option_closed'] = 'Cerrado';
 
 /*User Panel Lang*/
-$lang['panel_last_login'] = 'Último login in-game';
 $lang['panel_acc_rank'] = 'Rango de cuenta';
 $lang['panel_dp'] = 'Puntos de Donación';
 $lang['panel_vp'] = 'Puntos de Votos';
-$lang['panel_location'] = 'Ubicación';
 $lang['panel_expansion'] = 'Expansión';
 $lang['panel_member'] = 'Miembro desde';
 $lang['panel_chars_list'] = 'Lista de Personajes';
@@ -135,8 +119,6 @@ $lang['panel_chars_list'] = 'Lista de Personajes';
 /*Home Lang*/
 $lang['home_server_status'] = 'Estado del Servidor';
 $lang['home_latest_news'] = 'Últimas Noticias';
-$lang['home_view_all_news'] = 'Ver todas las noticias';
-$lang['home_up_events'] = 'Próximos Eventos';
 $lang['home_discord'] = 'Discord';
 $lang['home_store_top'] = 'Mejores artículos de la tienda';
 
@@ -148,8 +130,6 @@ $lang['store_select_character'] = 'Seleccionar Personaje';
 $lang['store_item_price'] = 'Precio';
 $lang['store_all_categories'] = 'Todas las Categorías';
 $lang['store_select_categories'] = 'Selecciona una Categoría';
-$lang['store_support'] = 'Soporte de la Tienda';
-$lang['store_support_description'] = '¿Has tenido un problema con la tienda? ¡Estás en el lugar correcto!';
 
 /*PvP-Arena Lang*/
 $lang['pvp_top'] = 'TOP 20';
@@ -160,12 +140,6 @@ $lang['arena_top_5v5'] = 'TOP 5V5';
 /*News Lang*/
 $lang['news_recent_list'] = 'LISTA DE NOTICIAS RECIENTES';
 $lang['news_comment'] = 'comentario';
-$lang['news_article_subheading'] = 'Últimas noticias';
-$lang['news_article_published'] = 'Publicado por el STAFF';
-
-/*Changelogs Lang*/
-$lang['changelogs_recent_article'] = 'Cambios recientes';
-$lang['changelogs_list'] = 'Changelogs';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_list'] = 'Lista de informes';
@@ -178,7 +152,6 @@ $lang['forum_topic_locked'] = 'Este tema está cerrado.';
 $lang['forum_comment_locked'] = '¿Algo que explicar? Entra para participar.';
 $lang['forum_comment_header'] = 'Unirse a la conversación';
 $lang['forum_not_authorized'] = 'No Autorizado';
-$lang['forum_code_conduct'] = 'Código de conducta';
 $lang['forum_post_history'] = 'Ver historial de temas';
 $lang['forum_topic_list'] = 'Lista Temas';
 
