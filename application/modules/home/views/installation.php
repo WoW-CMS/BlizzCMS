@@ -134,7 +134,7 @@ endif; ?>
       <div class="uk-container">
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-2@s">
-            <h5 class="uk-h5 uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</h5>
+            <h5 class="uk-h5 uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</h5>
           </div>
           <div class="uk-width-1-2@s">
             <div class="uk-align-center uk-align-right@s uk-light">

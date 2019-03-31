@@ -39,7 +39,7 @@
         <?php endif; ?>
         <div class="uk-grid uk-grid-small">
           <div class="uk-width-1-4@m">
-            <a href="<?= base_url('recovery') ?>" class="uk-button uk-button-text"><i class="fas fa-key"></i> <?= $this->lang->line('button_forgot_password'); ?></a>
+            <a href="<?= base_url('recovery'); ?>" class="uk-button uk-button-text"><i class="fas fa-key"></i> <?= $this->lang->line('button_forgot_password'); ?></a>
           </div>
           <div class="uk-width-1-2@m"></div>
           <div class="uk-width-1-4@m">

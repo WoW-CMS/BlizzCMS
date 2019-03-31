@@ -11,7 +11,7 @@
     <script src="<?= base_url('includes/core/fontawesome/js/all.js'); ?>" defer></script>
     <link rel="stylesheet" href="<?= base_url('includes/core/css/admin.css'); ?>"/>
     <script src="<?= base_url('includes/core/js/jquery-3.3.1.min.js'); ?>"></script>
-    <link rel="stylesheet" href="<?= base_url('includes/core/amaranjs/css/amaran.min.css') ?>"/>
+    <link rel="stylesheet" href="<?= base_url('includes/core/amaranjs/css/amaran.min.css'); ?>"/>
   </head>
   <body>
     <aside class="admin-sidebar uk-visible@m">

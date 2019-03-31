@@ -6,7 +6,7 @@
         <div class="uk-margin-remove-top uk-margin-small-bottom">
           <div class="uk-grid uk-grid-small" data-uk-grid>
             <div class="uk-width-expand">
-              <h4 class="uk-h4 uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->page_model->getName($uri) ?></h4>
+              <h4 class="uk-h4 uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->page_model->getName($uri); ?></h4>
             </div>
             <div class="uk-width-auto">
               <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y', $this->page_model->getDate($uri)); ?></p>

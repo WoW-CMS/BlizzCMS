@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <?= meta_tags() ?>
+    <?= meta_tags(); ?>
     <link rel="icon" type="image/x-icon" href="<?= base_url('theme/'.$this->config->item('theme_name').'/images/favicon.ico'); ?>">
     <title><?= $this->config->item('ProjectName'); ?> | <?= $pagetitle ?></title>
     <link rel="stylesheet" href="<?= base_url('includes/core/uikit/css/uikit.min.css'); ?>"/>

@@ -23,7 +23,7 @@ endif;
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_user_manage'); ?> - <span class="uk-text-bold"><?= $this->m_data->getUsernameID($idlink) ?></span></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_user_manage'); ?> - <span class="uk-text-bold"><?= $this->m_data->getUsernameID($idlink); ?></span></h4>
                 </div>
                 <div class="uk-width-expand"></div>
               </div>
