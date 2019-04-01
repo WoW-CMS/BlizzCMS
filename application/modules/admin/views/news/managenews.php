@@ -45,7 +45,7 @@ endif; ?>
             </div>
             <div class="uk-card-body">
               <div class="uk-overflow-auto uk-margin-small">
-                <table class="uk-table uk-table-divider uk-table-small">
+                <table class="uk-table uk-table-divider uk-table-small uk-table-middle">
                   <thead>
                     <tr>
                       <th class="uk-table-expand"><?= $this->lang->line('placeholder_title'); ?></th>

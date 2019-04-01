@@ -36,10 +36,13 @@ endif; ?>
                       <td><?= $this->m_general->getRealmName($realmsID->realmID); ?></td>
                       <td><?= $realmsID->char_database; ?></td>
                       <td><?= $realmsID->console_port; ?></td>
-                      <td class="uk-text-center" uk-margin>
+                      <td>
+                        <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
+                        <a href="" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                         <form action="" method="post" accept-charset="utf-8">
                           <button class="uk-button uk-button-danger" name="button_deleteRealm" value="<?= $realmsID->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
                         </form>
+                        </div>
                       </td>
                     </tr>
                     <?php endforeach; ?>

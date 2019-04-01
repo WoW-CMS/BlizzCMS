@@ -8,7 +8,7 @@ endif; ?>
             <div class="uk-card-header">
               <div class="uk-grid uk-grid-small">
                 <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-tasks"></i></span><?= $this->lang->line('admin_nav_manage_topsites'); ?></h4>
+                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-tasks"></i></span><?= $this->lang->line('admin_nav_topsites'); ?></h4>
                 </div>
                 <div class="uk-width-expand uk-text-right">
                   <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newTopsite"><i class="fas fa-pen"></i></a>

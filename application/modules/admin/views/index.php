@@ -1,6 +1,6 @@
       <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-expand">
-          <div class="uk-grid uk-grid-collapse uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m" data-uk-grid>
+          <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m" data-uk-grid>
             <div>
               <div class="uk-card uk-card-secondary">
                 <div class="uk-card-body uk-text-center">

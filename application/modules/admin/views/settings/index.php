@@ -5,17 +5,12 @@
   $filePlus = FCPATH.'application/config/plus.php';
   $fileBugtracker = FCPATH.'application/modules/bugtracker/config/bugtracker.php';
   $fileDonate = FCPATH.'application/modules/donate/config/donate.php';
-  $fileStore = FCPATH.'application/modules/store/config/store.php';
 
 if (isset($_POST['submitConfig'])):
   $data = array(
     'filename' => $fileConfig,
-    'configURL' => str_replace(' ', '', $_POST['configURL']),
-    'actualURL' => $this->admin_model->getConfigBaseUrl($fileConfig),
     'configLang' => $_POST['configLang'],
     'actualLang' => $this->admin_model->getConfigLanguage($fileConfig),
-    'configCharSet' => str_replace(' ', '', $_POST['configCharSet']),
-    'actualCharSet' => $this->admin_model->getConfigCharSet($fileConfig),
     'configSess' => str_replace(' ', '', $_POST['configSessExpiration']),
     'actualSess' => $this->admin_model->getConfigSessExpiration($fileConfig),
   );
@@ -137,15 +132,6 @@ if (isset($_POST['submitDonate'])):
     'actualpaypalPassword' => $this->admin_model->getPaypalPassword($fileDonate),
   );
   $this->admin_model->settingDonate($datadonate);
-endif;
-
-if (isset($_POST['submitStore'])):
-  $datastore = array(
-    'filename' => $fileStore,
-    'storeType' => $_POST['storeType'],
-    'actualstoreType' => $this->admin_model->getStoreType($fileStore),
-  );
-  $this->admin_model->settingStore($datastore);
 endif; ?>
 
       <?= $tiny ?>
@@ -168,7 +154,6 @@ endif; ?>
                     <li><a href="javascript:void(0)"><i class="fas fa-user-plus"></i> Register Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fas fa-bug"></i> Bugtracker Settings</a></li>
                     <li><a href="javascript:void(0)"><i class="fab fa-paypal"></i> Donate Settings</a></li>
-                    <li><a href="javascript:void(0)"><i class="fas fa-store"></i> Store Settings</a></li>
                   </ul>
                 </div>
                 <div class="uk-width-expand@m">
@@ -179,34 +164,12 @@ endif; ?>
                         <div class="uk-margin-small">
                           <div class="uk-grid uk-grid-small" data-uk-grid>
                             <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase">Base Site URL</label>
-                              <div class="uk-form-controls">
-                                <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                                  <input class="uk-input" type="text" name="configURL" value="<?= $this->admin_model->getConfigBaseUrl($fileConfig); ?>" required>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="uk-width-1-2@s">
                               <label class="uk-form-label uk-text-uppercase">Default Language</label>
                               <div class="uk-form-controls">
                                 <select class="uk-select" name="configLang">
                                   <option value="english" <?php if($this->admin_model->getConfigLanguage($fileConfig) == 'english') echo 'selected'; ?>>English</option>
                                   <option value="spanish" <?php if($this->admin_model->getConfigLanguage($fileConfig) == 'spanish') echo 'selected'; ?>>Spanish</option>
                                 </select>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="uk-margin-small">
-                          <div class="uk-grid uk-grid-small" data-uk-grid>
-                            <div class="uk-width-1-2@s">
-                              <label class="uk-form-label uk-text-uppercase">Default Character Set</label>
-                              <div class="uk-form-controls">
-                                <div class="uk-inline uk-width-1-1">
-                                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-code"></i></span>
-                                  <input class="uk-input" type="text" name="configCharSet" value="<?= $this->admin_model->getConfigCharSet($fileConfig); ?>" required>
-                                </div>
                               </div>
                             </div>
                             <div class="uk-width-1-2@s">
@@ -609,23 +572,6 @@ endif; ?>
                         </div>
                         <div class="uk-margin">
                           <button class="uk-button uk-button-primary uk-width-1-1" name="submitDonate" type="submit"><i class="fas fa-sync"></i> Update</button>
-                        </div>
-                      </form>
-                    </li>
-                    <li>
-                      <form action="" method="post" accept-charset="utf-8">
-                        <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-margin-small"><span><span class="uk-text-primary uk-text-bold">Store</span> Settings</span></h5>
-                        <div class="uk-margin-small">
-                          <label class="uk-form-label uk-text-uppercase">Store Type</label>
-                          <div class="uk-form-controls">
-                            <select class="uk-select" name="storeType">
-                              <option value="1" <?php if($this->admin_model->getStoreType($fileStore) == '1') echo 'selected'; ?>>Store with Images</option>
-                              <option value="2" <?php if($this->admin_model->getStoreType($fileStore) == '2') echo 'selected'; ?>>Store with Icons</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="uk-margin">
-                          <button class="uk-button uk-button-primary uk-width-1-1" name="submitStore" type="submit"><i class="fas fa-sync"></i> Update</button>
                         </div>
                       </form>
                     </li>

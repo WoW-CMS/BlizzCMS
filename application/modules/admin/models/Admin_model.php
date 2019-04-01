@@ -1047,16 +1047,12 @@ class Admin_model extends CI_Model {
         $filename = $data['filename'];
 
         $Configsearch = array(
-            $data['actualURL'],
             $data['actualLang'],
-            $data['actualCharSet'],
             $data['actualSess']
         );
 
         $Configreplace = array(
-            $data['configURL'],
             $data['configLang'],
-            $data['configCharSet'],
             $data['configSess']
         );
 
@@ -1069,26 +1065,10 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/settings'),'refresh');
     }
 
-    public function getConfigBaseUrl($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[25], 22);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
     public function getConfigLanguage($filename)
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[78], 22);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getConfigCharSet($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[91], 22);
         $fileHandle = explode(";", $fileHandle);
         return str_replace("'", "", $fileHandle[0]);
     }
@@ -1517,36 +1497,6 @@ class Admin_model extends CI_Model {
     {
         $fileHandle = file($filename);
         $fileHandle = substr($fileHandle[47], 25);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    //store
-    public function settingStore($data)
-    {
-        $filename = $data['filename'];
-
-        $Configsearch = array(
-            $data['actualstoreType']
-        );
-
-        $Configreplace = array(
-            $data['storeType']
-        );
-
-        $fileConfig = file_get_contents($filename);
-        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
-        $openConfig = fopen($filename,"w");
-        fwrite($openConfig, $newConfig);
-        fclose($openConfig);
-
-        redirect(base_url('admin/settings'),'refresh');
-    }
-
-    public function getStoreType($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[14], 24);
         $fileHandle = explode(";", $fileHandle);
         return str_replace("'", "", $fileHandle[0]);
     }

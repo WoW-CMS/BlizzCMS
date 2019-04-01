@@ -50,13 +50,12 @@ $lang['admin_nav_news'] = 'Noticias';
 $lang['admin_nav_changelogs'] = 'Changelogs';
 $lang['admin_nav_pages'] = 'Páginas';
 $lang['admin_nav_faq'] = 'Preguntas Frecuentes';
+$lang['admin_nav_donations'] = 'Donaciones';
+$lang['admin_nav_topsites'] = 'Topsites';
 $lang['admin_nav_store'] = 'Tienda';
-$lang['admin_nav_points_system'] = 'Sistema de Puntos';
-$lang['admin_nav_manage_donations'] = 'Gestionar Donaciones';
-$lang['admin_nav_manage_topsites'] = 'Gestionar Topsites';
 $lang['admin_nav_manage_groups'] = 'Gestionar Grupos';
 $lang['admin_nav_manage_items'] = 'Gestionar Artículos';
-$lang['admin_nav_forums'] = 'Foros';
+$lang['admin_nav_forum'] = 'Foro';
 $lang['admin_nav_manage_categories'] = 'Gestionar categorías';
 $lang['admin_nav_manege_forums'] = 'Gestionar Foros';
 

@@ -39,9 +39,9 @@ endif; ?>
                         <?php else: ?>
                         <form action="" method="post" accept-charset="utf-8">
                           <?php if($module->status == 1): ?>
-                          <button class="uk-button uk-button-danger" name="button_disable" value="<?= $module->id ?>" type="submit"><i class="fas fa-eye-slash"></i> <?= $this->lang->line('button_disable'); ?></button>
+                          <button class="uk-button uk-button-danger" name="button_disable" value="<?= $module->id ?>" type="submit"><i class="fas fa-eye-slash"></i></button>
                           <?php else: ?>
-                          <button class="uk-button uk-button-primary" name="button_enable" value="<?= $module->id ?>" type="submit"><i class="fas fa-eye"></i> <?= $this->lang->line('button_enable'); ?></button>
+                          <button class="uk-button uk-button-primary" name="button_enable" value="<?= $module->id ?>" type="submit"><i class="fas fa-eye"></i></button>
                           <?php endif; ?>
                         </form>
                         <?php endif; ?>
