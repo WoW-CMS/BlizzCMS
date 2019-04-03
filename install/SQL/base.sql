@@ -209,7 +209,7 @@ CREATE TABLE `donate_history` (
   `payment_id` varchar(100) NOT NULL,
   `hash` varchar(100) NOT NULL,
   `total` varchar(10) NOT NULL,
-  `complete` int(1) NOT NULL,
+  `complete` int(1) NOT NULL DEFAULT '0',
   `create_time` varchar(100) NOT NULL,
   `points` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)

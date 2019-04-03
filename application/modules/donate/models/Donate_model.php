@@ -116,6 +116,7 @@ class Donate_model extends CI_Model
 				'payment_id' => $payment->getId(),
 				'hash' => $hash,
 				'total' => $payment->transactions[0]->amount->total,
+                'complete' => '1',
 				'create_time' => $payment->create_time
 			);
 			$this->db->insert('donate_history', $dataInsert);
