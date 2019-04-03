@@ -14,7 +14,7 @@ endif; ?>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-card-body">
-          <div class="uk-overflow-auto uk-margin-small">
+          <div class="uk-overflow-auto">
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>

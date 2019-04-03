@@ -17,7 +17,7 @@
                     </div>
                     <div class="uk-width-3-5 uk-width-3-4@s">
                       <h4 class="uk-h4 uk-text-uppercase uk-margin-small uk-text-break"><?= $list->title ?></h4>
-                      <p class="uk-text-small uk-margin-small uk-visible@s"><?= substr(ucfirst(strtolower(strip_tags($list->description))), 0, 260).' ...'; ?></p>
+                      <p class="uk-text-small uk-margin-small uk-visible@s"><?= mb_substr(ucfirst(strtolower(strip_tags($list->description))), 0, 260,  "UTF-8").' ...'; ?></p>
                       <p class="uk-text-small uk-margin-remove"><i class="far fa-calendar-alt"></i> <?= date('Y-m-d', $list->date); ?></p>
                     </div>
                   </div>
