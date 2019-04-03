@@ -1,22 +1,18 @@
-      <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
-        <div class="uk-container uk-container-expand">
-          <div class="uk-card uk-card-default">
-            <div class="uk-card-header">
-              <div class="uk-grid uk-grid-small">
-                <div class="uk-width-auto">
-                  <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fab fa-paypal"></i></span><?= $this->lang->line('admin_nav_donations'); ?></h4>
-                </div>
-                <div class="uk-width-expand"></div>
-              </div>
-            </div>
-            <div class="uk-card-body">
-              <!-- ajax -->
-              <div id="categoryList"></div>
-              <!-- ajax -->
-            </div>
+    <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+          <div class="uk-width-expand uk-heading-line">
+            <h3 class="uk-h3"><i class="fab fa-paypal"></i> <?= $this->lang->line('admin_nav_donations'); ?></h3>
+          </div>
+          <div class="uk-width-auto">
+            <a href="" class="uk-icon-button"><i class="fas fa-info"></i></a>
           </div>
         </div>
-      </section>
+        <div class="uk-card uk-card-default uk-card-body">
+          <div id="categoryList"></div>
+        </div>
+      </div>
+    </section>
 
       <script>
         $(document).ready(function(){

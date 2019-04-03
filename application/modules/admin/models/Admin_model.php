@@ -318,6 +318,14 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/items'),'refresh');
     }
 
+    public function getGroupSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('store_groups')
+                ->num_rows();
+    }
+
     public function updateSpecifyGroup($idlink, $group)
     {
         $update = array(

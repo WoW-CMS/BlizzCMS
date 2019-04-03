@@ -125,7 +125,7 @@ class Admin extends MX_Controller {
     {
         $output = '';
         $output .= '
-        <div class="uk-overflow-auto uk-margin-small">
+        <div class="uk-overflow-auto">
         <table class="uk-table uk-table-divider uk-table-small">
             <thead>
                 <tr>
@@ -192,7 +192,7 @@ class Admin extends MX_Controller {
     {
         $output = '';
         $output .= '
-        <div class="uk-overflow-auto uk-margin-small">
+        <div class="uk-overflow-auto">
         <table class="uk-table uk-table-divider uk-table-small">
             <thead>
                 <tr>
@@ -514,7 +514,7 @@ class Admin extends MX_Controller {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
-        if ($this->admin_model->getItemSpecifyRows($id) < 1)
+        if ($this->admin_model->getGroupSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
         $data['idlink'] = $id;

@@ -136,11 +136,16 @@ endif; ?>
 
       <?= $tiny ?>
       <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
-        <div class="uk-container uk-container-expand">
-          <div class="uk-card uk-card-default uk-margin-small">
-            <div class="uk-card-header">
-              <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_nav_website_settings'); ?></h4>
+        <div class="uk-container">
+          <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+            <div class="uk-width-expand uk-heading-line">
+              <h3 class="uk-h3"><i class="fas fa-cogs"></i> <?= $this->lang->line('admin_nav_website_settings'); ?></h3>
             </div>
+            <div class="uk-width-auto">
+              <a href="" class="uk-icon-button"><i class="fas fa-info"></i></a>
+            </div>
+          </div>
+          <div class="uk-card uk-card-default uk-margin-small">
             <div class="uk-card-body">
               <div uk-grid>
                 <div class="uk-width-auto@m">
