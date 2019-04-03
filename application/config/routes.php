@@ -51,7 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $lang = '^(en|es|bl|fr|de|ru)';
 
-
 $route['default_controller'] = 'home';
 $route['404_override'] = 'general/error404';
 $route['translate_uri_dashes'] = FALSE;
@@ -122,7 +121,7 @@ $route[$lang.'/admin/manageaccount/(:num)'] = 'admin/manageaccount/$2';
 
 // Manage character
 $route[$lang.'/admin/characters'] = 'admin/characters';
-$route[$lang.'/admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$1/$2';
+$route[$lang.'/admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$2/$3';
 
 // News
 $route[$lang.'/admin/news'] = 'admin/managenews';
