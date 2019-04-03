@@ -69,7 +69,10 @@ h6 {
 }
 
 .uk-background-primary {
-  background: #090e40;
+  background-image: url('../images/bg-main.png');
+  background-color: #090e40;
+  background-repeat: no-repeat;
+  background-position: center top;
 }
 
 .uk-navbar-container:not(.uk-navbar-transparent) {
