@@ -14,12 +14,12 @@ endif; ?>
             <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newPage"><i class="fas fa-pen"></i></a>
           </div>
         </div>
-        <?php if (isset($_GET['newpage'])) { ?>
+        <?php if (isset($_GET['newpage'])): ?>
         <div class="uk-alert-primary uk-margin-small" uk-alert>
           <a class="uk-alert-close" uk-close></a>
           <p><?= $this->lang->line('alert_new_page_url'); ?>: <b><a href="<?= base_url('page/').$_GET['newpage']; ?>"><?= base_url('page/').$_GET['newpage']; ?></a></b></p>
         </div>
-        <?php } ?>
+        <?php endif; ?>
         <div class="uk-card uk-card-default uk-card-body">
           <div class="uk-overflow-auto">
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">

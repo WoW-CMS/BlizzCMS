@@ -40,18 +40,18 @@ endif; ?>
             <a href="" class="uk-icon-button"><i class="fas fa-info"></i></a>
           </div>
         </div>
-        <?php if(isset($_GET['char'])) { ?>
+        <?php if(isset($_GET['char'])): ?>
         <div class="uk-alert-danger uk-margin-small" uk-alert>
           <a class="uk-alert-close" uk-close></a>
           <p><i class="fas fa-info-circle"></i> <?= $this->lang->line('status_is_online'); ?></p>
         </div>
-        <?php } ?>
-        <?php if(isset($_GET['name'])) { ?>
+        <?php endif; ?>
+        <?php if(isset($_GET['name'])): ?>
         <div class="uk-alert-danger uk-margin-small" uk-alert>
           <a class="uk-alert-close" uk-close></a>
           <p><i class="fas fa-info-circle"></i> <?= $this->lang->line('status_name_exist'); ?></p>
         </div>
-        <?php } ?>
+        <?php endif; ?>
         <div class="uk-card uk-card-default uk-margin-small">
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small">

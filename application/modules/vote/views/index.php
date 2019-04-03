@@ -54,15 +54,15 @@
                         <div class="uk-countdown-number uk-countdown-seconds"></div>
                       </div>
                     </div>
-                    <?php if($this->m_data->getTimestamp() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('fx_sess_id'))){ ?>
+                    <?php if($this->m_data->getTimestamp() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('fx_sess_id'))): ?>
                       <?= form_open(base_url('vote/votenow/'.$voteList->id)); ?>
                         <button class="uk-button uk-button-default disabled"><i class="fas fa-vote-yea"></i> <?= $this->lang->line('tab_vote'); ?></button>
                       <?= form_close(); ?>
-                    <?php } else { ?>
+                    <?php else: ?>
                       <?= form_open(); ?>
                         <button class="uk-button uk-button-default" disabled><i class="fas fa-vote-yea"></i> <?= $this->lang->line('tab_vote'); ?></button>
                       <?= form_close(); ?>
-                    <?php } ?>
+                    <?php endif; ?>
                 </div>
               </div>
               <?php endforeach; ?>
