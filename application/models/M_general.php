@@ -540,6 +540,7 @@ class M_general extends CI_Model {
         return "<script src=".base_url('includes/core/tinymce/tinymce.min.js')."></script>
                 <script>tinymce.init({
                     selector: 'textarea.tinyeditor',
+                    element_format : 'html',
                     menubar: false,
                     plugins: ['".$this->tinyEditorTools($plugin)."'],
                     toolbar: '".$this->tinyEditorTools($tool)."'});
