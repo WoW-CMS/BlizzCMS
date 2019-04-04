@@ -1,127 +1,3 @@
-<?php
-  $fileBlizzCMS = FCPATH.'application/config/blizzcms.php';
-  $fileDatabase = FCPATH.'application/config/database.php';
-  $filePlus = FCPATH.'application/config/plus.php';
-  $fileBugtracker = FCPATH.'application/modules/bugtracker/config/bugtracker.php';
-  $fileDonate = FCPATH.'application/modules/donate/config/donate.php';
-
-if (isset($_POST['submitBlizzCMS'])):
-  $datafx = array(
-    'filename' => $fileBlizzCMS,
-    'blizzcmsName' => str_replace(' ', '', $_POST['blizzcmsProjectName']),
-    'actualName' => $this->admin_model->getProjectName($fileBlizzCMS),
-    'blizzcmsTimeZone' => str_replace(' ', '', $_POST['blizzcmsTimeZone']),
-    'actualTimeZone' => $this->admin_model->getTimeZone($fileBlizzCMS),
-    'blizzcmsDiscord' => str_replace(' ', '', $_POST['blizzcmsDiscordInv']),
-    'actualDiscord' => $this->admin_model->getDiscordInv($fileBlizzCMS),
-    'blizzcmsRealmlist' => str_replace(' ', '', $_POST['blizzcmsRealmlist']),
-    'actualRealmlist' => $this->admin_model->getRealmlist($fileBlizzCMS),
-    'blizzcmsStaffColor' => str_replace(' ', '', $_POST['blizzcmsStaffColor']),
-    'actualStaffColor' => $this->admin_model->getStaffColor($fileBlizzCMS),
-    'blizzcmsThemeName' => str_replace(' ', '', $_POST['blizzcmsTheme']),
-    'actualTheme' => $this->admin_model->getThemeName($fileBlizzCMS),
-  );
-
-  $this->admin_model->settingBlizzCMS($datafx);
-endif;
-
-if (isset($_POST['submitRanks'])):
-  $dataranks = array(
-    'filename' => $filePlus,
-    'adminLevel' => $_POST['adminLevel'],
-    'actualadminLevel' => $this->admin_model->getRankAdminLevel($filePlus),
-    'modLevel' => $_POST['modLevel'],
-    'actualmodLevel' => $this->admin_model->getRankModLevel($filePlus),
-  );
-  $this->admin_model->settingRegister($dataranks);
-endif;
-
-if (isset($_POST['submitDatabase'])):
-  $datadb = array(
-    'filename' => $fileDatabase,
-    'dbCmsHost' => str_replace(' ', '', $_POST['databaseCmsHost']),
-    'actualdbCmsHost' => $this->admin_model->getDatabaseCmsHost($fileDatabase),
-    'dbCmsUser' => str_replace(' ', '', $_POST['databaseCmsUser']),
-    'actualdbCmsUser' => $this->admin_model->getDatabaseCmsUser($fileDatabase),
-    'dbCmsPassword' => str_replace(' ', '', $_POST['databaseCmsPassword']),
-    'actualdbCmsPassword' => $this->admin_model->getDatabaseCmsPassword($fileDatabase),
-    'dbCmsName' => str_replace(' ', '', $_POST['databaseCmsName']),
-    'actualdbCmsdbName' => $this->admin_model->getDatabaseCmsName($fileDatabase),
-    'dbAuthHost' => str_replace(' ', '', $_POST['databaseAuthHost']),
-    'actualdbAuthHost' => $this->admin_model->getDatabaseAuthHost($fileDatabase),
-    'dbAuthUser' => str_replace(' ', '', $_POST['databaseAuthUser']),
-    'actualdbAuthUser' => $this->admin_model->getDatabaseAuthUser($fileDatabase),
-    'dbAuthPassword' => str_replace(' ', '', $_POST['databaseAuthPassword']),
-    'actualdbAuthPassword' => $this->admin_model->getDatabaseAuthPassword($fileDatabase),
-    'dbAuthName' => str_replace(' ', '', $_POST['databaseAuthName']),
-    'actualdbAuthName' => $this->admin_model->getDatabaseAuthName($fileDatabase),
-  );
-  $this->admin_model->settingDatabase($datadb);
-endif;
-
-if (isset($_POST['submitCaptcha'])):
-  $datacaptcha = array(
-    'filename' => $filePlus,
-    'recaptchaKey' => str_replace(' ', '', $_POST['recaptchaKey']),
-    'actualrecaptchaKey' => $this->admin_model->getRecaptchaKey($filePlus),
-  );
-  $this->admin_model->settingRecaptcha($datacaptcha);
-endif;
-
-if (isset($_POST['submitSMTP'])):
-  $datasmtp = array(
-    'filename' => $filePlus,
-    'smtpHost' => str_replace(' ', '', $_POST['smtpHost']),
-    'actualsmtpHost' => $this->admin_model->getSMTPHost($filePlus),
-    'smtpUser' => str_replace(' ', '', $_POST['smtpUser']),
-    'actualsmtpUser' => $this->admin_model->getSMTPUser($filePlus),
-    'smtpPass' => str_replace(' ', '', $_POST['smtpPass']),
-    'actualsmtpPass' => $this->admin_model->getSMTPPass($filePlus),
-    'smtpPort' => str_replace(' ', '', $_POST['smtpPort']),
-    'actualsmtpPort' => $this->admin_model->getSMTPPort($filePlus),
-    'smtpCrypto' => str_replace(' ', '', $_POST['smtpCrypto']),
-    'actualsmtpCrypto' => $this->admin_model->getSMTPCrypto($filePlus),
-    'senderEmail' => str_replace(' ', '', $_POST['senderEmail']),
-    'actualsenderEmail' => $this->admin_model->getSenderEmail($filePlus),
-    'senderName' => str_replace(' ', '', $_POST['senderName']),
-    'actualsenderName' => $this->admin_model->getSenderName($filePlus),
-  );
-  $this->admin_model->settingRecaptcha($datasmtp);
-endif;
-
-if (isset($_POST['submitRegister'])):
-  $dataregister = array(
-    'filename' => $filePlus,
-    'registerType' => $_POST['registerType'],
-    'actualregisterType' => $this->admin_model->getRegisterType($filePlus),
-  );
-  $this->admin_model->settingRegister($dataregister);
-endif;
-
-if (isset($_POST['submitBugtracker'])):
-  $databugtracker = array(
-    'filename' => $fileBugtracker,
-    'bugtrackerText' => str_replace(' ', '', $_POST['bugtrackerText']),
-    'actualbugtrackerText' => $this->admin_model->getBugtrackerText($fileBugtracker),
-  );
-  $this->admin_model->settingBugtracker($databugtracker);
-endif;
-
-if (isset($_POST['submitDonate'])):
-  $datadonate = array(
-    'filename' => $fileDonate,
-    'paypalCurrency' => str_replace(' ', '', $_POST['paypalCurrency']),
-    'actualpaypalCurrency' => $this->admin_model->getPaypalCurrency($fileDonate),
-    'paypalMode' => $_POST['paypalMode'],
-    'actualpaypalMode' => $this->admin_model->getPaypalMode($fileDonate),
-    'paypalclientId' => str_replace(' ', '', $_POST['paypalclientId']),
-    'actualpaypalclientId' => $this->admin_model->getPaypalClientID($fileDonate),
-    'paypalPassword' => str_replace(' ', '', $_POST['paypalPassword']),
-    'actualpaypalPassword' => $this->admin_model->getPaypalPassword($fileDonate),
-  );
-  $this->admin_model->settingDonate($datadonate);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -154,7 +30,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-crown"></i></span>
-                          <input class="uk-input" type="text" name="adminLevel" value="<?= $this->admin_model->getRankAdminLevel($filePlus); ?>" required>
+                          <input class="uk-input" type="text" name="adminLevel" value="<?= $this->config->item('admin_access_level'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -163,7 +39,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-gavel"></i></span>
-                          <input class="uk-input" type="text" name="modLevel" value="<?= $this->admin_model->getRankModLevel($filePlus); ?>" required>
+                          <input class="uk-input" type="text" name="modLevel" value="<?= $this->config->item('mod_access_level'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -175,7 +51,7 @@ endif; ?>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" name="recaptchaKey" value="<?= $this->admin_model->getRecaptchaKey($filePlus); ?>" required>
+                      <input class="uk-input" type="text" name="recaptchaKey" value="<?= $this->config->item('recaptcha_sitekey'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -187,8 +63,8 @@ endif; ?>
                   <label class="uk-form-label">Account Activation</label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="registerType">
-                      <option value="TRUE" <?php if($this->admin_model->getRegisterType($filePlus) == TRUE) echo 'selected'; ?>>Enabled</option>
-                      <option value="FALSE" <?php if($this->admin_model->getRegisterType($filePlus) == FALSE) echo 'selected'; ?>>Disabled</option>
+                      <option value="TRUE" <?php if($this->config->item('account_activation_required') == TRUE) echo 'selected'; ?>>Enabled</option>
+                      <option value="FALSE" <?php if($this->config->item('account_activation_required') == FALSE) echo 'selected'; ?>>Disabled</option>
                     </select>
                   </div>
                 </div>
@@ -200,7 +76,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mail-bulk"></i></span>
-                          <input class="uk-input" type="text" name="smtpHost" value="<?= $this->admin_model->getSMTPHost($filePlus); ?>" required>
+                          <input class="uk-input" type="text" name="smtpHost" value="<?= $this->config->item('smtp_host'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -208,7 +84,7 @@ endif; ?>
                       <label class="uk-form-label">SMTP Port</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
-                          <input class="uk-input" type="number" name="smtpPort" value="<?= $this->admin_model->getSMTPPort($filePlus); ?>" required>
+                          <input class="uk-input" type="number" name="smtpPort" value="<?= $this->config->item('smtp_port'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -216,8 +92,8 @@ endif; ?>
                       <label class="uk-form-label">SMTP Encryption</label>
                       <div class="uk-form-controls">
                         <select class="uk-select" name="smtpCrypto">
-                          <option value="ssl" <?php if($this->admin_model->getSMTPCrypto($filePlus) == 'ssl') echo 'selected'; ?>>SSL</option>
-                          <option value="tls" <?php if($this->admin_model->getSMTPCrypto($filePlus) == 'tls') echo 'selected'; ?>>TLS</option>
+                          <option value="ssl" <?php if($this->config->item('smtp_crypto') == 'ssl') echo 'selected'; ?>>SSL</option>
+                          <option value="tls" <?php if($this->config->item('smtp_crypto') == 'tls') echo 'selected'; ?>>TLS</option>
                         </select>
                       </div>
                     </div>
@@ -230,7 +106,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
-                          <input class="uk-input" type="text" name="smtpUser" value="<?= $this->admin_model->getSMTPUser($filePlus); ?>" required>
+                          <input class="uk-input" type="text" name="smtpUser" value="<?= $this->config->item('smtp_user'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -239,7 +115,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                          <input class="uk-input" type="text" name="smtpPass" value="<?= $this->admin_model->getSMTPPass($filePlus); ?>" required>
+                          <input class="uk-input" type="text" name="smtpPass" value="<?= $this->config->item('smtp_pass'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -252,7 +128,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="senderEmail" value="<?= $this->admin_model->getSenderEmail($filePlus); ?>" required>
+                          <input class="uk-input" type="email" name="senderEmail" value="<?= $this->config->item('email_settings_sender'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -261,7 +137,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user-circle"></i></span>
-                          <input class="uk-input" type="text" name="senderName" value="<?= $this->admin_model->getSenderName($filePlus); ?>" required>
+                          <input class="uk-input" type="text" name="senderName" value="<?= $this->config->item('email_settings_sender_name'); ?>" required>
                         </div>
                       </div>
                     </div>

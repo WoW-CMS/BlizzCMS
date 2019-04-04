@@ -1,40 +1,5 @@
 <?php
-  $fileBlizzCMS = FCPATH.'application/config/blizzcms.php';
   $fileDatabase = FCPATH.'application/config/database.php';
-  $filePlus = FCPATH.'application/config/plus.php';
-  $fileBugtracker = FCPATH.'application/modules/bugtracker/config/bugtracker.php';
-  $fileDonate = FCPATH.'application/modules/donate/config/donate.php';
-
-if (isset($_POST['submitBlizzCMS'])):
-  $datafx = array(
-    'filename' => $fileBlizzCMS,
-    'blizzcmsName' => str_replace(' ', '', $_POST['blizzcmsProjectName']),
-    'actualName' => $this->admin_model->getProjectName($fileBlizzCMS),
-    'blizzcmsTimeZone' => str_replace(' ', '', $_POST['blizzcmsTimeZone']),
-    'actualTimeZone' => $this->admin_model->getTimeZone($fileBlizzCMS),
-    'blizzcmsDiscord' => str_replace(' ', '', $_POST['blizzcmsDiscordInv']),
-    'actualDiscord' => $this->admin_model->getDiscordInv($fileBlizzCMS),
-    'blizzcmsRealmlist' => str_replace(' ', '', $_POST['blizzcmsRealmlist']),
-    'actualRealmlist' => $this->admin_model->getRealmlist($fileBlizzCMS),
-    'blizzcmsStaffColor' => str_replace(' ', '', $_POST['blizzcmsStaffColor']),
-    'actualStaffColor' => $this->admin_model->getStaffColor($fileBlizzCMS),
-    'blizzcmsThemeName' => str_replace(' ', '', $_POST['blizzcmsTheme']),
-    'actualTheme' => $this->admin_model->getThemeName($fileBlizzCMS),
-  );
-
-  $this->admin_model->settingBlizzCMS($datafx);
-endif;
-
-if (isset($_POST['submitRanks'])):
-  $dataranks = array(
-    'filename' => $filePlus,
-    'adminLevel' => $_POST['adminLevel'],
-    'actualadminLevel' => $this->admin_model->getRankAdminLevel($filePlus),
-    'modLevel' => $_POST['modLevel'],
-    'actualmodLevel' => $this->admin_model->getRankModLevel($filePlus),
-  );
-  $this->admin_model->settingRegister($dataranks);
-endif;
 
 if (isset($_POST['submitDatabase'])):
   $datadb = array(
@@ -57,69 +22,6 @@ if (isset($_POST['submitDatabase'])):
     'actualdbAuthName' => $this->admin_model->getDatabaseAuthName($fileDatabase),
   );
   $this->admin_model->settingDatabase($datadb);
-endif;
-
-if (isset($_POST['submitCaptcha'])):
-  $datacaptcha = array(
-    'filename' => $filePlus,
-    'recaptchaKey' => str_replace(' ', '', $_POST['recaptchaKey']),
-    'actualrecaptchaKey' => $this->admin_model->getRecaptchaKey($filePlus),
-  );
-  $this->admin_model->settingRecaptcha($datacaptcha);
-endif;
-
-if (isset($_POST['submitSMTP'])):
-  $datasmtp = array(
-    'filename' => $filePlus,
-    'smtpHost' => str_replace(' ', '', $_POST['smtpHost']),
-    'actualsmtpHost' => $this->admin_model->getSMTPHost($filePlus),
-    'smtpUser' => str_replace(' ', '', $_POST['smtpUser']),
-    'actualsmtpUser' => $this->admin_model->getSMTPUser($filePlus),
-    'smtpPass' => str_replace(' ', '', $_POST['smtpPass']),
-    'actualsmtpPass' => $this->admin_model->getSMTPPass($filePlus),
-    'smtpPort' => str_replace(' ', '', $_POST['smtpPort']),
-    'actualsmtpPort' => $this->admin_model->getSMTPPort($filePlus),
-    'smtpCrypto' => str_replace(' ', '', $_POST['smtpCrypto']),
-    'actualsmtpCrypto' => $this->admin_model->getSMTPCrypto($filePlus),
-    'senderEmail' => str_replace(' ', '', $_POST['senderEmail']),
-    'actualsenderEmail' => $this->admin_model->getSenderEmail($filePlus),
-    'senderName' => str_replace(' ', '', $_POST['senderName']),
-    'actualsenderName' => $this->admin_model->getSenderName($filePlus),
-  );
-  $this->admin_model->settingRecaptcha($datasmtp);
-endif;
-
-if (isset($_POST['submitRegister'])):
-  $dataregister = array(
-    'filename' => $filePlus,
-    'registerType' => $_POST['registerType'],
-    'actualregisterType' => $this->admin_model->getRegisterType($filePlus),
-  );
-  $this->admin_model->settingRegister($dataregister);
-endif;
-
-if (isset($_POST['submitBugtracker'])):
-  $databugtracker = array(
-    'filename' => $fileBugtracker,
-    'bugtrackerText' => str_replace(' ', '', $_POST['bugtrackerText']),
-    'actualbugtrackerText' => $this->admin_model->getBugtrackerText($fileBugtracker),
-  );
-  $this->admin_model->settingBugtracker($databugtracker);
-endif;
-
-if (isset($_POST['submitDonate'])):
-  $datadonate = array(
-    'filename' => $fileDonate,
-    'paypalCurrency' => str_replace(' ', '', $_POST['paypalCurrency']),
-    'actualpaypalCurrency' => $this->admin_model->getPaypalCurrency($fileDonate),
-    'paypalMode' => $_POST['paypalMode'],
-    'actualpaypalMode' => $this->admin_model->getPaypalMode($fileDonate),
-    'paypalclientId' => str_replace(' ', '', $_POST['paypalclientId']),
-    'actualpaypalclientId' => $this->admin_model->getPaypalClientID($fileDonate),
-    'paypalPassword' => str_replace(' ', '', $_POST['paypalPassword']),
-    'actualpaypalPassword' => $this->admin_model->getPaypalPassword($fileDonate),
-  );
-  $this->admin_model->settingDonate($datadonate);
 endif; ?>
 
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">

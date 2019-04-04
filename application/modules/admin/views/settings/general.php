@@ -1,102 +1,6 @@
 <?php
-  $fileBlizzCMS = FCPATH.'application/config/blizzcms.php';
-  $fileDatabase = FCPATH.'application/config/database.php';
-  $filePlus = FCPATH.'application/config/plus.php';
   $fileBugtracker = FCPATH.'application/modules/bugtracker/config/bugtracker.php';
   $fileDonate = FCPATH.'application/modules/donate/config/donate.php';
-
-if (isset($_POST['submitBlizzCMS'])):
-  $datafx = array(
-    'filename' => $fileBlizzCMS,
-    'blizzcmsName' => str_replace(' ', '', $_POST['blizzcmsProjectName']),
-    'actualName' => $this->admin_model->getProjectName($fileBlizzCMS),
-    'blizzcmsTimeZone' => str_replace(' ', '', $_POST['blizzcmsTimeZone']),
-    'actualTimeZone' => $this->admin_model->getTimeZone($fileBlizzCMS),
-    'blizzcmsDiscord' => str_replace(' ', '', $_POST['blizzcmsDiscordInv']),
-    'actualDiscord' => $this->admin_model->getDiscordInv($fileBlizzCMS),
-    'blizzcmsRealmlist' => str_replace(' ', '', $_POST['blizzcmsRealmlist']),
-    'actualRealmlist' => $this->admin_model->getRealmlist($fileBlizzCMS),
-    'blizzcmsStaffColor' => str_replace(' ', '', $_POST['blizzcmsStaffColor']),
-    'actualStaffColor' => $this->admin_model->getStaffColor($fileBlizzCMS),
-    'blizzcmsThemeName' => str_replace(' ', '', $_POST['blizzcmsTheme']),
-    'actualTheme' => $this->admin_model->getThemeName($fileBlizzCMS),
-  );
-
-  $this->admin_model->settingBlizzCMS($datafx);
-endif;
-
-if (isset($_POST['submitRanks'])):
-  $dataranks = array(
-    'filename' => $filePlus,
-    'adminLevel' => $_POST['adminLevel'],
-    'actualadminLevel' => $this->admin_model->getRankAdminLevel($filePlus),
-    'modLevel' => $_POST['modLevel'],
-    'actualmodLevel' => $this->admin_model->getRankModLevel($filePlus),
-  );
-  $this->admin_model->settingRegister($dataranks);
-endif;
-
-if (isset($_POST['submitDatabase'])):
-  $datadb = array(
-    'filename' => $fileDatabase,
-    'dbCmsHost' => str_replace(' ', '', $_POST['databaseCmsHost']),
-    'actualdbCmsHost' => $this->admin_model->getDatabaseCmsHost($fileDatabase),
-    'dbCmsUser' => str_replace(' ', '', $_POST['databaseCmsUser']),
-    'actualdbCmsUser' => $this->admin_model->getDatabaseCmsUser($fileDatabase),
-    'dbCmsPassword' => str_replace(' ', '', $_POST['databaseCmsPassword']),
-    'actualdbCmsPassword' => $this->admin_model->getDatabaseCmsPassword($fileDatabase),
-    'dbCmsName' => str_replace(' ', '', $_POST['databaseCmsName']),
-    'actualdbCmsdbName' => $this->admin_model->getDatabaseCmsName($fileDatabase),
-    'dbAuthHost' => str_replace(' ', '', $_POST['databaseAuthHost']),
-    'actualdbAuthHost' => $this->admin_model->getDatabaseAuthHost($fileDatabase),
-    'dbAuthUser' => str_replace(' ', '', $_POST['databaseAuthUser']),
-    'actualdbAuthUser' => $this->admin_model->getDatabaseAuthUser($fileDatabase),
-    'dbAuthPassword' => str_replace(' ', '', $_POST['databaseAuthPassword']),
-    'actualdbAuthPassword' => $this->admin_model->getDatabaseAuthPassword($fileDatabase),
-    'dbAuthName' => str_replace(' ', '', $_POST['databaseAuthName']),
-    'actualdbAuthName' => $this->admin_model->getDatabaseAuthName($fileDatabase),
-  );
-  $this->admin_model->settingDatabase($datadb);
-endif;
-
-if (isset($_POST['submitCaptcha'])):
-  $datacaptcha = array(
-    'filename' => $filePlus,
-    'recaptchaKey' => str_replace(' ', '', $_POST['recaptchaKey']),
-    'actualrecaptchaKey' => $this->admin_model->getRecaptchaKey($filePlus),
-  );
-  $this->admin_model->settingRecaptcha($datacaptcha);
-endif;
-
-if (isset($_POST['submitSMTP'])):
-  $datasmtp = array(
-    'filename' => $filePlus,
-    'smtpHost' => str_replace(' ', '', $_POST['smtpHost']),
-    'actualsmtpHost' => $this->admin_model->getSMTPHost($filePlus),
-    'smtpUser' => str_replace(' ', '', $_POST['smtpUser']),
-    'actualsmtpUser' => $this->admin_model->getSMTPUser($filePlus),
-    'smtpPass' => str_replace(' ', '', $_POST['smtpPass']),
-    'actualsmtpPass' => $this->admin_model->getSMTPPass($filePlus),
-    'smtpPort' => str_replace(' ', '', $_POST['smtpPort']),
-    'actualsmtpPort' => $this->admin_model->getSMTPPort($filePlus),
-    'smtpCrypto' => str_replace(' ', '', $_POST['smtpCrypto']),
-    'actualsmtpCrypto' => $this->admin_model->getSMTPCrypto($filePlus),
-    'senderEmail' => str_replace(' ', '', $_POST['senderEmail']),
-    'actualsenderEmail' => $this->admin_model->getSenderEmail($filePlus),
-    'senderName' => str_replace(' ', '', $_POST['senderName']),
-    'actualsenderName' => $this->admin_model->getSenderName($filePlus),
-  );
-  $this->admin_model->settingRecaptcha($datasmtp);
-endif;
-
-if (isset($_POST['submitRegister'])):
-  $dataregister = array(
-    'filename' => $filePlus,
-    'registerType' => $_POST['registerType'],
-    'actualregisterType' => $this->admin_model->getRegisterType($filePlus),
-  );
-  $this->admin_model->settingRegister($dataregister);
-endif;
 
 if (isset($_POST['submitBugtracker'])):
   $databugtracker = array(
@@ -155,7 +59,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsProjectName" value="<?= $this->admin_model->getProjectName($fileBlizzCMS); ?>" required>
+                          <input class="uk-input" type="text" name="blizzcmsProjectName" value="<?= $this->config->item('ProjectName'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -164,7 +68,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsRealmlist" value="<?= $this->admin_model->getRealmlist($fileBlizzCMS); ?>" required>
+                          <input class="uk-input" type="text" name="blizzcmsRealmlist" value="<?= $this->config->item('realmlist'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -177,7 +81,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsDiscordInv" value="<?= $this->admin_model->getDiscordInv($fileBlizzCMS); ?>" required>
+                          <input class="uk-input" type="text" name="blizzcmsDiscordInv" value="<?= $this->config->item('discord_inv'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -186,7 +90,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="far fa-clock"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsTimeZone" value="<?= $this->admin_model->getTimeZone($fileBlizzCMS); ?>" required>
+                          <input class="uk-input" type="text" name="blizzcmsTimeZone" value="<?= $this->config->item('timezone'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -199,7 +103,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-palette"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsStaffColor" value="<?= $this->admin_model->getStaffColor($fileBlizzCMS); ?>" required>
+                          <input class="uk-input" type="text" name="blizzcmsStaffColor" value="<?= $this->config->item('staff_forum_color'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -208,7 +112,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsTheme" value="<?= $this->admin_model->getThemeName($fileBlizzCMS); ?>" required>
+                          <input class="uk-input" type="text" name="blizzcmsTheme" value="<?= $this->config->item('theme_name'); ?>" required>
                         </div>
                       </div>
                     </div>
