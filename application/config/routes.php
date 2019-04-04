@@ -111,6 +111,8 @@ $route[$lang.'/pvp'] = 'pvp/index';
 // General
 $route[$lang.'/admin'] = 'admin/index';
 $route[$lang.'/admin/settings'] = 'admin/settings';
+$route[$lang.'/admin/settings/database'] = 'admin/databasesettings';
+$route[$lang.'/admin/settings/optional'] = 'admin/optionalsettings';
 $route[$lang.'/admin/modules'] = 'admin/managemodules';
 $route[$lang.'/admin/slides'] = 'admin/manageslides';
 $route[$lang.'/admin/realms'] = 'admin/managerealms';

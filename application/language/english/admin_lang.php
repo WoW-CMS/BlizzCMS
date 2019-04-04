@@ -37,8 +37,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*Navbar Lang*/
 $lang['admin_nav_dashboard'] = 'Dashboard';
-$lang['admin_nav_settings'] = 'Settings';
-$lang['admin_nav_website_settings'] = 'Website Settings';
+$lang['admin_nav_system'] = 'System';
+$lang['admin_nav_manage_settings'] = 'Manage Settings';
 $lang['admin_nav_manage_modules'] = 'Manage Modules';
 $lang['admin_nav_manage_realms'] = 'Manage Realms';
 $lang['admin_nav_manage_slides'] = 'Manage Slides';

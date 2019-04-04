@@ -74,7 +74,21 @@ class Admin extends MX_Controller {
         );
 
         $this->load->view('general/header');
-        $this->load->view('settings/index', $data);
+        $this->load->view('settings/general', $data);
+        $this->load->view('general/footer');
+    }
+
+    public function databasesettings()
+    {
+        $this->load->view('general/header');
+        $this->load->view('settings/database');
+        $this->load->view('general/footer');
+    }
+
+    public function optionalsettings()
+    {
+        $this->load->view('general/header');
+        $this->load->view('settings/optional');
         $this->load->view('general/footer');
     }
 

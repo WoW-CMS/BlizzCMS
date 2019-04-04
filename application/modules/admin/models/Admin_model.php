@@ -1049,46 +1049,6 @@ class Admin_model extends CI_Model {
             ->num_rows();
     }
 
-    //config
-    public function settingConfig($data)
-    {
-        $filename = $data['filename'];
-
-        $Configsearch = array(
-            $data['actualLang'],
-            $data['actualSess']
-        );
-
-        $Configreplace = array(
-            $data['configLang'],
-            $data['configSess']
-        );
-
-        $fileConfig = file_get_contents($filename);
-        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
-        $openConfig = fopen($filename,"w");
-        fwrite($openConfig, $newConfig);
-        fclose($openConfig);
-
-        redirect(base_url('admin/settings'),'refresh');
-    }
-
-    public function getConfigLanguage($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[78], 22);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getConfigSessExpiration($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[381], 29);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
     //blizzcms
     public function settingBlizzCMS($data)
     {
