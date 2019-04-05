@@ -126,7 +126,7 @@ endif; ?>
     </section>
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container">
-        <h5 class="uk-h5 uk-text-center uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</h5>
+        <h5 class="uk-h5 uk-text-center uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</h5>
       </div>
     </section>
   </body>

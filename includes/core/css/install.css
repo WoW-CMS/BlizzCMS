@@ -76,13 +76,13 @@ h6,
 }
 
 .uk-logo {
-  font-family:'Lobster', cursive;
+  font-family: 'Lobster', cursive;
   font-size: 38px;
   color: #fff !important;
 }
 
 .step-title {
-  font-family:'Lobster', cursive;
+  font-family: 'Lobster', cursive;
   color: #fff;
 }
 
@@ -90,6 +90,7 @@ h6,
 .uk-heading-line > ::before {
   border-bottom-color: rgba(255, 255, 255, .15);
 }
+
 .uk-alert {
   padding: 8px 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
