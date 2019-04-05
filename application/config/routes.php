@@ -84,6 +84,7 @@ $route[$lang.'/donate'] = 'donate/index';
 $route[$lang.'/changelogs'] = 'changelogs/index';
 // Bugtracker
 $route[$lang.'/bugtracker'] = 'bugtracker/index';
+$route[$lang.'/bugtracker/report/(:num)'] = 'bugtracker/report/$2';
 //forum
 $route[$lang.'/forum/category/(:num)'] = 'forum/category/$2';
 $route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$2';

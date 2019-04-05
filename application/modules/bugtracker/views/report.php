@@ -57,13 +57,13 @@ endif; ?>
               <div class="uk-placeholder uk-text-center"><?= $this->bugtracker_model->getUrlIssue($idlink); ?></div>
             </div>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
-              <dir>
+              <div>
                 <p class="text-misc"><i class="far fa-user-circle"></i> <?= $this->lang->line('table_header_author'); ?>: <?= $this->m_data->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></p>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <p class="text-misc"><i class="far fa-clock"></i> <?= $this->lang->line('table_header_date'); ?>: <?= date('Y-m-d', $this->bugtracker_model->getDate($idlink)); ?></p>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <p><span class="text-misc"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_status'); ?>:</span>
                   <?php if ($this->bugtracker_model->closeStatus($idlink) == '0'): ?>
                     <span class="uk-label uk-label-success"><?= $this->lang->line('label_open'); ?></span>
@@ -71,21 +71,21 @@ endif; ?>
                     <span class="uk-label uk-label-danger"><?= $this->lang->line('label_closed'); ?></span>
                   <?php endif; ?>
                 </p>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <p><span class="text-misc"><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?>:</span> <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></p>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <p><span class="text-misc"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?>:</span> <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></p>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <p><span class="text-misc"><i class="fas fa-tags"></i> <?= $this->lang->line('table_header_status'); ?>:</span> <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></p>
-              </dir>
+              </div>
             </div>
             <hr>
             <?php if($this->m_data->getRank($this->session->userdata('fx_sess_id')) > 0): ?>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
-              <dir>
+              <div>
                 <form method="post" action="">
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
@@ -100,8 +100,8 @@ endif; ?>
                     <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changePriory"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                 </form>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <form method="post" action="">
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
@@ -116,8 +116,8 @@ endif; ?>
                     <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changeStatus"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                 </form>
-              </dir>
-              <dir>
+              </div>
+              <div>
                 <form method="post" action="">
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
@@ -132,7 +132,7 @@ endif; ?>
                     <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changetypes"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                 </form>
-              </dir>
+              </div>
             </div>
             <div>
               <div class="uk-margin-small">
