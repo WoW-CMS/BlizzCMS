@@ -13,14 +13,19 @@ if (isset($_POST['button_createRealm'])):
   $this->m_modules->insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, '1');
 endif; ?>
 
-      <div id="newRealm" uk-modal="bg-close: false">
-        <div class="uk-modal-dialog">
-          <button class="uk-modal-close-default" type="button" uk-close></button>
-          <div class="uk-modal-header">
-            <h3 class="uk-modal-title uk-text-uppercase"><i class="fas fa-server"></i> Add Realm</h3>
+    <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+          <div class="uk-width-expand uk-heading-line">
+            <h3 class="uk-h3"><i class="fas fa-server"></i> Add Realm</h3>
           </div>
-          <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-            <div class="uk-modal-body">
+          <div class="uk-width-auto">
+            <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+          </div>
+        </div>
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-body">
+            <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_realm_id'); ?></label>
                 <div class="uk-form-controls">
@@ -91,46 +96,11 @@ endif; ?>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="uk-modal-footer uk-text-right actions">
-              <button class="uk-button uk-button-danger uk-modal-close" type="button"><?= $this->lang->line('button_cancel'); ?></button>
-              <button class="uk-button uk-button-primary" type="submit" name="button_createRealm"><?= $this->lang->line('button_create'); ?></button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div id="newSlide" uk-modal="bg-close: false">
-        <div class="uk-modal-dialog">
-          <button class="uk-modal-close-default" type="button" uk-close></button>
-          <div class="uk-modal-header">
-            <h3 class="uk-modal-title uk-text-uppercase"><i class="far fa-image"></i> Add Image to Slideshow</h3>
+              <div class="uk-margin-small">
+                <button class="uk-button uk-button-primary uk-width-1-1" name="button_createRealm" type="submit"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+              </div>
+            </form>
           </div>
-          <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-            <div class="uk-modal-body">
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
-                <div class="uk-form-controls">
-                  <input class="uk-input" type="text" name="slide_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
-                </div>
-              </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_upload_file'); ?></label>
-                <div class="uk-form-controls">
-                  <div class="uk-inline uk-width-1-1">
-                    <div uk-form-custom="target: true">
-                      <input type="file" required name="slide_imageup">
-                      <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> Select</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="uk-modal-footer uk-text-right actions">
-              <button class="uk-button uk-button-danger uk-modal-close" type="button"><?= $this->lang->line('button_cancel'); ?></button>
-              <button class="uk-button uk-button-primary" type="submit" name="button_createSlide"><?= $this->lang->line('button_create'); ?></button>
-            </div>
-          </form>
         </div>
       </div>
+    </section>

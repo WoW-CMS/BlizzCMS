@@ -1,10 +1,4 @@
 <?php
-if (isset($_POST['button_createGroup'])):
-  $name = $_POST['group_name'];
-
-  $this->admin_model->insertGroup($name);
-endif;
-
 if (isset($_POST['button_createItem'])):
   $itemname   = $_POST['itemname'];
   $category   = $_POST['categorySelect'];
@@ -18,46 +12,25 @@ if (isset($_POST['button_createItem'])):
   $this->admin_model->insertShop($itemid, $type, $itemname, $pricedp, $pricevp, $iconname, $category, $imagename);
 endif; ?>
 
-      <div id="newGroup" uk-modal="bg-close: false">
-        <div class="uk-modal-dialog">
-          <button class="uk-modal-close-default" type="button" uk-close></button>
-          <div class="uk-modal-header">
-            <h3 class="uk-modal-title uk-text-uppercase"><i class="fas fa-object-group"></i> <?= $this->lang->line('placeholder_create_group'); ?></h3>
+    <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+          <div class="uk-width-expand uk-heading-line">
+            <h3 class="uk-h3"><i class="fas fa-tag"></i> <?= $this->lang->line('placeholder_create_item'); ?></h3>
           </div>
-          <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-            <div class="uk-modal-body">
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_group_title'); ?></label>
-                <div class="uk-form-controls">
-                  <div class="uk-inline uk-width-1-1">
-                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="group_name" required type="text" placeholder="<?= $this->lang->line('placeholder_group_title'); ?>">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="uk-modal-footer uk-text-right actions">
-              <button class="uk-button uk-button-danger uk-modal-close" type="button"><?= $this->lang->line('button_cancel'); ?></button>
-              <button class="uk-button uk-button-primary" type="submit" name="button_createGroup"><?= $this->lang->line('button_create'); ?></button>
-            </div>
-          </form>
+          <div class="uk-width-auto">
+            <a href="<?= base_url('admin/items'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+          </div>
         </div>
-      </div>
-
-      <div id="newItem" uk-modal="bg-close: false">
-        <div class="uk-modal-dialog">
-          <button class="uk-modal-close-default" type="button" uk-close></button>
-          <div class="uk-modal-header">
-            <h3 class="uk-modal-title uk-text-uppercase"><i class="fas fa-tag"></i> <?= $this->lang->line('placeholder_create_item'); ?></h3>
-          </div>
-          <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-            <div class="uk-modal-body">
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-body">
+            <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_store_item_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="itemname" required type="text" placeholder="<?= $this->lang->line('placeholder_store_item_name'); ?>">
+                    <input class="uk-input" name="itemname" type="text" placeholder="<?= $this->lang->line('placeholder_store_item_name'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -78,23 +51,23 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('store_item_price');?> DP</label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="priceDP" type="number" placeholder="0" value="0" required>
+                      <input class="uk-input" name="priceDP" type="number" placeholder="0" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('store_item_price');?> VP</label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="priceVP" type="number" placeholder="0" value="0" required>
+                      <input class="uk-input" name="priceVP" type="number" placeholder="0" required>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_store_item_id');?></label>
                     <div class="uk-form-controls">
@@ -104,7 +77,7 @@ endif; ?>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_forum_icon_name');?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="iconName" type="text" placeholder="inv_belt_45" value="inv_belt_45" required>
+                      <input class="uk-input" name="iconName" type="text" placeholder="inv_belt_45">
                     </div>
                   </div>
                 </div>
@@ -113,15 +86,15 @@ endif; ?>
                 <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_store_image_name');?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" name="imageName" type="text" placeholder="image.jpg" value="image.jpg">
+                    <input class="uk-input" name="imageName" type="text" placeholder="image.jpg">
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="uk-modal-footer uk-text-right actions">
-              <button class="uk-button uk-button-danger uk-modal-close" type="button"><?= $this->lang->line('button_cancel'); ?></button>
-              <button class="uk-button uk-button-primary" type="submit" name="button_createItem"><?= $this->lang->line('button_create'); ?></button>
-            </div>
-          </form>
+              <div class="uk-margin-small">
+                <button class="uk-button uk-button-primary uk-width-1-1" name="button_createItem" type="submit"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+    </section>

@@ -3,7 +3,6 @@ if (isset($_POST['button_delPage'])):
     $this->admin_model->delPage($_POST['button_delPage']);
 endif; ?>
 
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -11,7 +10,7 @@ endif; ?>
             <h3 class="uk-h3"><i class="fas fa-file-alt"></i> <?= $this->lang->line('card_title_pages_list'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newPage"><i class="fas fa-pen"></i></a>
+            <a href="<?= base_url('admin/pages/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <?php if (isset($_GET['newpage'])): ?>
@@ -38,7 +37,7 @@ endif; ?>
                   <td><?= date('Y-m-d', $pages->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                    <a href="<?= base_url('admin/editpages/'.$pages->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                    <a href="<?= base_url('admin/pages/edit/'.$pages->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                       <form action="" method="post" accept-charset="utf-8">
                         <button class="uk-button uk-button-danger" name="button_delPage" value="<?= $pages->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
                       </form>

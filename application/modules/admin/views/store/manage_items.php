@@ -10,7 +10,7 @@ endif; ?>
             <h3 class="uk-h3"><i class="fas fa-boxes"></i> <?= $this->lang->line('admin_nav_manage_items'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newItem"><i class="fas fa-pen"></i></a>
+            <a href="<?= base_url('admin/items/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-card-body">
@@ -34,7 +34,7 @@ endif; ?>
                   <td><?= $storeall->price_vp ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                      <a href="<?= base_url('admin/edititems/'.$storeall->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                      <a href="<?= base_url('admin/items/edit/'.$storeall->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                       <form action="" method="post" accept-charset="utf-8">
                         <button class="uk-button uk-button-danger" name="button_deleteItem" value="<?= $storeall->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
                       </form>

@@ -11,7 +11,7 @@ endif; ?>
             <h3 class="uk-h3"><i class="fas fa-server"></i> <?= $this->lang->line('admin_nav_manage_realms'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="javascript:void(0)" class="uk-icon-button" uk-toggle="target: #newRealm"><i class="fas fa-cog"></i></a>
+            <a href="<?= base_url('admin/realms/create'); ?>" class="uk-icon-button"><i class="fas fa-cog"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-card-body">
