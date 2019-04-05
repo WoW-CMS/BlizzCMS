@@ -104,6 +104,6 @@ $config['theme_name'] = 'default';
 | Write the links for redirect to your social networks.
 |
 */
-$config['social_facebook'] = "";
-$config['social_twitter'] = "";
-$config['social_youtube'] = "";
+$config['social_facebook'] = '%SOCIAL_FACEBOOK%';
+$config['social_twitter'] = '%SOCIAL_TWITTER%';
+$config['social_youtube'] = '';

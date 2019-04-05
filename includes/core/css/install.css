@@ -72,15 +72,24 @@ h6,
 .uk-h4,
 .uk-h5,
 .uk-h6 {
-  color: #fff;
+  color: #dbdde1;
 }
 
-.blizzcms-logo {
+.uk-logo {
   font-family:'Lobster', cursive;
-  font-size: 44px;
+  font-size: 38px;
+  color: #fff !important;
+}
+
+.step-title {
+  font-family:'Lobster', cursive;
   color: #fff;
 }
 
+.uk-heading-line > ::after,
+.uk-heading-line > ::before {
+  border-bottom-color: rgba(255, 255, 255, .15);
+}
 .uk-alert {
   padding: 8px 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
@@ -104,21 +113,43 @@ h6,
 }
 
 .uk-icon-button.gitlab {
-  background: transparent;
+  background: #fc6d26;
   width: 40px;
   height: 40px;
   font-size: 1.2rem;
-  border: 1px solid #fc6d26;
-  color: #fc6d26;
+  color: #fff;
+}
+
+.uk-icon-button:hover.gitlab,
+.uk-icon-button:focus.gitlab {
+  background-color: #ff8245;
+  color: #fff;
+}
+
+.uk-icon-button:active.gitlab,
+.uk-active > .uk-icon-button.gitlab {
+  background-color: #ff8245;
+  color: #fff;
 }
 
 .uk-icon-button.discord {
-  background: transparent;
+  background: #7289DA;
   width: 40px;
   height: 40px;
   font-size: 1.2rem;
-  border: 1px solid #7289DA;
-  color: #7289DA;
+  color: #fff;
+}
+
+.uk-icon-button:hover.discord,
+.uk-icon-button:focus.discord {
+  background-color: #8598DA;
+  color: #fff;
+}
+
+.uk-icon-button:active.discord,
+.uk-active > .uk-icon-button.discord {
+  background-color: #8598DA;
+  color: #fff;
 }
 
 .uk-button-primary {

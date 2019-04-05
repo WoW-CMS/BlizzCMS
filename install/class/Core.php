@@ -18,7 +18,7 @@ class Core {
         $this->dbFile = $config['db_file'];
         $this->reConfig = [$config['language']];
         $this->reDatabase = [$config['hostname'], $config['username'], $config['password'], $config['database'], $config['hostname2'], $config['username2'], $config['password2'], $config['database2']];
-        $this->reBlizzCMS = [$config['ProjectName'], $config['discord_inv'], $config['realmlist'], $config['expansion_id']];
+        $this->reBlizzCMS = [$config['ProjectName'], $config['discord_inv'], $config['realmlist'], $config['expansion_id'], $config['social_facebook'], $config['social_twitter']];
         $this->rePlus = [$config['license_plus']];
 
         if (!is_dir($this->appPath))
@@ -53,7 +53,7 @@ class Core {
                         break;
                     case 'blizzcms':
                         $find = $this->reBlizzCMS;
-                        $replace = [$this->input->ProjectName, $this->input->discord_inv, $this->input->realmlist, $this->input->expansion_id];
+                        $replace = [$this->input->ProjectName, $this->input->discord_inv, $this->input->realmlist, $this->input->expansion_id, $this->input->social_facebook, $this->input->social_twitter];
                         break;
                     case 'plus':
                         $find = $this->rePlus;

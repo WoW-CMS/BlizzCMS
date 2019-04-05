@@ -20,4 +20,6 @@ $config['ProjectName'] = '%PROJECTNAME%';
 $config['discord_inv'] = '%DISCORD_INV%';
 $config['realmlist'] = '%REALMLIST%';
 $config['expansion_id'] = '%EXPANSION_ID%';
+$config['social_facebook'] = '%SOCIAL_FACEBOOK%';
+$config['social_twitter'] = '%SOCIAL_TWITTER%';
 $config['license_plus'] = '%LICENSE_KEY%';
