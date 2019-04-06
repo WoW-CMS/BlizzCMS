@@ -45,135 +45,6 @@ class Admin_model extends CI_Model {
                 ->get('store_groups');
     }
 
-    public function insertChangelog($title, $desc)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $data = array(
-            'title' => $title,
-            'description' => $desc,
-            'date' => $date,
-        );
-
-        $this->db->insert('changelogs', $data);
-
-        redirect(base_url('admin/changelogs'),'refresh');
-    }
-
-    public function getChangelogSpecifyRows($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('changelogs')
-                ->num_rows();
-    }
-
-    public function getChangelogSpecifyName($id)
-    {
-        return $this->db->select('title')
-                ->where('id', $id)
-                ->get('changelogs')
-                ->row('title');
-    }
-
-    public function getChangelogSpecifyDesc($id)
-    {
-        return $this->db->select('description')
-                ->where('id', $id)
-                ->get('changelogs')
-                ->row_array()['description'];
-    }
-
-    public function updateSpecifyChangelog($id, $title, $description)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $update = array(
-            'title' => $title,
-            'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)
-                ->update('changelogs', $update);
-
-        redirect(base_url('admin/changelogs'),'refresh');
-    }
-
-    public function pagecheckUri($uri)
-    {
-      $qq = $this->db->select('uri_friendly')
-                  ->where('uri_friendly', $uri)
-                  ->get('pages')->row('uri_friendly');
-      if($qq == $uri)
-      {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    public function insertPage($uri, $title, $desc)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $data = array(
-            'uri_friendly' => $uri,
-            'title' => $title,
-            'description' => $desc,
-            'date' => $date,
-        );
-
-        $this->db->insert('pages', $data);
-
-        $uris = $this->db->select('uri_friendly')
-                ->where('uri_friendly', $uri)
-                ->get('pages')
-                ->row('uri_friendly');
-
-        redirect(base_url('admin/pages?newpage='.$uris),'refresh');
-    }
-
-    public function getPagesSpecifyRows($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('pages')
-                ->num_rows();
-    }
-
-    public function getPagesSpecifyName($id)
-    {
-        return $this->db->select('title')
-                ->where('id', $id)
-                ->get('pages')
-                ->row('title');
-    }
-
-    public function getPagesSpecifyDesc($id)
-    {
-        return $this->db->select('description')
-                ->where('id', $id)
-                ->get('pages')
-                ->row_array()['description'];
-    }
-
-    public function updateSpecifyPage($id, $title, $description)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $update = array(
-            'title' => $title,
-            'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)
-                ->update('pages', $update);
-
-        redirect(base_url('admin/pages'),'refresh');
-    }
-
     public function delShopItm($id)
     {
         $this->db->where('id', $id)
@@ -336,71 +207,6 @@ class Admin_model extends CI_Model {
                 ->update('store_groups', $update);
 
         redirect(base_url('admin/groups'),'refresh');
-    }
-
-    public function getChangelogs()
-    {
-        return $this->db->select('*')
-                ->get('changelogs')
-                ->result();
-    }
-
-    public function getPages()
-    {
-        return $this->db->select('*')
-                ->get('pages')
-                ->result();
-    }
-
-    public function delPage($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('pages');
-
-        redirect(base_url('admin/pages'),'refresh');
-    }
-
-    public function delChangelog($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('changelogs');
-
-        redirect(base_url('admin/changelogs'),'refresh');
-    }
-
-    public function delSpecifyNew($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('news');
-
-        $this->db->where('id_new', $id)
-                ->delete('news_top');
-
-        redirect(base_url('admin/news'),'refresh');
-    }
-
-    public function getNewsSpecifyName($id)
-    {
-        return $this->db->select('title')
-                ->where('id', $id)
-                ->get('news')
-                ->row_array()['title'];
-    }
-
-    public function getNewsSpecifyDesc($id)
-    {
-        return $this->db->select('description')
-                ->where('id', $id)
-                ->get('news')
-                ->row_array()['description'];
-    }
-
-    public function getNewsSpecifyRows($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('news')
-                ->num_rows();
     }
 
     public function getAdminAccountsList()
@@ -658,13 +464,6 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/donate'),'refresh');
     }
 
-    public function getAdminNewsList()
-    {
-        return $this->db->select('id, title, date')
-            ->order_by('id', 'ASC')
-            ->get('news');
-    }
-
     public function getUserHistoryDonate($id)
     {
         return $this->db->select('*')
@@ -679,79 +478,6 @@ class Admin_model extends CI_Model {
             case 0: return $this->lang->line('status_donate_cancell'); break;
             case 1: return $this->lang->line('status_donate_complete'); break;
         }
-    }
-
-    public function insertNews($title, $image, $description, $type)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $data = array(
-            'title' => $title,
-            'image' => $image,
-            'description' => $description,
-            'date' => $date,
-        );
-
-        $this->db->insert('news', $data);
-
-        if ($type == 2)
-        {
-            $id = $this->getNewIDperDate($date);
-
-            $data = array(
-            'id_new' => $id,
-            );
-
-            $this->db->insert('news_top', $data);
-        }
-
-        redirect(base_url('admin/news'),'refresh');
-    }
-
-    public function updateSpecifyNews($id, $title, $image, $description, $type)
-    {
-        $unlink = $this->getFileNameImage($id);
-        unlink('./assets/images/news/'.$unlink);
-
-        $date = $this->m_data->getTimestamp();
-
-        $update1 = array(
-            'title' => $title,
-            'image' => $image,
-            'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)
-                ->update('news', $update1);
-
-        $this->db->where('id_new', $id)
-                ->delete('news_top');
-
-        if ($type == 2)
-        {
-            $data['id_new'] = $id;
-
-            $this->db->insert('news_top', $data);
-        }
-
-        redirect(base_url('admin/news'),'refresh');
-    }
-
-    public function getNewIDperDate($date)
-    {
-        return $this->db->select('id')
-            ->where('date', $date)
-            ->get('news')
-            ->row('id');
-    }
-
-    public function getFileNameImage($id)
-    {
-        return $this->db->select('image')
-            ->where('id', $id)
-            ->get('news')
-            ->row_array()['image'];
     }
 
     public function insertChangeFactionChar($id, $multirealm, $idrealm)
@@ -1042,13 +768,6 @@ class Admin_model extends CI_Model {
             ->num_rows();
     }
 
-    public function getChangelogsCreated()
-    {
-        return $this->db->select('id')
-            ->get('changelogs')
-            ->num_rows();
-    }
-
     //database
     public function settingDatabase($data)
     {
@@ -1255,8 +974,7 @@ class Admin_model extends CI_Model {
         );
 
         $this->db->insert('slides', $data);
-
-        redirect(base_url('admin/slides'),'refresh');
+        return true;
     }
 
     public function delSpecifySlide($id)
@@ -1272,6 +990,295 @@ class Admin_model extends CI_Model {
         return $this->db->select('id, title')
             ->order_by('id', 'ASC')
             ->get('slides');
+    }
+
+    public function insertNews($title, $description, $image)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $data = array(
+            'title' => $title,
+            'image' => $image,
+            'description' => $description,
+            'date' => $date,
+        );
+
+        $this->db->insert('news', $data);
+
+        redirect(base_url('admin/news'),'refresh');
+    }
+
+    public function updateSpecifyNews($id, $title, $description, $image)
+    {
+        $unlink = $this->getFileNameImage($id);
+        unlink('./assets/images/news/'.$unlink);
+
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'image' => $image,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('news', $update);
+
+        redirect(base_url('admin/news'),'refresh');
+    }
+
+    public function delSpecifyNew($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('news');
+
+        $this->db->where('id_new', $id)
+                ->delete('news_top');
+
+        redirect(base_url('admin/news'),'refresh');
+    }
+
+    public function getAdminNewsList()
+    {
+        return $this->db->select('id, title, date')
+            ->order_by('id', 'ASC')
+            ->get('news');
+    }
+
+    public function getNewsSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('news')
+                ->num_rows();
+    }
+
+    public function getNewIDperDate($date)
+    {
+        return $this->db->select('id')
+            ->where('date', $date)
+            ->get('news')
+            ->row('id');
+    }
+
+    public function getFileNameImage($id)
+    {
+        return $this->db->select('image')
+            ->where('id', $id)
+            ->get('news')
+            ->row_array()['image'];
+    }
+
+    public function getNewsSpecifyName($id)
+    {
+        return $this->db->select('title')
+                ->where('id', $id)
+                ->get('news')
+                ->row_array()['title'];
+    }
+
+    public function getNewsSpecifyDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('news')
+                ->row_array()['description'];
+    }
+
+    public function insertChangelog($title, $desc)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $data = array(
+            'title' => $title,
+            'description' => $desc,
+            'date' => $date,
+        );
+
+        $this->db->insert('changelogs', $data);
+        return true;
+    }
+
+    public function updateSpecifyChangelog($id, $title, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('changelogs', $update);
+        return true;
+    }
+
+    public function delChangelog($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('changelogs');
+
+        redirect(base_url('admin/changelogs'),'refresh');
+    }
+
+    public function getChangelogs()
+    {
+        return $this->db->select('*')
+                ->get('changelogs')
+                ->result();
+    }
+
+    public function getChangelogsCreated()
+    {
+        return $this->db->select('id')
+            ->get('changelogs')
+            ->num_rows();
+    }
+
+    public function getChangelogSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('changelogs')
+                ->num_rows();
+    }
+
+    public function getChangelogSpecifyName($id)
+    {
+        return $this->db->select('title')
+                ->where('id', $id)
+                ->get('changelogs')
+                ->row('title');
+    }
+
+    public function getChangelogSpecifyDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('changelogs')
+                ->row_array()['description'];
+    }
+
+    public function insertPage($uri, $title, $desc)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $data = array(
+            'uri_friendly' => $uri,
+            'title' => $title,
+            'description' => $desc,
+            'date' => $date,
+        );
+
+        $this->db->insert('pages', $data);
+
+        $uris = $this->db->select('uri_friendly')
+                ->where('uri_friendly', $uri)
+                ->get('pages')
+                ->row('uri_friendly');
+
+        redirect(base_url('admin/pages?newpage='.$uris),'refresh');
+    }
+
+    public function updateSpecifyPage($id, $title, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('pages', $update);
+
+        redirect(base_url('admin/pages'),'refresh');
+    }
+
+    public function delPage($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('pages');
+
+        redirect(base_url('admin/pages'),'refresh');
+    }
+
+    public function getPages()
+    {
+        return $this->db->select('*')
+                ->get('pages')
+                ->result();
+    }
+
+    public function getPagesSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('pages')
+                ->num_rows();
+    }
+
+    public function pagecheckUri($uri)
+    {
+        $qq = $this->db->select('uri_friendly')
+                        ->where('uri_friendly', $uri)
+                        ->get('pages')->row('uri_friendly');
+
+        if($qq == $uri) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getPagesSpecifyName($id)
+    {
+        return $this->db->select('title')
+                ->where('id', $id)
+                ->get('pages')
+                ->row('title');
+    }
+
+    public function getPagesSpecifyDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('pages')
+                ->row_array()['description'];
+    }
+
+    public function insertFaq($title, $type, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $data = array(
+            'title' => $title,
+            'type' => $type,
+            'description' => $description,
+            'date' => $date,
+        );
+
+        $this->db->insert('faq', $data);
+        return true;
+    }
+
+    public function updateSpecifyFaq($id, $title, $type, $description)
+    {
+        $date = $this->m_data->getTimestamp();
+
+        $update = array(
+            'title' => $title,
+            'type' => $type,
+            'description' => $description,
+            'date' => $date
+        );
+
+        $this->db->where('id', $id)
+                ->update('faq', $update);
+        return true;
     }
 
     public function delSpecifyFaq($id)
@@ -1336,52 +1343,11 @@ class Admin_model extends CI_Model {
                 ->row_array()['title'];
     }
 
-    public function insertFaq($title, $type, $description)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $data = array(
-            'title' => $title,
-            'type' => $type,
-            'description' => $description,
-            'date' => $date,
-        );
-
-        $this->db->insert('faq', $data);
-
-        redirect(base_url('admin/faq'),'refresh');
-    }
-
-    public function updateSpecifyFaq($id, $title, $type, $description)
-    {
-        $date = $this->m_data->getTimestamp();
-
-        $update = array(
-            'title' => $title,
-            'type' => $type,
-            'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)
-                ->update('faq', $update);
-
-        redirect(base_url('admin/faq'),'refresh');
-    }
-
     public function getTopsites()
     {
         return $this->db->select('*')
                 ->get('votes')
                 ->result();
-    }
-
-    public function delTopsite($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('votes');
-
-        redirect(base_url('admin/topsites'),'refresh');
     }
 
     public function insertTopsite($name, $url, $time, $points, $image)
@@ -1391,10 +1357,32 @@ class Admin_model extends CI_Model {
             'url' => $url,
             'time' => $time,
             'points' => $points,
-            'image' => $image,
+            'image' => $image
         );
 
         $this->db->insert('votes', $data);
+        return true;
+    }
+
+    public function updateSpecifyTopsite($id, $name, $url, $time, $points, $image)
+    {
+        $update = array(
+            'name' => $name,
+            'url' => $url,
+            'time' => $time,
+            'points' => $points,
+            'image' => $image
+        );
+
+        $this->db->where('id', $id)
+                ->update('votes', $update);
+        return true;
+    }
+
+    public function delTopsite($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('votes');
 
         redirect(base_url('admin/topsites'),'refresh');
     }
@@ -1445,22 +1433,6 @@ class Admin_model extends CI_Model {
                 ->where('id', $id)
                 ->get('votes')
                 ->row('image');
-    }
-
-    public function updateSpecifyTopsite($id, $name, $url, $time, $points, $image)
-    {
-        $update = array(
-            'name' => $name,
-            'url' => $url,
-            'time' => $time,
-            'points' => $points,
-            'image' => $image,
-        );
-
-        $this->db->where('id', $id)
-                ->update('votes', $update);
-
-        redirect(base_url('admin/topsites'),'refresh');
     }
 
     public function getModules()

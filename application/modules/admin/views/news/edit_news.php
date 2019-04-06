@@ -9,11 +9,10 @@
             <a href="<?= base_url('admin/news'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
-        <?php if(isset($_POST['button_updateNews'])) {
-          $title = $_POST['new_title'];
-          $desc  = $_POST['new_description'];
-          $type  = $_POST['new_destac'];
-          $image = $_FILES["new_imageup"];
+        <?php if(isset($_POST['button_upnews'])) {
+          $title = $_POST['news_title'];
+          $desc  = $_POST['news_description'];
+          $image = $_FILES["news_image"];
 
           if ($image['type'] == 'image/jpeg')
           {
@@ -43,23 +42,14 @@
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="new_title" type="text" value="<?= $this->admin_model->getNewsSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_news_title'); ?>" required>
+                    <input class="uk-input" type="text" name="news_title" value="<?= $this->admin_model->getNewsSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_news_title'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
                 <div class="uk-form-controls">
-                  <textarea class="uk-textarea tinyeditor" name="new_description" rows="10" cols="80"><?= $this->admin_model->getNewsSpecifyDesc($idlink); ?></textarea>
-                </div>
-              </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_highl'); ?></label>
-                <div class="uk-form-controls">
-                  <select class="uk-select" name="new_destac">
-                    <option value="1"><?= $this->lang->line('option_no'); ?></option>
-                    <option value="2"><?= $this->lang->line('option_yes'); ?></option>
-                  </select>
+                  <textarea class="uk-textarea tinyeditor" name="news_description" rows="12"><?= $this->admin_model->getNewsSpecifyDesc($idlink); ?></textarea>
                 </div>
               </div>
               <div class="uk-margin-small">
@@ -67,7 +57,7 @@
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <div uk-form-custom="target: true">
-                      <input type="file" name="new_imageup" required>
+                      <input type="file" name="news_image" required>
                       <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
                       <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> Select</button>
                     </div>
@@ -75,7 +65,7 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" name="button_updateNews" type="submit"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_upnews"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
               </div>
             </form>
           </div>

@@ -1,11 +1,3 @@
-<?php
-if(isset($_POST['button_createChangelog'])):
-  $title  = $_POST['chang_title'];
-  $desc = $_POST['chang_description'];
-
-  $this->admin_model->insertChangelog($title, $desc);
-endif; ?>
-
     <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
@@ -19,27 +11,94 @@ endif; ?>
         </div>
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
-                <div class="uk-form-controls">
-                  <div class="uk-inline uk-width-1-1">
-                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="chang_title" type="text" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
-                  </div>
+            <?= form_open('', 'id="addchangelogForm" onsubmit="AddChangelogForm(event)"'); ?>
+            <div class="uk-margin-small">
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
+              <div class="uk-form-controls">
+                <div class="uk-inline uk-width-1-1">
+                  <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
+                  <input class="uk-input" type="text" id="changelog_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                 </div>
               </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
-                <div class="uk-form-controls">
-                  <textarea class="uk-textarea tinyeditor" name="chang_description" rows="10" cols="80"></textarea>
-                </div>
+            </div>
+            <div class="uk-margin-small">
+              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
+              <div class="uk-form-controls">
+                <textarea class="uk-textarea tinyeditor" id="changelog_description" rows="12"></textarea>
               </div>
-              <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" name="button_createChangelog" type="submit"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
-              </div>
-            </form>
+            </div>
+            <div class="uk-margin-small">
+              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_changelog"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+            </div>
+            <?= form_close(); ?>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      function AddChangelogForm(e) {
+        e.preventDefault();
+
+        var title = $('#changelog_title').val();
+        var description = $('#changelog_description').val();
+        if(title == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/changelogs/add'); ?>",
+          method:"POST",
+          data:{title, description},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#addchangelogForm')[0].reset();
+          }
+        });
+      }
+    </script>

@@ -62,6 +62,9 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    /**
+     * System functions
+     */
     public function settings()
     {
         if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
@@ -271,8 +274,12 @@ class Admin extends MX_Controller {
 
     public function createrealm()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('settings/create_realm');
+        $this->load->view('settings/create_realm', $data);
         $this->load->view('general/footer');
     }
 
@@ -285,11 +292,18 @@ class Admin extends MX_Controller {
 
     public function createslide()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('settings/create_slide');
+        $this->load->view('settings/create_slide', $data);
         $this->load->view('general/footer');
     }
 
+    /**
+     * Users functions
+     */
     public function accounts()
     {
         $this->load->view('general/header');
@@ -343,6 +357,9 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    /**
+     * Website functions
+     */
     public function managenews()
     {
         $this->load->view('general/header');
@@ -358,7 +375,8 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
-            'tiny' => $tiny
+            'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -382,6 +400,7 @@ class Admin extends MX_Controller {
         $data = array(
             'idlink' => $id,
             'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -404,7 +423,8 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
-            'tiny' => $tiny
+            'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -427,12 +447,28 @@ class Admin extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'tiny' => $tiny
+            'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
         $this->load->view('changelogs/edit_changelog', $data);
         $this->load->view('general/footer');
+    }
+
+    public function addchangelog()
+    {
+        $title = $this->input->post('title');
+        $description = $_POST['description'];
+        echo $this->admin_model->insertChangelog($title, $description);
+    }
+
+    public function updatechangelog()
+    {
+        $id = $this->input->post('id');
+        $title = $this->input->post('title');
+        $description = $_POST['description'];
+        echo $this->admin_model->updateSpecifyChangelog($id, $title, $description);
     }
 
     public function managepages()
@@ -451,6 +487,7 @@ class Admin extends MX_Controller {
 
         $data = array(
             'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -474,6 +511,7 @@ class Admin extends MX_Controller {
         $data = array(
             'idlink' => $id,
             'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -496,7 +534,8 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
-            'tiny' => $tiny
+            'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -519,7 +558,8 @@ class Admin extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'tiny' => $tiny
+            'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -527,6 +567,83 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    public function addfaq()
+    {
+        $title = $this->input->post('title');
+        $type = $this->input->post('type');
+        $description = $_POST['description'];
+        echo $this->admin_model->insertFaq($title, $type, $description);
+    }
+
+    public function updatefaq()
+    {
+        $id = $this->input->post('id');
+        $title = $this->input->post('title');
+        $type = $this->input->post('type');
+        $description = $_POST['description'];
+        echo $this->admin_model->updateSpecifyFaq($id, $title, $type, $description);
+    }
+
+    public function managetopsites()
+    {
+        $this->load->view('general/header');
+        $this->load->view('vote/manage_topsites');
+        $this->load->view('general/footer');
+    }
+
+    public function createtopsite()
+    {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
+        $this->load->view('general/header');
+        $this->load->view('vote/create_topsite', $data);
+        $this->load->view('general/footer');
+    }
+
+    public function edittopsite($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getTopsitesSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->load->view('general/header');
+        $this->load->view('vote/edit_topsite', $data);
+        $this->load->view('general/footer');
+    }
+
+    public function addtopsite()
+    {
+        $name = $this->input->post('name');
+        $url = $this->input->post('url');
+        $time = $this->input->post('time');
+        $points = $this->input->post('points');
+        $image = $this->input->post('image');
+        echo $this->admin_model->insertTopsite($name, $url, $time, $points, $image);
+    }
+
+    public function updatetopsite()
+    {
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $url = $this->input->post('url');
+        $time = $this->input->post('time');
+        $points = $this->input->post('points');
+        $image = $this->input->post('image');
+        echo $this->admin_model->updateSpecifyTopsite($id, $name, $url, $time, $points, $image);
+    }
+
+    /**
+     * Store functions
+     */
     public function managegroups()
     {
         $this->load->view('general/header');
@@ -549,7 +666,10 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getGroupSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        $data = array(
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
 
         $this->load->view('general/header');
         $this->load->view('store/edit_group', $data);
@@ -565,8 +685,12 @@ class Admin extends MX_Controller {
 
     public function createitem()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('store/create_item');
+        $this->load->view('store/create_item', $data);
         $this->load->view('general/footer');
     }
 
@@ -578,7 +702,10 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getItemSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        $data = array(
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
 
         $this->load->view('general/header');
         $this->load->view('store/edit_item', $data);
@@ -596,6 +723,9 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    /**
+     * Forum functions
+     */
     public function managecategories()
     {
         $data = array(
@@ -616,8 +746,12 @@ class Admin extends MX_Controller {
 
     public function createforum()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('forum/create_forum');
+        $this->load->view('forum/create_forum', $data);
         $this->load->view('general/footer');
     }
 
@@ -630,40 +764,12 @@ class Admin extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            'idlink' => $id
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
         $this->load->view('forum/edit_forum', $data);
-        $this->load->view('general/footer');
-    }
-
-    public function managetopsites()
-    {
-        $this->load->view('general/header');
-        $this->load->view('vote/manage_topsites');
-        $this->load->view('general/footer');
-    }
-
-    public function createtopsite()
-    {
-        $this->load->view('general/header');
-        $this->load->view('vote/create_topsite');
-        $this->load->view('general/footer');
-    }
-
-    public function edittopsite($id)
-    {
-        if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        if ($this->admin_model->getTopsitesSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
-
-        $data['idlink'] = $id;
-
-        $this->load->view('general/header');
-        $this->load->view('vote/edit_topsite', $data);
         $this->load->view('general/footer');
     }
 
