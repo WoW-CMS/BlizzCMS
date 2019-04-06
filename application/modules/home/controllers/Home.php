@@ -68,13 +68,11 @@ class Home extends MX_Controller {
             $data = array(
                 'pagetitle' => $this->lang->line('tab_home'),
                 'slides' => $this->home_model->getSlides()->result(),
-                'principalNew' => $this->news_model->getNewSpecifyID($this->news_model->getPrincipalNew())->result(),
                 'threeNews' => $this->news_model->getNewsTree()->result(),
                 'realmsList' => $this->m_data->getRealms()->result(),
                 //route
                 'slide_url' => base_url('includes/images/slides/'),
                 'news_url' => base_url('includes/images/news/'),
-                'store_url' => base_url('includes/images/store/'),
                 //lang
                 'home_latest_news' => $this->lang->line('home_latest_news'),
                 'button_read_more' => $this->lang->line('button_read_more'),

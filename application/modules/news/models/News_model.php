@@ -100,25 +100,4 @@ class News_model extends CI_Model {
                 ->limit('30')
                 ->get('news');
     }
-
-    public function getNewsTopsList()
-    {
-        return $this->db->select('id_new')
-                ->order_by('id', 'DESC')
-                ->limit('5')
-                ->get('news_top');
-    }
-
-    public function getPrincipalNew()
-    {
-        $qq = $this->db->select('id_new')
-                ->order_by('id', 'DESC')
-                ->limit('1')
-                ->get('news_top');
-
-        if ($qq->num_rows())
-            return $qq->row('id_new');
-        else
-            return false;
-    }
 }

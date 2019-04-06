@@ -394,8 +394,8 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `image` varchar(100) NOT NULL DEFAULT 'news.jpg' COMMENT 'includes/images/news',
   `description` text NOT NULL,
+  `image` varchar(100) NOT NULL DEFAULT 'news.jpg' COMMENT 'includes/images/news',
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -421,22 +421,6 @@ CREATE TABLE `news_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `news_comments` */
-
-/*Table structure for table `news_top` */
-
-DROP TABLE IF EXISTS `news_top`;
-
-CREATE TABLE `news_top` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_new` int(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_new` (`id_new`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-/*Data for the table `news_top` */
-
-insert  into `news_top`(`id`,`id_new`) values 
-(1,1);
 
 /*Table structure for table `pages` */
 
