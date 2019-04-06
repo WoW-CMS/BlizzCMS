@@ -551,6 +551,7 @@ h6,
 
 .uk-table th {
   color: #fff;
+  font-weight: 600;
 }
 
 .uk-table-divider > :first-child > tr:not(:first-child),
@@ -558,7 +559,6 @@ h6,
 .uk-table-divider > tr:not(:first-child) {
   border-top: 1px solid rgba(255, 255, 255, .3);
 }
-
 
 .myaccount-card tbody tr:first-child {
   border-top: none;
@@ -702,6 +702,37 @@ h6,
 .uk-table-small th {
   padding: 10px 8px;
   font-size: .875rem;
+}
+
+.uk-pagination > * {
+  padding-left: 8px;
+}
+
+.uk-pagination > * > * {
+  display: flex;
+  background: #0e86ca;
+  border: 1px solid #00aeff;
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 26px;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in-out .15s;
+}
+
+.uk-pagination > * > :focus,
+.uk-pagination > * > :hover {
+  background-color: #00aeff;
+  border-color: #00aeff;
+  color: #fff;
+}
+
+.uk-pagination > .uk-active > * {
+  background-color: #00aeff;
+  border-color: #00aeff;
+  color: #fff;
 }
 
 .status-dot {

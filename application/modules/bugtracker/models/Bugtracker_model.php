@@ -85,26 +85,28 @@ class Bugtracker_model extends CI_Model {
                         ->result();
     }
 
-    public function insertIssue($title, $type, $desc, $url)
+    public function insertIssue($title, $type, $priority, $desc)
     {
         $date = $this->m_data->getTimestamp();
         $author = $this->session->userdata('fx_sess_id');
+        $count_chars = mb_strlen(preg_replace('/\s/', '', strip_tags($desc)));
 
         $data = array(
             'title' => $title,
             'description' => $desc,
             'type' => $type,
-            'url' => $url,
+            'priority' => $priority,
             'date' => $date,
             'author' => $author,
-            'close' => '0',
-            );
+            'close' => '0'
+        );
 
-        $this->db->insert('bugtracker', $data);
-
-        $getIDPost = $this->getIDPostPerDate($date);
-
-        redirect(base_url('bugtracker/report/').$getIDPost,'refresh');
+        if($count_chars < 50)
+            return 'descErr';
+        else {
+            $this->db->insert('bugtracker', $data);
+            return true;
+        }
     }
 
     public function getIDPostPerDate($date)
@@ -144,19 +146,6 @@ class Bugtracker_model extends CI_Model {
                 ->row_array()['description'];
     }
 
-    public function getUrlIssue($id)
-    {
-        return $this->db->select('url')
-                ->where('id', $id)
-                ->get('bugtracker')
-                ->row_array()['url'];
-
-        if (empty($qq))
-            return 'Empty';
-        else
-            return $qq;
-    }
-
     public function getStatus($id)
     {
         return $this->db->select('title')
@@ -171,6 +160,11 @@ class Bugtracker_model extends CI_Model {
                 ->where('id', $id)
                 ->get('bugtracker')
                 ->row_array()['status'];
+    }
+
+    public function getPriorities()
+    {
+        return $this->db->select('*')->get('bugtracker_priority');
     }
 
     public function getPriority($id)

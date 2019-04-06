@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -37,20 +36,20 @@
               <div class="uk-width-auto">
                 <?php if ($this->m_data->isLogged()): ?>
                 <div class="uk-text-center uk-text-right@s">
-                  <a class="uk-button uk-button-default uk-button-small" uk-toggle="target: #createReport"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_create_report'); ?></a>
+                  <a href="<?= base_url('bugtracker/new'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_create_report'); ?></a>
                 </div>
                 <?php endif; ?>
               </div>
             </div>
-            <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
-              <table class="uk-table uk-table-hover uk-table-divider">
+            <div class="uk-overflow-auto uk-width-1-1 uk-margin">
+              <table class="uk-table uk-table-hover uk-table-small uk-table-divider">
                 <thead>
                   <tr>
-                    <th><i class="fas fa-book"></i> <?=$this->lang->line('table_header_id'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-bookmark"></i> <?= $this->lang->line('placeholder_title'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_status'); ?></th>
-                    <th class="uk-text-center"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?></th>
+                    <th><i class="fas fa-hashtag"></i> <?=$this->lang->line('table_header_id'); ?></th>
+                    <th class="uk-table-expand"><i class="fas fa-bookmark"></i> <?= $this->lang->line('placeholder_title'); ?></th>
+                    <th class="uk-width-small"><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?></th>
+                    <th class="uk-width-small uk-text-center"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?></th>
+                    <th class="uk-width-small uk-text-center"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_status'); ?></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,37 +61,29 @@
                           <?= $tracker->id ?>
                         </a>
                       </td>
-                      <td class="uk-table-link uk-text-center">
+                      <td class="uk-table-link">
                         <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
                           <?= $tracker->title ?>
                         </a>
                       </td>
-                      <td class="uk-table-link uk-text-center">
-                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
-                          <span class="uk-label"><?= $this->bugtracker_model->getType($tracker->type); ?></span>
-                        </a>
-                      </td>
-                      <td class="uk-table-link uk-text-center">
-                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
-                          <?php if ($tracker->status == 1 || $tracker->status == 8 || $tracker->status == 3): ?>
-                          <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
-                          <?php elseif($tracker->status == 2 || $tracker->status == 5 || $tracker->status == 6): ?>
-                          <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
-                          <?php else: ?>
-                          <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
-                          <?php endif; ?>
-                        </a>
+                      <td><?= $this->bugtracker_model->getType($tracker->type); ?></td>
+                      <td class="uk-text-center">
+                        <?php if ($tracker->priority == 1): ?>
+                        <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
+                        <?php elseif($tracker->priority == 2): ?>
+                        <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
+                        <?php else: ?>
+                        <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
+                        <?php endif; ?>
                       </td>
                       <td class="uk-text-center">
-                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>">
-                          <?php if ($tracker->priority == 1): ?>
-                          <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
-                          <?php elseif($tracker->priority == 2): ?>
-                          <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
-                          <?php else: ?>
-                          <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
-                          <?php endif; ?>
-                        </a>
+                        <?php if ($tracker->status == 1 || $tracker->status == 8 || $tracker->status == 3): ?>
+                        <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
+                        <?php elseif($tracker->status == 2 || $tracker->status == 5 || $tracker->status == 6): ?>
+                        <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
+                        <?php else: ?>
+                        <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
+                        <?php endif; ?>
                       </td>
                     </tr>
                   <?php endforeach; ?>

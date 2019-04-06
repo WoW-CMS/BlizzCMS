@@ -60,15 +60,8 @@ class Bugtracker extends MX_Controller {
 
     public function index()
     {
-
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
-        else
-            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
-
         $data = array(
             'pagetitle' => $this->lang->line('tab_bugtracker'),
-            'tiny' => $tiny,
         );
 
         $config['total_rows'] = $this->bugtracker_model->getAllBugs();
@@ -78,7 +71,7 @@ class Bugtracker extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(3);
-            $config['base_url'] = base_url().'bugtracker/index/';
+            $config['base_url'] = base_url().'bugtracker/';
 
             if (empty($page_number))
                 $page_number = 1;
@@ -95,7 +88,24 @@ class Bugtracker extends MX_Controller {
         $this->load->view('header', $data);
         $this->load->view('index', $data);
         $this->load->view('footer');
-        $this->load->view('modal');
+    }
+
+    public function newreport()
+    {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+        else
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_bugtracker'),
+            'lang' => $this->lang->lang(),
+            'tiny' => $tiny
+        );
+
+        $this->load->view('header', $data);
+        $this->load->view('new_report', $data);
+        $this->load->view('footer');
     }
 
     public function report($id)
@@ -118,11 +128,10 @@ class Bugtracker extends MX_Controller {
 
     public function create()
     {
-        $title = $_POST['bug_title'];
-        $type = $_POST['bug_type'];
-        $desc = $_POST['bug_description'];
-        $url = $_POST['bug_url'];
-
-        $this->bugtracker_model->insertIssue($title, $type, $desc, $url);
+        $title = $this->input->post('title');
+        $type = $this->input->post('type');
+        $priority = $this->input->post('priority');
+        $description = html_entity_decode($this->input->post('description'));
+        echo $this->bugtracker_model->insertIssue($title, $type, $priority, $description);
     }
 }

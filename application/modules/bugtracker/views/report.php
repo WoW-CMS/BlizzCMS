@@ -53,9 +53,6 @@ endif; ?>
             <div class="text-misc">
               <?= $this->bugtracker_model->getDescIssue($idlink); ?>
             </div>
-            <div class="uk-margin-small">
-              <div class="uk-placeholder uk-text-center"><?= $this->bugtracker_model->getUrlIssue($idlink); ?></div>
-            </div>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
               <div>
                 <p class="text-misc"><i class="far fa-user-circle"></i> <?= $this->lang->line('table_header_author'); ?>: <?= $this->m_data->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></p>
