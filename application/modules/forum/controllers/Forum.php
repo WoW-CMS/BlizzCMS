@@ -70,14 +70,14 @@ class Forum extends MX_Controller {
             redirect(base_url('forum'),'refresh');
 
         if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
-            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_forum'),
-            'tiny' => $tiny,
+            'tiny' => $tiny
         );
 
         if ($this->forum_model->getType($id) == 2 && $this->m_data->isLogged())
@@ -102,14 +102,14 @@ class Forum extends MX_Controller {
             redirect(base_url('forum'),'refresh');
 
         if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
-            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_forum'),
-            'tiny' => $tiny,
+            'tiny' => $tiny
         );
 
         $this->load->view('header', $data);

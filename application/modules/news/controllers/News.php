@@ -56,7 +56,7 @@ class News extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_news'),
+            'pagetitle' => $this->lang->line('tab_news')
         );
 
         $this->load->view('header', $data);
@@ -69,14 +69,14 @@ class News extends MX_Controller {
         $this->load->model('forum/forum_model');
 
         if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
-            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_news'),
-            'tiny' => $tiny,
+            'tiny' => $tiny
         );
 
         $this->load->view('header', $data);

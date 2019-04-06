@@ -93,9 +93,9 @@ class Bugtracker extends MX_Controller {
     public function newreport()
     {
         if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
-            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
 
         $data = array(
             'pagetitle' => $this->lang->line('tab_bugtracker'),
