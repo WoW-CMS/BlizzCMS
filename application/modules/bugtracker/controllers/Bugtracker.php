@@ -53,7 +53,7 @@ class Bugtracker extends MX_Controller {
 
         if(!$this->m_data->isLogged())
             redirect(base_url(),'refresh');
-        
+
         $this->load->config('bugtracker');
         $this->load->model('bugtracker_model');
     }
@@ -131,7 +131,7 @@ class Bugtracker extends MX_Controller {
         $title = $this->input->post('title');
         $type = $this->input->post('type');
         $priority = $this->input->post('priority');
-        $description = html_entity_decode($this->input->post('description'));
+        $description = $_POST['description'];
         echo $this->bugtracker_model->insertIssue($title, $type, $priority, $description);
     }
 }

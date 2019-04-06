@@ -187,6 +187,7 @@
                 'inEffect': 'slideRight',
                 'outEffect': 'slideRight'
               });
+              $('#reportForm')[0].reset();
               return false;
             }
 

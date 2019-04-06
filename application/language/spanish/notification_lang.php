@@ -66,6 +66,12 @@ $lang['notification_valid_key'] = 'Cuenta activada';
 $lang['notification_valid_key_desc'] = 'Ahora puedes iniciar sesión con tu cuenta.';
 $lang['notification_invalid_key'] = 'La clave de activación proporcionada no es válida.';
 
+/*Notification Message (General) Lang*/
+$lang['notification_select_type'] = 'Seleccione un tipo';
+$lang['notification_select_priority'] = 'Seleccione una prioridad';
+$lang['notification_description_min'] = 'La descripción no tiene un mínimo de 50 caracteres.';
+$lang['notification_report_created'] = 'El informe ha sido creado.';
+
 /*Notification Message (Admin) Lang*/
 $lang['notification_donation_added'] = 'Donación agregada';
 $lang['notification_donation_deleted'] = 'Donación eliminada';

@@ -66,6 +66,12 @@ $lang['notification_valid_key'] = 'Account Activated';
 $lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';
 $lang['notification_invalid_key'] = 'The activation key provided is not valid.';
 
+/*Notification Message (General) Lang*/
+$lang['notification_select_type'] = 'Select a type';
+$lang['notification_select_priority'] = 'Select a priority';
+$lang['notification_description_min'] = 'The description does not have a minimum of 50 characters.';
+$lang['notification_report_created'] = 'The report has been created.';
+
 /*Notification Message (Admin) Lang*/
 $lang['notification_donation_added'] = 'Added donation';
 $lang['notification_donation_deleted'] = 'Deleted donation';
