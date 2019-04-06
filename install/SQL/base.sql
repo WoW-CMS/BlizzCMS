@@ -53,10 +53,9 @@ CREATE TABLE `bugtracker` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `url` text DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
   `type` int(1) NOT NULL DEFAULT 1,
   `priority` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) NOT NULL DEFAULT 1,
   `date` int(10) NOT NULL,
   `author` int(10) NOT NULL,
   `close` int(1) NOT NULL DEFAULT 0,
@@ -78,9 +77,9 @@ CREATE TABLE `bugtracker_priority` (
 /*Data for the table `bugtracker_priority` */
 
 insert  into `bugtracker_priority`(`id`,`title`) values 
-(1,'High'),
+(1,'Low'),
 (2,'Medium'),
-(3,'Low');
+(3,'High');
 
 /*Table structure for table `bugtracker_status` */
 
