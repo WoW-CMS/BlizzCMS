@@ -100,7 +100,7 @@ class Bugtracker extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('tab_bugtracker'),
             'lang' => $this->lang->lang(),
-            'tiny' => $tiny
+            'tiny' => $tiny,
         );
 
         $this->load->view('header', $data);
@@ -129,7 +129,7 @@ class Bugtracker extends MX_Controller {
     public function create()
     {
         $title = $this->input->post('title');
-        $description = $this->input->post('description');
+        $description = $_POST['description'];
         $type = $this->input->post('type');
         $priority = $this->input->post('priority');
         echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);

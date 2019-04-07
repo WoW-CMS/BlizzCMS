@@ -551,13 +551,13 @@ class M_general extends CI_Model {
     {
         switch ($tool) {
             case 'pluginsADM':
-                return 'preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media codesample table charmap hr insertdatetime advlist lists wordcount imagetools textpattern help';
+                return 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern help';
                 break;
             case 'pluginsUser':
-                return 'advlist autolink lists link image charmap textcolor searchreplace fullscreen media paste wordcount emoticons';
+                return 'advlist autolink lists link image charmap print preview anchor textcolor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount';
                 break;
             case 'toolbarADM':
-                return 'undo redo | fontsizeselect | bold italic strikethrough | forecolor backcolor | link emoticons image media | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat';
+                return 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat';
                 break;
             case 'toolbarUser':
                 return 'undo redo | fontsizeselect | bold italic strikethrough | forecolor | link emoticons image | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat';

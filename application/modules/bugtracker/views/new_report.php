@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -46,7 +45,7 @@
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
-                  <input class="uk-input" id="report_title" type="text" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                  <input class="uk-input" type="text" id="report_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                 </div>
               </div>
             </div>
@@ -80,7 +79,7 @@
               <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-width-1-1">
-                  <textarea class="uk-textarea tinyeditor" id="reportdescription" rows="10" cols="60"></textarea>
+                  <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>
                 </div>
               </div>
             </div>
@@ -92,17 +91,16 @@
         </div>
       </div>
     </section>
-
+    <?= $tiny ?>
     <script>
       function ReportForm(e) {
         e.preventDefault();
 
         var title =  $.trim($('#report_title').val());
-        var description = $.trim($("#reportdescription").val());
+        var description = $.trim($('#report_description').val());
         var type = $('#report_type').val();
         var priority = $('#report_priority').val();
 
-        alert(description);
         if(title == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -174,24 +172,6 @@
           success:function(response){
             if(!response)
               alert(response);
-
-            if (response == 'descErr') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_description_min'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-              $('#reportForm')[0].reset();
-              return false;
-            }
 
             if (response) {
               $.amaran({
