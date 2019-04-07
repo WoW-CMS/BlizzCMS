@@ -1,12 +1,18 @@
 {
-	"description": "The CodeIgniter framework with HMVC Library",
-	"name": "alzen8work/ci_hmvc",
+	"description": "The CodeIgniter framework",
+	"name": "codeigniter/framework",
 	"type": "project",
-	"homepage": "https://github.com/alzen8work/ci_hmvc",
+	"homepage": "https://codeigniter.com",
 	"license": "MIT",
+	"support": {
+		"forum": "http://forum.codeigniter.com/",
+		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
+		"slack": "https://codeigniterchat.slack.com",
+		"source": "https://github.com/bcit-ci/CodeIgniter"
+	},
 	"require": {
 		"php": "~5.6.0|~7.2.0",
-		"paypal/rest-api-sdk-php": "*"
+		"paypal/rest-api-sdk-php": "^1.14"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
