@@ -198,23 +198,23 @@ insert  into `donate`(`id`,`name`,`price`,`tax`,`points`) values
 (2,'Normal','20.00','2.00',22),
 (3,'Professional','30.00','0.00',40);
 
-/*Table structure for table `donate_history` */
+/*Table structure for table `donate_logs` */
 
-DROP TABLE IF EXISTS `donate_history`;
+DROP TABLE IF EXISTS `donate_logs`;
 
-CREATE TABLE `donate_history` (
+CREATE TABLE `donate_logs` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `payment_id` varchar(100) NOT NULL,
   `hash` varchar(100) NOT NULL,
   `total` varchar(10) NOT NULL,
-  `complete` int(1) NOT NULL DEFAULT '0',
+  `points` int(10) NOT NULL DEFAULT '0',
   `create_time` varchar(100) NOT NULL,
-  `points` int(10) DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-/*Data for the table `donate_history` */
+/*Data for the table `donate_logs` */
 
 /*Table structure for table `events` */
 
@@ -544,11 +544,11 @@ CREATE TABLE `store_groups` (
 
 /*Data for the table `store_groups` */
 
-/*Table structure for table `store_history` */
+/*Table structure for table `store_logs` */
 
-DROP TABLE IF EXISTS `store_history`;
+DROP TABLE IF EXISTS `store_logs`;
 
-CREATE TABLE `store_history` (
+CREATE TABLE `store_logs` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `idstore` int(10) NOT NULL,
   `itemid` int(10) DEFAULT NULL,
@@ -559,7 +559,7 @@ CREATE TABLE `store_history` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `store_history` */
+/*Data for the table `store_logs` */
 
 /*Table structure for table `store_top` */
 

@@ -469,7 +469,7 @@ class Admin_model extends CI_Model {
         return $this->db->select('*')
                 ->where('user_id', $id)
                 ->order_by('id', 'DESC')
-                ->get('donate_history');
+                ->get('donate_logs');
     }
 
     public function getDonateStatus($id)

@@ -1,6 +1,6 @@
 <?php
-if (isset($_POST['donateNow'])):
-  $this->donate_model->getDonate($_POST['donateNow']);
+if (isset($_POST['button_donate'])):
+  $this->donate_model->getDonate($_POST['button_donate']);
 endif; ?>
 
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
@@ -42,13 +42,13 @@ endif; ?>
                   <div class="uk-card uk-card-body uk-card-donate uk-text-center uk-transition-scale-up uk-transition-opaque">
                     <i class="fab fa-paypal fa-3x"></i>
                     <h2 class="uk-margin-small uk-text-bold"><?= $donateList->name ?><br>
-                      <sup><?= $this->config->item('currencySymbol'); ?></sup><?= $donateList->price ?>
+                      <sup><?= $this->config->item('paypal_currency_symbol'); ?></sup><?= $donateList->price ?>
                     </h2>
                     <h5 class="uk-margin-small"><span uk-icon="icon: plus-circle"></span> <?= $this->lang->line('donate_get'); ?> <span class="uk-text-bold"><?= $donateList->points ?></span> <?= $this->lang->line('panel_dp'); ?>
                     </h5>
                     <form action="" method="post" accept-charset="utf-8">
                       <div class="uk-margin">
-                        <button class="uk-button uk-button-secondary" type="submit" value="<?= $donateList->id ?>" name="donateNow"><i class="fas fa-donate"></i> <?= $this->lang->line('button_donate'); ?></button>
+                        <button class="uk-button uk-button-secondary" type="submit" value="<?= $donateList->id ?>" name="button_donate"><i class="fas fa-donate"></i> <?= $this->lang->line('button_donate'); ?></button>
                       </div>
                     </form>
                   </div>

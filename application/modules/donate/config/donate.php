@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | https://developer.paypal.com/docs/classic/api/currency_codes/
 |
 */
-$config['currencyType'] = 'USD';
+$config['paypal_currency'] = 'USD';
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ $config['currencyType'] = 'USD';
 | live    = Ready for production
 |
 */
-$config['ppMode'] = 'sandbox';
+$config['paypal_mode'] = 'sandbox';
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ $config['ppMode'] = 'sandbox';
 | https://developer.paypal.com/developer/applications
 |
 */
-$config['userID'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_IXXzUKqtP1tGZHF_gCRPjNjyBo7V';
+$config['paypal_userid'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_IXXzUKqtP1tGZHF_gCRPjNjyBo7V';
 
 /*
 |--------------------------------------------------------------------------
@@ -45,14 +45,14 @@ $config['userID'] = 'AeEKmkcWH_NGf5Uxkoos5ESv3fffSBnlC1b-BJTAUF2vP02Klwa_IXXzUKq
 | https://developer.paypal.com/developer/applications
 |
 */
-$config['secretPass'] = 'EEaly2bYOVTbv1hsMPesPESGF-fFyFm_HMWij_0mFiiRAEibc-SdSeqCMPFlF0ziuzsZXNcBXxecsn2V';
+$config['paypal_secretpass'] = 'EEaly2bYOVTbv1hsMPesPESGF-fFyFm_HMWij_0mFiiRAEibc-SdSeqCMPFlF0ziuzsZXNcBXxecsn2V';
 
 /*
 |--------------------------------------------------------------------------
-| Currency Symbol
+| PayPal Currency Symbol
 |--------------------------------------------------------------------------
 |
 | Write the symbol of currency used in paypal
 |
 */
-$config['currencySymbol'] = '$';
+$config['paypal_currency_symbol'] = '$';

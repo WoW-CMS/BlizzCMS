@@ -182,7 +182,7 @@ class Store_model extends CI_Model {
             'method' => $method,
             );
 
-        $this->db->insert('store_history', $data);
+        $this->db->insert('store_logs', $data);
 
         if ($method == "dp")
             $this->db->query("UPDATE credits SET dp = (dp-$price) WHERE accountid = $accountid");
