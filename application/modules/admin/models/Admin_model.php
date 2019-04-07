@@ -374,7 +374,7 @@ class Admin_model extends CI_Model {
     public function insertBanChar($id, $reason, $multirealm, $idrealm)
     {
         $date       = $this->m_data->getTimestamp();
-        $idsession  = $this->session->userdata('fx_sess_id');
+        $idsession  = $this->session->userdata('wow_sess_id');
 
         if (empty($reason))
             $reason = $this->lang->line('log_banned');
@@ -691,7 +691,7 @@ class Admin_model extends CI_Model {
     public function insertBanAcc($iduser, $reason)
     {
         $date = $this->m_data->getTimestamp();
-        $id   = $this->session->userdata('fx_sess_id');
+        $id   = $this->session->userdata('wow_sess_id');
 
         if (empty($reason))
             $reason = $this->lang->line('log_banned');

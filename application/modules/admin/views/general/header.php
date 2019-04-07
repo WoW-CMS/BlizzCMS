@@ -26,12 +26,12 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="javascript:void(0)">
-                  <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('includes/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id'))); ?>" alt="">
+                  <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('includes/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('wow_sess_id'))); ?>" alt="">
                   <?php else: ?>
                   <img class="uk-border-rounded profile-img" src="<?= base_url('includes/images/profiles/default.png'); ?>"  alt="">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('fx_sess_username'); ?><span uk-icon="icon: triangle-down"></span></span>
+                  <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('wow_sess_username'); ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">

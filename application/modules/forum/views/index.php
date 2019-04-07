@@ -34,7 +34,7 @@
                   </tr>
                   <?php elseif($sections->type == 2): ?>
                   <?php if($this->m_data->isLogged()): ?>
-                  <?php if($this->m_data->getRank($this->session->userdata('fx_sess_id')) > 0): ?>
+                  <?php if($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0): ?>
                   <tr>
                     <td class="uk-table-shrink">
                       <i class="forum-icon" style="background-image: url('<?= base_url('includes/images/forums/'.$sections->icon); ?>')"></i>

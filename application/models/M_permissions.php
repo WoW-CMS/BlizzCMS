@@ -15,7 +15,7 @@ class M_permissions extends CI_Model {
 
         if($config == '1' && $this->m_data->isLogged())
         {
-            if($this->getMaintenancePermission($this->session->userdata('fx_sess_gmlevel')))
+            if($this->getMaintenancePermission($this->session->userdata('wow_sess_gmlevel')))
                 return true;
             else
                 return false;
@@ -29,7 +29,7 @@ class M_permissions extends CI_Model {
         $config = $this->config->item('MOD_Level');
 
         $qq = $this->auth->select('gmlevel')
-                ->where('id', $this->session->userdata('fx_sess_id'))
+                ->where('id', $this->session->userdata('wow_sess_id'))
                 ->get('account_access');
 
         if(!$qq->row('gmlevel'))
@@ -48,7 +48,7 @@ class M_permissions extends CI_Model {
     public function getRank($gmlevel)
     {
         $qq = $this->auth->select('gmlevel')
-                ->where('id', $this->session->userdata('fx_sess_id'))
+                ->where('id', $this->session->userdata('wow_sess_id'))
                 ->get('account_access');
 
         $gmlevel = $this->db->select('comment')
@@ -68,7 +68,7 @@ class M_permissions extends CI_Model {
         $config = $this->config->item('admin_access_level');
 
         $qq = $this->auth->select('gmlevel')
-                ->where('id', $this->session->userdata('fx_sess_id'))
+                ->where('id', $this->session->userdata('wow_sess_id'))
                 ->get('account_access');
 
         if(!$qq->row('gmlevel'))
@@ -89,7 +89,7 @@ class M_permissions extends CI_Model {
         $config = $this->config->item('mod_access_level');
 
         $qq = $this->auth->select('gmlevel')
-                ->where('id', $this->session->userdata('fx_sess_id'))
+                ->where('id', $this->session->userdata('wow_sess_id'))
                 ->get('account_access');
 
         if(!$qq->row('gmlevel'))

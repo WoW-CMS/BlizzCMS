@@ -41,7 +41,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-                          <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->m_data->getEmailID($this->session->userdata('fx_sess_id')); ?>" disabled>
+                          <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->m_data->getEmailID($this->session->userdata('wow_sess_id')); ?>" disabled>
                         </div>
                       </div>
                     </div>

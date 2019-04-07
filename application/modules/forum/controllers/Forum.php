@@ -69,7 +69,7 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -81,7 +81,7 @@ class Forum extends MX_Controller {
         );
 
         if ($this->forum_model->getType($id) == 2 && $this->m_data->isLogged())
-            if ($this->m_data->getRank($this->session->userdata('fx_sess_id')) > 0) { }
+            if ($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0) { }
         else
             redirect(base_url('forum'),'refresh');
 
@@ -97,11 +97,11 @@ class Forum extends MX_Controller {
             redirect(base_url('forum'),'refresh');
 
         if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->m_data->isLogged())
-            if ($this->m_data->getRank($this->session->userdata('fx_sess_id')) > 0) { }
+            if ($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0) { }
         else
             redirect(base_url('forum'),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -133,6 +133,6 @@ class Forum extends MX_Controller {
         else
             $pinned = '0';
 
-        $this->forum_model->insertTopic($idlink, $title, $this->session->userdata('fx_sess_id'), $description, $locked, $pinned);
+        $this->forum_model->insertTopic($idlink, $title, $this->session->userdata('wow_sess_id'), $description, $locked, $pinned);
     }
 }

@@ -45,7 +45,7 @@ class Vote_model extends CI_Model {
 
     public function voteNow($id)
     {
-        $userid = $this->session->userdata('fx_sess_id');
+        $userid = $this->session->userdata('wow_sess_id');
         $mytime = $this->m_data->getTimestamp();
         $ppoints = $this->getVotePoints($id);
         $votetime = $this->getVoteTime($id);

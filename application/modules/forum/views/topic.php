@@ -20,7 +20,7 @@ if (isset($_POST['button_addcommentary'])):
   $commentary = $_POST['reply_comment'];
 
   if (!is_null($commentary) && !empty($commentary) && $commentary != '' && $commentary != ' ')
-    $idsession = $this->session->userdata('fx_sess_id');
+    $idsession = $this->session->userdata('wow_sess_id');
     $this->forum_model->insertComment($commentary, $idlink, $idsession);
 endif;
 
@@ -41,7 +41,7 @@ endif; ?>
             </div>
             <div class="uk-width-auto">
               <?php if($this->m_data->isLogged()): ?>
-              <?php if($this->forum_model->getSpecifyPostAuthor($idlink) == $this->session->userdata('fx_sess_id')): ?>
+              <?php if($this->forum_model->getSpecifyPostAuthor($idlink) == $this->session->userdata('wow_sess_id')): ?>
               <div class="uk-text-center uk-text-right@s">
                 <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= $this->lang->line('button_edit_topic'); ?></a>
               </div>
@@ -123,7 +123,7 @@ endif; ?>
               <?php endif; ?>
                 <?= $commentss->commentary ?>
               </div>
-              <?php if($this->m_data->getRank($this->session->userdata('fx_sess_id')) > 0 || $this->session->userdata('fx_sess_id') == $commentss->author && $this->m_data->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
+              <?php if($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->m_data->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
                 <form action="" method="post" accept-charset="utf-8">
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
                     <button name="button_removecomment" type="submit" value="<?= $commentss->id ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>

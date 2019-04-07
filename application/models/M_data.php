@@ -12,14 +12,14 @@ class M_data extends CI_Model {
     public function arraySession($id)
     {
         $data = array(
-            'fx_sess_username'  => $this->getUsernameID($id),
-            'fx_sess_email'     => $this->getEmailID($id),
-            'fx_sess_id'        => $id,
-            'fx_sess_expansion'	=> $this->getExpansionID($id),
-            'fx_sess_last_ip'   => $this->getLastIPID($id),
-            'fx_sess_last_login'=> $this->getLastLoginID($id),
-            'fx_sess_gmlevel'   => $this->getRank($id),
-            'fx_sess_ban_status'=> $this->getBanStatus($id),
+            'wow_sess_username'  => $this->getUsernameID($id),
+            'wow_sess_email'     => $this->getEmailID($id),
+            'wow_sess_id'        => $id,
+            'wow_sess_expansion'	=> $this->getExpansionID($id),
+            'wow_sess_last_ip'   => $this->getLastIPID($id),
+            'wow_sess_last_login'=> $this->getLastLoginID($id),
+            'wow_sess_gmlevel'   => $this->getRank($id),
+            'wow_sess_ban_status'=> $this->getBanStatus($id),
             'logged_in' => TRUE
         );
 
@@ -187,7 +187,7 @@ class M_data extends CI_Model {
 
     public function isLogged()
     {
-        if ($this->session->userdata('fx_sess_username'))
+        if ($this->session->userdata('wow_sess_username'))
             return true;
         else
             return false;

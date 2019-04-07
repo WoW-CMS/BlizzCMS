@@ -11,14 +11,14 @@ class User_model extends CI_Model {
 
     public function changePassword($oldpass, $newpass, $renewpass)
     {
-        $passnobnet = $this->m_data->Account($this->session->userdata('fx_sess_username'), $oldpass);
-        $passbnet = $this->m_data->Battlenet($this->session->userdata('fx_sess_email'), $oldpass);
-        $newaccpass = $this->m_data->Account($this->session->userdata('fx_sess_username'), $newpass);
-        $newaccbnetpass = $this->m_data->Battlenet($this->session->userdata('fx_sess_email'), $newpass);
+        $passnobnet = $this->m_data->Account($this->session->userdata('wow_sess_username'), $oldpass);
+        $passbnet = $this->m_data->Battlenet($this->session->userdata('wow_sess_email'), $oldpass);
+        $newaccpass = $this->m_data->Account($this->session->userdata('wow_sess_username'), $newpass);
+        $newaccbnetpass = $this->m_data->Battlenet($this->session->userdata('wow_sess_email'), $newpass);
 
         if($this->m_general->getExpansionAction() == 1) {
-            if ($this->m_data->getPasswordAccountID($this->session->userdata('fx_sess_id')) == strtoupper($passnobnet)) {
-                if($newaccpass == $this->m_data->getPasswordAccountID($this->session->userdata('fx_sess_id'))) {
+            if ($this->m_data->getPasswordAccountID($this->session->userdata('wow_sess_id')) == strtoupper($passnobnet)) {
+                if($newaccpass == $this->m_data->getPasswordAccountID($this->session->userdata('wow_sess_id'))) {
                     return 'samePass';
                 }
                 else
@@ -31,7 +31,7 @@ class User_model extends CI_Model {
                                     's' => ''
                                 );
 
-                                $this->auth->where('id', $this->session->userdata('fx_sess_id'))
+                                $this->auth->where('id', $this->session->userdata('wow_sess_id'))
                                             ->update('account', $change);
 
                                 return true;
@@ -46,8 +46,8 @@ class User_model extends CI_Model {
                 return 'passnotMatch';
         }
         elseif($this->m_general->getExpansionAction() == 2) {
-            if ($this->m_data->getPasswordBnetID($this->session->userdata('fx_sess_id')) == strtoupper($passbnet)) {
-                if ($newaccbnetpass == $this->m_data->getPasswordBnetID($this->session->userdata('fx_sess_id'))) {
+            if ($this->m_data->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($passbnet)) {
+                if ($newaccbnetpass == $this->m_data->getPasswordBnetID($this->session->userdata('wow_sess_id'))) {
                     return 'samePass';
                 }
                 else
@@ -60,11 +60,11 @@ class User_model extends CI_Model {
                                 's' => ''
                             );
 
-                            $this->auth->where('id', $this->session->userdata('fx_sess_id'))
+                            $this->auth->where('id', $this->session->userdata('wow_sess_id'))
                                         ->update('account', $change);
 
                             $this->auth->set('sha_pass_hash', $newaccbnetpass)
-                                        ->where('id', $this->session->userdata('fx_sess_id'))
+                                        ->where('id', $this->session->userdata('wow_sess_id'))
                                         ->update('battlenet_accounts');
 
                             return true;
@@ -84,23 +84,23 @@ class User_model extends CI_Model {
 
     public function changeEmail($newemail, $renewemail, $password)
     {
-        $nobnet = $this->m_data->Account($this->session->userdata('fx_sess_username'), $password);
-        $bnet = $this->m_data->Battlenet($this->session->userdata('fx_sess_email'), $password);
+        $nobnet = $this->m_data->Account($this->session->userdata('wow_sess_username'), $password);
+        $bnet = $this->m_data->Battlenet($this->session->userdata('wow_sess_email'), $password);
         $newbnetpass = $this->m_data->Battlenet($newemail, $password);
 
         if($this->m_general->getExpansionAction() == 1) {
-            if ($this->m_data->getPasswordAccountID($this->session->userdata('fx_sess_id')) == strtoupper($nobnet)) {
+            if ($this->m_data->getPasswordAccountID($this->session->userdata('wow_sess_id')) == strtoupper($nobnet)) {
                 if($newemail == $renewemail) {
                     if($this->getExistEmail(strtoupper($newemail)) > 0) {
                         return 'usedEmail';
                     }
                     else
                         $this->auth->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->where('id', $this->session->userdata('wow_sess_id'))
                                     ->update('account');
 
                         $this->db->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->where('id', $this->session->userdata('wow_sess_id'))
                                     ->update('users');
 
                         return true;
@@ -112,18 +112,18 @@ class User_model extends CI_Model {
                 return 'epassnotMatch';
         }
         elseif($this->m_general->getExpansionAction() == 2) {
-            if ($this->m_data->getPasswordBnetID($this->session->userdata('fx_sess_id')) == strtoupper($bnet)) {
+            if ($this->m_data->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($bnet)) {
                 if($newemail == $renewemail) {
                     if($this->getExistEmail(strtoupper($newemail)) > 0) {
                         return 'usedEmail';
                     }
                     else
                         $this->auth->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->where('id', $this->session->userdata('wow_sess_id'))
                                     ->update('account');
 
                         $this->db->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('fx_sess_id'))
+                                    ->where('id', $this->session->userdata('wow_sess_id'))
                                     ->update('users');
 
                         $update = array(
@@ -131,7 +131,7 @@ class User_model extends CI_Model {
                             'email' => $newemail
                         );
 
-                        $this->auth->where('id', $this->session->userdata('fx_sess_id'))
+                        $this->auth->where('id', $this->session->userdata('wow_sess_id'))
                                     ->update('battlenet_accounts', $update);
 
                         return true;
@@ -163,7 +163,7 @@ class User_model extends CI_Model {
 
     public function insertAvatar($id)
     {
-        $sessid = $this->session->userdata('fx_sess_id');
+        $sessid = $this->session->userdata('wow_sess_id');
 
         $this->db->set('profile', $id)
              ->where('id', $sessid)
@@ -174,7 +174,7 @@ class User_model extends CI_Model {
 
     public function getExistInfo()
     {
-        $sessid = $this->session->userdata('fx_sess_id');
+        $sessid = $this->session->userdata('wow_sess_id');
 
         return $this->db->select('id')
                 ->where('id', $sessid)

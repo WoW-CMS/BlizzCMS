@@ -5,9 +5,9 @@ if (isset($_POST['button_changeavatar'])):
 endif;
 
 if (isset($_POST['button_uppdateinfo'])):
-  $user = $this->session->userdata('fx_sess_username');
-  $mail = $this->session->userdata('fx_sess_email');
-  $id = $this->session->userdata('fx_sess_id');
+  $user = $this->session->userdata('wow_sess_username');
+  $mail = $this->session->userdata('wow_sess_email');
+  $id = $this->session->userdata('wow_sess_id');
 
   $this->user_model->updateInformation($id, $user, $mail);
 endif; ?>
@@ -54,7 +54,7 @@ endif; ?>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
-                  <input class="uk-input uk-width-1-1" type="text" placeholder="<?= $this->session->userdata('fx_sess_username'); ?>" disabled>
+                  <input class="uk-input uk-width-1-1" type="text" placeholder="<?= $this->session->userdata('wow_sess_username'); ?>" disabled>
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@ endif; ?>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-                  <input class="uk-input" type="text" placeholder="<?= $this->session->userdata('fx_sess_email'); ?>" disabled>
+                  <input class="uk-input" type="text" placeholder="<?= $this->session->userdata('wow_sess_email'); ?>" disabled>
                 </div>
               </div>
             </div>

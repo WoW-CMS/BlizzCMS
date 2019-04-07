@@ -48,10 +48,10 @@ class Admin extends MX_Controller {
         if(!$this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
-        if(!$this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if(!$this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             redirect(base_url(),'refresh');
 
-        if($this->admin_model->getBanSpecify($this->session->userdata('fx_sess_id'))->num_rows())
+        if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
             redirect(base_url(),'refresh');
     }
 
@@ -67,7 +67,7 @@ class Admin extends MX_Controller {
      */
     public function settings()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -369,7 +369,7 @@ class Admin extends MX_Controller {
 
     public function createnews()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -392,7 +392,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getNewsSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -417,7 +417,7 @@ class Admin extends MX_Controller {
 
     public function createchangelog()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -440,7 +440,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -480,7 +480,7 @@ class Admin extends MX_Controller {
 
     public function createpage()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -503,7 +503,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getPagesSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -528,7 +528,7 @@ class Admin extends MX_Controller {
 
     public function createfaq()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');
@@ -551,7 +551,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getFaqSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel')))
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM', 'true');
         else
             $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser', 'false');

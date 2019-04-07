@@ -17,12 +17,12 @@
               <li class="uk-visible@m">
                 <?php if ($this->m_data->isLogged()): ?>
                   <a href="#">
-                  <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()): ?>
-                  <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id')))); ?>" width="30" height="30" alt="Avatar">
+                  <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
+                  <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="30" height="30" alt="Avatar">
                   <?php else: ?>
                   <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('fx_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span></a>
+                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('wow_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span></a>
                 <?php endif; ?>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -31,7 +31,7 @@
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if($this->m_modules->getACPStatus() == '1'): ?>
-                    <?php if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel'))): ?>
+                    <?php if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
@@ -98,12 +98,12 @@
                     <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('ProjectName'); ?></p>
                     <?php if ($this->m_data->isLogged()): ?>
                     <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                      <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('fx_sess_id'))->num_rows()): ?>
-                      <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('fx_sess_id')))); ?>" width="36" height="36" alt="Avatar">
+                      <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
+                      <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="36" height="36" alt="Avatar">
                       <?php else: ?>
                       <img class="uk-border-circle" src="<?= base_url('includes/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
                       <?php endif; ?>
-                      <span class="uk-label"><?= $this->session->userdata('fx_sess_username'); ?></span>
+                      <span class="uk-label"><?= $this->session->userdata('wow_sess_username'); ?></span>
                     </div>
                     <?php endif; ?>
                     <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
@@ -120,7 +120,7 @@
                       <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                       <?php endif; ?>
                       <?php if($this->m_modules->getACPStatus() == '1'): ?>
-                      <?php if($this->m_permissions->getIsAdmin($this->session->userdata('fx_sess_gmlevel'))): ?>
+                      <?php if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
                       <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                       <?php endif; ?>
                       <?php endif; ?>
@@ -172,8 +172,8 @@
             <?php if ($this->m_data->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->m_general->getCharDPTotal($this->session->userdata('fx_sess_id')); ?></li>
-                <li><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->m_general->getCharVPTotal($this->session->userdata('fx_sess_id')); ?></li>
+                <li><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->m_general->getCharDPTotal($this->session->userdata('wow_sess_id')); ?></li>
+                <li><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->m_general->getCharVPTotal($this->session->userdata('wow_sess_id')); ?></li>
               </ul>
             </div>
             <?php endif; ?>

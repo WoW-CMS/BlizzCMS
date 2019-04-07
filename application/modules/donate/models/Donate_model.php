@@ -52,14 +52,14 @@ class Donate_model extends CI_Model
     public function getCurrentDP()
     {
         $qq = $this->db->select('dp')
-            ->where('accountid', $this->session->userdata('fx_sess_id'))
+            ->where('accountid', $this->session->userdata('wow_sess_id'))
             ->get('credits');
 
         if($qq->num_rows())
             return $qq->row('dp');
         else
         {
-            $this->db->set('accountid', $this->session->userdata('fx_sess_id'))
+            $this->db->set('accountid', $this->session->userdata('wow_sess_id'))
                 ->set('dp', '0')
                 ->insert('credits');
             return '0';
@@ -129,7 +129,7 @@ class Donate_model extends CI_Model
 
             //prepare and execute
             $dataInsert = array(
-                'user_id' => $this->session->userdata('fx_sess_id'),
+                'user_id' => $this->session->userdata('wow_sess_id'),
                 'payment_id' => $payment->getId(),
                 'hash' => $hash,
                 'total' => $payment->transactions[0]->amount->total,
@@ -173,7 +173,7 @@ class Donate_model extends CI_Model
             $total = ($this->getCurrentDP() + $obtained_points);
 
             $this->db->set('dp', $total)
-                ->where('accountid', $this->session->userdata('fx_sess_id'))
+                ->where('accountid', $this->session->userdata('wow_sess_id'))
                 ->update('credits');
 
             redirect(base_url('donate'),'refresh');

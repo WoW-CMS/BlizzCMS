@@ -47,15 +47,15 @@
                     <tbody>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_username'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->m_data->getUsernameID($this->session->userdata('fx_sess_id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->m_data->getUsernameID($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_email'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->m_data->getEmailID($this->session->userdata('fx_sess_id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->m_data->getEmailID($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('panel_last_ip'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('fx_sess_id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -74,7 +74,7 @@
                   <div>
                     <h4 class="uk-h4 uk-text-bold"><i class="fas fa-server"></i> <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></h4>
                     <div class="uk-grid uk-grid-small uk-child-width-auto" data-uk-grid>
-                      <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('fx_sess_id'))->result() as $chars): ?>
+                      <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id'))->result() as $chars): ?>
                       <div>
                         <img class="uk-border-circle" src="<?= base_url('includes/images/class/'.$this->m_general->getClassIcon($chars->class)); ?>" title="<?= $chars->name ?> (Lvl <?= $chars->level ?>)" width="50" height="50" uk-tooltip>
                       </div>

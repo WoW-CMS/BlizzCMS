@@ -15,7 +15,7 @@ if (isset($_POST['buyNowGetItem'])):
   $this->store_model->insertHistory(
     $idlink, 
     $this->store_model->getItem($idlink), 
-    $this->session->userdata('fx_sess_id'), 
+    $this->session->userdata('wow_sess_id'), 
     $result_explode[1], 
     $method,
     $price,
@@ -79,7 +79,7 @@ endif; ?>
                             <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm): 
                               $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                             ?>
-                              <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('fx_sess_id'))->result() as $listchar): ?>
+                              <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('wow_sess_id'))->result() as $listchar): ?>
                               <option value="<?= $charsMultiRealm->id ?>|<?= $listchar->guid ?>"><?= $listchar->name ?> - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></option>
                               <?php endforeach; ?>
                             <?php endforeach; ?>
@@ -95,9 +95,9 @@ endif; ?>
                       </td>
                       <td class="uk-text-center">
                         <?php if ($_GET['tp'] == "dp")
-                          $qqs = $this->m_general->getCharDPTotal($this->session->userdata('fx_sess_id'));
+                          $qqs = $this->m_general->getCharDPTotal($this->session->userdata('wow_sess_id'));
                         else
-                          $qqs = $this->m_general->getCharVPTotal($this->session->userdata('fx_sess_id'));
+                          $qqs = $this->m_general->getCharVPTotal($this->session->userdata('wow_sess_id'));
                         ?>
                         <?php if ($qqs >= $this->store_model->getPriceType($idlink, $_GET['tp'])): ?>
                         <button type="submit" name="buyNowGetItem" class="uk-button uk-button-default uk-width-3-4 uk-button-small" title="<?= $this->lang->line('button_buy'); ?>"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('button_buy'); ?></button>
