@@ -1,0 +1,64 @@
+<?php
+  /**
+  * MIT License
+  *
+  * Copyright (c) 2017-2019, WoW-CMS
+  *
+  * Permission is hereby granted, free of charge, to any person obtaining a copy
+  * of this software and associated documentation files (the "Software"), to deal
+  * in the Software without restriction, including without limitation the rights
+  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  * copies of the Software, and to permit persons to whom the Software is
+  * furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in all
+  * copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  * SOFTWARE.
+  *
+  *
+  * @package	BlizzCMS Plus
+  * @author	WoWCMS Dev Team
+  * @copyright	Copyright (c) 2017 - 2019, WoWCMS. (https://wow-cms.com)
+  * @license	https://opensource.org/licenses/MIT	MIT License
+  * @link	https://wow-cms.com
+  * @since	Version 0.1.4
+  * @filesource
+  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class CI_Wowcms {
+
+    public function __construct()
+    {
+        $this->ci =& get_instance();
+        $this->ci->load->database();
+        $this->responseCurl();
+    }
+
+    /*
+     * Response CURL
+     *
+    */
+    public function responseCurl()
+    {
+        $wowcms = $this->ci->config->item('license_plus');
+        $uri = substr($this->ci->config->item('base_url'), 7);
+
+        $url = "http://nucleus.projectcms.net/api/key/$uri/$wowcms";
+        $nucleus = curl_init();
+        curl_setopt($nucleus, CURLOPT_URL, $url);
+        curl_setopt($nucleus, CURLOPT_RETURNTRANSFER, 1);
+        $nucleusResult = curl_exec($nucleus);
+        curl_close($nucleus);
+        if ($nucleusResult == "INVALID") {
+            redirect('http://wow-cms.com');
+        }
+    }
+}
