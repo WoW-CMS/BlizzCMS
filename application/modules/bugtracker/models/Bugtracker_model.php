@@ -85,15 +85,15 @@ class Bugtracker_model extends CI_Model {
                         ->result();
     }
 
-    public function insertIssue($title, $type, $priority, $desc)
+    public function insertIssue($title, $description, $type, $priority)
     {
         $date = $this->m_data->getTimestamp();
         $author = $this->session->userdata('wow_sess_id');
-        $count_chars = mb_strlen(preg_replace('/\s/', '', strip_tags($desc)));
+        $count_chars = mb_strlen(preg_replace('/\s/', '', strip_tags($description)));
 
         $data = array(
             'title' => $title,
-            'description' => $desc,
+            'description' => $description,
             'type' => $type,
             'priority' => $priority,
             'date' => $date,

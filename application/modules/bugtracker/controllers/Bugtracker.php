@@ -129,9 +129,9 @@ class Bugtracker extends MX_Controller {
     public function create()
     {
         $title = $this->input->post('title');
+        $description = $_POST['description'];
         $type = $this->input->post('type');
         $priority = $this->input->post('priority');
-        $description = $_POST['description'];
-        echo $this->bugtracker_model->insertIssue($title, $type, $priority, $description);
+        echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);
     }
 }

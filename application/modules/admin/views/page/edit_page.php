@@ -1,11 +1,3 @@
-<?php
-if (isset($_POST['button_updatePage'])):
-    $title = $_POST['page_title'];
-    $desc  = $_POST['page_description'];
-
-    $this->admin_model->updateSpecifyPage($idlink, $title, $desc);
-endif; ?>
-
     <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
