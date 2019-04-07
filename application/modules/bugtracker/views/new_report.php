@@ -80,7 +80,7 @@
               <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-width-1-1">
-                  <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>
+                  <textarea class="uk-textarea tinyeditor" id="reportdescription" rows="10" cols="60"></textarea>
                 </div>
               </div>
             </div>
@@ -97,10 +97,12 @@
       function ReportForm(e) {
         e.preventDefault();
 
-        var title = $('#report_title').val();
+        var title =  $.trim($('#report_title').val());
+        var description = $.trim($("#reportdescription").val());
         var type = $('#report_type').val();
         var priority = $('#report_priority').val();
-        var description = $('#report_description').val();
+
+        alert(description);
         if(title == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -152,7 +154,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/bugtracker/create'); ?>",
           method:"POST",
-          data:{title, type, priority, description},
+          data:{title, description, type, priority},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

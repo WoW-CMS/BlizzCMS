@@ -67,7 +67,7 @@ class Bugtracker extends MX_Controller {
         $config['total_rows'] = $this->bugtracker_model->getAllBugs();
         $data['total_count'] = $config['total_rows'];
         $config['suffix'] = '';
- 
+
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(3);
@@ -129,7 +129,7 @@ class Bugtracker extends MX_Controller {
     public function create()
     {
         $title = $this->input->post('title');
-        $description = $_POST['description'];
+        $description = $this->input->post('description');
         $type = $this->input->post('type');
         $priority = $this->input->post('priority');
         echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);

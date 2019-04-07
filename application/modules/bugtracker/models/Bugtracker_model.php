@@ -59,12 +59,12 @@ class Bugtracker_model extends CI_Model {
     {
         $this->_limit = $limit;
     }
- 
+
     public function setPageNumber($pageNumber)
     {
         $this->_pageNumber = $pageNumber;
     }
- 
+
     public function setOffset($offset)
     {
         $this->_offset = $offset;
@@ -89,11 +89,13 @@ class Bugtracker_model extends CI_Model {
     {
         $date = $this->m_data->getTimestamp();
         $author = $this->session->userdata('wow_sess_id');
-        $count_chars = mb_strlen(preg_replace('/\s/', '', strip_tags($description)));
+        // $count_chars = mb_strlen(preg_replace('/\s/', '', strip_tags($description)));
 
         $data = array(
             'title' => $title,
             'description' => $description,
+            'url' => '',
+            'status' => '1',
             'type' => $type,
             'priority' => $priority,
             'date' => $date,
@@ -101,12 +103,16 @@ class Bugtracker_model extends CI_Model {
             'close' => '0'
         );
 
+        $this->db->insert('bugtracker', $data);
+        return true;
+        /*
         if($count_chars < 50)
             return 'descErr';
         else {
-            $this->db->insert('bugtracker', $data);
-            return true;
+              $this->db->insert('bugtracker', $data);
+              return true;
         }
+        */
     }
 
     public function getIDPostPerDate($date)
