@@ -140,6 +140,8 @@ $route[$lang.'/admin/news/edit/(:num)'] = 'admin/editnews/$2';
 $route[$lang.'/admin/changelogs'] = 'admin/managechangelogs';
 $route[$lang.'/admin/changelogs/create'] = 'admin/createchangelog';
 $route[$lang.'/admin/changelogs/edit/(:num)'] = 'admin/editchangelog/$2';
+$route[$lang.'/admin/changelogs/add'] = 'admin/addchangelog';
+$route[$lang.'/admin/changelogs/update'] = 'admin/updatechangelog';
 
 // Pages
 $route[$lang.'/admin/pages'] = 'admin/managepages';
@@ -157,11 +159,15 @@ $route[$lang.'/admin/deletedonation'] = 'admin/deleteDonation';
 $route[$lang.'/admin/faq'] = 'admin/managefaqs';
 $route[$lang.'/admin/faq/create'] = 'admin/createfaq';
 $route[$lang.'/admin/faq/edit/(:num)'] = 'admin/editfaq/$2';
+$route[$lang.'/admin/faq/add'] = 'admin/addfaq';
+$route[$lang.'/admin/faq/update'] = 'admin/updatefaq';
 
 // Topsites
 $route[$lang.'/admin/topsites'] = 'admin/managetopsites';
 $route[$lang.'/admin/topsites/create'] = 'admin/createtopsite';
 $route[$lang.'/admin/topsites/edit/(:num)'] = 'admin/edittopsite/$2';
+$route[$lang.'/admin/topsites/add'] = 'admin/addtopsite';
+$route[$lang.'/admin/topsites/update'] = 'admin/updatetopsite';
 
 // Forum
 $route[$lang.'/admin/forums'] = 'admin/manageforums';
