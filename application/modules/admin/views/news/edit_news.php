@@ -21,7 +21,7 @@
 
             move_uploaded_file($image["tmp_name"], "./includes/images/news/" . $name_new);
 
-            $this->admin_model->updateSpecifyNews($idlink, $title, $name_new, $desc, $type);
+            $this->admin_model->updateSpecifyNews($idlink, $title, $desc, $name_new);
           }
           elseif($image['type'] == 'image/png') {
             $random = $this->m_data->randomUTF();
@@ -29,7 +29,7 @@
 
             move_uploaded_file($image["tmp_name"], "./includes/images/news/" . $name_new);
 
-            $this->admin_model->updateSpecifyNews($idlink, $title, $name_new, $desc, $type);
+            $this->admin_model->updateSpecifyNews($idlink, $title, $desc, $name_new);
           }
           else
             echo '<div class="uk-width-1-1@l uk-width-1-1@xl"><div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p><i class="fas fa-exclamation-circle"></i> '.$this->lang->line('alert_upload_error').'</p></div></div>';

@@ -1086,13 +1086,13 @@ class Admin_model extends CI_Model {
                 ->row_array()['description'];
     }
 
-    public function insertChangelog($title, $desc)
+    public function insertChangelog($title, $description)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
             'title' => $title,
-            'description' => $desc,
+            'description' => $description,
             'date' => $date,
         );
 
@@ -1161,41 +1161,50 @@ class Admin_model extends CI_Model {
                 ->row_array()['description'];
     }
 
-    public function insertPage($uri, $title, $desc)
+    public function insertPage($title, $uri, $description)
     {
         $date = $this->m_data->getTimestamp();
+        $rand = rand(1, 15);
 
-        $data = array(
-            'uri_friendly' => $uri,
-            'title' => $title,
-            'description' => $desc,
-            'date' => $date,
-        );
+        if($this->pagecheckUri($uri) == TRUE) {
+            $new_uri = $uri."-".$rand;
 
-        $this->db->insert('pages', $data);
+            $data = array(
+                'title' => $title,
+                'uri_friendly' => $new_uri,
+                'description' => $description,
+                'date' => $date
+            );
 
-        $uris = $this->db->select('uri_friendly')
-                ->where('uri_friendly', $uri)
-                ->get('pages')
-                ->row('uri_friendly');
+            $this->db->insert('pages', $data);
+            return true;
+        } 
+        else
+            $data1 = array(
+                'title' => $title,
+                'uri_friendly' => $uri,
+                'description' => $description,
+                'date' => $date
+            );
 
-        redirect(base_url('admin/pages?newpage='.$uris),'refresh');
+            $this->db->insert('pages', $data1);
+            return true;
     }
 
-    public function updateSpecifyPage($id, $title, $description)
+    public function updateSpecifyPage($id, $title, $uri, $description)
     {
         $date = $this->m_data->getTimestamp();
 
         $update = array(
             'title' => $title,
+            'uri' => $uri,
             'description' => $description,
             'date' => $date
         );
 
         $this->db->where('id', $id)
                 ->update('pages', $update);
-
-        redirect(base_url('admin/pages'),'refresh');
+        return true;
     }
 
     public function delPage($id)

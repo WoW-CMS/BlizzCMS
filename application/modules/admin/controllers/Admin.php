@@ -519,6 +519,23 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    public function addpage()
+    {
+        $title = $this->input->post('title');
+        $uri = $this->input->post('uri');
+        $description = $_POST['description'];
+        echo $this->admin_model->insertPage($title, $uri, $description);
+    }
+
+    public function updatepage()
+    {
+        $id = $this->input->post('id');
+        $title = $this->input->post('title');
+        $uri = $this->input->post('uri');
+        $description = $_POST['description'];
+        echo $this->admin_model->updateSpecifyPage($id, $title, $uri, $description);
+    }
+
     public function managefaqs()
     {
         $this->load->view('general/header');

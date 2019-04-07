@@ -13,27 +13,22 @@ endif; ?>
             <a href="<?= base_url('admin/pages/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
-        <?php if (isset($_GET['newpage'])): ?>
-        <div class="uk-alert-primary uk-margin-small" uk-alert>
-          <a class="uk-alert-close" uk-close></a>
-          <p><?= $this->lang->line('alert_new_page_url'); ?>: <b><a href="<?= base_url('page/').$_GET['newpage']; ?>"><?= base_url('page/').$_GET['newpage']; ?></a></b></p>
-        </div>
-        <?php endif; ?>
         <div class="uk-card uk-card-default uk-card-body">
           <div class="uk-overflow-auto">
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-table-expand"><?= $this->lang->line('placeholder_title'); ?></th>
+                  <th class="uk-width-small"><?= $this->lang->line('placeholder_title'); ?></th>
+                  <th class="uk-width-medium"><?= $this->lang->line('placeholder_uri'); ?></th>
                   <th class="uk-width-small"><?= $this->lang->line('table_header_date'); ?></th>
                   <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
-                  <?= $this->admin_model->pagecheckUri('tos'); ?>
                 </tr>
               </thead>
               <tbody>
                 <?php foreach($this->admin_model->getPages() as $pages): ?>
                 <tr>
                   <td><?= $pages->title ?></td>
+                  <td><?= base_url('page/').$pages->uri_friendly; ?></td>
                   <td><?= date('Y-m-d', $pages->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
