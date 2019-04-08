@@ -535,13 +535,13 @@ class M_general extends CI_Model {
         }
     }
 
-    public function tinyEditor($plugin, $tool, $menu)
+    public function tinyEditor($plugin, $tool)
     {
         return "<script src=".base_url('includes/core/tinymce/tinymce.min.js')."></script>
                 <script>tinymce.init({
                     selector: '.tinyeditor',
                     element_format : 'html',
-                    menubar: $menu,
+                    menubar: false,
                     plugins: ['".$this->tinyEditorTools($plugin)."'],
                     toolbar: '".$this->tinyEditorTools($tool)."'});
                 </script>";
