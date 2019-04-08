@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -72,3 +71,4 @@
         </div>
       </div>
     </section>
+    <?= $tiny ?>

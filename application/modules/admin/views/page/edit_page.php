@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -44,15 +43,15 @@
         </div>
       </div>
     </section>
-
+    <?= $tiny ?>
     <script>
       function UpdatePageForm(e) {
         e.preventDefault();
 
         var id = "<?= $idlink ?>";
-        var title = $('#page_title').val();
-        var uri = $('#page_uri').val();
-        var description = $('#page_description').val();
+        var title = $.trim($('#page_title').val());
+        var uri = $.trim($('#page_uri').val());
+        var description = tinymce.get('page_description').getContent();
         if(title == ''){
           $.amaran({
             'theme': 'awesome error',

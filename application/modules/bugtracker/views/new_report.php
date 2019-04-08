@@ -97,7 +97,7 @@
         e.preventDefault();
 
         var title =  $.trim($('#report_title').val());
-        var description = $.trim($('#report_description').val());
+        var description = tinymce.get('report_description').getContent();
         var type = $('#report_type').val();
         var priority = $('#report_priority').val();
 

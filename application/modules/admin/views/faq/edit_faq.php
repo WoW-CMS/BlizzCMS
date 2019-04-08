@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -50,15 +49,15 @@
         </div>
       </div>
     </section>
-
+    <?= $tiny ?>
     <script>
       function UpdateFaqForm(e) {
         e.preventDefault();
 
         var id = "<?= $idlink ?>";
-        var title = $('#faq_title').val();
+        var title = $.trim($('#faq_title').val());
         var type = $('#faq_type').val();
-        var description = $('#faq_description').val();
+        var description = tinymce.get('faq_description').getContent();
         if(title == ''){
           $.amaran({
             'theme': 'awesome error',

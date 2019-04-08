@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -35,14 +34,14 @@
         </div>
       </div>
     </section>
-
+    <?= $tiny ?>
     <script>
       function UpdateChangelogForm(e) {
         e.preventDefault();
 
         var id = "<?= $idlink ?>";
-        var title = $('#changelog_title').val();
-        var description = $('#changelog_description').val();
+        var title = $.trim($('#changelog_title').val());
+        var description = tinymce.get('changelog_description').getContent();
         if(title == ''){
           $.amaran({
             'theme': 'awesome error',
