@@ -74,6 +74,7 @@ class Admin extends MX_Controller {
 
         $data = array(
             'tiny' => $tiny,
+            'lang' => $this->lang->lang()
         );
 
         $this->load->view('general/header');
@@ -81,18 +82,53 @@ class Admin extends MX_Controller {
         $this->load->view('general/footer');
     }
 
+    public function updatesettings()
+    {
+        $project = $this->input->post('project');
+        $timezone = $this->input->post('timezone');
+        $discord = $this->input->post('discord');
+        $realmlist = $this->input->post('realmlist');
+        $staffcolor = $_POST['staffcolor'];
+        $theme = $this->input->post('theme');
+        echo $this->admin_model->updateGeneralSettings($project, $timezone, $discord, $realmlist, $staffcolor, $theme);
+    }
+
     public function databasesettings()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('settings/database_settings');
+        $this->load->view('settings/database_settings', $data);
         $this->load->view('general/footer');
     }
 
     public function optionalsettings()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('settings/optional_settings');
+        $this->load->view('settings/optional_settings', $data);
         $this->load->view('general/footer');
+    }
+
+    public function updateoptionalsettings()
+    {
+        $adminlvl = $this->input->post('adminlvl');
+        $modlvl = $this->input->post('modlvl');
+        $recaptcha = $this->input->post('recaptcha');
+        $register = $this->input->post('register');
+        $smtphost = $this->input->post('smtphost');
+        $smtpport = $this->input->post('smtpport');
+        $smtpcrypto = $this->input->post('smtpcrypto');
+        $smtpuser = $this->input->post('smtpuser');
+        $smtppass = $this->input->post('smtppass');
+        $sender = $this->input->post('sender');
+        $sendername = $this->input->post('sendername');
+        echo $this->admin_model->updateOptionalSettings($adminlvl, $modlvl, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername);
     }
 
     public function insertCategory()
@@ -281,6 +317,53 @@ class Admin extends MX_Controller {
         $this->load->view('general/header');
         $this->load->view('settings/create_realm', $data);
         $this->load->view('general/footer');
+    }
+
+    public function editrealm($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->load->view('general/header');
+        $this->load->view('settings/edit_realm', $data);
+        $this->load->view('general/footer');
+    }
+
+    public function addrealm()
+    {
+        $realmid = $this->input->post('realmid');
+        $soap_host = $this->input->post('soaphost');
+        $soap_port = $this->input->post('soapport');
+        $soap_user = $this->input->post('soapuser');
+        $soap_pass = $this->input->post('soappass');
+        $char_host = $this->input->post('charhost');
+        $char_db = $this->input->post('chardb');
+        $char_user = $this->input->post('charuser');
+        $char_pass = $this->input->post('charpass');
+        echo $this->m_modules->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, '1');
+    }
+
+    public function updaterealm()
+    {
+        $id = $this->input->post('id');
+        $realmid = $this->input->post('realmid');
+        $soap_host = $this->input->post('soaphost');
+        $soap_port = $this->input->post('soapport');
+        $soap_user = $this->input->post('soapuser');
+        $soap_pass = $this->input->post('soappass');
+        $char_host = $this->input->post('charhost');
+        $char_db = $this->input->post('chardb');
+        $char_user = $this->input->post('charuser');
+        $char_pass = $this->input->post('charpass');
+        echo $this->admin_model->updateSpecifyRealm($id, $char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port);
     }
 
     public function manageslides()

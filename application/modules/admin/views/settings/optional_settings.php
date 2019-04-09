@@ -23,6 +23,7 @@
               <div class="uk-card-body">
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span>Optional Settings</span></h5>
                 <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small">Ranks</h5>
+                <?= form_open('', 'id="updateoptionalForm" onsubmit="UpdateOptionalForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
@@ -30,7 +31,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-crown"></i></span>
-                          <input class="uk-input" type="text" name="adminLevel" value="<?= $this->config->item('admin_access_level'); ?>" required>
+                          <input class="uk-input" type="text" id="admin_level" value="<?= $this->config->item('admin_access_level'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -39,7 +40,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-gavel"></i></span>
-                          <input class="uk-input" type="text" name="modLevel" value="<?= $this->config->item('mod_access_level'); ?>" required>
+                          <input class="uk-input" type="text" id="mod_level" value="<?= $this->config->item('mod_access_level'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -51,7 +52,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" name="recaptchaKey" value="<?= $this->config->item('recaptcha_sitekey'); ?>" required>
+                      <input class="uk-input" type="text" id="recaptcha_key" value="<?= $this->config->item('recaptcha_sitekey'); ?>">
                     </div>
                   </div>
                 </div>
@@ -62,9 +63,9 @@
                 <div class="uk-margin-small">
                   <label class="uk-form-label">Account Activation</label>
                   <div class="uk-form-controls">
-                    <select class="uk-select" name="registerType">
-                      <option value="TRUE" <?php if($this->config->item('account_activation_required') == TRUE) echo 'selected'; ?>>Enabled</option>
-                      <option value="FALSE" <?php if($this->config->item('account_activation_required') == FALSE) echo 'selected'; ?>>Disabled</option>
+                    <select class="uk-select" id="register_type">
+                      <option value="TRUE" <?php if($this->config->item('account_activation_required') == 'TRUE') echo 'selected'; ?>>Enabled</option>
+                      <option value="FALSE" <?php if($this->config->item('account_activation_required') == 'FALSE') echo 'selected'; ?>>Disabled</option>
                     </select>
                   </div>
                 </div>
@@ -76,7 +77,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mail-bulk"></i></span>
-                          <input class="uk-input" type="text" name="smtpHost" value="<?= $this->config->item('smtp_host'); ?>" required>
+                          <input class="uk-input" type="text" id="smtp_hostname" value="<?= $this->config->item('smtp_host'); ?>">
                         </div>
                       </div>
                     </div>
@@ -84,14 +85,14 @@
                       <label class="uk-form-label">SMTP Port</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
-                          <input class="uk-input" type="number" name="smtpPort" value="<?= $this->config->item('smtp_port'); ?>" required>
+                          <input class="uk-input" type="number" id="smtp_port" value="<?= $this->config->item('smtp_port'); ?>">
                         </div>
                       </div>
                     </div>
                     <div class="uk-width-1-4@s">
                       <label class="uk-form-label">SMTP Encryption</label>
                       <div class="uk-form-controls">
-                        <select class="uk-select" name="smtpCrypto">
+                        <select class="uk-select" id="smtp_crypto">
                           <option value="ssl" <?php if($this->config->item('smtp_crypto') == 'ssl') echo 'selected'; ?>>SSL</option>
                           <option value="tls" <?php if($this->config->item('smtp_crypto') == 'tls') echo 'selected'; ?>>TLS</option>
                         </select>
@@ -106,7 +107,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
-                          <input class="uk-input" type="text" name="smtpUser" value="<?= $this->config->item('smtp_user'); ?>" required>
+                          <input class="uk-input" type="text" id="smtp_username" value="<?= $this->config->item('smtp_user'); ?>">
                         </div>
                       </div>
                     </div>
@@ -115,7 +116,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                          <input class="uk-input" type="text" name="smtpPass" value="<?= $this->config->item('smtp_pass'); ?>" required>
+                          <input class="uk-input" type="text" id="smtp_password" value="<?= $this->config->item('smtp_pass'); ?>">
                         </div>
                       </div>
                     </div>
@@ -128,7 +129,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="senderEmail" value="<?= $this->config->item('email_settings_sender'); ?>" required>
+                          <input class="uk-input" type="email" id="sender_email" value="<?= $this->config->item('email_settings_sender'); ?>">
                         </div>
                       </div>
                     </div>
@@ -137,18 +138,96 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user-circle"></i></span>
-                          <input class="uk-input" type="text" name="senderName" value="<?= $this->config->item('email_settings_sender_name'); ?>" required>
+                          <input class="uk-input" type="text" id="sender_name" value="<?= $this->config->item('email_settings_sender_name'); ?>">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" name="submitCaptcha" type="submit"><i class="fas fa-sync"></i> Update</button>
+                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_optional"><i class="fas fa-sync"></i> Update</button>
                 </div>
+                <?= form_close(); ?>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      function UpdateOptionalForm(e) {
+        e.preventDefault();
+
+        var adminlvl = $.trim($('#admin_level').val());
+        var modlvl = $.trim($('#mod_level').val());
+        var recaptcha = $.trim($('#recaptcha_key').val());
+        var register = $.trim($('#register_type').val());
+        var smtphost = $.trim($('#smtp_hostname').val());
+        var smtpport = $.trim($('#smtp_port').val());
+        var smtpcrypto = $.trim($('#smtp_crypto').val());
+        var smtpuser = $.trim($('#smtp_username').val());
+        var smtppass = $.trim($('#smtp_password').val());
+        var sender = $.trim($('#sender_email').val());
+        var sendername = $.trim($('#sender_name').val());
+        if(adminlvl == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/settings/optional/update'); ?>",
+          method:"POST",
+          data:{adminlvl, modlvl, recaptcha, register, smtphost, smtpport, smtpcrypto, smtpuser, smtppass, sender, sendername},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#updateoptionalForm')[0].reset();
+            window.location.replace("<?= base_url('admin/settings/optional'); ?>");
+          }
+        });
+      }
+    </script>

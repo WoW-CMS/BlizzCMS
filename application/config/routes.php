@@ -115,13 +115,22 @@ $route[$lang.'/pvp'] = 'pvp/index';
 // General
 $route[$lang.'/admin'] = 'admin/index';
 $route[$lang.'/admin/settings'] = 'admin/settings';
+$route[$lang.'/admin/settings/update'] = 'admin/updatesettings';
 $route[$lang.'/admin/settings/database'] = 'admin/databasesettings';
 $route[$lang.'/admin/settings/optional'] = 'admin/optionalsettings';
+$route[$lang.'/admin/settings/optional/update'] = 'admin/updateoptionalsettings';
 $route[$lang.'/admin/modules'] = 'admin/managemodules';
+
+// Manage Slides
 $route[$lang.'/admin/slides'] = 'admin/manageslides';
 $route[$lang.'/admin/slides/create'] = 'admin/createslide';
+
+// Manage Realms
 $route[$lang.'/admin/realms'] = 'admin/managerealms';
 $route[$lang.'/admin/realms/create'] = 'admin/createrealm';
+$route[$lang.'/admin/realms/edit/(:num)'] = 'admin/editrealm/$2';
+$route[$lang.'/admin/realms/add'] = 'admin/addrealm';
+$route[$lang.'/admin/realms/update'] = 'admin/updaterealm';
 
 // Manage Accounts
 $route[$lang.'/admin/accounts'] = 'admin/accounts';
@@ -147,6 +156,8 @@ $route[$lang.'/admin/changelogs/update'] = 'admin/updatechangelog';
 $route[$lang.'/admin/pages'] = 'admin/managepages';
 $route[$lang.'/admin/pages/create'] = 'admin/createpage';
 $route[$lang.'/admin/pages/edit/(:num)'] = 'admin/editpage/$2';
+$route[$lang.'/admin/pages/add'] = 'admin/addpage';
+$route[$lang.'/admin/pages/update'] = 'admin/updatepage';
 
 // Donate
 $route[$lang.'/admin/donate'] = 'admin/donate';

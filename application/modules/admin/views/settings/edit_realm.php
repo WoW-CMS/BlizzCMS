@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-server"></i> Add Realm</h3>
+            <h3 class="uk-h3"><i class="fas fa-server"></i> Edit Realm</h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -10,7 +10,7 @@
         </div>
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <?= form_open('', 'id="addrealmForm" onsubmit="AddRealmForm(event)"'); ?>
+            <?= form_open('', 'id="updaterealmForm" onsubmit="UpdateRealmForm(event)"'); ?>
             <div class="uk-margin-small">
               <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_realm_id'); ?></label>
               <div class="uk-form-controls">
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_realm"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_uprealm"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
             </div>
             <?= form_close(); ?>
           </div>
@@ -91,9 +91,10 @@
     </section>
 
     <script>
-      function AddRealmForm(e) {
+      function UpdateRealmForm(e) {
         e.preventDefault();
 
+        var id = "<?= $idlink ?>";
         var realmid = $.trim($('#realm_id').val());
         var soaphost = $.trim($('#soap_hostname').val());
         var soapport = $.trim($('#soap_port').val());
@@ -121,9 +122,9 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/realms/add'); ?>",
+          url:"<?= base_url($lang.'/admin/realms/update'); ?>",
           method:"POST",
-          data:{realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass},
+          data:{id, realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -159,7 +160,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            $('#addrealmForm')[0].reset();
+            $('#updaterealmForm')[0].reset();
           }
         });
       }

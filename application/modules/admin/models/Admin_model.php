@@ -768,104 +768,42 @@ class Admin_model extends CI_Model {
             ->num_rows();
     }
 
-    //database
-    public function settingDatabase($data)
+    public function updateGeneralSettings($project, $timezone, $discord, $realmlist, $staffcolor, $theme)
     {
-        $filename = $data['filename'];
+        $this->load->library('config_writer');
 
-        $Configsearch = array(
-            $data['actualdbCmsHost'],
-            $data['actualdbCmsUser'],
-            $data['actualdbCmsPassword'],
-            $data['actualdbCmsdbName'],
-            $data['actualdbAuthHost'],
-            $data['actualdbAuthUser'],
-            $data['actualdbAuthPassword'],
-            $data['actualdbAuthName']
-        );
-
-        $Configreplace = array(
-            $data['dbCmsHost'],
-            $data['dbCmsUser'],
-            $data['dbCmsPassword'],
-            $data['dbCmsName'],
-            $data['dbAuthHost'],
-            $data['dbAuthUser'],
-            $data['dbAuthPassword'],
-            $data['dbAuthName']
-        );
-
-        $fileConfig = file_get_contents($filename);
-        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
-        $openConfig = fopen($filename,"w");
-        fwrite($openConfig, $newConfig);
-        fclose($openConfig);
-
-        redirect(base_url('admin/settings'),'refresh');
+        $writer = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
+        $writer->write('ProjectName', $project);
+        $writer->write('timezone', $timezone);
+        $writer->write('discord_inv', $discord);
+        $writer->write('realmlist', $realmlist);
+        $writer->write('staff_forum_color', $staffcolor);
+        $writer->write('theme_name', $theme);
+        return true;
     }
 
-    public function getDatabaseCmsHost($filename)
+    public function updateOptionalSettings($admin, $mod, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername)
     {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[8], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
+        $this->load->library('config_writer');
+
+        $writer = $this->config_writer->get_instance(APPPATH.'config/plus.php', 'config');
+        $writer->write('recaptcha_sitekey', $recaptcha);
+        $writer->write('smtp_host', $smtphost);
+        $writer->write('smtp_user', $smtpuser);
+        $writer->write('smtp_pass', $smtppass);
+        $writer->write('smtp_port', $smtpport);
+        $writer->write('smtp_crypto', $smtpcrypto);
+        $writer->write('email_settings_sender', $sender);
+        $writer->write('email_settings_sender_name', $sendername);
+        $writer->write('account_activation_required', $register);
+        $writer->write('admin_access_level', $admin);
+        $writer->write('mod_access_level', $mod);
+        return true;
     }
 
-    public function getDatabaseCmsUser($filename)
+    public function getDatabaseInfo($db, $config)
     {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[9], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getDatabaseCmsPassword($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[10], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getDatabaseCmsName($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[11], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getDatabaseAuthHost($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[30], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getDatabaseAuthUser($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[31], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getDatabaseAuthPassword($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[32], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getDatabaseAuthName($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[33], 16);
-        $fileHandle = explode(",", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
+        return $this->$db->$config;
     }
 
     //bugtracker
@@ -956,6 +894,26 @@ class Admin_model extends CI_Model {
         $fileHandle = substr($fileHandle[47], 25);
         $fileHandle = explode(";", $fileHandle);
         return str_replace("'", "", $fileHandle[0]);
+    }
+
+    public function updateSpecifyRealm($id, $hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
+    {
+        $update = array(
+            'hostname' => $hostname,
+            'username' => $username,
+            'password' => $password,
+            'char_database' => $database,
+            'realmID' => $realm_id,
+            'console_hostname' => $soaphost,
+            'console_username' => $soapuser,
+            'console_password' => $soappass,
+            'console_port' => $soapport,
+            'emulator' => 'TC'
+        );
+
+        $this->db->where('id', $id)
+                ->update('realms', $update);
+        return true;
     }
 
     public function delSpecifyRealm($id)

@@ -1,29 +1,3 @@
-<?php
-  $fileDatabase = FCPATH.'application/config/database.php';
-
-if (isset($_POST['submitDatabase'])):
-  $datadb = array(
-    'filename' => $fileDatabase,
-    'dbCmsHost' => str_replace(' ', '', $_POST['databaseCmsHost']),
-    'actualdbCmsHost' => $this->admin_model->getDatabaseCmsHost($fileDatabase),
-    'dbCmsUser' => str_replace(' ', '', $_POST['databaseCmsUser']),
-    'actualdbCmsUser' => $this->admin_model->getDatabaseCmsUser($fileDatabase),
-    'dbCmsPassword' => str_replace(' ', '', $_POST['databaseCmsPassword']),
-    'actualdbCmsPassword' => $this->admin_model->getDatabaseCmsPassword($fileDatabase),
-    'dbCmsName' => str_replace(' ', '', $_POST['databaseCmsName']),
-    'actualdbCmsdbName' => $this->admin_model->getDatabaseCmsName($fileDatabase),
-    'dbAuthHost' => str_replace(' ', '', $_POST['databaseAuthHost']),
-    'actualdbAuthHost' => $this->admin_model->getDatabaseAuthHost($fileDatabase),
-    'dbAuthUser' => str_replace(' ', '', $_POST['databaseAuthUser']),
-    'actualdbAuthUser' => $this->admin_model->getDatabaseAuthUser($fileDatabase),
-    'dbAuthPassword' => str_replace(' ', '', $_POST['databaseAuthPassword']),
-    'actualdbAuthPassword' => $this->admin_model->getDatabaseAuthPassword($fileDatabase),
-    'dbAuthName' => str_replace(' ', '', $_POST['databaseAuthName']),
-    'actualdbAuthName' => $this->admin_model->getDatabaseAuthName($fileDatabase),
-  );
-  $this->admin_model->settingDatabase($datadb);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -56,7 +30,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
-                          <input class="uk-input" type="text" name="databaseCmsHost" value="<?= $this->admin_model->getDatabaseCmsHost($fileDatabase); ?>" required>
+                          <input class="uk-input" type="text" id="cms_hostname" value="<?= $this->admin_model->getDatabaseInfo('db', 'hostname'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -65,7 +39,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
-                          <input class="uk-input" type="text" name="databaseCmsName" value="<?= $this->admin_model->getDatabaseCmsName($fileDatabase); ?>" required>
+                          <input class="uk-input" type="text" id="cms_database" value="<?= $this->admin_model->getDatabaseInfo('db', 'database'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -78,7 +52,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
-                          <input class="uk-input" type="text" name="databaseCmsUser" value="<?= $this->admin_model->getDatabaseCmsUser($fileDatabase); ?>" required>
+                          <input class="uk-input" type="text" id="cms_username" value="<?= $this->admin_model->getDatabaseInfo('db', 'username'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -87,7 +61,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                          <input class="uk-input" type="text" name="databaseCmsPassword" value="<?= $this->admin_model->getDatabaseCmsPassword($fileDatabase); ?>" required>
+                          <input class="uk-input" type="password" id="cms_password" value="<?= $this->admin_model->getDatabaseInfo('db', 'password'); ?>">
                         </div>
                       </div>
                     </div>
@@ -101,7 +75,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
-                          <input class="uk-input" type="text" name="databaseAuthHost" value="<?= $this->admin_model->getDatabaseAuthHost($fileDatabase); ?>" required>
+                          <input class="uk-input" type="text" id="auth_hostname" value="<?= $this->admin_model->getDatabaseInfo('auth', 'hostname'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -110,7 +84,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-database"></i></span>
-                          <input class="uk-input" type="text" name="databaseAuthName" value="<?= $this->admin_model->getDatabaseAuthName($fileDatabase); ?>" required>
+                          <input class="uk-input" type="text" id="auth_database" value="<?= $this->admin_model->getDatabaseInfo('auth', 'database'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -123,7 +97,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
-                          <input class="uk-input" type="text" name="databaseAuthUser" value="<?= $this->admin_model->getDatabaseAuthUser($fileDatabase); ?>" required>
+                          <input class="uk-input" type="text" id="auth_username" value="<?= $this->admin_model->getDatabaseInfo('auth', 'username'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -132,14 +106,14 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                          <input class="uk-input" type="text" name="databaseAuthPassword" value="<?= $this->admin_model->getDatabaseAuthPassword($fileDatabase); ?>" required>
+                          <input class="uk-input" type="password" id="auth_password" value="<?= $this->admin_model->getDatabaseInfo('auth', 'password'); ?>">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" name="submitDatabase" type="submit"><i class="fas fa-sync"></i> Update</button>
+                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_database"><i class="fas fa-sync"></i> Update</button>
                 </div>
               </div>
             </div>

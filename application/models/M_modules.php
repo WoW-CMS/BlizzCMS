@@ -266,7 +266,7 @@ class M_modules extends CI_Model {
         $this->db->insert('realms', $data);
 
         if ($red == '1') {
-            redirect(base_url('admin/realms'),'refresh');
+            return true;
         }
     }
 }

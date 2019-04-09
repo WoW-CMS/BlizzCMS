@@ -52,6 +52,7 @@ endif; ?>
               <div class="uk-card-body">
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span>General Settings</span></h5>
                 <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small">BlizzCMS</h5>
+                <?= form_open('', 'id="updategeneralForm" onsubmit="UpdateGeneralForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
@@ -59,7 +60,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsProjectName" value="<?= $this->config->item('ProjectName'); ?>" required>
+                          <input class="uk-input" type="text" id="project_name" value="<?= $this->config->item('ProjectName'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -68,7 +69,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsRealmlist" value="<?= $this->config->item('realmlist'); ?>" required>
+                          <input class="uk-input" type="text" id="realmlist" value="<?= $this->config->item('realmlist'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -81,7 +82,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsDiscordInv" value="<?= $this->config->item('discord_inv'); ?>" required>
+                          <input class="uk-input" type="text" id="discord_inv" value="<?= $this->config->item('discord_inv'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -90,7 +91,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="far fa-clock"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsTimeZone" value="<?= $this->config->item('timezone'); ?>" required>
+                          <input class="uk-input" type="text" id="time_zone" value="<?= $this->config->item('timezone'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -103,7 +104,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-palette"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsStaffColor" value="<?= $this->config->item('staff_forum_color'); ?>" required>
+                          <input class="uk-input" type="text" id="staff_color" value="<?= $this->config->item('staff_forum_color'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -112,15 +113,16 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
-                          <input class="uk-input" type="text" name="blizzcmsTheme" value="<?= $this->config->item('theme_name'); ?>" required>
+                          <input class="uk-input" type="text" id="theme_name" value="<?= $this->config->item('theme_name'); ?>" required>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" name="submitBlizzCMS" type="submit"><i class="fas fa-sync"></i> Update</button>
+                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_settings"><i class="fas fa-sync"></i> Update</button>
                 </div>
+                <?= form_close(); ?>
               </div>
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
@@ -185,3 +187,75 @@ endif; ?>
         </div>
       </div>
     </section>
+
+    <script>
+      function UpdateGeneralForm(e) {
+        e.preventDefault();
+
+        var project = $.trim($('#project_name').val());
+        var timezone = $.trim($('#time_zone').val());
+        var discord = $.trim($('#discord_inv').val());
+        var realmlist = $.trim($('#realmlist').val());
+        var staffcolor = $.trim($('#staff_color').val());
+        var theme = $.trim($('#theme_name').val());
+        if(project == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/settings/update'); ?>",
+          method:"POST",
+          data:{project, timezone, discord, realmlist, staffcolor, theme},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#updategeneralForm')[0].reset();
+            window.location.replace("<?= base_url('admin/settings'); ?>");
+          }
+        });
+      }
+    </script>
