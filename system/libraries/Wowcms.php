@@ -51,7 +51,7 @@ class CI_Wowcms {
         $wowcms = $this->ci->config->item('license_plus');
         $uri = substr($this->ci->config->item('base_url'), 7);
 
-        $url = "http://nucleus.projectcms.net/api/key/$uri/$wowcms";
+        $url = "http://wow-cms.com/license/check/$uri/$wowcms";
         $nucleus = curl_init();
         curl_setopt($nucleus, CURLOPT_URL, $url);
         curl_setopt($nucleus, CURLOPT_RETURNTRANSFER, 1);
