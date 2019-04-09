@@ -8,20 +8,19 @@ class News_model extends CI_Model {
         parent::__construct();
     }
 
-    public function insertComment($commentary, $idlink, $idsession)
+    public function insertComment($reply, $newsid, $idsession)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
-        'id_new' => $idlink,
-        'commentary' => $commentary,
-        'date' => $date,
-        'author' => $idsession,
+            'id_new' => $newsid,
+            'commentary' => $reply,
+            'date' => $date,
+            'author' => $idsession
         );
 
         $this->db->insert('news_comments', $data);
-
-        redirect(base_url('news/'.$idlink),'refresh');
+        return true;
     }
 
     public function removeComment($id, $link)

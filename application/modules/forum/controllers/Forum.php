@@ -88,7 +88,6 @@ class Forum extends MX_Controller {
         $this->load->view('header', $data);;
         $this->load->view('category', $data);
         $this->load->view('footer');
-        $this->load->view('modal');
     }
 
     public function topic($id)
@@ -109,6 +108,7 @@ class Forum extends MX_Controller {
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_forum'),
+            'lang' => $this->lang->lang(),
             'tiny' => $tiny
         );
 
@@ -118,21 +118,45 @@ class Forum extends MX_Controller {
         $this->load->view('modal');
     }
 
-    public function newTopic($idlink)
+    public function newtopic($idlink)
     {
-        $title = $this->input->post('topic_title');
-        $description = $this->input->post('topic_description');
-
-        if (isset($_POST['topic_locked']))
-            $locked = '1';
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('Admin');
         else
-            $locked = '0';
+            $tiny = $this->m_general->tinyEditor('User');
 
-        if (isset($_POST['topic_pinned']))
-            $pinned = '1';
-        else
-            $pinned = '0';
+        $data = array(
+            'idlink' => $idlink,
+            'pagetitle' => $this->lang->line('tab_forum'),
+            'lang' => $this->lang->lang(),
+            'tiny' => $tiny,
+        );
 
-        $this->forum_model->insertTopic($idlink, $title, $this->session->userdata('wow_sess_id'), $description, $locked, $pinned);
+        $this->load->view('header', $data);
+        $this->load->view('new_topic', $data);
+        $this->load->view('footer');
+    }
+
+    public function reply()
+    {
+        if (!$this->m_data->isLogged())
+            redirect(base_url(),'refresh');
+
+        $ssesid = $this->session->userdata('wow_sess_id');
+        $topicid = $this->input->post('topic');
+        $reply = $_POST['reply'];
+        echo $this->forum_model->insertComment($reply, $topicid, $ssesid);
+    }
+
+    public function addtopic()
+    {
+        if (!$this->m_data->isLogged())
+            redirect(base_url(),'refresh');
+
+        $ssesid = $this->session->userdata('wow_sess_id');
+        $category = $this->input->post('category');
+        $title = $this->input->post('title');
+        $description = $_POST['description'];
+        echo $this->forum_model->insertTopic($category, $title, $ssesid, $description, '0', '0');
     }
 }

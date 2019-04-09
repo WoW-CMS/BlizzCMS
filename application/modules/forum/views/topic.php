@@ -16,19 +16,10 @@ if (isset($_POST['button_editTopic'])):
   $this->forum_model->updateTopic($idlink, $title, $description, $locked, $pinned);
 endif;
 
-if (isset($_POST['button_addcommentary'])):
-  $commentary = $_POST['reply_comment'];
-
-  if (!is_null($commentary) && !empty($commentary) && $commentary != '' && $commentary != ' ')
-    $idsession = $this->session->userdata('wow_sess_id');
-    $this->forum_model->insertComment($commentary, $idlink, $idsession);
-endif;
-
 if (isset($_POST['button_removecomment'])):
     $this->forum_model->removeComment($_POST['button_removecomment'], $idlink);
 endif; ?>
 
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -162,17 +153,92 @@ endif; ?>
             <!-- comment login -->
             <div class="glass-box">
               <h1 class="glass-box-title uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h1>
-              <form class="glass-box-editor" method="post" action="" data-post-form="true" accept-charset="utf-8">
-                <div class="uk-margin-small uk-light">
-                  <textarea class="uk-textarea tinyeditor" tabindex="1" spellcheck="true" name="reply_comment" rows="10" cols="80"></textarea>
+              <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-width-1-5@s"></div>
+                <div class="uk-width-3-5@s">
+                  <?= form_open('', 'id="topicreplyForm" onsubmit="TopicReplyForm(event)"'); ?>
+                  <div class="uk-margin-small uk-light">
+                    <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
+                  </div>
+                  <div class="uk-margin-small">
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= $this->lang->line('button_add_reply'); ?></button>
+                  </div>
+                  <?= form_close(); ?>
                 </div>
-                <div class="uk-margin-small">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="button_addcommentary" id="submit-button"><i class="fas fa-reply"></i> <?= $this->lang->line('button_add_reply'); ?></button>
-                </div>
-              </form>
+                <div class="uk-width-1-5@s"></div>
+              </div>
             </div>
           </div>
           <?php endif; ?>
         </div>
       </div>
     </section>
+    <?= $tiny ?>
+    <script>
+      function TopicReplyForm(e) {
+        e.preventDefault();
+
+        var topic = "<?= $idlink ?>";
+        var reply = tinymce.get('reply_comment').getContent();
+        var content = tinymce.get('reply_comment').getContent({format: 'text'}).replace('&nbsp;','').trim();
+        if(content == "" || content == null || content == '<p> </p>'){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_priority'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/forum/topic/reply'); ?>",
+          method:"POST",
+          data:{topic, reply},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#topicreplyForm')[0].reset();
+            window.location.replace("<?= base_url($lang.'/forum/topic/'.$idlink); ?>");
+          }
+        });
+      }
+    </script>

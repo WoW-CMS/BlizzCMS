@@ -15,20 +15,19 @@ class Forum_model extends CI_Model {
                 ->result();
     }
 
-    public function insertComment($comment, $topic, $author)
+    public function insertComment($reply, $topicid, $author)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
-            'topic' => $topic,
+            'topic' => $topicid,
             'author' => $author,
-            'commentary' => $comment,
-            'date' => $date,
-            );
+            'commentary' => $reply,
+            'date' => $date
+        );
 
         $this->db->insert('forum_comments', $data);
-
-        redirect(base_url('forum/topic/'.$topic),'refresh');
+        return true;
     }
 
     public function getComments($id)
@@ -62,12 +61,12 @@ class Forum_model extends CI_Model {
                 ->num_rows();
     }
 
-    public function insertTopic($idlink, $title, $userid, $description, $locked, $pinned)
+    public function insertTopic($category, $title, $userid, $description, $locked, $pinned)
     {
         $date = $this->m_data->getTimestamp();
 
         $data = array(
-            'forums' => $idlink,
+            'forums' => $category,
             'title' => $title,
             'author' => $userid,
             'date' => $date,
@@ -76,12 +75,8 @@ class Forum_model extends CI_Model {
             'pinned' => $pinned
         );
 
-
         $this->db->insert('forum_topics', $data);
-        
-        $getIDPost = $this->getIDPostPerDate($date);
-
-        redirect(base_url('forum/topic/').$getIDPost,'refresh');
+        return true;
     }
 
     public function getIDPostPerDate($date)

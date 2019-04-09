@@ -76,6 +76,7 @@ class News extends MX_Controller {
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_news'),
+            'lang' => $this->lang->lang(),
             'tiny' => $tiny
         );
 
@@ -84,4 +85,14 @@ class News extends MX_Controller {
         $this->load->view('footer');
     }
 
+    public function reply()
+    {
+        if (!$this->m_data->isLogged())
+            redirect(base_url(),'refresh');
+
+        $ssesid = $this->session->userdata('wow_sess_id');
+        $newsid = $this->input->post('news');
+        $reply = $_POST['reply'];
+        echo $this->news_model->insertComment($reply, $newsid, $ssesid);
+    }
 }

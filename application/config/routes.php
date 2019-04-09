@@ -59,9 +59,9 @@ $route['translate_uri_dashes'] = FALSE;
  * Website ROUTES
  *
 */
-
 $route[$lang.'$'] = $route['default_controller'];
-//user
+
+// User
 $route[$lang.'/login'] = 'user/login';
 $route[$lang.'/panel'] = 'user/panel';
 $route[$lang.'/register'] = 'user/register';
@@ -78,7 +78,7 @@ $route[$lang.'/activate/(:any)'] = 'user/activate/$2';
 // Vote
 $route[$lang.'/vote'] = 'vote/index';
 $route[$lang.'/vote/votenow/(:num)'] = 'vote/votenow/$2';
-// DONATE
+// Donate
 $route[$lang.'/donate'] = 'donate/index';
 // Changelog
 $route[$lang.'/changelogs'] = 'changelogs/index';
@@ -88,23 +88,26 @@ $route[$lang.'/bugtracker/(:num)'] = 'bugtracker/index/$2';
 $route[$lang.'/bugtracker/new'] = 'bugtracker/newreport';
 $route[$lang.'/bugtracker/create'] = 'bugtracker/create';
 $route[$lang.'/bugtracker/report/(:num)'] = 'bugtracker/report/$2';
-//forum
+// Forum
+$route[$lang.'/forum'] = 'forum/index';
 $route[$lang.'/forum/category/(:num)'] = 'forum/category/$2';
 $route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$2';
-$route[$lang.'/forum/newTopic/(:num)'] = 'forum/newTopic/$2';
-$route[$lang.'/forum'] = 'forum/index';
-//news
+$route[$lang.'/forum/topic/new/(:num)'] = 'forum/newtopic/$2';
+$route[$lang.'/forum/topic/create'] = 'forum/addtopic';
+$route[$lang.'/forum/topic/reply'] = 'forum/reply';
+// News
 $route[$lang.'/news/(:num)'] = 'news/article/$2';
 $route[$lang.'/news'] = 'news/index';
-//store
+$route[$lang.'/news/reply'] = 'news/reply';
+// Store
 $route[$lang.'/store'] = 'store/index';
 $route[$lang.'/store/(:num)'] = 'store/index/$2';
 $route[$lang.'/cart/(:num)'] = 'store/cart/$2';
-//pages
+// Pages
 $route[$lang.'/page/(:any)'] = 'page/index/$2/';
-//pvp
+// FAQ
 $route[$lang.'/faq'] = 'faq/index';
-//faq
+// PvP
 $route[$lang.'/pvp'] = 'pvp/index';
 
 /*

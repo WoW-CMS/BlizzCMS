@@ -100,7 +100,7 @@
         var description = tinymce.get('report_description').getContent();
         var type = $('#report_type').val();
         var priority = $('#report_priority').val();
-
+        var content = tinymce.get('report_description').getContent({format: 'text'}).replace('&nbsp;','').trim();
         if(title == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -134,6 +134,22 @@
           return false;
         }
         if(priority == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_priority'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(content == "" || content == null || content == '<p> </p>'){
           $.amaran({
             'theme': 'awesome error',
             'content': {

@@ -138,7 +138,7 @@ endif; ?>
               <div class="uk-inline uk-width-1-2@s uk-width-1-4@m">
                 <label class="uk-form-label">Twitter URL <span class="uk-text-bold">(Optional)</span></label>
                 <div class="uk-form-controls">
-                  <input name="social_facebook" class="uk-input" type="url" id="social_twitter" placeholder="https://twitter.com/name">
+                  <input name="social_twitter" class="uk-input" type="url" id="social_twitter" placeholder="https://twitter.com/name">
                 </div>
               </div>
             </div>

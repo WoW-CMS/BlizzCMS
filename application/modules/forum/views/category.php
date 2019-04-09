@@ -1,4 +1,3 @@
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -12,7 +11,7 @@
             <div class="uk-width-auto">
               <?php if($this->m_data->isLogged()): ?>
               <div class="uk-text-center uk-text-right@s">
-                <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #newTopic"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></a>
+                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></a>
               </div>
               <?php endif; ?>
             </div>
