@@ -69,9 +69,9 @@ class News extends MX_Controller {
         $this->load->model('forum/forum_model');
 
         if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('pluginsADM', 'toolbarADM');
+            $tiny = $this->m_general->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('pluginsUser', 'toolbarUser');
+            $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
             'idlink' => $id,
