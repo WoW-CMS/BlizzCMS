@@ -12,318 +12,11 @@ class Admin_model extends CI_Model {
             redirect(base_url(),'refresh');
     }
 
-    public function insertShop($itemid, $type, $name, $pricedp, $pricevp, $iconname, $groups, $image)
-    {
-        if ($pricevp == '0' && $pricedp == '0')
-        redirect(base_url('admin/items?p'),'refresh');
-
-        if ($pricedp == '0')
-            $pricedp = NULL;
-
-        if ($pricevp == '0')
-            $pricevp = NULL;
-
-        $data = array(
-            'itemid' => $itemid,
-            'type' => $type,
-            'name' => $name,
-            'price_dp' => $pricedp,
-            'price_vp' => $pricevp,
-            'iconname' => $iconname,
-            'groups' => $groups,
-            'image' => $image,
-        );
-
-        $this->db->insert('store', $data);
-
-        redirect(base_url('admin/items'),'refresh');
-    }
-
-    public function getCategoryStore()
-    {
-        return $this->db->select('*')
-                ->get('store_groups');
-    }
-
-    public function delShopItm($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('store');
-
-        $this->db->where('id_store', $id)
-                ->delete('store_top');
-
-        redirect(base_url('admin/items'),'refresh');
-    }
-
-    public function getShopGroupList()
-    {
-        return $this->db->select('*')
-            ->order_by('id', 'ASC')
-            ->get('store_groups');
-    }
-
-    public function deleteGroup($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('store_groups');
-
-        redirect(base_url('admin/groups'),'refresh');
-    }
-
-    public function insertGroup($name)
-    {
-        $data = array(
-            'name' => $name,
-        );
-
-        $this->db->insert('store_groups', $data);
-
-        redirect(base_url('admin/groups'),'refresh');
-    }
-
-    public function getShopAll()
-    {
-        return $this->db->select('*')
-                ->order_by('id', 'ASC')
-                ->get('store');
-    }
-
-    public function getItemSpecifyRows($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('store')
-                ->num_rows();
-    }
-
-    public function getItemSpecifyName($id)
-    {
-        return $this->db->select('name')
-                ->where('id', $id)
-                ->get('store')
-                ->row('name');
-    }
-
-    public function getItemSpecifyDpPrice($id)
-    {
-        return $this->db->select('price_dp')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['price_dp'];
-    }
-
-    public function getItemSpecifyVpPrice($id)
-    {
-        return $this->db->select('price_vp')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['price_vp'];
-    }
-
-    public function getItemSpecifyId($id)
-    {
-        return $this->db->select('itemid')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['itemid'];
-    }
-
-    public function getItemSpecifyIcon($id)
-    {
-        return $this->db->select('iconname')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['iconname'];
-    }
-
-    public function getItemSpecifyImg($id)
-    {
-        return $this->db->select('image')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['image'];
-    }
-
-    public function getItemSpecifyGroup($id)
-    {
-        return $this->db->select('groups')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['groups'];
-    }
-
-    public function getGroupName($id)
-    {
-        return $this->db->select('name')
-                    ->where('id', $id)
-                    ->get('store_groups')
-                    ->row_array()['name'];
-
-    }
-
-    public function getItemSpecifyType($id)
-    {
-        return $this->db->select('type')
-                ->where('id', $id)
-                ->get('store')
-                ->row_array()['type'];
-    }
-
-    public function updateSpecifyItem($id, $name, $group, $type, $pricedp, $pricevp, $itemid, $icon, $image)
-    {
-        $update = array(
-            'name' => $name,
-            'groups' => $group,
-            'type' => $type,
-            'price_dp' => $pricedp,
-            'price_vp' => $pricevp,
-            'itemid' => $itemid,
-            'iconname' => $icon,
-            'image' => $image
-        );
-
-        $this->db->where('id', $id)
-                ->update('store', $update);
-
-        redirect(base_url('admin/items'),'refresh');
-    }
-
-    public function getGroupSpecifyRows($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('store_groups')
-                ->num_rows();
-    }
-
-    public function updateSpecifyGroup($idlink, $group)
-    {
-        $update = array(
-            'name' => $group,
-        );
-
-        $this->db->where('id', $idlink)
-                ->update('store_groups', $update);
-
-        redirect(base_url('admin/groups'),'refresh');
-    }
-
     public function getAdminAccountsList()
     {
         return $this->auth->select('id, username, email')
                 ->order_by('id', 'ASC')
                 ->get('account');
-    }
-
-    public function insertForum($name, $category, $description, $icon, $type)
-    {
-        $data = array(
-            'name' => $name,
-            'category' => $category,
-            'description' => $description,
-            'icon' => $icon,
-            'type' => $type,
-        );
-
-        $this->db->insert('forum_forums', $data);
-
-        redirect(base_url('admin/forums'),'refresh');
-    }
-
-    public function deleteForum($id)
-    {
-        $this->db->where('id', $id)
-                ->delete('forum_forums');
-
-        redirect(base_url('admin/forums'),'refresh');
-    }
-
-    public function getForumCategoryListAjax()
-    {
-        return $this->db->select('*')
-            ->order_by('id', 'ASC')
-            ->get('forum_category');
-    }
-
-    public function getSpecifyForumCategoryName($id)
-    {
-        return $this->db->select('categoryName')
-                ->where('id', $id)
-                ->get('forum_category')
-                ->row_array()['categoryName'];
-    }
-
-    public function getSpecifyForumName($id)
-    {
-        return $this->db->select('name')
-                ->where('id', $id)
-                ->get('forum_forums')
-                ->row_array()['name'];
-    }
-
-    public function getSpecifyForumDesc($id)
-    {
-        return $this->db->select('description')
-                ->where('id', $id)
-                ->get('forum_forums')
-                ->row_array()['description'];
-    }
-
-    public function getSpecifyForumIcon($id)
-    {
-        return $this->db->select('icon')
-                ->where('id', $id)
-                ->get('forum_forums')
-                ->row_array()['icon'];
-    }
-
-    public function getSpecifyForumCategory($id)
-    {
-        return $this->db->select('category')
-                ->where('id', $id)
-                ->get('forum_forums')
-                ->row_array()['category'];
-    }
-
-    public function getSpecifyForumType($id)
-    {
-        return $this->db->select('type')
-                ->where('id', $id)
-                ->get('forum_forums')
-                ->row_array()['type'];
-    }
-
-    public function getSpecifyForumRows($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('forum_forums')
-                ->num_rows();
-    }
-
-    public function updateSpecifyForum($id, $name, $category, $description, $icon, $type)
-    {
-        $update = array(
-            'name' => $name,
-            'category' => $category,
-            'description' => $description,
-            'icon' => $icon,
-            'type' => $type
-        );
-
-        $this->db->where('id', $id)
-                ->update('forum_forums', $update);
-
-        redirect(base_url('admin/forums'),'refresh');
-    }
-
-    public function insertCategoryAjax($name)
-    {
-        $data = array(
-            'categoryName' => $name
-        );
-        $this->db->insert('forum_category', $data);
     }
 
     public function insertDonationAjax($name, $price, $tax, $points)
@@ -1431,5 +1124,308 @@ class Admin_model extends CI_Model {
                 ->update('modules', $update);
 
         redirect(base_url('admin/modules'),'refresh');
+    }
+
+    public function insertGroup($name)
+    {
+        $data = array(
+            'name' => $name,
+        );
+
+        $this->db->insert('store_categories', $data);
+        return true;
+    }
+
+    public function updateSpecifyGroup($idlink, $group)
+    {
+        $update = array(
+            'name' => $group,
+        );
+
+        $this->db->where('id', $idlink)
+                ->update('store_categories', $update);
+        return true;
+    }
+
+    public function deleteGroup($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('store_categories');
+
+        redirect(base_url('admin/groups'),'refresh');
+    }
+
+    public function getShopGroupList()
+    {
+        return $this->db->select('*')
+            ->order_by('id', 'ASC')
+            ->get('store_categories');
+    }
+
+    public function getCategoryStore()
+    {
+        return $this->db->select('*')
+                ->get('store_categories');
+    }
+
+    public function getGroupSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('store_categories')
+                ->num_rows();
+    }
+
+    public function getGroupName($id)
+    {
+        return $this->db->select('name')
+                    ->where('id', $id)
+                    ->get('store_categories')
+                    ->row_array()['name'];
+
+    }
+
+    public function insertItem($name, $category, $type, $pricedp, $pricevp, $itemid, $icon, $image)
+    {
+        if ($pricevp == '0' && $pricedp == '0')
+        redirect(base_url('admin/items?p'),'refresh');
+
+        if ($pricedp == '0')
+            $pricedp = NULL;
+
+        if ($pricevp == '0')
+            $pricevp = NULL;
+
+        $data = array(
+            'name' => $name,
+            'category' => $category,
+            'type' => $type,
+            'price_dp' => $pricedp,
+            'price_vp' => $pricevp,
+            'itemid' => $itemid,
+            'icon' => $icon,
+            'image' => $image
+        );
+
+        $this->db->insert('store_items', $data);
+        return true;
+    }
+
+    public function updateSpecifyItem($id, $name, $category, $type, $pricedp, $pricevp, $itemid, $icon, $image)
+    {
+        $update = array(
+            'name' => $name,
+            'category' => $category,
+            'type' => $type,
+            'price_dp' => $pricedp,
+            'price_vp' => $pricevp,
+            'itemid' => $itemid,
+            'icon' => $icon,
+            'image' => $image
+        );
+
+        $this->db->where('id', $id)
+                ->update('store_items', $update);
+        return true;
+    }
+
+    public function delShopItm($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('store_items');
+
+        $this->db->where('id_store', $id)
+                ->delete('store_top');
+
+        redirect(base_url('admin/items'),'refresh');
+    }
+
+    public function getShopAll()
+    {
+        return $this->db->select('*')
+                ->order_by('id', 'ASC')
+                ->get('store_items');
+    }
+
+    public function getItemSpecifyRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('store_items')
+                ->num_rows();
+    }
+
+    public function getItemSpecifyName($id)
+    {
+        return $this->db->select('name')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row('name');
+    }
+
+    public function getItemSpecifyDpPrice($id)
+    {
+        return $this->db->select('price_dp')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['price_dp'];
+    }
+
+    public function getItemSpecifyVpPrice($id)
+    {
+        return $this->db->select('price_vp')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['price_vp'];
+    }
+
+    public function getItemSpecifyId($id)
+    {
+        return $this->db->select('itemid')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['itemid'];
+    }
+
+    public function getItemSpecifyIcon($id)
+    {
+        return $this->db->select('icon')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['icon'];
+    }
+
+    public function getItemSpecifyImg($id)
+    {
+        return $this->db->select('image')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['image'];
+    }
+
+    public function getItemSpecifyGroup($id)
+    {
+        return $this->db->select('category')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['category'];
+    }
+
+    public function getItemSpecifyType($id)
+    {
+        return $this->db->select('type')
+                ->where('id', $id)
+                ->get('store_items')
+                ->row_array()['type'];
+    }
+
+    public function insertForum($name, $category, $description, $icon, $type)
+    {
+        $data = array(
+            'name' => $name,
+            'category' => $category,
+            'description' => $description,
+            'icon' => $icon,
+            'type' => $type,
+        );
+
+        $this->db->insert('forum_forums', $data);
+
+        redirect(base_url('admin/forums'),'refresh');
+    }
+
+    public function deleteForum($id)
+    {
+        $this->db->where('id', $id)
+                ->delete('forum_forums');
+
+        redirect(base_url('admin/forums'),'refresh');
+    }
+
+    public function getForumCategoryListAjax()
+    {
+        return $this->db->select('*')
+            ->order_by('id', 'ASC')
+            ->get('forum_category');
+    }
+
+    public function getSpecifyForumCategoryName($id)
+    {
+        return $this->db->select('categoryName')
+                ->where('id', $id)
+                ->get('forum_category')
+                ->row_array()['categoryName'];
+    }
+
+    public function getSpecifyForumName($id)
+    {
+        return $this->db->select('name')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['name'];
+    }
+
+    public function getSpecifyForumDesc($id)
+    {
+        return $this->db->select('description')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['description'];
+    }
+
+    public function getSpecifyForumIcon($id)
+    {
+        return $this->db->select('icon')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['icon'];
+    }
+
+    public function getSpecifyForumCategory($id)
+    {
+        return $this->db->select('category')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['category'];
+    }
+
+    public function getSpecifyForumType($id)
+    {
+        return $this->db->select('type')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->row_array()['type'];
+    }
+
+    public function getSpecifyForumRows($id)
+    {
+        return $this->db->select('*')
+                ->where('id', $id)
+                ->get('forum_forums')
+                ->num_rows();
+    }
+
+    public function updateSpecifyForum($id, $name, $category, $description, $icon, $type)
+    {
+        $update = array(
+            'name' => $name,
+            'category' => $category,
+            'description' => $description,
+            'icon' => $icon,
+            'type' => $type
+        );
+
+        $this->db->where('id', $id)
+                ->update('forum_forums', $update);
+
+        redirect(base_url('admin/forums'),'refresh');
+    }
+
+    public function insertCategoryAjax($name)
+    {
+        $data = array(
+            'categoryName' => $name
+        );
+        $this->db->insert('forum_category', $data);
     }
 }

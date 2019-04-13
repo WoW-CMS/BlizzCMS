@@ -1,17 +1,3 @@
-<?php
-if (isset($_POST['button_createItem'])):
-  $itemname   = $_POST['itemname'];
-  $category   = $_POST['categorySelect'];
-  $type       = $_POST['type_store'];
-  $pricedp    = $_POST['priceDP'];
-  $pricevp    = $_POST['priceVP'];
-  $itemid     = $_POST['itemID'];
-  $iconname   = $_POST['iconName'];
-  $imagename  = $_POST['imageName'];
-
-  $this->admin_model->insertShop($itemid, $type, $itemname, $pricedp, $pricevp, $iconname, $category, $imagename);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -24,20 +10,20 @@ endif; ?>
         </div>
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
+            <?= form_open('', 'id="additemForm" onsubmit="AddItemForm(event)"'); ?>
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_store_item_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="itemname" type="text" placeholder="<?= $this->lang->line('placeholder_store_item_name'); ?>" required>
+                    <input class="uk-input" type="text" id="item_name" placeholder="<?= $this->lang->line('placeholder_store_item_name'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
                 <div class="uk-form-controls">
-                  <select class="uk-select" name="categorySelect">
+                  <select class="uk-select" id="item_category">
                     <?php foreach ($this->admin_model->getCategoryStore()->result() as $groupsStore): ?>
                     <option value="<?= $groupsStore->id ?>"><?= $groupsStore->name ?></option>
                     <?php endforeach; ?>
@@ -47,7 +33,7 @@ endif; ?>
               <div class="uk-margin-small">
                 <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_type');?></label>
                 <div class="uk-form-controls">
-                  <label><input class="uk-radio" type="radio" name="type_store" id="item1" value="1" checked> <?=$this->lang->line('option_item');?></label>
+                  <label><input class="uk-radio" type="radio" id="item_type" value="1" checked> <?=$this->lang->line('option_item');?></label>
                 </div>
               </div>
               <div class="uk-margin-small">
@@ -55,13 +41,13 @@ endif; ?>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('store_item_price');?> DP</label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="priceDP" type="number" placeholder="0" required>
+                      <input class="uk-input" type="number" id="item_dp_price" placeholder="0" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('store_item_price');?> VP</label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="priceVP" type="number" placeholder="0" required>
+                      <input class="uk-input" type="number" id="item_vp_price" placeholder="0" required>
                     </div>
                   </div>
                 </div>
@@ -71,13 +57,13 @@ endif; ?>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_store_item_id');?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="itemID" type="text" placeholder="Item Id" required>
+                      <input class="uk-input" type="text" id="item_id" placeholder="Item Id" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_forum_icon_name');?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" name="iconName" type="text" placeholder="inv_belt_45">
+                      <input class="uk-input" type="text" id="item_icon" placeholder="inv_belt_45">
                     </div>
                   </div>
                 </div>
@@ -86,15 +72,104 @@ endif; ?>
                 <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_store_image_name');?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" name="imageName" type="text" placeholder="image.jpg">
+                    <input class="uk-input" type="text" id="item_image" placeholder="image.jpg">
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" name="button_createItem" type="submit"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_item"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
               </div>
-            </form>
+            <?= form_close(); ?>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      function AddItemForm(e) {
+        e.preventDefault();
+
+        var name = $.trim($('#item_name').val());
+        var category = $.trim($('#item_category').val());
+        var type = $.trim($('#item_type').val());
+        var dp_price = $.trim($('#item_dp_price').val());
+        var vp_price = $.trim($('#item_vp_price').val());
+        var itemid = $.trim($('#item_id').val());
+        var icon = $.trim($('#item_icon').val());
+        var image = $.trim($('#item_image').val());
+        if(name == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(image == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/items/add'); ?>",
+          method:"POST",
+          data:{name, category, type, dp_price, vp_price, itemid, icon, image},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#additemForm')[0].reset();
+          }
+        });
+      }
+    </script>

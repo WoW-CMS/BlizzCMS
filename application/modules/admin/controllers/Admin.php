@@ -753,8 +753,12 @@ class Admin extends MX_Controller {
 
     public function creategroup()
     {
+        $data = array(
+            'lang' => $this->lang->lang()
+        );
+
         $this->load->view('general/header');
-        $this->load->view('store/create_group');
+        $this->load->view('store/create_group', $data);
         $this->load->view('general/footer');
     }
 
@@ -774,6 +778,19 @@ class Admin extends MX_Controller {
         $this->load->view('general/header');
         $this->load->view('store/edit_group', $data);
         $this->load->view('general/footer');
+    }
+
+    public function addgroup()
+    {
+        $category = $this->input->post('category');
+        echo $this->admin_model->insertGroup($category);
+    }
+
+    public function updategroup()
+    {
+        $id = $this->input->post('id');
+        $category = $this->input->post('category');
+        echo $this->admin_model->updateSpecifyGroup($id, $category);
     }
 
     public function manageitems()
@@ -810,6 +827,33 @@ class Admin extends MX_Controller {
         $this->load->view('general/header');
         $this->load->view('store/edit_item', $data);
         $this->load->view('general/footer');
+    }
+
+    public function additem()
+    {
+        $name = $this->input->post('name');
+        $category = $this->input->post('category');
+        $type = $this->input->post('type');
+        $dp_price = $this->input->post('dp_price');
+        $vp_price = $this->input->post('vp_price');
+        $itemid = $this->input->post('itemid');
+        $icon = $this->input->post('icon');
+        $image = $this->input->post('image');
+        echo $this->admin_model->insertItem($name, $category, $type, $dp_price, $vp_price, $itemid, $icon, $image);
+    }
+
+    public function updateitem()
+    {
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $category = $this->input->post('category');
+        $type = $this->input->post('type');
+        $dp_price = $this->input->post('dp_price');
+        $vp_price = $this->input->post('vp_price');
+        $itemid = $this->input->post('itemid');
+        $icon = $this->input->post('icon');
+        $image = $this->input->post('image');
+        echo $this->admin_model->updateSpecifyItem($id, $name, $category, $type, $dp_price, $vp_price, $itemid, $icon, $image);
     }
 
     public function donate()
