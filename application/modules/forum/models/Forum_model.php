@@ -26,7 +26,7 @@ class Forum_model extends CI_Model {
             'date' => $date
         );
 
-        $this->db->insert('forum_comments', $data);
+        $this->db->insert('forum_reply', $data);
         return true;
     }
 
@@ -34,7 +34,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('*')
                 ->where('topic', $id)
-                ->get('forum_comments');
+                ->get('forum_reply');
     }
 
     public function getCountPostAuthor($id)
@@ -48,7 +48,7 @@ class Forum_model extends CI_Model {
     public function removeComment($id, $link)
     {
         $this->db->where('id', $id)
-                ->delete('forum_comments');
+                ->delete('forum_reply');
 
         redirect(base_url('forums/topic/').$link,'refresh');
     }
@@ -108,7 +108,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('type')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row('type');
     }
 
@@ -132,7 +132,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('id, name, category, description, icon, type')
                 ->where('category', $category)
-                ->get('forum_forums')
+                ->get('forum')
                 ->result();
     }
 
@@ -140,7 +140,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('name')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row('name');
     }
 
@@ -148,7 +148,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('category')
                 ->where('category', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->num_rows();
     }
 
@@ -156,7 +156,7 @@ class Forum_model extends CI_Model {
     {
         return $this->db->select('name')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row_array()['name'];
     }
 

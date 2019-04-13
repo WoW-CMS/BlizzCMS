@@ -53,7 +53,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('*')
             ->order_by('id', 'ASC')
-            ->get('forum_forums');
+            ->get('forum');
     }
 
     public function getAdminCharactersList($multirealm)
@@ -1329,7 +1329,7 @@ class Admin_model extends CI_Model {
             'type' => $type,
         );
 
-        $this->db->insert('forum_forums', $data);
+        $this->db->insert('forum', $data);
 
         redirect(base_url('admin/forums'),'refresh');
     }
@@ -1337,7 +1337,7 @@ class Admin_model extends CI_Model {
     public function deleteForum($id)
     {
         $this->db->where('id', $id)
-                ->delete('forum_forums');
+                ->delete('forum');
 
         redirect(base_url('admin/forums'),'refresh');
     }
@@ -1361,7 +1361,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('name')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row_array()['name'];
     }
 
@@ -1369,7 +1369,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('description')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row_array()['description'];
     }
 
@@ -1377,7 +1377,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('icon')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row_array()['icon'];
     }
 
@@ -1385,7 +1385,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('category')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row_array()['category'];
     }
 
@@ -1393,7 +1393,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('type')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->row_array()['type'];
     }
 
@@ -1401,7 +1401,7 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('*')
                 ->where('id', $id)
-                ->get('forum_forums')
+                ->get('forum')
                 ->num_rows();
     }
 
@@ -1416,7 +1416,7 @@ class Admin_model extends CI_Model {
         );
 
         $this->db->where('id', $id)
-                ->update('forum_forums', $update);
+                ->update('forum', $update);
 
         redirect(base_url('admin/forums'),'refresh');
     }

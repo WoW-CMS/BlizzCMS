@@ -154,9 +154,9 @@ CREATE TABLE `chars_annotations` (
   `idchar` int(10) NOT NULL,
   `annotation` text CHARACTER SET utf8 NOT NULL,
   `date` int(10) NOT NULL,
-  `realmid` int(1) NOT NULL,
+  `realmid` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `chars_annotations` */
 
@@ -169,8 +169,6 @@ CREATE TABLE `credits` (
   `accountid` int(10) unsigned NOT NULL,
   `dp` int(10) NOT NULL DEFAULT 0,
   `vp` int(10) NOT NULL DEFAULT 0,
-  `lastVote` int(10) NOT NULL DEFAULT 1490579700,
-  `maxVotes` int(10) unsigned NOT NULL DEFAULT 5,
   UNIQUE KEY `id_2` (`id`),
   UNIQUE KEY `accountId` (`accountid`),
   KEY `id` (`id`)
@@ -222,13 +220,13 @@ DROP TABLE IF EXISTS `events`;
 
 CREATE TABLE `events` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `description` text CHARACTER SET utf8 NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
   `date_event_start` int(10) NOT NULL,
   `date_event_end` int(10) NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `events` */
 
@@ -264,6 +262,23 @@ insert  into `faq_type`(`id`,`title`) values
 (2,'Server'),
 (3,'Website');
 
+/*Table structure for table `forum` */
+
+DROP TABLE IF EXISTS `forum`;
+
+CREATE TABLE `forum` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `category` int(10) NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
+  `icon` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'icon1.png',
+  `type` int(1) NOT NULL DEFAULT 1 COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
+  PRIMARY KEY (`id`),
+  KEY `category` (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `forum` */
+
 /*Table structure for table `forum_category` */
 
 DROP TABLE IF EXISTS `forum_category`;
@@ -272,41 +287,24 @@ CREATE TABLE `forum_category` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`,`categoryName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `forum_category` */
 
-/*Table structure for table `forum_comments` */
+/*Table structure for table `forum_replies` */
 
-DROP TABLE IF EXISTS `forum_comments`;
+DROP TABLE IF EXISTS `forum_replies`;
 
-CREATE TABLE `forum_comments` (
+CREATE TABLE `forum_replies` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `topic` int(10) NOT NULL,
   `author` int(10) NOT NULL,
   `commentary` text CHARACTER SET utf8 NOT NULL,
   `date` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `forum_comments` */
-
-/*Table structure for table `forum_forums` */
-
-DROP TABLE IF EXISTS `forum_forums`;
-
-CREATE TABLE `forum_forums` (
-  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `category` int(10) NOT NULL,
-  `description` text CHARACTER SET utf8 NOT NULL,
-  `icon` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'icon1.png',
-  `type` int(1) NOT NULL DEFAULT 1 COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
-  PRIMARY KEY (`id`),
-  KEY `category` (`category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `forum_forums` */
+/*Data for the table `forum_replies` */
 
 /*Table structure for table `forum_topics` */
 
@@ -321,9 +319,8 @@ CREATE TABLE `forum_topics` (
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `locked` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `pinned` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  `archivar` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `forum_topics` */
 
@@ -483,7 +480,7 @@ CREATE TABLE `realms` (
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `char_database` varchar(255) DEFAULT NULL,
-  `realmID` int(1) NOT NULL,
+  `realmID` int(10) NOT NULL,
   `console_hostname` varchar(100) DEFAULT '127.0.0.1',
   `console_username` varchar(255) DEFAULT NULL,
   `console_password` varchar(255) DEFAULT NULL,
@@ -511,6 +508,18 @@ insert  into `slides`(`id`,`title`,`image`) values
 (1,'BlizzCMS','slide1.jpg'),
 (2,'Constant updates!','slide2.jpg');
 
+/*Table structure for table `store_categories` */
+
+DROP TABLE IF EXISTS `store_categories`;
+
+CREATE TABLE `store_categories` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `store_categories` */
+
 /*Table structure for table `store_items` */
 
 DROP TABLE IF EXISTS `store_items`;
@@ -531,18 +540,6 @@ CREATE TABLE `store_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `store_items` */
-
-/*Table structure for table `store_categories` */
-
-DROP TABLE IF EXISTS `store_categories`;
-
-CREATE TABLE `store_categories` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `store_categories` */
 
 /*Table structure for table `store_logs` */
 
@@ -624,7 +621,7 @@ CREATE TABLE `votes` (
 DROP TABLE IF EXISTS `votes_logs`;
 
 CREATE TABLE `votes_logs` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `idaccount` int(10) NOT NULL,
   `idvote` int(10) NOT NULL,
   `points` int(10) NOT NULL,

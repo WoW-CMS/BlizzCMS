@@ -21,19 +21,25 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
-                <div class="uk-form-controls">
-                  <select class="uk-select" id="item_category">
-                    <?php foreach ($this->admin_model->getCategoryStore()->result() as $groupsStore): ?>
-                    <option value="<?= $groupsStore->id ?>"><?= $groupsStore->name ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-              </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_type');?></label>
-                <div class="uk-form-controls">
-                  <label><input class="uk-radio" type="radio" id="item_type" value="1" checked> <?=$this->lang->line('option_item');?></label>
+                <div class="uk-grid-small" uk-grid>
+                  <div class="uk-inline uk-width-1-2@s">
+                    <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
+                    <div class="uk-form-controls">
+                      <select class="uk-select" id="item_category">
+                        <?php foreach ($this->admin_model->getCategoryStore()->result() as $groupsStore): ?>
+                        <option value="<?= $groupsStore->id ?>"><?= $groupsStore->name ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="uk-inline uk-width-1-2@s">
+                    <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_type');?></label>
+                    <div class="uk-form-controls">
+                      <select class="uk-select" id="item_type">
+                        <option value="1"><?=$this->lang->line('option_item');?></option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="uk-margin-small">
