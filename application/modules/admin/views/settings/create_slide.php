@@ -36,7 +36,7 @@
           <div class="uk-card-body">
             <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" type="text" name="slide_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_upload_file'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_upload_file'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <div uk-form-custom="target: true">

@@ -12,7 +12,7 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="additemForm" onsubmit="AddItemForm(event)"'); ?>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_store_item_name'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_store_item_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
@@ -23,7 +23,7 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_category">
                         <?php foreach ($this->admin_model->getCategoryStore()->result() as $groupsStore): ?>
@@ -33,7 +33,7 @@
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_type');?></label>
+                    <label class="uk-form-label"><?=$this->lang->line('placeholder_type');?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_type">
                         <option value="1"><?=$this->lang->line('option_item');?></option>
@@ -45,13 +45,13 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('store_item_price');?> DP</label>
+                    <label class="uk-form-label"><?=$this->lang->line('store_item_price');?> DP</label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="number" id="item_dp_price" placeholder="0" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('store_item_price');?> VP</label>
+                    <label class="uk-form-label"><?=$this->lang->line('store_item_price');?> VP</label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="number" id="item_vp_price" placeholder="0" required>
                     </div>
@@ -61,13 +61,13 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_store_item_id');?></label>
+                    <label class="uk-form-label"><?=$this->lang->line('placeholder_store_item_id');?></label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="text" id="item_id" placeholder="Item Id" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_forum_icon_name');?></label>
+                    <label class="uk-form-label"><?=$this->lang->line('placeholder_forum_icon_name');?></label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="text" id="item_icon" placeholder="inv_belt_45">
                     </div>
@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?=$this->lang->line('placeholder_store_image_name');?></label>
+                <label class="uk-form-label"><?=$this->lang->line('placeholder_store_image_name');?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" type="text" id="item_image" placeholder="image.jpg">

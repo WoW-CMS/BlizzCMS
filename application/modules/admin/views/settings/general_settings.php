@@ -56,7 +56,7 @@ endif; ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Project Name</label>
+                      <label class="uk-form-label">Project Name</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
@@ -65,7 +65,7 @@ endif; ?>
                       </div>
                     </div>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Realmlist</label>
+                      <label class="uk-form-label">Realmlist</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
@@ -78,7 +78,7 @@ endif; ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Discord ID</label>
+                      <label class="uk-form-label">Discord ID</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
@@ -87,7 +87,7 @@ endif; ?>
                       </div>
                     </div>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Timezone</label>
+                      <label class="uk-form-label">Timezone</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="far fa-clock"></i></span>
@@ -100,7 +100,7 @@ endif; ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Forum STAFF Color</label>
+                      <label class="uk-form-label">Forum STAFF Color</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-palette"></i></span>
@@ -109,7 +109,7 @@ endif; ?>
                       </div>
                     </div>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label uk-text-uppercase">Theme Name</label>
+                      <label class="uk-form-label">Theme Name</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>

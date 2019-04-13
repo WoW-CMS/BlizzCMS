@@ -14,13 +14,13 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label uk-text-uppercase">Topsite <?= $this->lang->line('table_header_name'); ?></label>
+                  <label class="uk-form-label">Topsite <?= $this->lang->line('table_header_name'); ?></label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="text" id="topsite_name" placeholder="Name" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label uk-text-uppercase">Topsite URL</label>
+                  <label class="uk-form-label">Topsite URL</label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="url" id="topsite_url" placeholder="URL" required>
                   </div>
@@ -30,13 +30,13 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_time'); ?> (Hours)</label>
+                  <label class="uk-form-label"><?= $this->lang->line('table_header_time'); ?> (Hours)</label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="number" id="topsite_time" min="1" placeholder="Hours" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_points'); ?></label>
+                  <label class="uk-form-label"><?= $this->lang->line('table_header_points'); ?></label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="number" id="topsite_points" min="1" placeholder="<?= $this->lang->line('table_header_points'); ?>" required>
                   </div>
@@ -44,7 +44,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label uk-text-uppercase">URL Image</label>
+              <label class="uk-form-label">URL Image</label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <input class="uk-input" type="url" id="topsite_image" placeholder="http://example.com/image.jpg" required>

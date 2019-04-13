@@ -41,7 +41,7 @@
             </div>
             <?= form_open('', 'id="reportForm" onsubmit="ReportForm(event)"'); ?>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_title'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
@@ -52,7 +52,7 @@
             <div class="uk-margin uk-light">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="report_type">
                       <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
@@ -63,7 +63,7 @@
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('table_header_priority'); ?></label>
+                  <label class="uk-form-label"><?= $this->lang->line('table_header_priority'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="report_priority">
                       <option value="0"><?= $this->lang->line('notification_select_priority'); ?></option>
@@ -76,7 +76,7 @@
               </div>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-width-1-1">
                   <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>

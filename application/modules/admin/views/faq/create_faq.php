@@ -12,7 +12,7 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="addfaqForm" onsubmit="AddFaqForm(event)"'); ?>
             <div class="uk-margin-small">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_faq_title'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_faq_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
               <div class="uk-form-controls">
                 <select class="uk-select" id="faq_type">
                   <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_description'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea tinyeditor" id="faq_description" rows="12"></textarea>
               </div>

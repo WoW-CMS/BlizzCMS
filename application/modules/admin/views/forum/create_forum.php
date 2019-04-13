@@ -23,7 +23,7 @@ endif; ?>
           <div class="uk-card-body">
             <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_title'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_forum_title'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
@@ -32,7 +32,7 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_description'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_forum_description'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" name="forum_description" type="text" placeholder="<?= $this->lang->line('placeholder_forum_description'); ?>" required>
@@ -40,7 +40,7 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_forum_icon_name'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_forum_icon_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" name="forum_icon" type="text" placeholder="<?= $this->lang->line('placeholder_forum_icon'); ?>" required>
@@ -48,7 +48,7 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_type'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" name="forum_type">
                     <option value="1"><?= $this->lang->line('option_everyone'); ?></option>
@@ -58,7 +58,7 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_category'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" name="forum_cate">
                     <?php foreach($this->admin_model->getForumCategoryListAjax()->result() as $categ): ?>

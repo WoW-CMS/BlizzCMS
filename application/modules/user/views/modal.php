@@ -50,7 +50,7 @@ endif; ?>
         <form action="" method="post" accept-charset="utf-8">
           <div class="uk-modal-body">
             <div class="uk-margin uk-light">
-              <label class="uk-form-label uk-text-uppercase"><?= $this->lang->line('placeholder_username'); ?> & <?= $this->lang->line('placeholder_email'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_username'); ?> & <?= $this->lang->line('placeholder_email'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
