@@ -49,7 +49,11 @@ class CI_Wowcms {
     public function responseCurl()
     {
         $wowcms = $this->ci->config->item('license_plus');
-        $uri = substr($this->ci->config->item('base_url'), 7);
+        if (isset($_SERVER['HTTPS'])) {
+          $uri = substr($this->ci->config->item('base_url'), 9, -1);
+        } else {
+          $uri = substr($this->ci->config->item('base_url'), 8, -1);
+        }
 
         $url = "http://wow-cms.com/license/check/$uri/$wowcms";
         $nucleus = curl_init();

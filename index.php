@@ -321,11 +321,11 @@ require_once BASEPATH.'core/CodeIgniter.php';
  *
  * And away we go...
  */
-	if (!file_exists(BASEPATH.'libraries/WoWcms.php'))
+	if (!file_exists(BASEPATH.'libraries/Wowcms.php'))
 	{
 		echo '<script type="text/javascript">
-						window.open( "https://wow-cms.com","_self")
+						window.open("https://wow-cms.com","_self")
 				</script>';
 	} else {
-			require_once(BASEPATH.'libraries/WoWcms.php');
+			require_once(BASEPATH.'libraries/Wowcms.php');
 	}
