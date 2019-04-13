@@ -50,19 +50,19 @@ class CI_Wowcms {
     {
         $wowcms = $this->ci->config->item('license_plus');
         if (isset($_SERVER['HTTPS'])) {
-          $uri = substr($this->ci->config->item('base_url'), 9, -1);
-        } else {
           $uri = substr($this->ci->config->item('base_url'), 8, -1);
+        } else {
+          $uri = substr($this->ci->config->item('base_url'), 7, -1);
         }
 
-        $url = "http://wow-cms.com/license/check/$uri/$wowcms";
+        $url = "https://wow-cms.com/en/license/check/$uri/$wowcms";
         $nucleus = curl_init();
         curl_setopt($nucleus, CURLOPT_URL, $url);
         curl_setopt($nucleus, CURLOPT_RETURNTRANSFER, 1);
         $nucleusResult = curl_exec($nucleus);
         curl_close($nucleus);
         if ($nucleusResult == "INVALID") {
-            redirect('http://wow-cms.com');
+            redirect('https://www.wow-cms.com/', '_self');
         }
     }
 }
