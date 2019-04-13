@@ -165,10 +165,10 @@ CREATE TABLE `chars_annotations` (
 DROP TABLE IF EXISTS `credits`;
 
 CREATE TABLE `credits` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `accountid` int(11) unsigned NOT NULL,
-  `dp` int(11) NOT NULL DEFAULT 0,
-  `vp` int(11) NOT NULL DEFAULT 0,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `accountid` int(10) unsigned NOT NULL,
+  `dp` int(10) NOT NULL DEFAULT 0,
+  `vp` int(10) NOT NULL DEFAULT 0,
   `lastVote` int(10) NOT NULL DEFAULT 1490579700,
   `maxVotes` int(10) unsigned NOT NULL DEFAULT 5,
   UNIQUE KEY `id_2` (`id`),
@@ -478,7 +478,7 @@ insert  into `ranks_default`(`id`,`comment`) values
 DROP TABLE IF EXISTS `realms`;
 
 CREATE TABLE `realms` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `hostname` varchar(100) DEFAULT '127.0.0.1',
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -511,38 +511,38 @@ insert  into `slides`(`id`,`title`,`image`) values
 (1,'BlizzCMS','slide1.jpg'),
 (2,'Constant updates!','slide2.jpg');
 
-/*Table structure for table `store` */
+/*Table structure for table `store_items` */
 
-DROP TABLE IF EXISTS `store`;
+DROP TABLE IF EXISTS `store_items`;
 
-CREATE TABLE `store` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `itemid` int(11) DEFAULT NULL,
-  `type` int(10) NOT NULL,
+CREATE TABLE `store_items` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
+  `category` int(10) NOT NULL,
+  `type` int(10) NOT NULL,
   `price_dp` int(10) DEFAULT NULL,
   `price_vp` int(10) DEFAULT NULL,
-  `iconname` varchar(255) NOT NULL,
-  `groups` int(1) NOT NULL,
-  `qquery` text DEFAULT NULL,
+  `itemid` int(10) DEFAULT NULL,
+  `icon` varchar(255) NOT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'item1.jpg',
+  `qquery` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `store` */
+/*Data for the table `store_items` */
 
-/*Table structure for table `store_groups` */
+/*Table structure for table `store_categories` */
 
-DROP TABLE IF EXISTS `store_groups`;
+DROP TABLE IF EXISTS `store_categories`;
 
-CREATE TABLE `store_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `store_categories` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `store_groups` */
+/*Data for the table `store_categories` */
 
 /*Table structure for table `store_logs` */
 
@@ -567,7 +567,7 @@ DROP TABLE IF EXISTS `store_top`;
 
 CREATE TABLE `store_top` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_store` int(11) NOT NULL,
+  `id_store` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_store` (`id_store`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
