@@ -77,7 +77,7 @@
                   <?php foreach($this->store_model->getShopGeneral($idlink)->result() as $itemsG): ?>
                   <tr class="uk-overflow-auto">
                     <td>
-                      <img width="50" height="50" class="uk-border-rounded" src="//wow.zamimg.com/images/wow/icons/large/<?= $itemsG->iconname ?>.jpg">
+                      <img width="50" height="50" class="uk-border-rounded" src="//wow.zamimg.com/images/wow/icons/large/<?= $itemsG->icon ?>.jpg">
                     </td>
                     <td class="uk-text-center"><?= $itemsG->name ?></td>
                     <td class="uk-text-center">

@@ -27,7 +27,7 @@ class Store_model extends CI_Model {
     {
         return $this->db->select('*')
                 ->where('id', $id)
-                ->get('store')
+                ->get('store_items')
                 ->num_rows();
     }
 
@@ -35,7 +35,7 @@ class Store_model extends CI_Model {
     {
         return $this->db->select('type')
                 ->where('id', $id)
-                ->get('store')
+                ->get('store_items')
                 ->row('type');
     }
 
@@ -43,7 +43,7 @@ class Store_model extends CI_Model {
     {
         return $this->db->select('itemid')
                 ->where('id', $id)
-                ->get('store')
+                ->get('store_items')
                 ->row('itemid');
     }
 
@@ -51,23 +51,23 @@ class Store_model extends CI_Model {
     {
         return $this->db->select('qquery')
                 ->where('id', $id)
-                ->get('store')
+                ->get('store_items')
                 ->row('qquery');
     }
 
     public function getIcon($id)
     {
-        return $this->db->select('iconname')
+        return $this->db->select('icon')
                 ->where('id', $id)
-                ->get('store')
-                ->row('iconname');
+                ->get('store_items')
+                ->row('icon');
     }
 
     public function getName($id)
     {
         return $this->db->select('name')
                 ->where('id', $id)
-                ->get('store')
+                ->get('store_items')
                 ->row_array()['name'];
     }
 
@@ -75,16 +75,16 @@ class Store_model extends CI_Model {
     {
         return $this->db->select('image')
                 ->where('id', $id)
-                ->get('store')
+                ->get('store_items')
                 ->row_array()['image'];
     }
 
     public function getGroup($id)
     {
-        return $this->db->select('groups')
+        return $this->db->select('category')
                 ->where('id', $id)
-                ->get('store')
-                ->row('groups');
+                ->get('store_items')
+                ->row('category');
     }
 
     public function getPriceType($id, $type)
@@ -92,13 +92,13 @@ class Store_model extends CI_Model {
         if ($type == "dp")
             return $this->db->select('price_dp')
                     ->where('id', $id)
-                    ->get('store')
+                    ->get('store_items')
                     ->row('price_dp');
 
         if ($type == "vp")
             return $this->db->select('price_vp')
                     ->where('id', $id)
-                    ->get('store')
+                    ->get('store_items')
                     ->row('price_vp');
     }
 
@@ -106,7 +106,7 @@ class Store_model extends CI_Model {
     {
         $qq = $this->db->select('price_vp')
                     ->where('id', $id)
-                    ->get('store')
+                    ->get('store_items')
                     ->row('price_vp');
 
         if (!is_null($qq) && $qq > 0)
@@ -119,7 +119,7 @@ class Store_model extends CI_Model {
     {
         $qq = $this->db->select('price_dp')
                     ->where('id', $id)
-                    ->get('store')
+                    ->get('store_items')
                     ->row('price_dp');
 
         if (!is_null($qq) && $qq > 0)
@@ -132,32 +132,32 @@ class Store_model extends CI_Model {
     {
         if($id != '' && $id != '0') {
             return $this->db->select('*')
-                ->where('groups', $id)
-                ->get('store');
+                ->where('category', $id)
+                ->get('store_items');
         } else {
             return $this->db->select('*')
-                ->get('store');
+                ->get('store_items');
         }
     }
 
     public function getShopGeneralGP($id)
     {
         return $this->db->select('*')
-                ->where('groups', $id)
-                ->get('store');
+                ->where('category', $id)
+                ->get('store_items');
     }
 
     public function getGroups()
     {
         return $this->db->select('*')
-                ->get('store_groups');
+                ->get('store_categories');
     }
 
     public function getSpecifyGroup($id)
     {
         return $this->db->select('name')
                 ->where('id', $id)
-                ->get('store_groups')
+                ->get('store_categories')
                 ->row_array()['name'];
     }
 
