@@ -60,78 +60,23 @@ class M_general extends CI_Model {
                 ->row_array()['name'];
     }
 
-    public function getMonth($id)
-    {
-        switch ($id)
-        {
-            case 1:
-                return $this->lang->line('month_January');
-                break;
-            case 2:
-                return $this->lang->line('month_February');
-                break;
-            case 3:
-                return $this->lang->line('month_March');
-                break;
-            case 4:
-                return $this->lang->line('month_April');
-                break;
-            case 5:
-                return $this->lang->line('month_May');
-                break;
-            case 6:
-                return $this->lang->line('month_June');
-                break;
-            case 7:
-                return $this->lang->line('month_July');
-                break;
-            case 8:
-                return $this->lang->line('month_August');
-                break;
-            case 9:
-                return $this->lang->line('month_September');
-                break;
-            case 10:
-                return $this->lang->line('month_October');
-                break;
-            case 11:
-                return $this->lang->line('month_November');
-                break;
-            case 12:
-                return $this->lang->line('month_December');
-                break;
-        }
-    }
-
     public function getExpansionAction()
     {
         $expansion = $this->config->item('expansion_id');
         switch ($expansion)
         {
             case 1:
-                return "1";
-                break;
             case 2:
-                return "1";
-                break;
             case 3:
-                return "1";
-                break;
             case 4:
-                return "1";
-                break;
             case 5:
                 return "1";
-                break;
+            break;
             case 6:
-                return "2";
-                break;
             case 7:
-                return "2";
-                break;
             case 8:
                 return "2";
-                break;
+            break;
         }
     }
 
@@ -417,65 +362,29 @@ class M_general extends CI_Model {
         switch ($race)
         {
             case '1':
-                return 'Alliance';
-                break;
             case '3':
-                return 'Alliance';
-                break;
             case '4':
-                return 'Alliance';
-                break;
             case '7':
-                return 'Alliance';
-                break;
             case '11':
-                return 'Alliance';
-                break;
             case '22':
-                return 'Alliance';
-                break;
             case '25':
-                return 'Alliance';
-                break;
             case '29':
-                return 'Alliance';
-                break;
             case '30':
-                return 'Alliance';
-                break;
             case '34':
                 return 'Alliance';
-                break;
+            break;
             case '2':
-                return 'Horde';
-                break;
             case '5':
-                return 'Horde';
-                break;
             case '6':
-                return 'Horde';
-                break;
             case '8':
-                return 'Horde';
-                break;
-            case '10':
-                return 'Horde';
-                break;
             case '9':
-                return 'Horde';
-                break;
+            case '10':
             case '26':
-                return 'Horde';
-                break;
             case '27':
-                return 'Horde';
-                break;
             case '28':
-                return 'Horde';
-                break;
             case '36':
                 return 'Horde';
-                break;
+            break;
         }
     }
 
