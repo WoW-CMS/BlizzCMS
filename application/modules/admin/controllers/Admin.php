@@ -304,7 +304,7 @@ class Admin extends MX_Controller {
     public function managerealms()
     {
         $this->load->view('general/header');
-        $this->load->view('settings/manage_realms');
+        $this->load->view('realm/manage_realms');
         $this->load->view('general/footer');
     }
 
@@ -315,7 +315,7 @@ class Admin extends MX_Controller {
         );
 
         $this->load->view('general/header');
-        $this->load->view('settings/create_realm', $data);
+        $this->load->view('realm/create_realm', $data);
         $this->load->view('general/footer');
     }
 
@@ -333,7 +333,7 @@ class Admin extends MX_Controller {
         );
 
         $this->load->view('general/header');
-        $this->load->view('settings/edit_realm', $data);
+        $this->load->view('realm/edit_realm', $data);
         $this->load->view('general/footer');
     }
 
@@ -369,7 +369,7 @@ class Admin extends MX_Controller {
     public function manageslides()
     {
         $this->load->view('general/header');
-        $this->load->view('settings/manage_slides');
+        $this->load->view('slide/manage_slides');
         $this->load->view('general/footer');
     }
 
@@ -380,7 +380,7 @@ class Admin extends MX_Controller {
         );
 
         $this->load->view('general/header');
-        $this->load->view('settings/create_slide', $data);
+        $this->load->view('slide/create_slide', $data);
         $this->load->view('general/footer');
     }
 
