@@ -160,22 +160,6 @@ CREATE TABLE `chars_annotations` (
 
 /*Data for the table `chars_annotations` */
 
-/*Table structure for table `credits` */
-
-DROP TABLE IF EXISTS `credits`;
-
-CREATE TABLE `credits` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `accountid` int(10) unsigned NOT NULL,
-  `dp` int(10) NOT NULL DEFAULT 0,
-  `vp` int(10) NOT NULL DEFAULT 0,
-  UNIQUE KEY `id_2` (`id`),
-  UNIQUE KEY `accountId` (`accountid`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `credits` */
-
 /*Table structure for table `donate` */
 
 DROP TABLE IF EXISTS `donate`;
@@ -498,15 +482,17 @@ DROP TABLE IF EXISTS `slides`;
 CREATE TABLE `slides` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
-  `image` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
+  `description` text NOT NULL,
+  `type` int(1) DEFAULT 1,
+  `url` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `slides` */
 
-insert  into `slides`(`id`,`title`,`image`) values 
-(1,'BlizzCMS','slide1.jpg'),
-(2,'Constant updates!','slide2.jpg');
+insert  into `slides`(`id`,`title`,`description`,`type`,`url`) values 
+(1,'BlizzCMS','Check our constant updates!','1','slide1.jpg'),
+(2,'Vote Now','Each vote will be rewarded!','1','slide2.jpg');
 
 /*Table structure for table `store_categories` */
 
@@ -599,6 +585,22 @@ CREATE TABLE `users_annotations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `users_annotations` */
+
+/*Table structure for table `users_data` */
+
+DROP TABLE IF EXISTS `users_data`;
+
+CREATE TABLE `users_data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `accountid` int(10) unsigned NOT NULL,
+  `dp` int(10) NOT NULL DEFAULT 0,
+  `vp` int(10) NOT NULL DEFAULT 0,
+  UNIQUE KEY `id_2` (`id`),
+  UNIQUE KEY `accountId` (`accountid`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `users_data` */
 
 /*Table structure for table `votes` */
 

@@ -53,7 +53,7 @@ class Donate_model extends CI_Model
     {
         $qq = $this->db->select('dp')
             ->where('accountid', $this->session->userdata('wow_sess_id'))
-            ->get('credits');
+            ->get('users_data');
 
         if($qq->num_rows())
             return $qq->row('dp');
@@ -61,7 +61,7 @@ class Donate_model extends CI_Model
         {
             $this->db->set('accountid', $this->session->userdata('wow_sess_id'))
                 ->set('dp', '0')
-                ->insert('credits');
+                ->insert('users_data');
             return '0';
         }
     }
@@ -174,7 +174,7 @@ class Donate_model extends CI_Model
 
             $this->db->set('dp', $total)
                 ->where('accountid', $this->session->userdata('wow_sess_id'))
-                ->update('credits');
+                ->update('users_data');
 
             redirect(base_url('donate'),'refresh');
         }

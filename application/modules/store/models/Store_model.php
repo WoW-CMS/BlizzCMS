@@ -185,9 +185,9 @@ class Store_model extends CI_Model {
         $this->db->insert('store_logs', $data);
 
         if ($method == "dp")
-            $this->db->query("UPDATE credits SET dp = (dp-$price) WHERE accountid = $accountid");
+            $this->db->query("UPDATE users_data SET dp = (dp-$price) WHERE accountid = $accountid");
         else
-            $this->db->query("UPDATE credits SET vp = (vp-$price) WHERE accountid = $accountid");
+            $this->db->query("UPDATE users_data SET vp = (vp-$price) WHERE accountid = $accountid");
 
         redirect(base_url('store?complete'),'refresh');
     }

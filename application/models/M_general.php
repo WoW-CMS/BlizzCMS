@@ -32,7 +32,7 @@ class M_general extends CI_Model {
     {
         $qq = $this->db->select('dp')
                 ->where('accountid', $id)
-                ->get('credits');
+                ->get('users_data');
 
         if ($qq->num_rows())
             return $qq->row('dp');
@@ -44,7 +44,7 @@ class M_general extends CI_Model {
     {
         $qq = $this->db->select('vp')
                 ->where('accountid', $id)
-                ->get('credits');
+                ->get('users_data');
 
         if ($qq->num_rows())
             return $qq->row('vp');
