@@ -159,5 +159,4 @@ class M_characters extends CI_Model {
                 ->where('guid', $id)
                 ->get('characters');
     }
-
 }

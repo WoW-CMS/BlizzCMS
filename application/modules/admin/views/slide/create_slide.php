@@ -2,64 +2,123 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="far fa-image"></i> Add Image to Slideshow</h3>
+            <h3 class="uk-h3"><i class="far fa-image"></i> Add Slide</h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/slides'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
-        <?php if(isset($_POST['button_createSlide'])) {
-          $title = $_POST['slide_title'];
-          $image = $_FILES["slide_imageup"];
-
-          if ($image['type'] == 'image/jpeg')
-          {
-            $random = $this->m_data->randomUTF();
-            $name_slider = sha1($image['name'].$random).'.jpg';
-
-            move_uploaded_file($image["tmp_name"], "./assets/images/slides/" . $name_slider);
-
-            $this->admin_model->insertNewSlides($title, $name_slider);
-          }
-          elseif($image['type'] == 'image/png') {
-            $random = $this->m_data->randomUTF();
-            $name_new = sha1($image['name'].$random).'.png';
-
-            move_uploaded_file($image["tmp_name"], "./assets/images/slides/" . $name_slider);
-
-            $this->admin_model->insertNewSlides($title, $name_slider);
-          }
-          else
-            echo '<div class="uk-width-1-1@l uk-width-1-1@xl"><div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p><i class="fas fa-exclamation-circle"></i> '.$this->lang->line('alert_upload_error').'</p></div></div>';
-        } ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
-              <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
-                <div class="uk-form-controls">
-                  <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" type="text" name="slide_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+            <?= form_open('', 'id="addslideForm" onsubmit="AddSlideForm(event)"'); ?>
+            <div class="uk-margin-small">
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
+              <div class="uk-form-controls">
+                <div class="uk-inline uk-width-1-1">
+                  <input class="uk-input" type="text" id="slide_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin-small">
+              <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
+              <div class="uk-form-controls">
+                <textarea class="uk-textarea" id="slide_description" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="uk-margin-small">
+              <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-inline uk-width-1-3@s">
+                  <label class="uk-form-label"><?=$this->lang->line('placeholder_type');?></label>
+                  <div class="uk-form-controls">
+                    <select class="uk-select" id="slide_type">
+                      <option value="1">Image</option>
+                      <option value="1">Video</option>
+                      <option value="3">Iframe</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="uk-inline uk-width-2-3@s">
+                  <label class="uk-form-label">Route</label>
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="text" id="slide_route" placeholder="Example: URL or Image Name" required>
                   </div>
                 </div>
               </div>
-              <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_upload_file'); ?></label>
-                <div class="uk-form-controls">
-                  <div class="uk-inline uk-width-1-1">
-                    <div uk-form-custom="target: true">
-                      <input type="file" required name="slide_imageup">
-                      <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> Select</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" name="button_createSlide" type="submit"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
-              </div>
-            </form>
+            </div>
+            <div class="uk-margin-small">
+              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_slide"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+            </div>
+            <?= form_close(); ?>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      function AddSlideForm(e) {
+        e.preventDefault();
+
+        var title = $('#slide_title').val();
+        var description = $('#slide_description').val();
+        var type = $('#slide_type').val();
+        var route = $('#slide_route').val();
+        if(title == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/slides/add'); ?>",
+          method:"POST",
+          data:{title, description, type, route},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#addslideForm')[0].reset();
+          }
+        });
+      }
+    </script>

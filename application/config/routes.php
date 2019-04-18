@@ -126,6 +126,9 @@ $route[$lang.'/admin/modules'] = 'admin/managemodules';
 // Manage Slides
 $route[$lang.'/admin/slides'] = 'admin/manageslides';
 $route[$lang.'/admin/slides/create'] = 'admin/createslide';
+$route[$lang.'/admin/slides/edit/(:num)'] = 'admin/editslide/$2';
+$route[$lang.'/admin/slides/add'] = 'admin/addslide';
+$route[$lang.'/admin/slides/update'] = 'admin/updateslide';
 
 // Manage Realms
 $route[$lang.'/admin/realms'] = 'admin/managerealms';

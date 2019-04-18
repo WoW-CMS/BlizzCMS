@@ -128,169 +128,6 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateOptionalSettings($adminlvl, $modlvl, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername);
     }
 
-    public function insertCategory()
-    {
-        $name = $_POST['categoryname'];
-        return $this->admin_model->insertCategoryAjax($name);
-    }
-
-    public function insertDonation()
-    {
-        $name = $_POST['donationname'];
-        $price = $_POST['donationprice'];
-        $tax = $_POST['donationtax'];
-        $points = $_POST['donationpoints'];
-        return $this->admin_model->insertDonationAjax($name, $price, $tax, $points);
-    }
-
-    public function updateCategory()
-    {
-        $id = $_POST['id'];
-        $name = $_POST['text'];
-        $column = $_POST['colum_name'];
-        return $this->admin_model->updateCategoryAjax($id, $name, $column);
-    }
-
-    public function updateDonation()
-    {
-        $id = $_POST['id'];
-        $name = $_POST['text'];
-        $column = $_POST['colum_name'];
-        return $this->admin_model->updateDonationAjax($id, $name, $column);
-    }
-
-    public function deleteCategory()
-    {
-        $id = $_POST['id'];
-        return $this->admin_model->deleteCategoryAjax($id);
-    }
-
-    public function deleteDonation()
-    {
-        $id = $_POST['id'];
-        return $this->admin_model->deleteDonationAjax($id);
-    }
-
-    public function getDonateList()
-    {
-        $output = '';
-        $output .= '
-        <div class="uk-overflow-auto">
-        <table class="uk-table uk-table-divider uk-table-small">
-            <thead>
-                <tr>
-                    <th class="uk-width-medium">'.$this->lang->line('placeholder_title').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('store_item_price').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('table_header_tax').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('table_header_points').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
-                </tr>
-            </thead>
-            <tbody>';
-        if($this->admin_model->getDonateListAjax()->num_rows()){
-            foreach($this->admin_model->getDonateListAjax()->result() as $list) {
-                $output .= '<tr>
-                    <td>
-                        <input type="text" class="uk-input" id="donateName" value="'.$list->name.'" data-id1="'.$list->id.'">
-                    </td>
-                    <td>
-                        <input type="text" class="uk-input" id="donatePrice" value="'.$list->price.'" data-id4="'.$list->id.'">
-                    </td>
-                    <td>
-                        <input type="text" class="uk-input" id="donateTax" value="'.$list->tax.'" data-id5="'.$list->id.'">
-                    </td>
-                    <td>
-                        <input type="text" class="uk-input" id="donatePoints" value="'.$list->points.'" data-id6="'.$list->id.'">
-                    </td>
-                    <td class="uk-table-shrink">
-                        <button class="uk-button uk-button-danger" name="button_deleteDonate" id="button_deleteDonate" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>';
-            }
-        }
-
-        $output .= '
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert title" id="newdonatename" value="Classic">
-                </td>
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert Price" id="newdonateprice" value="1.00">
-                </td>
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert Tax" id="newonateTax" value="0.00">
-                </td>
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert Points" id="newdonatepoints" value="1">
-                </td>
-                <td>
-                    <button class="uk-button uk-button-primary" name="button_adddonation" id="button_adddonation"><i class="fa fa-plus-circle"></i></button>
-                </td>
-            ';
-        if(!$this->admin_model->getDonateListAjax()->num_rows()){
-            $output .= '
-            <tr>
-                <td><div class="uk-alert-warning" uk-alert><p class="uk-text-center"><span uk-icon="warning"></span> Data not found</p></div></td>
-            </tr>';
-        }
-        $output .= '</tbody>
-                        </table></div>';
-
-        echo $output;
-    }
-
-    public function getCategoryList()
-    {
-        $output = '';
-        $output .= '
-        <div class="uk-overflow-auto">
-        <table class="uk-table uk-table-divider uk-table-small">
-            <thead>
-                <tr>
-                    <th class="uk-table-expand">'.$this->lang->line('placeholder_title').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
-                </tr>
-            </thead>
-            <tbody>';
-        if($this->admin_model->getForumCategoryListAjax()->num_rows()){
-            foreach($this->admin_model->getForumCategoryListAjax()->result() as $list) {
-                $output .= '<tr>
-                    <td>
-                        <input type="text" class="uk-input" id="categoryName" value="'.$list->categoryName.'" data-id1="'.$list->id.'">
-                    </td>
-                    <td>
-                        <button class="uk-button uk-button-danger" name="button_deleteCategory" id="button_deleteCategory" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>';
-            }
-
-            $output .= '
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
-                </td>
-                <td>
-                    <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
-                </td>
-            ';
-        }
-        else{
-            $output .= '
-            <td>
-                <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
-            </td>
-            <td>
-                <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
-            </td>
-
-            <tr>
-                <td><div class="uk-alert-warning" uk-alert><p class="uk-text-center"><span uk-icon="warning"></span> Data not found</p></div></td>
-            </tr>';
-        }
-        $output .= '</tbody>
-                        </table></div>';
-
-        echo $output;
-    }
-
     public function managemodules()
     {
         $data = array(
@@ -322,9 +159,6 @@ class Admin extends MX_Controller {
     public function editrealm($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -382,6 +216,39 @@ class Admin extends MX_Controller {
         );
 
         $this->template->build('slide/create_slide', $data);
+    }
+
+    public function editslide($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('slide/edit_slide', $data);
+    }
+
+    public function addslide()
+    {
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $type = $this->input->post('type');
+        $route = $this->input->post('route');
+        echo $this->m_modules->insertSlide($title, $description, $type, $route);
+    }
+
+    public function updateslide()
+    {
+        $id = $this->input->post('id');
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $type = $this->input->post('type');
+        $route = $this->input->post('route');
+        echo $this->admin_model->updateSpecifySlide($id, $title, $description, $type, $route);
     }
 
     /**
@@ -870,6 +737,169 @@ class Admin extends MX_Controller {
         );
 
         $this->template->build('donate/index', $data);
+    }
+
+    public function insertCategory()
+    {
+        $name = $_POST['categoryname'];
+        return $this->admin_model->insertCategoryAjax($name);
+    }
+
+    public function insertDonation()
+    {
+        $name = $_POST['donationname'];
+        $price = $_POST['donationprice'];
+        $tax = $_POST['donationtax'];
+        $points = $_POST['donationpoints'];
+        return $this->admin_model->insertDonationAjax($name, $price, $tax, $points);
+    }
+
+    public function updateCategory()
+    {
+        $id = $_POST['id'];
+        $name = $_POST['text'];
+        $column = $_POST['colum_name'];
+        return $this->admin_model->updateCategoryAjax($id, $name, $column);
+    }
+
+    public function updateDonation()
+    {
+        $id = $_POST['id'];
+        $name = $_POST['text'];
+        $column = $_POST['colum_name'];
+        return $this->admin_model->updateDonationAjax($id, $name, $column);
+    }
+
+    public function deleteCategory()
+    {
+        $id = $_POST['id'];
+        return $this->admin_model->deleteCategoryAjax($id);
+    }
+
+    public function deleteDonation()
+    {
+        $id = $_POST['id'];
+        return $this->admin_model->deleteDonationAjax($id);
+    }
+
+    public function getDonateList()
+    {
+        $output = '';
+        $output .= '
+        <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-divider uk-table-small">
+            <thead>
+                <tr>
+                    <th class="uk-width-medium">'.$this->lang->line('placeholder_title').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('store_item_price').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('table_header_tax').'</th>
+                    <th class="uk-width-small">'.$this->lang->line('table_header_points').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
+                </tr>
+            </thead>
+            <tbody>';
+        if($this->admin_model->getDonateListAjax()->num_rows()){
+            foreach($this->admin_model->getDonateListAjax()->result() as $list) {
+                $output .= '<tr>
+                    <td>
+                        <input type="text" class="uk-input" id="donateName" value="'.$list->name.'" data-id1="'.$list->id.'">
+                    </td>
+                    <td>
+                        <input type="text" class="uk-input" id="donatePrice" value="'.$list->price.'" data-id4="'.$list->id.'">
+                    </td>
+                    <td>
+                        <input type="text" class="uk-input" id="donateTax" value="'.$list->tax.'" data-id5="'.$list->id.'">
+                    </td>
+                    <td>
+                        <input type="text" class="uk-input" id="donatePoints" value="'.$list->points.'" data-id6="'.$list->id.'">
+                    </td>
+                    <td class="uk-table-shrink">
+                        <button class="uk-button uk-button-danger" name="button_deleteDonate" id="button_deleteDonate" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>';
+            }
+        }
+
+        $output .= '
+                <td>
+                    <input type="text" class="uk-input" placeholder="Insert title" id="newdonatename" value="Classic">
+                </td>
+                <td>
+                    <input type="text" class="uk-input" placeholder="Insert Price" id="newdonateprice" value="1.00">
+                </td>
+                <td>
+                    <input type="text" class="uk-input" placeholder="Insert Tax" id="newonateTax" value="0.00">
+                </td>
+                <td>
+                    <input type="text" class="uk-input" placeholder="Insert Points" id="newdonatepoints" value="1">
+                </td>
+                <td>
+                    <button class="uk-button uk-button-primary" name="button_adddonation" id="button_adddonation"><i class="fa fa-plus-circle"></i></button>
+                </td>
+            ';
+        if(!$this->admin_model->getDonateListAjax()->num_rows()){
+            $output .= '
+            <tr>
+                <td><div class="uk-alert-warning" uk-alert><p class="uk-text-center"><span uk-icon="warning"></span> Data not found</p></div></td>
+            </tr>';
+        }
+        $output .= '</tbody>
+                        </table></div>';
+
+        echo $output;
+    }
+
+    public function getCategoryList()
+    {
+        $output = '';
+        $output .= '
+        <div class="uk-overflow-auto">
+        <table class="uk-table uk-table-divider uk-table-small">
+            <thead>
+                <tr>
+                    <th class="uk-table-expand">'.$this->lang->line('placeholder_title').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
+                </tr>
+            </thead>
+            <tbody>';
+        if($this->admin_model->getForumCategoryListAjax()->num_rows()){
+            foreach($this->admin_model->getForumCategoryListAjax()->result() as $list) {
+                $output .= '<tr>
+                    <td>
+                        <input type="text" class="uk-input" id="categoryName" value="'.$list->categoryName.'" data-id1="'.$list->id.'">
+                    </td>
+                    <td>
+                        <button class="uk-button uk-button-danger" name="button_deleteCategory" id="button_deleteCategory" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>';
+            }
+
+            $output .= '
+                <td>
+                    <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
+                </td>
+                <td>
+                    <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
+                </td>
+            ';
+        }
+        else{
+            $output .= '
+            <td>
+                <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
+            </td>
+            <td>
+                <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
+            </td>
+
+            <tr>
+                <td><div class="uk-alert-warning" uk-alert><p class="uk-text-center"><span uk-icon="warning"></span> Data not found</p></div></td>
+            </tr>';
+        }
+        $output .= '</tbody>
+                        </table></div>';
+
+        echo $output;
     }
 
     /**

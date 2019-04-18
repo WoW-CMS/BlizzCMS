@@ -14,7 +14,7 @@
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= $this->lang->line('table_header_realm_id'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input" type="number" id="realm_id" placeholder="Auth -> realmlist -> ID" required>
+                <input class="uk-input" type="number" id="realm_id" value="" placeholder="Auth -> realmlist -> ID" required>
               </div>
             </div>
             <div class="uk-margin-small">
@@ -22,13 +22,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label">Soap Hostname</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="soap_hostname" placeholder="Example: 127.0.0.1" required>
+                    <input class="uk-input" type="text" id="soap_hostname" value="" placeholder="Example: 127.0.0.1" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label">Soap Port</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="number" id="soap_port" placeholder="Example: 7878" required>
+                    <input class="uk-input" type="number" id="soap_port" value="" placeholder="Example: 7878" required>
                   </div>
                 </div>
               </div>
@@ -38,13 +38,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label">Soap User</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="soap_username" placeholder="Example: blizzcms" required>
+                    <input class="uk-input" type="text" id="soap_username" value="" placeholder="Example: blizzcms" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label">Soap Password</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="password" id="soap_password" placeholder="Example: ascent" required>
+                    <input class="uk-input" type="password" id="soap_password" value="" placeholder="Example: ascent" required>
                   </div>
                 </div>
               </div>
@@ -54,13 +54,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong>Character</strong> Database Hostname</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_hostname" placeholder="Example: 127.0.0.1" required>
+                    <input class="uk-input" type="text" id="character_hostname" value="" placeholder="Example: 127.0.0.1" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong>Character</strong> Database Name</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_database" placeholder="Example: characters" required>
+                    <input class="uk-input" type="text" id="character_database" value="" placeholder="Example: characters" required>
                   </div>
                 </div>
               </div>
@@ -70,13 +70,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong>Character</strong> Database User</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_username" placeholder="Example: root" required>
+                    <input class="uk-input" type="text" id="character_username" value="" placeholder="Example: root" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong>Character</strong> Database Password</label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="password" id="character_password" placeholder="Example: ascent" required>
+                    <input class="uk-input" type="password" id="character_password" value="" placeholder="Example: ascent" required>
                   </div>
                 </div>
               </div>

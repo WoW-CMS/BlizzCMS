@@ -612,14 +612,30 @@ class Admin_model extends CI_Model {
         redirect(base_url('admin/settings'),'refresh');
     }
 
-    public function insertNewSlides($title, $image)
+    public function insertSlide($title, $description, $type, $route)
     {
         $data = array(
             'title' => $title,
-            'image' => $image,
+            'description' => $description,
+            'type' => $type,
+            'route' => $route
         );
 
         $this->db->insert('slides', $data);
+        return true;
+    }
+
+    public function updateSpecifySlide($id, $title, $description, $type, $route)
+    {
+        $update = array(
+            'title' => $title,
+            'description' => $description,
+            'type' => $type,
+            'route' => $route
+        );
+
+        $this->db->where('id', $id)
+                ->update('slides', $update);
         return true;
     }
 
@@ -633,7 +649,7 @@ class Admin_model extends CI_Model {
 
     public function getAdminSlideList()
     {
-        return $this->db->select('id, title')
+        return $this->db->select('*')
             ->order_by('id', 'ASC')
             ->get('slides');
     }
