@@ -119,7 +119,6 @@ $route[$lang.'/pvp'] = 'pvp/index';
 $route[$lang.'/admin'] = 'admin/index';
 $route[$lang.'/admin/settings'] = 'admin/settings';
 $route[$lang.'/admin/settings/update'] = 'admin/updatesettings';
-$route[$lang.'/admin/settings/database'] = 'admin/databasesettings';
 $route[$lang.'/admin/settings/optional'] = 'admin/optionalsettings';
 $route[$lang.'/admin/settings/optional/update'] = 'admin/updateoptionalsettings';
 $route[$lang.'/admin/modules'] = 'admin/managemodules';

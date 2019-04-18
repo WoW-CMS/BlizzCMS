@@ -102,16 +102,6 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateGeneralSettings($project, $timezone, $discord, $realmlist, $staffcolor, $theme);
     }
 
-    public function databasesettings()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('settings/database_settings', $data);
-    }
-
     public function optionalsettings()
     {
         $data = array(

@@ -7,13 +7,13 @@
 | Requirements | Description |
 | :----------- | :---------- |
 | **PHP Version** | **7.1 or newer** is recommended |
-| **Apache Modules** | mod_rewrite - mod_headers - mod_expires - mod_deflate |
-| **PHP Extensions** | curl - openssl - soap - gd2 - mbstring |
+| **Apache Modules** | mod_headers - mod_rewrite |
+| **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap |
 
 ## Useful Links
 
-* [Demo](https://wow-cms.com/)
-* [Support](https://wow-cms.com/)
+* [Website](https://wow-cms.com)
+* [Docs](https://docs.wow-cms.com)
 
 ## Active Developers
 
@@ -25,4 +25,4 @@
 
 ## Copyright
 
-Copyright 2019 [WoW-CMS](https://wow-cms.com).
+Copyright © 2019 [WoW-CMS](https://wow-cms.com).

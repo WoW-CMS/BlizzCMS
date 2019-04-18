@@ -494,11 +494,6 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getDatabaseInfo($db, $config)
-    {
-        return $this->$db->$config;
-    }
-
     //bugtracker
     public function settingBugtracker($data)
     {
