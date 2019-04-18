@@ -448,14 +448,14 @@ class M_general extends CI_Model {
     {
         switch ($rank) {
             case 'Admin':
-                return "<script src=".base_url('includes/core/tinymce/tinymce.min.js')."></script>
+                return "<script src=".base_url('assets/core/tinymce/tinymce.min.js')."></script>
                         <script>tinymce.init({selector: '.tinyeditor',element_format : 'html',menubar: true,
                             plugins: ['preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media codesample table charmap hr insertdatetime advlist lists wordcount imagetools textpattern help'],
                             toolbar: 'undo redo | fontsizeselect | bold italic strikethrough | forecolor backcolor | link emoticons image media | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat'});
                         </script>";
                 break;
             case 'User':
-                return "<script src=".base_url('includes/core/tinymce/tinymce.min.js')."></script>
+                return "<script src=".base_url('assets/core/tinymce/tinymce.min.js')."></script>
                         <script>tinymce.init({selector: '.tinyeditor',element_format : 'html',menubar: false,
                             plugins: ['advlist autolink lists link image charmap textcolor searchreplace fullscreen media paste wordcount emoticons'],
                             toolbar: 'undo redo | fontsizeselect | bold italic strikethrough | forecolor | link emoticons image | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat'});

@@ -3,13 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
-| Website Title
+| Website Name
 |--------------------------------------------------------------------------
 |
 | Write the name of your website this will appear by default.
 |
 */
-$config['ProjectName'] = '%PROJECTNAME%';
+$config['website_name'] = '%WEBSITE_NAME%';
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ $config['maintenance_mode'] = '0';
 | Write the invitation of your discord channel.
 |
 */
-$config['discord_inv'] = '%DISCORD_INV%';
+$config['discord_invitation'] = '%DISCORD_INVITATION%';
 
 /*
 |--------------------------------------------------------------------------

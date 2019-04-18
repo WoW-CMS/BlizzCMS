@@ -70,35 +70,15 @@ class Home extends MX_Controller {
                 'slides' => $this->home_model->getSlides()->result(),
                 'threeNews' => $this->news_model->getNewsTree()->result(),
                 'realmsList' => $this->m_data->getRealms()->result(),
-                //route
-                'slide_url' => base_url('includes/images/slides/'),
-                'news_url' => base_url('includes/images/news/'),
-                //lang
-                'home_latest_news' => $this->lang->line('home_latest_news'),
-                'button_read_more' => $this->lang->line('button_read_more'),
-                'home_server_status' => $this->lang->line('home_server_status'),
-                //configs
-                'conf_realmlist' => $this->config->item('realmlist'),
-                'conf_discordurl' => $this->config->item('discordUrl'),
-                'conf_discordcdn' => $this->config->item('discordCdn'),
-                'conf_discordwidget' => $this->config->item('discordWidget'),
-                'conf_discordtheme' => $this->config->item('discordtheme'),
-                'discord_width_exp' => $this->config->item('discord_width_experimental'),
-                'discord_height_exp' => $this->config->item('discord_height_experimental'),
-                'discord_width_class' => $this->config->item('discord_width_classic'),
-                'discord_height_class' => $this->config->item('discord_height_classic'),
-                'discord_extras' => $this->config->item('discordextras'),
-                //discord
+                // Discord
                 'discord_code' => $discord['code'],
                 'discord_id' => $discord['guild']['id'],
                 'discord_icon' => $discord['guild']['icon'],
                 'discord_name' => $discord['guild']['name'],
                 'discord_counts' => $discord['approximate_presence_count'],
             );
-        
-            $this->load->view('header', $data);
-            $this->parser->parse('home', $data);
-            $this->load->view('footer');
+
+            $this->template->build('home', $data);
         }
     }
 }

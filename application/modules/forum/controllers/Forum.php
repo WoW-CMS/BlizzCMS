@@ -59,9 +59,7 @@ class Forum extends MX_Controller {
             'pagetitle' => $this->lang->line('tab_forum'),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('index');
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 
     public function category($id)
@@ -85,9 +83,7 @@ class Forum extends MX_Controller {
         else
             redirect(base_url('forum'),'refresh');
 
-        $this->load->view('header', $data);;
-        $this->load->view('category', $data);
-        $this->load->view('footer');
+        $this->template->build('category', $data);
     }
 
     public function topic($id)
@@ -112,10 +108,7 @@ class Forum extends MX_Controller {
             'tiny' => $tiny
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('topic', $data);
-        $this->load->view('footer');
-        $this->load->view('modal');
+        $this->template->build('topic', $data);
     }
 
     public function newtopic($idlink)
@@ -132,9 +125,7 @@ class Forum extends MX_Controller {
             'tiny' => $tiny,
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('new_topic', $data);
-        $this->load->view('footer');
+        $this->template->build('new_topic', $data);
     }
 
     public function reply()

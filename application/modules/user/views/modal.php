@@ -25,7 +25,7 @@ endif; ?>
                 <div class="uk-grid uk-grid-medium uk-child-width-1-3 uk-child-width-1-4@s uk-child-width-1-5@m uk-flex-center uk-text-center">
                   <?php foreach($this->user_model->getAllAvatars()->result() as $allAvts): ?>
                     <div>
-                      <img class="uk-border-rounded" src="<?= base_url('includes/images/profiles/'.$allAvts->name); ?>" width="100" height="100">
+                      <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$allAvts->name); ?>" width="100" height="100">
                       <input class="uk-radio" type="radio" name="radioAvatars" value="<?= $allAvts->id ?>" checked>
                     </div>
                   <?php endforeach; ?>

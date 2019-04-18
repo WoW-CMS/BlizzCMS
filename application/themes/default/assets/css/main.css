@@ -668,7 +668,7 @@ h6,
 .dp-icon {
   display: inline-block;
   position: relative;
-  background-image: url('../../../includes/images/DP.svg');
+  background-image: url('../../../../../assets/images/DP.svg');
   background-repeat: no-repeat;
   background-size: contain;
   width: 24px;
@@ -679,7 +679,7 @@ h6,
 .vp-icon {
   display: inline-block;
   position: relative;
-  background-image: url('../../../includes/images/VP.svg');
+  background-image: url('../../../../../assets/images/VP.svg');
   background-repeat: no-repeat;
   background-size: contain;
   width: 24px;

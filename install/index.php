@@ -28,12 +28,12 @@ endif; ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Installation | BlizzCMS Plus</title>
-    <link rel="stylesheet" href="../includes/core/uikit/css/uikit.min.css"/>
-    <script src="../includes/core/uikit/js/uikit.min.js"></script>
-    <script src="../includes/core/uikit/js/uikit-icons.min.js"></script>
-    <script src="../includes/core/fontawesome/js/all.min.js"></script>
-    <link rel="stylesheet" href="../includes/core/css/install.css"/>
-    <script src="../includes/core/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../assets/core/uikit/css/uikit.min.css"/>
+    <script src="../assets/core/uikit/js/uikit.min.js"></script>
+    <script src="../assets/core/uikit/js/uikit-icons.min.js"></script>
+    <script src="../assets/core/fontawesome/js/all.min.js"></script>
+    <link rel="stylesheet" href="../assets/core/css/install.css"/>
+    <script src="../assets/core/js/jquery-3.3.1.min.js"></script>
   </head>
   <body>
     <header>
@@ -80,7 +80,7 @@ endif; ?>
               <div class="uk-inline uk-width-1-2@s uk-width-1-4@m">
                 <label class="uk-form-label">Server Name:</label>
                 <div class="uk-form-controls">
-                  <input name="ProjectName" class="uk-input" type="text" id="ProjectName" placeholder="MyServer" required>
+                  <input name="website_name" class="uk-input" type="text" id="website_name" placeholder="MyServer" required>
                 </div>
               </div>
               <div class="uk-inline uk-width-1-2@s uk-width-1-4@m">
@@ -132,7 +132,7 @@ endif; ?>
               <div class="uk-inline uk-width-1-2@s uk-width-1-4@m">
                 <label class="uk-form-label">Discord inv ID:</label>
                 <div class="uk-form-controls">
-                  <input name="discord_inv" class="uk-input" type="text" id="discord_inv" placeholder="WGGGVgX" required>
+                  <input name="discord_invitation" class="uk-input" type="text" id="discord_invitation" placeholder="WGGGVgX" required>
                 </div>
               </div>
               <div class="uk-inline uk-width-1-2@s uk-width-1-4@m">

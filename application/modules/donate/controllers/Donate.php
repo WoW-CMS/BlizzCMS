@@ -69,9 +69,7 @@ class Donate extends MX_Controller
             'pagetitle' => $this->lang->line('tab_donate'),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 
     public function complete($id)

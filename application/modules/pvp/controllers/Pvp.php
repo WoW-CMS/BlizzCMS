@@ -60,8 +60,6 @@ class Pvp extends MX_Controller {
             'realms' => $this->m_data->getRealms()->result()
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 }

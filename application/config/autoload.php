@@ -58,7 +58,14 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser');
+$datalib = array(
+	'database',
+	'session',
+	'form_validation',
+	'parser',
+	'template'
+);
+$autoload['libraries'] = $datalib;
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +110,12 @@ $autoload['helper'] = array('url', 'file', 'text','form', 'html', 'seo', 'cms');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('blizzcms', 'plus', 'seo');
+$dataconf = array(
+	'blizzcms',
+	'plus',
+	'seo'
+);
+$autoload['config'] = $dataconf;
 
 /*
 | -------------------------------------------------------------------
@@ -118,6 +130,7 @@ $autoload['config'] = array('blizzcms', 'plus', 'seo');
 |
 */
 $autoload['language'] = array('general', 'notification', 'admin');
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Models
@@ -131,4 +144,12 @@ $autoload['language'] = array('general', 'notification', 'admin');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('m_general', 'm_soap', 'm_data', 'm_modules', 'm_permissions', 'm_characters');
+$datamod = array(
+	'm_general',
+	'm_soap',
+	'm_data',
+	'm_modules',
+	'm_permissions',
+	'm_characters'
+);
+$autoload['model'] = $datamod;

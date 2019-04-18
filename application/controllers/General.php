@@ -44,8 +44,6 @@ class General extends CI_Controller {
             'pagetitle' => $this->lang->line('tab_error'),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('404');
-        $this->load->view('footer');
+        $this->template->build('404', $data);
     }
 }
