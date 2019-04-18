@@ -44,6 +44,8 @@ class Admin extends MX_Controller {
     {
         parent::__construct();
         $this->load->model('admin_model');
+        $this->config->load('donate/donate');
+        $this->config->load('bugtracker/bugtracker');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -126,6 +128,16 @@ class Admin extends MX_Controller {
         $sender = $this->input->post('sender');
         $sendername = $this->input->post('sendername');
         echo $this->admin_model->updateOptionalSettings($adminlvl, $modlvl, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername);
+    }
+
+    public function modulesettings()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('settings/module_settings', $data);
     }
 
     public function managemodules()

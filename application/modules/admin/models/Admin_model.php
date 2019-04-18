@@ -494,94 +494,25 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    //bugtracker
-    public function settingBugtracker($data)
+    public function settingBugtracker($textarea)
     {
-        $filename = $data['filename'];
+        $this->load->library('config_writer');
 
-        $Configsearch = array(
-            $data['actualbugtrackerText']
-        );
-
-        $Configreplace = array(
-            $data['bugtrackerText']
-        );
-
-        $fileConfig = file_get_contents($filename);
-        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
-        $openConfig = fopen($filename,"w");
-        fwrite($openConfig, $newConfig);
-        fclose($openConfig);
-
-        redirect(base_url('admin/settings'),'refresh');
+        $writer = $this->config_writer->get_instance(APPPATH.'modules/bugtracker/config/bugtracker.php', 'config');
+        $writer->write('textarea', $textarea);
+        return true;
     }
 
-    public function getBugtrackerText($filename)
+    public function settingDonate($currency, $mode, $client, $password)
     {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[11], 23);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
+        $this->load->library('config_writer');
 
-    //donate
-    public function settingDonate($data)
-    {
-        $filename = $data['filename'];
-
-        $Configsearch = array(
-            $data['actualpaypalCurrency'],
-            $data['actualpaypalMode'],
-            $data['actualpaypalclientId'],
-            $data['actualpaypalPassword']
-        );
-
-        $Configreplace = array(
-            $data['paypalCurrency'],
-            $data['paypalMode'],
-            $data['paypalclientId'],
-            $data['paypalPassword']
-        );
-
-        $fileConfig = file_get_contents($filename);
-        $newConfig = str_replace($Configsearch, $Configreplace, $fileConfig);
-        $openConfig = fopen($filename,"w");
-        fwrite($openConfig, $newConfig);
-        fclose($openConfig);
-
-        redirect(base_url('admin/settings'),'refresh');
-    }
-
-    public function getPaypalCurrency($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[12], 27);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getPaypalMode($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[25], 21);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getPaypalClientID($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[36], 21);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
-    }
-
-    public function getPaypalPassword($filename)
-    {
-        $fileHandle = file($filename);
-        $fileHandle = substr($fileHandle[47], 25);
-        $fileHandle = explode(";", $fileHandle);
-        return str_replace("'", "", $fileHandle[0]);
+        $writer = $this->config_writer->get_instance(APPPATH.'modules/donate/config/donate.php', 'config');
+        $writer->write('paypal_currency', $currency);
+        $writer->write('paypal_mode', $mode);
+        $writer->write('paypal_client', $client);
+        $writer->write('paypal_password', $password);
+        return true;
     }
 
     public function updateSpecifyRealm($id, $hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)

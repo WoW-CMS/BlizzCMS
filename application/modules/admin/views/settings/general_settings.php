@@ -42,6 +42,7 @@ endif; ?>
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
                 <li class="uk-active"><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> General Settings</a></li>
+                <li><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> Module Settings</a></li>
                 <li><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> Optional Settings</a></li>
               </ul>
             </div>
@@ -77,7 +78,7 @@ endif; ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Discord ID</label>
+                      <label class="uk-form-label">Discord Invitation ID</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
@@ -122,64 +123,6 @@ endif; ?>
                   <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_settings"><i class="fas fa-sync"></i> Update</button>
                 </div>
                 <?= form_close(); ?>
-              </div>
-            </div>
-            <div class="uk-card uk-card-default uk-margin-small">
-              <div class="uk-card-body">
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span>Modules Settings</span></h5>
-                <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small">Donate</h5>
-                <div class="uk-margin-small">
-                  <div class="uk-grid uk-grid-small" data-uk-grid>
-                    <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">PayPal Currency</label>
-                      <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-file-invoice-dollar"></i></span>
-                          <input class="uk-input" type="text" name="paypalCurrency" value="<?= $this->admin_model->getPaypalCurrency($fileDonate); ?>" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">PayPal Mode</label>
-                      <div class="uk-form-controls">
-                        <select class="uk-select" name="paypalMode">
-                          <option value="sandbox" <?php if($this->admin_model->getPaypalMode($fileDonate) == 'sandbox') echo 'selected'; ?>>Sandbox</option>
-                          <option value="live" <?php if($this->admin_model->getPaypalMode($fileDonate) == 'live') echo 'selected'; ?>>Live</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="uk-margin-small">
-                  <label class="uk-form-label">PayPal Client ID</label>
-                  <div class="uk-form-controls">
-                    <div class="uk-inline uk-width-1-1">
-                      <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" name="paypalclientId" value="<?= $this->admin_model->getPaypalClientID($fileDonate); ?>" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="uk-margin-small">
-                  <label class="uk-form-label">PayPal Secret Password</label>
-                  <div class="uk-form-controls">
-                    <div class="uk-inline uk-width-1-1">
-                      <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" name="paypalPassword" value="<?= $this->admin_model->getPaypalPassword($fileDonate); ?>" required>
-                    </div>
-                  </div>
-                </div>
-                <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom">Bugtracker</h5>
-                <div class="uk-margin-small">
-                  <label class="uk-form-label">Description Text</label>
-                  <div class="uk-form-controls">
-                    <div class="uk-width-1-1">
-                      <textarea class="uk-textarea tinyeditor" rows="12" name="bugtrackerText"><?= $this->admin_model->getBugtrackerText($fileBugtracker); ?></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" name="submitCaptcha" type="submit"><i class="fas fa-sync"></i> Update</button>
-                </div>
               </div>
             </div>
           </div>

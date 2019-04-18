@@ -13,6 +13,7 @@
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
                 <li><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> General Settings</a></li>
+                <li><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> Module Settings</a></li>
                 <li class="uk-active"><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> Optional Settings</a></li>
               </ul>
             </div>
