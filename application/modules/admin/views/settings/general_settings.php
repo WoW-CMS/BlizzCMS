@@ -1,32 +1,3 @@
-<?php
-  $fileBugtracker = FCPATH.'application/modules/bugtracker/config/bugtracker.php';
-  $fileDonate = FCPATH.'application/modules/donate/config/donate.php';
-
-if (isset($_POST['submitBugtracker'])):
-  $databugtracker = array(
-    'filename' => $fileBugtracker,
-    'bugtrackerText' => str_replace(' ', '', $_POST['bugtrackerText']),
-    'actualbugtrackerText' => $this->admin_model->getBugtrackerText($fileBugtracker),
-  );
-  $this->admin_model->settingBugtracker($databugtracker);
-endif;
-
-if (isset($_POST['submitDonate'])):
-  $datadonate = array(
-    'filename' => $fileDonate,
-    'paypalCurrency' => str_replace(' ', '', $_POST['paypalCurrency']),
-    'actualpaypalCurrency' => $this->admin_model->getPaypalCurrency($fileDonate),
-    'paypalMode' => $_POST['paypalMode'],
-    'actualpaypalMode' => $this->admin_model->getPaypalMode($fileDonate),
-    'paypalclientId' => str_replace(' ', '', $_POST['paypalclientId']),
-    'actualpaypalclientId' => $this->admin_model->getPaypalClientID($fileDonate),
-    'paypalPassword' => str_replace(' ', '', $_POST['paypalPassword']),
-    'actualpaypalPassword' => $this->admin_model->getPaypalPassword($fileDonate),
-  );
-  $this->admin_model->settingDonate($datadonate);
-endif; ?>
-
-    <?= $tiny ?>
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>

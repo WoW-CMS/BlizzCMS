@@ -79,14 +79,8 @@ class Admin extends MX_Controller {
      */
     public function settings()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
-        else
-            $tiny = $this->m_general->tinyEditor('User');
-
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
-            'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
@@ -132,8 +126,14 @@ class Admin extends MX_Controller {
 
     public function modulesettings()
     {
+        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->m_general->tinyEditor('Admin');
+        else
+            $tiny = $this->m_general->tinyEditor('User');
+
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
