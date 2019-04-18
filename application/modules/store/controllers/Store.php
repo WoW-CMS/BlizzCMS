@@ -63,16 +63,7 @@ class Store extends MX_Controller {
             'pagetitle' => $this->lang->line('tab_store'),
         );
 
-        $this->load->config('store');
-
-        $this->load->view('header', $data);
-
-        if($this->config->item('shopStyle') == 1)
-            $this->load->view('index1', $data);
-        else
-            $this->load->view('index2', $data);
-
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 
     public function cart($id)
@@ -88,8 +79,6 @@ class Store extends MX_Controller {
             'pagetitle' => $this->lang->line('tab_cart'),
         );
 
-        $this->load->view('header', $data);
-
         if (isset($_GET['tp']))
         {
             $mode = $_GET['tp'];
@@ -103,11 +92,9 @@ class Store extends MX_Controller {
                 $this->store_model->getDPTrue($id);
 
             $data['idlink'] = $id;
-            $this->load->view('cart', $data);
+            $this->template->build('cart', $data);
         }
         else
             redirect(base_url('store'),'refresh');
-
-        $this->load->view('footer');
     }
 }

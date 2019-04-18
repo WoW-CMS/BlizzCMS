@@ -54,30 +54,26 @@ class User extends MX_Controller {
         if ($this->m_data->isLogged())
             redirect(base_url(),'refresh');
 
-        $data = array(
-          'pagetitle' => $this->lang->line('tab_login'),
-        );
-
-        $this->load->view('header', $data);
-
         if ($this->m_general->getExpansionAction() == 1)
         {
             $data = array(
+                'pagetitle' => $this->lang->line('tab_login'),
                 'recapKey' => $this->config->item('recaptcha_sitekey'),
                 'lang' => $this->lang->lang(),
             );
-            $this->load->view('login1', $data);
+
+            $this->template->build('login1', $data);
         }
         else
         {
             $data = array(
+                'pagetitle' => $this->lang->line('tab_login'),
                 'recapKey' => $this->config->item('recaptcha_sitekey'),
                 'lang' => $this->lang->lang(),
             );
-            $this->load->view('login2', $data);
-        }
 
-        $this->load->view('footer');
+            $this->template->build('login2', $data);
+        }
     }
 
     public function verify1()
@@ -108,9 +104,7 @@ class User extends MX_Controller {
             'lang' => $this->lang->lang(),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('register', $data);
-        $this->load->view('footer');
+        $this->template->build('register', $data);
     }
 
     public function newaccount()
@@ -141,9 +135,7 @@ class User extends MX_Controller {
             'lang' => $this->lang->lang(),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('recovery', $data);
-        $this->load->view('footer');
+        $this->template->build('recovery', $data);
     }
 
     public function forgotpassword()
@@ -170,14 +162,11 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            "pagetitle" => $this->lang->line('tab_account'),
+            'pagetitle' => $this->lang->line('tab_account'),
             'lang' => $this->lang->lang(),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('panel', $data);
-        $this->load->view('footer');
-        $this->load->view('modal');
+        $this->template->build('panel', $data);
     }
 
     public function settings()
@@ -192,14 +181,11 @@ class User extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
-            "pagetitle" => $this->lang->line('tab_account'),
+            'pagetitle' => $this->lang->line('tab_account'),
             'lang' => $this->lang->lang(),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('settings', $data);
-        $this->load->view('footer');
-        $this->load->view('modal');
+        $this->template->build('settings', $data);
     }
 
     public function newpass()

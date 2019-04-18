@@ -59,9 +59,7 @@ class News extends MX_Controller {
             'pagetitle' => $this->lang->line('tab_news')
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 
     public function article($id)
@@ -80,9 +78,7 @@ class News extends MX_Controller {
             'tiny' => $tiny
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('article', $data);
-        $this->load->view('footer');
+        $this->template->build('article', $data);
     }
 
     public function reply()

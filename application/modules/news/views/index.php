@@ -13,7 +13,7 @@
                 <div class="uk-card-body">
                   <div class="uk-grid uk-grid-medium" data-uk-grid>
                     <div class="uk-width-2-5 uk-width-1-4@s">
-                      <div class="image-card uk-margin-small" style="background-image: url(<?= base_url('includes/images/news/'.$list->image); ?>);"></div>
+                      <div class="image-card uk-margin-small" style="background-image: url(<?= base_url('assets/images/news/'.$list->image); ?>);"></div>
                     </div>
                     <div class="uk-width-3-5 uk-width-3-4@s">
                       <h4 class="uk-h4 uk-text-uppercase uk-margin-small uk-text-break"><?= $list->title ?></h4>

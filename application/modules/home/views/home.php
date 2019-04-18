@@ -4,12 +4,27 @@
       <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: fade;autoplay: true;autoplay-interval: 6000;min-height: 150;max-height: 300;">
         <ul class="uk-slideshow-items">
           <?php foreach ($slides as $slides): ?>
-            <li>
-              <img src="{slide_url}<?= $slides->image; ?>" alt="<?= $slides->title ?>" uk-cover>
-              <div class="uk-container uk-position-relative uk-margin-large-top">
-                <h2 class="uk-h2 uk-position-medium uk-text-left"><?= $slides->title ?></h2>
-              </div>
-            </li>
+          <?php if ($slides->type == 1): ?>
+          <li>
+            <img src="<?= base_url('assets/images/slides/'.$slides->route); ?>" alt="<?= $slides->title ?>" uk-cover>
+            <div class="uk-container uk-position-relative uk-margin-large-top">
+              <h2 class="uk-h2 uk-position-medium uk-text-left uk-margin-remove"><?= $slides->title ?></h2>
+              <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slides->description ?></p>
+            </div>
+          </li>
+          <?php elseif ($slides->type == 2): ?>
+          <li>
+            <video src="<?= base_url('assets/images/slides/'.$slides->route); ?>" autoplay loop playslinline uk-cover></video>
+            <div class="uk-container uk-position-relative uk-margin-large-top">
+              <h2 class="uk-h2 uk-position-medium uk-text-left uk-margin-remove"><?= $slides->title ?></h2>
+              <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slides->description ?></p>
+            </div>
+          </li>
+          <?php elseif ($slides->type == 3): ?>
+          <li>
+            <iframe src="<?= $slides->route; ?>" frameborder="0" allowfullscreen uk-video="autoplay: false" data-uk-cover="automute: false"></iframe>
+          </li>
+          <?php endif; ?>
           <?php endforeach ?>
         </ul>
         <div class="uk-position-bottom-center uk-position-small">
@@ -24,14 +39,14 @@
         <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
           <div class="uk-width-2-3@s">
             <?php if ($this->m_modules->getNewsStatus()): ?>
-            <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fas fa-newspaper fa-sm"></i> {home_latest_news}</h4>
+            <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fas fa-newspaper fa-sm"></i> <?= $this->lang->line('home_latest_news'); ?></h4>
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($threeNews as $newstree): ?>
               <div>
-                <a href="<?= base_url('news/'.$newstree->id) ;?>" title="{button_read_more}">
+                <a href="<?= base_url('news/'.$newstree->id) ;?>" title="<?= $this->lang->line('button_read_more'); ?>">
                   <div class="uk-card uk-card-default news-card uk-card-hover uk-grid-collapse uk-margin" uk-grid>
                     <div class="uk-width-1-3@s uk-card-media-left uk-cover-container">
-                      <img src="{news_url}<?= $newstree->image ?>" alt="<?= $newstree->title ?>" uk-cover>
+                      <img src="<?= base_url('assets/images/news/'.$newstree->image); ?>" alt="<?= $newstree->title ?>" uk-cover>
                       <canvas width="500" height="250"></canvas>
                     </div>
                     <div class="uk-width-2-3@s uk-card-body">
@@ -47,7 +62,7 @@
           </div>
           <div class="uk-width-1-3@s">
             <?php if($this->m_modules->getRealmStatus()): ?>
-            <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fas fa-server fa-sm"></i> {home_server_status}</h4>
+            <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fas fa-server fa-sm"></i> <?= $this->lang->line('home_server_status'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
               <?php foreach ($realmsList as $charsMultiRealm): 
                 $multiRealm = $this->m_data->getRealmConnectionData($charsMultiRealm->id);
@@ -90,24 +105,24 @@
             </div>
             <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
               <?php if ($this->m_general->getExpansionAction() == 1): ?>
-              <i class="fas fa-gamepad"></i> Set Realmlist {conf_realmlist}
+              <i class="fas fa-gamepad"></i> Set Realmlist <?= $this->config->item('realmlist'); ?>
               <?php else: ?>
-              <i class="fas fa-gamepad"></i> Set Portal "{conf_realmlist}"
+              <i class="fas fa-gamepad"></i> Set Portal "<?= $this->config->item('realmlist'); ?>"
               <?php endif ?>
             </h5>
             <?php endif ?>
-            <?php if ($this->m_modules->getDiscordStatus() == '1' && $this->config->item('discordType') == '1'): ?>
+            <?php if ($this->m_modules->getDiscordStatus() == '1' && $this->config->item('discord_type') == '1'): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fab fa-discord fa-sm"></i> <?= $this->lang->line('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
-              <a class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_inv'); ?>" title="Join us on Discord">
-                <img src="https://discordapp.com/api/guilds/{discord_id}/embed.png?style=banner3">
+              <a target="_blank" class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_invitation'); ?>" title="Join us on Discord">
+                <img src="https://discordapp.com/api/guilds/<?= $discord_id ?>/embed.png?style=banner3">
               </a>
             </div>
             <?php endif ?>
-            <?php if ($this->m_modules->getDiscordStatus() == '1' && $this->config->item('discordType') == '2'): ?>
+            <?php if ($this->m_modules->getDiscordStatus() == '1' && $this->config->item('discord_type') == '2'): ?>
             <h4 class="uk-h4 uk-text-bold uk-text-uppercase"><i class="fab fa-discord fa-sm"></i> <?= $this->lang->line('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
-              <iframe src="{conf_discordwidget}{discord_id}&theme={conf_discordtheme}" width="{discord_width_class}" height="{discord_height_class}" {discord_extras}></iframe>
+              <iframe src="https://discordapp.com/widget?id=<?= $discord_id ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
             </div>
             <?php endif ?>
           </div>

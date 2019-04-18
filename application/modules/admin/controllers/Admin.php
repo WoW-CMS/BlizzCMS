@@ -37,6 +37,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends MX_Controller {
 
+    private $fxlocadm = '';
+    private $fxlocdef = '';
+
     public function __construct()
     {
         parent::__construct();
@@ -53,13 +56,20 @@ class Admin extends MX_Controller {
 
         if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
             redirect(base_url(),'refresh');
+
+        $this->template->set_theme('admin');
+
+        $this->fxlocadm = base_url('application/themes/'.$this->template->get_theme().'/');
+        $this->fxlocdef = base_url('application/themes/'.config_item('theme_name').'/');
     }
 
     public function index()
     {
-        $this->load->view('general/header');
-        $this->load->view('index');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('index', $data);
     }
 
     /**
@@ -73,13 +83,12 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('settings/general_settings', $data);
-        $this->load->view('general/footer');
+        $this->template->build('settings/general_settings', $data);
     }
 
     public function updatesettings()
@@ -96,23 +105,21 @@ class Admin extends MX_Controller {
     public function databasesettings()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('settings/database_settings', $data);
-        $this->load->view('general/footer');
+        $this->template->build('settings/database_settings', $data);
     }
 
     public function optionalsettings()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('settings/optional_settings', $data);
-        $this->load->view('general/footer');
+        $this->template->build('settings/optional_settings', $data);
     }
 
     public function updateoptionalsettings()
@@ -296,27 +303,30 @@ class Admin extends MX_Controller {
 
     public function managemodules()
     {
-        $this->load->view('general/header');
-        $this->load->view('settings/manage_modules');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('settings/manage_modules', $data);
     }
 
     public function managerealms()
     {
-        $this->load->view('general/header');
-        $this->load->view('realm/manage_realms');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('realm/manage_realms', $data);
     }
 
     public function createrealm()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('realm/create_realm', $data);
-        $this->load->view('general/footer');
+        $this->template->build('realm/create_realm', $data);
     }
 
     public function editrealm($id)
@@ -328,13 +338,12 @@ class Admin extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('realm/edit_realm', $data);
-        $this->load->view('general/footer');
+        $this->template->build('realm/edit_realm', $data);
     }
 
     public function addrealm()
@@ -368,20 +377,21 @@ class Admin extends MX_Controller {
 
     public function manageslides()
     {
-        $this->load->view('general/header');
-        $this->load->view('slide/manage_slides');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('slide/manage_slides', $data);
     }
 
     public function createslide()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('slide/create_slide', $data);
-        $this->load->view('general/footer');
+        $this->template->build('slide/create_slide', $data);
     }
 
     /**
@@ -389,9 +399,11 @@ class Admin extends MX_Controller {
      */
     public function accounts()
     {
-        $this->load->view('general/header');
-        $this->load->view('account/accounts');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('account/accounts', $data);
     }
 
     public function manageaccount($id)
@@ -402,18 +414,21 @@ class Admin extends MX_Controller {
         if ($this->m_data->getAccountExist($id)->num_rows() < 1)
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+        );
 
-        $this->load->view('general/header');
-        $this->load->view('account/manageaccount', $data);
-        $this->load->view('general/footer');
+        $this->template->build('account/manageaccount', $data);
     }
 
     public function characters()
     {
-        $this->load->view('general/header');
-        $this->load->view('characters/characters');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('characters/characters', $data);
     }
 
     public function managecharacter($id = '', $realm = '')
@@ -431,13 +446,14 @@ class Admin extends MX_Controller {
         if (!$this->m_characters->getGeneralCharactersSpecifyGuid($id, $multiRealm)->num_rows())
             redirect(base_url(),'refresh');
 
-        $data['idlink'] = $id;
-        $data['idrealm'] = $realm;
-        $data['multiRealm'] = $multiRealm;
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'idrealm' => $realm,
+            'multiRealm' => $multiRealm,
+        );
 
-        $this->load->view('general/header');
-        $this->load->view('characters/managecharacter', $data);
-        $this->load->view('general/footer');
+        $this->template->build('characters/managecharacter', $data);
     }
 
     /**
@@ -445,9 +461,11 @@ class Admin extends MX_Controller {
      */
     public function managenews()
     {
-        $this->load->view('general/header');
-        $this->load->view('news/manage_news');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('news/manage_news', $data);
     }
 
     public function createnews()
@@ -458,13 +476,12 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('news/create_news', $data);
-        $this->load->view('general/footer');
+        $this->template->build('news/create_news', $data);
     }
 
     public function editnews($id)
@@ -481,21 +498,22 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('news/edit_news', $data);
-        $this->load->view('general/footer');
+        $this->template->build('news/edit_news', $data);
     }
 
     public function managechangelogs()
     {
-        $this->load->view('general/header');
-        $this->load->view('changelogs/manage_changelogs');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('changelogs/manage_changelogs', $data);
     }
 
     public function createchangelog()
@@ -506,13 +524,12 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('changelogs/create_changelog', $data);
-        $this->load->view('general/footer');
+        $this->template->build('changelogs/create_changelog', $data);
     }
 
     public function editchangelog($id)
@@ -529,14 +546,13 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('changelogs/edit_changelog', $data);
-        $this->load->view('general/footer');
+        $this->template->build('changelogs/edit_changelog', $data);
     }
 
     public function addchangelog()
@@ -556,9 +572,11 @@ class Admin extends MX_Controller {
 
     public function managepages()
     {
-        $this->load->view('general/header');
-        $this->load->view('page/manage_pages');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('page/manage_pages', $data);
     }
 
     public function createpage()
@@ -569,13 +587,12 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('page/create_page', $data);
-        $this->load->view('general/footer');
+        $this->template->build('page/create_page', $data);
     }
 
     public function editpage($id)
@@ -592,14 +609,13 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('page/edit_page', $data);
-        $this->load->view('general/footer');
+        $this->template->build('page/edit_page', $data);
     }
 
     public function addpage()
@@ -621,9 +637,11 @@ class Admin extends MX_Controller {
 
     public function managefaqs()
     {
-        $this->load->view('general/header');
-        $this->load->view('faq/manage_faqs');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('faq/manage_faqs', $data);
     }
 
     public function createfaq()
@@ -634,13 +652,12 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('faq/create_faq', $data);
-        $this->load->view('general/footer');
+        $this->template->build('faq/create_faq', $data);
     }
 
     public function editfaq($id)
@@ -657,14 +674,13 @@ class Admin extends MX_Controller {
             $tiny = $this->m_general->tinyEditor('User');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $tiny,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('faq/edit_faq', $data);
-        $this->load->view('general/footer');
+        $this->template->build('faq/edit_faq', $data);
     }
 
     public function addfaq()
@@ -686,20 +702,21 @@ class Admin extends MX_Controller {
 
     public function managetopsites()
     {
-        $this->load->view('general/header');
-        $this->load->view('vote/manage_topsites');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('vote/manage_topsites', $data);
     }
 
     public function createtopsite()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('vote/create_topsite', $data);
-        $this->load->view('general/footer');
+        $this->template->build('vote/create_topsite', $data);
     }
 
     public function edittopsite($id)
@@ -711,13 +728,12 @@ class Admin extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('vote/edit_topsite', $data);
-        $this->load->view('general/footer');
+        $this->template->build('vote/edit_topsite', $data);
     }
 
     public function addtopsite()
@@ -746,20 +762,21 @@ class Admin extends MX_Controller {
      */
     public function managegroups()
     {
-        $this->load->view('general/header');
-        $this->load->view('store/manage_groups');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('store/manage_groups', $data);
     }
 
     public function creategroup()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('store/create_group', $data);
-        $this->load->view('general/footer');
+        $this->template->build('store/create_group', $data);
     }
 
     public function editgroup($id)
@@ -771,13 +788,12 @@ class Admin extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('store/edit_group', $data);
-        $this->load->view('general/footer');
+        $this->template->build('store/edit_group', $data);
     }
 
     public function addgroup()
@@ -795,20 +811,21 @@ class Admin extends MX_Controller {
 
     public function manageitems()
     {
-        $this->load->view('general/header');
-        $this->load->view('store/manage_items');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('store/manage_items', $data);
     }
 
     public function createitem()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('store/create_item', $data);
-        $this->load->view('general/footer');
+        $this->template->build('store/create_item', $data);
     }
 
     public function edititem($id)
@@ -820,13 +837,12 @@ class Admin extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('store/edit_item', $data);
-        $this->load->view('general/footer');
+        $this->template->build('store/edit_item', $data);
     }
 
     public function additem()
@@ -859,12 +875,11 @@ class Admin extends MX_Controller {
     public function donate()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('donate/index', $data);
-        $this->load->view('general/footer');
+        $this->template->build('donate/index', $data);
     }
 
     /**
@@ -873,30 +888,30 @@ class Admin extends MX_Controller {
     public function managecategories()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('forum/manage_categories', $data);
-        $this->load->view('general/footer');
+        $this->template->build('forum/manage_categories', $data);
     }
 
     public function manageforums()
     {
-        $this->load->view('general/header');
-        $this->load->view('forum/manage_forums');
-        $this->load->view('general/footer');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+        );
+
+        $this->template->build('forum/manage_forums', $data);
     }
 
     public function createforum()
     {
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('forum/create_forum', $data);
-        $this->load->view('general/footer');
+        $this->template->build('forum/create_forum', $data);
     }
 
     public function editforum($id)
@@ -908,13 +923,12 @@ class Admin extends MX_Controller {
             redirect(base_url(),'refresh');
 
         $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         );
 
-        $this->load->view('general/header');
-        $this->load->view('forum/edit_forum', $data);
-        $this->load->view('general/footer');
+        $this->template->build('forum/edit_forum', $data);
     }
 
     public function checkSoap()

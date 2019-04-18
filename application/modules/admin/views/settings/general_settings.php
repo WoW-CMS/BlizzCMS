@@ -60,7 +60,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" id="project_name" value="<?= $this->config->item('ProjectName'); ?>" required>
+                          <input class="uk-input" type="text" id="project_name" value="<?= $this->config->item('website_name'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -82,7 +82,7 @@ endif; ?>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
-                          <input class="uk-input" type="text" id="discord_inv" value="<?= $this->config->item('discord_inv'); ?>" required>
+                          <input class="uk-input" type="text" id="discord_invitation" value="<?= $this->config->item('discord_invitation'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -194,7 +194,7 @@ endif; ?>
 
         var project = $.trim($('#project_name').val());
         var timezone = $.trim($('#time_zone').val());
-        var discord = $.trim($('#discord_inv').val());
+        var discord = $.trim($('#discord_invitation').val());
         var realmlist = $.trim($('#realmlist').val());
         var staffcolor = $.trim($('#staff_color').val());
         var theme = $.trim($('#theme_name').val());

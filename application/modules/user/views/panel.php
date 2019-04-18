@@ -76,7 +76,7 @@
                     <div class="uk-grid uk-grid-small uk-child-width-auto" data-uk-grid>
                       <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id'))->result() as $chars): ?>
                       <div>
-                        <img class="uk-border-circle" src="<?= base_url('includes/images/class/'.$this->m_general->getClassIcon($chars->class)); ?>" title="<?= $chars->name ?> (Lvl <?= $chars->level ?>)" width="50" height="50" uk-tooltip>
+                        <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->m_general->getClassIcon($chars->class)); ?>" title="<?= $chars->name ?> (Lvl <?= $chars->level ?>)" width="50" height="50" uk-tooltip>
                       </div>
                       <?php endforeach; ?>
                     </div>

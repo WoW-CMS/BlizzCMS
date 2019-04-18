@@ -484,13 +484,13 @@ CREATE TABLE `slides` (
   `title` varchar(100) DEFAULT NULL,
   `description` text NOT NULL,
   `type` int(1) DEFAULT 1,
-  `url` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
+  `route` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `slides` */
 
-insert  into `slides`(`id`,`title`,`description`,`type`,`url`) values 
+insert  into `slides`(`id`,`title`,`description`,`type`,`route`) values 
 (1,'BlizzCMS','Check our constant updates!','1','slide1.jpg'),
 (2,'Vote Now','Each vote will be rewarded!','1','slide2.jpg');
 

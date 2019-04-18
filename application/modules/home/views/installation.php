@@ -24,12 +24,12 @@ endif; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="<?= base_url('theme/'.$this->config->item('theme_name').'/images/favicon.ico'); ?>">
     <title>Installation | BlizzCMS Plus</title>
-    <link rel="stylesheet" href="<?= base_url('includes/core/uikit/css/uikit.min.css'); ?>"/>
-    <script src="<?= base_url('includes/core/uikit/js/uikit.min.js'); ?>"></script>
-    <script src="<?= base_url('includes/core/uikit/js/uikit-icons.min.js'); ?>"></script>
-    <script src="<?= base_url('includes/core/fontawesome/js/all.min.js'); ?>" defer></script>
-    <link rel="stylesheet" href="<?= base_url('includes/core/css/install.css'); ?>"/>
-    <script src="<?= base_url('includes/core/js/jquery-3.3.1.min.js'); ?>"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/core/uikit/css/uikit.min.css'); ?>"/>
+    <script src="<?= base_url('assets/core/uikit/js/uikit.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/core/uikit/js/uikit-icons.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/core/fontawesome/js/all.min.js'); ?>" defer></script>
+    <link rel="stylesheet" href="<?= base_url('assets/core/css/install.css'); ?>"/>
+    <script src="<?= base_url('assets/core/js/jquery-3.3.1.min.js'); ?>"></script>
   </head>
   <body>
     <header>

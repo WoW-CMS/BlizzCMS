@@ -63,8 +63,6 @@ class Page extends MX_Controller {
             'pagetitle' => $this->page_model->getName($uri),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 }

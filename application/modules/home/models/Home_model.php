@@ -18,12 +18,13 @@ class Home_model extends CI_Model {
 
     public function getDiscordInfo()
     {
-      if($this->m_modules->getDiscordStatus()){
-    	$invitation = $this->config->item('discord_inv');
-    	$discord = file_get_contents('https://discordapp.com/api/v6/invite/'.$invitation.'?with_counts=true');
-    	$vars = json_decode($discord, true);
-    	return $vars;
-      }
+        if ($this->m_modules->getDiscordStatus())
+        {
+            $invitation = $this->config->item('discord_invitation');
+            $discord = file_get_contents('https://discordapp.com/api/v6/invite/'.$invitation.'?with_counts=true');
+            $vars = json_decode($discord, true);
+            return $vars;
+        }
     }
 
     public function updateInstallation()

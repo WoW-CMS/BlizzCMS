@@ -466,9 +466,9 @@ class Admin_model extends CI_Model {
         $this->load->library('config_writer');
 
         $writer = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
-        $writer->write('ProjectName', $project);
+        $writer->write('website_name', $project);
         $writer->write('timezone', $timezone);
-        $writer->write('discord_inv', $discord);
+        $writer->write('discord_invitation', $discord);
         $writer->write('realmlist', $realmlist);
         $writer->write('staff_forum_color', $staffcolor);
         $writer->write('theme_name', $theme);

@@ -85,9 +85,7 @@ class Bugtracker extends MX_Controller {
             $data['bugtrackerList'] = $this->bugtracker_model->bugtrackerList();
         }
 
-        $this->load->view('header', $data);
-        $this->load->view('index', $data);
-        $this->load->view('footer');
+        $this->template->build('index', $data);
     }
 
     public function newreport()
@@ -103,9 +101,7 @@ class Bugtracker extends MX_Controller {
             'tiny' => $tiny,
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('new_report', $data);
-        $this->load->view('footer');
+        $this->template->build('new_report', $data);
     }
 
     public function report($id)
@@ -121,9 +117,7 @@ class Bugtracker extends MX_Controller {
             'pagetitle' => $this->lang->line('tab_bugtracker'),
         );
 
-        $this->load->view('header', $data);
-        $this->load->view('report', $data);
-        $this->load->view('footer');
+        $this->template->build('report', $data);
     }
 
     public function create()

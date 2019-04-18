@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="<?= base_url('theme/'.$this->config->item('theme_name').'/images/favicon.ico'); ?>">
-    <title><?= $this->config->item('ProjectName'); ?> | <?= $this->lang->line('button_admin_panel'); ?></title>
-    <link rel="stylesheet" href="<?= base_url('includes/core/uikit/css/uikit.min.css'); ?>"/>
-    <script src="<?= base_url('includes/core/uikit/js/uikit.min.js'); ?>"></script>
-    <script src="<?= base_url('includes/core/uikit/js/uikit-icons.min.js'); ?>"></script>
-    <script src="<?= base_url('includes/core/fontawesome/js/all.js'); ?>" defer></script>
-    <link rel="stylesheet" href="<?= base_url('includes/core/css/admin.css'); ?>"/>
-    <script src="<?= base_url('includes/core/js/jquery-3.3.1.min.js'); ?>"></script>
-    <link rel="stylesheet" href="<?= base_url('includes/core/amaranjs/css/amaran.min.css'); ?>"/>
+    <title><?= $this->config->item('website_name'); ?> | <?= $pagetitle ?></title>
+    <?= $template['metadata']; ?>
+    <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico' ?>" />
+    <link rel="stylesheet" href="<?= $template['assets'].'core/uikit/css/uikit.min.css' ?>" />
+    <link rel="stylesheet" href="<?= $template['assets'].'core/css/admin.css' ?>" />
+    <script src="<?= $template['assets'].'core/uikit/js/uikit.min.js' ?>"></script>
+    <script src="<?= $template['assets'].'core/uikit/js/uikit-icons.min.js' ?>"></script>
   </head>
   <body>
     <header class="uk-background-primary">
@@ -27,9 +23,9 @@
               <li>
                 <a href="javascript:void(0)">
                   <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('includes/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('wow_sess_id'))); ?>" alt="">
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('wow_sess_id'))); ?>" alt="">
                   <?php else: ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('includes/images/profiles/default.png'); ?>"  alt="">
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>"  alt="">
                   <?php endif; ?>
                   <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('wow_sess_username'); ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
@@ -164,3 +160,16 @@
         </div>
       </div>
     </nav>
+
+    <?= $template['body']; ?>
+
+    <section class="uk-section uk-section-xsmall">
+      <div class="uk-container uk-container-expand">
+        <hr class="uk-hr">
+        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</p>
+      </div>
+    </section>
+    <script src="<?= base_url('assets/core/js/blizzcms.admin.js'); ?>"></script>
+    <script src="<?= base_url('assets/core/amaranjs/js/jquery.amaran.min.js'); ?>"></script>
+  </body>
+</html>

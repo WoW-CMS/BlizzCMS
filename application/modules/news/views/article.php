@@ -34,9 +34,9 @@ endif; ?>
                   <?php endif; ?>
                   <div class="topic-author-avatar">
                     <?php if($this->m_general->getUserInfoGeneral($commentss->author)->num_rows()): ?>
-                    <img src="<?= base_url('includes/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($commentss->author))); ?>" alt="" />
+                    <img src="<?= base_url('assets/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($commentss->author))); ?>" alt="" />
                     <?php else: ?>
-                    <img src="<?= base_url('includes/images/profiles/default.png'); ?>" alt="" />
+                    <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                     <?php endif; ?>
                   </div>
                   <div class="topic-author-details">
