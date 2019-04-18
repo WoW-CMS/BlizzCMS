@@ -23,7 +23,7 @@
               <div class="uk-card-body">
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span>Modules Settings</span></h5>
                 <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small">Donate</h5>
-                <?= form_open('', 'id="updategeneralForm" onsubmit="UpdateGeneralForm(event)"'); ?>
+                <?= form_open('', 'id="updatedonateForm" onsubmit="UpdateDonateForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
@@ -69,6 +69,7 @@
                 </div>
                 <?= form_close(); ?>
                 <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom">Bugtracker</h5>
+                <?= form_open('', 'id="updatebugtrackerForm" onsubmit="UpdateBugtrackerForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <label class="uk-form-label">Default Description</label>
                   <div class="uk-form-controls">
@@ -80,6 +81,7 @@
                 <div class="uk-margin">
                   <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_update"><i class="fas fa-sync"></i> Update</button>
                 </div>
+                <?= form_close(); ?>
               </div>
             </div>
           </div>
@@ -88,16 +90,14 @@
     </section>
     <?= $tiny ?>
     <script>
-      function UpdateGeneralForm(e) {
+      function UpdateDonateForm(e) {
         e.preventDefault();
 
-        var project = $.trim($('#project_name').val());
-        var timezone = $.trim($('#time_zone').val());
-        var discord = $.trim($('#discord_invitation').val());
-        var realmlist = $.trim($('#realmlist').val());
-        var staffcolor = $.trim($('#staff_color').val());
-        var theme = $.trim($('#theme_name').val());
-        if(project == ''){
+        var currency = $.trim($('#paypal_currency').val());
+        var mode = $.trim($('#paypal_mode').val());
+        var client = $.trim($('#paypal_client').val());
+        var password = $.trim($('#paypal_password').val());
+        if(currency == ''){
           $.amaran({
             'theme': 'awesome error',
             'content': {
@@ -114,9 +114,9 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/update'); ?>",
+          url:"<?= base_url($lang.'/admin/settings/module/updonate'); ?>",
           method:"POST",
-          data:{project, timezone, discord, realmlist, staffcolor, theme},
+          data:{currency, mode, client, password},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -152,8 +152,72 @@
                 'outEffect': 'slideRight'
               });
             }
-            $('#updategeneralForm')[0].reset();
-            window.location.replace("<?= base_url('admin/settings'); ?>");
+            $('#updatedonateForm')[0].reset();
+            window.location.replace("<?= base_url('admin/settings/module'); ?>");
+          }
+        });
+      }
+      function UpdateBugtrackerForm(e) {
+        e.preventDefault();
+
+        var description = tinymce.get('bugtracker_description').getContent();
+        if(description == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/settings/module/upbugtracker'); ?>",
+          method:"POST",
+          data:{description},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#updatebugtrackerForm')[0].reset();
+            window.location.replace("<?= base_url('admin/settings/module'); ?>");
           }
         });
       }

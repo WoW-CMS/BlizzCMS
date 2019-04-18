@@ -494,16 +494,7 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function settingBugtracker($textarea)
-    {
-        $this->load->library('config_writer');
-
-        $writer = $this->config_writer->get_instance(APPPATH.'modules/bugtracker/config/bugtracker.php', 'config');
-        $writer->write('textarea', $textarea);
-        return true;
-    }
-
-    public function settingDonate($currency, $mode, $client, $password)
+    public function updateDonateSettings($currency, $mode, $client, $password)
     {
         $this->load->library('config_writer');
 
@@ -512,6 +503,15 @@ class Admin_model extends CI_Model {
         $writer->write('paypal_mode', $mode);
         $writer->write('paypal_client', $client);
         $writer->write('paypal_password', $password);
+        return true;
+    }
+
+    public function updateBugtrackerSettings($textarea)
+    {
+        $this->load->library('config_writer');
+
+        $writer = $this->config_writer->get_instance(APPPATH.'modules/bugtracker/config/bugtracker.php', 'config');
+        $writer->write('textarea', $textarea);
         return true;
     }
 

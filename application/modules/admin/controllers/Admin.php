@@ -140,6 +140,21 @@ class Admin extends MX_Controller {
         $this->template->build('settings/module_settings', $data);
     }
 
+    public function updatedonatesettings()
+    {
+        $currency = $this->input->post('currency');
+        $mode = $this->input->post('mode');
+        $client = $this->input->post('client');
+        $password = $this->input->post('password');
+        echo $this->admin_model->updateDonateSettings($currency, $mode, $client, $password);
+    }
+
+    public function updatebugtrackersettings()
+    {
+        $description = $this->input->post('description');
+        echo $this->admin_model->updateBugtrackerSettings($description);
+    }
+
     public function managemodules()
     {
         $data = array(
