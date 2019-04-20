@@ -17,7 +17,7 @@ class Forum_model extends CI_Model {
 
     public function insertComment($reply, $topicid, $author)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'topic' => $topicid,
@@ -63,7 +63,7 @@ class Forum_model extends CI_Model {
 
     public function insertTopic($category, $title, $userid, $description, $locked, $pinned)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'forums' => $category,
@@ -89,7 +89,7 @@ class Forum_model extends CI_Model {
 
     public function updateTopic($idlink, $title, $description, $locked, $pinned)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'title' => $title,

@@ -8,7 +8,7 @@ class Admin_model extends CI_Model {
         $this->auth = $this->load->database('auth', TRUE);
         parent::__construct();
 
-        if (!$this->m_modules->getACPStatus())
+        if (!$this->wowmodule->getACPStatus())
             redirect(base_url(),'refresh');
     }
 
@@ -66,7 +66,7 @@ class Admin_model extends CI_Model {
 
     public function insertBanChar($id, $reason, $multirealm, $idrealm)
     {
-        $date       = $this->m_data->getTimestamp();
+        $date       = $this->wowgeneral->getTimestamp();
         $idsession  = $this->session->userdata('wow_sess_id');
 
         if (empty($reason))
@@ -98,10 +98,10 @@ class Admin_model extends CI_Model {
 
     public function insertCustomizeChar($id, $multirealm, $idrealm)
     {
-        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
+        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
-        $date       = $this->m_data->getTimestamp();
+        $date       = $this->wowgeneral->getTimestamp();
         $annotation = $this->lang->line('log_customization');
 
         $data = array(
@@ -175,10 +175,10 @@ class Admin_model extends CI_Model {
 
     public function insertChangeFactionChar($id, $multirealm, $idrealm)
     {
-        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
+        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
-        $date       = $this->m_data->getTimestamp();
+        $date       = $this->wowgeneral->getTimestamp();
         $annotation = $this->lang->line('log_change_faction');
 
         $data = array(
@@ -200,10 +200,10 @@ class Admin_model extends CI_Model {
 
     public function insertChangeRaceChar($id, $multirealm, $idrealm)
     {
-        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
+        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
 
-        $date       = $this->m_data->getTimestamp();
+        $date       = $this->wowgeneral->getTimestamp();
         $annotation = $this->lang->line('log_change_race');
 
         $data = array(
@@ -229,7 +229,7 @@ class Admin_model extends CI_Model {
         $this->multirealm->where('guid', $id)
                 ->delete('character_banned');
 
-        $date       = $this->m_data->getTimestamp();
+        $date       = $this->wowgeneral->getTimestamp();
         $annotation = $this->lang->line('log_unbanned');
 
         $data = array(
@@ -246,14 +246,14 @@ class Admin_model extends CI_Model {
 
     public function insertCharRename($id, $name, $multirealm, $realm)
     {
-        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
+        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
 
-        if ($this->m_characters->getCharNameAlreadyExist($name, $multirealm)->num_rows())
+        if ($this->wowrealm->getCharNameAlreadyExist($name, $multirealm)->num_rows())
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?name','refresh');
 
-        $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('log_new_name').' -> '.$name.' | '.$this->lang->line('log_old_name').' -> '.$this->m_characters->getCharName($id, $multirealm);
+        $date       = $this->wowgeneral->getTimestamp();
+        $annotation = $this->lang->line('log_new_name').' -> '.$name.' | '.$this->lang->line('log_old_name').' -> '.$this->wowrealm->getCharName($id, $multirealm);
 
         $data = array(
                 'idchar' => $id,
@@ -274,11 +274,11 @@ class Admin_model extends CI_Model {
 
     public function insertChangeLevelChar($id, $level, $multirealm, $realm)
     {
-        if ($this->m_characters->getCharActive($id, $multirealm) == '1')
+        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
             redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
 
-        $date       = $this->m_data->getTimestamp();
-        $annotation = $this->lang->line('log_new_level').' -> '.$level.' | '.$this->lang->line('log_old_level').' -> '.$this->m_characters->getCharLevel($id, $multirealm);
+        $date       = $this->wowgeneral->getTimestamp();
+        $annotation = $this->lang->line('log_new_level').' -> '.$level.' | '.$this->lang->line('log_old_level').' -> '.$this->wowrealm->getCharLevel($id, $multirealm);
 
         $data = array(
                 'idchar' => $id,
@@ -316,7 +316,7 @@ class Admin_model extends CI_Model {
 
         $this->auth->insert('account_access', $data);
 
-        $date   = $this->m_data->getTimestamp();
+        $date   = $this->wowgeneral->getTimestamp();
         $reason = $this->lang->line('log_gm_assigned');
 
         $data = array(
@@ -339,7 +339,7 @@ class Admin_model extends CI_Model {
 
     public function inserUnBanAcc($id)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         if (empty($reason))
             $reason = $this->lang->line('log_unbanned');
@@ -355,7 +355,7 @@ class Admin_model extends CI_Model {
         $this->auth->where('id', $id)
                 ->delete('account_banned');
 
-        if ($this->m_general->getExpansionAction() == 2)
+        if ($this->wowgeneral->getExpansionAction() == 2)
             $this->auth->where('id', $id)
                     ->delete('battlenet_account_bans');
 
@@ -367,7 +367,7 @@ class Admin_model extends CI_Model {
         $this->auth->where('id', $id)
                 ->delete('account_access');
 
-        $date   = $this->m_data->getTimestamp();
+        $date   = $this->wowgeneral->getTimestamp();
         $reason = $this->lang->line('log_gm_removed');
 
         $data = array(
@@ -383,7 +383,7 @@ class Admin_model extends CI_Model {
 
     public function insertBanAcc($iduser, $reason)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
         $id   = $this->session->userdata('wow_sess_id');
 
         if (empty($reason))
@@ -407,7 +407,7 @@ class Admin_model extends CI_Model {
 
         $this->auth->insert('account_banned', $data2);
 
-        if ($this->m_general->getExpansionAction() == 2)
+        if ($this->wowgeneral->getExpansionAction() == 2)
             $this->auth->insert('battlenet_account_bans', $data2);
 
         redirect(base_url().'admin/manageaccount/'.$iduser,'refresh');
@@ -461,7 +461,7 @@ class Admin_model extends CI_Model {
             ->num_rows();
     }
 
-    public function updateGeneralSettings($project, $timezone, $discord, $realmlist, $staffcolor, $theme)
+    public function updateGeneralSettings($project, $timezone, $discord, $realmlist, $theme)
     {
         $this->load->library('config_writer');
 
@@ -470,7 +470,6 @@ class Admin_model extends CI_Model {
         $writer->write('timezone', $timezone);
         $writer->write('discord_invitation', $discord);
         $writer->write('realmlist', $realmlist);
-        $writer->write('staff_forum_color', $staffcolor);
         $writer->write('theme_name', $theme);
         return true;
     }
@@ -587,7 +586,7 @@ class Admin_model extends CI_Model {
 
     public function insertNews($title, $description, $image)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'title' => $title,
@@ -606,7 +605,7 @@ class Admin_model extends CI_Model {
         $unlink = $this->getFileNameImage($id);
         unlink('./assets/images/news/'.$unlink);
 
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $update = array(
             'title' => $title,
@@ -681,7 +680,7 @@ class Admin_model extends CI_Model {
 
     public function insertChangelog($title, $description)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'title' => $title,
@@ -695,7 +694,7 @@ class Admin_model extends CI_Model {
 
     public function updateSpecifyChangelog($id, $title, $description)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $update = array(
             'title' => $title,
@@ -756,7 +755,7 @@ class Admin_model extends CI_Model {
 
     public function insertPage($title, $uri, $description)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
         $rand = rand(1, 15);
 
         if($this->pagecheckUri($uri) == TRUE) {
@@ -786,7 +785,7 @@ class Admin_model extends CI_Model {
 
     public function updateSpecifyPage($id, $title, $uri, $description)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $update = array(
             'title' => $title,
@@ -854,7 +853,7 @@ class Admin_model extends CI_Model {
 
     public function insertFaq($title, $type, $description)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'title' => $title,
@@ -869,7 +868,7 @@ class Admin_model extends CI_Model {
 
     public function updateSpecifyFaq($id, $title, $type, $description)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $update = array(
             'title' => $title,

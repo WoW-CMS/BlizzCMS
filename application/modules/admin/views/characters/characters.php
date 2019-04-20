@@ -11,11 +11,11 @@
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
             <ul uk-accordion>
-              <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm):
-                $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+              <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
+                $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
               ?>
               <li>
-                <a class="uk-accordion-title" href="#"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a>
+                <a class="uk-accordion-title" href="#"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></a>
                 <div class="uk-accordion-content">
                   <div class="uk-overflow-auto uk-margin-small">
                     <table class="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-small">
@@ -28,7 +28,7 @@
                       <tbody>
                         <?php foreach($this->admin_model->getAdminCharactersList($multiRealm)->result() as $chars): ?>
                         <tr>
-                          <td class="uk-table-link"><a href="<?= base_url('admin/managecharacter/'.$chars->guid.'/'.$charsMultiRealm->id); ?>" class="uk-link-reset"><?= $this->m_data->getUsernameID($chars->account); ?></a></td>
+                          <td class="uk-table-link"><a href="<?= base_url('admin/managecharacter/'.$chars->guid.'/'.$charsMultiRealm->id); ?>" class="uk-link-reset"><?= $this->wowauth->getUsernameID($chars->account); ?></a></td>
                           <td class="uk-table-link"><a href="<?= base_url('admin/managecharacter/'.$chars->guid.'/'.$charsMultiRealm->id); ?>" class="uk-link-reset"><?= $chars->name ?></a></td>
                         </tr>
                         <?php endforeach; ?>

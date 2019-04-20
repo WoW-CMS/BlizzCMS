@@ -44,7 +44,7 @@ class Page extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
         $this->load->model('page_model');

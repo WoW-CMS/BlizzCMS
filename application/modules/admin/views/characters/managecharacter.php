@@ -56,7 +56,7 @@ endif; ?>
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small">
               <div class="uk-width-auto">
-                <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_char_manage'); ?> - <span class="uk-text-bold"><?= $this->m_characters->getNameCharacterSpecifyGuid($multiRealm, $idlink); ?></span></h4>
+                <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_char_manage'); ?> - <span class="uk-text-bold"><?= $this->wowrealm->getNameCharacterSpecifyGuid($multiRealm, $idlink); ?></span></h4>
               </div>
               <div class="uk-width-expand"></div>
             </div>
@@ -73,7 +73,7 @@ endif; ?>
                       <div class="uk-margin-small">
                         <div class="uk-form-controls">
                           <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input" name="newLevel" type="number" min="1" max="<?= $this->m_general->getMaxLevel(); ?>" placeholder="<?= $this->lang->line('table_header_level'); ?>" required>
+                            <input class="uk-input" name="newLevel" type="number" min="1" max="<?= $this->wowgeneral->getMaxLevel(); ?>" placeholder="<?= $this->lang->line('table_header_level'); ?>" required>
                           </div>
                         </div>
                       </div>
@@ -105,7 +105,7 @@ endif; ?>
                   </div>
                 </div>
               </div>
-              <?php if($this->m_characters->getCharBanSpecifyGuid($idlink, $multiRealm)->num_rows()): ?>
+              <?php if($this->wowrealm->getCharBanSpecifyGuid($idlink, $multiRealm)->num_rows()): ?>
               <div>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-header">

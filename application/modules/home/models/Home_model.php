@@ -18,7 +18,7 @@ class Home_model extends CI_Model {
 
     public function getDiscordInfo()
     {
-        if ($this->m_modules->getDiscordStatus())
+        if ($this->wowmodule->getDiscordStatus())
         {
             $invitation = $this->config->item('discord_invitation');
             $discord = file_get_contents('https://discordapp.com/api/v6/invite/'.$invitation.'?with_counts=true');

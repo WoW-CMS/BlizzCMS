@@ -163,15 +163,11 @@ class Store_model extends CI_Model {
 
     public function insertHistory($idstore, $itemid, $accountid, $charid, $method, $price, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri, $multirealm)
     {
-        $date = $this->m_data->getTimestamp();
-
-        $multirealm = $this->m_data->getRealmConnectionData($multirealm);
-        $getCharName = $this->m_characters->getNameCharacterSpecifyGuid($multirealm, $charid);
-        
+        $date = $this->wowgeneral->getTimestamp();
+        $multirealm = $this->wowrealm->getRealmConnectionData($multirealm);
+        $getCharName = $this->wowrealm->getNameCharacterSpecifyGuid($multirealm, $charid);
         $subject = $this->lang->line('store_senditem_subject');
         $message = $this->lang->line('store_senditem_text');
-
-        $this->m_soap->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
 
         $data = array(
             'idstore' => $idstore,
@@ -179,16 +175,36 @@ class Store_model extends CI_Model {
             'date' => $date,
             'accountid' => $accountid,
             'charid' => $charid,
-            'method' => $method,
-            );
-
-        $this->db->insert('store_logs', $data);
+            'method' => $method
+        );
 
         if ($method == "dp")
-            $this->db->query("UPDATE users_data SET dp = (dp-$price) WHERE accountid = $accountid");
-        else
-            $this->db->query("UPDATE users_data SET vp = (vp-$price) WHERE accountid = $accountid");
+        {
+            if ($this->wowgeneral->getCharDPTotal($this->session->userdata('fx_sess_id')) >= $price)
+            {
+                $this->db->insert('store_logs', $data);
+                $this->db->query("UPDATE users_data SET dp = (dp-$price) WHERE accountid = $accountid");
 
-        redirect(base_url('store?complete'),'refresh');
+                $this->wowrealm->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
+
+                redirect(base_url('store?complete'),'refresh');
+            }
+            else
+                redirect(base_url('store?error'),'refresh');
+        }
+        else
+        {
+            if ($this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id')) >= $price)
+            {
+                $this->db->insert('store_logs', $data);
+                $this->db->query("UPDATE users_data SET vp = (vp-$price) WHERE accountid = $accountid");
+
+                $this->wowrealm->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
+
+                redirect(base_url('store?complete'),'refresh');
+            }
+            else
+                redirect(base_url('store?error'),'refresh');
+        }
     }
 }

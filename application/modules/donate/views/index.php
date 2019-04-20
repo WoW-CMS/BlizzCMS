@@ -11,24 +11,24 @@ endif; ?>
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
-              <?php if($this->m_modules->getUCPStatus() == '1'): ?>
+              <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
               <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
-              <?php if($this->m_modules->getDonationStatus() == '1'): ?>
+              <?php if($this->wowmodule->getDonationStatus() == '1'): ?>
               <li class="uk-active"><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->m_modules->getVoteStatus() == '1'): ?>
+              <?php if($this->wowmodule->getVoteStatus() == '1'): ?>
               <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->m_modules->getStoreStatus() == '1'): ?>
+              <?php if($this->wowmodule->getStoreStatus() == '1'): ?>
               <li><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
-              <?php if($this->m_modules->getBugtrackerStatus() == '1'): ?>
+              <?php if($this->wowmodule->getBugtrackerStatus() == '1'): ?>
               <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->m_modules->getChangelogsStatus() == '1'): ?>
+              <?php if($this->wowmodule->getChangelogsStatus() == '1'): ?>
               <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
               <?php endif; ?>
             </ul>

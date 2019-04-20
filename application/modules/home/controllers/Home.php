@@ -44,7 +44,7 @@ class Home extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
         $this->load->model('home_model');
@@ -56,7 +56,7 @@ class Home extends MX_Controller {
 
     public function index()
     {
-        if ($this->m_modules->getInstallationStatus())
+        if ($this->wowmodule->getInstallationStatus())
         {
             $this->load->model('admin/admin_model');
             $this->load->view('installation');
@@ -69,7 +69,7 @@ class Home extends MX_Controller {
                 'pagetitle' => $this->lang->line('tab_home'),
                 'slides' => $this->home_model->getSlides()->result(),
                 'threeNews' => $this->news_model->getNewsTree()->result(),
-                'realmsList' => $this->m_data->getRealms()->result(),
+                'realmsList' => $this->wowrealm->getRealms()->result(),
                 // Discord
                 'discord_code' => $discord['code'],
                 'discord_id' => $discord['guild']['id'],

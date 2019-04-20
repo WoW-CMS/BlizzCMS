@@ -10,7 +10,7 @@ class News_model extends CI_Model {
 
     public function insertComment($reply, $newsid, $idsession)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
             'id_new' => $newsid,

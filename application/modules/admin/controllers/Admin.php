@@ -50,10 +50,10 @@ class Admin extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_data->isLogged())
+        if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if(!$this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if(!$this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
             redirect(base_url(),'refresh');
 
         if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
@@ -93,9 +93,8 @@ class Admin extends MX_Controller {
         $timezone = $this->input->post('timezone');
         $discord = $this->input->post('discord');
         $realmlist = $this->input->post('realmlist');
-        $staffcolor = $_POST['staffcolor'];
         $theme = $this->input->post('theme');
-        echo $this->admin_model->updateGeneralSettings($project, $timezone, $discord, $realmlist, $staffcolor, $theme);
+        echo $this->admin_model->updateGeneralSettings($project, $timezone, $discord, $realmlist, $theme);
     }
 
     public function optionalsettings()
@@ -126,10 +125,10 @@ class Admin extends MX_Controller {
 
     public function modulesettings()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -208,7 +207,7 @@ class Admin extends MX_Controller {
         $char_db = $this->input->post('chardb');
         $char_user = $this->input->post('charuser');
         $char_pass = $this->input->post('charpass');
-        echo $this->m_modules->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, '1');
+        echo $this->wowrealm->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, '1');
     }
 
     public function updaterealm()
@@ -265,7 +264,7 @@ class Admin extends MX_Controller {
         $description = $this->input->post('description');
         $type = $this->input->post('type');
         $route = $this->input->post('route');
-        echo $this->m_modules->insertSlide($title, $description, $type, $route);
+        echo $this->wowmodule->insertSlide($title, $description, $type, $route);
     }
 
     public function updateslide()
@@ -295,7 +294,7 @@ class Admin extends MX_Controller {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
-        if ($this->m_data->getAccountExist($id)->num_rows() < 1)
+        if ($this->wowauth->getAccountExist($id)->num_rows() < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -323,11 +322,11 @@ class Admin extends MX_Controller {
         if (is_null($realm) || empty($realm))
             redirect(base_url(),'refresh');
 
-        foreach ($this->m_data->getRealm($realm)->result() as $charsMultiRealm) {
-            $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+        foreach ($this->wowrealm->getRealm($realm)->result() as $charsMultiRealm) {
+            $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
         }
 
-        if (!$this->m_characters->getGeneralCharactersSpecifyGuid($id, $multiRealm)->num_rows())
+        if (!$this->wowrealm->getGeneralCharactersSpecifyGuid($id, $multiRealm)->num_rows())
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -354,10 +353,10 @@ class Admin extends MX_Controller {
 
     public function createnews()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -376,10 +375,10 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getNewsSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -402,10 +401,10 @@ class Admin extends MX_Controller {
 
     public function createchangelog()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -424,10 +423,10 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -465,10 +464,10 @@ class Admin extends MX_Controller {
 
     public function createpage()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -487,10 +486,10 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getPagesSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -530,10 +529,10 @@ class Admin extends MX_Controller {
 
     public function createfaq()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -552,10 +551,10 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getFaqSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -980,9 +979,9 @@ class Admin extends MX_Controller {
 
     public function checkSoap()
     {
-        foreach ($this->m_data->getRealms()->result() as $charsMultiRealm) {
+        foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm) {
 
-            echo $this->m_soap->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
+            echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
         }
     }
 }

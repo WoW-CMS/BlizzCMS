@@ -6,11 +6,11 @@ if (isset($_POST['buyNowGetItem'])):
   $price = $this->store_model->getPriceType($idlink, $_GET['tp']);
   $result_explode = explode('|', $charselect);
 
-  $soapUser = $this->m_data->getRealm($result_explode[0])->row_array()['console_username'];
-  $soapPass = $this->m_data->getRealm($result_explode[0])->row_array()['console_password'];
-  $soapHost = $this->m_data->getRealm($result_explode[0])->row_array()['console_hostname'];
-  $soapPort = $this->m_data->getRealm($result_explode[0])->row_array()['console_port'];
-  $soap_uri = $this->m_data->getRealm($result_explode[0])->row_array()['emulator'];
+  $soapUser = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_username'];
+  $soapPass = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_password'];
+  $soapHost = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_hostname'];
+  $soapPort = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_port'];
+  $soap_uri = $this->wowrealm->getRealm($result_explode[0])->row_array()['emulator'];
 
   $this->store_model->insertHistory(
     $idlink, 
@@ -35,24 +35,24 @@ endif; ?>
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
-              <?php if($this->m_modules->getUCPStatus() == '1'): ?>
+              <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
               <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
-              <?php if($this->m_modules->getDonationStatus() == '1'): ?>
+              <?php if($this->wowmodule->getDonationStatus() == '1'): ?>
               <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->m_modules->getVoteStatus() == '1'): ?>
+              <?php if($this->wowmodule->getVoteStatus() == '1'): ?>
               <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->m_modules->getStoreStatus() == '1'): ?>
+              <?php if($this->wowmodule->getStoreStatus() == '1'): ?>
               <li class="uk-active"><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
-              <?php if($this->m_modules->getBugtrackerStatus() == '1'): ?>
+              <?php if($this->wowmodule->getBugtrackerStatus() == '1'): ?>
               <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->m_modules->getChangelogsStatus() == '1'): ?>
+              <?php if($this->wowmodule->getChangelogsStatus() == '1'): ?>
               <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
               <?php endif; ?>
             </ul>
@@ -76,11 +76,11 @@ endif; ?>
                       <td>
                         <div class="uk-form-controls uk-light">
                           <select class="uk-select uk-width-1-1" name="charSelects">
-                            <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm): 
-                              $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+                            <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm): 
+                              $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                             ?>
-                              <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('wow_sess_id'))->result() as $listchar): ?>
-                              <option value="<?= $charsMultiRealm->id ?>|<?= $listchar->guid ?>"><?= $listchar->name ?> - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></option>
+                              <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('wow_sess_id'))->result() as $listchar): ?>
+                              <option value="<?= $charsMultiRealm->id ?>|<?= $listchar->guid ?>"><?= $listchar->name ?> - <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></option>
                               <?php endforeach; ?>
                             <?php endforeach; ?>
                           </select>
@@ -95,9 +95,9 @@ endif; ?>
                       </td>
                       <td class="uk-text-center">
                         <?php if ($_GET['tp'] == "dp")
-                          $qqs = $this->m_general->getCharDPTotal($this->session->userdata('wow_sess_id'));
+                          $qqs = $this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id'));
                         else
-                          $qqs = $this->m_general->getCharVPTotal($this->session->userdata('wow_sess_id'));
+                          $qqs = $this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id'));
                         ?>
                         <?php if ($qqs >= $this->store_model->getPriceType($idlink, $_GET['tp'])): ?>
                         <button type="submit" name="buyNowGetItem" class="uk-button uk-button-default uk-width-3-4 uk-button-small" title="<?= $this->lang->line('button_buy'); ?>"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('button_buy'); ?></button>

@@ -44,10 +44,10 @@ class Changelogs extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getChangelogsStatus())
+        if (!$this->wowmodule->getChangelogsStatus())
             redirect(base_url(),'refresh');
 
         $this->load->model('changelogs_model');

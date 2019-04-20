@@ -27,10 +27,10 @@ endif; ?>
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->m_data->getRealms()->result() as $realmsID): ?>
+                <?php foreach($this->wowrealm->getRealms()->result() as $realmsID): ?>
                 <tr>
                   <td><?= $realmsID->realmID; ?></td>
-                  <td><?= $this->m_general->getRealmName($realmsID->realmID); ?></td>
+                  <td><?= $this->wowrealm->getRealmName($realmsID->realmID); ?></td>
                   <td><?= $realmsID->char_database; ?></td>
                   <td><?= $realmsID->console_port; ?></td>
                   <td>

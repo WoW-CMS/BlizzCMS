@@ -9,7 +9,7 @@
               <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-list"></i> <?= $this->forum_model->getCategoryName($idlink); ?></h4>
             </div>
             <div class="uk-width-auto">
-              <?php if($this->m_data->isLogged()): ?>
+              <?php if($this->wowauth->isLogged()): ?>
               <div class="uk-text-center uk-text-right@s">
                 <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></a>
               </div>
@@ -37,10 +37,10 @@
                   <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->getComments($lists->id)->num_rows(); ?>
                 </td>
                 <td class="uk-width-small uk-text-center">
-                  <?php if($this->m_data->getRank($lists->author) > 0): ?>
-                  <span class="topic-forum-staff"><?= $this->m_data->getUsernameID($lists->author); ?></span>
+                  <?php if($this->wowauth->getRank($lists->author) > 0): ?>
+                  <span class="topic-forum-staff"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
                   <?php else: ?>
-                  <span class="topic-forum-member"><?= $this->m_data->getUsernameID($lists->author); ?></span>
+                  <span class="topic-forum-member"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
                   <?php endif; ?>
                 </td>
                 <td class="uk-width-small uk-text-center uk-text-meta"><?= date('d-m-Y', $lists->date); ?></td>
@@ -68,10 +68,10 @@
                   <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->getComments($lists->id)->num_rows(); ?>
                 </td>
                 <td class="uk-width-small uk-text-center">
-                  <?php if($this->m_data->getRank($lists->author) > 0): ?>
-                  <span class="topic-forum-staff"><?= $this->m_data->getUsernameID($lists->author); ?></span>
+                  <?php if($this->wowauth->getRank($lists->author) > 0): ?>
+                  <span class="topic-forum-staff"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
                   <?php else: ?>
-                  <span class="topic-forum-member"><?= $this->m_data->getUsernameID($lists->author); ?></span>
+                  <span class="topic-forum-member"><?= $this->wowauth->getUsernameID($lists->author); ?></span>
                   <?php endif; ?>
                 </td>
                 <td class="uk-width-small uk-text-center uk-text-meta"><?= date('d-m-Y', $lists->date); ?></td>

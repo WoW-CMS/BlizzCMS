@@ -1,38 +1,46 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_general extends CI_Model {
+class General_model extends CI_Model {
 
+    /**
+     * General_model constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->auth = $this->load->database('auth', TRUE);
     }
 
+    public function getTimestamp()
+    {
+        $date = new DateTime();
+        return $date->getTimestamp();
+    }
+
+    public function getMaintenance()
+    {
+        $config = $this->config->item('maintenance_mode');
+
+        if($config == '1' && $this->wowauth->isLogged())
+        {
+            if($this->wowauth->getMaintenancePermission($this->session->userdata('wow_sess_gmlevel')))
+                return true;
+            else
+                return false;
+        }
+        else
+            return true;
+    }
+
     public function getUserInfoGeneral($id)
     {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('users');
-    }
-
-    public function getShopID($id)
-    {
-        return $this->db->select('*')
-                ->where('id', $id)
-                ->get('store');
-    }
-
-    public function getXML($url)
-    {
-        return simplexml_load_file($url);
+        return $this->db->select('*')->where('id', $id)->get('users');
     }
 
     public function getCharDPTotal($id)
     {
-        $qq = $this->db->select('dp')
-                ->where('accountid', $id)
-                ->get('users_data');
+        $qq = $this->db->select('dp')->where('accountid', $id)->get('users_data');
 
         if ($qq->num_rows())
             return $qq->row('dp');
@@ -42,9 +50,7 @@ class M_general extends CI_Model {
 
     public function getCharVPTotal($id)
     {
-        $qq = $this->db->select('vp')
-                ->where('accountid', $id)
-                ->get('users_data');
+        $qq = $this->db->select('vp')->where('accountid', $id)->get('users_data');
 
         if ($qq->num_rows())
             return $qq->row('vp');
@@ -52,17 +58,9 @@ class M_general extends CI_Model {
             return '0';
     }
 
-    public function getRealmName($id)
-    {
-        return $this->auth->select('name')
-                ->where('id', $id)
-                ->get('realmlist')
-                ->row_array()['name'];
-    }
-
     public function getExpansionAction()
     {
-        $expansion = $this->config->item('expansion_id');
+        $expansion = $this->config->item('expansion');
         switch ($expansion)
         {
             case 1:
@@ -82,7 +80,7 @@ class M_general extends CI_Model {
 
     public function getExpansionName()
     {
-        $expansion = $this->config->item('expansion_id');
+        $expansion = $this->config->item('expansion');
         switch ($expansion)
         {
             case 1:
@@ -114,7 +112,7 @@ class M_general extends CI_Model {
 
     public function getMaxLevel()
     {
-        $expansion = $this->config->item('expansion_id');
+        $expansion = $this->config->item('expansion');
         switch ($expansion)
         {
             case 1:
@@ -146,7 +144,7 @@ class M_general extends CI_Model {
 
     public function getRealExpansionDB()
     {
-        $expansion = $this->config->item('expansion_id');
+        $expansion = $this->config->item('expansion');
         switch ($expansion)
         {
             case 1:
@@ -490,24 +488,13 @@ class M_general extends CI_Model {
         return $this->email->send();
     }
 
-    public function realmGetHostname($id)
-    {
-        return $this->auth->select('address')
-                ->where('id', $id)
-                ->get('realmlist')
-                ->row_array()['address'];
-    }
-
     public function getMenu()
     {
-        return $this->db->select('*')
-                ->get('menu');
+        return $this->db->select('*')->get('menu');
     }
 
     public function getMenuSon($id)
     {
-        return $this->db->select('*')
-                ->where('son', $id)
-                ->get('menu');
+        return $this->db->select('*')->where('son', $id)->get('menu');
     }
 }

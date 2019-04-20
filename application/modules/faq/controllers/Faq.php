@@ -44,10 +44,10 @@ class Faq extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getFAQStatus())
+        if (!$this->wowmodule->getFAQStatus())
             redirect(base_url(),'refresh');
 
         $this->load->model('faq_model');

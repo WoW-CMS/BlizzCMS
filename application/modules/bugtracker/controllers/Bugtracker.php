@@ -45,13 +45,13 @@ class Bugtracker extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getBugtrackerStatus())
+        if (!$this->wowmodule->getBugtrackerStatus())
             redirect(base_url(),'refresh');
 
-        if(!$this->m_data->isLogged())
+        if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
         $this->load->config('bugtracker');
@@ -90,10 +90,10 @@ class Bugtracker extends MX_Controller {
 
     public function newreport()
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'pagetitle' => $this->lang->line('tab_bugtracker'),
@@ -109,7 +109,7 @@ class Bugtracker extends MX_Controller {
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getBugtrackerStatus())
+        if (!$this->wowmodule->getBugtrackerStatus())
             redirect(base_url(),'refresh');
 
         $data = array(

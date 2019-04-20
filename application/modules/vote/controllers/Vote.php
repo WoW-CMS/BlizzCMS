@@ -44,13 +44,13 @@ class Vote extends MX_Controller {
         if (!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if (!$this->m_permissions->getMaintenance())
+        if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getVoteStatus())
+        if (!$this->wowmodule->getVoteStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_data->isLogged())
+        if (!$this->wowauth->isLogged())
             redirect(base_url('login'),'refresh');
 
         $this->load->model('vote_model');

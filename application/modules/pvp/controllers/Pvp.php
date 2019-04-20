@@ -44,10 +44,10 @@ class Pvp extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getPVPStatus())
+        if (!$this->wowmodule->getPVPStatus())
             redirect(base_url(),'refresh');
 
         $this->load->model('pvp_model');
@@ -57,7 +57,7 @@ class Pvp extends MX_Controller {
     {
         $data = array(
             'pagetitle' => $this->lang->line('tab_pvp_statistics'),
-            'realms' => $this->m_data->getRealms()->result()
+            'realms' => $this->wowrealm->getRealms()->result()
         );
 
         $this->template->build('index', $data);

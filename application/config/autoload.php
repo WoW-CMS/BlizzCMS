@@ -60,6 +60,7 @@ $autoload['packages'] = array();
 */
 $datalib = array(
 	'database',
+	'cart',
 	'session',
 	'form_validation',
 	'parser',
@@ -144,12 +145,10 @@ $autoload['language'] = array('general', 'notification', 'admin');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$datamod = array(
-	'm_general',
-	'm_soap',
-	'm_data',
-	'm_modules',
-	'm_permissions',
-	'm_characters'
+$models = array(
+	'auth_model'	=> 'wowauth',
+	'general_model' => 'wowgeneral',
+	'realm_model'	=> 'wowrealm',
+	'module_model'  => 'wowmodule'
 );
-$autoload['model'] = $datamod;
+$autoload['model'] = array($models);

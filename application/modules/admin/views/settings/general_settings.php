@@ -71,15 +71,6 @@
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Forum STAFF Color</label>
-                      <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-palette"></i></span>
-                          <input class="uk-input" type="text" id="staff_color" value="<?= $this->config->item('staff_forum_color'); ?>" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="uk-width-1-2@s">
                       <label class="uk-form-label">Theme Name</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
@@ -88,6 +79,7 @@
                         </div>
                       </div>
                     </div>
+                    <div class="uk-width-1-2@s"></div>
                   </div>
                 </div>
                 <div class="uk-margin">
@@ -109,7 +101,6 @@
         var timezone = $.trim($('#time_zone').val());
         var discord = $.trim($('#discord_invitation').val());
         var realmlist = $.trim($('#realmlist').val());
-        var staffcolor = $.trim($('#staff_color').val());
         var theme = $.trim($('#theme_name').val());
         if(project == ''){
           $.amaran({
@@ -130,7 +121,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/settings/update'); ?>",
           method:"POST",
-          data:{project, timezone, discord, realmlist, staffcolor, theme},
+          data:{project, timezone, discord, realmlist, theme},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

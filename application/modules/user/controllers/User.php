@@ -48,13 +48,13 @@ class User extends MX_Controller {
 
     public function login()
     {
-        if (!$this->m_modules->getLoginStatus())
+        if (!$this->wowmodule->getLoginStatus())
             redirect(base_url(),'refresh');
 
-        if ($this->m_data->isLogged())
+        if ($this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if ($this->m_general->getExpansionAction() == 1)
+        if ($this->wowgeneral->getExpansionAction() == 1)
         {
             $data = array(
                 'pagetitle' => $this->lang->line('tab_login'),
@@ -92,10 +92,10 @@ class User extends MX_Controller {
 
     public function register()
     {
-        if (!$this->m_modules->getRegisterStatus())
+        if (!$this->wowmodule->getRegisterStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMaintenance())
+        if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -118,15 +118,15 @@ class User extends MX_Controller {
 
     public function logout()
     {
-        $this->m_data->logout();
+        $this->wowauth->logout();
     }
 
     public function recovery()
     {
-        if (!$this->m_modules->getRecoveryStatus())
+        if (!$this->wowmodule->getRecoveryStatus())
             redirect(base_url(),'refresh');
 
-        if ($this->m_data->isLogged())
+        if ($this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -152,13 +152,13 @@ class User extends MX_Controller {
 
     public function panel()
     {
-        if (!$this->m_modules->getUCPStatus())
+        if (!$this->wowmodule->getUCPStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_data->isLogged())
+        if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMaintenance())
+        if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -171,13 +171,13 @@ class User extends MX_Controller {
 
     public function settings()
     {
-        if (!$this->m_modules->getUCPStatus())
+        if (!$this->wowmodule->getUCPStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_data->isLogged())
+        if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_permissions->getMaintenance())
+        if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
         $data = array(

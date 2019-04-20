@@ -87,7 +87,7 @@ class Bugtracker_model extends CI_Model {
 
     public function insertIssue($title, $description, $type, $priority)
     {
-        $date = $this->m_data->getTimestamp();
+        $date = $this->wowgeneral->getTimestamp();
         $author = $this->session->userdata('wow_sess_id');
 
         $data = array(

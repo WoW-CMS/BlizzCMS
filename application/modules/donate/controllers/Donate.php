@@ -50,13 +50,13 @@ class Donate extends MX_Controller
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_data->isLogged())
+        if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getDonationStatus())
+        if (!$this->wowmodule->getDonationStatus())
             redirect(base_url(),'refresh');
 
         $this->load->config('donate');
