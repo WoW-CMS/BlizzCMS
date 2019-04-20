@@ -44,10 +44,10 @@ class Forum extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->m_permissions->getMaintenance())
+        if(!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
-        if (!$this->m_modules->getForumStatus())
+        if (!$this->wowmodule->getForumStatus())
             redirect(base_url(),'refresh');
 
         $this->load->model('forum_model');
@@ -67,10 +67,10 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'idlink' => $id,
@@ -78,8 +78,8 @@ class Forum extends MX_Controller {
             'tiny' => $tiny
         );
 
-        if ($this->forum_model->getType($id) == 2 && $this->m_data->isLogged())
-            if ($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0) { }
+        if ($this->forum_model->getType($id) == 2 && $this->wowauth->isLogged())
+            if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
         else
             redirect(base_url('forum'),'refresh');
 
@@ -91,15 +91,15 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->m_data->isLogged())
-            if ($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0) { }
+        if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->wowauth->isLogged())
+            if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
         else
             redirect(base_url('forum'),'refresh');
 
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'idlink' => $id,
@@ -113,10 +113,10 @@ class Forum extends MX_Controller {
 
     public function newtopic($idlink)
     {
-        if($this->m_permissions->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->m_general->tinyEditor('Admin');
+        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
-            $tiny = $this->m_general->tinyEditor('User');
+            $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
             'idlink' => $idlink,
@@ -130,7 +130,7 @@ class Forum extends MX_Controller {
 
     public function reply()
     {
-        if (!$this->m_data->isLogged())
+        if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
         $ssesid = $this->session->userdata('wow_sess_id');
@@ -141,7 +141,7 @@ class Forum extends MX_Controller {
 
     public function addtopic()
     {
-        if (!$this->m_data->isLogged())
+        if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
         $ssesid = $this->session->userdata('wow_sess_id');

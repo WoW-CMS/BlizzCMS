@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        <?php if($this->m_modules->getreCaptchaStatus() == '1'): ?>
+        <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
         <div class="uk-margin">
           <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
         </div>
@@ -54,7 +54,7 @@
       function LoginForm(e) {
         e.preventDefault();
 
-        var restatus = "<?= $this->m_modules->getreCaptchaStatus(); ?>";
+        var restatus = "<?= $this->wowmodule->getreCaptchaStatus(); ?>";
 
         if(restatus){
           var ren = grecaptcha.getResponse();

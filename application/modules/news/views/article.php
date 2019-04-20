@@ -27,21 +27,21 @@ endif; ?>
             <div>
               <div class="uk-grid uk-grid-medium" data-uk-grid>
                 <div class="uk-width-auto">
-                  <?php if($this->m_data->getRank($commentss->author) > 0): ?>
+                  <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                   <div class="topic-author topic-staff-author">
                   <?php else: ?>
                   <div class="topic-author">
                   <?php endif; ?>
                   <div class="topic-author-avatar">
-                    <?php if($this->m_general->getUserInfoGeneral($commentss->author)->num_rows()): ?>
-                    <img src="<?= base_url('assets/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($commentss->author))); ?>" alt="" />
+                    <?php if($this->wowgeneral->getUserInfoGeneral($commentss->author)->num_rows()): ?>
+                    <img src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($commentss->author))); ?>" alt="" />
                     <?php else: ?>
                     <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                     <?php endif; ?>
                   </div>
                   <div class="topic-author-details">
-                    <p class="uk-margin-small-bottom"><?= $this->m_data->getUsernameID($commentss->author); ?></p>
-                    <?php if($this->m_data->getRank($commentss->author) > 0): ?>
+                    <p class="uk-margin-small-bottom"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
+                    <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                     <p class="uk-margin-remove staff-rank">STAFF</p>
                     <?php endif; ?>
                   </div>
@@ -49,14 +49,14 @@ endif; ?>
                 </div>
                 <div class="uk-width-expand">
                   <p class="uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $commentss->date); ?></p>
-                <?php if($this->m_data->getRank($commentss->author) > 0): ?>
+                <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                 <div class="uk-text-break" style="color: #<?= $this->config->item('staff_forum_color'); ?>;">
                 <?php else: ?>
                 <div class="uk-text-break" style="color: white;">
                 <?php endif; ?>
                   <?= $commentss->commentary ?>
                 </div>
-                <?php if($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->m_data->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
+                <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
                   <form action="" method="post" accept-charset="utf-8">
                     <div class="uk-margin-small-top uk-margin-remove-bottom">
                       <button name="button_removecomment" type="submit" value="<?= $commentss->id ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
@@ -67,7 +67,7 @@ endif; ?>
               </div>
             </div>
             <?php endforeach; ?>
-            <?php if(!$this->m_data->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+            <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
             <div>
               <div class="glass-box">
                 <h1 class="glass-box-title uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h1>
@@ -78,7 +78,7 @@ endif; ?>
               </div>
             </div>
             <?php endif; ?>
-            <?php if($this->m_data->isLogged()): ?>
+            <?php if($this->wowauth->isLogged()): ?>
             <div>
               <div class="glass-box">
                 <h1 class="glass-box-title uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h1>

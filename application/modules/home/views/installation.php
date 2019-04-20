@@ -10,7 +10,7 @@ if (isset($_POST['finishingIt'])):
   $soapuser = $_POST['soap_username'];
   $soappass = $_POST['soap_password'];
 
-  $this->m_modules->insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport);
+  $this->wowrealm->insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport);
 
   $this->home_model->updateInstallation();
 

@@ -68,7 +68,7 @@ class Template
 
 		$this->set_metadata('charset', 'utf-8');
 		$this->set_metadata('viewport', 'width=device-width, initial-scale=1');
-		$this->set_metadata('script', base_url($assets.'core/js/jquery-3.3.1.min.js'), 'script');
+		$this->set_metadata('script', base_url($assets.'core/js/jquery.min.js'), 'script');
 		$this->set_metadata('script', base_url($assets.'core/fontawesome/js/all.js'), 'script');
 		$this->set_metadata('stylesheet', base_url($assets.'core/pageloader/pace-theme-minimal.tmpl.css'), 'link');
 		$this->set_metadata('script', base_url($assets.'core/pageloader/pace.min.js'), 'script');

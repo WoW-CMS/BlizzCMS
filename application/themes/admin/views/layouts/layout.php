@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><?= $this->config->item('website_name'); ?> | <?= $pagetitle ?></title>
+    <title><?= $this->config->item('website_name'); ?> - <?= $pagetitle ?></title>
     <?= $template['metadata']; ?>
     <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico' ?>" />
     <link rel="stylesheet" href="<?= $template['assets'].'core/uikit/css/uikit.min.css' ?>" />
@@ -22,8 +22,8 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="javascript:void(0)">
-                  <?php if($this->m_general->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->session->userdata('wow_sess_id'))); ?>" alt="">
+                  <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id'))); ?>" alt="">
                   <?php else: ?>
                   <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>"  alt="">
                   <?php endif; ?>

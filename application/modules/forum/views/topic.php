@@ -31,7 +31,7 @@ endif; ?>
               <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><span uk-icon="icon: comments; ratio: 1.5"></span>&nbsp;<?= $this->forum_model->getSpecifyPostName($idlink); ?></h4>
             </div>
             <div class="uk-width-auto">
-              <?php if($this->m_data->isLogged()): ?>
+              <?php if($this->wowauth->isLogged()): ?>
               <?php if($this->forum_model->getSpecifyPostAuthor($idlink) == $this->session->userdata('wow_sess_id')): ?>
               <div class="uk-text-center uk-text-right@s">
                 <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= $this->lang->line('button_edit_topic'); ?></a>
@@ -45,22 +45,22 @@ endif; ?>
           <div>
             <div class="uk-grid uk-grid-medium" data-uk-grid>
               <div class="uk-width-auto">
-                  <?php if($this->m_data->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
+                  <?php if($this->wowauth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
                   <div class="topic-author topic-staff-author">
                   <?php else: ?>
                   <div class="topic-author">
                   <?php endif; ?>
                     <div class="topic-author-avatar">
-                      <?php if($this->m_general->getUserInfoGeneral($this->forum_model->getSpecifyPostAuthor($idlink))->num_rows()): ?>
-                      <img src="<?= base_url('assets/images/profiles/').$this->m_data->getNameAvatar($this->m_data->getImageProfile($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="" />
+                      <?php if($this->wowgeneral->getUserInfoGeneral($this->forum_model->getSpecifyPostAuthor($idlink))->num_rows()): ?>
+                      <img src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="" />
                       <?php else: ?>
                       <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                       <?php endif; ?>
                     </div>
                     <div class="topic-author-details">
-                      <p class="uk-h5 uk-margin-small-bottom"><?= $this->m_data->getUsernameID($this->forum_model->getSpecifyPostAuthor($idlink)); ?></p>
+                      <p class="uk-h5 uk-margin-small-bottom"><?= $this->wowauth->getUsernameID($this->forum_model->getSpecifyPostAuthor($idlink)); ?></p>
                       <p class="uk-margin-remove uk-text-meta"><?= $this->forum_model->getCountPostAuthor($this->forum_model->getSpecifyPostAuthor($idlink)); ?> <?= $this->lang->line('forum_post_count'); ?></p>
-                      <?php if($this->m_data->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
+                      <?php if($this->wowauth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
                       <p class="uk-margin-remove staff-rank">STAFF</p>
                       <?php endif; ?>
                     </div>
@@ -68,12 +68,12 @@ endif; ?>
               </div>
               <div class="uk-width-expand">
                 <p class="uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $this->forum_model->getSpecifyPostDate($idlink)); ?></p>
-                <?php if($this->m_data->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
-                <div class="uk-text-break" style="color: #<?= $this->config->item('staff_forum_color'); ?>;">
+                <?php if($this->wowauth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
+                <div class="uk-text-break">
                   <?= $this->forum_model->getSpecifyPostContent($idlink); ?>
                 </div>
                 <?php else: ?>
-                <div class="uk-text-break" style="color: white;">
+                <div class="uk-text-break">
                   <?= $this->forum_model->getSpecifyPostContent($idlink); ?>
                 </div>
                 <?php endif; ?>
@@ -84,22 +84,22 @@ endif; ?>
           <div>
             <div class="uk-grid uk-grid-medium" data-uk-grid>
               <div class="uk-width-auto">
-                <?php if($this->m_data->getRank($commentss->author) > 0): ?>
+                <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                 <div class="topic-author topic-staff-author">
                 <?php else: ?>
                 <div class="topic-author">
                 <?php endif; ?>
                 <div class="topic-author-avatar">
-                  <?php if($this->m_general->getUserInfoGeneral($commentss->author)->num_rows()): ?>
-                  <img src="<?= base_url('assets/images/profiles/'.$this->m_data->getNameAvatar($this->m_data->getImageProfile($commentss->author))); ?>" alt="" />
+                  <?php if($this->wowgeneral->getUserInfoGeneral($commentss->author)->num_rows()): ?>
+                  <img src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($commentss->author))); ?>" alt="" />
                   <?php else: ?>
                   <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                   <?php endif; ?>
                 </div>
                 <div class="topic-author-details">
-                  <p class="uk-h5 uk-margin-small-bottom"><?= $this->m_data->getUsernameID($commentss->author); ?></p>
+                  <p class="uk-h5 uk-margin-small-bottom"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
                   <p class="uk-margin-remove uk-text-meta"><?= $this->forum_model->getCountPostAuthor($commentss->author); ?> <?= $this->lang->line('forum_post_count'); ?></p>
-                  <?php if($this->m_data->getRank($commentss->author) > 0): ?>
+                  <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                   <p class="uk-margin-remove staff-rank">STAFF</p>
                   <?php endif; ?>
                 </div>
@@ -107,14 +107,14 @@ endif; ?>
               </div>
               <div class="uk-width-expand">
                 <p class="uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $commentss->date); ?></p>
-              <?php if($this->m_data->getRank($commentss->author) > 0): ?>
-              <div class="uk-text-break" style="color: #<?= $this->config->item('staff_forum_color'); ?>;">
+              <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
+              <div class="uk-text-break">
               <?php else: ?>
-              <div class="uk-text-break" style="color: white;">
+              <div class="uk-text-break">
               <?php endif; ?>
                 <?= $commentss->commentary ?>
               </div>
-              <?php if($this->m_data->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->m_data->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
+              <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
                 <form action="" method="post" accept-charset="utf-8">
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
                     <button name="button_removecomment" type="submit" value="<?= $commentss->id ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
@@ -125,7 +125,7 @@ endif; ?>
             </div>
           </div>
           <?php endforeach; ?>
-          <?php if(!$this->m_data->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+          <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
           <div>
             <!-- isn't login -->
             <div class="glass-box">
@@ -148,7 +148,7 @@ endif; ?>
             </div>
           </div>
           <?php endif; ?>
-          <?php if($this->m_data->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+          <?php if($this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
           <div>
             <!-- comment login -->
             <div class="glass-box">

@@ -25,6 +25,7 @@ password in-game)
 - Update Font Awesome to last version 5.8.1
 - Update TinyMCE to last version 5.0.3
 - Update forum views
+- Update UIkit to last version 3.1.2
 
 ## 1.0.1
 

@@ -31,7 +31,7 @@ endif;
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small">
               <div class="uk-width-auto">
-                <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_user_manage'); ?> - <span class="uk-text-bold"><?= $this->m_data->getUsernameID($idlink); ?></span></h4>
+                <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-user"></i></span><?= $this->lang->line('card_title_user_manage'); ?> - <span class="uk-text-bold"><?= $this->wowauth->getUsernameID($idlink); ?></span></h4>
               </div>
               <div class="uk-width-expand"></div>
             </div>
@@ -83,7 +83,7 @@ endif;
                   </div>
                   <div class="uk-card-body">
                     <form action="" method="post">
-                      <?php if($this->m_data->getGmSpecify($idlink)->num_rows()): ?>
+                      <?php if($this->wowauth->getGmSpecify($idlink)->num_rows()): ?>
                       <div class="uk-margin-small">
                         <button class="uk-button uk-button-primary uk-width-1-1" name="button_RemoveRankACCWeb" type="submit"><i class="fas fa-user-times"></i> <?= $this->lang->line('button_re_grant_account'); ?></button>
                       </div>
@@ -126,7 +126,7 @@ endif;
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($this->m_general->getUserInfoGeneral($idlink)->result() as $ginfo): ?>
+                  <?php foreach ($this->wowgeneral->getUserInfoGeneral($idlink)->result() as $ginfo): ?>
                   <tr>
                     <td><?= $ginfo->username ?></td>
                     <td><?= $ginfo->email ?></td>
@@ -187,11 +187,11 @@ endif;
           </div>
           <div class="uk-card-body">
             <ul uk-accordion>
-              <?php foreach ($this->m_data->getRealms()->result() as $charsMultiRealm):
-                $multiRealm = $this->m_data->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+              <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
+                $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
               ?>
               <li>
-                <a href="#" class="uk-accordion-title"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->m_general->getRealmName($charsMultiRealm->realmID); ?></a>
+                <a href="#" class="uk-accordion-title"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></a>
                 <div class="uk-accordion-content">
                   <div class="uk-overflow-auto uk-margin-small">
                     <table class="uk-table uk-table-divider uk-table-small">
@@ -207,12 +207,12 @@ endif;
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach($this->m_characters->getGeneralCharactersSpecifyAcc($multiRealm, $idlink)->result() as $chars): ?>
+                        <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm, $idlink)->result() as $chars): ?>
                         <tr>
                           <td class="uk-table-link"><a href="<?= base_url('admin/managecharacter/'.$chars->guid.'/'.$charsMultiRealm->id); ?>" class="uk-link-reset"><?= $chars->guid ?></a></td>
                           <td class="uk-table-link"><a href="<?= base_url('admin/managecharacter/'.$chars->guid.'/'.$charsMultiRealm->id); ?>" class="uk-link-reset"><?= $chars->name ?></a></td>
-                          <td><?= $this->m_general->getRaceName($chars->race); ?></td>
-                          <td><?= $this->m_general->getNameClass($chars->class); ?></td>
+                          <td><?= $this->wowgeneral->getRaceName($chars->race); ?></td>
+                          <td><?= $this->wowgeneral->getNameClass($chars->class); ?></td>
                           <td><?= $chars->level ?></td>
                           <td><?= $chars->money ?></td>
                           <td><?= $chars->totalKills ?></td>

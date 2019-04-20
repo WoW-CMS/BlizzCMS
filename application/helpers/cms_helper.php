@@ -7,7 +7,7 @@ if(!function_exists('cms_helper'))
     {
         $CI =& get_instance();
 
-        if(!$CI->m_modules->getInstallationStatus())
+        if(!$CI->wowmodule->getInstallationStatus())
         {
             if(file_exists("install/index.php")):
                 header("Location: install");

@@ -17,9 +17,9 @@ MySQL - 10.2.6-MariaDB-log : Database - blizzcms
 DROP TABLE IF EXISTS `avatars`;
 
 CREATE TABLE `avatars` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT 1 COMMENT '1 = user | 2 = staff',
+  `type` int(1) unsigned NOT NULL DEFAULT 1 COMMENT '1 = user | 2 = staff',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
@@ -50,15 +50,15 @@ insert  into `avatars`(`id`,`name`,`type`) values
 DROP TABLE IF EXISTS `bugtracker`;
 
 CREATE TABLE `bugtracker` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `type` int(1) NOT NULL DEFAULT 1,
-  `priority` int(1) NOT NULL DEFAULT 1,
-  `status` int(1) NOT NULL DEFAULT 1,
-  `date` int(10) NOT NULL,
-  `author` int(10) NOT NULL,
-  `close` int(1) NOT NULL DEFAULT 0,
+  `type` int(1) unsigned NOT NULL DEFAULT 1,
+  `priority` int(1) unsigned NOT NULL DEFAULT 1,
+  `status` int(1) unsigned NOT NULL DEFAULT 1,
+  `date` int(10) unsigned NOT NULL,
+  `author` int(10) unsigned NOT NULL,
+  `close` int(1) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,7 +69,7 @@ CREATE TABLE `bugtracker` (
 DROP TABLE IF EXISTS `bugtracker_priority`;
 
 CREATE TABLE `bugtracker_priority` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -86,7 +86,7 @@ insert  into `bugtracker_priority`(`id`,`title`) values
 DROP TABLE IF EXISTS `bugtracker_status`;
 
 CREATE TABLE `bugtracker_status` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
@@ -108,7 +108,7 @@ insert  into `bugtracker_status`(`id`,`title`) values
 DROP TABLE IF EXISTS `bugtracker_type`;
 
 CREATE TABLE `bugtracker_type` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
@@ -136,10 +136,10 @@ insert  into `bugtracker_type`(`id`,`title`) values
 DROP TABLE IF EXISTS `changelogs`;
 
 CREATE TABLE `changelogs` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -150,11 +150,11 @@ CREATE TABLE `changelogs` (
 DROP TABLE IF EXISTS `chars_annotations`;
 
 CREATE TABLE `chars_annotations` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `idchar` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idchar` int(10) unsigned NOT NULL,
   `annotation` text CHARACTER SET utf8 NOT NULL,
-  `date` int(10) NOT NULL,
-  `realmid` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `realmid` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -165,11 +165,11 @@ CREATE TABLE `chars_annotations` (
 DROP TABLE IF EXISTS `donate`;
 
 CREATE TABLE `donate` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `price` varchar(10) NOT NULL,
   `tax` varchar(10) NOT NULL DEFAULT '0.00',
-  `points` int(10) NOT NULL DEFAULT 1,
+  `points` int(10) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -185,14 +185,14 @@ insert  into `donate`(`id`,`name`,`price`,`tax`,`points`) values
 DROP TABLE IF EXISTS `donate_logs`;
 
 CREATE TABLE `donate_logs` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
   `payment_id` varchar(100) NOT NULL,
   `hash` varchar(100) NOT NULL,
   `total` varchar(10) NOT NULL,
-  `points` int(10) NOT NULL DEFAULT '0',
+  `points` int(10) unsigned NOT NULL DEFAULT '0',
   `create_time` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '0',
+  `status` int(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -203,12 +203,12 @@ CREATE TABLE `donate_logs` (
 DROP TABLE IF EXISTS `events`;
 
 CREATE TABLE `events` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `date_event_start` int(10) NOT NULL,
-  `date_event_end` int(10) NOT NULL,
-  `date` int(10) NOT NULL,
+  `date_event_start` int(10) unsigned NOT NULL,
+  `date_event_end` int(10) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -219,11 +219,11 @@ CREATE TABLE `events` (
 DROP TABLE IF EXISTS `faq`;
 
 CREATE TABLE `faq` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT 1,
+  `type` int(1) unsigned NOT NULL DEFAULT 1,
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -234,7 +234,7 @@ CREATE TABLE `faq` (
 DROP TABLE IF EXISTS `faq_type`;
 
 CREATE TABLE `faq_type` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -253,10 +253,10 @@ DROP TABLE IF EXISTS `forum`;
 CREATE TABLE `forum` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `category` int(10) NOT NULL,
+  `category` int(10) unsigned NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `icon` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'icon1.png',
-  `type` int(1) NOT NULL DEFAULT 1 COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
+  `type` int(1) unsigned NOT NULL DEFAULT 1 COMMENT '1 = everyone | 2 = staff | 3 = staff post + everyone see',
   PRIMARY KEY (`id`),
   KEY `category` (`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -268,7 +268,7 @@ CREATE TABLE `forum` (
 DROP TABLE IF EXISTS `forum_category`;
 
 CREATE TABLE `forum_category` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `categoryName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`,`categoryName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -280,11 +280,11 @@ CREATE TABLE `forum_category` (
 DROP TABLE IF EXISTS `forum_replies`;
 
 CREATE TABLE `forum_replies` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `topic` int(10) NOT NULL,
-  `author` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `topic` int(10) unsigned NOT NULL,
+  `author` int(10) unsigned NOT NULL,
   `commentary` text CHARACTER SET utf8 NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -313,13 +313,13 @@ CREATE TABLE `forum_topics` (
 DROP TABLE IF EXISTS `menu`;
 
 CREATE TABLE `menu` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
   `icon` varchar(100) DEFAULT NULL,
-  `father` int(10) NOT NULL DEFAULT 0,
-  `son` int(10) NOT NULL DEFAULT 0,
-  `type` int(10) NOT NULL DEFAULT 0,
+  `father` int(10) unsigned NOT NULL DEFAULT 0,
+  `son` int(10) unsigned NOT NULL DEFAULT 0,
+  `type` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
@@ -338,9 +338,9 @@ insert  into `menu`(`id`,`name`,`url`,`icon`,`father`,`son`,`type`) values
 DROP TABLE IF EXISTS `modules`;
 
 CREATE TABLE `modules` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT 1,
+  `status` int(1) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
@@ -373,11 +373,11 @@ insert  into `modules`(`id`,`name`,`status`) values
 DROP TABLE IF EXISTS `news`;
 
 CREATE TABLE `news` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'news.jpg' COMMENT 'includes/images/news',
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -391,11 +391,11 @@ insert  into `news`(`id`,`title`,`description`,`image`,`date`) values
 DROP TABLE IF EXISTS `news_comments`;
 
 CREATE TABLE `news_comments` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_new` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_new` int(10) unsigned NOT NULL,
   `commentary` text NOT NULL,
-  `date` int(10) NOT NULL,
-  `author` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `author` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_new` (`id_new`),
   KEY `author` (`author`)
@@ -408,11 +408,11 @@ CREATE TABLE `news_comments` (
 DROP TABLE IF EXISTS `pages`;
 
 CREATE TABLE `pages` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `uri_friendly` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `URI` (`uri_friendly`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -424,13 +424,13 @@ CREATE TABLE `pages` (
 DROP TABLE IF EXISTS `pending_users`;
 
 CREATE TABLE `pending_users` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `password_bnet` varchar(100) DEFAULT NULL,
-  `expansion` int(10) DEFAULT NULL,
-  `date` int(10) DEFAULT NULL,
+  `expansion` int(10) unsigned DEFAULT NULL,
+  `date` int(10) unsigned DEFAULT NULL,
   `key` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -442,7 +442,7 @@ CREATE TABLE `pending_users` (
 DROP TABLE IF EXISTS `ranks_default`;
 
 CREATE TABLE `ranks_default` (
-  `id` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `comment` varchar(100) DEFAULT 'Rank BlizzCMS',
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -459,16 +459,16 @@ insert  into `ranks_default`(`id`,`comment`) values
 DROP TABLE IF EXISTS `realms`;
 
 CREATE TABLE `realms` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `hostname` varchar(100) DEFAULT '127.0.0.1',
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `char_database` varchar(255) DEFAULT NULL,
-  `realmID` int(10) NOT NULL,
+  `realmID` int(10) unsigned NOT NULL,
   `console_hostname` varchar(100) DEFAULT '127.0.0.1',
   `console_username` varchar(255) DEFAULT NULL,
   `console_password` varchar(255) DEFAULT NULL,
-  `console_port` int(6) DEFAULT 7878,
+  `console_port` int(6) unsigned DEFAULT 7878,
   `emulator` varchar(255) DEFAULT 'TC',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -480,10 +480,10 @@ CREATE TABLE `realms` (
 DROP TABLE IF EXISTS `slides`;
 
 CREATE TABLE `slides` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
   `description` text NOT NULL,
-  `type` int(1) DEFAULT 1,
+  `type` int(1) unsigned DEFAULT 1,
   `route` varchar(100) NOT NULL DEFAULT 'slide1.jpg' COMMENT 'includes/images/slides',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -499,7 +499,7 @@ insert  into `slides`(`id`,`title`,`description`,`type`,`route`) values
 DROP TABLE IF EXISTS `store_categories`;
 
 CREATE TABLE `store_categories` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -511,13 +511,13 @@ CREATE TABLE `store_categories` (
 DROP TABLE IF EXISTS `store_items`;
 
 CREATE TABLE `store_items` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
-  `category` int(10) NOT NULL,
-  `type` int(10) NOT NULL,
-  `price_dp` int(10) DEFAULT NULL,
-  `price_vp` int(10) DEFAULT NULL,
-  `itemid` int(10) DEFAULT NULL,
+  `category` int(10) unsigned NOT NULL,
+  `type` int(10) unsigned NOT NULL,
+  `price_dp` int(10) unsigned DEFAULT NULL,
+  `price_vp` int(10) unsigned DEFAULT NULL,
+  `itemid` int(10) unsigned DEFAULT NULL,
   `icon` varchar(255) NOT NULL,
   `image` varchar(100) NOT NULL DEFAULT 'item1.jpg',
   `qquery` text DEFAULT NULL,
@@ -532,12 +532,12 @@ CREATE TABLE `store_items` (
 DROP TABLE IF EXISTS `store_logs`;
 
 CREATE TABLE `store_logs` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `idstore` int(10) NOT NULL,
-  `itemid` int(10) DEFAULT NULL,
-  `date` int(10) NOT NULL,
-  `accountid` int(10) NOT NULL,
-  `charid` int(10) DEFAULT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idstore` int(10) unsigned NOT NULL,
+  `itemid` int(10) unsigned DEFAULT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `accountid` int(10) unsigned NOT NULL,
+  `charid` int(10) unsigned DEFAULT NULL,
   `method` varchar(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -549,8 +549,8 @@ CREATE TABLE `store_logs` (
 DROP TABLE IF EXISTS `store_top`;
 
 CREATE TABLE `store_top` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_store` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_store` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_store` (`id_store`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -562,11 +562,11 @@ CREATE TABLE `store_top` (
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `date` int(10) NOT NULL,
-  `profile` int(10) NOT NULL DEFAULT 1,
+  `date` int(10) unsigned NOT NULL,
+  `profile` int(10) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -577,10 +577,10 @@ CREATE TABLE `users` (
 DROP TABLE IF EXISTS `users_annotations`;
 
 CREATE TABLE `users_annotations` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `iduser` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `iduser` int(10) unsigned NOT NULL,
   `annotation` text NOT NULL,
-  `date` int(10) NOT NULL,
+  `date` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -593,8 +593,8 @@ DROP TABLE IF EXISTS `users_data`;
 CREATE TABLE `users_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `accountid` int(10) unsigned NOT NULL,
-  `dp` int(10) NOT NULL DEFAULT 0,
-  `vp` int(10) NOT NULL DEFAULT 0,
+  `dp` int(10) unsigned NOT NULL DEFAULT 0,
+  `vp` int(10) unsigned NOT NULL DEFAULT 0,
   UNIQUE KEY `id_2` (`id`),
   UNIQUE KEY `accountId` (`accountid`),
   KEY `id` (`id`)
@@ -607,11 +607,11 @@ CREATE TABLE `users_data` (
 DROP TABLE IF EXISTS `votes`;
 
 CREATE TABLE `votes` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
-  `time` int(10) NOT NULL,
-  `points` int(10) NOT NULL DEFAULT 1,
+  `time` int(10) unsigned NOT NULL,
+  `points` int(10) unsigned NOT NULL DEFAULT 1,
   `image` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -623,12 +623,12 @@ CREATE TABLE `votes` (
 DROP TABLE IF EXISTS `votes_logs`;
 
 CREATE TABLE `votes_logs` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `idaccount` int(10) NOT NULL,
-  `idvote` int(10) NOT NULL,
-  `points` int(10) NOT NULL,
-  `lasttime` int(10) NOT NULL,
-  `expired_at` int(10) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idaccount` int(10) unsigned NOT NULL,
+  `idvote` int(10) unsigned NOT NULL,
+  `points` int(10) unsigned NOT NULL,
+  `lasttime` int(10) unsigned NOT NULL,
+  `expired_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -86,7 +86,7 @@ endif; ?>
               <div class="uk-inline uk-width-1-2@s uk-width-1-4@m">
                 <label class="uk-form-label">Expansion:</label>
                 <div class="uk-form-controls">
-                  <select name="expansion_id" class="uk-select" id="expansion_id" style="background-color: rgba(0,0,0,.15);">
+                  <select name="expansion" class="uk-select" id="expansion" style="background-color: rgba(0,0,0,.15);">
                     <option value="1">Vanilla</option>
                     <option value="2">The Burning Crusade</option>
                     <option value="3">Wrath of the Lich King</option>
