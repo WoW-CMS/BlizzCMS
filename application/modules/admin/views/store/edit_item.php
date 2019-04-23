@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('card_title_edit_item'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/items'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= base_url('admin/store/items'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -141,7 +141,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/items/update'); ?>",
+          url:"<?= base_url($lang.'/admin/store/item/update'); ?>",
           method:"POST",
           data:{id, name, category, type, dp_price, vp_price, itemid, icon, image},
           dataType:"text",

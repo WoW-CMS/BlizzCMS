@@ -158,123 +158,22 @@ class Admin extends MX_Controller {
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
         );
 
         $this->template->build('settings/manage_modules', $data);
     }
 
-    public function managerealms()
+    public function enablemodule()
     {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-        );
-
-        $this->template->build('realm/manage_realms', $data);
+        $id = $this->input->post('value');
+        echo $this->admin_model->enableSpecifyModule($id);
     }
 
-    public function createrealm()
+    public function disablemodule()
     {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('realm/create_realm', $data);
-    }
-
-    public function editrealm($id)
-    {
-        if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'idlink' => $id,
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('realm/edit_realm', $data);
-    }
-
-    public function addrealm()
-    {
-        $realmid = $this->input->post('realmid');
-        $soap_host = $this->input->post('soaphost');
-        $soap_port = $this->input->post('soapport');
-        $soap_user = $this->input->post('soapuser');
-        $soap_pass = $this->input->post('soappass');
-        $char_host = $this->input->post('charhost');
-        $char_db = $this->input->post('chardb');
-        $char_user = $this->input->post('charuser');
-        $char_pass = $this->input->post('charpass');
-        echo $this->wowrealm->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, '1');
-    }
-
-    public function updaterealm()
-    {
-        $id = $this->input->post('id');
-        $realmid = $this->input->post('realmid');
-        $soap_host = $this->input->post('soaphost');
-        $soap_port = $this->input->post('soapport');
-        $soap_user = $this->input->post('soapuser');
-        $soap_pass = $this->input->post('soappass');
-        $char_host = $this->input->post('charhost');
-        $char_db = $this->input->post('chardb');
-        $char_user = $this->input->post('charuser');
-        $char_pass = $this->input->post('charpass');
-        echo $this->admin_model->updateSpecifyRealm($id, $char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port);
-    }
-
-    public function manageslides()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-        );
-
-        $this->template->build('slide/manage_slides', $data);
-    }
-
-    public function createslide()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('slide/create_slide', $data);
-    }
-
-    public function editslide($id)
-    {
-        if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'idlink' => $id,
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('slide/edit_slide', $data);
-    }
-
-    public function addslide()
-    {
-        $title = $this->input->post('title');
-        $description = $this->input->post('description');
-        $type = $this->input->post('type');
-        $route = $this->input->post('route');
-        echo $this->wowmodule->insertSlide($title, $description, $type, $route);
-    }
-
-    public function updateslide()
-    {
-        $id = $this->input->post('id');
-        $title = $this->input->post('title');
-        $description = $this->input->post('description');
-        $type = $this->input->post('type');
-        $route = $this->input->post('route');
-        echo $this->admin_model->updateSpecifySlide($id, $title, $description, $type, $route);
+        $id = $this->input->post('value');
+        echo $this->admin_model->disableSpecifyModule($id);
     }
 
     /**
@@ -342,10 +241,205 @@ class Admin extends MX_Controller {
     /**
      * Website functions
      */
+    public function managemenu()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('menu/manage_menu', $data);
+    }
+
+    public function createmenu()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('menu/create_menu', $data);
+    }
+
+    public function editmenu($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getMenuSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('menu/edit_menu', $data);
+    }
+
+    public function addmenu()
+    {
+        $name = $this->input->post('name');
+        $url = $this->input->post('url');
+        $icon = $this->input->post('icon');
+        $main = $this->input->post('main');
+        $child = $this->input->post('child');
+        $type = $this->input->post('type');
+        echo $this->admin_model->insertMenu($name, $url, $icon, $main, $child, $type);
+    }
+
+    public function updatemenu()
+    {
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $url = $this->input->post('url');
+        $icon = $this->input->post('icon');
+        $main = $this->input->post('main');
+        $child = $this->input->post('child');
+        $type = $this->input->post('type');
+        echo $this->admin_model->updateSpecifyMenu($id, $name, $url, $icon, $main, $child, $type);
+    }
+
+    public function deletemenu()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delSpecifyMenu($id);
+    }
+
+    public function managerealms()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('realm/manage_realms', $data);
+    }
+
+    public function createrealm()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('realm/create_realm', $data);
+    }
+
+    public function editrealm($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('realm/edit_realm', $data);
+    }
+
+    public function addrealm()
+    {
+        $realmid = $this->input->post('realmid');
+        $soap_host = $this->input->post('soaphost');
+        $soap_port = $this->input->post('soapport');
+        $soap_user = $this->input->post('soapuser');
+        $soap_pass = $this->input->post('soappass');
+        $char_host = $this->input->post('charhost');
+        $char_db = $this->input->post('chardb');
+        $char_user = $this->input->post('charuser');
+        $char_pass = $this->input->post('charpass');
+        echo $this->wowrealm->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, '1');
+    }
+
+    public function updaterealm()
+    {
+        $id = $this->input->post('id');
+        $realmid = $this->input->post('realmid');
+        $soap_host = $this->input->post('soaphost');
+        $soap_port = $this->input->post('soapport');
+        $soap_user = $this->input->post('soapuser');
+        $soap_pass = $this->input->post('soappass');
+        $char_host = $this->input->post('charhost');
+        $char_db = $this->input->post('chardb');
+        $char_user = $this->input->post('charuser');
+        $char_pass = $this->input->post('charpass');
+        echo $this->admin_model->updateSpecifyRealm($id, $char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port);
+    }
+
+    public function deleterealm()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delSpecifyRealm($id);
+    }
+
+    public function manageslides()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('slide/manage_slides', $data);
+    }
+
+    public function createslide()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('slide/create_slide', $data);
+    }
+
+    public function editslide($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('slide/edit_slide', $data);
+    }
+
+    public function addslide()
+    {
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $type = $this->input->post('type');
+        $route = $this->input->post('route');
+        echo $this->wowmodule->insertSlide($title, $description, $type, $route);
+    }
+
+    public function updateslide()
+    {
+        $id = $this->input->post('id');
+        $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $type = $this->input->post('type');
+        $route = $this->input->post('route');
+        echo $this->admin_model->updateSpecifySlide($id, $title, $description, $type, $route);
+    }
+
+    public function deleteslide()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delSpecifySlide($id);
+    }
+
     public function managenews()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
         );
 
         $this->template->build('news/manage_news', $data);
@@ -390,10 +484,17 @@ class Admin extends MX_Controller {
         $this->template->build('news/edit_news', $data);
     }
 
+    public function deletenews()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delSpecifyNew($id);
+    }
+
     public function managechangelogs()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
         );
 
         $this->template->build('changelogs/manage_changelogs', $data);
@@ -453,10 +554,17 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateSpecifyChangelog($id, $title, $description);
     }
 
+    public function deletechangelog()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delChangelog($id);
+    }
+
     public function managepages()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
         );
 
         $this->template->build('page/manage_pages', $data);
@@ -518,75 +626,17 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateSpecifyPage($id, $title, $uri, $description);
     }
 
-    public function managefaqs()
+    public function deletepage()
     {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-        );
-
-        $this->template->build('faq/manage_faqs', $data);
-    }
-
-    public function createfaq()
-    {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->wowgeneral->tinyEditor('Admin');
-        else
-            $tiny = $this->wowgeneral->tinyEditor('User');
-
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'tiny' => $tiny,
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('faq/create_faq', $data);
-    }
-
-    public function editfaq($id)
-    {
-        if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
-
-        if ($this->admin_model->getFaqSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
-
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->wowgeneral->tinyEditor('Admin');
-        else
-            $tiny = $this->wowgeneral->tinyEditor('User');
-
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'idlink' => $id,
-            'tiny' => $tiny,
-            'lang' => $this->lang->lang()
-        );
-
-        $this->template->build('faq/edit_faq', $data);
-    }
-
-    public function addfaq()
-    {
-        $title = $this->input->post('title');
-        $type = $this->input->post('type');
-        $description = $_POST['description'];
-        echo $this->admin_model->insertFaq($title, $type, $description);
-    }
-
-    public function updatefaq()
-    {
-        $id = $this->input->post('id');
-        $title = $this->input->post('title');
-        $type = $this->input->post('type');
-        $description = $_POST['description'];
-        echo $this->admin_model->updateSpecifyFaq($id, $title, $type, $description);
+        $id = $this->input->post('value');
+        echo $this->admin_model->delPage($id);
     }
 
     public function managetopsites()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
         );
 
         $this->template->build('vote/manage_topsites', $data);
@@ -640,29 +690,46 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateSpecifyTopsite($id, $name, $url, $time, $points, $image);
     }
 
+    public function deletetopsite()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delTopsite($id);
+    }
+
     /**
      * Store functions
      */
-    public function managegroups()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-        );
-
-        $this->template->build('store/manage_groups', $data);
-    }
-
-    public function creategroup()
+    public function managestore()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->template->build('store/create_group', $data);
+        $this->template->build('store/manage_store', $data);
     }
 
-    public function editgroup($id)
+    public function managestoreitems()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('store/manage_items', $data);
+    }
+
+    public function createstorecategory()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('store/create_category', $data);
+    }
+
+    public function editstorecategory($id)
     {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
@@ -676,32 +743,29 @@ class Admin extends MX_Controller {
             'lang' => $this->lang->lang()
         );
 
-        $this->template->build('store/edit_group', $data);
+        $this->template->build('store/edit_category', $data);
     }
 
-    public function addgroup()
+    public function addstorecategory()
     {
         $category = $this->input->post('category');
         echo $this->admin_model->insertGroup($category);
     }
 
-    public function updategroup()
+    public function updatestorecategory()
     {
         $id = $this->input->post('id');
         $category = $this->input->post('category');
         echo $this->admin_model->updateSpecifyGroup($id, $category);
     }
 
-    public function manageitems()
+    public function deletestorecategory()
     {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-        );
-
-        $this->template->build('store/manage_items', $data);
+        $id = $this->input->post('value');
+        echo $this->admin_model->deleteGroup($id);
     }
 
-    public function createitem()
+    public function createstoreitem()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -711,7 +775,7 @@ class Admin extends MX_Controller {
         $this->template->build('store/create_item', $data);
     }
 
-    public function edititem($id)
+    public function editstoreitem($id)
     {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
@@ -728,7 +792,7 @@ class Admin extends MX_Controller {
         $this->template->build('store/edit_item', $data);
     }
 
-    public function additem()
+    public function addstoreitem()
     {
         $name = $this->input->post('name');
         $category = $this->input->post('category');
@@ -741,7 +805,7 @@ class Admin extends MX_Controller {
         echo $this->admin_model->insertItem($name, $category, $type, $dp_price, $vp_price, $itemid, $icon, $image);
     }
 
-    public function updateitem()
+    public function updatestoreitem()
     {
         $id = $this->input->post('id');
         $name = $this->input->post('name');
@@ -755,6 +819,12 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateSpecifyItem($id, $name, $category, $type, $dp_price, $vp_price, $itemid, $icon, $image);
     }
 
+    public function deletestoreitem()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delShopItm($id);
+    }
+
     public function donate()
     {
         $data = array(
@@ -763,12 +833,6 @@ class Admin extends MX_Controller {
         );
 
         $this->template->build('donate/index', $data);
-    }
-
-    public function insertCategory()
-    {
-        $name = $_POST['categoryname'];
-        return $this->admin_model->insertCategoryAjax($name);
     }
 
     public function insertDonation()
@@ -780,26 +844,12 @@ class Admin extends MX_Controller {
         return $this->admin_model->insertDonationAjax($name, $price, $tax, $points);
     }
 
-    public function updateCategory()
-    {
-        $id = $_POST['id'];
-        $name = $_POST['text'];
-        $column = $_POST['colum_name'];
-        return $this->admin_model->updateCategoryAjax($id, $name, $column);
-    }
-
     public function updateDonation()
     {
         $id = $_POST['id'];
         $name = $_POST['text'];
         $column = $_POST['colum_name'];
         return $this->admin_model->updateDonationAjax($id, $name, $column);
-    }
-
-    public function deleteCategory()
-    {
-        $id = $_POST['id'];
-        return $this->admin_model->deleteCategoryAjax($id);
     }
 
     public function deleteDonation()
@@ -875,79 +925,73 @@ class Admin extends MX_Controller {
         echo $output;
     }
 
-    public function getCategoryList()
-    {
-        $output = '';
-        $output .= '
-        <div class="uk-overflow-auto">
-        <table class="uk-table uk-table-divider uk-table-small">
-            <thead>
-                <tr>
-                    <th class="uk-table-expand">'.$this->lang->line('placeholder_title').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
-                </tr>
-            </thead>
-            <tbody>';
-        if($this->admin_model->getForumCategoryListAjax()->num_rows()){
-            foreach($this->admin_model->getForumCategoryListAjax()->result() as $list) {
-                $output .= '<tr>
-                    <td>
-                        <input type="text" class="uk-input" id="categoryName" value="'.$list->categoryName.'" data-id1="'.$list->id.'">
-                    </td>
-                    <td>
-                        <button class="uk-button uk-button-danger" name="button_deleteCategory" id="button_deleteCategory" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>';
-            }
-
-            $output .= '
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
-                </td>
-                <td>
-                    <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
-                </td>
-            ';
-        }
-        else{
-            $output .= '
-            <td>
-                <input type="text" class="uk-input" placeholder="Insert title" id="newcategoryname">
-            </td>
-            <td>
-                <button class="uk-button uk-button-primary" name="button_addCategory" id="button_addCategory"><i class="fa fa-plus-circle"></i></button>
-            </td>
-
-            <tr>
-                <td><div class="uk-alert-warning" uk-alert><p class="uk-text-center"><span uk-icon="warning"></span> Data not found</p></div></td>
-            </tr>';
-        }
-        $output .= '</tbody>
-                        </table></div>';
-
-        echo $output;
-    }
-
     /**
      * Forum functions
      */
-    public function managecategories()
+    public function manageforum()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
 
-        $this->template->build('forum/manage_categories', $data);
+        $this->template->build('forum/manage_forum', $data);
     }
 
-    public function manageforums()
+    public function manageforumelements()
     {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
         );
 
-        $this->template->build('forum/manage_forums', $data);
+        $this->template->build('forum/manage_elements', $data);
+    }
+
+    public function createforumcategory()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('forum/create_category', $data);
+    }
+
+    public function editforumcategory($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getSpecifyForumCategoryRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('forum/edit_category', $data);
+    }
+
+    public function addforumcategory()
+    {
+        $category = $this->input->post('category');
+        echo $this->admin_model->insertForumCategory($category);
+    }
+
+    public function updateforumcategory()
+    {
+        $id = $this->input->post('id');
+        $category = $this->input->post('category');
+        echo $this->admin_model->updateForumCategory($id, $category);
+    }
+
+    public function deleteforumcategory()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->deleteForumCategory($id);
     }
 
     public function createforum()
@@ -975,6 +1019,32 @@ class Admin extends MX_Controller {
         );
 
         $this->template->build('forum/edit_forum', $data);
+    }
+
+    public function addforum()
+    {
+        $name = $this->input->post('name');
+        $description = $this->input->post('description');
+        $icon = $this->input->post('icon');
+        $type = $this->input->post('type');
+        $category = $this->input->post('category');
+        echo $this->admin_model->insertForum($name, $description, $icon, $type, $category);
+    }
+
+    public function updateforum()
+    {
+        $id = $this->input->post('id');
+        $description = $this->input->post('description');
+        $icon = $this->input->post('icon');
+        $type = $this->input->post('type');
+        $category = $this->input->post('category');
+        echo $this->admin_model->updateSpecifyForum($id, $name, $description, $icon, $type, $category);
+    }
+
+    public function deleteforum()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->deleteForum($id);
     }
 
     public function checkSoap()

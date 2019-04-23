@@ -198,54 +198,6 @@ CREATE TABLE `donate_logs` (
 
 /*Data for the table `donate_logs` */
 
-/*Table structure for table `events` */
-
-DROP TABLE IF EXISTS `events`;
-
-CREATE TABLE `events` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `date_event_start` int(10) unsigned NOT NULL,
-  `date_event_end` int(10) unsigned NOT NULL,
-  `date` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `events` */
-
-/*Table structure for table `faq` */
-
-DROP TABLE IF EXISTS `faq`;
-
-CREATE TABLE `faq` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  `type` int(1) unsigned NOT NULL DEFAULT 1,
-  `description` text NOT NULL,
-  `date` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `faq` */
-
-/*Table structure for table `faq_type` */
-
-DROP TABLE IF EXISTS `faq_type`;
-
-CREATE TABLE `faq_type` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
-/*Data for the table `faq_type` */
-
-insert  into `faq_type`(`id`,`title`) values 
-(1,'General'),
-(2,'Server'),
-(3,'Website');
-
 /*Table structure for table `forum` */
 
 DROP TABLE IF EXISTS `forum`;
@@ -317,21 +269,37 @@ CREATE TABLE `menu` (
   `name` varchar(100) NOT NULL,
   `url` text NOT NULL,
   `icon` varchar(100) DEFAULT NULL,
-  `father` int(10) unsigned NOT NULL DEFAULT 0,
-  `son` int(10) unsigned NOT NULL DEFAULT 0,
+  `main` int(10) unsigned NOT NULL DEFAULT 0,
+  `child` int(10) unsigned NOT NULL DEFAULT 0,
   `type` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `menu` */
 
-insert  into `menu`(`id`,`name`,`url`,`icon`,`father`,`son`,`type`) values 
-(1,'More','#','fas fa-bars',1,0,0),
-(2,'News','news','fas fa-newspaper',0,0,0),
-(3,'FAQ','faq','fas fa-question-circle',0,1,0),
-(4,'PvP','pvp','fas fa-fist-raised',0,1,0),
-(5,'Forum','forum','fas fa-comments',0,0,0),
-(6,'Store','store','fas fa-store',0,0,0);
+insert  into `menu`(`id`,`name`,`url`,`icon`,`main`,`child`,`type`) values 
+(1,'More','#','fas fa-bars',1,0,1),
+(2,'News','news','fas fa-newspaper',0,0,1),
+(3,'Changelogs','changelogs','fas fa-scroll',0,1,1),
+(4,'PvP','pvp','fas fa-fist-raised',0,1,1),
+(5,'Forum','forum','fas fa-comments',0,0,1),
+(6,'Store','store','fas fa-store',0,0,1);
+
+/*Table structure for table `menu_type` */
+
+DROP TABLE IF EXISTS `menu_type`;
+
+CREATE TABLE `menu_type` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `menu_type` */
+
+insert  into `menu_type`(`id`,`title`) values 
+(1,'Internal URL'),
+(2,'External URL');
 
 /*Table structure for table `modules` */
 
@@ -364,9 +332,7 @@ insert  into `modules`(`id`,`name`,`status`) values
 (15,'Vote',1),
 (16,'PVP',1),
 (17,'Bugtracker',1),
-(18,'Changelogs',1),
-(19,'FAQ',1),
-(20,'Events',0);
+(18,'Changelogs',1);
 
 /*Table structure for table `news` */
 

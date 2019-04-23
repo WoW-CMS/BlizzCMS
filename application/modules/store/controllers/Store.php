@@ -45,7 +45,7 @@ class Store extends MX_Controller {
            date_default_timezone_set($this->config->item('timezone'));
 
         if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url(),'refresh');
+            redirect(base_url('maintenance'),'refresh');
 
         if (!$this->wowmodule->getStoreStatus())
             redirect(base_url(),'refresh');
@@ -68,9 +68,6 @@ class Store extends MX_Controller {
 
     public function cart($id)
     {
-        if (!$this->wowauth->isLogged())
-            redirect(base_url('login'),'refresh');
-
         if ($this->store_model->getExistItem($id) < 1)
             redirect(base_url('store'),'refresh');
 

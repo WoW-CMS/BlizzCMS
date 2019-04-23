@@ -493,8 +493,8 @@ class General_model extends CI_Model {
         return $this->db->select('*')->get('menu');
     }
 
-    public function getMenuSon($id)
+    public function getMenuChild($id)
     {
-        return $this->db->select('*')->where('son', $id)->get('menu');
+        return $this->db->select('*')->where('child', $id)->get('menu');
     }
 }

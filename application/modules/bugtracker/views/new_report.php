@@ -29,64 +29,68 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
-              <div class="uk-width-expand">
-                  <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= $this->lang->line('placeholder_create_bug_report'); ?></h4>
-              </div>
-              <div class="uk-width-auto">
-                <div class="uk-text-center uk-text-right@s">
-                  <a href="<?= base_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
-                </div>
-              </div>
-            </div>
-            <?= form_open('', 'id="reportForm" onsubmit="ReportForm(event)"'); ?>
-            <div class="uk-margin uk-light">
-              <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
-              <div class="uk-form-controls">
-                <div class="uk-inline uk-width-1-1">
-                  <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
-                  <input class="uk-input" type="text" id="report_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
-                </div>
-              </div>
-            </div>
-            <div class="uk-margin uk-light">
-              <div class="uk-grid uk-grid-small" data-uk-grid>
-                <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
-                  <div class="uk-form-controls">
-                    <select class="uk-select" id="report_type">
-                      <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
-                      <?php foreach($this->bugtracker_model->getTypes()->result() as $types): ?>
-                      <option value="<?= $types->id; ?>"><?= $types->title ?></option>
-                      <?php endforeach; ?>
-                    </select>
+            <div class="uk-card-default myaccount-card uk-margin-small">
+              <div class="uk-card-header">
+                <div class="uk-grid uk-grid-small">
+                  <div class="uk-width-expand@m">
+                    <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= $this->lang->line('placeholder_create_bug_report'); ?></h4>
                   </div>
-                </div>
-                <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('table_header_priority'); ?></label>
-                  <div class="uk-form-controls">
-                    <select class="uk-select" id="report_priority">
-                      <option value="0"><?= $this->lang->line('notification_select_priority'); ?></option>
-                      <?php foreach($this->bugtracker_model->getPriorities()->result() as $priorities): ?>
-                      <option value="<?= $priorities->id; ?>"><?= $priorities->title ?></option>
-                      <?php endforeach; ?>
-                    </select>
+                  <div class="uk-width-auto@m">
+                    <a href="<?= base_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="uk-margin uk-light">
-              <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
-              <div class="uk-form-controls">
-                <div class="uk-width-1-1">
-                  <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>
+              <div class="uk-card-body">
+                <?= form_open('', 'id="reportForm" onsubmit="ReportForm(event)"'); ?>
+                <div class="uk-margin uk-light">
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
+                  <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
+                      <input class="uk-input" type="text" id="report_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                    </div>
+                  </div>
                 </div>
+                <div class="uk-margin uk-light">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
+                      <div class="uk-form-controls">
+                        <select class="uk-select" id="report_type">
+                          <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                          <?php foreach($this->bugtracker_model->getTypes()->result() as $types): ?>
+                          <option value="<?= $types->id; ?>"><?= $types->title ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('table_header_priority'); ?></label>
+                      <div class="uk-form-controls">
+                        <select class="uk-select" id="report_priority">
+                          <option value="0"><?= $this->lang->line('notification_select_priority'); ?></option>
+                          <?php foreach($this->bugtracker_model->getPriorities()->result() as $priorities): ?>
+                          <option value="<?= $priorities->id; ?>"><?= $priorities->title ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-margin uk-light">
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
+                  <div class="uk-form-controls">
+                    <div class="uk-width-1-1">
+                      <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <button class="uk-button uk-button-default uk-width-1-1" id="button_report" type="submit"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+                </div>
+                <?= form_close(); ?>
               </div>
             </div>
-            <div class="uk-margin">
-              <button class="uk-button uk-button-default uk-width-1-1" id="button_report" type="submit"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('button_create'); ?></button>
-            </div>
-            <?= form_close(); ?>
           </div>
         </div>
       </div>

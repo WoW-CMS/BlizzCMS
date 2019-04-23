@@ -2,26 +2,26 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-object-group"></i> <?= $this->lang->line('placeholder_create_group'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('card_title_edit_group'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/groups'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= base_url('admin/forum'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <?= form_open('', 'id="addcategoryForm" onsubmit="AddCategoryForm(event)"'); ?>
+            <?= form_open('', 'id="updatecategoryForm" onsubmit="UpdateCategoryForm(event)"'); ?>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_group_title'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" type="text" id="store_category" placeholder="<?= $this->lang->line('placeholder_group_title'); ?>" required>
+                    <input class="uk-input" type="text" id="forum_category" value="<?= $this->admin_model->getForumCategoryName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_category'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_group"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upcategory"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
               </div>
             <?= form_close(); ?>
           </div>
@@ -30,10 +30,11 @@
     </section>
 
     <script>
-      function AddCategoryForm(e) {
+      function UpdateCategoryForm(e) {
         e.preventDefault();
 
-        var category = $('#store_category').val();
+        var id = "<?= $idlink ?>";
+        var category = $('#forum_category').val();
         if(category == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -51,9 +52,9 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/groups/add'); ?>",
+          url:"<?= base_url($lang.'/admin/forum/category/update'); ?>",
           method:"POST",
-          data:{category},
+          data:{id, category},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -89,7 +90,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            $('#addcategoryForm')[0].reset();
+            $('#updatecategoryForm')[0].reset();
           }
         });
       }

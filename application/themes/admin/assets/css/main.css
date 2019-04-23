@@ -36,13 +36,14 @@
 @font-face {
   font-family: 'Lobster';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'), url('../fonts/lobster-regular-webfont.woff') format('woff');
 }
 
 html {
   background: transparent;
   color: #6a7a8c;
+  font-family: -apple-system,BlinkMacSystemFont,"Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
 body {
@@ -62,6 +63,7 @@ h4,
 h5,
 h6 {
   color: #01102d;
+  font-family: -apple-system,BlinkMacSystemFont,"Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
 .uk-container {
@@ -83,6 +85,7 @@ h6 {
 .uk-navbar-item,
 .uk-navbar-nav > li > a,
 .uk-navbar-toggle {
+  font-family: -apple-system,BlinkMacSystemFont,"Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   min-height: 60px;
 }
 
@@ -187,6 +190,7 @@ header .uk-navbar-nav > li > a {
 
 .uk-navbar-dropdown-nav > li > a {
   color: #777;
+  font-size: .8125rem;
   padding: 8px 16px;
   transition: all ease-in .15s;
 }

@@ -36,10 +36,10 @@
               <div>
                 <article class="uk-article">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
-                    <div class="uk-width-expand">
+                    <div class="uk-width-expand@s">
                       <h4 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelogsList->title ?></h5>
                     </div>
-                    <div class="uk-width-auto">
+                    <div class="uk-width-auto@s">
                       <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelogsList->date); ?></p>
                     </div>
                   </div>

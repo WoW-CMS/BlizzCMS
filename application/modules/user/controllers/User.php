@@ -92,10 +92,13 @@ class User extends MX_Controller {
 
     public function register()
     {
+        if (!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
+
         if (!$this->wowmodule->getRegisterStatus())
             redirect(base_url(),'refresh');
 
-        if (!$this->wowgeneral->getMaintenance())
+        if ($this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -123,6 +126,9 @@ class User extends MX_Controller {
 
     public function recovery()
     {
+        if (!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
+
         if (!$this->wowmodule->getRecoveryStatus())
             redirect(base_url(),'refresh');
 
@@ -152,13 +158,13 @@ class User extends MX_Controller {
 
     public function panel()
     {
+        if (!$this->wowgeneral->getMaintenance())
+            redirect(base_url(),'refresh');
+
         if (!$this->wowmodule->getUCPStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
-
-        if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -171,13 +177,13 @@ class User extends MX_Controller {
 
     public function settings()
     {
+        if (!$this->wowgeneral->getMaintenance())
+            redirect(base_url(),'refresh');
+
         if (!$this->wowmodule->getUCPStatus())
             redirect(base_url(),'refresh');
 
         if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
-
-        if (!$this->wowgeneral->getMaintenance())
             redirect(base_url(),'refresh');
 
         $data = array(

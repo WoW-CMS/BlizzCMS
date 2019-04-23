@@ -37,7 +37,7 @@
 @font-face {
   font-family: 'Lobster';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'), url('../fonts/lobster-regular-webfont.woff') format('woff');
 }
 
@@ -688,7 +688,7 @@ h6,
 }
 
 .uk-logo {
-  font-family: 'Lobster';
+  font-family: 'Lobster', cursive;
   font-size: 30px;
   color: #fff;
 }

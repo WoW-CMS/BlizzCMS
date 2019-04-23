@@ -190,24 +190,4 @@ class Module_model extends CI_Model {
         else
             return false;
     }
-
-    public function getFAQStatus()
-    {
-        $qq = $this->db->select('status')->where('id', '19')->get('modules')->row('status');
-
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
-    public function getEventsStatus()
-    {
-        $qq = $this->db->select('status')->where('id', '20')->get('modules')->row('status');
-
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
 }

@@ -45,7 +45,7 @@ class Forum extends MX_Controller {
            date_default_timezone_set($this->config->item('timezone'));
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url(),'refresh');
+            redirect(base_url('maintenance'),'refresh');
 
         if (!$this->wowmodule->getForumStatus())
             redirect(base_url(),'refresh');
@@ -137,6 +137,15 @@ class Forum extends MX_Controller {
         $topicid = $this->input->post('topic');
         $reply = $_POST['reply'];
         echo $this->forum_model->insertComment($reply, $topicid, $ssesid);
+    }
+
+    public function deletereply()
+    {
+        if (!$this->wowauth->isLogged())
+            redirect(base_url(),'refresh');
+
+        $id = $this->input->post('value');
+        echo $this->forum_model->removeComment($id);
     }
 
     public function addtopic()

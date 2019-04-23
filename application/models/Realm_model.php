@@ -3,12 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Realm_model extends CI_Model {
 
+    private $RealmStatus;
     /**
      * General_model constructor.
      */
     public function __construct()
     {
         parent::__construct();
+        $this->RealmStatus = null;
         $this->auth = $this->load->database('auth', TRUE);
     }
 
@@ -27,17 +29,39 @@ class Realm_model extends CI_Model {
         return $this->auth->select('port')->where('id', $id)->get('realmlist')->row('port');
     }
 
-    public function realm_status($MultiRealm, $host)
+    public function RealmStatus($MultiRealm, $host, $status = false)
     {
         $port = $this->getRealmPort($MultiRealm);
-
         error_reporting(0);
-        $etat = fsockopen($host,$port,$errno,$errstr,3);
 
-        if (!$etat)
-            return false;
+        if ($this->RealmStatus != null)
+        {
+            return $this->RealmStatus;
+        }
         else
-            return true;
+        {
+            if (!$status)
+            {
+                $cachestatus = $this->cache->file->get('realmstatus_'.$MultiRealm);
+
+                if($cachestatus !== false)
+                {
+                    return ($cachestatus == "online") ? true : false;
+                }
+            }
+
+            if (fsockopen($host, $port, $errno, $errstr, 1.5))
+            {
+                $this->RealmStatus = true;
+            }
+            else
+            {
+                $this->RealmStatus = false;
+            }
+
+            $this->cache->file->save('realmstatus_'.$MultiRealm, ($this->RealmStatus) ? "online" : "offline", 180);
+            return $this->RealmStatus;
+        }
     }
 
     public function getRealmConnectionData($id)

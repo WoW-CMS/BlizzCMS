@@ -45,7 +45,7 @@ class News extends MX_Controller {
            date_default_timezone_set($this->config->item('timezone'));
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url(),'refresh');
+            redirect(base_url('maintenance'),'refresh');
 
         if (!$this->wowmodule->getNewsStatus())
             redirect(base_url(),'refresh');
@@ -90,5 +90,14 @@ class News extends MX_Controller {
         $newsid = $this->input->post('news');
         $reply = $_POST['reply'];
         echo $this->news_model->insertComment($reply, $newsid, $ssesid);
+    }
+
+    public function deletereply()
+    {
+        if (!$this->wowauth->isLogged())
+            redirect(base_url(),'refresh');
+
+        $id = $this->input->post('value');
+        echo $this->news_model->removeComment($id);
     }
 }

@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-server"></i> Add Realm</h3>
+            <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> Add Realm</h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>

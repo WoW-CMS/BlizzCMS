@@ -1,8 +1,3 @@
-<?php
-if (isset($_POST['button_removecomment'])):
-  $this->news_model->removeComment($_POST['button_removecomment'], $idlink);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -10,10 +5,10 @@ endif; ?>
       <div class="uk-container">
         <div class="uk-margin-remove-top uk-margin-small-bottom">
           <div class="uk-grid uk-grid-small" data-uk-grid>
-            <div class="uk-width-expand">
+            <div class="uk-width-expand@s">
               <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-newspaper"></i> <?= $this->news_model->getNewTitle($idlink); ?></h4>
             </div>
-            <div class="uk-width-auto">
+            <div class="uk-width-auto@s">
               <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $this->news_model->getNewlogDate($idlink)); ?></p>
             </div>
           </div>
@@ -57,11 +52,9 @@ endif; ?>
                   <?= $commentss->commentary ?>
                 </div>
                 <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
-                  <form action="" method="post" accept-charset="utf-8">
-                    <div class="uk-margin-small-top uk-margin-remove-bottom">
-                      <button name="button_removecomment" type="submit" value="<?= $commentss->id ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
-                    </div>
-                  </form>
+                <div class="uk-margin-small-top uk-margin-remove-bottom">
+                  <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
+                </div>
                 <?php endif; ?>
                 </div>
               </div>
@@ -73,7 +66,7 @@ endif; ?>
                 <h1 class="glass-box-title uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h1>
                 <div class="glass-box-container">
                   <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
-                  <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-4@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
+                  <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
                 </div>
               </div>
             </div>
@@ -103,12 +96,13 @@ endif; ?>
         </article>
       </div>
     </section>
+    <?php if($this->wowauth->isLogged()): ?>
     <?= $tiny ?>
     <script>
       function ReplyForm(e) {
         e.preventDefault();
 
-        var news =  "<?= $idlink ?>";
+        var news = "<?= $idlink ?>";
         var reply = tinymce.get('reply_comment').getContent();
         var content = tinymce.get('reply_comment').getContent({format: 'text'}).replace('&nbsp;','').trim();
         if(content == "" || content == null || content == '<p> </p>'){
@@ -171,4 +165,51 @@ endif; ?>
           }
         });
       }
+      function DeleteReply(e, value) {
+        e.preventDefault();
+
+        $.ajax({
+          url:"<?= base_url($lang.'/news/reply/delete'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            window.location.replace("<?= base_url($lang.'/news/'.$idlink); ?>");
+          }
+        });
+      }
     </script>
+    <?php endif; ?>

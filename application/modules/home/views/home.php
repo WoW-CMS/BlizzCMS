@@ -74,14 +74,14 @@
                       <h5 class="uk-h5 uk-text-bold uk-margin-small"><i class="fas fa-server"></i> <?= $this->lang->line('table_header_realm'); ?> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></h5>
                     </div>
                     <div class="uk-width-auto">
-                      <?php if ($this->wowrealm->realm_status($charsMultiRealm->realmID, $this->wowrealm->realmGetHostname($charsMultiRealm->realmID))): ?>
+                      <?php if ($this->wowrealm->RealmStatus($charsMultiRealm->realmID, $this->wowrealm->realmGetHostname($charsMultiRealm->realmID))): ?>
                         <div class="status-dot online" uk-tooltip="<?= $this->lang->line('online'); ?>"><span><span></span></span></div>
                       <?php else: ?>
                         <div class="status-dot offline" uk-tooltip="<?= $this->lang->line('offline'); ?>"><span><span></span></span></div>
                       <?php endif ?>
                     </div>
                   </div>
-                  <?php if ($this->wowrealm->realm_status($charsMultiRealm->realmID, $this->wowrealm->realmGetHostname($charsMultiRealm->realmID))): ?>
+                  <?php if ($this->wowrealm->RealmStatus($charsMultiRealm->realmID, $this->wowrealm->realmGetHostname($charsMultiRealm->realmID))): ?>
                   <div class="uk-grid uk-grid-collapse uk-margin-small" data-uk-grid>
                     <div class="uk-width-1-2">
                       <div class="uk-tile alliance-bar uk-text-center" uk-tooltip="<?= $this->lang->line('faction_alliance'); ?>">

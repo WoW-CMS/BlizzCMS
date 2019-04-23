@@ -1,13 +1,8 @@
-<?php
-if (isset($_POST['button_delPage'])):
-    $this->admin_model->delPage($_POST['button_delPage']);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-file-alt"></i> <?= $this->lang->line('card_title_pages_list'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-file-alt"></i> <?= $this->lang->line('admin_nav_pages'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/pages/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
@@ -32,10 +27,8 @@ endif; ?>
                   <td><?= date('Y-m-d', $pages->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                    <a href="<?= base_url('admin/pages/edit/'.$pages->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
-                      <form action="" method="post" accept-charset="utf-8">
-                        <button class="uk-button uk-button-danger" name="button_delPage" value="<?= $pages->id ?>" type="submit"><i class="fas fa-trash-alt"></i></button>
-                      </form>
+                      <a href="<?= base_url('admin/pages/edit/'.$pages->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                      <button class="uk-button uk-button-danger" value="<?= $pages->id ?>" id="button_delete<?= $pages->id ?>" onclick="DeletePage(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                     </div>
                   </td>
                 </tr>
@@ -46,3 +39,52 @@ endif; ?>
         </div>
       </div>
     </section>
+
+    <script>
+      function DeletePage(e, value) {
+        e.preventDefault();
+
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/pages/delete'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            window.location.replace("<?= base_url('admin/pages'); ?>");
+          }
+        });
+      }
+    </script>
