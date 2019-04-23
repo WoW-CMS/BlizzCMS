@@ -80,4 +80,14 @@ class Home extends MX_Controller {
             $this->template->build('home', $data);
         }
     }
+
+    public function migrateNow()
+    {
+        $this->load->library('migration');
+
+        if ($this->migration->current() === FALSE)
+        {
+                show_error($this->migration->error_string());
+        }
+    }
 }
