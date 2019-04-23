@@ -21,6 +21,14 @@ use \PayPal\Exception\PayPalConnectionException;
 
 class Donate_model extends CI_Model 
 {
+    /**
+     * Donate_model constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function getApi()
     {
         $api = new ApiContext(
@@ -51,17 +59,13 @@ class Donate_model extends CI_Model
 
     public function getCurrentDP()
     {
-        $qq = $this->db->select('dp')
-            ->where('accountid', $this->session->userdata('wow_sess_id'))
-            ->get('users_data');
+        $qq = $this->db->select('dp')->where('accountid', $this->session->userdata('wow_sess_id'))->get('users_data');
 
         if($qq->num_rows())
             return $qq->row('dp');
         else
         {
-            $this->db->set('accountid', $this->session->userdata('wow_sess_id'))
-                ->set('dp', '0')
-                ->insert('users_data');
+            $this->db->set('accountid', $this->session->userdata('wow_sess_id'))->set('dp', '0')->insert('users_data');
             return '0';
         }
     }
@@ -155,10 +159,7 @@ class Donate_model extends CI_Model
 
     public function completeTransaction($donate, $id)
     {
-        $qq = $this->db->select('status')
-                ->where('payment_id', $id)
-                ->get('donate_logs')
-                ->row('status');
+        $qq = $this->db->select('status')->where('payment_id', $id)->get('donate_logs')->row('status');
 
         if($qq == '1')
             redirect(base_url('donate/notfound'),'refresh');
@@ -172,9 +173,7 @@ class Donate_model extends CI_Model
             $obtained_points = $this->getSpecifyDonate($donate)->row('points');
             $total = ($this->getCurrentDP() + $obtained_points);
 
-            $this->db->set('dp', $total)
-                ->where('accountid', $this->session->userdata('wow_sess_id'))
-                ->update('users_data');
+            $this->db->set('dp', $total)->where('accountid', $this->session->userdata('wow_sess_id'))->update('users_data');
 
             redirect(base_url('donate'),'refresh');
         }

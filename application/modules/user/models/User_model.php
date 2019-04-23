@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model {
 
+    /**
+     * User_model constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -31,9 +34,7 @@ class User_model extends CI_Model {
                                     's' => ''
                                 );
 
-                                $this->auth->where('id', $this->session->userdata('wow_sess_id'))
-                                            ->update('account', $change);
-
+                                $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
                                 return true;
                         }
                         else
@@ -60,13 +61,9 @@ class User_model extends CI_Model {
                                 's' => ''
                             );
 
-                            $this->auth->where('id', $this->session->userdata('wow_sess_id'))
-                                        ->update('account', $change);
+                            $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
 
-                            $this->auth->set('sha_pass_hash', $newaccbnetpass)
-                                        ->where('id', $this->session->userdata('wow_sess_id'))
-                                        ->update('battlenet_accounts');
-
+                            $this->auth->set('sha_pass_hash', $newaccbnetpass)->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts');
                             return true;
                         }
                         else
@@ -95,14 +92,9 @@ class User_model extends CI_Model {
                         return 'usedEmail';
                     }
                     else
-                        $this->auth->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('wow_sess_id'))
-                                    ->update('account');
+                        $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
 
-                        $this->db->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('wow_sess_id'))
-                                    ->update('users');
-
+                        $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
                         return true;
                 }
                 else
@@ -118,22 +110,16 @@ class User_model extends CI_Model {
                         return 'usedEmail';
                     }
                     else
-                        $this->auth->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('wow_sess_id'))
-                                    ->update('account');
+                        $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
 
-                        $this->db->set('email', $newemail)
-                                    ->where('id', $this->session->userdata('wow_sess_id'))
-                                    ->update('users');
+                        $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
 
                         $update = array(
                             'sha_pass_hash' => $newbnetpass,
                             'email' => $newemail
                         );
 
-                        $this->auth->where('id', $this->session->userdata('wow_sess_id'))
-                                    ->update('battlenet_accounts', $update);
-
+                        $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts', $update);
                         return true;
                 }
                 else
@@ -148,26 +134,19 @@ class User_model extends CI_Model {
 
     public function getExistEmail($email)
     {
-        return $this->auth->select('email')
-                ->where('email', $email)
-                ->get('account')
-                ->num_rows();
+        return $this->auth->select('email')->where('email', $email)->get('account')->num_rows();
     }
 
     public function getAllAvatars()
     {
-        return $this->db->select('*')
-                ->order_by('id ASC')
-                ->get('avatars');
+        return $this->db->select('*')->order_by('id ASC')->get('avatars');
     }
 
     public function insertAvatar($id)
     {
         $sessid = $this->session->userdata('wow_sess_id');
 
-        $this->db->set('profile', $id)
-             ->where('id', $sessid)
-             ->update('users');
+        $this->db->set('profile', $id)->where('id', $sessid)->update('users');
 
         redirect(base_url('panel'),'refresh');
     }
@@ -175,16 +154,12 @@ class User_model extends CI_Model {
     public function getExistInfo()
     {
         $sessid = $this->session->userdata('wow_sess_id');
-
-        return $this->db->select('id')
-                ->where('id', $sessid)
-                ->get('users');
+        return $this->db->select('id')->where('id', $sessid)->get('users');
     }
 
     public function updateInformation($id, $username, $email)
     {
-        $this->db->where('id', $id)
-             ->delete('users');
+        $this->db->where('id', $id)->delete('users');
 
         $data = array(
             'id' => $id,
@@ -199,9 +174,7 @@ class User_model extends CI_Model {
 
     public function getBorn($id)
     {
-        $qq = $this->db->select('year, month, day')
-               ->where('id', $id)
-               ->get('users');
+        $qq = $this->db->select('year, month, day')->where('id', $id)->get('users');
 
         if ($qq->num_rows())
             return $qq->row('year').'/'.$qq->row('month').'/'.$qq->row('day');
@@ -211,9 +184,7 @@ class User_model extends CI_Model {
 
     public function getDateMember($id)
     {
-        $qq = $this->db->select('date')
-               ->where('id', $id)
-               ->get('users');
+        $qq = $this->db->select('date')->where('id', $id)->get('users');
 
         if ($qq->num_rows())
             return $qq->row('date');
@@ -223,9 +194,7 @@ class User_model extends CI_Model {
 
     public function getExpansion($id)
     {
-        $qq = $this->db->select('expansion')
-                ->where('id', $id)
-                ->get('users');
+        $qq = $this->db->select('expansion')->where('id', $id)->get('users');
 
         if ($qq->num_rows())
             return $qq->row('expansion');
@@ -235,10 +204,7 @@ class User_model extends CI_Model {
 
     public function getLastIp($id)
     {
-        return $this->auth->select('last_ip')
-                ->where('id', $id)
-                ->get('account')
-                ->row_array()['last_ip'];
+        return $this->auth->select('last_ip')->where('id', $id)->get('account')->row_array()['last_ip'];
     }
 
     public function checklogin($username, $password)
@@ -350,9 +316,7 @@ class User_model extends CI_Model {
 
                                 $this->auth->insert('battlenet_accounts', $data1);
 
-                                $this->auth->set('battlenet_account', $id)
-                                            ->where('id', $id)
-                                            ->update('account');
+                                $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
                             }
 
                             $id = $this->wowauth->getIDAccount($username);
@@ -383,18 +347,12 @@ class User_model extends CI_Model {
 
     public function checkuserid($username)
     {
-        return $this->auth->select('id')
-                ->where('username', $username)
-                ->get('account')
-                ->row_array()['id'];
+        return $this->auth->select('id')->where('username', $username)->get('account')->row_array()['id'];
     }
 
     public function checkemailid($email)
     {
-        return $this->auth->select('id')
-                ->where('email', $email)
-                ->get('account')
-                ->row_array()['id'];
+        return $this->auth->select('id')->where('email', $email)->get('account')->row_array()['id'];
     }
 
     public function sendpassword($username, $email)
@@ -420,9 +378,7 @@ class User_model extends CI_Model {
                     's' => ''
                 );
 
-                $this->auth->where('id', $ucheck)
-                        ->where('email', $email)
-                        ->update('account', $accupdate);
+                $this->auth->where('id', $ucheck)->where('email', $email)->update('account', $accupdate);
             }
             else
             {
@@ -433,14 +389,9 @@ class User_model extends CI_Model {
                     's' => ''
                 );
 
-                $this->auth->where('id', $ucheck)
-                        ->where('email', $email)
-                        ->update('account', $accupdate);
+                $this->auth->where('id', $ucheck)->where('email', $email)->update('account', $accupdate);
 
-                $this->auth->set('sha_pass_hash', $newpassII)
-                        ->where('id', $ucheck)
-                        ->where('email', $email)
-                        ->update('battlenet_accounts');
+                $this->auth->set('sha_pass_hash', $newpassII)->where('id', $ucheck)->where('email', $email)->update('battlenet_accounts');
             }
 
             $mail_message = 'Hi, <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> You have sent a request for your account password to be reset.<br>';
@@ -458,40 +409,27 @@ class User_model extends CI_Model {
 
     public function getIDPendingUsername($account)
     {
-        return $this->db->select('id')
-                ->where('username', $account)
-                ->get('pending_users')
-                ->num_rows();
+        return $this->db->select('id')->where('username', $account)->get('pending_users')->num_rows();
     }
 
     public function getIDPendingEmail($email)
     {
-        return $this->db->select('id')
-                ->where('email', $email)
-                ->get('pending_users')
-                ->num_rows();
+        return $this->db->select('id')->where('email', $email)->get('pending_users')->num_rows();
     }
 
     public function checkPendingUser($key)
     {
-        return $this->db->select('id')
-                ->where('key', $key)
-                ->get('pending_users')
-                ->num_rows();
+        return $this->db->select('id')->where('key', $key)->get('pending_users')->num_rows();
     }
 
     public function getTempUser($key)
     {
-        return $this->db->select('*')
-                ->where('key', $key)
-                ->get('pending_users')
-                ->row_array();
+        return $this->db->select('*')->where('key', $key)->get('pending_users')->row_array();
     }
 
     public function removeTempUser($key)
     {
-        return $this->db->where('key', $key)
-                ->delete('pending_users');
+        return $this->db->where('key', $key)->delete('pending_users');
     }
 
     public function activateAccount($key)
@@ -534,9 +472,7 @@ class User_model extends CI_Model {
 
                 $this->auth->insert('battlenet_accounts', $data1);
 
-                $this->auth->set('battlenet_account', $id)
-                            ->where('id', $id)
-                            ->update('account');
+                $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
             }
 
             $id = $this->wowauth->getIDAccount($temp['username']);

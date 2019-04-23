@@ -60,6 +60,7 @@ $route['translate_uri_dashes'] = FALSE;
  *
 */
 $route[$lang.'$'] = $route['default_controller'];
+$route[$lang.'/maintenance'] = 'general/maintenance';
 
 // User
 $route[$lang.'/login'] = 'user/login';
@@ -95,18 +96,18 @@ $route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$2';
 $route[$lang.'/forum/topic/new/(:num)'] = 'forum/newtopic/$2';
 $route[$lang.'/forum/topic/create'] = 'forum/addtopic';
 $route[$lang.'/forum/topic/reply'] = 'forum/reply';
+$route[$lang.'/forum/topic/reply/delete'] = 'forum/deletereply';
 // News
 $route[$lang.'/news/(:num)'] = 'news/article/$2';
 $route[$lang.'/news'] = 'news/index';
 $route[$lang.'/news/reply'] = 'news/reply';
+$route[$lang.'/news/reply/delete'] = 'news/deletereply';
 // Store
 $route[$lang.'/store'] = 'store/index';
 $route[$lang.'/store/(:num)'] = 'store/index/$2';
 $route[$lang.'/cart/(:num)'] = 'store/cart/$2';
 // Pages
 $route[$lang.'/page/(:any)'] = 'page/index/$2/';
-// FAQ
-$route[$lang.'/faq'] = 'faq/index';
 // PvP
 $route[$lang.'/pvp'] = 'pvp/index';
 
@@ -125,20 +126,8 @@ $route[$lang.'/admin/settings/module/upbugtracker'] = 'admin/updatebugtrackerset
 $route[$lang.'/admin/settings/optional'] = 'admin/optionalsettings';
 $route[$lang.'/admin/settings/optional/update'] = 'admin/updateoptionalsettings';
 $route[$lang.'/admin/modules'] = 'admin/managemodules';
-
-// Manage Slides
-$route[$lang.'/admin/slides'] = 'admin/manageslides';
-$route[$lang.'/admin/slides/create'] = 'admin/createslide';
-$route[$lang.'/admin/slides/edit/(:num)'] = 'admin/editslide/$2';
-$route[$lang.'/admin/slides/add'] = 'admin/addslide';
-$route[$lang.'/admin/slides/update'] = 'admin/updateslide';
-
-// Manage Realms
-$route[$lang.'/admin/realms'] = 'admin/managerealms';
-$route[$lang.'/admin/realms/create'] = 'admin/createrealm';
-$route[$lang.'/admin/realms/edit/(:num)'] = 'admin/editrealm/$2';
-$route[$lang.'/admin/realms/add'] = 'admin/addrealm';
-$route[$lang.'/admin/realms/update'] = 'admin/updaterealm';
+$route[$lang.'/admin/modules/enable'] = 'admin/enablemodule';
+$route[$lang.'/admin/modules/disable'] = 'admin/disablemodule';
 
 // Manage Accounts
 $route[$lang.'/admin/accounts'] = 'admin/accounts';
@@ -148,10 +137,35 @@ $route[$lang.'/admin/manageaccount/(:num)'] = 'admin/manageaccount/$2';
 $route[$lang.'/admin/characters'] = 'admin/characters';
 $route[$lang.'/admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$2/$3';
 
+// Menu
+$route[$lang.'/admin/menu'] = 'admin/managemenu';
+$route[$lang.'/admin/menu/create'] = 'admin/createmenu';
+$route[$lang.'/admin/menu/edit/(:num)'] = 'admin/editmenu/$2';
+$route[$lang.'/admin/menu/add'] = 'admin/addmenu';
+$route[$lang.'/admin/menu/update'] = 'admin/updatemenu';
+$route[$lang.'/admin/menu/delete'] = 'admin/deletemenu';
+
+// Realms
+$route[$lang.'/admin/realms'] = 'admin/managerealms';
+$route[$lang.'/admin/realms/create'] = 'admin/createrealm';
+$route[$lang.'/admin/realms/edit/(:num)'] = 'admin/editrealm/$2';
+$route[$lang.'/admin/realms/add'] = 'admin/addrealm';
+$route[$lang.'/admin/realms/update'] = 'admin/updaterealm';
+$route[$lang.'/admin/realms/delete'] = 'admin/deleterealm';
+
+// Slides
+$route[$lang.'/admin/slides'] = 'admin/manageslides';
+$route[$lang.'/admin/slides/create'] = 'admin/createslide';
+$route[$lang.'/admin/slides/edit/(:num)'] = 'admin/editslide/$2';
+$route[$lang.'/admin/slides/add'] = 'admin/addslide';
+$route[$lang.'/admin/slides/update'] = 'admin/updateslide';
+$route[$lang.'/admin/slides/delete'] = 'admin/deleteslide';
+
 // News
 $route[$lang.'/admin/news'] = 'admin/managenews';
 $route[$lang.'/admin/news/create'] = 'admin/createnews';
 $route[$lang.'/admin/news/edit/(:num)'] = 'admin/editnews/$2';
+$route[$lang.'/admin/news/delete'] = 'admin/deletenews';
 
 // Changelog
 $route[$lang.'/admin/changelogs'] = 'admin/managechangelogs';
@@ -159,6 +173,7 @@ $route[$lang.'/admin/changelogs/create'] = 'admin/createchangelog';
 $route[$lang.'/admin/changelogs/edit/(:num)'] = 'admin/editchangelog/$2';
 $route[$lang.'/admin/changelogs/add'] = 'admin/addchangelog';
 $route[$lang.'/admin/changelogs/update'] = 'admin/updatechangelog';
+$route[$lang.'/admin/changelogs/delete'] = 'admin/deletechangelog';
 
 // Pages
 $route[$lang.'/admin/pages'] = 'admin/managepages';
@@ -166,6 +181,21 @@ $route[$lang.'/admin/pages/create'] = 'admin/createpage';
 $route[$lang.'/admin/pages/edit/(:num)'] = 'admin/editpage/$2';
 $route[$lang.'/admin/pages/add'] = 'admin/addpage';
 $route[$lang.'/admin/pages/update'] = 'admin/updatepage';
+$route[$lang.'/admin/pages/delete'] = 'admin/deletepage';
+
+// Store
+$route[$lang.'/admin/store'] = 'admin/managestore';
+$route[$lang.'/admin/store/items'] = 'admin/managestoreitems';
+$route[$lang.'/admin/store/category/create'] = 'admin/createstorecategory';
+$route[$lang.'/admin/store/category/edit/(:num)'] = 'admin/editstorecategory/$2';
+$route[$lang.'/admin/store/category/add'] = 'admin/addstorecategory';
+$route[$lang.'/admin/store/category/update'] = 'admin/updatestorecategory';
+$route[$lang.'/admin/store/category/delete'] = 'admin/deletestorecategory';
+$route[$lang.'/admin/store/item/create'] = 'admin/createstoreitem';
+$route[$lang.'/admin/store/item/edit/(:num)'] = 'admin/editstoreitem/$2';
+$route[$lang.'/admin/store/item/add'] = 'admin/addstoreitem';
+$route[$lang.'/admin/store/item/update'] = 'admin/updatestoreitem';
+$route[$lang.'/admin/store/item/delete'] = 'admin/deletestoreitem';
 
 // Donate
 $route[$lang.'/admin/donate'] = 'admin/donate';
@@ -174,38 +204,24 @@ $route[$lang.'/admin/editdonation'] = 'admin/updateDonation';
 $route[$lang.'/admin/adddonation'] = 'admin/insertDonation';
 $route[$lang.'/admin/deletedonation'] = 'admin/deleteDonation';
 
-// FAQ
-$route[$lang.'/admin/faq'] = 'admin/managefaqs';
-$route[$lang.'/admin/faq/create'] = 'admin/createfaq';
-$route[$lang.'/admin/faq/edit/(:num)'] = 'admin/editfaq/$2';
-$route[$lang.'/admin/faq/add'] = 'admin/addfaq';
-$route[$lang.'/admin/faq/update'] = 'admin/updatefaq';
-
 // Topsites
 $route[$lang.'/admin/topsites'] = 'admin/managetopsites';
 $route[$lang.'/admin/topsites/create'] = 'admin/createtopsite';
 $route[$lang.'/admin/topsites/edit/(:num)'] = 'admin/edittopsite/$2';
 $route[$lang.'/admin/topsites/add'] = 'admin/addtopsite';
 $route[$lang.'/admin/topsites/update'] = 'admin/updatetopsite';
+$route[$lang.'/admin/topsites/delete'] = 'admin/deletetopsite';
 
 // Forum
-$route[$lang.'/admin/forums'] = 'admin/manageforums';
-$route[$lang.'/admin/forums/create'] = 'admin/createforum';
-$route[$lang.'/admin/forums/edit/(:num)'] = 'admin/editforum/$2';
-$route[$lang.'/admin/categories'] = 'admin/managecategories';
-$route[$lang.'/admin/categorylist'] = 'admin/getCategoryList';
-$route[$lang.'/admin/editcategory'] = 'admin/updateCategory';
-$route[$lang.'/admin/addcategory'] = 'admin/insertCategory';
-$route[$lang.'/admin/deletecategory'] = 'admin/deleteCategory';
-
-// Store
-$route[$lang.'/admin/groups'] = 'admin/managegroups';
-$route[$lang.'/admin/groups/create'] = 'admin/creategroup';
-$route[$lang.'/admin/groups/edit/(:num)'] = 'admin/editgroup/$2';
-$route[$lang.'/admin/groups/add'] = 'admin/addgroup';
-$route[$lang.'/admin/groups/update'] = 'admin/updategroup';
-$route[$lang.'/admin/items'] = 'admin/manageitems';
-$route[$lang.'/admin/items/create'] = 'admin/createitem';
-$route[$lang.'/admin/items/edit/(:num)'] = 'admin/edititem/$2';
-$route[$lang.'/admin/items/add'] = 'admin/additem';
-$route[$lang.'/admin/items/update'] = 'admin/updateitem';
+$route[$lang.'/admin/forum'] = 'admin/manageforum';
+$route[$lang.'/admin/forum/elements'] = 'admin/manageforumelements';
+$route[$lang.'/admin/forum/create'] = 'admin/createforum';
+$route[$lang.'/admin/forum/edit/(:num)'] = 'admin/editforum/$2';
+$route[$lang.'/admin/forum/add'] = 'admin/addforum';
+$route[$lang.'/admin/forum/update'] = 'admin/updateforum';
+$route[$lang.'/admin/forum/delete'] = 'admin/deleteforum';
+$route[$lang.'/admin/forum/category/create'] = 'admin/createforumcategory';
+$route[$lang.'/admin/forum/category/edit/(:num)'] = 'admin/editforumcategory/$2';
+$route[$lang.'/admin/forum/category/add'] = 'admin/addforumcategory';
+$route[$lang.'/admin/forum/category/update'] = 'admin/updateforumcategory';
+$route[$lang.'/admin/forum/category/delete'] = 'admin/deleteforumcategory';

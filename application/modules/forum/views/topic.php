@@ -14,10 +14,6 @@ if (isset($_POST['button_editTopic'])):
     $pinned = '0';
 
   $this->forum_model->updateTopic($idlink, $title, $description, $locked, $pinned);
-endif;
-
-if (isset($_POST['button_removecomment'])):
-    $this->forum_model->removeComment($_POST['button_removecomment'], $idlink);
 endif; ?>
 
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
@@ -115,11 +111,9 @@ endif; ?>
                 <?= $commentss->commentary ?>
               </div>
               <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
-                <form action="" method="post" accept-charset="utf-8">
-                  <div class="uk-margin-small-top uk-margin-remove-bottom">
-                    <button name="button_removecomment" type="submit" value="<?= $commentss->id ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
-                  </div>
-                </form>
+              <div class="uk-margin-small-top uk-margin-remove-bottom">
+                <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
+              </div>
               <?php endif; ?>
               </div>
             </div>
@@ -173,6 +167,7 @@ endif; ?>
         </div>
       </div>
     </section>
+    <?php if($this->wowauth->isLogged()): ?>
     <?= $tiny ?>
     <script>
       function TopicReplyForm(e) {
@@ -241,4 +236,51 @@ endif; ?>
           }
         });
       }
+      function DeleteTopicReply(e, value) {
+        e.preventDefault();
+
+        $.ajax({
+          url:"<?= base_url($lang.'/forum/topic/reply/delete'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            window.location.replace("<?= base_url($lang.'/forum/topic/'.$idlink); ?>");
+          }
+        });
+      }
     </script>
+    <?php endif; ?>

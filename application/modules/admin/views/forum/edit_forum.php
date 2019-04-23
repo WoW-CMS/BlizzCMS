@@ -1,14 +1,3 @@
-<?php
-if (isset($_POST['button_updateForum'])):
-  $name = $_POST['forum_name'];
-  $cate = $_POST['forum_cate'];
-  $desc = $_POST['forum_description'];
-  $icon = $_POST['forum_icon'];
-  $type = $_POST['forum_type'];
-
-  $this->admin_model->updateSpecifyForum($idlink, $name, $cate, $desc, $icon, $type);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
@@ -16,18 +5,18 @@ endif; ?>
             <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('card_title_edit_forum'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/forums'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= base_url('admin/forum/elements'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
           <div class="uk-card-body">
-            <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
+            <?= form_open('', 'id="updateforumForm" onsubmit="UpdateForumForm(event)"'); ?>
               <div class="uk-margin-small">
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_forum_title'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" name="forum_name" type="text" value="<?= $this->admin_model->getSpecifyForumName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_title'); ?>" required>
+                    <input class="uk-input" type="text" id="forum_name" value="<?= $this->admin_model->getSpecifyForumName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_title'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -35,7 +24,7 @@ endif; ?>
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_forum_description'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" name="forum_description" type="text" value="<?= $this->admin_model->getSpecifyForumDesc($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_description'); ?>" required>
+                    <input class="uk-input" type="text" id="forum_description" value="<?= $this->admin_model->getSpecifyForumDesc($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_description'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -43,14 +32,14 @@ endif; ?>
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_forum_icon_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" name="forum_icon" type="text" value="<?= $this->admin_model->getSpecifyForumIcon($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_icon'); ?>" required>
+                    <input class="uk-input" type="text" id="forum_icon" value="<?= $this->admin_model->getSpecifyForumIcon($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_forum_icon'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                 <div class="uk-form-controls">
-                  <select class="uk-select" name="forum_type">
+                  <select class="uk-select" id="forum_type">
                     <option value="1" <?php if($this->admin_model->getSpecifyForumType($idlink) == '1') echo 'selected'; ?>><?= $this->lang->line('option_everyone'); ?></option>
                     <option value="2" <?php if($this->admin_model->getSpecifyForumType($idlink) == '2') echo 'selected'; ?>><?= $this->lang->line('option_staff'); ?></option>
                     <option value="3" <?php if($this->admin_model->getSpecifyForumType($idlink) == '3') echo 'selected'; ?>><?= $this->lang->line('option_all'); ?></option>
@@ -60,9 +49,9 @@ endif; ?>
               <div class="uk-margin-small">
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                 <div class="uk-form-controls">
-                  <select class="uk-select" name="forum_cate">
-                    <?php foreach($this->admin_model->getForumCategoryListAjax()->result() as $categ): ?>
-                    <?php if ($categ->id == $this->admin_model->getSpecifyForumCategory($idlink)): ?>
+                  <select class="uk-select" id="forum_category">
+                    <?php foreach($this->admin_model->getForumCategoryList()->result() as $categ): ?>
+                    <?php if ($categ->id == $this->admin_model->getForumCategoryName($idlink)): ?>
                     <option value="<?= $categ->id ?>" selected><?= $categ->categoryName ?></option>
                     <?php else: ?>
                     <option value="<?= $categ->id ?>"><?= $categ->categoryName ?></option>
@@ -72,10 +61,97 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" name="button_updateForum" type="submit"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_upforum"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
               </div>
-            </form>
+            <?= form_close(); ?>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      function UpdateForumForm(e) {
+        e.preventDefault();
+
+        var id = "<?= $idlink ?>";
+        var name = $.trim($('#forum_name').val());
+        var description = $.trim($('#forum_description').val());
+        var icon = $.trim($('#forum_icon').val());
+        var type = $.trim($('#forum_type').val());
+        var category = $.trim($('#forum_category').val());
+        if(name == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(icon == ''){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/admin/forum/update'); ?>",
+          method:"POST",
+          data:{id, name, description, icon, type, category},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#updateforumForm')[0].reset();
+          }
+        });
+      }
+    </script>

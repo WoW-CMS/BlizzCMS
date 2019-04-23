@@ -39,7 +39,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['tab_news'] = 'Noticias';
 $lang['tab_forum'] = 'Foro';
 $lang['tab_store'] = 'Tienda';
-$lang['tab_faq'] = 'Faq';
 $lang['tab_bugtracker'] = 'Bugtracker';
 $lang['tab_changelogs'] = 'Changelogs';
 $lang['tab_pvp_statistics'] = 'Estadísticas PvP';
@@ -87,7 +86,6 @@ $lang['button_account_settings'] = 'Configuraciones de la cuenta';
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
 $lang['alert_upload_error'] = 'Tu imagen debe estar en formato .jpg';
 $lang['alert_changelog_not_found'] = 'El servidor no tiene registros de cambios para informar en este momento';
-$lang['alert_faq_not_found'] = 'El servidor no tiene preguntas frecuentes para mostrar';
 $lang['alert_points_insufficient'] = 'Puntos insuficientes';
 
 /*Status Lang*/

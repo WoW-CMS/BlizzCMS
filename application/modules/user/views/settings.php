@@ -7,7 +7,7 @@
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-              <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
+              <li class="uk-active"><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getDonationStatus() == '1'): ?>
@@ -31,22 +31,24 @@
           <div class="uk-width-3-4@m">
             <h3 class="uk-h3 uk-text-uppercase uk-text-bold"><?= $this->lang->line('button_account_settings'); ?></h3>
             <div class="uk-card-default myaccount-card uk-margin-small">
+              <div class="uk-card-header">
+                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h4>
+              </div>
               <div class="uk-card-body">
-                <div class="uk-grid uk-grid-divider uk-grid-medium" data-uk-grid>
-                  <div class="uk-width-1-2@s">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h5>
-                    <?= form_open('', 'id="changeemailForm" onsubmit="ChangeEmailForm(event)"'); ?>
-                    <div class="uk-margin uk-light">
-                      <label class="uk-form-label"><?= $this->lang->line('panel_current_email'); ?>:</label>
-                      <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-                          <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->wowauth->getEmailID($this->session->userdata('wow_sess_id')); ?>" disabled>
-                        </div>
-                      </div>
+                <?= form_open('', 'id="changeemailForm" onsubmit="ChangeEmailForm(event)"'); ?>
+                <div class="uk-margin uk-light">
+                  <label class="uk-form-label"><?= $this->lang->line('panel_current_email'); ?>:</label>
+                  <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
+                      <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->wowauth->getEmailID($this->session->userdata('wow_sess_id')); ?>" disabled>
                     </div>
-                    <div class="uk-margin uk-light">
-                      <label class="uk-form-label"><?= $this->lang->line('panel_replace_email_by'); ?>:</label>
+                  </div>
+                </div>
+                <div class="uk-margin uk-light">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('panel_replace_email_by'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
@@ -54,7 +56,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="uk-margin uk-light">
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('placeholder_confirm_email'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
@@ -62,32 +65,40 @@
                         </div>
                       </div>
                     </div>
-                    <div class="uk-margin uk-light">
-                      <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                          <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="uk-margin">
-                      <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
-                    </div>
-                    <?= form_close(); ?>
                   </div>
-                  <div class="uk-width-1-2@s">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_password'); ?></h5>
-                    <?= form_open('', 'id="changepasswordForm" onsubmit="ChangePasswordForm(event)"'); ?>
-                    <div class="uk-margin uk-light">
-                      <label class="uk-form-label"><?= $this->lang->line('placeholder_current_password'); ?>:</label>
-                      <div class="uk-form-controls">
-                        <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                          <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_current_password'); ?>" required>
-                        </div>
-                      </div>
+                </div>
+                <div class="uk-margin uk-light">
+                  <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
+                      <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
                     </div>
-                    <div class="uk-margin uk-light">
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                </div>
+                <?= form_close(); ?>
+              </div>
+            </div>
+            <div class="uk-card-default myaccount-card uk-margin-small">
+              <div class="uk-card-header">
+                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= $this->lang->line('panel_change_password'); ?></h4>
+              </div>
+              <div class="uk-card-body">
+                <?= form_open('', 'id="changepasswordForm" onsubmit="ChangePasswordForm(event)"'); ?>
+                <div class="uk-margin uk-light">
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_current_password'); ?>:</label>
+                  <div class="uk-form-controls">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
+                      <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_current_password'); ?>" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-margin uk-light">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= $this->lang->line('panel_replace_pass_by'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
@@ -96,7 +107,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="uk-margin uk-light">
+                    <div class="uk-inline uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('placeholder_re_password'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-lock fa-lg"></i></span>
@@ -104,12 +116,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="uk-margin">
-                      <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
-                    </div>
-                    <?= form_close(); ?>
                   </div>
                 </div>
+                <div class="uk-margin">
+                  <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                </div>
+                <?= form_close(); ?>
               </div>
             </div>
           </div>

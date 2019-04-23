@@ -70,8 +70,6 @@ class Template
 		$this->set_metadata('viewport', 'width=device-width, initial-scale=1');
 		$this->set_metadata('script', base_url($assets.'core/js/jquery.min.js'), 'script');
 		$this->set_metadata('script', base_url($assets.'core/fontawesome/js/all.js'), 'script');
-		$this->set_metadata('stylesheet', base_url($assets.'core/pageloader/pace-theme-minimal.tmpl.css'), 'link');
-		$this->set_metadata('script', base_url($assets.'core/pageloader/pace.min.js'), 'script');
 		$this->set_metadata('stylesheet', base_url($assets.'core/amaranjs/css/amaran.min.css'), 'link');
 		$this->set_metadata('script', base_url($assets.'core/amaranjs/js/jquery.amaran.min.js'), 'script');
 		$this->set_metadata('script', 'https://www.google.com/recaptcha/api.js', 'script');

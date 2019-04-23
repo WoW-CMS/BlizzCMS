@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home_model extends CI_Model {
 
+    /**
+     * Home_model constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -11,9 +14,7 @@ class Home_model extends CI_Model {
 
     public function getSlides()
     {
-        return $this->db->select('*')
-                ->order_by('id', 'ASC')
-                ->get('slides');
+        return $this->db->select('*')->order_by('id', 'ASC')->get('slides');
     }
 
     public function getDiscordInfo()
@@ -29,8 +30,6 @@ class Home_model extends CI_Model {
 
     public function updateInstallation()
     {
-        $this->db->set('status', '0')
-                ->where('id', '1')
-                ->update('modules');
+        $this->db->set('status', '0')->where('id', '1')->update('modules');
     }
 }

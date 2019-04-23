@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-list-ul"></i> <?= $this->lang->line('admin_nav_chars_list'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-users-cog"></i> <?= $this->lang->line('admin_nav_characters'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="" class="uk-icon-button"><i class="fas fa-info"></i></a>

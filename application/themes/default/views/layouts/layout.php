@@ -64,22 +64,22 @@
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
-              <?php if($menulist->father == '1'): ?>
+              <?php if($menulist->main == '2'): ?>
               <li class="uk-visible@m">
                 <a href="#">
                   <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>&nbsp;<i class="fas fa-caret-down"></i>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php foreach ($this->wowgeneral->getMenuSon($menulist->id)->result() as $menusonlist): ?>
+                    <?php foreach ($this->wowgeneral->getMenuChild($menulist->id)->result() as $menuchildlist): ?>
                       <li>
-                        <?php if($menusonlist->type == '0'): ?>
-                        <a href="<?= base_url($menusonlist->url); ?>">
-                          <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
+                        <?php if($menuchildlist->type == '1'): ?>
+                        <a href="<?= base_url($menuchildlist->url); ?>">
+                          <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
                         </a>
-                        <?php elseif($menusonlist->type == '1'): ?>
-                        <a target="_blank" href="<?= $menusonlist->url ?>">
-                          <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
+                        <?php elseif($menuchildlist->type == '2'): ?>
+                        <a target="_blank" href="<?= $menuchildlist->url ?>">
+                          <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
                         </a>
                         <?php endif; ?>
                       </li>
@@ -87,13 +87,13 @@
                   </ul>
                 </div>
               </li>
-              <?php elseif($menulist->father == '0' && $menulist->son == '0'): ?>
+              <?php elseif($menulist->main == '1' && $menulist->child == '0'): ?>
               <li class="uk-visible@m">
-                <?php if($menulist->type == '0'): ?>
+                <?php if($menulist->type == '1'): ?>
                 <a href="<?= base_url($menulist->url); ?>">
                   <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                 </a>
-                <?php elseif($menulist->type == '1'): ?>
+                <?php elseif($menulist->type == '2'): ?>
                 <a target="_blank" href="<?= $menulist->url ?>">
                   <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                 </a>
@@ -140,34 +140,34 @@
                       <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
                       <?php endif; ?>
                       <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
-                      <?php if($menulist->father == '1'): ?>
+                      <?php if($menulist->main == '2'): ?>
                       <li class="uk-parent">
                         <a href="#">
                           <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                         </a>
                         <ul class="uk-nav-sub">
-                          <?php foreach ($this->wowgeneral->getMenuSon($menulist->id)->result() as $menusonlist): ?>
+                          <?php foreach ($this->wowgeneral->getMenuChild($menulist->id)->result() as $menuchildlist): ?>
                           <li>
-                            <?php if($menusonlist->type == '0'): ?>
-                            <a href="<?= base_url($menusonlist->url); ?>">
-                              <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
+                            <?php if($menuchildlist->type == '1'): ?>
+                            <a href="<?= base_url($menuchildlist->url); ?>">
+                              <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
                             </a>
-                            <?php elseif($menusonlist->type == '1'): ?>
-                            <a target="_blank" href="<?= $menusonlist->url ?>">
-                              <i class="<?= $menusonlist->icon ?>"></i>&nbsp;<?= $menusonlist->name ?>
+                            <?php elseif($menuchildlist->type == '2'): ?>
+                            <a target="_blank" href="<?= $menuchildlist->url ?>">
+                              <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
                             </a>
                             <?php endif; ?>
                           </li>
                           <?php endforeach; ?>
                         </ul>
                       </li>
-                      <?php elseif($menulist->father == '0' && $menulist->son == '0'): ?>
+                      <?php elseif($menulist->main == '1' && $menulist->child == '0'): ?>
                       <li>
-                        <?php if($menulist->type == '0'): ?>
+                        <?php if($menulist->type == '1'): ?>
                         <a href="<?= base_url($menulist->url); ?>">
                           <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                         </a>
-                        <?php elseif($menulist->type == '1'): ?>
+                        <?php elseif($menulist->type == '2'): ?>
                         <a target="_blank" href="<?= $menulist->url ?>">
                           <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                         </a>
