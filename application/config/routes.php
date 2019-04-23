@@ -60,6 +60,7 @@ $route['translate_uri_dashes'] = FALSE;
  *
 */
 $route[$lang.'$'] = $route['default_controller'];
+$route[$lang.'/dbmigrate'] = 'home/migrateNow';
 $route[$lang.'/maintenance'] = 'general/maintenance';
 
 // User
