@@ -38,12 +38,19 @@
             </div>
           </div>
         </div>
-        <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
-        <div class="uk-margin">
-          <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+        <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
+          <div class="uk-width-1-4@m">
+            <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
+            <div class="uk-margin-small">
+              <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+            </div>
+            <?php endif; ?>
+          </div>
+          <div class="uk-width-1-2@m"></div>
+          <div class="uk-width-1-4@m">
+            <button class="uk-button uk-button-default uk-width-1-1" id="button_register" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></button>
+          </div>
         </div>
-        <?php endif; ?>
-        <button class="uk-button uk-button-default uk-width-1-1 uk-width-1-5@m" id="button_register" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>

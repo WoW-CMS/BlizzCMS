@@ -22,14 +22,10 @@
                 <tr>
                   <td><?= $module->name; ?></td>
                   <td class="uk-text-center" uk-margin>
-                    <?php if($module->name == 'Installation'): ?>
-                      <button class="uk-button uk-button-secondary uk-disabled"><i class="fas fa-eye-slash"></i></button>
+                    <?php if($module->status == 1): ?>
+                    <button class="uk-button uk-button-danger" value="<?= $module->id ?>" id="button_disable<?= $module->id ?>" onclick="DisableModule(event, this.value)"><i class="fas fa-eye-slash"></i></button>
                     <?php else: ?>
-                      <?php if($module->status == 1): ?>
-                      <button class="uk-button uk-button-danger" value="<?= $module->id ?>" id="button_disable<?= $module->id ?>" onclick="DisableModule(event, this.value)"><i class="fas fa-eye-slash"></i></button>
-                      <?php else: ?>
-                      <button class="uk-button uk-button-primary" value="<?= $module->id ?>" id="button_enable<?= $module->id ?>" onclick="EnableModule(event, this.value)"><i class="fas fa-eye"></i></button>
-                      <?php endif; ?>
+                    <button class="uk-button uk-button-primary" value="<?= $module->id ?>" id="button_enable<?= $module->id ?>" onclick="EnableModule(event, this.value)"><i class="fas fa-eye"></i></button>
                     <?php endif; ?>
                   </td>
                 </tr>

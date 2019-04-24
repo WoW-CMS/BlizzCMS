@@ -19,6 +19,7 @@ class Home_model extends CI_Model {
 
     public function getDiscordInfo()
     {
+        error_reporting(0);
         if ($this->wowmodule->getDiscordStatus())
         {
             $invitation = $this->config->item('discord_invitation');
@@ -28,8 +29,18 @@ class Home_model extends CI_Model {
         }
     }
 
-    public function updateInstallation()
+    public function updateconfigs($name, $discord, $realmlist, $expansion, $license)
     {
-        $this->db->set('status', '0')->where('id', '1')->update('modules');
+        $this->load->library('config_writer');
+        $blizz = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
+        $plus = $this->config_writer->get_instance(APPPATH.'config/plus.php', 'config');
+
+        $blizz->write('website_name', $name);
+        $blizz->write('discord_invitation', $discord);
+        $blizz->write('realmlist', $realmlist);
+        $blizz->write('expansion', $expansion);
+        $blizz->write('migrate_status', '0');
+        $plus->write('license_plus', $license);
+        return true;
     }
 }

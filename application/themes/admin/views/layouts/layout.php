@@ -167,7 +167,7 @@
         <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</p>
       </div>
     </section>
-    <script src="<?= base_url('assets/core/js/blizzcms.admin.js'); ?>"></script>
-    <script src="<?= base_url('assets/core/amaranjs/js/jquery.amaran.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/core/js/jquery.countTo.js'); ?>"></script>
+    <script type="text/javascript">$('.blizzcms-count').countTo();</script>
   </body>
 </html>

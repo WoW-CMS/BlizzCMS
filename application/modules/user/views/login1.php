@@ -32,18 +32,18 @@
             </div>
           </div>
         </div>
-        <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
-        <div class="uk-margin">
-          <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
-        </div>
-        <?php endif; ?>
-        <div class="uk-grid uk-grid-small">
+        <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
           <div class="uk-width-1-4@m">
+            <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
+            <div class="uk-margin-small">
+              <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+            </div>
+            <?php endif; ?>
             <a href="<?= base_url('recovery'); ?>" class="uk-button uk-button-text"><i class="fas fa-key"></i> <?= $this->lang->line('button_forgot_password'); ?></a>
           </div>
           <div class="uk-width-1-2@m"></div>
           <div class="uk-width-1-4@m">
-            <button class="uk-button uk-button-default uk-width-1-1 uk-align-right@m" id="button_login" type="submit"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></button>
+            <button class="uk-button uk-button-default uk-width-1-1" id="button_login" type="submit"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></button>
           </div>
         </div>
         <?= form_close(); ?>

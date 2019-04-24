@@ -73,4 +73,4 @@ $config['mod_access_level'] = '2';
  * Still not licensed? Generate at https://wow-cms.com/en/licenses
  *
 */
-$config['license_plus'] = '%LICENSE_KEY%';
+$config['license_plus'] = '';
