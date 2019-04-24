@@ -32,7 +32,6 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
-                    <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-cog"></i> Panel de Moderación</a></li>
                     <li class="uk-nav-divider"></li>
                     <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
                   </ul>
@@ -164,7 +163,7 @@
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container uk-container-expand">
         <hr class="uk-hr">
-        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</p>
+        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= $this->lang->line('footer_rights'); ?></p>
       </div>
     </section>
     <script src="<?= base_url('assets/core/js/jquery.countTo.js'); ?>"></script>

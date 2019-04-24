@@ -26,11 +26,11 @@ class Migration_create_users_annotations extends CI_Migration {
               ),
       ));
       $this->dbforge->add_key('id', TRUE);
-      $this->dbforge->create_table('users_annotation');
+      $this->dbforge->create_table('users_annotations');
     }
 
     public function down()
     {
-      $this->dbforge->drop_table('users_annotation');
+      $this->dbforge->drop_table('users_annotations');
     }
 }

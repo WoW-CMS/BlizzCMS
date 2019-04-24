@@ -12,22 +12,22 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
-                <li class="uk-active"><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> General Settings</a></li>
-                <li><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> Module Settings</a></li>
-                <li><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> Optional Settings</a></li>
+                <li class="uk-active"><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('section_general_settings'); ?></a></li>
+                <li><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> <?= $this->lang->line('section_module_settings'); ?></a></li>
+                <li><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> <?= $this->lang->line('section_optional_settings'); ?></a></li>
               </ul>
             </div>
           </div>
           <div class="uk-width-3-4@s">
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-body">
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span>General Settings</span></h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span><?= $this->lang->line('section_general_settings'); ?></span></h5>
                 <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small">BlizzCMS</h5>
                 <?= form_open('', 'id="updategeneralForm" onsubmit="UpdateGeneralForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Project Name</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_website_name'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
@@ -36,7 +36,7 @@
                       </div>
                     </div>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Realmlist</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_realmlist'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
@@ -49,7 +49,7 @@
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Discord Invitation ID</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_discord_invid'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
@@ -58,7 +58,7 @@
                       </div>
                     </div>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Timezone</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_timezone'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="far fa-clock"></i></span>
@@ -71,7 +71,7 @@
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">Theme Name</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_theme_name'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
@@ -83,7 +83,7 @@
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_settings"><i class="fas fa-sync"></i> Update</button>
+                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_settings"><i class="fas fa-sync"></i> <?= $this->lang->line('button_update'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>
@@ -147,7 +147,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_settings_updated'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

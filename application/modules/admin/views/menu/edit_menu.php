@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> Edit Menu</h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_menu'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/menu'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -14,20 +14,20 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Name</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen"></i></span>
-                      <input class="uk-input" type="text" id="menu_name" value="<?= $this->admin_model->getMenuSpecifyName($idlink); ?>" placeholder="Menu Name" required>
+                      <input class="uk-input" type="text" id="menu_name" value="<?= $this->admin_model->getMenuSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">URL</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_url'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-link"></i></span>
-                      <input class="uk-input" type="text" id="menu_url" value="<?= $this->admin_model->getMenuSpecifyUrl($idlink); ?>" placeholder="Menu URL" required>
+                      <input class="uk-input" type="text" id="menu_url" value="<?= $this->admin_model->getMenuSpecifyUrl($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_url'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -36,21 +36,21 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Icon</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_icon_name'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-font-awesome-flag"></i></span>
-                      <input class="uk-input" type="text" id="menu_icon" value="<?= $this->admin_model->getMenuSpecifyIcon($idlink); ?>" placeholder="Icon Name" required>
+                      <input class="uk-input" type="text" id="menu_icon" value="<?= $this->admin_model->getMenuSpecifyIcon($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_icon_name'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Menu Type</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="menu_main">
                       <option value="0" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 0) echo 'selected'; ?>><?= $this->lang->line('notification_select_type'); ?></option>
-                      <option value="1" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 1) echo 'selected'; ?>>Normal</option>
-                      <option value="2" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 2) echo 'selected'; ?>>Dropdown</option>
+                      <option value="1" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 1) echo 'selected'; ?>><?= $this->lang->line('option_normal'); ?></option>
+                      <option value="2" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 2) echo 'selected'; ?>><?= $this->lang->line('option_dropdown'); ?></option>
                     </select>
                   </div>
                 </div>
@@ -59,16 +59,16 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Child Menu <span class="uk-text-bold">(#ID)</span></label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_child_menu'); ?> <span class="uk-text-bold">(<?= $this->lang->line('table_header_id'); ?>)</span></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-bars"></i></span>
-                      <input class="uk-input" type="number" id="menu_child" value="<?= $this->admin_model->getMenuSpecifyChild($idlink); ?>" placeholder="Menu ID" required>
+                      <input class="uk-input" type="number" id="menu_child" value="<?= $this->admin_model->getMenuSpecifyChild($idlink); ?>" placeholder="<?= $this->lang->line('table_header_id'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">URL Type</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_url_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="menu_type">
                       <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
@@ -109,7 +109,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_name_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -120,7 +120,7 @@
           });
           return false;
         }
-        if(type == 0 || main == 0){
+        if(main == 0 || type == 0){
           $.amaran({
             'theme': 'awesome error',
             'content': {
@@ -165,7 +165,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_menu_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

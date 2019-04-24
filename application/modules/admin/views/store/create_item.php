@@ -12,11 +12,11 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="additemForm" onsubmit="AddItemForm(event)"'); ?>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_store_item_name'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" type="text" id="item_name" placeholder="<?= $this->lang->line('placeholder_store_item_name'); ?>" required>
+                    <input class="uk-input" type="text" id="item_name" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -33,10 +33,10 @@
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?=$this->lang->line('placeholder_type');?></label>
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_type">
-                        <option value="1"><?=$this->lang->line('option_item');?></option>
+                        <option value="1"><?= $this->lang->line('option_item'); ?></option>
                       </select>
                     </div>
                   </div>
@@ -45,13 +45,13 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?=$this->lang->line('store_item_price');?> DP</label>
+                    <label class="uk-form-label"><?= $this->lang->line('store_item_price'); ?> DP</label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="number" id="item_dp_price" placeholder="0" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?=$this->lang->line('store_item_price');?> VP</label>
+                    <label class="uk-form-label"><?= $this->lang->line('store_item_price'); ?> VP</label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="number" id="item_vp_price" placeholder="0" required>
                     </div>
@@ -61,13 +61,13 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?=$this->lang->line('placeholder_store_item_id');?></label>
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_item'); ?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="text" id="item_id" placeholder="Item Id" required>
+                      <input class="uk-input" type="text" id="item_id" placeholder="<?= $this->lang->line('table_header_id'); ?>" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?=$this->lang->line('placeholder_forum_icon_name');?></label>
+                    <label class="uk-form-label"><?=$this->lang->line('placeholder_icon_name');?></label>
                     <div class="uk-form-controls">
                       <input class="uk-input" type="text" id="item_icon" placeholder="inv_belt_45">
                     </div>
@@ -75,7 +75,7 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?=$this->lang->line('placeholder_store_image_name');?></label>
+                <label class="uk-form-label"><?=$this->lang->line('placeholder_image_name');?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" type="text" id="item_image" placeholder="image.jpg">
@@ -108,23 +108,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
-              info: '',
-              icon: 'fas fa-times-circle'
-            },
-            'delay': 5000,
-            'position': 'top right',
-            'inEffect': 'slideRight',
-            'outEffect': 'slideRight'
-          });
-          return false;
-        }
-        if(image == ''){
-          $.amaran({
-            'theme': 'awesome error',
-            'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_name_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -164,7 +148,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_item_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

@@ -870,7 +870,7 @@ class Admin extends MX_Controller {
                     <th class="uk-width-small">'.$this->lang->line('store_item_price').'</th>
                     <th class="uk-width-small">'.$this->lang->line('table_header_tax').'</th>
                     <th class="uk-width-small">'.$this->lang->line('table_header_points').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('table_header_action').'</th>
+                    <th class="uk-table-shrink">'.$this->lang->line('table_header_actions').'</th>
                 </tr>
             </thead>
             <tbody>';

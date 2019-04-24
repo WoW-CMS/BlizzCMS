@@ -13,11 +13,11 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-table-shrink">#ID</th>
-                  <th class="uk-width-small">Name</th>
-                  <th class="uk-width-medium">URL</th>
+                  <th class="uk-table-shrink"><?= $this->lang->line('table_header_id'); ?></th>
+                  <th class="uk-width-small"><?= $this->lang->line('placeholder_name'); ?></th>
+                  <th class="uk-width-medium"><?= $this->lang->line('placeholder_url'); ?></th>
                   <th class="uk-width-small"><?= $this->lang->line('table_header_type'); ?></th>
-                  <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
+                  <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
                 </tr>
               </thead>
               <tbody>
@@ -75,7 +75,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_menu_deleted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

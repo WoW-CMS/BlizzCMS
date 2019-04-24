@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('card_title_edit_changelogs'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_changelog'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/changelogs'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -87,7 +87,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_changelog_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

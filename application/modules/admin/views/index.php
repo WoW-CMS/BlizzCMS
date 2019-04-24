@@ -51,18 +51,18 @@
               <div class="uk-card-body">
                 <div class="uk-grid uk-grid-small uk-grid-divider uk-text-center" data-uk-grid>
                   <div class="uk-width-1-2">
-                    <h5 class="uk-h5 uk-text-primary uk-text-bold uk-text-uppercase uk-margin-remove">Alliance Players</h5>
+                    <h5 class="uk-h5 uk-text-primary uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('info_alliance_players'); ?></h5>
                     <h1 class="uk-h1 uk-margin-remove"><span class="counter" data-count="<?= $this->wowrealm->getCharactersOnlineAlliance($multiRealm); ?>">0</span></h1>
-                    <p class="uk-text-small uk-margin-remove">Alliances playing on realm</p>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('info_alliance_playing'); ?></p>
                   </div>
                   <div class="uk-width-1-2">
-                    <h5 class="uk-h5 uk-text-danger uk-text-bold uk-text-uppercase uk-margin-remove">Horde Players</h5>
+                    <h5 class="uk-h5 uk-text-danger uk-text-bold uk-text-uppercase uk-margin-remove"><?= $this->lang->line('info_horde_players'); ?></h5>
                     <h1 class="uk-h1 uk-margin-remove"><span class="counter" data-count="<?= $this->wowrealm->getCharactersOnlineHorde($multiRealm); ?>">0</span></h1>
-                    <p class="uk-text-small uk-margin-remove">Hordes playing on realm</p>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('info_horde_playing'); ?></p>
                   </div>
                 </div>
                 <hr class="uk-divider-icon uk-margin-small">
-                <h6 class="uk-h6 uk-text-uppercase uk-margin-remove uk-text-center"><i class="fas fa-user-friends"></i> <span class="counter uk-text-bold uk-text-warning" data-count="<?= $this->wowrealm->getAllCharactersOnline($multiRealm); ?>">0</span> Players playing on realm</h6>
+                <h6 class="uk-h6 uk-text-uppercase uk-margin-remove uk-text-center"><i class="fas fa-user-friends"></i> <span class="counter uk-text-bold uk-text-warning" data-count="<?= $this->wowrealm->getAllCharactersOnline($multiRealm); ?>">0</span> <?= $this->lang->line('info_players_playing'); ?></h6>
               </div>
             </div>
           </div>

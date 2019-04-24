@@ -12,22 +12,22 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
-                <li><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> General Settings</a></li>
-                <li class="uk-active"><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> Module Settings</a></li>
-                <li><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> Optional Settings</a></li>
+                <li><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('section_general_settings'); ?></a></li>
+                <li class="uk-active"><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> <?= $this->lang->line('section_module_settings'); ?></a></li>
+                <li><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> <?= $this->lang->line('section_optional_settings'); ?></a></li>
               </ul>
             </div>
           </div>
           <div class="uk-width-3-4@s">
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-body">
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span>Modules Settings</span></h5>
-                <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small">Donate</h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-text-center uk-margin-small"><span><?= $this->lang->line('section_module_settings'); ?></span></h5>
+                <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-small"><?= $this->lang->line('tab_donate'); ?></h5>
                 <?= form_open('', 'id="updatedonateForm" onsubmit="UpdateDonateForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">PayPal Currency</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_paypal_currency'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-file-invoice-dollar"></i></span>
@@ -36,7 +36,7 @@
                       </div>
                     </div>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label">PayPal Mode</label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_paypal_mode'); ?></label>
                       <div class="uk-form-controls">
                         <select class="uk-select" id="paypal_mode">
                           <option value="sandbox" <?php if($this->config->item('paypal_mode') == 'sandbox') echo 'selected'; ?>>Sandbox</option>
@@ -47,7 +47,7 @@
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label">PayPal Client ID</label>
+                  <label class="uk-form-label"><?= $this->lang->line('conf_paypal_client'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
@@ -56,7 +56,7 @@
                   </div>
                 </div>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label">PayPal Secret Password</label>
+                  <label class="uk-form-label"><?= $this->lang->line('conf_paypal_secretpass'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
@@ -65,13 +65,13 @@
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_update"><i class="fas fa-sync"></i> Update</button>
+                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_update"><i class="fas fa-sync"></i> <?= $this->lang->line('button_update'); ?></button>
                 </div>
                 <?= form_close(); ?>
-                <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom">Bugtracker</h5>
+                <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom"><?= $this->lang->line('tab_bugtracker'); ?></h5>
                 <?= form_open('', 'id="updatebugtrackerForm" onsubmit="UpdateBugtrackerForm(event)"'); ?>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label">Default Description</label>
+                  <label class="uk-form-label"><?= $this->lang->line('conf_default_description'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-width-1-1">
                       <textarea class="uk-textarea tinyeditor" rows="12" id="bugtracker_description"><?= $this->config->item('textarea'); ?></textarea>
@@ -79,7 +79,7 @@
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_update"><i class="fas fa-sync"></i> Update</button>
+                  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_update"><i class="fas fa-sync"></i> <?= $this->lang->line('button_update'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>
@@ -142,7 +142,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_settings_updated'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -206,7 +206,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_settings_updated'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

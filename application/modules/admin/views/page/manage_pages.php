@@ -16,7 +16,7 @@
                   <th class="uk-width-small"><?= $this->lang->line('placeholder_title'); ?></th>
                   <th class="uk-width-medium"><?= $this->lang->line('placeholder_uri'); ?></th>
                   <th class="uk-width-small"><?= $this->lang->line('table_header_date'); ?></th>
-                  <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
+                  <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
                 </tr>
               </thead>
               <tbody>
@@ -73,7 +73,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_page_deleted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

@@ -86,7 +86,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_changelog_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

@@ -14,15 +14,15 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Topsite <?= $this->lang->line('table_header_name'); ?></label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="topsite_name" placeholder="Name" required>
+                    <input class="uk-input" type="text" id="topsite_name" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Topsite URL</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="url" id="topsite_url" placeholder="URL" required>
+                    <input class="uk-input" type="url" id="topsite_url" placeholder="<?= $this->lang->line('placeholder_url'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -30,7 +30,7 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('table_header_time'); ?> (Hours)</label>
+                  <label class="uk-form-label"><?= $this->lang->line('table_header_time'); ?> <span class="uk-text-bold">(<?= $this->lang->line('placeholder_hours'); ?>)</span></label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="number" id="topsite_time" min="1" placeholder="Hours" required>
                   </div>
@@ -74,7 +74,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_name_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -114,7 +114,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_topsite_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

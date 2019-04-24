@@ -39,37 +39,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['admin_nav_dashboard'] = 'Panel';
 $lang['admin_nav_system'] = 'Sistema';
 $lang['admin_nav_manage_settings'] = 'Administrar Ajustes';
-$lang['admin_nav_manage_modules'] = 'Administrar Modulos';
+$lang['admin_nav_manage_modules'] = 'Administrar Módulos';
 $lang['admin_nav_users'] = 'Usuarios';
 $lang['admin_nav_accounts'] = 'Cuentas';
-$lang['admin_nav_characters'] = 'Personajes';
+$lang['admin_nav_characters'] = 'Caracteres';
 $lang['admin_nav_website'] = 'Sitio Web';
-$lang['admin_nav_menu'] = 'Menu';
+$lang['admin_nav_menu'] = 'Menú';
 $lang['admin_nav_realms'] = 'Reinos';
 $lang['admin_nav_slides'] = 'Slides';
 $lang['admin_nav_news'] = 'Noticias';
 $lang['admin_nav_changelogs'] = 'Changelogs';
 $lang['admin_nav_pages'] = 'Páginas';
+$lang['admin_nav_donate_methods'] = 'Métodos de donación';
 $lang['admin_nav_topsites'] = 'Topsites';
-$lang['admin_nav_donate_methods'] = 'Métodos de Donación';
-$lang['admin_nav_topsites'] = 'Topsites';
-$lang['admin_nav_donate_vote_logs'] = 'Registros de Donaciones/Votos';
+$lang['admin_nav_donate_vote_logs'] = 'Registros de donaciones/votos';
 $lang['admin_nav_store'] = 'Tienda';
-$lang['admin_nav_manage_store'] = 'Gestionar Tienda';
+$lang['admin_nav_manage_store'] = 'Administrar Tienda';
 $lang['admin_nav_forum'] = 'Foro';
-$lang['admin_nav_manage_forum'] = 'Gestionar Foro';
+$lang['admin_nav_manage_forum'] = 'Administrar Foro';
+
+/*Sections Lang*/
+$lang['section_general_settings'] = 'Configuración General';
+$lang['section_module_settings'] = 'Configuraciones de Módulos';
+$lang['section_optional_settings'] = 'Configuraciones Opcionales';
+$lang['section_forum_categories'] = 'Categorías del Foro';
+$lang['section_forum_elements'] = 'Elementos del Foro';
+$lang['section_store_categories'] = 'Categorías de la Tienda';
+$lang['section_store_items'] = 'Items de la Tienda';
 
 /*Button Lang*/
+$lang['button_select'] = 'Seleccionar';
+$lang['button_update'] = 'Actualizar';
 $lang['button_unban'] = 'Desbanear';
 $lang['button_ban'] = 'Banear';
-$lang['button_re_grant_account'] = 'Borrar GM';
+$lang['button_re_grant_account'] = 'Remover GM';
 $lang['button_grant_account'] = 'Conceder GM';
-$lang['button_change_level'] = 'Cambiar Nivel';
-$lang['button_disable'] = 'Inhabilitar';
-$lang['button_enable'] = 'Habilitar';
+$lang['button_change_level'] = 'Cambiar nivel';
 
 /*Card Title Lang*/
-$lang['card_title_user_manage'] = 'Administrar usuario';
+$lang['card_title_user_manage'] = 'Administrar Usuario';
 $lang['card_title_unban_account'] = 'Desbanear Cuenta';
 $lang['card_title_ban_account'] = 'Banear Cuenta';
 $lang['card_title_rank_account'] = 'Rango de GM';
@@ -84,19 +92,6 @@ $lang['card_title_ban_char'] = 'Banear Personaje';
 $lang['card_title_customize'] = 'Customizar Personaje';
 $lang['card_title_change_race'] = 'Cambiar Raza';
 $lang['card_title_change_faction'] = 'Cambiar Facción';
-$lang['card_title_changelogs_list'] = 'Lista de Changelogs';
-$lang['card_title_pages_list'] = 'Lista de Páginas';
-$lang['card_title_news_list'] = 'Lista de Noticias';
-$lang['card_title_edit_news'] = 'Editar Noticia';
-$lang['card_title_edit_pages'] = 'Editar Página';
-$lang['card_title_edit_changelogs'] = 'Editar Changelog';
-$lang['card_title_edit_item'] = 'Editar Artículo';
-$lang['card_title_edit_group'] = 'Editar Grupo';
-$lang['card_title_menu_list'] = 'Lista del Menu';
-$lang['card_title_edit_topsite'] = 'Editar Topsite';
-$lang['card_title_edit_forum'] = 'Editar Foro';
-$lang['admin_nav_manage_items'] = 'Gestionar Artículos';
-$lang['admin_nav_manage_categories'] = 'Gestionar categorías';
 
 /*Table header Lang*/
 $lang['table_header_race'] = 'Raza';
@@ -104,42 +99,86 @@ $lang['table_header_class'] = 'Clase';
 $lang['table_header_level'] = 'Nivel';
 $lang['table_header_money'] = 'Dinero';
 $lang['table_header_own'] = 'Creador';
-$lang['table_header_action'] = 'Acción';
-$lang['table_header_realm_id'] = 'ID Reino';
-$lang['table_header_realm_name'] = 'Nombre Reino';
-$lang['table_header_realm_char_database'] = 'Character Database Name';
+$lang['table_header_actions'] = 'Acciones';
+$lang['table_header_id'] = '#ID';
 $lang['table_header_tax'] = 'Impuestos';
 $lang['table_header_points'] = 'Puntos';
 $lang['table_header_type'] = 'Tipo';
 $lang['table_header_module'] = 'Modulo';
+$lang['table_header_payment_id'] = 'Payment ID';
+$lang['table_header_hash'] = 'Hash';
+$lang['table_header_total'] = 'Total';
+$lang['table_header_complete'] = 'Complete';
+$lang['table_header_create_time'] = 'Create Time';
+$lang['table_header_guid'] = 'Guid';
 
 /*Input Placeholder Lang*/
-$lang['placeholder_create_changelog'] = 'Crear nuevo Changelog';
-$lang['placeholder_changelog_title'] = 'Título de Changelog';
-$lang['placeholder_create_pages'] = 'Crear nueva Página';
-$lang['placeholder_create_news'] = 'Crear nueva Noticia';
-$lang['placeholder_create_donation'] = 'Crear Donación';
-$lang['placeholder_donation_title'] = 'Título de la donación';
-$lang['placeholder_news_title'] = 'Título de Noticia';
-$lang['placeholder_upload_file'] = 'Subir archivo';
+$lang['placeholder_create_changelog'] = 'Crear Changelog';
+$lang['placeholder_edit_changelog'] = 'Editar Changelog';
 $lang['placeholder_create_category'] = 'Crear Categoría';
-$lang['placeholder_create_forums'] = 'Crear Foro';
-$lang['placeholder_category_title'] = 'Título de Categoría';
-$lang['placeholder_forum_title'] = 'Título del Foro';
-$lang['placeholder_forum_description'] = 'Introduzca una breve descripción del foro';
-$lang['placeholder_forum_icon_name'] = 'Nombre del Icono';
+$lang['placeholder_edit_category'] = 'Editar Categoría';
+$lang['placeholder_create_forum'] = 'Crear Foro';
+$lang['placeholder_edit_forum'] = 'Editar Foro';
+$lang['placeholder_create_menu'] = 'Crear Menú';
+$lang['placeholder_edit_menu'] = 'Editar Menú';
+$lang['placeholder_create_news'] = 'Crear Noticia';
+$lang['placeholder_edit_news'] = 'Editar Noticia';
+$lang['placeholder_create_page'] = 'Crear Página';
+$lang['placeholder_edit_page'] = 'Editar Página';
+$lang['placeholder_create_realm'] = 'Crear Reino';
+$lang['placeholder_edit_realm'] = 'Editar Reino';
+$lang['placeholder_create_slide'] = 'Crear Slide';
+$lang['placeholder_edit_slide'] = 'Editar Slide';
+$lang['placeholder_create_item'] = 'Crear item';
+$lang['placeholder_edit_item'] = 'Editar Item';
+$lang['placeholder_create_topsite'] = 'Crear Topsite';
+$lang['placeholder_edit_topsite'] = 'Editar Topsite';
+
+$lang['placeholder_upload_image'] = 'Cargar imagen';
+$lang['placeholder_icon_name'] = 'Nombre del icono';
 $lang['placeholder_category'] = 'Categoría';
-$lang['placeholder_create_item'] = 'Crear un Artículo';
-$lang['placeholder_store_item_name'] = 'Nombre del Producto';
-$lang['placeholder_store_item_id'] = 'ID del Artículo';
-$lang['placeholder_store_image_name'] = 'Nombre del archivo de Imagen';
-$lang['placeholder_create_group'] = 'Crear Grupo';
-$lang['placeholder_group_title'] = 'Título del Grupo';
-$lang['placeholder_create_menu'] = 'Crear Menu';
-$lang['placeholder_create_topsite'] = 'Crear nuevo Topsite';
-$lang['placeholder_reason'] = 'Motivo';
+$lang['placeholder_name'] = 'Nombre';
+$lang['placeholder_item'] = 'Item';
+$lang['placeholder_image_name'] = 'Nombre de la imágen';
+$lang['placeholder_reason'] = 'Razón';
 $lang['placeholder_gmlevel'] = 'Nivel de GM';
-$lang['placeholder_forum_icon'] = 'foldername/image.jpg o foldername/image.png';
+$lang['placeholder_url'] = 'URL';
+$lang['placeholder_child_menu'] = 'Child Menu';
+$lang['placeholder_url_type'] = 'Tipo de URL';
+$lang['placeholder_route'] = 'Ruta';
+$lang['placeholder_hours'] = 'Horas';
+$lang['placeholder_soap_hostname'] = 'Hostname del Soap';
+$lang['placeholder_soap_port'] = 'Puerto del Soap';
+$lang['placeholder_soap_user'] = 'Usuario del Soap';
+$lang['placeholder_soap_password'] = 'Contraseña del Soap';
+$lang['placeholder_db_character'] = 'Character';
+$lang['placeholder_db_hostname'] = 'Database Hostname';
+$lang['placeholder_db_name'] = 'Database Name';
+$lang['placeholder_db_user'] = 'Database User';
+$lang['placeholder_db_password'] = 'Database Password';
+
+/*Config Lang*/
+$lang['conf_website_name'] = 'Nombre del Sitio Web';
+$lang['conf_realmlist'] = 'Realmlist';
+$lang['conf_discord_invid'] = 'ID de Invitación de discord';
+$lang['conf_timezone'] = 'Zona horaria';
+$lang['conf_theme_name'] = 'Nombre del Tema';
+$lang['conf_paypal_currency'] = 'PayPal Currency';
+$lang['conf_paypal_mode'] = 'PayPal Mode';
+$lang['conf_paypal_client'] = 'PayPal Client ID';
+$lang['conf_paypal_secretpass'] = 'PayPal Secret Password';
+$lang['conf_default_description'] = 'Descripción predeterminada';
+$lang['conf_admin_gmlvl'] = 'Administrador GMLevel';
+$lang['conf_mod_gmlvl'] = 'Moderador GMLevel';
+$lang['conf_recaptcha_key'] = 'reCaptcha Site Key';
+$lang['conf_account_activation'] = 'Activación de Cuenta';
+$lang['conf_smtp_hostname'] = 'Hostname del SMTP';
+$lang['conf_smtp_port'] = 'Puerto del SMTP';
+$lang['conf_smtp_encryption'] = 'Encriptacion del SMTP';
+$lang['conf_smtp_username'] = 'Usuario del SMTP';
+$lang['conf_smtp_password'] = 'Contraseña del SMTP';
+$lang['conf_sender_email'] = 'Correo electrónico del remitente';
+$lang['conf_sender_name'] = 'Nombre del remitente';
 
 /*Status Lang*/
 $lang['status_is_online'] = 'EL jugador está online, por favor desconéctate';
@@ -148,12 +187,19 @@ $lang['status_donate_complete'] = 'Completado';
 $lang['status_donate_cancell'] = 'Cancelado';
 
 /*Options Lang*/
-$lang['option_yes'] = 'Si';
-$lang['option_no'] = 'No';
+$lang['option_normal'] = 'Normal';
+$lang['option_dropdown'] = 'Dropdown';
+$lang['option_image'] = 'Imagen';
+$lang['option_video'] = 'Video';
+$lang['option_iframe'] = 'Iframe';
+$lang['option_enable'] = 'Habilitar';
+$lang['option_disable'] = 'Deshabilitar';
+$lang['option_ssl'] = 'SSL';
+$lang['option_tls'] = 'TLS';
 $lang['option_everyone'] = 'Todos';
 $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Todos';
-$lang['option_item'] = 'Artículo';
+$lang['option_item'] = 'Item';
 
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Cuentas Creadas';
@@ -165,8 +211,14 @@ $lang['total_accounts_banned'] = 'Total cuentas baneadas.';
 $lang['total_news_writed'] = 'Total de noticias escritas.';
 $lang['total_changelogs_writed'] = 'Total changelogs escritos.';
 
+$lang['info_alliance_players'] = 'Jugadores de la alianza';
+$lang['info_alliance_playing'] = 'Alianzas jugando en el reino';
+$lang['info_horde_players'] = 'Jugadores de la horda';
+$lang['info_horde_playing'] = 'Hordas jugando en el reino';
+$lang['info_players_playing'] = 'Jugadores jugando en el reino';
+
 /*Alert Lang*/
-$lang['alert_new_page_url'] = 'La URL de la nueva página es';
+$lang['alert_smtp_activation'] = 'Si habilita esta opción, debe configurar SMTP para enviar correos electrónicos.';
 $lang['alert_banned_reason'] = 'Está baneado, razón:';
 
 /*Logs Lang*/

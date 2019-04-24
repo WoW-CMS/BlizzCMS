@@ -110,7 +110,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_priority'); ?>',
+              message: '<?= $this->lang->line('notification_reply_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -150,7 +150,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_reply_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -197,7 +197,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_reply_deleted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

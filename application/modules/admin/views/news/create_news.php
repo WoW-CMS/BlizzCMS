@@ -37,11 +37,11 @@
           <div class="uk-card-body">
             <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_news_title'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" type="text" name="news_title" placeholder="<?= $this->lang->line('placeholder_news_title'); ?>" required>
+                    <input class="uk-input" type="text" name="news_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -52,13 +52,13 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_upload_file'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_upload_image'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <div uk-form-custom="target: true">
                       <input type="file" name="news_image" required>
-                      <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> Select</button>
+                      <input class="uk-input uk-form-width-medium" type="text" disabled>
+                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> <?= $this->lang->line('button_select'); ?></button>
                     </div>
                   </div>
                 </div>
