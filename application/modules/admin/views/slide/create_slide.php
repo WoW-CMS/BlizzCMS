@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> Add Slide</h3>
+            <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('placeholder_create_slide'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/slides'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -31,16 +31,17 @@
                   <label class="uk-form-label"><?=$this->lang->line('placeholder_type');?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="slide_type">
-                      <option value="1">Image</option>
-                      <option value="1">Video</option>
-                      <option value="3">Iframe</option>
+                      <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                      <option value="1"><?= $this->lang->line('option_image'); ?></option>
+                      <option value="2"><?= $this->lang->line('option_video'); ?></option>
+                      <option value="3"><?= $this->lang->line('option_iframe'); ?></option>
                     </select>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-2-3@s">
-                  <label class="uk-form-label">Route</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="slide_route" placeholder="Example: URL or Image Name" required>
+                    <input class="uk-input" type="text" id="slide_route" placeholder="URL or Image Name" required>
                   </div>
                 </div>
               </div>
@@ -68,6 +69,22 @@
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
               message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(type == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_type'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -107,7 +124,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_slide_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

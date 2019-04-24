@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-server"></i> Edit Realm</h3>
+            <h3 class="uk-h3"><i class="fas fa-server"></i> <?= $this->lang->line('placeholder_edit_realm'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -12,7 +12,7 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="updaterealmForm" onsubmit="UpdateRealmForm(event)"'); ?>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= $this->lang->line('table_header_realm_id'); ?></label>
+              <label class="uk-form-label"><?= $this->lang->line('table_header_id'); ?></label>
               <div class="uk-form-controls">
                 <input class="uk-input" type="number" id="realm_id" value="" placeholder="Auth -> realmlist -> ID" required>
               </div>
@@ -20,31 +20,15 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Soap Hostname</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_hostname'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="soap_hostname" value="" placeholder="Example: 127.0.0.1" required>
+                    <input class="uk-input" type="text" id="soap_hostname" value="" placeholder="127.0.0.1" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Soap Port</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_port'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="number" id="soap_port" value="" placeholder="Example: 7878" required>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="uk-margin-small">
-              <div class="uk-grid uk-grid-small" data-uk-grid>
-                <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Soap User</label>
-                  <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="soap_username" value="" placeholder="Example: blizzcms" required>
-                  </div>
-                </div>
-                <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label">Soap Password</label>
-                  <div class="uk-form-controls">
-                    <input class="uk-input" type="password" id="soap_password" value="" placeholder="Example: ascent" required>
+                    <input class="uk-input" type="number" id="soap_port" value="" placeholder="7878" required>
                   </div>
                 </div>
               </div>
@@ -52,15 +36,15 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><strong>Character</strong> Database Hostname</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_user'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_hostname" value="" placeholder="Example: 127.0.0.1" required>
+                    <input class="uk-input" type="text" id="soap_username" value="" placeholder="blizzcms" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><strong>Character</strong> Database Name</label>
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_password'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_database" value="" placeholder="Example: characters" required>
+                    <input class="uk-input" type="password" id="soap_password" value="" placeholder="ascent" required>
                   </div>
                 </div>
               </div>
@@ -68,15 +52,31 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><strong>Character</strong> Database User</label>
+                  <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_hostname'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_username" value="" placeholder="Example: root" required>
+                    <input class="uk-input" type="text" id="character_hostname" value="" placeholder="127.0.0.1" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><strong>Character</strong> Database Password</label>
+                  <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_name'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="password" id="character_password" value="" placeholder="Example: ascent" required>
+                    <input class="uk-input" type="text" id="character_database" value="" placeholder="characters" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin-small">
+              <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-inline uk-width-1-2@s">
+                  <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_user'); ?></label>
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="text" id="character_username" value="" placeholder="root" required>
+                  </div>
+                </div>
+                <div class="uk-inline uk-width-1-2@s">
+                  <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_password'); ?></label>
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="password" id="character_password" value="" placeholder="ascent">
                   </div>
                 </div>
               </div>
@@ -110,7 +110,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_id_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -150,7 +150,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_realm_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

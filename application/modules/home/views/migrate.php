@@ -105,7 +105,7 @@
                     'theme': 'awesome error',
                     'content': {
                       title: '<?= $this->lang->line('notification_title_error'); ?>',
-                      message: '<?= $this->lang->line('notification_title_empty'); ?>',
+                      message: '<?= $this->lang->line('notification_name_empty'); ?>',
                       info: '',
                       icon: 'fas fa-times-circle'
                     },
@@ -145,7 +145,7 @@
                         'theme': 'awesome ok',
                           'content': {
                           title: '<?= $this->lang->line('notification_title_success'); ?>',
-                          message: '<?= $this->lang->line('notification_report_created'); ?>',
+                          message: '<?= $this->lang->line('notification_migration'); ?>',
                           info: '',
                           icon: 'fas fa-check-circle'
                         },

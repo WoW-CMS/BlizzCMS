@@ -152,12 +152,12 @@ endif;
               <table class="uk-table uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-width-small">Payment ID</th>
-                    <th class="uk-width-medium">Hash</th>
-                    <th class="uk-width-small">Total</th>
-                    <th class="uk-width-small">Complete</th>
-                    <th class="uk-width-small">Create Time</th>
-                    <th class="uk-width-small">Points</th>
+                    <th class="uk-width-small"><?= $this->lang->line('table_header_payment_id'); ?></th>
+                    <th class="uk-width-medium"><?= $this->lang->line('table_header_hash'); ?></th>
+                    <th class="uk-width-small"><?= $this->lang->line('table_header_total'); ?></th>
+                    <th class="uk-width-small"><?= $this->lang->line('table_header_complete'); ?></th>
+                    <th class="uk-width-small"><?= $this->lang->line('table_header_create_time'); ?></th>
+                    <th class="uk-width-small"><?= $this->lang->line('table_header_points'); ?></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -197,7 +197,7 @@ endif;
                     <table class="uk-table uk-table-divider uk-table-small">
                       <thead>
                         <tr>
-                          <th class="uk-width-small">Guid</th>
+                          <th class="uk-width-small"><?= $this->lang->line('table_header_guid'); ?></th>
                           <th class="uk-width-medium"><?= $this->lang->line('table_header_name'); ?></th>
                           <th class="uk-width-small"><?= $this->lang->line('table_header_race'); ?></th>
                           <th class="uk-width-small"><?= $this->lang->line('table_header_class'); ?></th>

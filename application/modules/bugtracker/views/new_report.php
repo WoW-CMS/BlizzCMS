@@ -158,7 +158,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_priority'); ?>',
+              message: '<?= $this->lang->line('notification_description_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },

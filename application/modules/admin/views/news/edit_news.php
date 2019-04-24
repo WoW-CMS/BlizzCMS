@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('card_title_edit_news'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_news'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/news'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -37,11 +37,11 @@
           <div class="uk-card-body">
             <form action="" method="post" enctype="multipart/form-data" accept-charset="utf-8" autocomplete="off">
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_news_title'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" type="text" name="news_title" value="<?= $this->admin_model->getNewsSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_news_title'); ?>" required>
+                    <input class="uk-input" type="text" name="news_title" value="<?= $this->admin_model->getNewsSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -52,13 +52,13 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_upload_file'); ?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_upload_image'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <div uk-form-custom="target: true">
                       <input type="file" name="news_image" required>
-                      <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> Select</button>
+                      <input class="uk-input uk-form-width-medium" type="text" disabled>
+                      <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> <?= $this->lang->line('button_select'); ?></button>
                     </div>
                   </div>
                 </div>

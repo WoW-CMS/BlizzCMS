@@ -97,7 +97,7 @@ class Home extends MX_Controller {
     {
         $name = $this->input->post('name');
         $invitation = $this->input->post('invitation');
-        $realmlist = $this->input->post('realmslist');
+        $realmlist = $this->input->post('realmlist');
         $expansion = $this->input->post('expansion');
         $license = $this->input->post('license');
         echo $this->home_model->updateconfigs($name, $invitation, $realmlist, $expansion, $license);

@@ -12,8 +12,8 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
-                <li class="uk-active"><a href="<?= base_url('admin/store'); ?>"><i class="fas fa-tags"></i> Store Categories</a></li>
-                <li><a href="<?= base_url('admin/store/items'); ?>"><i class="fas fa-boxes"></i> Store Items</a></li>
+                <li class="uk-active"><a href="<?= base_url('admin/store'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_store_categories'); ?></a></li>
+                <li><a href="<?= base_url('admin/store/items'); ?>"><i class="fas fa-boxes"></i> <?= $this->lang->line('section_store_items'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -24,7 +24,7 @@
                   <thead>
                     <tr>
                       <th class="uk-table-expand"><?= $this->lang->line('placeholder_title'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_action'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -81,7 +81,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_report_created'); ?>',
+                  message: '<?= $this->lang->line('notification_category_deleted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
