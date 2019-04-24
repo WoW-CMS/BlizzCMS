@@ -34,7 +34,7 @@ class Migration_create_news extends CI_Migration {
       $this->dbforge->add_key('id', TRUE);
       $this->dbforge->create_table('news');
       $data = array(
-        array('title' => 'Welcome to your new website!', 'description' => '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title=\"WoW-CMS\" href=\"https://discord.gg/vZG9vpS\" target=\"_blank\" rel=\"noopener\">Discord</a></p>\r\n</body>\r\n</html>', 'image' => 'news.jpg', 'date' => '1551283156'),
+        array('title' => 'Welcome to your new website!', 'description' => '<!DOCTYPE html><html><head></head><body><p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us by <a title=\"WoW-CMS\" href=\"https://discord.gg/vZG9vpS\" target=\"_blank\" rel=\"noopener\">Discord</a></p></body></html>', 'image' => 'news.jpg', 'date' => '1551283156'),
       );
      $this->db->insert_batch('news', $data);
     }

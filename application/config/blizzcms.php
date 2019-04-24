@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = '%WEBSITE_NAME%';
+$config['website_name'] = '';
 
 /**
  *
@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  * Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = '%DISCORD_INVITATION%';
+$config['discord_invitation'] = '';
 
 /**
  *
@@ -44,7 +44,7 @@ $config['discord_invitation'] = '%DISCORD_INVITATION%';
  * Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = '%REALMLIST%';
+$config['realmlist'] = '';
 
 /**
  *
@@ -62,7 +62,7 @@ $config['realmlist'] = '%REALMLIST%';
  * 8 = Battle for Azeroth
  *
 */
-$config['expansion'] = '%EXPANSION%';
+$config['expansion'] = '';
 
 /**
  *
@@ -83,6 +83,15 @@ $config['theme_name'] = 'default';
  * Write the links for redirect to your social networks.
  *
 */
-$config['social_facebook'] = '%SOCIAL_FACEBOOK%';
-$config['social_twitter'] = '%SOCIAL_TWITTER%';
+$config['social_facebook'] = '';
+$config['social_twitter'] = '';
 $config['social_youtube'] = '';
+
+/**
+ *
+ * Migrate Status
+ *
+ * Warning: Don't change this configuration.
+ *
+*/
+$config['migrate_status'] = '1';

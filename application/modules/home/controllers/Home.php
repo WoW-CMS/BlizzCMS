@@ -55,10 +55,12 @@ class Home extends MX_Controller {
 
     public function index()
     {
-        if ($this->wowmodule->getInstallationStatus())
+        if ($this->config->item('migrate_status') == '1')
         {
-            $this->load->model('admin/admin_model');
-            $this->load->view('installation');
+            $data = array(
+                'lang' => $this->lang->lang()
+            );
+            $this->load->view('migrate', $data);
         }
         else
         {
@@ -89,5 +91,15 @@ class Home extends MX_Controller {
         {
             show_error($this->migration->error_string());
         }
+    }
+
+    public function setconfig()
+    {
+        $name = $this->input->post('name');
+        $invitation = $this->input->post('invitation');
+        $realmlist = $this->input->post('realmslist');
+        $expansion = $this->input->post('expansion');
+        $license = $this->input->post('license');
+        echo $this->home_model->updateconfigs($name, $invitation, $realmlist, $expansion, $license);
     }
 }

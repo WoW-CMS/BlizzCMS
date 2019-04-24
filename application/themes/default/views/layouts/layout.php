@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?= $template['location'].'assets/css/main.css'; ?>" />
     <script src="<?= $template['assets'].'core/uikit/js/uikit.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'core/uikit/js/uikit-icons.min.js'; ?>"></script>
-    <script src="<?= $template['assets'].'core/js/cookieinfo.min.js'; ?>" data-bg="#001b3c" data-fg="#ffffff" data-link="#0e86ca" data-divlink="#ffffff" data-divlinkbg="#0e86ca" data-cookie="<?= $this->config->item('website_name'); ?>-cookieinfo" data-text-align="left" data-close-text="<?= $this->lang->line('header_cookie_button'); ?>"></script>
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">

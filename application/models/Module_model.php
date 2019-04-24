@@ -11,7 +11,7 @@ class Module_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getInstallationStatus()
+    public function getDiscordStatus()
     {
         $qq = $this->db->select('status')->where('id', '1')->get('modules')->row('status');
 
@@ -21,7 +21,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getDiscordStatus()
+    public function getreCaptchaStatus()
     {
         $qq = $this->db->select('status')->where('id', '2')->get('modules')->row('status');
 
@@ -31,7 +31,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getreCaptchaStatus()
+    public function getSlideshowStatus()
     {
         $qq = $this->db->select('status')->where('id', '3')->get('modules')->row('status');
 
@@ -41,7 +41,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getSlideshowStatus()
+    public function getRealmStatus()
     {
         $qq = $this->db->select('status')->where('id', '4')->get('modules')->row('status');
 
@@ -51,7 +51,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getRealmStatus()
+    public function getRegisterStatus()
     {
         $qq = $this->db->select('status')->where('id', '5')->get('modules')->row('status');
 
@@ -61,7 +61,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getRegisterStatus()
+    public function getLoginStatus()
     {
         $qq = $this->db->select('status')->where('id', '6')->get('modules')->row('status');
 
@@ -71,7 +71,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getLoginStatus()
+    public function getRecoveryStatus()
     {
         $qq = $this->db->select('status')->where('id', '7')->get('modules')->row('status');
 
@@ -81,7 +81,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getRecoveryStatus()
+    public function getUCPStatus()
     {
         $qq = $this->db->select('status')->where('id', '8')->get('modules')->row('status');
 
@@ -91,7 +91,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getUCPStatus()
+    public function getACPStatus()
     {
         $qq = $this->db->select('status')->where('id', '9')->get('modules')->row('status');
 
@@ -101,7 +101,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getACPStatus()
+    public function getNewsStatus()
     {
         $qq = $this->db->select('status')->where('id', '10')->get('modules')->row('status');
 
@@ -111,7 +111,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getNewsStatus()
+    public function getForumStatus()
     {
         $qq = $this->db->select('status')->where('id', '11')->get('modules')->row('status');
 
@@ -121,7 +121,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getForumStatus()
+    public function getStoreStatus()
     {
         $qq = $this->db->select('status')->where('id', '12')->get('modules')->row('status');
 
@@ -131,7 +131,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getStoreStatus()
+    public function getDonationStatus()
     {
         $qq = $this->db->select('status')->where('id', '13')->get('modules')->row('status');
 
@@ -141,7 +141,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getDonationStatus()
+    public function getVoteStatus()
     {
         $qq = $this->db->select('status')->where('id', '14')->get('modules')->row('status');
 
@@ -151,7 +151,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getVoteStatus()
+    public function getPVPStatus()
     {
         $qq = $this->db->select('status')->where('id', '15')->get('modules')->row('status');
 
@@ -161,7 +161,7 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getPVPStatus()
+    public function getBugtrackerStatus()
     {
         $qq = $this->db->select('status')->where('id', '16')->get('modules')->row('status');
 
@@ -171,19 +171,9 @@ class Module_model extends CI_Model {
             return false;
     }
 
-    public function getBugtrackerStatus()
-    {
-        $qq = $this->db->select('status')->where('id', '17')->get('modules')->row('status');
-
-        if($qq == '1')
-            return true;
-        else
-            return false;
-    }
-
     public function getChangelogsStatus()
     {
-        $qq = $this->db->select('status')->where('id', '18')->get('modules')->row('status');
+        $qq = $this->db->select('status')->where('id', '17')->get('modules')->row('status');
 
         if($qq == '1')
             return true;
