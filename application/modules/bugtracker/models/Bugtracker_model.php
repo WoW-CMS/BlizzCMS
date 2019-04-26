@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bugtracker_model extends CI_Model {
 
-    private $_limit;
-    private $_pageNumber;
-    private $_offset;
+    private $_limit,
+            $_pageNumber,
+            $_offset;
     /**
      * Bugtracker_model constructor.
      */

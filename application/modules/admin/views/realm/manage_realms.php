@@ -21,7 +21,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->wowrealm->getRealms()->result() as $realmsID): ?>
+                <?php if(isset($realmsList) && !empty($realmsList)): ?>
+                <?php foreach($realmsList as $realmsID): ?>
                 <tr>
                   <td><?= $realmsID->realmID; ?></td>
                   <td><?= $this->wowrealm->getRealmName($realmsID->realmID); ?></td>
@@ -35,8 +36,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-text-right">
+              <?php if (isset($realmsList) && is_array($realmsList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

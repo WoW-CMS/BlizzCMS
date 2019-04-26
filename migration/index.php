@@ -51,6 +51,15 @@ endif; ?>
           <div class="uk-width-1-2@s">
             <h1 class="uk-h1 step-title uk-text-bold uk-text-center uk-margin-remove">Migration</h1>
             <p class="uk-text-small uk-text-center uk-margin-remove-top uk-margin-bottom">Please fill the form with your corresponding information to proceed with the migration.</p>
+            <?php if ($core->PHPVersion()): ?>
+              <div class="uk-alert-success" uk-alert>
+                <p><i class="fas fa-check-circle"></i> PHP Version <span class="uk-text-bold">(<?= PHP_VERSION; ?>)</span> is compatible</p>
+              </div>
+            <?php else: ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> PHP Version <span class="uk-text-bold">(<?= PHP_VERSION; ?>)</span> is not compatible, please use a version higher than 7.1</p>
+              </div>
+            <?php endif; ?>
             <?php if ($core->getError()): ?>
               <?php echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>"; ?>
               <?php foreach ($core->getError() as $item): ?>

@@ -20,7 +20,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->admin_model->getPages() as $pages): ?>
+                <?php if(isset($pagesList) && !empty($pagesList)): ?>
+                <?php foreach($pagesList as $pages): ?>
                 <tr>
                   <td><?= $pages->title ?></td>
                   <td><?= base_url('page/').$pages->uri_friendly; ?></td>
@@ -33,8 +34,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-text-right">
+              <?php if (isset($pagesList) && is_array($pagesList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

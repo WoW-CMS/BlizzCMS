@@ -15,12 +15,13 @@ class Migration_create_modules extends CI_Migration {
               ),
               'name' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'status' => array(
                       'type' => 'INT',
                       'constraint' => '1',
-                      'default' => '1',
+                      'unsigned' => TRUE,
+                      'default' => '1'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

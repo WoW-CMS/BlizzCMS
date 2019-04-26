@@ -24,10 +24,13 @@ class Migration_create_users extends CI_Migration {
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'profile' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE,
+                      'default' => '1'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

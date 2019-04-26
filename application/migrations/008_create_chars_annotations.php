@@ -16,20 +16,23 @@ class Migration_create_chars_annotations extends CI_Migration {
               'idchar' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'null' => FALSE,
+                      'unsigned' => TRUE,
+                      'null' => FALSE
               ),
               'annotation' => array(
                       'type' => 'TEXT',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'realmid' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'null' => FALSE,
+                      'unsigned' => TRUE,
+                      'null' => FALSE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

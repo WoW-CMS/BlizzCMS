@@ -27,19 +27,19 @@ class Forum_model extends CI_Model {
             'date' => $date
         );
 
-        $this->db->insert('forum_reply', $data);
+        $this->db->insert('forum_replies', $data);
         return true;
     }
 
     public function removeComment($id)
     {
-        $this->db->where('id', $id)->delete('forum_reply');
+        $this->db->where('id', $id)->delete('forum_replies');
         return true;
     }
 
     public function getComments($id)
     {
-        return $this->db->select('*')->where('topic', $id)->get('forum_reply');
+        return $this->db->select('*')->where('topic', $id)->get('forum_replies');
     }
 
     public function getCountPostAuthor($id)

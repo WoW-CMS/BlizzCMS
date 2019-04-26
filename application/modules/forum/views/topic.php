@@ -232,7 +232,7 @@ endif; ?>
               });
             }
             $('#topicreplyForm')[0].reset();
-            window.location.replace("<?= base_url($lang.'/forum/topic/'.$idlink); ?>");
+            window.location.replace("<?= base_url('forum/topic/'.$idlink); ?>");
           }
         });
       }
@@ -278,7 +278,7 @@ endif; ?>
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url($lang.'/forum/topic/'.$idlink); ?>");
+            window.location.replace("<?= base_url('forum/topic/'.$idlink); ?>");
           }
         });
       }

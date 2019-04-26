@@ -218,26 +218,4 @@ class Realm_model extends CI_Model {
         $client = $this->connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
         return $client->executeCommand(new SoapParam($command, "command"));
     }
-
-    public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, $red = '')
-    {
-        $data = array(
-            'hostname' => $hostname,
-            'username' => $username,
-            'password' => $password,
-            'char_database' => $database,
-            'realmID' => $realm_id,
-            'console_hostname' => $soaphost,
-            'console_username' => $soapuser,
-            'console_password' => $soappass,
-            'console_port' => $soapport,
-            'emulator' => 'TC'
-        );
-
-        $this->db->insert('realms', $data);
-
-        if ($red == '1') {
-            return true;
-        }
-    }
 }

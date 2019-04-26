@@ -142,34 +142,40 @@ class User_model extends CI_Model {
         return $this->db->select('*')->order_by('id ASC')->get('avatars');
     }
 
-    public function insertAvatar($id)
+    public function changeAvatar($avatar)
     {
         $sessid = $this->session->userdata('wow_sess_id');
 
-        $this->db->set('profile', $id)->where('id', $sessid)->update('users');
-
-        redirect(base_url('panel'),'refresh');
+        $this->db->set('profile', $avatar)->where('id', $sessid)->update('users');
+        return true;
     }
 
     public function getExistInfo()
     {
         $sessid = $this->session->userdata('wow_sess_id');
-        return $this->db->select('id')->where('id', $sessid)->get('users');
+        return $this->db->select('id')->where('id', $sessid)->get('users')->num_rows();
     }
 
-    public function updateInformation($id, $username, $email)
+    public function updateInformation($value)
     {
-        $this->db->where('id', $id)->delete('users');
+        if($this->session->userdata('wow_sess_id') == $value)
+        {
+            if($this->getExistInfo() == 0)
+            {
+                $data = array(
+                    'id' => $this->session->userdata('wow_sess_id'),
+                    'username' => $this->session->userdata('wow_sess_username'),
+                    'email' => $this->session->userdata('wow_sess_email')
+                );
 
-        $data = array(
-            'id' => $id,
-            'username' => $username,
-            'email' => $email
-        );
-
-        $this->db->insert('users', $data);
-
-        redirect(base_url('panel'),'refresh');
+                $this->db->insert('users', $data);
+                return true;
+            }
+            else
+                return 'accErr';
+        }
+        else
+            return 'idErr';
     }
 
     public function getBorn($id)

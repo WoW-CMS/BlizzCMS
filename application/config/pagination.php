@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Copyright (c) 2017
  */
 
-$config['per_page'] = 10;
+$config['per_page'] = 15;
 $config['num_links'] = 2;
 
 $config['use_page_numbers'] = TRUE;
@@ -35,15 +35,15 @@ $config['last_link'] = 'Last &raquo;';
 $config['last_tag_open'] = '<li class="next page">';
 $config['last_tag_close'] = '</li>';
 
-$config['next_link'] = 'Next &rarr;';
+$config['next_link'] = '<span uk-pagination-next></span>';
 $config['next_tag_open'] = '<li class="next page">';
 $config['next_tag_close'] = '</li>';
 
-$config['prev_link'] = '&larr; Previous';
+$config['prev_link'] = '<span uk-pagination-previous></span>';
 $config['prev_tag_open'] = '<li class="prev page">';
 $config['prev_tag_close'] = '</li>';
 
-$config['cur_tag_open'] = '<li class="uk-active"><a href="">';
+$config['cur_tag_open'] = '<li class="uk-active"><a>';
 $config['cur_tag_close'] = '</a></li>';
 
 $config['num_tag_open'] = '<li class="page">';

@@ -20,7 +20,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->admin_model->getAdminSlideList()->result() as $slides): ?>
+                <?php if(isset($slidesList) && !empty($slidesList)): ?>
+                <?php foreach($slidesList as $slides): ?>
                 <tr>
                   <td><?= $slides->title ?></td>
                   <td><?= $slides->description ?></td>
@@ -33,8 +34,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-text-right">
+              <?php if (isset($slidesList) && is_array($slidesList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

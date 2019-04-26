@@ -16,14 +16,17 @@ class Migration_create_users_data extends CI_Migration {
               'accountid' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'dp' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'vp' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

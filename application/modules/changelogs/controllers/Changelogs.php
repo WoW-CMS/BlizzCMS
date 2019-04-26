@@ -51,7 +51,7 @@ class Changelogs extends MX_Controller {
             redirect(base_url(),'refresh');
 
         if(!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(base_url('login'),'refresh');
 
         $this->load->model('changelogs_model');
     }

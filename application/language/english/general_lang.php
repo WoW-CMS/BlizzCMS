@@ -63,6 +63,7 @@ $lang['button_logout'] = 'Log Out';
 $lang['button_forgot_password'] = 'Forgot your password?';
 $lang['button_user_panel'] = 'User Panel';
 $lang['button_admin_panel'] = 'Admin Panel';
+$lang['button_mod_panel'] = 'Mod Panel';
 $lang['button_change_avatar'] = 'Change Avatar';
 $lang['button_add_personal_info'] = 'Add Personal Information';
 $lang['button_create_report'] = 'Create Report';

@@ -15,7 +15,7 @@ class Migration_create_forum_category extends CI_Migration {
               ),
               'categoryName' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

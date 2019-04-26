@@ -37,15 +37,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends MX_Controller {
 
-    private $fxlocadm = '';
-    private $fxlocdef = '';
+    private $wowlocadm = '',
+            $wowlocdef = '';
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('admin_model');
-        $this->config->load('donate/donate');
-        $this->config->load('bugtracker/bugtracker');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -61,8 +58,13 @@ class Admin extends MX_Controller {
 
         $this->template->set_theme('admin');
 
-        $this->fxlocadm = base_url('application/themes/'.$this->template->get_theme().'/');
-        $this->fxlocdef = base_url('application/themes/'.config_item('theme_name').'/');
+        $this->wowlocadm = base_url('application/themes/'.$this->template->get_theme().'/');
+        $this->wowlocdef = base_url('application/themes/'.config_item('theme_name').'/');
+
+        $this->load->library('pagination');
+        $this->load->model('admin_model');
+        $this->config->load('donate/donate');
+        $this->config->load('bugtracker/bugtracker');
     }
 
     public function index()
@@ -184,6 +186,27 @@ class Admin extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
         );
+
+        $config['total_rows'] = $this->admin_model->getAllAccounts();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/accounts/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['accountsList'] = $this->admin_model->AccountsList();
+        }
 
         $this->template->build('account/accounts', $data);
     }
@@ -314,6 +337,27 @@ class Admin extends MX_Controller {
             'lang' => $this->lang->lang()
         );
 
+        $config['total_rows'] = $this->admin_model->getAllRealms();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/realms/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['realmsList'] = $this->admin_model->RealmsList();
+        }
+
         $this->template->build('realm/manage_realms', $data);
     }
 
@@ -352,7 +396,7 @@ class Admin extends MX_Controller {
         $char_db = $this->input->post('chardb');
         $char_user = $this->input->post('charuser');
         $char_pass = $this->input->post('charpass');
-        echo $this->wowrealm->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, '1');
+        echo $this->admin_model->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port);
     }
 
     public function updaterealm()
@@ -382,6 +426,27 @@ class Admin extends MX_Controller {
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
+
+        $config['total_rows'] = $this->admin_model->getAllSlides();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/slides/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['slidesList'] = $this->admin_model->SlidesList();
+        }
 
         $this->template->build('slide/manage_slides', $data);
     }
@@ -442,6 +507,27 @@ class Admin extends MX_Controller {
             'lang' => $this->lang->lang()
         );
 
+        $config['total_rows'] = $this->admin_model->getAllNews();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/news/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['newsList'] = $this->admin_model->NewsList();
+        }
+
         $this->template->build('news/manage_news', $data);
     }
 
@@ -496,6 +582,27 @@ class Admin extends MX_Controller {
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
+
+        $config['total_rows'] = $this->admin_model->getAllChangelogs();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/changelogs/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['changelogsList'] = $this->admin_model->ChangelogsList();
+        }
 
         $this->template->build('changelogs/manage_changelogs', $data);
     }
@@ -566,6 +673,27 @@ class Admin extends MX_Controller {
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
+
+        $config['total_rows'] = $this->admin_model->getAllPages();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/pages/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['pagesList'] = $this->admin_model->PagesList();
+        }
 
         $this->template->build('page/manage_pages', $data);
     }
@@ -638,6 +766,27 @@ class Admin extends MX_Controller {
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
         );
+
+        $config['total_rows'] = $this->admin_model->getAllTopsites();
+        $data['total_count'] = $config['total_rows'];
+        $config['suffix'] = '';
+
+        if ($config['total_rows'] > 0)
+        {
+            $page_number = $this->uri->segment(4);
+            $config['base_url'] = base_url().'admin/topsites/';
+
+            if (empty($page_number))
+                $page_number = 1;
+
+            $offset = ($page_number - 1) * $this->pagination->per_page;
+            $this->admin_model->setPageNumber($this->pagination->per_page);
+            $this->admin_model->setOffset($offset);
+            $this->pagination->initialize($config);
+
+            $data['pagination_links'] = $this->pagination->create_links();
+            $data['topsitesList'] = $this->admin_model->TopsitesList();
+        }
 
         $this->template->build('vote/manage_topsites', $data);
     }

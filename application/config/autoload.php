@@ -60,7 +60,6 @@ $autoload['packages'] = array();
 */
 $datalib = array(
 	'database',
-	'cart',
 	'session',
 	'form_validation',
 	'parser',

@@ -61,6 +61,11 @@ class Core {
         return $this->error;
     }
 
+    public function PHPVersion()
+    {
+        return (version_compare(PHP_VERSION, '7.1.0') >= 0);
+    }
+
     public function removeFiles($target)
     {
         $host = $_SERVER['HTTP_HOST'];

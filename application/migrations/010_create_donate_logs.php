@@ -17,39 +17,42 @@ class Migration_create_donate_logs extends CI_Migration {
               'user_id' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'null' => FALSE,
+                      'unsigned' => TRUE,
+                      'null' => FALSE
               ),
               'payment_id' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '100',
+                      'null' => FALSE
               ),
               'hash' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '100',
+                      'null' => FALSE
               ),
               'total' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '10',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '10',
+                      'null' => FALSE
               ),
               'points' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE,
                       'null' => FALSE,
-                      'default' => '0',
+                      'default' => '0'
               ),
               'create_time' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '100',
+                      'null' => FALSE
               ),
               'status' => array(
                       'type' => 'INT',
                       'constraint' => '1',
+                      'unsigned' => TRUE,
                       'null' => FALSE,
-                      'default' => '0',
+                      'default' => '0'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

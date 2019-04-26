@@ -15,30 +15,32 @@ class Migration_create_forum extends CI_Migration {
                       'null' => FALSE
               ),
               'name' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '100',
+                      'null' => FALSE
               ),
               'category' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'null' => FALSE,
+                      'unsigned' => TRUE,
+                      'null' => FALSE
               ),
               'description' => array(
-                'type' => 'TEXT',
-                'null' => FALSE,
+                      'type' => 'TEXT',
+                      'null' => FALSE
               ),
               'icon' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '100',
+                      'null' => FALSE
               ),
               'type' => array(
                       'type' => 'INT',
                       'constraint' => '1',
+                      'unsigned' => TRUE,
                       'comment' => '1 = everyone | 2 = staff | 3 = staff post + everyone see',
                       'null' => FALSE,
-                      'default' => '1',
+                      'default' => '1'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

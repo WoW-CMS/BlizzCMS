@@ -15,20 +15,21 @@ class Migration_create_pages extends CI_Migration {
               ),
               'title' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'uri_friendly' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'description' => array(
                       'type' => 'TEXT',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'default' => '0',
+                      'unsigned' => TRUE,
+                      'default' => '0'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

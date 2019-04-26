@@ -16,30 +16,32 @@ class Migration_create_pending_users extends CI_Migration {
               'username' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'email' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'password' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'password_bnet' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'expansion' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

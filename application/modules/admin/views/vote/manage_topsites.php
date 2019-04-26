@@ -20,7 +20,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->admin_model->getTopsites() as $topsites): ?>
+                <?php if(isset($topsitesList) && !empty($topsitesList)): ?>
+                <?php foreach($topsitesList as $topsites): ?>
                 <tr>
                   <td><?= $topsites->name ?></td>
                   <td class="uk-text-center"><?= $topsites->time ?></td>
@@ -33,8 +34,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-text-right">
+              <?php if (isset($topsitesList) && is_array($topsitesList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

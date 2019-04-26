@@ -17,7 +17,7 @@
           <div class="uk-card uk-card-default uk-card-body uk-margin-small">
             <?= $this->news_model->getNewDescription($idlink); ?>
           </div>
-          <div class="uk-grid uk-grid-medium uk-grid-divider uk-child-width-1-1" data-uk-grid>
+          <div class="uk-grid uk-grid-medium uk-grid-divider uk-child-width-1-1 uk-margin" data-uk-grid>
             <?php foreach($this->news_model->getComments($idlink)->result() as $commentss): ?>
             <div>
               <div class="uk-grid uk-grid-medium" data-uk-grid>
@@ -161,7 +161,7 @@
               });
             }
             $('#replyForm')[0].reset();
-            window.location.replace("<?= base_url($lang.'/news/'.$idlink); ?>");
+            window.location.replace("<?= base_url('news/'.$idlink); ?>");
           }
         });
       }
@@ -207,7 +207,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url($lang.'/news/'.$idlink); ?>");
+            window.location.replace("<?= base_url('news/'.$idlink); ?>");
           }
         });
       }

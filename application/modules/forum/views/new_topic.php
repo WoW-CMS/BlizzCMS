@@ -132,7 +132,7 @@
               });
             }
             $('#newtopicForm')[0].reset();
-            window.location.replace("<?= base_url($lang.'/forum/category/'.$idlink); ?>");
+            window.location.replace("<?= base_url('forum/category/'.$idlink); ?>");
           }
         });
       }

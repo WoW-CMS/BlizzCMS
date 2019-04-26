@@ -16,32 +16,37 @@ class Migration_create_forum_topics extends CI_Migration {
               'forums' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'title' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'author' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'content' => array(
                       'type' => 'TEXT',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'locked' => array(
                       'type' => 'INT',
                       'constraint' => '1',
-                      'default' => '0',
+                      'unsigned' => TRUE,
+                      'default' => '0'
               ),
               'pinned' => array(
                       'type' => 'INT',
                       'constraint' => '1',
-                      'default' => '0',
+                      'unsigned' => TRUE,
+                      'default' => '0'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);
