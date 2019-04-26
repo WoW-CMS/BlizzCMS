@@ -19,7 +19,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->admin_model->getChangelogs() as $changelogs): ?>
+                <?php if(isset($changelogsList) && !empty($changelogsList)): ?>
+                <?php foreach($changelogsList as $changelogs): ?>
                 <tr>
                   <td><?= $changelogs->title ?></td>
                   <td><?= date('Y-m-d', $changelogs->date); ?></td>
@@ -31,8 +32,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-text-right">
+              <?php if (isset($changelogsList) && is_array($changelogsList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

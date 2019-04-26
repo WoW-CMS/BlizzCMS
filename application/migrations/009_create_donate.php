@@ -14,25 +14,26 @@ class Migration_create_donate extends CI_Migration {
                       'auto_increment' => TRUE
               ),
               'name' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '100',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '100',
+                      'null' => FALSE
               ),
               'price' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '10',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '10',
+                      'null' => FALSE
               ),
               'tax' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '10',
-                'default' => '0.00',
-                'null' => FALSE,
+                      'type' => 'VARCHAR',
+                      'constraint' => '10',
+                      'default' => '0.00',
+                      'null' => FALSE
               ),
               'points' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'null' => FALSE,
+                      'unsigned' => TRUE,
+                      'null' => FALSE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

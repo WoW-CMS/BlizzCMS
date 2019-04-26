@@ -16,51 +16,53 @@ class Migration_create_realms extends CI_Migration {
               'hostname' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'default' => '127.0.0.1',
+                      'default' => '127.0.0.1'
               ),
               'username' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '255',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'password' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '255',
-                      'null' => FALSE,
+                      'null' => TRUE
               ),
               'char_database' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '255',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'realmID' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'console_hostname' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'default' => '127.0.0.1',
+                      'default' => '127.0.0.1'
               ),
               'console_username' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '255',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'console_password' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '255',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'console_port' => array(
                       'type' => 'INT',
                       'constraint' => '6',
-                      'default' => '7878',
+                      'unsigned' => TRUE,
+                      'default' => '7878'
               ),
               'emulator' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '255',
-                      'default' => 'TC',
+                      'default' => 'TC'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

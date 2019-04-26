@@ -15,21 +15,23 @@ class Migration_create_votes extends CI_Migration {
               ),
               'name' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'url' => array(
-                      'type' => 'TEXT',
+                      'type' => 'TEXT'
               ),
               'time' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'points' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'image' => array(
-                      'type' => 'TEXT',
+                      'type' => 'TEXT'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

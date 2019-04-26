@@ -40,10 +40,11 @@ class User extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('user_model');
 
         if (!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
+
+        $this->load->model('user_model');
     }
 
     public function login()
@@ -175,6 +176,12 @@ class User extends MX_Controller {
         $this->template->build('panel', $data);
     }
 
+    public function syncaccount()
+    {
+        $value = $this->input->post('value');
+        echo $this->user_model->updateInformation($value);
+    }
+
     public function settings()
     {
         if (!$this->wowgeneral->getMaintenance())
@@ -208,5 +215,11 @@ class User extends MX_Controller {
         $renewemail = $this->input->post('renewemail');
         $password = $this->input->post('password');
         echo $this->user_model->changeEmail($newemail, $renewemail, $password);
+    }
+
+    public function newavatar()
+    {
+        $avatar = $this->input->post('avatar');
+        echo $this->user_model->changeAvatar($avatar);
     }
 }

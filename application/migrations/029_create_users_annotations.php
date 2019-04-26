@@ -16,13 +16,15 @@ class Migration_create_users_annotations extends CI_Migration {
               'iduser' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'annotation' => array(
-                      'type' => 'TEXT',
+                      'type' => 'TEXT'
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

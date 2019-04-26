@@ -16,6 +16,7 @@ class Migration_create_store_top extends CI_Migration {
               'id_store' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

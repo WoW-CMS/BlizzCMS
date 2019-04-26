@@ -47,7 +47,14 @@
                     <tbody>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_username'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->wowauth->getUsernameID($this->session->userdata('wow_sess_id')); ?></td>
+                        <td class="uk-table-expand">
+                          <?= $this->wowauth->getUsernameID($this->session->userdata('wow_sess_id')); ?>
+                          <?php if($this->user_model->getExistInfo() == 0): ?>
+                          <?= form_open('', 'id="syncAccount" class="uk-display-inline" onsubmit="SyncAccount(event)"'); ?>
+                          <button class="uk-button uk-button-small uk-button-default uk-margin-small-left"><i class="fas fa-sync" value="<?= $this->session->userdata('wow_sess_id'); ?>" id="button_sync" type="submit"></i></button>
+                          <?= form_close(); ?>
+                          <?php endif; ?>
+                        </td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_email'); ?></span></td>
@@ -89,3 +96,89 @@
         </div>
       </div>
     </section>
+
+    <?php if($this->user_model->getExistInfo() == 0): ?>
+    <script>
+      function SyncAccount(e) {
+        e.preventDefault();
+
+        var value = $('#button_sync').attr('value');
+        $.ajax({
+          url:"<?= base_url($lang.'/panel/sync'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response == 'idErr') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: 'id',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              return false;
+            }
+
+            if (response == 'accErr') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: 'acc',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              return false;
+            }
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_sync_account'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            window.location.replace("<?= base_url('panel'); ?>");
+          }
+        });
+      }
+    </script>
+    <?php endif; ?>

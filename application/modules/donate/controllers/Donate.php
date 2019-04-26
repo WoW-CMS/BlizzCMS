@@ -42,9 +42,8 @@ use \PayPal\Api\PaymentExecution;
 
 class Donate extends MX_Controller
 {
-    function __construct()
+    public function __construct()
     {
-        //Call the constructor of MX_Controller
         parent::__construct();
 
         if(!ini_get('date.timezone'))
@@ -57,7 +56,7 @@ class Donate extends MX_Controller
             redirect(base_url(),'refresh');
 
         if(!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(base_url('login'),'refresh');
 
         $this->load->config('donate');
         $this->load->model('donate_model');

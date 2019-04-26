@@ -15,7 +15,7 @@ class Migration_create_store_categories extends CI_Migration {
               ),
               'name' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '150',
+                      'constraint' => '150'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

@@ -3,21 +3,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model {
 
+    private $_limit,
+            $_pageNumber,
+            $_offset;
     /**
      * Admin_model constructor.
      */
     public function __construct()
     {
-        $this->auth = $this->load->database('auth', TRUE);
         parent::__construct();
+        $this->auth = $this->load->database('auth', TRUE);
 
         if (!$this->wowmodule->getACPStatus())
             redirect(base_url(),'refresh');
     }
 
-    public function getAdminAccountsList()
+    public function setLimit($limit)
     {
-        return $this->auth->select('id, username, email')->order_by('id', 'ASC')->get('account');
+        $this->_limit = $limit;
+    }
+
+    public function setPageNumber($pageNumber)
+    {
+        $this->_pageNumber = $pageNumber;
+    }
+
+    public function setOffset($offset)
+    {
+        $this->_offset = $offset;
+    }
+
+    public function getAllAccounts()
+    {
+        $this->auth->from('account');
+        return $this->auth->count_all_results();
+    }
+
+    public function AccountsList()
+    {
+        return $this->auth->select('*')->limit($this->_pageNumber, $this->_offset)->get('account')->result();
     }
 
     public function insertDonationAjax($name, $price, $tax, $points)
@@ -537,6 +561,25 @@ class Admin_model extends CI_Model {
         return $this->db->select('title')->where('id', $type)->get('menu_type')->row_array()['title'];
     }
 
+    public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
+    {
+        $data = array(
+            'hostname' => $hostname,
+            'username' => $username,
+            'password' => $password,
+            'char_database' => $database,
+            'realmID' => $realm_id,
+            'console_hostname' => $soaphost,
+            'console_username' => $soapuser,
+            'console_password' => $soappass,
+            'console_port' => $soapport,
+            'emulator' => 'TC'
+        );
+
+        $this->db->insert('realms', $data);
+        return true;
+    }
+
     public function updateSpecifyRealm($id, $hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
     {
         $update = array(
@@ -560,6 +603,17 @@ class Admin_model extends CI_Model {
     {
         $this->db->where('id', $id)->delete('realms');
         return true;
+    }
+
+    public function getAllRealms()
+    {
+        $this->db->from('realms');
+        return $this->db->count_all_results();
+    }
+
+    public function RealmsList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('realms')->result();
     }
 
     public function insertSlide($title, $description, $type, $route)
@@ -594,9 +648,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAdminSlideList()
+    public function getAllSlides()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('slides');
+        $this->db->from('slides');
+        return $this->db->count_all_results();
+    }
+
+    public function SlidesList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('slides')->result();
     }
 
     public function insertNews($title, $description, $image)
@@ -641,9 +701,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAdminNewsList()
+    public function getAllNews()
     {
-        return $this->db->select('id, title, date')->order_by('id', 'ASC')->get('news');
+        $this->db->from('news');
+        return $this->db->count_all_results();
+    }
+
+    public function NewsList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('news')->result();
     }
 
     public function getNewsSpecifyRows($id)
@@ -705,9 +771,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getChangelogs()
+    public function getAllChangelogs()
     {
-        return $this->db->select('*')->get('changelogs')->result();
+        $this->db->from('changelogs');
+        return $this->db->count_all_results();
+    }
+
+    public function ChangelogsList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('changelogs')->result();
     }
 
     public function getChangelogsCreated()
@@ -781,9 +853,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getPages()
+    public function getAllPages()
     {
-        return $this->db->select('*')->get('pages')->result();
+        $this->db->from('pages');
+        return $this->db->count_all_results();
+    }
+
+    public function PagesList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('pages')->result();
     }
 
     public function getPagesSpecifyRows($id)
@@ -810,11 +888,6 @@ class Admin_model extends CI_Model {
     public function getPagesSpecifyDesc($id)
     {
         return $this->db->select('description')->where('id', $id)->get('pages')->row_array()['description'];
-    }
-
-    public function getTopsites()
-    {
-        return $this->db->select('*')->get('votes')->result();
     }
 
     public function insertTopsite($name, $url, $time, $points, $image)
@@ -849,6 +922,17 @@ class Admin_model extends CI_Model {
     {
         $this->db->where('id', $id)->delete('votes');
         return true;
+    }
+
+    public function getAllTopsites()
+    {
+        $this->db->from('votes');
+        return $this->db->count_all_results();
+    }
+
+    public function TopsitesList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('votes')->result();
     }
 
     public function getTopsitesSpecifyRows($id)

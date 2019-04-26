@@ -15,14 +15,15 @@ class Migration_create_changelogs extends CI_Migration {
               ),
               'title' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'description' => array(
-                      'type' => 'TEXT',
+                      'type' => 'TEXT'
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               )
       ));
       $this->dbforge->add_key('id', TRUE);

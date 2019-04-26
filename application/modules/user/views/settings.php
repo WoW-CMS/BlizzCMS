@@ -124,6 +124,30 @@
                 <?= form_close(); ?>
               </div>
             </div>
+            <div class="uk-card-default myaccount-card uk-margin-small">
+              <div class="uk-card-header">
+                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= $this->lang->line('button_change_avatar'); ?></h4>
+              </div>
+              <div class="uk-card-body">
+                <?= form_open('', 'id="changeavatarForm" onsubmit="ChangeAvatarForm(event)"'); ?>
+                <div class="uk-margin uk-light">
+                  <div class="uk-form-controls">
+                    <div class="uk-grid uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>
+                      <?php foreach($this->user_model->getAllAvatars()->result() as $avatar): ?>
+                        <div>
+                          <img class="uk-border-rounded uk-margin-small" src="<?= base_url('assets/images/profiles/'.$avatar->name); ?>" width="60" height="60">
+                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="change_avatar" value="<?= $avatar->id ?>" <?php if($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')) == $avatar->id) echo 'checked'; ?>>
+                        </div>
+                      <?php endforeach; ?>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-margin">
+                  <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                </div>
+                <?= form_close(); ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -271,7 +295,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_redirection'); ?>',
+                  message: '<?= $this->lang->line('notification_email_changed'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -286,7 +310,6 @@
           }
         });
       }
-
       function ChangePasswordForm(e) {
         e.preventDefault();
 
@@ -428,7 +451,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_redirection'); ?>',
+                  message: '<?= $this->lang->line('notification_password_changed'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -440,6 +463,70 @@
             }
             $('#changepasswordForm')[0].reset();
             window.location.replace("<?= base_url('logout'); ?>");
+          }
+        });
+      }
+      function ChangeAvatarForm(e) {
+        e.preventDefault();
+
+        var avatar = $('.change_avatar:checked').val();
+        if(avatar == '' || avatar == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_wrong_values'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/changeavatar'); ?>",
+          method:"POST",
+          data:{avatar},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_avatar_changed'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            $('#changeavatarForm')[0].reset();
+            window.location.replace("<?= base_url('settings'); ?>");
           }
         });
       }

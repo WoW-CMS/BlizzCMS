@@ -16,21 +16,24 @@ class Migration_create_news_comments extends CI_Migration {
               'id_new' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'default' => '0',
+                      'unsigned' => TRUE,
+                      'default' => '0'
               ),
               'commentary' => array(
                       'type' => 'TEXT',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'default' => '0',
+                      'unsigned' => TRUE,
+                      'default' => '0'
               ),
               'author' => array(
                       'type' => 'INT',
                       'constraint' => '10',
-                      'default' => '0',
+                      'unsigned' => TRUE,
+                      'default' => '0'
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

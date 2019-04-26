@@ -19,7 +19,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->admin_model->getAdminNewsList()->result() as $news): ?>
+                <?php if(isset($newsList) && !empty($newsList)): ?>
+                <?php foreach($newsList as $news): ?>
                 <tr>
                   <td><?= $news->title ?></td>
                   <td><?= date('Y-m-d', $news->date); ?></td>
@@ -31,8 +32,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-text-right">
+              <?php if (isset($newsList) && is_array($newsList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

@@ -16,22 +16,27 @@ class Migration_create_votes_logs extends CI_Migration {
               'idaccount' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'idvote' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'points' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'lasttime' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'expired_at' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

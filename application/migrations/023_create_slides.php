@@ -16,20 +16,21 @@ class Migration_create_slides extends CI_Migration {
               'title' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'description' => array(
                       'type' => 'TEXT',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
               'type' => array(
                       'type' => 'INT',
                       'constraint' => '1',
+                      'unsigned' => TRUE
               ),
               'route' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100',
-                      'null' => FALSE,
+                      'null' => FALSE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

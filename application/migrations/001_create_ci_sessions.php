@@ -15,14 +15,14 @@ class Migration_create_ci_sessions extends CI_Migration {
                         ),
                         'ip_address' => array(
                                 'type' => 'VARCHAR',
-                                'constraint' => '45',
+                                'constraint' => '45'
                         ),
                         'timestamp' => array(
                                 'type' => 'INT',
-                                'constraint' => '10',
+                                'constraint' => '10'
                         ),
                         'data' => array(
-                                'type' => 'BLOB',
+                                'type' => 'BLOB'
                         ),
                 ));
                 $this->dbforge->add_key('ci_sessions', TRUE);

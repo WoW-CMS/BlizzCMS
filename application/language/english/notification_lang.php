@@ -67,6 +67,11 @@ $lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';
 $lang['notification_invalid_key'] = 'The activation key provided is not valid.';
 
 /*Notification Message (General) Lang*/
+$lang['notification_sync_account'] = 'The account has been synchronized with the website';
+$lang['notification_email_changed'] = 'The email has been changed.';
+$lang['notification_password_changed'] = 'The password has been changed.';
+$lang['notification_avatar_changed'] = 'The avatar has been changed.';
+$lang['notification_wrong_values'] = 'The values are wrong';
 $lang['notification_select_type'] = 'Select a type';
 $lang['notification_select_priority'] = 'Select a priority';
 $lang['notification_report_created'] = 'The report has been created.';

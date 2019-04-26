@@ -15,11 +15,12 @@ class Migration_create_avatars extends CI_Migration {
               ),
               'name' => array(
                       'type' => 'VARCHAR',
-                      'constraint' => '100',
+                      'constraint' => '100'
               ),
               'type' => array(
                       'type' => 'INT',
                       'constraint' => '1',
+                      'unsigned' => TRUE,
                       'default' => '1',
                       'comment' => '1 = User | 2 = staff'
               ),

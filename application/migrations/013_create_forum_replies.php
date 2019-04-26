@@ -16,17 +16,20 @@ class Migration_create_forum_replies extends CI_Migration {
               'topic' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'author' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
               'commentary' => array(
-                      'type' => 'TEXT',
+                      'type' => 'TEXT'
               ),
               'date' => array(
                       'type' => 'INT',
                       'constraint' => '10',
+                      'unsigned' => TRUE
               ),
       ));
       $this->dbforge->add_key('id', TRUE);

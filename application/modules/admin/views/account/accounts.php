@@ -19,7 +19,8 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($this->admin_model->getAdminAccountsList()->result() as $accs): ?>
+                <?php if(isset($accountsList) && !empty($accountsList)): ?>
+                <?php foreach($accountsList as $accs): ?>
                 <tr>
                   <td>
                     <img class="uk-preserve-width uk-border-rounded" src="https://via.placeholder.com/100/090e40/ffffff" alt="Avatar" width="36">
@@ -33,19 +34,14 @@
                   </td>
                 </tr>
                 <?php endforeach; ?>
+                <?php endif; ?>
               </tbody>
             </table>
           </div>
           <div class="uk-card-footer">
-            <ul class="uk-pagination uk-flex-center" uk-margin>
-              <li><a href="#"><span uk-pagination-previous></span></a></li>
-              <li class="uk-active"><span>1</span></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#"><span uk-pagination-next></span></a></li>
-            </ul>
+            <div class="uk-text-right">
+              <?php if (isset($accountsList) && is_array($accountsList)) echo $pagination_links; ?>
+            </div>
           </div>
         </div>
       </div>

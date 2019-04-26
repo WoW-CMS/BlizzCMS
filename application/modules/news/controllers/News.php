@@ -53,15 +53,6 @@ class News extends MX_Controller {
         $this->load->model('news_model');
     }
 
-    public function index()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_news')
-        );
-
-        $this->template->build('index', $data);
-    }
-
     public function article($id)
     {
         $this->load->model('forum/forum_model');

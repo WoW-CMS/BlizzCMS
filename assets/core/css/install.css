@@ -81,6 +81,12 @@ h6,
   color: #fff !important;
 }
 
+.uk-navbar-item,
+.uk-navbar-nav > li > a,
+.uk-navbar-toggle {
+  min-height: 70px;
+}
+
 .step-title {
   font-family: 'Lobster', cursive;
   color: #fff;
@@ -92,7 +98,7 @@ h6,
 }
 
 .uk-alert {
-  padding: 8px 16px;
+  padding: 6px 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
 
