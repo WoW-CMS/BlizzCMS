@@ -11,19 +11,6 @@ class Forum_model extends CI_Model {
         parent::__construct();
     }
 
-    public function __setLogs($userid, $type, $idtopic, $function, $annotation)
-    {
-      $data = array(
-        'userid' => $userid,
-        'type' => $type,
-        'idtopic' => $idtopic,
-        'function' => $function,
-        'annotation' => $annotation,
-        'datetime' => $this->wowgeneral->getTimestamp(),
-      );
-      $this->db->insert('mod_logs', $data);
-    }
-
     public function getCategory()
     {
         return $this->db->select('id, name')->get('forum_category')->result();
@@ -33,7 +20,7 @@ class Forum_model extends CI_Model {
     {
         $function = '[Guardian/comment]';
         $type = '2';
-        $log_enter = $this->__setLogs($author, $type, $topicid, $function, $reply);
+        $log_enter = $this->logs->__setLogs($author, $type, $topicid, $function, $reply);
 
         $date = $this->wowgeneral->getTimestamp();
 
@@ -103,7 +90,7 @@ class Forum_model extends CI_Model {
     {
         $function = '[Guardian/Topic]';
         $type = '1';
-        $log_enter = $this->__setLogs($userid, $category, $type, $function, $title);
+        $log_enter = $this->logs->__setLogs($userid, $category, $type, $function, $title);
         $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
