@@ -42,7 +42,6 @@ $lang['admin_nav_manage_settings'] = 'Administrar Ajustes';
 $lang['admin_nav_manage_modules'] = 'Administrar Módulos';
 $lang['admin_nav_users'] = 'Usuarios';
 $lang['admin_nav_accounts'] = 'Cuentas';
-$lang['admin_nav_characters'] = 'Caracteres';
 $lang['admin_nav_website'] = 'Sitio Web';
 $lang['admin_nav_menu'] = 'Menú';
 $lang['admin_nav_realms'] = 'Reinos';
@@ -72,33 +71,14 @@ $lang['button_select'] = 'Seleccionar';
 $lang['button_update'] = 'Actualizar';
 $lang['button_unban'] = 'Desbanear';
 $lang['button_ban'] = 'Banear';
-$lang['button_re_grant_account'] = 'Remover GM';
-$lang['button_grant_account'] = 'Conceder GM';
-$lang['button_change_level'] = 'Cambiar nivel';
-
-/*Card Title Lang*/
-$lang['card_title_user_manage'] = 'Administrar Usuario';
-$lang['card_title_unban_account'] = 'Desbanear Cuenta';
-$lang['card_title_ban_account'] = 'Banear Cuenta';
-$lang['card_title_rank_account'] = 'Rango de GM';
-$lang['card_title_general_info'] = 'Información General';
-$lang['card_title_donate_history'] = 'Historial de Donación';
-$lang['card_title_annotations'] = 'Anotaciones';
-$lang['card_title_char_manage'] = 'Administrar Personaje';
-$lang['card_title_change_level'] = 'Cambiar Nivel';
-$lang['card_title_rename'] = 'Renombrar';
-$lang['card_title_unban_char'] = 'Desbanear Personaje';
-$lang['card_title_ban_char'] = 'Banear Personaje';
-$lang['card_title_customize'] = 'Customizar Personaje';
-$lang['card_title_change_race'] = 'Cambiar Raza';
-$lang['card_title_change_faction'] = 'Cambiar Facción';
+$lang['button_remove'] = 'Remover';
+$lang['button_grant'] = 'Conceder';
 
 /*Table header Lang*/
 $lang['table_header_race'] = 'Raza';
 $lang['table_header_class'] = 'Clase';
 $lang['table_header_level'] = 'Nivel';
 $lang['table_header_money'] = 'Dinero';
-$lang['table_header_own'] = 'Creador';
 $lang['table_header_actions'] = 'Acciones';
 $lang['table_header_id'] = '#ID';
 $lang['table_header_tax'] = 'Impuestos';
@@ -113,6 +93,10 @@ $lang['table_header_create_time'] = 'Create Time';
 $lang['table_header_guid'] = 'Guid';
 
 /*Input Placeholder Lang*/
+$lang['placeholder_manage_account'] = 'Administrar Cuenta';
+$lang['placeholder_update_information'] = 'Actualizar Información de la Cuenta';
+$lang['placeholder_donation_logs'] = 'Registros de Donaciones';
+$lang['placeholder_store_logs'] = 'Registros de la Tienda';
 $lang['placeholder_create_changelog'] = 'Crear Changelog';
 $lang['placeholder_edit_changelog'] = 'Editar Changelog';
 $lang['placeholder_create_category'] = 'Crear Categoría';
@@ -156,6 +140,12 @@ $lang['placeholder_db_hostname'] = 'Database Hostname';
 $lang['placeholder_db_name'] = 'Database Name';
 $lang['placeholder_db_user'] = 'Database User';
 $lang['placeholder_db_password'] = 'Database Password';
+$lang['placeholder_price'] = 'Precio';
+$lang['placeholder_account_points'] = 'Puntos de la Cuenta';
+$lang['placeholder_account_ban'] = 'Bannear Cuenta';
+$lang['placeholder_account_unban'] = 'Desbanear Cuenta';
+$lang['placeholder_account_grant_rank'] = 'Otorgar Rango GM';
+$lang['placeholder_account_remove_rank'] = 'Remover Rango GM';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Nombre del Sitio Web';
@@ -181,8 +171,6 @@ $lang['conf_sender_email'] = 'Correo electrónico del remitente';
 $lang['conf_sender_name'] = 'Nombre del remitente';
 
 /*Status Lang*/
-$lang['status_is_online'] = 'EL jugador está online, por favor desconéctate';
-$lang['status_name_exist'] = 'Este nombre ya existe';
 $lang['status_donate_complete'] = 'Completado';
 $lang['status_donate_cancell'] = 'Cancelado';
 

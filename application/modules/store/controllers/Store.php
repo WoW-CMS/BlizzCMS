@@ -40,6 +40,7 @@ class Store extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('store_model');
 
         if (!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -52,8 +53,6 @@ class Store extends MX_Controller {
 
         if (!$this->wowauth->isLogged())
             redirect(base_url('login'),'refresh');
-
-        $this->load->model('store_model');
     }
 
     public function index($id = '')

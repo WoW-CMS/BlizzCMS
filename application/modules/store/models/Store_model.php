@@ -136,7 +136,7 @@ class Store_model extends CI_Model {
             if ($this->wowgeneral->getCharDPTotal($this->session->userdata('fx_sess_id')) >= $price)
             {
                 $this->db->insert('store_logs', $data);
-                $this->db->query("UPDATE users_data SET dp = (dp-$price) WHERE accountid = $accountid");
+                $this->db->query("UPDATE users SET dp = (dp-$price) WHERE id = $accountid");
 
                 $this->wowrealm->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
 
@@ -150,7 +150,7 @@ class Store_model extends CI_Model {
             if ($this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id')) >= $price)
             {
                 $this->db->insert('store_logs', $data);
-                $this->db->query("UPDATE users_data SET vp = (vp-$price) WHERE accountid = $accountid");
+                $this->db->query("UPDATE users SET vp = (vp-$price) WHERE id = $accountid");
 
                 $this->wowrealm->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
 

@@ -42,7 +42,6 @@ $lang['admin_nav_manage_settings'] = 'Manage Settings';
 $lang['admin_nav_manage_modules'] = 'Manage Modules';
 $lang['admin_nav_users'] = 'Users';
 $lang['admin_nav_accounts'] = 'Accounts';
-$lang['admin_nav_characters'] = 'Characters';
 $lang['admin_nav_website'] = 'Website';
 $lang['admin_nav_menu'] = 'Menu';
 $lang['admin_nav_realms'] = 'Realms';
@@ -72,33 +71,14 @@ $lang['button_select'] = 'Select';
 $lang['button_update'] = 'Update';
 $lang['button_unban'] = 'Unban';
 $lang['button_ban'] = 'Ban';
-$lang['button_re_grant_account'] = 'Remove GM';
-$lang['button_grant_account'] = 'Grant GM';
-$lang['button_change_level'] = 'Change Level';
-
-/*Card Title Lang*/
-$lang['card_title_user_manage'] = 'Manage user';
-$lang['card_title_unban_account'] = 'Unban Account';
-$lang['card_title_ban_account'] = 'Ban Account';
-$lang['card_title_rank_account'] = 'GM Rank';
-$lang['card_title_general_info'] = 'General information';
-$lang['card_title_donate_history'] = 'Donate History';
-$lang['card_title_annotations'] = 'Annotations';
-$lang['card_title_char_manage'] = 'Manage character';
-$lang['card_title_change_level'] = 'Change Level';
-$lang['card_title_rename'] = 'Rename';
-$lang['card_title_unban_char'] = 'Unban Character';
-$lang['card_title_ban_char'] = 'Ban Character';
-$lang['card_title_customize'] = 'Customize Character';
-$lang['card_title_change_race'] = 'Change Race';
-$lang['card_title_change_faction'] = 'Change Faction';
+$lang['button_remove'] = 'Remove';
+$lang['button_grant'] = 'Grant';
 
 /*Table header Lang*/
 $lang['table_header_race'] = 'Race';
 $lang['table_header_class'] = 'Class';
 $lang['table_header_level'] = 'Level';
 $lang['table_header_money'] = 'Money';
-$lang['table_header_own'] = 'Own';
 $lang['table_header_actions'] = 'Actions';
 $lang['table_header_id'] = '#ID';
 $lang['table_header_tax'] = 'Tax';
@@ -113,6 +93,10 @@ $lang['table_header_create_time'] = 'Create Time';
 $lang['table_header_guid'] = 'Guid';
 
 /*Input Placeholder Lang*/
+$lang['placeholder_manage_account'] = 'Manage Account';
+$lang['placeholder_update_information'] = 'Update Account Information';
+$lang['placeholder_donation_logs'] = 'Donation Logs';
+$lang['placeholder_store_logs'] = 'Store Logs';
 $lang['placeholder_create_changelog'] = 'Create Changelog';
 $lang['placeholder_edit_changelog'] = 'Edit Changelog';
 $lang['placeholder_create_category'] = 'Create Category';
@@ -156,6 +140,12 @@ $lang['placeholder_db_hostname'] = 'Database Hostname';
 $lang['placeholder_db_name'] = 'Database Name';
 $lang['placeholder_db_user'] = 'Database User';
 $lang['placeholder_db_password'] = 'Database Password';
+$lang['placeholder_price'] = 'Price';
+$lang['placeholder_account_points'] = 'Account Points';
+$lang['placeholder_account_ban'] = 'Ban Account';
+$lang['placeholder_account_unban'] = 'Unban Account';
+$lang['placeholder_account_grant_rank'] = 'Grant GM Rank';
+$lang['placeholder_account_remove_rank'] = 'Remove GM Rank';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Website Name';
@@ -181,8 +171,6 @@ $lang['conf_sender_email'] = 'Sender Email';
 $lang['conf_sender_name'] = 'Sender Name';
 
 /*Status Lang*/
-$lang['status_is_online'] = 'Player is Online, please disconnect';
-$lang['status_name_exist'] = 'This name already exist';
 $lang['status_donate_complete'] = 'Complete';
 $lang['status_donate_cancell'] = 'Cancelled';
 

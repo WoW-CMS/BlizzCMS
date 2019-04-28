@@ -13,7 +13,7 @@ class Migration_create_forum_category extends CI_Migration {
                       'unsigned' => TRUE,
                       'auto_increment' => TRUE
               ),
-              'categoryName' => array(
+              'name' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '100'
               ),

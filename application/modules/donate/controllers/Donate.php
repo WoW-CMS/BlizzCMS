@@ -45,6 +45,8 @@ class Donate extends MX_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('donate_model');
+        $this->load->config('donate');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -57,9 +59,6 @@ class Donate extends MX_Controller
 
         if(!$this->wowauth->isLogged())
             redirect(base_url('login'),'refresh');
-
-        $this->load->config('donate');
-        $this->load->model('donate_model');
     }
     
     public function index()

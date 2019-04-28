@@ -40,6 +40,7 @@ class Changelogs extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('changelogs_model');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -52,8 +53,6 @@ class Changelogs extends MX_Controller {
 
         if(!$this->wowauth->isLogged())
             redirect(base_url('login'),'refresh');
-
-        $this->load->model('changelogs_model');
     }
 
     public function index()

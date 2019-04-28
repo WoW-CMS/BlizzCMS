@@ -8,7 +8,7 @@
             <?php foreach($this->forum_model->getCategory() as $categorys): ?>
             <div class="uk-overflow-auto uk-margin-medium forum-table">
               <table class="uk-table uk-table-hover uk-table-middle">
-                <caption uk-toggle="target: #cat-<?= $categorys->id ?>;animation: uk-animation-fade"><i class="fas fa-bookmark"></i> <?= $categorys->categoryName ?></caption>
+                <caption uk-toggle="target: #cat-<?= $categorys->id ?>;animation: uk-animation-fade"><i class="fas fa-bookmark"></i> <?= $categorys->name ?></caption>
                 <tbody id="cat-<?= $categorys->id ?>">
                   <?php foreach($this->forum_model->getCategoryForums($categorys->id) as $sections): ?>
                   <?php if ($sections->type == 1 || $sections->type == 3): ?>

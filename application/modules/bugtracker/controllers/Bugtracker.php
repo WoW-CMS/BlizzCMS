@@ -40,6 +40,9 @@ class Bugtracker extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('bugtracker_model');
+        $this->load->config('bugtracker');
+        $this->load->library('pagination');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -52,10 +55,6 @@ class Bugtracker extends MX_Controller {
 
         if(!$this->wowauth->isLogged())
             redirect(base_url('login'),'refresh');
-
-        $this->load->library('pagination');
-        $this->load->config('bugtracker');
-        $this->load->model('bugtracker_model');
     }
 
     public function index()

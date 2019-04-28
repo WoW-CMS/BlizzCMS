@@ -40,6 +40,7 @@ class Forum extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('forum_model');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -49,8 +50,6 @@ class Forum extends MX_Controller {
 
         if (!$this->wowmodule->getForumStatus())
             redirect(base_url(),'refresh');
-
-        $this->load->model('forum_model');
     }
 
     public function index()

@@ -43,6 +43,10 @@ class Admin extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('admin_model');
+        $this->config->load('donate/donate');
+        $this->config->load('bugtracker/bugtracker');
+        $this->load->library('pagination');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -60,11 +64,6 @@ class Admin extends MX_Controller {
 
         $this->wowlocadm = base_url('application/themes/'.$this->template->get_theme().'/');
         $this->wowlocdef = base_url('application/themes/'.config_item('theme_name').'/');
-
-        $this->load->library('pagination');
-        $this->load->model('admin_model');
-        $this->config->load('donate/donate');
-        $this->config->load('bugtracker/bugtracker');
     }
 
     public function index()
@@ -211,7 +210,7 @@ class Admin extends MX_Controller {
         $this->template->build('account/accounts', $data);
     }
 
-    public function manageaccount($id)
+    public function accountmanage($id)
     {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
@@ -222,43 +221,60 @@ class Admin extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
+            'lang' => $this->lang->lang()
         );
 
-        $this->template->build('account/manageaccount', $data);
+        $this->template->build('account/manage_account', $data);
     }
 
-    public function characters()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-        );
-
-        $this->template->build('characters/characters', $data);
-    }
-
-    public function managecharacter($id = '', $realm = '')
+    public function accountdonatelogs($id)
     {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
-        if (is_null($realm) || empty($realm))
-            redirect(base_url(),'refresh');
-
-        foreach ($this->wowrealm->getRealm($realm)->result() as $charsMultiRealm) {
-            $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-        }
-
-        if (!$this->wowrealm->getGeneralCharactersSpecifyGuid($id, $multiRealm)->num_rows())
+        if ($this->wowauth->getAccountExist($id)->num_rows() < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
-            'idlink' => $id,
-            'idrealm' => $realm,
-            'multiRealm' => $multiRealm,
+            'idlink' => $id
         );
 
-        $this->template->build('characters/managecharacter', $data);
+        $this->template->build('account/manage_donate_logs', $data);
+    }
+
+    public function updateaccount()
+    {
+        $id = $this->input->post('id');
+        $dp = $this->input->post('dp');
+        $vp = $this->input->post('vp');
+        echo $this->admin_model->updateAccountData($id, $dp, $vp);
+    }
+
+    public function banaccount()
+    {
+        $id = $this->input->post('id');
+        $reason = $this->input->post('reason');
+        echo $this->admin_model->insertBanAccount($id, $reason);
+    }
+
+    public function unbanaccount()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delBanAccount($id);
+    }
+
+    public function grantrankaccount()
+    {
+        $id = $this->input->post('id');
+        $rank = $this->input->post('rank');
+        echo $this->admin_model->insertRankAccount($id, $rank);
+    }
+
+    public function delrankaccount()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delRankAccount($id);
     }
 
     /**
@@ -981,97 +997,56 @@ class Admin extends MX_Controller {
             'lang' => $this->lang->lang()
         );
 
-        $this->template->build('donate/index', $data);
+        $this->template->build('donate/manage_methods', $data);
     }
 
-    public function insertDonation()
+    public function createdonateplan()
     {
-        $name = $_POST['donationname'];
-        $price = $_POST['donationprice'];
-        $tax = $_POST['donationtax'];
-        $points = $_POST['donationpoints'];
-        return $this->admin_model->insertDonationAjax($name, $price, $tax, $points);
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('donate/create_plan', $data);
     }
 
-    public function updateDonation()
+    public function editdonateplan($id)
     {
-        $id = $_POST['id'];
-        $name = $_POST['text'];
-        $column = $_POST['colum_name'];
-        return $this->admin_model->updateDonationAjax($id, $name, $column);
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('donate/edit_plan', $data);
     }
 
-    public function deleteDonation()
+    public function adddonateplan()
     {
-        $id = $_POST['id'];
-        return $this->admin_model->deleteDonationAjax($id);
+        $name = $this->input->post('name');
+        $price = $this->input->post('price');
+        $tax = $this->input->post('tax');
+        $points = $this->input->post('points');
+        echo $this->admin_model->insertDonation($name, $price, $tax, $points);
     }
 
-    public function getDonateList()
+    public function updatedonateplan()
     {
-        $output = '';
-        $output .= '
-        <div class="uk-overflow-auto">
-        <table class="uk-table uk-table-divider uk-table-small">
-            <thead>
-                <tr>
-                    <th class="uk-width-medium">'.$this->lang->line('placeholder_title').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('store_item_price').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('table_header_tax').'</th>
-                    <th class="uk-width-small">'.$this->lang->line('table_header_points').'</th>
-                    <th class="uk-table-shrink">'.$this->lang->line('table_header_actions').'</th>
-                </tr>
-            </thead>
-            <tbody>';
-        if($this->admin_model->getDonateListAjax()->num_rows()){
-            foreach($this->admin_model->getDonateListAjax()->result() as $list) {
-                $output .= '<tr>
-                    <td>
-                        <input type="text" class="uk-input" id="donateName" value="'.$list->name.'" data-id1="'.$list->id.'">
-                    </td>
-                    <td>
-                        <input type="text" class="uk-input" id="donatePrice" value="'.$list->price.'" data-id4="'.$list->id.'">
-                    </td>
-                    <td>
-                        <input type="text" class="uk-input" id="donateTax" value="'.$list->tax.'" data-id5="'.$list->id.'">
-                    </td>
-                    <td>
-                        <input type="text" class="uk-input" id="donatePoints" value="'.$list->points.'" data-id6="'.$list->id.'">
-                    </td>
-                    <td class="uk-table-shrink">
-                        <button class="uk-button uk-button-danger" name="button_deleteDonate" id="button_deleteDonate" data-id3="'.$list->id.'"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>';
-            }
-        }
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $price = $this->input->post('price');
+        $tax = $this->input->post('tax');
+        $points = $this->input->post('points');
+        echo $this->admin_model->updateDonation($id, $name, $price, $tax, $points);
+    }
 
-        $output .= '
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert title" id="newdonatename" value="Classic">
-                </td>
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert Price" id="newdonateprice" value="1.00">
-                </td>
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert Tax" id="newonateTax" value="0.00">
-                </td>
-                <td>
-                    <input type="text" class="uk-input" placeholder="Insert Points" id="newdonatepoints" value="1">
-                </td>
-                <td>
-                    <button class="uk-button uk-button-primary" name="button_adddonation" id="button_adddonation"><i class="fa fa-plus-circle"></i></button>
-                </td>
-            ';
-        if(!$this->admin_model->getDonateListAjax()->num_rows()){
-            $output .= '
-            <tr>
-                <td><div class="uk-alert-warning" uk-alert><p class="uk-text-center"><span uk-icon="warning"></span> Data not found</p></div></td>
-            </tr>';
-        }
-        $output .= '</tbody>
-                        </table></div>';
-
-        echo $output;
+    public function deletedonateplan()
+    {
+        $value = $this->input->post('value');
+        echo $this->admin_model->delSpecifyDonation($value);
     }
 
     /**

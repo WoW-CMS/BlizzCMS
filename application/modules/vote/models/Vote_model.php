@@ -38,7 +38,7 @@ class Vote_model extends CI_Model {
 
     public function getCredits($userid)
     {
-        return $this->db->where('accountid', $userid)->limit('1')->get('users_data')->row('vp');
+        return $this->db->where('id', $userid)->limit('1')->get('users')->row('vp');
     }
 
     public function getVoteUrl($id)
@@ -77,17 +77,17 @@ class Vote_model extends CI_Model {
                 'points' => $ppoints,
             );
 
-            $qq = $this->db->where('accountid', $userid)->get('users_data');
+            $qq = $this->db->where('id', $userid)->get('users');
             if(!$qq->num_rows()) {
-                $datas = array('accountid' => $userid, 'vp' => $ppoints, 'dp' => '0');
-                $this->db->insert('users_data', $datas);
+                $datas = array('id' => $userid, 'vp' => $ppoints, 'dp' => '0');
+                $this->db->insert('users', $datas);
             } else {
-                $vp2 = $this->db->where('accountid', $userid)->get('users_data')->row('vp');
+                $vp2 = $this->db->where('id', $userid)->get('users')->row('vp');
                 $vp = ($vp2+$ppoints);
 
                 $data = array('vp' => $vp);
 
-                $this->db->where('accountid', $userid)->update('users_data', $data);
+                $this->db->where('id', $userid)->update('users', $data);
                 $this->db->insert('votes_logs', $datalog);
             }
 

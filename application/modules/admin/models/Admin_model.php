@@ -35,124 +35,19 @@ class Admin_model extends CI_Model {
 
     public function getAllAccounts()
     {
-        $this->auth->from('account');
-        return $this->auth->count_all_results();
+        $this->db->from('users');
+        return $this->db->count_all_results();
     }
 
     public function AccountsList()
     {
-        return $this->auth->select('*')->limit($this->_pageNumber, $this->_offset)->get('account')->result();
-    }
-
-    public function insertDonationAjax($name, $price, $tax, $points)
-    {
-        $data = array(
-            'name' => $name,
-            'price' => $price,
-            'tax' => $price,
-            'points' => $price
-        );
-
-        $this->db->insert('donate', $data);
-    }
-
-    public function deleteDonationAjax($id)
-    {
-        $this->db->where('id', $id)->delete('donate');
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('users')->result();
     }
 
     public function getAdminCharactersList($multirealm)
     {
         $this->multirealm = $multirealm;
         return $this->multirealm->select('guid, account, name')->order_by('name', 'ASC')->get('characters');
-    }
-
-    public function insertBanChar($id, $reason, $multirealm, $idrealm)
-    {
-        $date       = $this->wowgeneral->getTimestamp();
-        $idsession  = $this->session->userdata('wow_sess_id');
-
-        if (empty($reason))
-            $reason = $this->lang->line('log_banned');
-
-        $data2 = array(
-            'guid' => $id,
-            'bandate,' => $date,
-            'unbandate' => $date,
-            'bannedby' => $idsession,
-            'banreason' => $reason,
-            'active' => '1'
-        );
-
-        $this->multirealm = $multirealm;
-        $this->multirealm->insert('character_banned', $data2);
-
-        $data1 = array(
-            'idchar' => $id,
-            'annotation' => $this->lang->line('alert_banned_reason').' '.$reason,
-            'date' => $date,
-            'realmid' => $idrealm
-        );
-
-        $this->db->insert('chars_annotations', $data1);
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm,'refresh');
-    }
-
-    public function insertCustomizeChar($id, $multirealm, $idrealm)
-    {
-        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
-            redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
-
-        $date       = $this->wowgeneral->getTimestamp();
-        $annotation = $this->lang->line('log_customization');
-
-        $data = array(
-            'idchar' => $id,
-            'annotation' => $annotation,
-            'date' => $date,
-            'realmid' => $idrealm
-        );
-
-        $this->db->insert('chars_annotations', $data);
-
-        $this->multirealm = $multirealm;
-        $this->multirealm->set('at_login', '8')
-                ->where('guid', $id)
-                ->update('characters');
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm,'refresh');
-    }
-
-    public function getDonateListAjax()
-    {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('donate');
-    }
-
-    public function updateDonationAjax($id, $name, $column)
-    {
-        $this->db->set($column, $name)->where('id', $id)->update('donate');
-    }
-
-    public function delSpecifyDonation($id)
-    {
-        $this->db->where('id', $id)->delete('donate');
-
-        redirect(base_url('admin/donate'),'refresh');
-    }
-
-    public function insertDonation($name, $price, $tax, $points)
-    {
-        $data = array(
-            'name' => $name,
-            'price' => $price,
-            'tax' => $tax,
-            'points' => $points,
-        );
-
-        $this->db->insert('donate', $data);
-
-        redirect(base_url('admin/donate'),'refresh');
     }
 
     public function getUserHistoryDonate($id)
@@ -168,211 +63,24 @@ class Admin_model extends CI_Model {
         }
     }
 
-    public function insertChangeFactionChar($id, $multirealm, $idrealm)
+    public function updateAccountData($id, $dp, $vp)
     {
-        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
-            redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
-
-        $date       = $this->wowgeneral->getTimestamp();
-        $annotation = $this->lang->line('log_change_faction');
-
-        $data = array(
-            'idchar' => $id,
-            'annotation' => $annotation,
-            'date' => $date,
-            'realmid' => $idrealm
+        $update = array(
+            'dp' => $dp,
+            'vp' => $vp
         );
 
-        $this->db->insert('chars_annotations', $data);
-
-        $this->multirealm = $multirealm;
-        $this->multirealm->set('at_login', '64')->where('guid', $id)->update('characters');
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm,'refresh');
+        $this->db->where('id', $id)->update('users', $update);
+        return true;
     }
 
-    public function insertChangeRaceChar($id, $multirealm, $idrealm)
-    {
-        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
-            redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm.'?char','refresh');
-
-        $date       = $this->wowgeneral->getTimestamp();
-        $annotation = $this->lang->line('log_change_race');
-
-        $data = array(
-            'idchar' => $id,
-            'annotation' => $annotation,
-            'date' => $date,
-            'realmid' => $idrealm
-        );
-
-        $this->db->insert('chars_annotations', $data);
-
-        $this->multirealm = $multirealm;
-        $this->multirealm->set('at_login', '128')->where('guid', $id)->update('characters');
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm,'refresh');
-    }
-
-    public function insertUnbanChar($id, $multirealm, $idrealm)
-    {
-        $this->multirealm = $multirealm;
-        $this->multirealm->where('guid', $id)->delete('character_banned');
-
-        $date       = $this->wowgeneral->getTimestamp();
-        $annotation = $this->lang->line('log_unbanned');
-
-        $data = array(
-            'idchar' => $id,
-            'annotation' => $annotation,
-            'date' => $date,
-            'realmid' => $idrealm
-        );
-
-        $this->db->insert('chars_annotations', $data);
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$idrealm,'refresh');
-    }
-
-    public function insertCharRename($id, $name, $multirealm, $realm)
-    {
-        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
-            redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
-
-        if ($this->wowrealm->getCharNameAlreadyExist($name, $multirealm)->num_rows())
-            redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?name','refresh');
-
-        $date       = $this->wowgeneral->getTimestamp();
-        $annotation = $this->lang->line('log_new_name').' -> '.$name.' | '.$this->lang->line('log_old_name').' -> '.$this->wowrealm->getCharName($id, $multirealm);
-
-        $data = array(
-            'idchar' => $id,
-            'annotation' => $annotation,
-            'date' => $date,
-            'realmid' => $realm
-        );
-
-        $this->db->insert('chars_annotations', $data);
-
-        $this->multirealm = $multirealm;
-        $this->multirealm->set('name', $name)->where('guid', $id)->update('characters');
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm,'refresh');
-    }
-
-    public function insertChangeLevelChar($id, $level, $multirealm, $realm)
-    {
-        if ($this->wowrealm->getCharActive($id, $multirealm) == '1')
-            redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm.'?char','refresh');
-
-        $date       = $this->wowgeneral->getTimestamp();
-        $annotation = $this->lang->line('log_new_level').' -> '.$level.' | '.$this->lang->line('log_old_level').' -> '.$this->wowrealm->getCharLevel($id, $multirealm);
-
-        $data = array(
-            'idchar' => $id,
-            'annotation' => $annotation,
-            'date' => $date,
-            'realmid' => $realm
-        );
-
-        $this->db->insert('chars_annotations', $data);
-
-        $this->multirealm = $multirealm;
-        $this->multirealm->set('level', $level)->where('guid', $id)->update('characters');
-
-        redirect(base_url().'admin/managecharacter/'.$id.'/'.$realm,'refresh');
-    }
-
-    public function getAnnotationsSpecifyChar($id, $realm)
-    {
-        return $this->db->select('*')->where('idchar', $id)->where('realmid', $realm)->order_by('id', 'DESC')->get('chars_annotations');
-    }
-
-    public function insertRankAcc($id, $gmlevel)
-    {
-        $data = array(
-            'id' => $id,
-            'gmlevel' => $gmlevel,
-            'RealmID' => '-1',
-        );
-
-        $this->auth->insert('account_access', $data);
-
-        $date   = $this->wowgeneral->getTimestamp();
-        $reason = $this->lang->line('log_gm_assigned');
-
-        $data = array(
-            'iduser' => $id,
-            'annotation' => $reason,
-            'date' => $date,
-        );
-
-        $this->db->insert('users_annotations', $data);
-
-        redirect(base_url().'admin/manageaccount/'.$id,'refresh');
-    }
-
-    public function getAnnotationsSpecify($id)
-    {
-        return $this->db->select('*')->where('iduser', $id)->get('users_annotations');
-    }
-
-    public function inserUnBanAcc($id)
+    public function insertBanAccount($iduser, $reason)
     {
         $date = $this->wowgeneral->getTimestamp();
-
-        if (empty($reason))
-            $reason = $this->lang->line('log_unbanned');
-
-        $data = array(
-            'iduser' => $id,
-            'annotation' => $reason,
-            'date' => $date,
-        );
-
-        $this->db->insert('users_annotations', $data);
-
-        $this->auth->where('id', $id)->delete('account_banned');
-
-        if ($this->wowgeneral->getExpansionAction() == 2)
-            $this->auth->where('id', $id)->delete('battlenet_account_bans');
-
-        redirect(base_url().'admin/manageaccount/'.$id,'refresh');
-    }
-
-    public function removeRankAcc($id)
-    {
-        $this->auth->where('id', $id)->delete('account_access');
-
-        $date   = $this->wowgeneral->getTimestamp();
-        $reason = $this->lang->line('log_gm_removed');
-
-        $data = array(
-            'iduser' => $id,
-            'annotation' => $reason,
-            'date' => $date,
-        );
-
-        $this->db->insert('users_annotations', $data);
-
-        redirect(base_url().'admin/manageaccount/'.$id,'refresh');
-    }
-
-    public function insertBanAcc($iduser, $reason)
-    {
-        $date = $this->wowgeneral->getTimestamp();
-        $id   = $this->session->userdata('wow_sess_id');
+        $id = $this->session->userdata('wow_sess_id');
 
         if (empty($reason))
             $reason = $this->lang->line('log_banned');
-
-        $data1 = array(
-            'iduser' => $iduser,
-            'annotation' => $reason,
-            'date' => $date,
-        );
-
-        $this->db->insert('users_annotations', $data1);
 
         $data2 = array(
             'id' => $iduser,
@@ -387,7 +95,35 @@ class Admin_model extends CI_Model {
         if ($this->wowgeneral->getExpansionAction() == 2)
             $this->auth->insert('battlenet_account_bans', $data2);
 
-        redirect(base_url().'admin/manageaccount/'.$iduser,'refresh');
+        return true;
+    }
+
+    public function delBanAccount($id)
+    {
+        $this->auth->where('id', $id)->delete('account_banned');
+
+        if ($this->wowgeneral->getExpansionAction() == 2)
+            $this->auth->where('id', $id)->delete('battlenet_account_bans');
+
+        return true;
+    }
+
+    public function insertRankAccount($id, $gmlevel)
+    {
+        $data = array(
+            'id' => $id,
+            'gmlevel' => $gmlevel,
+            'RealmID' => '-1'
+        );
+
+        $this->auth->insert('account_access', $data);
+        return true;
+    }
+
+    public function delRankAccount($id)
+    {
+        $this->auth->where('id', $id)->delete('account_access');
+        return true;
     }
 
     public function getBanCount()
@@ -1136,6 +872,43 @@ class Admin_model extends CI_Model {
         return $this->db->select('type')->where('id', $id)->get('store_items')->row_array()['type'];
     }
 
+    public function insertDonation($name, $price, $tax, $points)
+    {
+        $data = array(
+            'name' => $name,
+            'price' => $price,
+            'tax' => $tax,
+            'points' => $points
+        );
+
+        $this->db->insert('donate', $data);
+        return true;
+    }
+
+    public function updateDonation($id, $name, $price, $tax, $points)
+    {
+        $update = array(
+            'name' => $name,
+            'price' => $price,
+            'tax' => $tax,
+            'points' => $points
+        );
+
+        $this->db->where('id', $id)->update('donate', $update);
+        return true;
+    }
+
+    public function delSpecifyDonation($id)
+    {
+        $this->db->where('id', $id)->delete('donate');
+        return true;
+    }
+
+    public function getDonateList()
+    {
+        return $this->db->select('*')->order_by('id', 'ASC')->get('donate')->result();
+    }
+
     public function insertForum($name, $description, $icon, $type, $category)
     {
         $data = array(
@@ -1208,7 +981,7 @@ class Admin_model extends CI_Model {
     public function insertForumCategory($category)
     {
         $data = array(
-            'categoryName' => $category
+            'name' => $category
         );
 
         $this->db->insert('forum_category', $data);
@@ -1218,7 +991,7 @@ class Admin_model extends CI_Model {
     public function updateForumCategory($id, $category)
     {
         $update = array(
-            'categoryName' => $category
+            'name' => $category
         );
 
         $this->db->where('id', $id)->update('forum_category', $update);
@@ -1243,6 +1016,6 @@ class Admin_model extends CI_Model {
 
     public function getForumCategoryName($id)
     {
-        return $this->db->select('categoryName')->where('id', $id)->get('forum_category')->row_array()['categoryName'];
+        return $this->db->select('name')->where('id', $id)->get('forum_category')->row_array()['name'];
     }
 }

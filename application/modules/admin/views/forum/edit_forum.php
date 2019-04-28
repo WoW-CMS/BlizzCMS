@@ -52,9 +52,9 @@
                   <select class="uk-select" id="forum_category">
                     <?php foreach($this->admin_model->getForumCategoryList()->result() as $categ): ?>
                     <?php if ($categ->id == $this->admin_model->getForumCategoryName($idlink)): ?>
-                    <option value="<?= $categ->id ?>" selected><?= $categ->categoryName ?></option>
+                    <option value="<?= $categ->id ?>" selected><?= $categ->name ?></option>
                     <?php else: ?>
-                    <option value="<?= $categ->id ?>"><?= $categ->categoryName ?></option>
+                    <option value="<?= $categ->id ?>"><?= $categ->name ?></option>
                     <?php endif; ?>
                     <?php endforeach; ?>
                   </select>

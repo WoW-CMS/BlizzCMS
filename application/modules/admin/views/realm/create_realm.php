@@ -94,17 +94,16 @@
       function AddRealmForm(e) {
         e.preventDefault();
 
-        var realmid = $.trim($('#realm_id').val());
-        var soaphost = $.trim($('#soap_hostname').val());
-        var soapport = $.trim($('#soap_port').val());
-        var soapuser = $.trim($('#soap_username').val());
-        var soappass = $.trim($('#soap_password').val());
-        var charhost = $.trim($('#character_hostname').val());
-        var chardb = $.trim($('#character_database').val());
-        var charuser = $.trim($('#character_username').val());
-        var charpass = $.trim($('#character_password').val());
-
-        if(id == ''){
+        var realmid = $('#realm_id').val();
+        var soaphost = $('#soap_hostname').val();
+        var soapport = $('#soap_port').val();
+        var soapuser = $('#soap_username').val();
+        var soappass = $('#soap_password').val();
+        var charhost = $('#character_hostname').val();
+        var chardb = $('#character_database').val();
+        var charuser = $('#character_username').val();
+        var charpass = $('#character_password').val();
+        if(realmid == ''){
           $.amaran({
             'theme': 'awesome error',
             'content': {

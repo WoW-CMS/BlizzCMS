@@ -13,7 +13,7 @@ class Forum_model extends CI_Model {
 
     public function getCategory()
     {
-        return $this->db->select('id, categoryName')->get('forum_category')->result();
+        return $this->db->select('id, name')->get('forum_category')->result();
     }
 
     public function insertComment($reply, $topicid, $author)

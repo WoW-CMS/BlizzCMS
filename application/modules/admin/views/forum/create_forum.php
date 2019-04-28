@@ -51,7 +51,7 @@
                 <div class="uk-form-controls">
                   <select class="uk-select" id="forum_category">
                     <?php foreach($this->admin_model->getForumCategoryList()->result() as $categ): ?>
-                    <option value="<?= $categ->id ?>"><?= $categ->categoryName ?></option>
+                    <option value="<?= $categ->id ?>"><?= $categ->name ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
