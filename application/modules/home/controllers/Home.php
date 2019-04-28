@@ -40,16 +40,15 @@ class Home extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('home_model');
+        $this->load->model('news/news_model');
+        $this->load->config('home');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
         if(!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
-
-        $this->load->model('home_model');
-        $this->load->model('news/news_model');
-        $this->load->config('home');
     }
 
     public function index()

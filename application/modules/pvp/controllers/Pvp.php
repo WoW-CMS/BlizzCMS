@@ -40,6 +40,7 @@ class Pvp extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('pvp_model');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -49,8 +50,6 @@ class Pvp extends MX_Controller {
 
         if (!$this->wowmodule->getPVPStatus())
             redirect(base_url(),'refresh');
-
-        $this->load->model('pvp_model');
     }
 
     public function index()

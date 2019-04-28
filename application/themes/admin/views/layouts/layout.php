@@ -61,7 +61,6 @@
                       <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?></a>
                       <ul class="uk-nav-sub">
                         <li><a href="<?= base_url('admin/accounts'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= $this->lang->line('admin_nav_accounts'); ?></a></li>
-                        <li><a href="<?= base_url('admin/characters'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= $this->lang->line('admin_nav_characters'); ?></a></li>
                       </ul>
                     </li>
                     <li class="uk-parent">
@@ -118,7 +117,6 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('admin/accounts'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= $this->lang->line('admin_nav_accounts'); ?></a></li>
-                    <li><a href="<?= base_url('admin/characters'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= $this->lang->line('admin_nav_characters'); ?></a></li>
                   </ul>
                 </div>
               </li>

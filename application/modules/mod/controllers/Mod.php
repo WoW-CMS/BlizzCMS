@@ -43,6 +43,8 @@ class Mod extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('mod_model');
+        $this->load->library('pagination');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -57,9 +59,6 @@ class Mod extends MX_Controller {
 
         $this->wowlocmod = base_url('application/themes/'.$this->template->get_theme().'/');
         $this->wowlocref = base_url('application/themes/'.config_item('theme_name').'/');
-
-        $this->load->library('pagination');
-        $this->load->model('mod_model');
     }
 
     public function index()

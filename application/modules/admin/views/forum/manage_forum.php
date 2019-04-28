@@ -30,7 +30,7 @@
                   <tbody>
                     <?php foreach($this->admin_model->getForumCategoryList()->result() as $list): ?>
                     <tr>
-                      <td><?= $list->categoryName ?></td>
+                      <td><?= $list->name ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
                           <a href="<?= base_url('admin/forum/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
@@ -55,7 +55,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/forum/category/delete'); ?>",
           method:"POST",
-          data:{id},
+          data:{value},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

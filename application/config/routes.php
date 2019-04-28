@@ -156,11 +156,13 @@ $route[$lang.'/admin/modules/disable'] = 'admin/disablemodule';
 /*Manage Accounts*/
 $route[$lang.'/admin/accounts'] = 'admin/accounts';
 $route[$lang.'/admin/accounts/(:num)'] = 'admin/accounts/$2';
-$route[$lang.'/admin/manageaccount/(:num)'] = 'admin/manageaccount/$2';
-
-/*Manage Characters*/
-$route[$lang.'/admin/characters'] = 'admin/characters';
-$route[$lang.'/admin/managecharacter/(:num)/(:num)'] = 'admin/managecharacter/$2/$3';
+$route[$lang.'/admin/account/manage/(:num)'] = 'admin/accountmanage/$2';
+$route[$lang.'/admin/account/dlogs/(:num)'] = 'admin/accountdonatelogs/$2';
+$route[$lang.'/admin/account/update'] = 'admin/updateaccount';
+$route[$lang.'/admin/account/ban'] = 'admin/banaccount';
+$route[$lang.'/admin/account/unban'] = 'admin/unbanaccount';
+$route[$lang.'/admin/account/grantrank'] = 'admin/grantrankaccount';
+$route[$lang.'/admin/account/delrank'] = 'admin/delrankaccount';
 
 /*Menu*/
 $route[$lang.'/admin/menu'] = 'admin/managemenu';
@@ -229,10 +231,11 @@ $route[$lang.'/admin/store/item/delete'] = 'admin/deletestoreitem';
 
 /*Donate*/
 $route[$lang.'/admin/donate'] = 'admin/donate';
-$route[$lang.'/admin/donatelist'] = 'admin/getDonateList';
-$route[$lang.'/admin/editdonation'] = 'admin/updateDonation';
-$route[$lang.'/admin/adddonation'] = 'admin/insertDonation';
-$route[$lang.'/admin/deletedonation'] = 'admin/deleteDonation';
+$route[$lang.'/admin/donate/create'] = 'admin/createdonateplan';
+$route[$lang.'/admin/donate/edit/(:num)'] = 'admin/editdonateplan/$2';
+$route[$lang.'/admin/donate/add'] = 'admin/adddonateplan';
+$route[$lang.'/admin/donate/update'] = 'admin/updatedonateplan';
+$route[$lang.'/admin/donate/delete'] = 'admin/deletedonateplan';
 
 /*Topsites*/
 $route[$lang.'/admin/topsites'] = 'admin/managetopsites';

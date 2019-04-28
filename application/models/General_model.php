@@ -40,7 +40,7 @@ class General_model extends CI_Model {
 
     public function getCharDPTotal($id)
     {
-        $qq = $this->db->select('dp')->where('accountid', $id)->get('users_data');
+        $qq = $this->db->select('dp')->where('id', $id)->get('users');
 
         if ($qq->num_rows())
             return $qq->row('dp');
@@ -50,7 +50,7 @@ class General_model extends CI_Model {
 
     public function getCharVPTotal($id)
     {
-        $qq = $this->db->select('vp')->where('accountid', $id)->get('users_data');
+        $qq = $this->db->select('vp')->where('id', $id)->get('users');
 
         if ($qq->num_rows())
             return $qq->row('vp');
@@ -386,7 +386,7 @@ class General_model extends CI_Model {
         }
     }
 
-    public function getNameClass($class)
+    public function getClassName($class)
     {
         switch ($class)
         {

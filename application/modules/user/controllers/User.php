@@ -40,11 +40,10 @@ class User extends MX_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('user_model');
 
         if (!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
-
-        $this->load->model('user_model');
     }
 
     public function login()
