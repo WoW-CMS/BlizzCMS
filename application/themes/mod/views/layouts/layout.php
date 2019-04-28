@@ -87,7 +87,7 @@
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('mod/queue'); ?>"><span class="admin-subnav-icon"><i class="fas fa-list-alt"></i></span>Moderation Queue</a></li>
                     <li><a href="<?= base_url('mod/reports'); ?>"><span class="admin-subnav-icon"><i class="fas fa-gavel"></i></span>Reports</a></li>
-                    <li><a href="<?= base_url('mod/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-book"></i></span>Moderator Logs</a></li>
+                    <li><a href="<?= base_url('mod/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-book"></i></span>Guardian Logs</a></li>
                   </ul>
                 </div>
               </li>

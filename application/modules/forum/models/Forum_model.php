@@ -11,6 +11,19 @@ class Forum_model extends CI_Model {
         parent::__construct();
     }
 
+    public function __setLogs($userid, $type, $idtopic, $function, $annotation)
+    {
+      $data = array(
+        'userid' => $userid,
+        'type' => $type,
+        'idtopic' => $idtopic,
+        'function' => $function,
+        'annotation' => $annotation,
+        'datetime' => $this->wowgeneral->getTimestamp(),
+      );
+      $this->db->insert('mod_logs', $data);
+    }
+
     public function getCategory()
     {
         return $this->db->select('id, name')->get('forum_category')->result();
@@ -18,6 +31,10 @@ class Forum_model extends CI_Model {
 
     public function insertComment($reply, $topicid, $author)
     {
+        $function = '[Guardian/comment]';
+        $type = '2';
+        $log_enter = $this->__setLogs($author, $type, $topicid, $function, $reply);
+
         $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
@@ -47,6 +64,36 @@ class Forum_model extends CI_Model {
         return $this->db->select('author')->where('author', $id)->get('forum_topics')->num_rows();
     }
 
+    public function getCountPostCategory($id)
+    {
+        return $this->db->select('author')->where('forums', $id)->get('forum_topics')->num_rows();
+    }
+
+    public function getCountPostGeneral()
+    {
+        return $this->db->select('*')->get('forum_topics')->num_rows();
+    }
+
+    public function getCountPostReplies()
+    {
+        return $this->db->select('*')->get('forum_replies')->num_rows();
+    }
+
+    public function getCountUsers()
+    {
+        return $this->db->select('*')->get('users')->num_rows();
+    }
+
+    public function getLastPostCategory($id)
+    {
+        return $this->db->select('*')->where('forums', $id)->limit('1')->order_by('date', 'DESC')->get('forum_topics');
+    }
+
+    public function getLastPosts()
+    {
+        return $this->db->select('*')->limit('5')->order_by('date', 'DESC')->get('forum_topics');
+    }
+
     public function getRowTopicExist($id)
     {
         return $this->db->select('id')->where('id', $id)->get('forum_topics')->num_rows();
@@ -54,6 +101,9 @@ class Forum_model extends CI_Model {
 
     public function insertTopic($category, $title, $userid, $description, $locked, $pinned)
     {
+        $function = '[Guardian/Topic]';
+        $type = '1';
+        $log_enter = $this->__setLogs($userid, $category, $type, $function, $title);
         $date = $this->wowgeneral->getTimestamp();
 
         $data = array(
@@ -169,5 +219,15 @@ class Forum_model extends CI_Model {
     public function getTopicForum($id)
     {
         return $this->db->select('forums')->where('id', $id)->get('forum_topics')->row('forums');
+    }
+
+    public function addReportByUserId($report, $reportuser, $idtopic)
+    {
+      $data = array(
+        'userid' => $report,
+        'userreported' => $reportuser,
+        'topic' => $idtopic
+      );
+      $this->db->insert('mod_report');
     }
 }

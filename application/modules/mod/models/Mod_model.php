@@ -31,4 +31,14 @@ class Mod_model extends CI_Model {
     {
         $this->_offset = $offset;
     }
+
+    public function getLogs()
+    {
+      return $this->db->select('*')->get('mod_logs');
+    }
+
+    public function getReports()
+    {
+      return $this->db->select('*')->get('mod_reports');
+    }
 }

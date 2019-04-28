@@ -152,9 +152,9 @@ class Forum extends MX_Controller {
         if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        $ssesid = $this->session->userdata('wow_sess_id');
         $category = $this->input->post('category');
         $title = $this->input->post('title');
+        $ssesid = $this->session->userdata('wow_sess_id');
         $description = $_POST['description'];
         echo $this->forum_model->insertTopic($category, $title, $ssesid, $description, '0', '0');
     }

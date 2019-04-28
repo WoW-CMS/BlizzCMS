@@ -23,13 +23,15 @@
                       </a>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold">100</span>
+                      <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
                       <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <a href="" class="uk-display-block">[Dev] Icecrown Citadel...</a>
-                      <span class="uk-text-meta uk-display-block">03-22-2019, 08:14 AM</span>
-                      by <span class="uk-text-primary">Username</span>
+                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost) { ?>
+                        <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
+                        <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
+                        by <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastpost->author) ?></span>
+                      <?php } ?>
                     </td>
                   </tr>
                   <?php elseif($sections->type == 2): ?>
@@ -46,13 +48,15 @@
                       </a>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold">100</span>
+                      <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
                       <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <a href="" class="uk-display-block">[Dev] Icecrown Citadel...</a>
-                      <span class="uk-text-meta uk-display-block">03-22-2019, 08:14 AM</span>
-                      by <span class="uk-text-primary">Username</span>
+                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost) { ?>
+                        <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
+                        <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
+                        by <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastpost->author) ?></span>
+                      <?php } ?>
                     </td>
                   </tr>
                   <?php endif; ?>
@@ -71,21 +75,13 @@
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider">
+                  <?php foreach ($this->forum_model->getLastPosts()->result() as $lastest) { ?>
                   <li>
-                    <a href="">Lorem ipsum dolor sit amet, consectetur</a>
-                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary">Username</span></p>
-                    <p class="uk-text-small uk-margin-remove">03-21-2019, 10:49 PM</p>
+                    <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastest->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastpost->date) ?></p>
                   </li>
-                  <li>
-                    <a href="">Lorem ipsum dolor sit amet, consectetur</a>
-                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary">Username</span></p>
-                    <p class="uk-text-small uk-margin-remove">03-21-2019, 10:49 PM</p>
-                  </li>
-                  <li>
-                    <a href="">Lorem ipsum dolor sit amet, consectetur</a>
-                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary">Username</span></p>
-                    <p class="uk-text-small uk-margin-remove">03-21-2019, 10:49 PM</p>
-                  </li>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
@@ -102,21 +98,21 @@
               <div>
                 <div class="forum-who-icon"><i class="far fa-comments fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary">50</span><br>
+                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostReplies() ?></span><br>
                   <span>Replies</span>
                 </div>
               </div>
               <div>
               <div class="forum-who-icon"><i class="far fa-file-alt fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary">50</span><br>
+                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostGeneral() ?></span><br>
                   <span>Topics</span>
                 </div>
               </div>
               <div>
                 <div class="forum-who-icon"><i class="far fa-user fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary">50</span><br>
+                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountUsers() ?></span><br>
                   <span>Users</span>
                 </div>
               </div>
