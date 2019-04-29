@@ -1,4 +1,4 @@
-/*! UIkit 3.1.2 | http://www.getuikit.com | (c) 2014 - 2018 YOOtheme | MIT License */
+/*! UIkit 3.1.4 | http://www.getuikit.com | (c) 2014 - 2018 YOOtheme | MIT License */
 
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -488,7 +488,7 @@
         return isString(selector) && selector.match(contextSelectorRe);
     }
 
-    var selectorRe = /.*?[^\\](?:,|$)/;
+    var selectorRe = /.*?[^\\](?:,|$)/g;
 
     function splitSelector(selector) {
         return selector.match(selectorRe).map(function (selector) { return selector.replace(/,$/, '').trim(); });
@@ -4022,38 +4022,37 @@
                 }
             }, true);
 
-        });
+            var off;
+            on(document, pointerDown, function (e) {
 
-        var off;
+                off && off();
 
-        on(document, pointerDown, function (e) {
-
-            off && off();
-
-            if (!isTouch(e)) {
-                return;
-            }
-
-            var pos = getEventPos(e);
-            var target = 'tagName' in e.target ? e.target : e.target.parentNode;
-            off = once(document, pointerUp, function (e) {
-
-                var ref = getEventPos(e);
-                var x = ref.x;
-                var y = ref.y;
-
-                // swipe
-                if (target && x && Math.abs(pos.x - x) > 100 || y && Math.abs(pos.y - y) > 100) {
-
-                    setTimeout(function () {
-                        trigger(target, 'swipe');
-                        trigger(target, ("swipe" + (swipeDirection(pos.x, pos.y, x, y))));
-                    });
-
+                if (!isTouch(e)) {
+                    return;
                 }
 
-            });
-        }, {passive: true});
+                var pos = getEventPos(e);
+                var target = 'tagName' in e.target ? e.target : e.target.parentNode;
+                off = once(document, pointerUp, function (e) {
+
+                    var ref = getEventPos(e);
+                    var x = ref.x;
+                    var y = ref.y;
+
+                    // swipe
+                    if (target && x && Math.abs(pos.x - x) > 100 || y && Math.abs(pos.y - y) > 100) {
+
+                        setTimeout(function () {
+                            trigger(target, 'swipe');
+                            trigger(target, ("swipe" + (swipeDirection(pos.x, pos.y, x, y))));
+                        });
+
+                    }
+
+                });
+            }, {passive: true});
+
+        });
 
     }
 
@@ -4376,10 +4375,6 @@
                 },
 
                 handler: function(e) {
-
-                    if (e.defaultPrevented) {
-                        return;
-                    }
 
                     var id = e.target.hash;
 
@@ -7485,7 +7480,7 @@
             },
 
             targets: function() {
-                return $$(this.links.map(function (el) { return escape(el.hash); }).join(','));
+                return $$(this.links.map(function (el) { return escape(el.hash).substr(1); }).join(','));
             }
 
         },
@@ -8165,7 +8160,7 @@
 
                     // TODO better isToggled handling
                     var link;
-                    if (closest(e.target, 'a[href="#"], a[href=""], button')
+                    if (closest(e.target, 'a[href="#"], a[href=""]')
                         || (link = closest(e.target, 'a[href]')) && (
                             this.cls
                             || !isVisible(this.target)
@@ -8268,7 +8263,7 @@
 
     }
 
-    UIkit.version = '3.1.2';
+    UIkit.version = '3.1.4';
 
     core(UIkit);
 
@@ -8800,17 +8795,10 @@
         var sort = ref$1.sort;
         var order = ref$1.order; if ( order === void 0 ) order = 'asc';
 
-        if (isUndefined(sort)) {
-            return group in stateFilter && filter === stateFilter[group]
-                || !filter && group && !(group in stateFilter) && !stateFilter[''];
-        } else {
-            return stateSort === sort && stateOrder === order;
-        }
-        // filter = isUndefined(sort) ? filter || '' : filter;
-        // sort = isUndefined(filter) ? sort || '' : sort;
-        //
-        // return (isUndefined(filter) || group in stateFilter && filter === stateFilter[group])
-        //     && (isUndefined(sort) || stateSort === sort && stateOrder === order);
+        return isUndefined(sort)
+            ? group in stateFilter && filter === stateFilter[group]
+                || !filter && group && !(group in stateFilter) && !stateFilter['']
+            : stateSort === sort && stateOrder === order;
     }
 
     function isEqualList(listA, listB) {
@@ -9799,7 +9787,7 @@
 
             {
 
-                name: pointerUp,
+                name: 'click',
 
                 self: true,
 
@@ -9813,7 +9801,6 @@
                         return;
                     }
 
-                    e.preventDefault();
                     this.hide();
                 }
 
