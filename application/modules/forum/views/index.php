@@ -23,7 +23,7 @@
                       </a>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
+                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
                       <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">

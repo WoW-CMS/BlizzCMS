@@ -51,6 +51,8 @@ $lang['tab_cart'] = 'Carrito';
 $lang['tab_account'] = 'Mi Cuenta';
 $lang['tab_reset'] = 'Recuperación de contraseña';
 $lang['tab_error'] = 'Error 404';
+$lang['tab_maintenance'] = 'Mantenimiento';
+$lang['tab_online'] = 'Jugadores en linea';
 
 /*Panel Navbar*/
 $lang['navbar_vote_panel'] = 'Panel de Votos';
@@ -223,6 +225,7 @@ $lang['statistics_top_5v5'] = 'TOP 5V5';
 
 /*News Lang*/
 $lang['news_recent_list'] = 'Lista de noticias recientes';
+$lang['news_comments'] = 'Comentarios';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Reportes no encontrados';

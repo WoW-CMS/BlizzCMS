@@ -29,10 +29,10 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h3 class="uk-h3 uk-text-uppercase uk-text-bold"><?= $this->lang->line('button_account_settings'); ?></h3>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('button_account_settings'); ?></h4>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h4>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open('', 'id="changeemailForm" onsubmit="ChangeEmailForm(event)"'); ?>
@@ -83,7 +83,7 @@
             </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= $this->lang->line('panel_change_password'); ?></h4>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= $this->lang->line('panel_change_password'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open('', 'id="changepasswordForm" onsubmit="ChangePasswordForm(event)"'); ?>
@@ -126,7 +126,7 @@
             </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= $this->lang->line('button_change_avatar'); ?></h4>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= $this->lang->line('button_change_avatar'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open('', 'id="changeavatarForm" onsubmit="ChangeAvatarForm(event)"'); ?>

@@ -72,9 +72,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" id="menu_type">
                       <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
-                      <?php foreach($this->admin_model->getMenuTypeList()->result() as $type): ?>
-                      <option value="<?= $type->id ?>"><?= $type->title ?></option>
-                      <?php endforeach; ?>
+                      <option value="1"><?= $this->lang->line('option_internal_url'); ?></option>
+                      <option value="2"><?= $this->lang->line('option_external_url'); ?></option>
                     </select>
                   </div>
                 </div>

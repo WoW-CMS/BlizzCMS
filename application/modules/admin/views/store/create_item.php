@@ -26,6 +26,7 @@
                     <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_category">
+                        <option value="0"><?= $this->lang->line('notification_select_category'); ?></option>
                         <?php foreach ($this->admin_model->getCategoryStore()->result() as $groupsStore): ?>
                         <option value="<?= $groupsStore->id ?>"><?= $groupsStore->name ?></option>
                         <?php endforeach; ?>
@@ -36,6 +37,7 @@
                     <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_type">
+                        <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
                         <option value="1"><?= $this->lang->line('option_item'); ?></option>
                       </select>
                     </div>
@@ -109,6 +111,38 @@
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
               message: '<?= $this->lang->line('notification_name_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(type == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_type'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(category == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_category'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },

@@ -61,6 +61,7 @@ $lang['admin_nav_manage_forum'] = 'Administrar Foro';
 $lang['section_general_settings'] = 'Configuración General';
 $lang['section_module_settings'] = 'Configuraciones de Módulos';
 $lang['section_optional_settings'] = 'Configuraciones Opcionales';
+$lang['section_seo_settings'] = 'Configuraciones SEO';
 $lang['section_forum_categories'] = 'Categorías del Foro';
 $lang['section_forum_elements'] = 'Elementos del Foro';
 $lang['section_store_categories'] = 'Categorías de la Tienda';
@@ -88,7 +89,6 @@ $lang['table_header_module'] = 'Modulo';
 $lang['table_header_payment_id'] = 'Payment ID';
 $lang['table_header_hash'] = 'Hash';
 $lang['table_header_total'] = 'Total';
-$lang['table_header_complete'] = 'Complete';
 $lang['table_header_create_time'] = 'Create Time';
 $lang['table_header_guid'] = 'Guid';
 
@@ -188,6 +188,8 @@ $lang['option_everyone'] = 'Todos';
 $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Todos';
 $lang['option_item'] = 'Item';
+$lang['option_internal_url'] = 'URL Interna';
+$lang['option_external_url'] = 'URL Externa';
 
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Cuentas Creadas';

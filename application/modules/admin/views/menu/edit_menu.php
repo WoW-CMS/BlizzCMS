@@ -48,9 +48,9 @@
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="menu_main">
-                      <option value="0" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 0) echo 'selected'; ?>><?= $this->lang->line('notification_select_type'); ?></option>
-                      <option value="1" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 1) echo 'selected'; ?>><?= $this->lang->line('option_normal'); ?></option>
-                      <option value="2" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == 2) echo 'selected'; ?>><?= $this->lang->line('option_dropdown'); ?></option>
+                      <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                      <option value="1" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == '1') echo 'selected'; ?>><?= $this->lang->line('option_normal'); ?></option>
+                      <option value="2" <?php if($this->admin_model->getMenuSpecifyMain($idlink) == '2') echo 'selected'; ?>><?= $this->lang->line('option_dropdown'); ?></option>
                     </select>
                   </div>
                 </div>
@@ -72,13 +72,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" id="menu_type">
                       <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
-                      <?php foreach ($this->admin_model->getMenuTypeList()->result() as $type): ?>
-                      <?php if ($type->id == $this->admin_model->getMenuSpecifyType($idlink)): ?>
-                      <option value="<?= $type->id ?>" selected><?= $type->title ?></option>
-                      <?php else: ?>
-                      <option value="<?= $type->id ?>"><?= $type->title ?></option>
-                      <?php endif; ?>
-                      <?php endforeach; ?>
+                      <option value="1" <?php if($this->admin_model->getMenuSpecifyType($idlink) == '1') echo 'selected'; ?>><?= $this->lang->line('option_internal_url'); ?></option>
+                      <option value="2" <?php if($this->admin_model->getMenuSpecifyType($idlink) == '2') echo 'selected'; ?>><?= $this->lang->line('option_external_url'); ?></option>
                     </select>
                   </div>
                 </div>

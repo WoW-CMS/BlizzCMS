@@ -105,6 +105,7 @@
                     <tr>
                       <th class="uk-table-expand"><i class="fas fa-user"></i> <?=$this->lang->line('table_header_name');?></th>
                       <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=$this->lang->line('table_header_race');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=$this->lang->line('table_header_class');?></th>
                       <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?=$this->lang->line('table_header_faction');?></th>
                       <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('table_header_total_kills');?></th>
                       <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=$this->lang->line('table_header_today_kills');?></th>
@@ -115,8 +116,9 @@
                     <?php foreach($this->pvp_model->getTop20PVP($multiRealm)->result() as $tops): ?>
                       <tr>
                         <td class="uk-text-capitalize"><?= $tops->name ?></td>
-                        <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($tops->race)); ?>" width="20" height="20" title="<?=$this->wowgeneral->getRaceName($tops->race);?>" alt=""></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= base_url('assets/images/factions/'.$this->wowgeneral->getFaction($tops->race).'.png'); ?>" width="20" height="20" title="<?=$this->wowgeneral->getFaction($tops->race);?>" alt=""></td>
+                        <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($tops->race)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getRaceName($tops->race); ?>" alt="<?= $this->wowgeneral->getRaceName($tops->race); ?>"></td>
+                        <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($tops->class)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getClassName($tops->class); ?>" alt="<?= $this->wowgeneral->getClassName($tops->class); ?>"></td>
+                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= base_url('assets/images/factions/'.$this->wowgeneral->getFaction($tops->race).'.png'); ?>" width="20" height="20" title="<?= $this->wowgeneral->getFaction($tops->race); ?>" alt="<?= $this->wowgeneral->getFaction($tops->race); ?>"></td>
                         <td class="uk-text-center"><?= $tops->totalKills ?></td>
                         <td class="uk-text-center"><?= $tops->todayKills ?></td>
                         <td class="uk-text-center"><?= $tops->yesterdayKills ?></td>

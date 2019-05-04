@@ -28,7 +28,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($this->admin_model->getShopGroupList()->result() as $list): ?>
+                    <?php foreach($this->admin_model->getCategoryStore()->result() as $list): ?>
                     <tr>
                       <td><?= $list->name; ?></td>
                       <td>

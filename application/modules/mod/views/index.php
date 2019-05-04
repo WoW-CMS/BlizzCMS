@@ -3,7 +3,7 @@
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-3-4@s">
             <h3 class="uk-h3 uk-margin-small uk-heading-bullet">Latest Moderator Actions</h3>
-            <div class="uk-card uk-card-default uk-card-body uk-margin-small">
+            <div class="uk-card uk-card-default uk-card-body uk-margin-small-top uk-margin-medium-bottom">
               <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>

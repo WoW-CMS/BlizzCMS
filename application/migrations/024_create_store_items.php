@@ -54,7 +54,8 @@ class Migration_create_store_items extends CI_Migration {
                       'default' => 'item1.jpg'
               ),
               'qquery' => array(
-                      'type' => 'TEXT'
+                      'type' => 'TEXT',
+                      'null' => TRUE
               )
 
       ));

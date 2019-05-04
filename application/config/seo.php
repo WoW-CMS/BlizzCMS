@@ -21,13 +21,13 @@ $config['seo_imgurl'] = '';
 
 /**
  *
- * Metadata Status (Default: True)
+ * Metadata Status (Default: false)
  *
  * TRUE = Enable
  * FALSE = Disabled
  *
 */
-$config['seo_meta_enable'] = TRUE;
+$config['seo_meta_enable'] = FALSE;
 
 /**
  *
@@ -49,23 +49,23 @@ $config['seo_meta_keywords'] = '';
 
 /**
  *
- * Twitter Card Status (Default: True)
+ * Twitter Card Status (Default: false)
  *
  * TRUE = Enable
  * FALSE = Disabled
  *
 */
-$config['seo_twitter_enable'] = TRUE;
+$config['seo_twitter_enable'] = FALSE;
 
 /**
  *
- * Open Graph Status (Default: True)
+ * Open Graph Status (Default: false)
  *
  * TRUE = Enable
  * FALSE = Disabled
  *
 */
-$config['seo_og_enable'] = TRUE;
+$config['seo_og_enable'] = FALSE;
 
 /**
  *

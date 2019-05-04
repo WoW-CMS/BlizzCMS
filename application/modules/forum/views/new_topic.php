@@ -7,7 +7,7 @@
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small">
               <div class="uk-width-expand@m">
-                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></h4>
+                <h4 class="uk-h4 uk-text-bold"><i class="fas fa-pen-square"></i> <?= $this->lang->line('button_new_topic'); ?></h4>
               </div>
               <div class="uk-width-auto@m">
                 <a href="<?= base_url('forum'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>

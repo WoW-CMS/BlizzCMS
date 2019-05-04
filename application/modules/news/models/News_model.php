@@ -59,7 +59,7 @@ class News_model extends CI_Model {
 
     public function getCommentCount($id)
     {
-        return $this->db->select('id')->where('id_new', $id)->get('news_comments');
+        return $this->db->select('id')->where('id_new', $id)->get('news_comments')->num_rows();
     }
 
     public function getNewSpecifyID($id)

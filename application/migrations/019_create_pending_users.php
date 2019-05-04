@@ -38,7 +38,7 @@ class Migration_create_pending_users extends CI_Migration {
                       'constraint' => '10',
                       'unsigned' => TRUE
               ),
-              'date' => array(
+              'joindate' => array(
                       'type' => 'INT',
                       'constraint' => '10',
                       'unsigned' => TRUE

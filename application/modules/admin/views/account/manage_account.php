@@ -138,8 +138,8 @@
                           <th class="uk-table-shrink"><?= $this->lang->line('table_header_race'); ?></th>
                           <th class="uk-table-shrink"><?= $this->lang->line('table_header_class'); ?></th>
                           <th class="uk-table-shrink"><?= $this->lang->line('table_header_level'); ?></th>
-                          <th class="uk-width-small"><?= $this->lang->line('table_header_money'); ?></th>
-                          <th class="uk-width-small"><?= $this->lang->line('table_header_total_kills'); ?></th>
+                          <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_money'); ?></th>
+                          <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_total_kills'); ?></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -150,8 +150,8 @@
                           <td><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($chars->race)); ?>" width="24" height="24" title="<?=$this->wowgeneral->getRaceName($chars->race);?>" alt="Race"></td>
                           <td><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($chars->class)); ?>" width="24" height="24" title="<?=$this->wowgeneral->getClassName($chars->class);?>" alt="Class"></td>
                           <td><?= $chars->level ?></td>
-                          <td><?= $chars->money ?></td>
-                          <td><?= $chars->totalKills ?></td>
+                          <td class="uk-text-center"><?= $chars->money ?></td>
+                          <td class="uk-text-center"><?= $chars->totalKills ?></td>
                         </tr>
                         <?php endforeach; ?>
                       </tbody>

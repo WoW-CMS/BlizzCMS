@@ -37,6 +37,7 @@
   font-family: 'Lobster';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'), url('../fonts/lobster-regular-webfont.woff') format('woff');
 }
 

@@ -47,7 +47,7 @@ class Migration_create_menu extends CI_Migration {
       $this->dbforge->add_key('id', TRUE);
       $this->dbforge->create_table('menu');
       $data = array(
-        array('name' => 'More', 'url' => '#', 'icon' => 'fas fa-bars', 'main' => '2', 'child' => '0', 'type' => '0'),
+        array('name' => 'More', 'url' => '#', 'icon' => 'fas fa-bars', 'main' => '2', 'child' => '0', 'type' => '1'),
         array('name' => 'Changelogs', 'url' => 'changelogs', 'icon' => 'fas fa-scroll', 'main' => '1', 'child' => '1', 'type' => '1'),
         array('name' => 'PvP', 'url' => 'pvp', 'icon' => 'fas fa-fist-raised', 'main' => '1', 'child' => '1', 'type' => '1'),
         array('name' => 'Forums', 'url' => 'forum', 'icon' => 'fas fa-comments', 'main' => '1', 'child' => '0', 'type' => '1'),

@@ -38,6 +38,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class General extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function error404()
     {
         $data = array(
@@ -50,7 +55,7 @@ class General extends CI_Controller {
     public function maintenance()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_error'),
+            'pagetitle' => $this->lang->line('tab_maintenance'),
         );
 
         $this->template->build('maintenance', $data);

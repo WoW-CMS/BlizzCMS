@@ -16,7 +16,7 @@
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" type="text" id="store_category" value="<?= $this->admin_model->getGroupName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                    <input class="uk-input" type="text" id="store_category" value="<?= $this->admin_model->getStoreCategoryName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                   </div>
                 </div>
               </div>

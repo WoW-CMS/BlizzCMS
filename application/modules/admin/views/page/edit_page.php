@@ -25,7 +25,7 @@
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: link"></span>
-                  <input class="uk-input" type="text" id="page_uri" value="" placeholder="<?= $this->lang->line('placeholder_uri'); ?>" required>
+                  <input class="uk-input" type="text" id="page_uri" value="<?= $this->admin_model->getPagesSpecifyURI($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_uri'); ?>" required>
                 </div>
               </div>
             </div>

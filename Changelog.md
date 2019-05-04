@@ -19,13 +19,15 @@ password in-game)
 ### Removed
 
 - Remove location parameter from register and structure
+- Faq module removed
+- News list page removed
 
 ### Updated
 
 - Update Font Awesome to last version 5.8.1
-- Update TinyMCE to last version 5.0.3
+- Update TinyMCE to last version 5.0.4
 - Update forum views
-- Update UIkit to last version 3.1.2
+- Update UIkit to last version 3.1.4
 
 ## 1.0.1
 
