@@ -38,7 +38,6 @@ class CI_Wowcms {
     public function __construct()
     {
         $this->ci =& get_instance();
-        $this->ci->load->database();
         $this->responseCurl();
     }
 

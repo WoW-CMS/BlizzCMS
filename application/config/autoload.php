@@ -63,7 +63,8 @@ $datalib = array(
 	'session',
 	'form_validation',
 	'parser',
-	'template'
+	'template',
+	'Wowcms'
 );
 $autoload['libraries'] = $datalib;
 
