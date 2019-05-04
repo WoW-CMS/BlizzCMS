@@ -61,6 +61,7 @@ $lang['admin_nav_manage_forum'] = 'Manage Forum';
 $lang['section_general_settings'] = 'General Settings';
 $lang['section_module_settings'] = 'Module Settings';
 $lang['section_optional_settings'] = 'Optional Settings';
+$lang['section_seo_settings'] = 'SEO Settings';
 $lang['section_forum_categories'] = 'Forum Categories';
 $lang['section_forum_elements'] = 'Forum Elements';
 $lang['section_store_categories'] = 'Store Categories';
@@ -88,7 +89,6 @@ $lang['table_header_module'] = 'Module';
 $lang['table_header_payment_id'] = 'Payment ID';
 $lang['table_header_hash'] = 'Hash';
 $lang['table_header_total'] = 'Total';
-$lang['table_header_complete'] = 'Complete';
 $lang['table_header_create_time'] = 'Create Time';
 $lang['table_header_guid'] = 'Guid';
 
@@ -188,6 +188,8 @@ $lang['option_everyone'] = 'Everyone';
 $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Everyone';
 $lang['option_item'] = 'Item';
+$lang['option_internal_url'] = 'Internal URL';
+$lang['option_external_url'] = 'External URL';
 
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Accounts created';

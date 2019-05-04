@@ -51,6 +51,8 @@ $lang['tab_cart'] = 'Cart';
 $lang['tab_account'] = 'My Account';
 $lang['tab_reset'] = 'Password Recovery';
 $lang['tab_error'] = 'Error 404';
+$lang['tab_maintenance'] = 'Maintenance';
+$lang['tab_online'] = 'Online Players';
 
 /*Panel Navbar*/
 $lang['navbar_vote_panel'] = 'Vote Panel';
@@ -223,6 +225,7 @@ $lang['statistics_top_5v5'] = 'TOP 5V5';
 
 /*News Lang*/
 $lang['news_recent_list'] = 'Recent news list';
+$lang['news_comments'] = 'Comments';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Reports not found';

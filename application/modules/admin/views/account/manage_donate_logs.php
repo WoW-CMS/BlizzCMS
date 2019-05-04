@@ -16,7 +16,7 @@
                   <th class="uk-width-small"><?= $this->lang->line('table_header_payment_id'); ?></th>
                   <th class="uk-width-medium"><?= $this->lang->line('table_header_hash'); ?></th>
                   <th class="uk-width-small"><?= $this->lang->line('table_header_total'); ?></th>
-                  <th class="uk-width-small"><?= $this->lang->line('table_header_complete'); ?></th>
+                  <th class="uk-width-small"><?= $this->lang->line('table_header_status'); ?></th>
                   <th class="uk-width-small"><?= $this->lang->line('table_header_create_time'); ?></th>
                   <th class="uk-width-small"><?= $this->lang->line('table_header_points'); ?></th>
                 </tr>

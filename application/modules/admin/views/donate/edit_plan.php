@@ -16,7 +16,7 @@
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen"></i></span>
-                    <input class="uk-input" type="text" id="plan_name" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
+                    <input class="uk-input" type="text" id="plan_name" value="<?= $this->admin_model->getDonateSpecifyName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -26,7 +26,7 @@
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_price'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
-                      <input class="uk-input" type="number" id="plan_price" placeholder="<?= $this->lang->line('placeholder_price'); ?>" min="1" value="1" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
+                      <input class="uk-input" type="number" id="plan_price" placeholder="<?= $this->lang->line('placeholder_price'); ?>" min="1" value="<?= $this->admin_model->getDonateSpecifyPrice($idlink); ?>" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
                     </div>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
                   <label class="uk-form-label"><?= $this->lang->line('table_header_tax'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
-                      <input class="uk-input" type="number" id="plan_tax" placeholder="<?= $this->lang->line('table_header_tax'); ?>" min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
+                      <input class="uk-input" type="number" id="plan_tax" placeholder="<?= $this->lang->line('table_header_tax'); ?>" min="0" value="<?= $this->admin_model->getDonateSpecifyTax($idlink); ?>" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                   <label class="uk-form-label"><?= $this->lang->line('table_header_points'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
-                      <input class="uk-input" type="number" id="plan_points" placeholder="<?= $this->lang->line('table_header_points'); ?>" min="1" value="1" step="1" required>
+                      <input class="uk-input" type="number" id="plan_points" placeholder="<?= $this->lang->line('table_header_points'); ?>" min="1" value="<?= $this->admin_model->getDonateSpecifyPoints($idlink); ?>" step="1" required>
                     </div>
                   </div>
                 </div>

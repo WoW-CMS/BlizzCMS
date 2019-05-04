@@ -14,7 +14,7 @@
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= $this->lang->line('table_header_id'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input" type="number" id="realm_id" value="" placeholder="Auth -> realmlist -> ID" required>
+                <input class="uk-input" type="number" id="realm_id" value="<?= $this->admin_model->getRealmSpecifyId($idlink); ?>" placeholder="Auth -> realmlist -> ID" required>
               </div>
             </div>
             <div class="uk-margin-small">
@@ -22,13 +22,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_hostname'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="soap_hostname" value="" placeholder="127.0.0.1" required>
+                    <input class="uk-input" type="text" id="soap_hostname" value="<?= $this->admin_model->getRealmSpecifyConsoleHost($idlink); ?>" placeholder="127.0.0.1" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_port'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="number" id="soap_port" value="" placeholder="7878" required>
+                    <input class="uk-input" type="number" id="soap_port" value="<?= $this->admin_model->getRealmSpecifyConsolePort($idlink); ?>" placeholder="7878" required>
                   </div>
                 </div>
               </div>
@@ -38,13 +38,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_user'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="soap_username" value="" placeholder="blizzcms" required>
+                    <input class="uk-input" type="text" id="soap_username" value="<?= $this->admin_model->getRealmSpecifyConsoleUser($idlink); ?>" placeholder="blizzcms" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_soap_password'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="password" id="soap_password" value="" placeholder="ascent" required>
+                    <input class="uk-input" type="password" id="soap_password" value="<?= $this->admin_model->getRealmSpecifyConsolePass($idlink); ?>" placeholder="ascent" required>
                   </div>
                 </div>
               </div>
@@ -54,13 +54,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_hostname'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_hostname" value="" placeholder="127.0.0.1" required>
+                    <input class="uk-input" type="text" id="character_hostname" value="<?= $this->admin_model->getRealmSpecifyHost($idlink); ?>" placeholder="127.0.0.1" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_name'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_database" value="" placeholder="characters" required>
+                    <input class="uk-input" type="text" id="character_database" value="<?= $this->admin_model->getRealmSpecifyCharDB($idlink); ?>" placeholder="characters" required>
                   </div>
                 </div>
               </div>
@@ -70,13 +70,13 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_user'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="character_username" value="" placeholder="root" required>
+                    <input class="uk-input" type="text" id="character_username" value="<?= $this->admin_model->getRealmSpecifyUser($idlink); ?>" placeholder="root" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><strong><?= $this->lang->line('placeholder_db_character'); ?></strong> <?= $this->lang->line('placeholder_db_password'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="password" id="character_password" value="" placeholder="ascent">
+                    <input class="uk-input" type="password" id="character_password" value="<?= $this->admin_model->getRealmSpecifyPass($idlink); ?>" placeholder="ascent">
                   </div>
                 </div>
               </div>

@@ -162,10 +162,13 @@ class User_model extends CI_Model {
         {
             if($this->getExistInfo() == 0)
             {
+                $joindate = strtotime($this->wowauth->getJoinDateID($this->session->userdata('wow_sess_id')));
+
                 $data = array(
                     'id' => $this->session->userdata('wow_sess_id'),
                     'username' => $this->session->userdata('wow_sess_username'),
-                    'email' => $this->session->userdata('wow_sess_email')
+                    'email' => $this->session->userdata('wow_sess_email'),
+                    'joindate' => $joindate
                 );
 
                 $this->db->insert('users', $data);
@@ -178,22 +181,12 @@ class User_model extends CI_Model {
             return 'idErr';
     }
 
-    public function getBorn($id)
-    {
-        $qq = $this->db->select('year, month, day')->where('id', $id)->get('users');
-
-        if ($qq->num_rows())
-            return $qq->row('year').'/'.$qq->row('month').'/'.$qq->row('day');
-        else
-            return 'Unknow';
-    }
-
     public function getDateMember($id)
     {
-        $qq = $this->db->select('date')->where('id', $id)->get('users');
+        $qq = $this->db->select('joindate')->where('id', $id)->get('users');
 
         if ($qq->num_rows())
-            return $qq->row('date');
+            return $qq->row('joindate');
         else
             return 'Unknow';
     }
@@ -249,8 +242,8 @@ class User_model extends CI_Model {
 
     public function insertRegister($username, $email, $password, $repassword)
     {
-        $date       = $this->wowgeneral->getTimestamp();
-        $expansion  = $this->wowgeneral->getRealExpansionDB();
+        $date = $this->wowgeneral->getTimestamp();
+        $expansion = $this->wowgeneral->getRealExpansionDB();
         $passwordAc = $this->wowauth->Account($username, $password);
         $passwordBn = $this->wowauth->Battlenet($email, $password);
 
@@ -272,7 +265,7 @@ class User_model extends CI_Model {
                                 'password' => $passwordAc,
                                 'password_bnet' => $passwordBn,
                                 'expansion' => $expansion,
-                                'date' => $date,
+                                'joindate' => $date,
                                 'key' => sha1($username.$email.$date)
                             );
 
@@ -331,7 +324,7 @@ class User_model extends CI_Model {
                                 'id' => $id,
                                 'username' => $username,
                                 'email' => $email,
-                                'date' => $date
+                                'joindate' => $date
                             );
 
                             $this->db->insert('users', $data3);
@@ -442,7 +435,7 @@ class User_model extends CI_Model {
     {
 
         $check = $this->checkPendingUser($key);
-        $temp  = $this->getTempUser($key);
+        $temp = $this->getTempUser($key);
 
         if($check == "1") {
             if ($this->wowgeneral->getExpansionAction($this->config->item('expansion')) == 1)
@@ -487,7 +480,7 @@ class User_model extends CI_Model {
                 'id' => $id,
                 'username' => $temp['username'],
                 'email' => $temp['email'],
-                'date' => $temp['date']
+                'joindate' => $temp['joindate']
             );
 
             $this->db->insert('users', $data3);

@@ -21,7 +21,7 @@ class Migration_create_users extends CI_Migration {
                       'type' => 'VARCHAR',
                       'constraint' => '100',
               ),
-              'date' => array(
+              'joindate' => array(
                       'type' => 'INT',
                       'constraint' => '10',
                       'unsigned' => TRUE

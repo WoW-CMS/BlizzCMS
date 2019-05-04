@@ -52,7 +52,8 @@ class Online extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_pvp_statistics'),
+            'pagetitle' => $this->lang->line('tab_online'),
+            'realms' => $this->wowrealm->getRealms()->result()
         );
 
         $this->template->build('index', $data);

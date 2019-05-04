@@ -120,6 +120,11 @@ class Auth_model extends CI_Model {
         return $this->auth->select('last_login')->where('id', $id)->get('account')->row('last_login');
     }
 
+    public function getJoinDateID($id)
+    {
+        return $this->auth->select('joindate')->where('id', $id)->get('account')->row('joindate');
+    }
+
     public function getRank($id)
     {
         $qq = $this->auth->select('gmlevel')->where('id', $id)->get('account_access');

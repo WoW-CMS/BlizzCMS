@@ -124,6 +124,26 @@ class Admin extends MX_Controller {
         echo $this->admin_model->updateOptionalSettings($adminlvl, $modlvl, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername);
     }
 
+    public function seosettings()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('settings/seo_settings', $data);
+    }
+
+    public function updateseosettings()
+    {
+        $meta = $this->input->post('meta');
+        $description = $this->input->post('description');
+        $keywords = $this->input->post('keywords');
+        $twitter = $this->input->post('twitter');
+        $graph = $this->input->post('graph');
+        echo $this->admin_model->updateSeoSettings($meta, $description, $keywords, $twitter, $graph);
+    }
+
     public function modulesettings()
     {
         if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
@@ -392,6 +412,9 @@ class Admin extends MX_Controller {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
+        if ($this->admin_model->getRealmsSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'idlink' => $id,
@@ -480,6 +503,9 @@ class Admin extends MX_Controller {
     public function editslide($id)
     {
         if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getSlidesSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -899,7 +925,7 @@ class Admin extends MX_Controller {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
-        if ($this->admin_model->getGroupSpecifyRows($id) < 1)
+        if ($this->admin_model->getStoreCategorySpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -914,20 +940,20 @@ class Admin extends MX_Controller {
     public function addstorecategory()
     {
         $category = $this->input->post('category');
-        echo $this->admin_model->insertGroup($category);
+        echo $this->admin_model->insertStoreCategory($category);
     }
 
     public function updatestorecategory()
     {
         $id = $this->input->post('id');
         $category = $this->input->post('category');
-        echo $this->admin_model->updateSpecifyGroup($id, $category);
+        echo $this->admin_model->updateSpecifyStoreCategory($id, $category);
     }
 
     public function deletestorecategory()
     {
         $id = $this->input->post('value');
-        echo $this->admin_model->deleteGroup($id);
+        echo $this->admin_model->deleteStoreCategory($id);
     }
 
     public function createstoreitem()

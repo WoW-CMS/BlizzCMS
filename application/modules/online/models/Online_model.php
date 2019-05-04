@@ -10,4 +10,11 @@ class Online_model extends CI_Model {
     {
         parent::__construct();
     }
+
+    public function getOnlinePlayers($MultiRealm)
+    {
+        $this->multirealm = $MultiRealm;
+
+        return $this->multirealm->select('name, race, class, level')->where('online', '1')->order_by('name', 'DESC')->get('characters');
+    }
 }

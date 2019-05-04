@@ -66,8 +66,28 @@ class Template
 		$assets = 'assets/';
 		$routes = APPPATH.'themes/'.$this->_theme.'/';
 
-		$this->set_metadata('charset', 'utf-8');
+		$this->set_metadata('charset', 'utf-8', 'other');
 		$this->set_metadata('viewport', 'width=device-width, initial-scale=1');
+		if($this->_ci->config->item('seo_meta_enable'))
+		{
+			$this->set_metadata('description', $this->_ci->config->item('seo_meta_desc'));
+			$this->set_metadata('keywords', $this->_ci->config->item('seo_meta_keywords'));
+		}
+		if($this->_ci->config->item('seo_og_enable'))
+		{
+			$this->set_metadata('og:title', $this->_ci->config->item('seo_title'), 'property');
+			$this->set_metadata('og:type', $this->_ci->config->item('seo_meta_desc'), 'property');
+			$this->set_metadata('og:image', $this->_ci->config->item('seo_imgurl'), 'property');
+			$this->set_metadata('og:url', $this->_ci->config->item('base_url'), 'property');
+		}
+		if($this->_ci->config->item('seo_twitter_enable'))
+		{
+			$this->set_metadata('twitter:card', 'summary');
+			$this->set_metadata('twitter:title', $this->_ci->config->item('seo_title'));
+			$this->set_metadata('twitter:url', $this->_ci->config->item('base_url'));
+			$this->set_metadata('twitter:description', $this->_ci->config->item('seo_meta_desc'));
+			$this->set_metadata('twitter:image', $this->_ci->config->item('seo_imgurl'));
+		}
 		$this->set_metadata('script', base_url($assets.'core/js/jquery.min.js'), 'script');
 		$this->set_metadata('script', base_url($assets.'core/fontawesome/js/all.js'), 'script');
 		$this->set_metadata('stylesheet', base_url($assets.'core/amaranjs/css/amaran.min.css'), 'link');
@@ -355,6 +375,14 @@ class Template
 		{
 			case 'meta':
 				$this->_metadata[$name] = '<meta name="'.$name.'" content="'.$content.'" '.$extra.' />';
+			break;
+
+			case 'other':
+				$this->_metadata[$content] = '<meta '.$name.'="'.$content.'" />';
+			break;
+
+			case 'property':
+				$this->_metadata[$name] = '<meta property="'.$name.'" content="'.$content.'" />';
 			break;
 
 			case 'link':

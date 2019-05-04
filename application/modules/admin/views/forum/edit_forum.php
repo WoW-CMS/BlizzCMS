@@ -40,6 +40,7 @@
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" id="forum_type">
+                    <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
                     <option value="1" <?php if($this->admin_model->getSpecifyForumType($idlink) == '1') echo 'selected'; ?>><?= $this->lang->line('option_everyone'); ?></option>
                     <option value="2" <?php if($this->admin_model->getSpecifyForumType($idlink) == '2') echo 'selected'; ?>><?= $this->lang->line('option_staff'); ?></option>
                     <option value="3" <?php if($this->admin_model->getSpecifyForumType($idlink) == '3') echo 'selected'; ?>><?= $this->lang->line('option_all'); ?></option>
@@ -50,6 +51,7 @@
                 <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" id="forum_category">
+                    <option value="0"><?= $this->lang->line('notification_select_category'); ?></option>
                     <?php foreach($this->admin_model->getForumCategoryList()->result() as $categ): ?>
                     <?php if ($categ->id == $this->admin_model->getForumCategoryName($idlink)): ?>
                     <option value="<?= $categ->id ?>" selected><?= $categ->name ?></option>
@@ -85,6 +87,38 @@
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
               message: '<?= $this->lang->line('notification_name_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(type == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_type'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(category == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_category'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },

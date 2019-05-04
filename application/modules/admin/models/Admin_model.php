@@ -190,6 +190,19 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    public function updateSeoSettings($metastatus, $description, $keywords, $twitterstatus, $graphstatus)
+    {
+        $this->load->library('config_writer');
+
+        $writer = $this->config_writer->get_instance(APPPATH.'config/seo.php', 'config');
+        $writer->write('seo_meta_enable', $metastatus);
+        $writer->write('seo_meta_desc', $description);
+        $writer->write('seo_meta_keywords', $keywords);
+        $writer->write('seo_twitter_enable', $twitterstatus);
+        $writer->write('seo_og_enable', $graphstatus);
+        return true;
+    }
+
     public function updateDonateSettings($currency, $mode, $client, $password)
     {
         $this->load->library('config_writer');
@@ -247,6 +260,16 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    public function getMenu()
+    {
+        return $this->db->select('*')->get('menu')->result();
+    }
+
+    public function getMenuSpecifyRows($id)
+    {
+        return $this->db->select('*')->where('id', $id)->get('menu')->num_rows();
+    }
+
     public function getMenuSpecifyName($id)
     {
         return $this->db->select('name')->where('id', $id)->get('menu')->row_array()['name'];
@@ -275,26 +298,6 @@ class Admin_model extends CI_Model {
     public function getMenuSpecifyType($id)
     {
         return $this->db->select('type')->where('id', $id)->get('menu')->row_array()['type'];
-    }
-
-    public function getMenuSpecifyRows($id)
-    {
-        return $this->db->select('*')->where('id', $id)->get('menu')->num_rows();
-    }
-
-    public function getMenu()
-    {
-        return $this->db->select('*')->get('menu')->result();
-    }
-
-    public function getMenuTypeList()
-    {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('menu_type');
-    }
-
-    public function getMenuTypeName($type)
-    {
-        return $this->db->select('title')->where('id', $type)->get('menu_type')->row_array()['title'];
     }
 
     public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
@@ -352,6 +355,56 @@ class Admin_model extends CI_Model {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('realms')->result();
     }
 
+    public function getRealmsSpecifyRows($id)
+    {
+        return $this->db->select('*')->where('id', $id)->get('realms')->num_rows();
+    }
+
+    public function getRealmSpecifyHost($id)
+    {
+        return $this->db->select('hostname')->where('id', $id)->get('realms')->row_array()['hostname'];
+    }
+
+    public function getRealmSpecifyUser($id)
+    {
+        return $this->db->select('username')->where('id', $id)->get('realms')->row_array()['username'];
+    }
+
+    public function getRealmSpecifyPass($id)
+    {
+        return $this->db->select('password')->where('id', $id)->get('realms')->row_array()['password'];
+    }
+
+    public function getRealmSpecifyCharDB($id)
+    {
+        return $this->db->select('char_database')->where('id', $id)->get('realms')->row_array()['char_database'];
+    }
+
+    public function getRealmSpecifyId($id)
+    {
+        return $this->db->select('realmID')->where('id', $id)->get('realms')->row_array()['realmID'];
+    }
+
+    public function getRealmSpecifyConsoleHost($id)
+    {
+        return $this->db->select('console_hostname')->where('id', $id)->get('realms')->row_array()['console_hostname'];
+    }
+
+    public function getRealmSpecifyConsoleUser($id)
+    {
+        return $this->db->select('console_username')->where('id', $id)->get('realms')->row_array()['console_username'];
+    }
+
+    public function getRealmSpecifyConsolePass($id)
+    {
+        return $this->db->select('console_password')->where('id', $id)->get('realms')->row_array()['console_password'];
+    }
+
+    public function getRealmSpecifyConsolePort($id)
+    {
+        return $this->db->select('console_port')->where('id', $id)->get('realms')->row_array()['console_port'];
+    }
+
     public function insertSlide($title, $description, $type, $route)
     {
         $data = array(
@@ -393,6 +446,31 @@ class Admin_model extends CI_Model {
     public function SlidesList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('slides')->result();
+    }
+
+    public function getSlidesSpecifyRows($id)
+    {
+        return $this->db->select('*')->where('id', $id)->get('slides')->num_rows();
+    }
+
+    public function getSlideSpecifyTitle($id)
+    {
+        return $this->db->select('title')->where('id', $id)->get('slides')->row_array()['title'];
+    }
+
+    public function getSlideSpecifyDescription($id)
+    {
+        return $this->db->select('description')->where('id', $id)->get('slides')->row_array()['description'];
+    }
+
+    public function getSlideSpecifyType($id)
+    {
+        return $this->db->select('type')->where('id', $id)->get('slides')->row_array()['type'];
+    }
+
+    public function getSlideSpecifyRoute($id)
+    {
+        return $this->db->select('route')->where('id', $id)->get('slides')->row_array()['route'];
     }
 
     public function insertNews($title, $description, $image)
@@ -621,6 +699,11 @@ class Admin_model extends CI_Model {
         return $this->db->select('title')->where('id', $id)->get('pages')->row('title');
     }
 
+    public function getPagesSpecifyURI($id)
+    {
+        return $this->db->select('uri_friendly')->where('id', $id)->get('pages')->row('uri_friendly');
+    }
+
     public function getPagesSpecifyDesc($id)
     {
         return $this->db->select('description')->where('id', $id)->get('pages')->row_array()['description'];
@@ -726,7 +809,7 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function insertGroup($name)
+    public function insertStoreCategory($name)
     {
         $data = array(
             'name' => $name,
@@ -736,7 +819,7 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function updateSpecifyGroup($idlink, $group)
+    public function updateSpecifyStoreCategory($idlink, $group)
     {
         $update = array(
             'name' => $group,
@@ -746,15 +829,10 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function deleteGroup($id)
+    public function deleteStoreCategory($id)
     {
         $this->db->where('id', $id)->delete('store_categories');
         return true;
-    }
-
-    public function getShopGroupList()
-    {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('store_categories');
     }
 
     public function getCategoryStore()
@@ -762,12 +840,12 @@ class Admin_model extends CI_Model {
         return $this->db->select('*')->get('store_categories');
     }
 
-    public function getGroupSpecifyRows($id)
+    public function getStoreCategorySpecifyRows($id)
     {
         return $this->db->select('*')->where('id', $id)->get('store_categories')->num_rows();
     }
 
-    public function getGroupName($id)
+    public function getStoreCategoryName($id)
     {
         return $this->db->select('name')->where('id', $id)->get('store_categories')->row_array()['name'];
     }
@@ -909,6 +987,26 @@ class Admin_model extends CI_Model {
         return $this->db->select('*')->order_by('id', 'ASC')->get('donate')->result();
     }
 
+    public function getDonateSpecifyName($id)
+    {
+        return $this->db->select('name')->where('id', $id)->get('donate')->row_array()['name'];
+    }
+
+    public function getDonateSpecifyPrice($id)
+    {
+        return $this->db->select('price')->where('id', $id)->get('donate')->row_array()['price'];
+    }
+
+    public function getDonateSpecifyTax($id)
+    {
+        return $this->db->select('tax')->where('id', $id)->get('donate')->row_array()['tax'];
+    }
+
+    public function getDonateSpecifyPoints($id)
+    {
+        return $this->db->select('points')->where('id', $id)->get('donate')->row_array()['points'];
+    }
+
     public function insertForum($name, $description, $icon, $type, $category)
     {
         $data = array(
@@ -1011,7 +1109,7 @@ class Admin_model extends CI_Model {
 
     public function getSpecifyForumCategoryRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('forum')->num_rows();
+        return $this->db->select('*')->where('id', $id)->get('forum_category')->num_rows();
     }
 
     public function getForumCategoryName($id)

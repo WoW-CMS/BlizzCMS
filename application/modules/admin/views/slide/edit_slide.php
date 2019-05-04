@@ -15,14 +15,14 @@
               <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
-                  <input class="uk-input" type="text" id="slide_title" value="" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                  <input class="uk-input" type="text" id="slide_title" value="<?= $this->admin_model->getSlideSpecifyTitle($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
                 </div>
               </div>
             </div>
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea" id="slide_description" rows="5"></textarea>
+                <textarea class="uk-textarea" id="slide_description" rows="5"><?= $this->admin_model->getSlideSpecifyDescription($idlink); ?></textarea>
               </div>
             </div>
             <div class="uk-margin-small">
@@ -32,16 +32,16 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" id="slide_type">
                       <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
-                      <option value="1"><?= $this->lang->line('option_image'); ?></option>
-                      <option value="2"><?= $this->lang->line('option_video'); ?></option>
-                      <option value="3"><?= $this->lang->line('option_iframe'); ?></option>
+                      <option value="1" <?php if($this->admin_model->getSlideSpecifyType($idlink) == '1') echo 'selected'; ?>><?= $this->lang->line('option_image'); ?></option>
+                      <option value="2" <?php if($this->admin_model->getSlideSpecifyType($idlink) == '2') echo 'selected'; ?>><?= $this->lang->line('option_video'); ?></option>
+                      <option value="3" <?php if($this->admin_model->getSlideSpecifyType($idlink) == '3') echo 'selected'; ?>><?= $this->lang->line('option_iframe'); ?></option>
                     </select>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-2-3@s">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="slide_route" value="" placeholder="EURL or Image Name" required>
+                    <input class="uk-input" type="text" id="slide_route" value="<?= $this->admin_model->getSlideSpecifyRoute($idlink); ?>" placeholder="URL or Image Name" required>
                   </div>
                 </div>
               </div>

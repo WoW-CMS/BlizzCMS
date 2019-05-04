@@ -7,7 +7,7 @@
 | Requirements | Description |
 | :----------- | :---------- |
 | **PHP Version** | **7.1 or newer** is recommended |
-| **Apache Modules** | mod_headers - mod_rewrite |
+| **Apache Modules** | mod_headers - mod_rewrite - mod_expires |
 | **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap |
 
 ## Useful Links
@@ -17,8 +17,8 @@
 
 ## Active Developers
 
-* @perioner - *Back-End Developer*
-* @DZywolf - *Front-End Developer*
+* @perioner - *Back/Front-End Developer*
+* @DZywolf - *Back/Front-End Developer*
 
 ## Inactive Developers
 * @vipo - *Back-End Developer*

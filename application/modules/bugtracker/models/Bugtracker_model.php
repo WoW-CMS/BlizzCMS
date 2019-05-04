@@ -67,7 +67,7 @@ class Bugtracker_model extends CI_Model {
 
     public function bugtrackerList()
     {
-        return $this->db->select('*')->where('close', '0')->limit($this->_pageNumber, $this->_offset)->get('bugtracker')->result();
+        return $this->db->select('*')->where('close', '0')->order_by('id', 'DESC')->limit($this->_pageNumber, $this->_offset)->get('bugtracker')->result();
     }
 
     public function insertIssue($title, $description, $type, $priority)

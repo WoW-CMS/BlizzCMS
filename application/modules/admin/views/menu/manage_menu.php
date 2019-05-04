@@ -26,7 +26,7 @@
                   <td><?= $menu->id ?></td>
                   <td><?= $menu->name ?></td>
                   <td><?= $menu->url ?></td>
-                  <td><?= $this->admin_model->getMenuTypeName($menu->type); ?></td>
+                  <td><?= $menu->type ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
                       <a href="<?= base_url('admin/menu/edit/'.$menu->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>

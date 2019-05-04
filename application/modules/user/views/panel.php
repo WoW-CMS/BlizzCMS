@@ -29,12 +29,12 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h3 class="uk-h3 uk-text-uppercase uk-text-bold"><?= $this->lang->line('tab_account'); ?></h3>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('tab_account'); ?></h4>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
                   <div class="uk-width-expand@m">
-                    <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h4>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
                     <a href="<?= base_url('settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= $this->lang->line('button_account_settings'); ?></a>
@@ -71,7 +71,7 @@
             </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= $this->lang->line('panel_chars_list'); ?></h4>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= $this->lang->line('panel_chars_list'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
