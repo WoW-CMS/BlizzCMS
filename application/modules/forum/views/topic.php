@@ -100,7 +100,7 @@ endif; ?>
           <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
-              <h2 class="uk-h2 uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h2>
+              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
               <div class="glass-box-container">
                 <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
                 <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
@@ -111,7 +111,7 @@ endif; ?>
           <?php if($this->forum_model->getTopicLocked($idlink) == 1): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
-              <h2 class="uk-h2 uk-text-center"><span uk-icon="icon: lock; ratio: 2"></span> <?= $this->lang->line('forum_not_authorized'); ?></h2>
+              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: lock; ratio: 1.5"></span> <?= $this->lang->line('forum_not_authorized'); ?></h3>
               <div class="glass-box-container">
                 <p class="uk-margin-small"><?= $this->lang->line('forum_topic_locked'); ?></p>
               </div>
@@ -121,7 +121,7 @@ endif; ?>
           <?php if($this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
-              <h2 class="uk-h2 uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h2>
+              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-6@s"></div>
                 <div class="uk-width-2-3@s">

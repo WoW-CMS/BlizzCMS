@@ -67,13 +67,13 @@ class News_model extends CI_Model {
         return $this->db->select('*')->where('id', $id)->get('news');
     }
 
-    public function getNewsTree()
+    public function getNewsList()
     {
         return $this->db->select('*')->order_by('id', 'DESC')->limit('4')->get('news');
     }
 
-    public function getNewsList()
+    public function getExtendedNewsList()
     {
-        return $this->db->select('*')->order_by('id', 'DESC')->limit('30')->get('news');
+        return $this->db->select('*')->order_by('id', 'DESC')->limit('8')->get('news');
     }
 }

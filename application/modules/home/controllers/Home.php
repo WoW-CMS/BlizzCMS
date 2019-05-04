@@ -67,7 +67,7 @@ class Home extends MX_Controller {
             $data = array(
                 'pagetitle' => $this->lang->line('tab_home'),
                 'slides' => $this->home_model->getSlides()->result(),
-                'threeNews' => $this->news_model->getNewsTree()->result(),
+                'NewsList' => $this->news_model->getNewsList()->result(),
                 'realmsList' => $this->wowrealm->getRealms()->result(),
                 // Discord
                 'discord_code' => $discord['code'],

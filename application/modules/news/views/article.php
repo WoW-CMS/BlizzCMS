@@ -9,7 +9,7 @@
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-expand@s">
-                    <h4 class="uk-h4 uk-text-bold"><i class="fas fa-newspaper"></i> <?= $this->news_model->getNewTitle($idlink); ?></h4>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-newspaper"></i> <?= $this->news_model->getNewTitle($idlink); ?></h5>
                   </div>
                   <div class="uk-width-auto@s">
                     <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $this->news_model->getNewlogDate($idlink)); ?></p>
@@ -55,7 +55,7 @@
               <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
-                  <h2 class="uk-h2 uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h2>
+                  <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
                   <div class="glass-box-container">
                     <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
                     <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
@@ -66,7 +66,7 @@
               <?php if($this->wowauth->isLogged()): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
-                  <h2 class="uk-h2 uk-text-center"><span uk-icon="icon: comment; ratio: 2"></span> <?= $this->lang->line('forum_comment_header'); ?></h2>
+                  <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
                   <?= form_open('', 'id="replyForm" onsubmit="ReplyForm(event)"'); ?>
                   <div class="uk-margin-small uk-light">
                     <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>

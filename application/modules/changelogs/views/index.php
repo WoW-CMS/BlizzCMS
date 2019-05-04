@@ -34,19 +34,21 @@
             <div class="uk-grid uk-grid-small uk-child-width-1-1" data-uk-grid>
               <?php foreach($this->changelogs_model->getChangelogs()->result() as $changelogsList): ?>
               <div>
-                <article class="uk-article">
-                  <div class="uk-grid uk-grid-small" data-uk-grid>
-                    <div class="uk-width-expand@s">
-                      <h4 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelogsList->title ?></h5>
-                    </div>
-                    <div class="uk-width-auto@s">
-                      <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelogsList->date); ?></p>
+                <div class="uk-card uk-card-default uk-margin-small">
+                  <div class="uk-card-header">
+                    <div class="uk-grid uk-grid-small" data-uk-grid>
+                      <div class="uk-width-expand@s">
+                        <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelogsList->title ?></h5>
+                      </div>
+                      <div class="uk-width-auto@s">
+                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelogsList->date); ?></p>
+                      </div>
                     </div>
                   </div>
-                  <div class="uk-card uk-card-default uk-card-body uk-margin-small">
+                  <div class="uk-card-body">
                     <?= $changelogsList->description ?>
                   </div>
-                </article>
+                </div>
               </div>
               <?php endforeach; ?>
             </div>

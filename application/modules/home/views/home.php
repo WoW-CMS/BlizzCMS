@@ -41,18 +41,18 @@
             <?php if ($this->wowmodule->getNewsStatus()): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fas fa-newspaper fa-sm"></i> <?= $this->lang->line('home_latest_news'); ?></h4>
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
-              <?php foreach ($threeNews as $newstree): ?>
+              <?php foreach ($NewsList as $news): ?>
               <div>
-                <a href="<?= base_url('news/'.$newstree->id) ;?>" title="<?= $this->lang->line('button_read_more'); ?>">
+                <a href="<?= base_url('news/'.$news->id) ;?>" title="<?= $this->lang->line('button_read_more'); ?>">
                   <div class="uk-card uk-card-default news-card uk-card-hover uk-grid-collapse uk-margin" uk-grid>
                     <div class="uk-width-1-3@s uk-card-media-left uk-cover-container">
-                      <img src="<?= base_url('assets/images/news/'.$newstree->image); ?>" alt="<?= $newstree->title ?>" uk-cover>
+                      <img src="<?= base_url('assets/images/news/'.$news->image); ?>" alt="<?= $news->title ?>" uk-cover>
                       <canvas width="500" height="250"></canvas>
                     </div>
                     <div class="uk-width-2-3@s uk-card-body">
-                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><?= $newstree->title ?></h5>
-                      <p class="uk-text-small uk-margin-small"><?= mb_substr(ucfirst(strtolower(strip_tags($newstree->description))), 0, 160, "UTF-8").' ...'; ?></p>
-                      <p class="uk-text-small uk-margin-remove uk-text-right"><i class="far fa-comment-alt"></i> <?= $this->news_model->getCommentCount($newstree->id); ?> <?= $this->lang->line('news_comments'); ?></p>
+                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><?= $news->title ?></h5>
+                      <p class="uk-text-small uk-margin-small"><?= mb_substr(ucfirst(strtolower(strip_tags($news->description))), 0, 160, "UTF-8").' ...'; ?></p>
+                      <p class="uk-text-small uk-margin-remove uk-text-right"><i class="far fa-comment-alt"></i> <?= $this->news_model->getCommentCount($news->id); ?> <?= $this->lang->line('news_comments'); ?></p>
                     </div>
                   </div>
                 </a>

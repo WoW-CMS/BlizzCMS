@@ -49,34 +49,31 @@ endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-bold"><i class="fas fa-bug"></i> <?= $this->bugtracker_model->getTitleIssue($idlink); ?></h4>
-            <div class="text-misc">
-              <?= $this->bugtracker_model->getDescIssue($idlink); ?>
-            </div>
-            <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
-              <div>
-                <p class="text-misc"><i class="far fa-user-circle"></i> <?= $this->lang->line('table_header_author'); ?>: <?= $this->wowauth->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></p>
+            <div class="uk-card uk-card-default uk-margin-small">
+              <div class="uk-card-header">
+                <div class="uk-grid uk-grid-small" data-uk-grid>
+                  <div class="uk-width-expand@s">
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= $this->bugtracker_model->getTitleIssue($idlink); ?></h5>
+                  </div>
+                  <div class="uk-width-auto@s">
+                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $this->bugtracker_model->getDate($idlink)); ?></p>
+                  </div>
+                </div>
               </div>
-              <div>
-                <p class="text-misc"><i class="far fa-clock"></i> <?= $this->lang->line('table_header_date'); ?>: <?= date('Y-m-d', $this->bugtracker_model->getDate($idlink)); ?></p>
-              </div>
-              <div>
-                <p><span class="text-misc"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_status'); ?>:</span>
-                  <?php if ($this->bugtracker_model->closeStatus($idlink) == '0'): ?>
-                    <span class="uk-label uk-label-success"><?= $this->lang->line('label_open'); ?></span>
-                  <?php else: ?>
-                    <span class="uk-label uk-label-danger"><?= $this->lang->line('label_closed'); ?></span>
-                  <?php endif; ?>
-                </p>
-              </div>
-              <div>
-                <p><span class="text-misc"><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?>:</span> <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></p>
-              </div>
-              <div>
-                <p><span class="text-misc"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?>:</span> <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></p>
-              </div>
-              <div>
-                <p><span class="text-misc"><i class="fas fa-tags"></i> <?= $this->lang->line('table_header_status'); ?>:</span> <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></p>
+              <div class="uk-card-body">
+                <div class="uk-grid uk-grid-small" data-uk-grid>
+                  <div class="uk-width-3-4@s">
+                    <?= $this->bugtracker_model->getDescIssue($idlink); ?>
+                  </div>
+                  <div class="uk-width-1-4@s">
+                    <ul class="uk-list uk-text-small">
+                      <li><i class="far fa-user-circle"></i> <?= $this->lang->line('table_header_author'); ?>: <?= $this->wowauth->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></li>
+                      <li><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></li>
+                      <li><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></li>
+                      <li><i class="fas fa-tags"></i> <?= $this->lang->line('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <hr>
