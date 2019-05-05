@@ -84,6 +84,7 @@ $lang['button_close'] = 'Cerrar';
 $lang['button_reply'] = 'Responder';
 $lang['button_donate'] = 'Donar';
 $lang['button_account_settings'] = 'Configuraciones de la cuenta';
+$lang['button_sync_account'] = 'Sincronizar cuenta antigua';
 
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
@@ -136,7 +137,7 @@ $lang['table_header_status'] = 'Estado';
 $lang['table_header_priority'] = 'Prioridad';
 $lang['table_header_date'] = 'Fecha';
 $lang['table_header_author'] = 'Autor';
-$lang['table_header_time'] = 'Hora';
+$lang['table_header_time'] = 'Tiempo';
 $lang['table_header_icon'] = 'Icono';
 $lang['table_header_realm'] = 'Reino';
 

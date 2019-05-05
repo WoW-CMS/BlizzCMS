@@ -84,6 +84,7 @@ $lang['button_close'] = 'Close';
 $lang['button_reply'] = 'Reply';
 $lang['button_donate'] = 'Donate';
 $lang['button_account_settings'] = 'Account Settings';
+$lang['button_sync_account'] = 'Synchronize old account';
 
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Item purchased successfully.';

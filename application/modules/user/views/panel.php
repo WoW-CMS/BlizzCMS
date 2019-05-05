@@ -37,7 +37,13 @@
                     <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
+                    <?php if($this->user_model->getExistInfo() == 0): ?>
+                    <?= form_open('', 'id="syncAccount" class="uk-display-inline" onsubmit="SyncAccount(event)"'); ?>
+                    <button class="uk-button uk-button-default uk-button-small" value="<?= $this->session->userdata('wow_sess_id'); ?>" id="button_sync" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('button_sync_account'); ?></button>
+                    <?= form_close(); ?>
+                    <?php else: ?>
                     <a href="<?= base_url('settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= $this->lang->line('button_account_settings'); ?></a>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -47,14 +53,7 @@
                     <tbody>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_username'); ?></span></td>
-                        <td class="uk-table-expand">
-                          <?= $this->wowauth->getUsernameID($this->session->userdata('wow_sess_id')); ?>
-                          <?php if($this->user_model->getExistInfo() == 0): ?>
-                          <?= form_open('', 'id="syncAccount" class="uk-display-inline" onsubmit="SyncAccount(event)"'); ?>
-                          <button class="uk-button uk-button-small uk-button-default uk-margin-small-left"><i class="fas fa-sync" value="<?= $this->session->userdata('wow_sess_id'); ?>" id="button_sync" type="submit"></i></button>
-                          <?= form_close(); ?>
-                          <?php endif; ?>
-                        </td>
+                        <td class="uk-table-expand"><?= $this->wowauth->getUsernameID($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_email'); ?></span></td>
