@@ -99,21 +99,21 @@
                 <div class="forum-who-icon"><i class="far fa-comments fa-lg"></i></div>
                 <div class="forum-who-text">
                   <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostReplies() ?></span><br>
-                  <span>Replies</span>
+                  <span><?= $this->lang->line('forum_replies_count'); ?></span>
                 </div>
               </div>
               <div>
               <div class="forum-who-icon"><i class="far fa-file-alt fa-lg"></i></div>
                 <div class="forum-who-text">
                   <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostGeneral() ?></span><br>
-                  <span>Topics</span>
+                  <span><?= $this->lang->line('forum_topics_count'); ?></span>
                 </div>
               </div>
               <div>
                 <div class="forum-who-icon"><i class="far fa-user fa-lg"></i></div>
                 <div class="forum-who-text">
                   <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountUsers() ?></span><br>
-                  <span>Users</span>
+                  <span><?= $this->lang->line('forum_users_count'); ?></span>
                 </div>
               </div>
             </div>

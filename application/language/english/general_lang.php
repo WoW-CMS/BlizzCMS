@@ -248,6 +248,9 @@ $lang['forum_topic_list'] = 'Topic List';
 $lang['forum_last_activity'] = 'Latest activity';
 $lang['forum_last_post_by'] = 'Last Post by';
 $lang['forum_whos_online'] = 'Whos Online';
+$lang['forum_replies_count'] = 'Replies';
+$lang['forum_topics_count'] = 'Topics';
+$lang['forum_users_count'] = 'Users';
 
 /*Store Lang*/
 $lang['store_cart_description'] = 'Buy Item';

@@ -4,7 +4,7 @@
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
-          <div class="uk-width-3-4@s">
+          <div class="uk-width-3-4@m">
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
@@ -80,8 +80,21 @@
               <?php endif; ?>
             </div>
           </div>
-          <div class="uk-width-1-4@s">
-
+          <div class="uk-width-1-4@m">
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-list-alt"></i> <?= $this->lang->line('home_latest_news'); ?></h5>
+              </div>
+              <div class="uk-card-body">
+                <ul class="uk-list uk-list-divider uk-text-small">
+                  <?php foreach($this->news_model->getExtendedNewsList()->result() as $list): ?>
+                  <li>
+                    <a href="<?= base_url('news/'.$list->id) ?>"><i class="far fa-newspaper"></i> <?= $list->title ?></a>
+                  </li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
