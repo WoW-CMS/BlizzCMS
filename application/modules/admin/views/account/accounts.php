@@ -28,7 +28,7 @@
                     <span class="uk-text-middle"><?= $account->username ?></span>
                   </td>
                   <td class="uk-text-center"><?= $account->email ?></td>
-                  <td class="uk-text-center"><?= date('Y-m-d', $account->joindate); ?></td>
+                  <td class="uk-text-center"><?= date('Y-m-d', $account->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
                       <a href="<?= base_url('admin/account/manage/'.$account->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-user-edit"></i></a>

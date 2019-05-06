@@ -86,12 +86,12 @@
                 </div>
                 <?php else: ?>
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('placeholder_account_grant_rank'); ?></span></h5>
-                <?= form_open('', 'id="banaccountForm" onsubmit="BanAccountForm(event)"'); ?>
+                <?= form_open('', 'id="grantrankForm" onsubmit="GrantRankForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_gmlevel'); ?></label>
                   <div class="uk-inline uk-width-1-1">
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="number" name="account_gmrank" min="0" placeholder="<?= $this->lang->line('placeholder_gmlevel'); ?>" required>
+                      <input class="uk-input" type="number" id="account_gmrank" min="0" placeholder="<?= $this->lang->line('placeholder_gmlevel'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -349,7 +349,7 @@
 
         var id = "<?= $idlink ?>";
         var rank = $('#account_gmrank').val();
-        if(reason == ''){
+        if(rank == ''){
           $.amaran({
             'theme': 'awesome error',
             'content': {
@@ -394,7 +394,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_category_created'); ?>',
+                  message: '<?= $this->lang->line('notification_rank_granted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -441,7 +441,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_forum_deleted'); ?>',
+                  message: '<?= $this->lang->line('notification_rank_removed'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

@@ -126,3 +126,6 @@ $lang['notification_points_empty'] = 'Points is empty';
 $lang['notification_tax_empty'] = 'Tax is empty';
 $lang['notification_price_empty'] = 'Price is empty';
 $lang['notification_incorrect_update'] = 'Unexpected update';
+
+$lang['notification_rank_granted'] = 'The rank has been granted.';
+$lang['notification_rank_removed'] = 'The rank has been deleted.';

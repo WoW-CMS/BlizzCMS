@@ -126,3 +126,6 @@ $lang['notification_points_empty'] = 'Puntos esta vacio';
 $lang['notification_tax_empty'] = 'El impuesto esta vacio';
 $lang['notification_price_empty'] = 'El precio esta vacio';
 $lang['notification_incorrect_update'] = 'Actualización inesperada';
+
+$lang['notification_rank_granted'] = 'El rango ha sido otorgado.';
+$lang['notification_rank_removed'] = 'El rango ha sido removido.';
