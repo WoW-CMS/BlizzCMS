@@ -3,7 +3,7 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+        <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
           <div class="uk-width-3-4@m">
             <?php foreach($this->forum_model->getCategory() as $categorys): ?>
             <div class="uk-overflow-auto uk-margin-medium forum-table">
@@ -27,11 +27,11 @@
                       <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost) { ?>
+                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
                         <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
                         by <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastpost->author) ?></span>
-                      <?php } ?>
+                      <?php endforeach; ?>
                     </td>
                   </tr>
                   <?php elseif($sections->type == 2): ?>
@@ -52,11 +52,11 @@
                       <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost) { ?>
+                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
                         <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
                         by <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastpost->author) ?></span>
-                      <?php } ?>
+                      <?php endforeach; ?>
                     </td>
                   </tr>
                   <?php endif; ?>
@@ -75,13 +75,13 @@
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider">
-                  <?php foreach ($this->forum_model->getLastPosts()->result() as $lastest) { ?>
+                  <?php foreach ($this->forum_model->getLastPosts()->result() as $lastest): ?>
                   <li>
                     <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
                     <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastest->author) ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastpost->date) ?></p>
                   </li>
-                  <?php } ?>
+                  <?php endforeach; ?>
                 </ul>
               </div>
             </div>

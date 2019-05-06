@@ -20,7 +20,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($this->mod_model->getLogs()->result() as $logs) { ?>
+                <?php foreach ($this->mod_model->getLogs()->result() as $logs): ?>
                   <tr>
                     <td><?= $this->wowauth->getUsernameID($logs->userid); ?></td>
                     <td class="uk-text-center"><?= date('d-m-Y', $logs->datetime) ?></td>
@@ -33,7 +33,7 @@
                     </td>
                     <td class="uk-text-center"><?= $logs->function ?><?= $logs->annotation ?></td>
                   </tr>
-                <?php } ?>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>
