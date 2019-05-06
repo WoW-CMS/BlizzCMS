@@ -442,6 +442,16 @@ class General_model extends CI_Model {
         }
     }
 
+    public function getSpecifyZone($zoneid)
+    {
+        $qq = $this->db->select('zone_name')->where('id', $zoneid)->get('zones');
+
+        if($qq->num_rows())
+            return $qq->row('zone_name');
+        else
+            return 'Unknown Zone';
+    }
+
     public function tinyEditor($rank)
     {
         switch ($rank) {

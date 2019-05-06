@@ -140,6 +140,7 @@ $lang['table_header_author'] = 'Author';
 $lang['table_header_time'] = 'Time';
 $lang['table_header_icon'] = 'Icon';
 $lang['table_header_realm'] = 'Realm';
+$lang['table_header_zone'] = 'Zone';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Warrior';

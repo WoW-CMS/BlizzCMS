@@ -20,9 +20,9 @@
                   <tr>
                     <th class="uk-table-expand"><i class="fas fa-user"></i> <?=$this->lang->line('table_header_name');?></th>
                     <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('table_header_level');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('table_header_race');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('table_header_class');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> Zone</th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=$this->lang->line('table_header_race');?></th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=$this->lang->line('table_header_class');?></th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-location-arrow"></i> <?=$this->lang->line('table_header_zone');?></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                     <td class="uk-text-center"><?= $online->level ?></td>
                     <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($online->race)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getRaceName($online->race); ?>" alt="<?= $this->wowgeneral->getRaceName($online->race); ?>"></td>
                     <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($online->class)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getClassName($online->class); ?>" alt="<?= $this->wowgeneral->getClassName($online->class); ?>"></td>
-                    <td class="uk-text-center"></td>
+                    <td class="uk-text-center"><?= $this->wowgeneral->getSpecifyZone($online->zone); ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
