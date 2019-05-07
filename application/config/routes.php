@@ -142,6 +142,8 @@ $route[$lang.'/mod/warnings'] = 'mod/warnings';
  *
 */
 $route[$lang.'/admin'] = 'admin/index';
+$route[$lang.'/admin/autoupdate'] = 'admin/updateNow/';
+$route[$lang.'/admin/cms'] = 'admin/cmsVerification/';
 $route[$lang.'/admin/settings'] = 'admin/settings';
 $route[$lang.'/admin/settings/update'] = 'admin/updatesettings';
 $route[$lang.'/admin/settings/module'] = 'admin/modulesettings';
