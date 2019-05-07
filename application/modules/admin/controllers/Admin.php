@@ -1204,4 +1204,10 @@ class Admin extends MX_Controller {
             echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
         }
     }
+
+    public function updateNow()
+    {
+      $this->load->model('update/update_model');
+      $this->update_model->checkUpdates();
+    }
 }

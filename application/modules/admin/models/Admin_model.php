@@ -108,6 +108,7 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+
     public function insertRankAccount($id, $gmlevel)
     {
         $data = array(
@@ -184,7 +185,7 @@ class Admin_model extends CI_Model {
         $writer->write('smtp_crypto', $smtpcrypto);
         $writer->write('email_settings_sender', $sender);
         $writer->write('email_settings_sender_name', $sendername);
-        $writer->write('account_activation_required', $register);
+        $writer->write('account_activation_required', ($register == 'TRUE')  ? true : false);
         $writer->write('admin_access_level', $admin);
         $writer->write('mod_access_level', $mod);
         return true;
@@ -195,11 +196,11 @@ class Admin_model extends CI_Model {
         $this->load->library('config_writer');
 
         $writer = $this->config_writer->get_instance(APPPATH.'config/seo.php', 'config');
-        $writer->write('seo_meta_enable', $metastatus);
+        $writer->write('seo_meta_enable', ($metastatus == 'TRUE')  ? true : false);
         $writer->write('seo_meta_desc', $description);
         $writer->write('seo_meta_keywords', $keywords);
-        $writer->write('seo_twitter_enable', $twitterstatus);
-        $writer->write('seo_og_enable', $graphstatus);
+        $writer->write('seo_twitter_enable', ($twitterstatus == 'TRUE')  ? true : false);
+        $writer->write('seo_og_enable', ($graphstatus == 'TRUE')  ? true : false);
         return true;
     }
 
@@ -633,7 +634,7 @@ class Admin_model extends CI_Model {
 
             $this->db->insert('pages', $data);
             return true;
-        } 
+        }
         else
             $data1 = array(
                 'title' => $title,

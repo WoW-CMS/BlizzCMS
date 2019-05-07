@@ -20,6 +20,10 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'V' => 
+        array (
+            'VisualAppeal\\' => 13,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
@@ -29,10 +33,20 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             'Psr\\Log\\' => 8,
         ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
+            'Desarrolla2\\Test\\Cache\\' => 23,
+            'Desarrolla2\\Cache\\' => 18,
             'DeepCopy\\' => 9,
+        ),
+        'C' => 
+        array (
+            'Composer\\Semver\\' => 16,
         ),
     );
 
@@ -47,6 +61,10 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'VisualAppeal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/visualappeal/php-auto-update/src',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
@@ -59,13 +77,29 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
+        'Desarrolla2\\Test\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/desarrolla2/cache/test',
+        ),
+        'Desarrolla2\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/desarrolla2/cache/src',
+        ),
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Composer\\Semver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/semver/src',
         ),
     );
 
