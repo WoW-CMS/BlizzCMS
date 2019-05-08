@@ -129,3 +129,7 @@ $lang['notification_incorrect_update'] = 'Actualización inesperada';
 
 $lang['notification_rank_granted'] = 'El rango ha sido otorgado.';
 $lang['notification_rank_removed'] = 'El rango ha sido removido.';
+
+$lang['notification_cms_updated'] = 'El CMS ha sido actualizado';
+$lang['notification_cms_update_error'] = 'El CMS no pudo ser actualizado';
+$lang['notification_cms_not_updated'] = 'No se ha encontrado una nueva versión para actualizar';

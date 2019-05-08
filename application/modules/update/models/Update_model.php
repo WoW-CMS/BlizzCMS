@@ -63,18 +63,18 @@ class Update_model extends CI_Model
             if ($result === true)
             {
                 // echo 'Update simulation successful<br>';
-                redirect(base_url('update/success'));
+                return true;
             }
             else
             {
                 // echo 'Update simulation failed: ' . $result . '!<br>';
-                redirect(base_url('update/failed'));
+                return 'UpdErr';
             }
         }
         else
         {
             // No new update
-            redirect(base_url('update/nofound'));
+            return 'UpdnotFound';
         }
     }
 }

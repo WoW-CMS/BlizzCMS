@@ -211,7 +211,7 @@ class Admin extends MX_Controller {
     public function updatecms()
     {
         $this->load->model('update/update_model');
-        $this->update_model->checkUpdates();
+        echo $this->update_model->checkUpdates();
     }
 
     /**
