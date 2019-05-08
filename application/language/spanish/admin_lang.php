@@ -62,6 +62,8 @@ $lang['section_general_settings'] = 'Configuración General';
 $lang['section_module_settings'] = 'Configuraciones de Módulos';
 $lang['section_optional_settings'] = 'Configuraciones Opcionales';
 $lang['section_seo_settings'] = 'Configuraciones SEO';
+$lang['section_update_cms'] = 'Actualizar CMS';
+$lang['section_check_information'] = 'Comprobar Información';
 $lang['section_forum_categories'] = 'Categorías del Foro';
 $lang['section_forum_elements'] = 'Elementos del Foro';
 $lang['section_store_categories'] = 'Categorías de la Tienda';
@@ -74,6 +76,7 @@ $lang['button_unban'] = 'Desbanear';
 $lang['button_ban'] = 'Banear';
 $lang['button_remove'] = 'Remover';
 $lang['button_grant'] = 'Conceder';
+$lang['button_update_version'] = 'Actualizar a la última versión';
 
 /*Table header Lang*/
 $lang['table_header_race'] = 'Raza';
@@ -91,6 +94,8 @@ $lang['table_header_hash'] = 'Hash';
 $lang['table_header_total'] = 'Total';
 $lang['table_header_create_time'] = 'Create Time';
 $lang['table_header_guid'] = 'Guid';
+$lang['table_header_information'] = 'Información';
+$lang['table_header_value'] = 'Valor';
 
 /*Input Placeholder Lang*/
 $lang['placeholder_manage_account'] = 'Administrar Cuenta';
@@ -190,6 +195,8 @@ $lang['option_all'] = 'STAFF - Todos';
 $lang['option_item'] = 'Item';
 $lang['option_internal_url'] = 'URL Interna';
 $lang['option_external_url'] = 'URL Externa';
+$lang['option_on'] = 'On';
+$lang['option_off'] = 'Off';
 
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Cuentas Creadas';
@@ -223,3 +230,12 @@ $lang['log_change_faction'] = 'Obtener cambio de Facción';
 $lang['log_banned'] = 'Fué Baneado';
 $lang['log_gm_assigned'] = 'Recibido rango de GM';
 $lang['log_gm_removed'] = 'El rango de GM fué eliminado';
+
+/*CMS Lang*/
+$lang['cms_version_currently'] = 'Esta versión se está ejecutando actualmente';
+$lang['cms_warning_update'] = 'Cuando se actualice el cms, la configuración se puede restaurar a la predeterminada de acuerdo con los cambios realizados en cada versión.';
+$lang['cms_php_version'] = 'Versión PHP';
+$lang['cms_allow_fopen'] = 'allow_url_fopen';
+$lang['cms_allow_include'] = 'allow_url_include';
+$lang['cms_loaded_modules'] = 'Módulos cargados';
+$lang['cms_loaded_extensions'] = 'Extensiones cargadas';

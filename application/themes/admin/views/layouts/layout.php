@@ -15,7 +15,7 @@
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
             <a class="uk-navbar-item uk-logo" href="<?= base_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
-            <a href="<?= base_url('/admin/cms')?>" style="text-decoration:none;"><div class="uk-navbar-item uk-visible@s"><span class="rev-label">Version: 1.0.X</span></div></a>
+            <div class="uk-navbar-item uk-visible@s"><span class="rev-label"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: 1.0.X</a></span></div>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
@@ -47,6 +47,7 @@
                 <div class="uk-offcanvas-bar">
                   <div class="sidebar-head uk-text-center">
                     <a class="uk-logo" href="<?= base_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
+                    <span class="rev-label uk-margin-small-bottom"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: 1.0.X</a></span>
                   </div>
                   <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                     <li><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
@@ -55,7 +56,6 @@
                       <ul class="uk-nav-sub">
                         <li><a href="<?= base_url('admin/settings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-sliders-h"></i></span><?= $this->lang->line('admin_nav_manage_settings'); ?></a></li>
                         <li><a href="<?= base_url('admin/modules'); ?>"><span class="admin-subnav-icon"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_nav_manage_modules'); ?></a></li>
-                        <li><a href="<?= base_url('admin/cms'); ?>"><span class="admin-subnav-icon"><i class="fas fa-sliders-h"></i></span>CMS Config</a></li>
                       </ul>
                     </li>
                     <li class="uk-parent">

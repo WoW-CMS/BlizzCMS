@@ -37,8 +37,8 @@
   font-family: 'Lobster';
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
   src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'), url('../fonts/lobster-regular-webfont.woff') format('woff');
+  font-display: swap;
 }
 
 html {
@@ -93,6 +93,7 @@ h6 {
 .uk-navbar-toggle {
   color: #fff;
 }
+
 .uk-navbar-toggle.uk-open,
 .uk-navbar-toggle:focus,
 .uk-navbar-toggle:hover {
@@ -109,7 +110,9 @@ h6 {
 }
 
 .uk-logo:focus,
-.uk-logo:hover {
+.uk-logo:hover,
+.uk-offcanvas-bar .uk-logo:focus,
+.uk-offcanvas-bar .uk-logo:hover {
   color: #fff;
 }
 
@@ -317,6 +320,17 @@ ul.uk-nav-sub {
   box-shadow: 0 2px 15px -10px rgba(0, 0, 0, .4), inset 0 1px 10px rgba(0, 0, 0, .15);
 }
 
+.uk-card-update {
+  background-color: #090e40;
+  background-image: url('../images/bg-main.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 15px -10px rgba(0, 0, 0, .4), inset 0 1px 10px rgba(0, 0, 0, .15);
+  color: #f0f0f0;
+}
+
 .uk-card-header {
   padding: 10px 20px;
 }
@@ -384,6 +398,10 @@ ul.uk-nav-sub {
 
 .uk-card-secondary.uk-card-body .uk-grid-divider.uk-grid-stack > .uk-grid-margin::before {
   border-top-color: rgba(255, 255, 255, .1);
+}
+
+.uk-card-update .uk-h3 {
+  color: #fff;
 }
 
 .uk-navbar-item .uk-icon-button {
@@ -564,7 +582,6 @@ ul.uk-nav-sub {
 }
 
 .uk-nav-default > li > a {
-  border-top: 1px solid rgba(255, 255, 255, .075);
   border-left: 4px solid transparent;
   color: #e9e9e9;
   padding: 10px 25px;

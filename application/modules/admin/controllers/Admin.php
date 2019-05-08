@@ -197,6 +197,23 @@ class Admin extends MX_Controller {
         echo $this->admin_model->disableSpecifyModule($id);
     }
 
+    public function cmsmanage()
+    {
+        $this->load->model('update/update_model');
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('update/manage_updates', $data);
+    }
+
+    public function updatecms()
+    {
+        $this->load->model('update/update_model');
+        $this->update_model->checkUpdates();
+    }
+
     /**
      * Users functions
      */
@@ -1203,11 +1220,5 @@ class Admin extends MX_Controller {
 
             echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
         }
-    }
-
-    public function updateNow()
-    {
-      $this->load->model('update/update_model');
-      $this->update_model->checkUpdates();
     }
 }

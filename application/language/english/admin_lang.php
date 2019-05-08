@@ -62,6 +62,8 @@ $lang['section_general_settings'] = 'General Settings';
 $lang['section_module_settings'] = 'Module Settings';
 $lang['section_optional_settings'] = 'Optional Settings';
 $lang['section_seo_settings'] = 'SEO Settings';
+$lang['section_update_cms'] = 'Update CMS';
+$lang['section_check_information'] = 'Check Information';
 $lang['section_forum_categories'] = 'Forum Categories';
 $lang['section_forum_elements'] = 'Forum Elements';
 $lang['section_store_categories'] = 'Store Categories';
@@ -74,6 +76,7 @@ $lang['button_unban'] = 'Unban';
 $lang['button_ban'] = 'Ban';
 $lang['button_remove'] = 'Remove';
 $lang['button_grant'] = 'Grant';
+$lang['button_update_version'] = 'Update to latest version';
 
 /*Table header Lang*/
 $lang['table_header_race'] = 'Race';
@@ -91,6 +94,8 @@ $lang['table_header_hash'] = 'Hash';
 $lang['table_header_total'] = 'Total';
 $lang['table_header_create_time'] = 'Create Time';
 $lang['table_header_guid'] = 'Guid';
+$lang['table_header_information'] = 'Information';
+$lang['table_header_value'] = 'Value';
 
 /*Input Placeholder Lang*/
 $lang['placeholder_manage_account'] = 'Manage Account';
@@ -190,6 +195,8 @@ $lang['option_all'] = 'STAFF - Everyone';
 $lang['option_item'] = 'Item';
 $lang['option_internal_url'] = 'Internal URL';
 $lang['option_external_url'] = 'External URL';
+$lang['option_on'] = 'On';
+$lang['option_off'] = 'Off';
 
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Accounts created';
@@ -223,3 +230,12 @@ $lang['log_change_faction'] = 'Get a Faction Change';
 $lang['log_banned'] = 'Was banned';
 $lang['log_gm_assigned'] = 'Received GM rank';
 $lang['log_gm_removed'] = 'The GM rank was removed';
+
+/*CMS Lang*/
+$lang['cms_version_currently'] = 'This version is currently running';
+$lang['cms_warning_update'] = 'When the cms is updated the configuration can be restored to the default depending on the changes made to each version.';
+$lang['cms_php_version'] = 'PHP Version';
+$lang['cms_allow_fopen'] = 'allow_url_fopen';
+$lang['cms_allow_include'] = 'allow_url_include';
+$lang['cms_loaded_modules'] = 'Loaded Modules';
+$lang['cms_loaded_extensions'] = 'Loaded Extensions';
