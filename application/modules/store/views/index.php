@@ -88,10 +88,10 @@
                     <td class="uk-text-center"><?= $itemsG->name ?></td>
                     <td class="uk-text-center">
                       <?php if(!is_null($itemsG->price_dp) && !empty($itemsG->price_dp) && $itemsG->price_dp != '0'): ?>
-                      <a href="<?= base_url('cart/'.$itemsG->id.'?tp=dp'); ?>" class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $itemsG->price_dp ?></a>
+                      <a href="<?= base_url($lang.'/cart/'.$itemsG->id.'?tp=dp'); ?>" class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $itemsG->price_dp ?></a>
                       <?php endif; ?>
                       <?php if(!is_null($itemsG->price_vp) && !empty($itemsG->price_vp) && $itemsG->price_vp != '0'): ?>
-                      <a href="<?= base_url('cart/'.$itemsG->id.'?tp=vp'); ?>" class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $itemsG->price_vp ?></a>
+                      <a href="<?= base_url($lang.'/cart/'.$itemsG->id.'?tp=vp'); ?>" class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $itemsG->price_vp ?></a>
                       <?php endif; ?>
                     </td>
                   </tr>

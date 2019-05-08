@@ -60,6 +60,7 @@ class Store extends MX_Controller {
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_store'),
+            'lang' => $this->lang->lang(),
         );
 
         $this->template->build('index', $data);
@@ -73,6 +74,7 @@ class Store extends MX_Controller {
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_cart'),
+            'lang' => $this->lang->lang(),
         );
 
         if (isset($_GET['tp']))
