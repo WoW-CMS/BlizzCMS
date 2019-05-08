@@ -44,6 +44,7 @@ class Admin extends MX_Controller {
     {
         parent::__construct();
         $this->load->model('admin_model');
+        $this->load->model('update/update_model');
         $this->config->load('donate/donate');
         $this->config->load('bugtracker/bugtracker');
         $this->load->library('pagination');
@@ -199,7 +200,6 @@ class Admin extends MX_Controller {
 
     public function cmsmanage()
     {
-        $this->load->model('update/update_model');
         $data = array(
             'pagetitle' => $this->lang->line('button_admin_panel'),
             'lang' => $this->lang->lang()
@@ -210,7 +210,6 @@ class Admin extends MX_Controller {
 
     public function updatecms()
     {
-        $this->load->model('update/update_model');
         echo $this->update_model->checkUpdates();
     }
 
