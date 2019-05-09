@@ -108,6 +108,7 @@
               });
             }
             $('#updatepageForm')[0].reset();
+            window.location.replace("<?= base_url('admin/pages/edit/'.$idlink); ?>");
           }
         });
       }

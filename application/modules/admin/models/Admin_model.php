@@ -653,7 +653,7 @@ class Admin_model extends CI_Model {
 
         $update = array(
             'title' => $title,
-            'uri' => $uri,
+            'uri_friendly' => $uri,
             'description' => $description,
             'date' => $date
         );
