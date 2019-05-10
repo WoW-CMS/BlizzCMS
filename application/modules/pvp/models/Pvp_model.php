@@ -14,8 +14,7 @@ class Pvp_model extends CI_Model {
     public function getTop20PVP($MultiRealm)
     {
         $this->multirealm = $MultiRealm;
-        
-        return $this->multirealm->select('name, race, class, totalKills, todayKills, yesterdayKills')->order_by('totalKills', 'DESC')->limit('20')->get('characters');
+        return $this->multirealm->select('name, race, class, totalKills, todayKills, yesterdayKills')->where('name !=', '')->order_by('totalKills', 'DESC')->limit('20')->get('characters');
     }
 
     public function getTopArena2v2($multirealm)
