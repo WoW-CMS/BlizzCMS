@@ -78,8 +78,15 @@
                   <?php foreach ($this->forum_model->getLastPosts()->result() as $lastest): ?>
                   <li>
                     <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
+                    <?php if($this->forum_model->getLastRepliesCount($lastest->id) == 0): ?>
                     <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastest->author) ?></span></p>
-                    <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastpost->date) ?></p>
+                    <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastest->date) ?></p>
+                    <?php else: ?>
+                    <?php foreach ($this->forum_model->getLastReplies($lastest->id)->result() as $replies): ?>
+                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($replies->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $replies->date) ?></p>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                   </li>
                   <?php endforeach; ?>
                 </ul>

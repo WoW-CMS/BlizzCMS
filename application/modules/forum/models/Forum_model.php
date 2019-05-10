@@ -78,7 +78,17 @@ class Forum_model extends CI_Model {
 
     public function getLastPosts()
     {
-        return $this->db->select('*')->limit('5')->order_by('date', 'DESC')->get('forum_topics');
+        return $this->db->select('*')->limit('5')->order_by('date', 'ASC')->get('forum_topics');
+    }
+
+    public function getLastReplies($id)
+    {
+        return $this->db->select('*')->where('topic', $id)->limit('1')->order_by('date', 'DESC')->get('forum_replies');
+    }
+
+    public function getLastRepliesCount($id)
+    {
+        return $this->db->select('id')->where('topic', $id)->get('forum_replies')->num_rows();
     }
 
     public function getRowTopicExist($id)
@@ -165,7 +175,7 @@ class Forum_model extends CI_Model {
 
     public function getSpecifyCategoryPosts($id)
     {
-        return $this->db->select('*')->where('forums', $id)->order_by('id', 'DESC')->get('forum_topics');
+        return $this->db->select('*')->where('forums', $id)->order_by('id', 'ASC')->get('forum_topics');
     }
 
     public function getSpecifyCategoryPostsPined($id)
