@@ -282,7 +282,7 @@ class User_model extends CI_Model {
                         }
                         else
                         {
-                            if ($this->wowgeneral->getExpansionAction($this->config->item('expansion')) == 1)
+                            if ($this->wowgeneral->getExpansionAction() == 1)
                             {
                                 $data = array(
                                     'username' => $username,
@@ -346,12 +346,12 @@ class User_model extends CI_Model {
 
     public function checkuserid($username)
     {
-        return $this->auth->select('id')->where('username', $username)->get('account')->row_array()['id'];
+        return $this->auth->select('id')->where('username', $username)->get('account')->row('id');
     }
 
     public function checkemailid($email)
     {
-        return $this->auth->select('id')->where('email', $email)->get('account')->row_array()['id'];
+        return $this->auth->select('id')->where('email', $email)->get('account')->row('id');
     }
 
     public function sendpassword($username, $email)
@@ -368,7 +368,7 @@ class User_model extends CI_Model {
             $newpassI = $this->wowauth->Account($username, $newpass);
             $newpassII = $this->wowauth->Battlenet($email, $newpass);
 
-            if ($this->wowgeneral->getExpansionAction($this->config->item('expansion')) == 1)
+            if ($this->wowgeneral->getExpansionAction() == 1)
             {
                 $accupdate = array(
                     'sha_pass_hash' => $newpassI,
@@ -377,7 +377,7 @@ class User_model extends CI_Model {
                     's' => ''
                 );
 
-                $this->auth->where('id', $ucheck)->where('email', $email)->update('account', $accupdate);
+                $this->auth->where('id', $ucheck)->update('account', $accupdate);
             }
             else
             {
@@ -388,9 +388,9 @@ class User_model extends CI_Model {
                     's' => ''
                 );
 
-                $this->auth->where('id', $ucheck)->where('email', $email)->update('account', $accupdate);
+                $this->auth->where('id', $ucheck)->update('account', $accupdate);
 
-                $this->auth->set('sha_pass_hash', $newpassII)->where('id', $ucheck)->where('email', $email)->update('battlenet_accounts');
+                $this->auth->set('sha_pass_hash', $newpassII)->where('id', $echeck)->update('battlenet_accounts');
             }
 
             $mail_message = 'Hi, <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> You have sent a request for your account password to be reset.<br>';
@@ -438,7 +438,7 @@ class User_model extends CI_Model {
         $temp = $this->getTempUser($key);
 
         if($check == "1") {
-            if ($this->wowgeneral->getExpansionAction($this->config->item('expansion')) == 1)
+            if ($this->wowgeneral->getExpansionAction() == 1)
             {
                 $data = array(
                     'username' => $temp['username'],
