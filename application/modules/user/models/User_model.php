@@ -399,8 +399,7 @@ class User_model extends CI_Model {
             $mail_message .= 'Kind regards,<br>';
             $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
 
-            $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
-            return true;
+            return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
         }
         else
             return 'sendErr';

@@ -476,7 +476,7 @@ class General_model extends CI_Model {
     {
         $this->load->library('email');
 
-        $conf = array(
+        $config = array(
             'protocol'  => 'smtp',
             'smtp_host' => $this->config->item('smtp_host'),
             'smtp_user' => $this->config->item('smtp_user'),
@@ -486,7 +486,7 @@ class General_model extends CI_Model {
             'mailtype'  => 'html',
             'charset'   => 'utf-8'
         );
-        $this->email->initialize($conf);
+        $this->email->initialize($config);
         $this->email->set_mailtype("html");
         $this->email->set_newline("\r\n");
 
