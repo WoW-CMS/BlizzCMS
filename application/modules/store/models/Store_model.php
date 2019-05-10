@@ -133,7 +133,7 @@ class Store_model extends CI_Model {
 
         if ($method == "dp")
         {
-            if ($this->wowgeneral->getCharDPTotal($this->session->userdata('fx_sess_id')) >= $price)
+            if ($this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id')) >= $price)
             {
                 $this->db->insert('store_logs', $data);
                 $this->db->query("UPDATE users SET dp = (dp-$price) WHERE id = $accountid");
