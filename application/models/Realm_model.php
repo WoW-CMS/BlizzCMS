@@ -201,6 +201,22 @@ class Realm_model extends CI_Model {
             return '0';
     }
 
+    public function getPercentageOnlineAlliance($multirealm)
+    {
+        $players = $this->getCharactersOnlineAlliance($multirealm);
+        $total = $this->getAllCharactersOnline($multirealm);
+        $percentage = ($players / $total) * 100;
+        return $percentage;
+    }
+
+    public function getPercentageOnlineHorde($multirealm)
+    {
+        $players = $this->getCharactersOnlineHorde($multirealm);
+        $total = $this->getAllCharactersOnline($multirealm);
+        $percentage = ($players / $total) * 100;
+        return $percentage;
+    }
+
     public function getInformationCharacter($MultiRealm, $id)
     {
         $this->multirealm = $MultiRealm;
