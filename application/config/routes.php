@@ -87,6 +87,8 @@ $route[$lang.'/vote/votenow/(:num)'] = 'vote/votenow/$2';
 
 /*Donate*/
 $route[$lang.'/donate'] = 'donate/index';
+$route[$lang.'/donate/check/(:any)'] = 'donate/check/$2';
+$route[$lang.'/donate/canceled'] = 'donate/canceled';
 
 /*Changelog*/
 $route[$lang.'/changelogs'] = 'changelogs/index';

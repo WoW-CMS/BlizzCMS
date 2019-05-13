@@ -35,6 +35,22 @@ endif; ?>
           </div>
           <div class="uk-width-3-4@m">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?=$this->lang->line('tab_donate'); ?></h4>
+            <?php if($this->session->flashdata('donation_status') == 'success'): ?>
+            <div class="uk-alert-success" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p><span class="uk-text-bold"><i class="far fa-check-circle"></i> <span class="uk-text-bold"><?= $this->lang->line('notification_title_success'); ?>:</span> <?= $this->lang->line('notification_donation_successful'); ?></p>
+            </div>
+            <?php elseif($this->session->flashdata('donation_status') == 'canceled'): ?>
+            <div class="uk-alert-warning" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p><span class="uk-text-bold"><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('notification_title_warning'); ?>:</span> <?= $this->lang->line('notification_donation_canceled'); ?></p>
+            </div>
+            <?php elseif($this->session->flashdata('donation_status') == 'error'): ?>
+            <div class="uk-alert-danger" uk-alert>
+              <a class="uk-alert-close" uk-close></a>
+              <p><span class="uk-text-bold"><i class="far fa-times-circle"></i> <?= $this->lang->line('notification_title_error'); ?>:</span> <?= $this->lang->line('notification_donation_error'); ?></p>
+            </div>
+            <?php endif; ?>
             <div class="uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-3@s uk-flex-center" uk-grid>
               <?php foreach($this->donate_model->getDonations()->result() as $donateList): ?>
               <div>

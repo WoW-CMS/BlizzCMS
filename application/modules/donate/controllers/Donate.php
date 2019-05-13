@@ -70,7 +70,7 @@ class Donate extends MX_Controller
         $this->template->build('index', $data);
     }
 
-    public function complete($id)
+    public function check($id)
     {
         $execute = new PaymentExecution();
 
@@ -87,8 +87,9 @@ class Donate extends MX_Controller
         $this->donate_model->completeTransaction($id, $_GET['paymentId']);
     }
 
-    public function cancelled()
+    public function canceled()
     {
-        redirect(base_url('donate'),'refresh');
+        $this->session->set_flashdata('donation_status','canceled');
+        redirect(base_url('donate'));
     }
 }

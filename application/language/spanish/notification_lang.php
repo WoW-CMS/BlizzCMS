@@ -83,6 +83,9 @@ $lang['notification_reply_empty'] = 'La respuesta está vacía';
 $lang['notification_reply_created'] = 'La respuesta ha sido enviada.';
 $lang['notification_reply_deleted'] = 'Se ha eliminado la respuesta.';
 $lang['notification_topic_created'] = 'El topic ha sido creado.';
+$lang['notification_donation_successful'] = 'La donación se ha completado con éxito, verifique los puntos donor en su cuenta.';
+$lang['notification_donation_canceled'] = 'La donación ha sido cancelada.';
+$lang['notification_donation_error'] = 'La información proporcionada en la transacción no coincide.';
 
 /*Notification Message (Admin) Lang*/
 $lang['notification_changelog_created'] = 'El changelog ha sido creado.';
