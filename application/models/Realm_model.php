@@ -168,7 +168,12 @@ class Realm_model extends CI_Model {
         $this->multiRealm = $multiRealm;
         $races = array('1','3','4','7','11','22','25');
 
-        return $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters')->num_rows();
+        $qq = $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters');
+
+        if($qq->num_rows())
+            return $qq->num_rows();
+        else
+            return '0';
     }
 
     public function getCharactersOnlineHorde($multiRealm)
@@ -176,14 +181,24 @@ class Realm_model extends CI_Model {
         $this->multiRealm = $multiRealm;
         $races = array('2','5','6','8','10','9','26');
 
-        return $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters')->num_rows();
+        $qq = $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters');
+
+        if($qq->num_rows())
+            return $qq->num_rows();
+        else
+            return '0';
     }
 
     public function getAllCharactersOnline($multiRealm)
     {
         $this->multiRealm = $multiRealm;
 
-        return $this->multiRealm->select('online')->where('online', '1')->get('characters')->num_rows();
+        $qq = $this->multiRealm->select('online')->where('online', '1')->get('characters');
+
+        if($qq->num_rows())
+            return $qq->num_rows();
+        else
+            return '0';
     }
 
     public function getInformationCharacter($MultiRealm, $id)
