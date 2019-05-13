@@ -49,7 +49,7 @@
               </div>
             </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upplan"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upplan"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
               </div>
             <?= form_close(); ?>
           </div>

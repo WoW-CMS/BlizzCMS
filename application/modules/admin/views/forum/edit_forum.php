@@ -169,6 +169,7 @@
               });
             }
             $('#updateforumForm')[0].reset();
+            window.location.replace("<?= base_url('admin/forum/edit/'.$idlink); ?>");
           }
         });
       }

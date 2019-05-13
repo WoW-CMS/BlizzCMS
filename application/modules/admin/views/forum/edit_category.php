@@ -91,6 +91,7 @@
               });
             }
             $('#updatecategoryForm')[0].reset();
+            window.location.replace("<?= base_url('admin/forum/category/edit/'.$idlink); ?>");
           }
         });
       }

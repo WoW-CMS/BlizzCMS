@@ -198,6 +198,7 @@
               });
             }
             $('#updateitemForm')[0].reset();
+            window.location.replace("<?= base_url('admin/store/item/edit/'.$idlink); ?>");
           }
         });
       }
