@@ -118,8 +118,8 @@ class Donate_model extends CI_Model
         ->setTransactions([$transaction]);
 
         //redirect urls
-        $redirectUrls->setReturnUrl(base_url('donate/check/'.$id))
-        ->setCancelUrl(base_url('donate/canceled'));
+        $redirectUrls->setReturnUrl(base_url($this->lang->lang().'/donate/check/'.$id))
+        ->setCancelUrl(base_url($this->lang->lang().'/donate/canceled'));
 
         $payment->setIntent('sale')
         ->setPayer($payer)
@@ -164,7 +164,7 @@ class Donate_model extends CI_Model
         if($qq == '1')
         {
             $this->session->set_flashdata('donation_status','error');
-            redirect(base_url('donate'));
+            redirect(base_url($this->lang->lang().'/donate'));
         }
         else
         {
@@ -179,7 +179,7 @@ class Donate_model extends CI_Model
             $this->db->set('dp', $total)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
 
             $this->session->set_flashdata('donation_status','success');
-            redirect(base_url('donate'));
+            redirect(base_url($this->lang->lang().'/donate'));
         }
     }
 }

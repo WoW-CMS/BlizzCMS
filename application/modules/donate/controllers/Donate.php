@@ -90,6 +90,6 @@ class Donate extends MX_Controller
     public function canceled()
     {
         $this->session->set_flashdata('donation_status','canceled');
-        redirect(base_url('donate'));
+        redirect(base_url($this->lang->lang().'/donate'));
     }
 }
