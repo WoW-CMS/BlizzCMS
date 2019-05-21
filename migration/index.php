@@ -61,7 +61,7 @@ endif; ?>
               </div>
             <?php endif; ?>
             <?php if ($core->getError()): ?>
-              <?php echo "<div class='uk-alert-danger' uk-alert><h3 class='uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h3><ul class='uk-margin-small-top'>"; ?>
+              <?php echo "<div class='uk-alert-danger' uk-alert><h5 class='uk-text-uppercase uk-text-bold uk-margin-remove'><i class='fas fa-exclamation-circle'></i> Error</h5><ul class='uk-margin-remove'>"; ?>
               <?php foreach ($core->getError() as $item): ?>
                 <?php echo "<li>$item</li>"; ?>
               <?php endforeach; ?>

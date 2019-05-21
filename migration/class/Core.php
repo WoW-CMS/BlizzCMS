@@ -6,7 +6,7 @@ class Core {
         $reConfig,
         $reDatabase,
         $input,
-        $error = [];
+        $error = array();
 
     public function init($config)
     {
