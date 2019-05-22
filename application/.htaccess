@@ -1,12 +1,12 @@
 <IfModule authz_core_module>
   Require all denied
-  <FilesMatch "^\.js|.css|.woff|.woff2|.ttf|.otf|.eot|.jpg|.jpeg|.png|.gif|.svg|.ico|.mp4|.webm">
+  <FilesMatch "^\.js|.css|.woff|.woff2|.ttf|.otf|.eot|.jpg|.jpeg|.png|.gif|.svg|.cur|.ico|.mp4|.webm">
     Require all granted
   </FilesMatch>
 </IfModule>
 <IfModule !authz_core_module>
   Deny from all
-  <FilesMatch "^\.js|.css|.woff|.woff2|.ttf|.otf|.eot|.jpg|.jpeg|.png|.gif|.svg|.ico|.mp4|.webm">
+  <FilesMatch "^\.js|.css|.woff|.woff2|.ttf|.otf|.eot|.jpg|.jpeg|.png|.gif|.svg|.cur|.ico|.mp4|.webm">
     Allow from all
   </FilesMatch>
 </IfModule>

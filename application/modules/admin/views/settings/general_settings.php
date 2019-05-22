@@ -50,11 +50,11 @@
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label"><?= $this->lang->line('conf_discord_invid'); ?></label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_theme_name'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
-                          <input class="uk-input" type="text" id="discord_invitation" value="<?= $this->config->item('discord_invitation'); ?>" required>
+                          <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
+                          <input class="uk-input" type="text" id="theme_name" value="<?= $this->config->item('theme_name'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -72,11 +72,55 @@
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-2@s">
-                      <label class="uk-form-label"><?= $this->lang->line('conf_theme_name'); ?></label>
+                      <label class="uk-form-label"><?= $this->lang->line('conf_maintenance_mode'); ?></label>
+                      <div class="uk-form-controls">
+                        <select class="uk-select" id="maintenance_mode">
+                          <option value="0" <?php if($this->config->item('maintenance_mode') == '0') echo 'selected'; ?>><?= $this->lang->line('option_disabled'); ?></option>
+                          <option value="1" <?php if($this->config->item('maintenance_mode') == '1') echo 'selected'; ?>><?= $this->lang->line('option_enabled'); ?></option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('conf_discord_invid'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
-                          <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
-                          <input class="uk-input" type="text" id="theme_name" value="<?= $this->config->item('theme_name'); ?>" required>
+                          <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
+                          <input class="uk-input" type="text" id="discord_invitation" value="<?= $this->config->item('discord_invitation'); ?>" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-margin-small">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('conf_social_facebook'); ?></label>
+                      <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                          <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-facebook-f"></i></span>
+                          <input class="uk-input" type="text" id="social_facebook" value="<?= $this->config->item('social_facebook'); ?>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('conf_social_twitter'); ?></label>
+                      <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                          <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-twitter"></i></span>
+                          <input class="uk-input" type="text" id="social_twiter" value="<?= $this->config->item('social_twitter'); ?>">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-margin-small">
+                  <div class="uk-grid uk-grid-small" data-uk-grid>
+                    <div class="uk-width-1-2@s">
+                      <label class="uk-form-label"><?= $this->lang->line('conf_social_youtube'); ?></label>
+                      <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                          <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-youtube"></i></span>
+                          <input class="uk-input" type="text" id="social_youtube" value="<?= $this->config->item('social_youtube'); ?>">
                         </div>
                       </div>
                     </div>
@@ -100,9 +144,13 @@
 
         var project = $.trim($('#project_name').val());
         var timezone = $.trim($('#time_zone').val());
+        var maintenance = $.trim($('#maintenance_mode').val());
         var discord = $.trim($('#discord_invitation').val());
         var realmlist = $.trim($('#realmlist').val());
         var theme = $.trim($('#theme_name').val());
+        var facebook = $.trim($('#social_facebook').val());
+        var twitter = $.trim($('#social_twitter').val());
+        var youtube = $.trim($('#social_youtube').val());
         if(project == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -122,7 +170,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/settings/update'); ?>",
           method:"POST",
-          data:{project, timezone, discord, realmlist, theme},
+          data:{project, timezone, maintenance, discord, realmlist, theme, facebook, twitter, youtube},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

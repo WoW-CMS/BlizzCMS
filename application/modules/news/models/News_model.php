@@ -39,17 +39,17 @@ class News_model extends CI_Model {
 
     public function getNewTitle($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('news')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('news')->row('title');
     }
 
     public function getNewImage($id)
     {
-        return $this->db->select('image')->where('id', $id)->get('news')->row_array()['image'];
+        return $this->db->select('image')->where('id', $id)->get('news')->row('image');
     }
 
     public function getNewDescription($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('news')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('news')->row('description');
     }
 
     public function getNewlogDate($id)

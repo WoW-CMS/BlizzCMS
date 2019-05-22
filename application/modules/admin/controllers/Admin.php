@@ -93,10 +93,14 @@ class Admin extends MX_Controller {
     {
         $project = $this->input->post('project');
         $timezone = $this->input->post('timezone');
+        $maintenance = $this->input->post('maintenance');
         $discord = $this->input->post('discord');
         $realmlist = $this->input->post('realmlist');
         $theme = $this->input->post('theme');
-        echo $this->admin_model->updateGeneralSettings($project, $timezone, $discord, $realmlist, $theme);
+        $facebook = $this->input->post('facebook');
+        $twitter = $this->input->post('twitter');
+        $youtube = $this->input->post('youtube');
+        echo $this->admin_model->updateGeneralSettings($project, $timezone, $maintenance, $discord, $realmlist, $theme, $facebook, $twitter, $youtube);
     }
 
     public function optionalsettings()
@@ -251,7 +255,7 @@ class Admin extends MX_Controller {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
-        if ($this->wowauth->getAccountExist($id)->num_rows() < 1)
+        if ($this->admin_model->getAccountExist($id) < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -268,7 +272,7 @@ class Admin extends MX_Controller {
         if (is_null($id) || empty($id))
             redirect(base_url(),'refresh');
 
-        if ($this->wowauth->getAccountExist($id)->num_rows() < 1)
+        if ($this->admin_model->getAccountExist($id) < 1)
             redirect(base_url(),'refresh');
 
         $data = array(
@@ -926,6 +930,16 @@ class Admin extends MX_Controller {
         $this->template->build('store/manage_items', $data);
     }
 
+    public function managestoretop()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('store/manage_top', $data);
+    }
+
     public function createstorecategory()
     {
         $data = array(
@@ -955,15 +969,19 @@ class Admin extends MX_Controller {
 
     public function addstorecategory()
     {
-        $category = $this->input->post('category');
-        echo $this->admin_model->insertStoreCategory($category);
+        $name = $this->input->post('name');
+        $route = $this->input->post('route');
+        $realm = $this->input->post('realm');
+        echo $this->admin_model->insertStoreCategory($name, $route, $realm);
     }
 
     public function updatestorecategory()
     {
         $id = $this->input->post('id');
-        $category = $this->input->post('category');
-        echo $this->admin_model->updateSpecifyStoreCategory($id, $category);
+        $name = $this->input->post('name');
+        $route = $this->input->post('route');
+        $realm = $this->input->post('realm');
+        echo $this->admin_model->updateSpecifyStoreCategory($id, $name, $route, $realm);
     }
 
     public function deletestorecategory()
@@ -1002,34 +1020,82 @@ class Admin extends MX_Controller {
     public function addstoreitem()
     {
         $name = $this->input->post('name');
+        $description = $this->input->post('description');
         $category = $this->input->post('category');
         $type = $this->input->post('type');
+        $icon = $this->input->post('icon');
+        $price_type = $this->input->post('price_type');
         $dp_price = $this->input->post('dp_price');
         $vp_price = $this->input->post('vp_price');
-        $itemid = $this->input->post('itemid');
-        $icon = $this->input->post('icon');
-        $image = $this->input->post('image');
-        echo $this->admin_model->insertItem($name, $category, $type, $dp_price, $vp_price, $itemid, $icon, $image);
+        $command = $this->input->post('command');
+        echo $this->admin_model->insertItem($name, $description, $category, $type, $price_type, $dp_price, $vp_price, $icon, $command);
     }
 
     public function updatestoreitem()
     {
         $id = $this->input->post('id');
         $name = $this->input->post('name');
+        $description = $this->input->post('description');
         $category = $this->input->post('category');
         $type = $this->input->post('type');
+        $icon = $this->input->post('icon');
+        $price_type = $this->input->post('price_type');
         $dp_price = $this->input->post('dp_price');
         $vp_price = $this->input->post('vp_price');
-        $itemid = $this->input->post('itemid');
-        $icon = $this->input->post('icon');
-        $image = $this->input->post('image');
-        echo $this->admin_model->updateSpecifyItem($id, $name, $category, $type, $dp_price, $vp_price, $itemid, $icon, $image);
+        $command = $this->input->post('command');
+        echo $this->admin_model->updateSpecifyItem($id, $name, $description, $category, $type, $price_type, $dp_price, $vp_price, $icon, $command);
     }
 
     public function deletestoreitem()
     {
         $id = $this->input->post('value');
-        echo $this->admin_model->delShopItm($id);
+        echo $this->admin_model->delStoreItem($id);
+    }
+
+    public function createstoretop()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('store/create_top', $data);
+    }
+
+    public function editstoretop($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getStoreTopSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('store/edit_top', $data);
+    }
+
+    public function addstoretop()
+    {
+        $item = $this->input->post('item');
+        echo $this->admin_model->insertStoreTop($item);
+    }
+
+    public function updatestoretop()
+    {
+        $id = $this->input->post('id');
+        $item = $this->input->post('item');
+        echo $this->admin_model->updateSpecifyStoreTop($id, $item);
+    }
+
+    public function deletestoretop()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->deleteStoreTop($id);
     }
 
     public function donate()

@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Copyright (c) 2017
  */
 
-$config['per_page'] = 15;
+$config['per_page'] = 25;
 $config['num_links'] = 2;
 
 $config['use_page_numbers'] = TRUE;

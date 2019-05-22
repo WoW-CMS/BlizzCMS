@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="uk-width-3-4@s">
-            <div class="uk-card uk-card-default uk-card-body">
+            <div class="uk-card uk-card-secondary character-list uk-card-body">
               <div class="uk-overflow-auto">
                 <ul id="acc-characters" class="uk-switcher">
                   <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
@@ -178,7 +178,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_dp_vp_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -218,7 +218,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_category_created'); ?>',
+                  message: '<?= $this->lang->line('notification_account_updated'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -243,7 +243,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_reason_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -283,7 +283,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_category_created'); ?>',
+                  message: '<?= $this->lang->line('notification_account_banned'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -330,7 +330,7 @@
                 'theme': 'awesome ok',
                   'content': {
                   title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_forum_deleted'); ?>',
+                  message: '<?= $this->lang->line('notification_account_ban_remove'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -354,7 +354,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_rank_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },

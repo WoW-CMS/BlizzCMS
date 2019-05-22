@@ -102,27 +102,27 @@ class Bugtracker_model extends CI_Model {
 
     public function getType($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker_type')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('bugtracker_type')->row('title');
     }
 
     public function getTitleIssue($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('bugtracker')->row('title');
     }
 
     public function getDescIssue($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('bugtracker')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('bugtracker')->row('description');
     }
 
     public function getStatus($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker_status')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('bugtracker_status')->row('title');
     }
 
     public function getStatusID($id)
     {
-        return $this->db->select('status')->where('id', $id)->get('bugtracker')->row_array()['status'];
+        return $this->db->select('status')->where('id', $id)->get('bugtracker')->row('status');
     }
 
     public function getPriorities()
@@ -132,7 +132,7 @@ class Bugtracker_model extends CI_Model {
 
     public function getPriority($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker_priority')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('bugtracker_priority')->row('title');
     }
 
     public function getPriorityGeneral()
@@ -152,17 +152,17 @@ class Bugtracker_model extends CI_Model {
 
     public function getPriorityID($id)
     {
-        return $this->db->select('priority')->where('id', $id)->get('bugtracker')->row_array()['priority'];
+        return $this->db->select('priority')->where('id', $id)->get('bugtracker')->row('priority');
     }
 
     public function getTypeID($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('bugtracker')->row_array()['type'];
+        return $this->db->select('type')->where('id', $id)->get('bugtracker')->row('type');
     }
 
     public function getDate($id)
     {
-        return $this->db->select('date')->where('id', $id)->get('bugtracker')->row_array()['date'];
+        return $this->db->select('date')->where('id', $id)->get('bugtracker')->row('date');
     }
 
     public function closeStatus($id)

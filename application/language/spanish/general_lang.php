@@ -74,7 +74,6 @@ $lang['button_edit_topic'] = 'Editar tema';
 $lang['button_save_changes'] = 'Guardar Cambios';
 $lang['button_cancel'] = 'Cancelar';
 $lang['button_send'] = 'Enviar';
-$lang['button_buy'] = 'Comprar';
 $lang['button_read_more'] = 'Leer más';
 $lang['button_add_reply'] = 'Crear respuesta';
 $lang['button_remove'] = 'Borrar';
@@ -84,7 +83,10 @@ $lang['button_close'] = 'Cerrar';
 $lang['button_reply'] = 'Responder';
 $lang['button_donate'] = 'Donar';
 $lang['button_account_settings'] = 'Configuraciones de la cuenta';
-$lang['button_sync_account'] = 'Sincronizar cuenta antigua';
+$lang['button_cart'] = 'añadir al carrito';
+$lang['button_view_cart'] = 'Ver carrito';
+$lang['button_checkout'] = 'Checkout';
+$lang['button_buying'] = 'Seguir comprando';
 
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
@@ -141,6 +143,11 @@ $lang['table_header_time'] = 'Tiempo';
 $lang['table_header_icon'] = 'Icono';
 $lang['table_header_realm'] = 'Reino';
 $lang['table_header_zone'] = 'Zona';
+$lang['table_header_character'] = 'Personaje';
+$lang['table_header_price'] = 'Precio';
+$lang['table_header_item_name'] = 'Nombre del Artículo';
+$lang['table_header_items'] = 'Artículo(s)';
+$lang['table_header_quantity'] = 'Cantidad';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Guerrero';
@@ -254,16 +261,15 @@ $lang['forum_topics_count'] = 'Topics';
 $lang['forum_users_count'] = 'Users';
 
 /*Store Lang*/
-$lang['store_cart_description'] = 'Comprar artículo';
-$lang['store_item_name'] = 'Nombre del Artículo';
-$lang['store_select_character'] = 'Seleccionar Personaje';
-$lang['store_item_price'] = 'Precio';
-$lang['store_all_categories'] = 'Todas las Categorías';
-$lang['store_select_categories'] = 'Selecciona una Categoría';
+$lang['store_categories'] = 'Categorías de la tienda';
+$lang['store_top_items'] = 'TOP Items';
+$lang['store_cart_added'] = 'Has añadido';
+$lang['store_cart_in_your'] = 'en tu carrito de compras';
+$lang['store_cart_no_items'] = 'No tienes artículos en tu carrito.';
 
 /*Soap Lang*/
-$lang['store_senditem_subject'] = 'Compra online';
-$lang['store_senditem_text'] = 'Gracias por hacer la transacción, aquí está tu compra';
+$lang['soap_send_subject'] = 'Compra en la Tienda';
+$lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';
 
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Recuperación de contraseña';

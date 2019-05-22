@@ -26,16 +26,16 @@
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
+              <?php if ($this->wowauth->isLogged()): ?>
               <li class="uk-visible@m">
-                <?php if ($this->wowauth->isLogged()): ?>
-                  <a href="#">
+                <a href="#">
                   <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
                   <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="30" height="30" alt="Avatar">
                   <?php else: ?>
                   <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('wow_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span></a>
-                <?php endif; ?>
+                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('wow_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
+                </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->wowauth->isLogged()): ?>
@@ -55,6 +55,20 @@
                   </ul>
                 </div>
               </li>
+              <li>
+                <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;<span class="uk-badge"><?= $this->cart->total_items() ?></span></a>
+                <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
+                  <div class="blizzcms-cart-dropdown">
+                    <?php if($this->cart->total_items() > 0): ?>
+                    <p class="uk-text-center uk-margin-small"><?= $this->lang->line('store_cart_added'); ?> <span class="uk-text-bold"><?= $this->cart->total_items() ?> <?= $this->lang->line('table_header_items'); ?></span> <?= $this->lang->line('store_cart_in_your'); ?></p>
+                    <a href="<?= base_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-eye"></i> <?= $this->lang->line('button_view_cart'); ?></a>
+                    <?php else: ?>
+                    <p class="uk-text-center uk-margin-remove"><?= $this->lang->line('store_cart_no_items'); ?></p>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </li>
+              <?php endif; ?>
             </ul>
           </div>
         </nav>
@@ -105,83 +119,6 @@
               <?php endforeach; ?>
             </ul>
             <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#mobile" uk-toggle></a>
-            <div class="uk-offcanvas-content">
-              <div id="mobile" uk-offcanvas="flip: true">
-                <div class="uk-offcanvas-bar">
-                  <button class="uk-offcanvas-close" type="button" uk-close></button>
-                  <div class="uk-panel">
-                    <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('website_name'); ?></p>
-                    <?php if ($this->wowauth->isLogged()): ?>
-                    <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                      <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
-                      <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="36" height="36" alt="Avatar">
-                      <?php else: ?>
-                      <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
-                      <?php endif; ?>
-                      <span class="uk-label"><?= $this->session->userdata('wow_sess_username'); ?></span>
-                    </div>
-                    <?php endif; ?>
-                    <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                      <?php if (!$this->wowauth->isLogged()): ?>
-                      <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
-                      <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
-                      <?php endif; ?>
-                      <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
-                      <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
-                      <?php endif; ?>
-                      <?php endif; ?>
-                      <?php if ($this->wowauth->isLogged()): ?>
-                      <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-                      <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
-                      <?php endif; ?>
-                      <?php if($this->wowmodule->getACPStatus() == '1'): ?>
-                      <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
-                      <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
-                      <?php endif; ?>
-                      <?php endif; ?>
-                      <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
-                      <?php endif; ?>
-                      <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
-                      <?php if($menulist->main == '2'): ?>
-                      <li class="uk-parent">
-                        <a href="#">
-                          <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
-                        </a>
-                        <ul class="uk-nav-sub">
-                          <?php foreach ($this->wowgeneral->getMenuChild($menulist->id)->result() as $menuchildlist): ?>
-                          <li>
-                            <?php if($menuchildlist->type == '1'): ?>
-                            <a href="<?= base_url($menuchildlist->url); ?>">
-                              <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
-                            </a>
-                            <?php elseif($menuchildlist->type == '2'): ?>
-                            <a target="_blank" href="<?= $menuchildlist->url ?>">
-                              <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
-                            </a>
-                            <?php endif; ?>
-                          </li>
-                          <?php endforeach; ?>
-                        </ul>
-                      </li>
-                      <?php elseif($menulist->main == '1' && $menulist->child == '0'): ?>
-                      <li>
-                        <?php if($menulist->type == '1'): ?>
-                        <a href="<?= base_url($menulist->url); ?>">
-                          <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
-                        </a>
-                        <?php elseif($menulist->type == '2'): ?>
-                        <a target="_blank" href="<?= $menulist->url ?>">
-                          <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
-                        </a>
-                        <?php endif; ?>
-                      </li>
-                      <?php endif; ?>
-                      <?php endforeach; ?>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="uk-navbar-right">
             <?php if ($this->wowauth->isLogged()): ?>
@@ -194,6 +131,81 @@
             <?php endif; ?>
           </div>
         </nav>
+        <div id="mobile" data-uk-offcanvas="flip: true">
+          <div class="uk-offcanvas-bar">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <div class="uk-panel">
+              <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('website_name'); ?></p>
+              <?php if ($this->wowauth->isLogged()): ?>
+              <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
+                <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
+                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="36" height="36" alt="Avatar">
+                <?php else: ?>
+                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
+                <?php endif; ?>
+                <span class="uk-label"><?= $this->session->userdata('wow_sess_username'); ?></span>
+              </div>
+              <?php endif; ?>
+              <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+                <?php if (!$this->wowauth->isLogged()): ?>
+                <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
+                <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
+                <?php endif; ?>
+                <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
+                <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
+                <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($this->wowauth->isLogged()): ?>
+                <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
+                <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                <?php endif; ?>
+                <?php if($this->wowmodule->getACPStatus() == '1'): ?>
+                <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
+                <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
+                <?php endif; ?>
+                <?php endif; ?>
+                <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
+                <?php endif; ?>
+                <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
+                <?php if($menulist->main == '2'): ?>
+                <li class="uk-parent">
+                  <a href="#">
+                    <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
+                  </a>
+                  <ul class="uk-nav-sub">
+                    <?php foreach ($this->wowgeneral->getMenuChild($menulist->id)->result() as $menuchildlist): ?>
+                    <li>
+                      <?php if($menuchildlist->type == '1'): ?>
+                      <a href="<?= base_url($menuchildlist->url); ?>">
+                        <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
+                      </a>
+                      <?php elseif($menuchildlist->type == '2'): ?>
+                      <a target="_blank" href="<?= $menuchildlist->url ?>">
+                        <i class="<?= $menuchildlist->icon ?>"></i>&nbsp;<?= $menuchildlist->name ?>
+                      </a>
+                      <?php endif; ?>
+                    </li>
+                    <?php endforeach; ?>
+                  </ul>
+                </li>
+                <?php elseif($menulist->main == '1' && $menulist->child == '0'): ?>
+                <li>
+                  <?php if($menulist->type == '1'): ?>
+                  <a href="<?= base_url($menulist->url); ?>">
+                    <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
+                  </a>
+                  <?php elseif($menulist->type == '2'): ?>
+                  <a target="_blank" href="<?= $menulist->url ?>">
+                    <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
+                  </a>
+                  <?php endif; ?>
+                </li>
+                <?php endif; ?>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

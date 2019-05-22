@@ -55,44 +55,117 @@ class Store extends MX_Controller {
             redirect(base_url('login'),'refresh');
     }
 
-    public function index($id = '')
+    public function index()
     {
         $data = array(
-            'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_store'),
-            'lang' => $this->lang->lang(),
+            'lang' => $this->lang->lang()
         );
 
         $this->template->build('index', $data);
     }
 
-    public function cart($id)
+    public function category($route)
     {
-        if ($this->store_model->getExistItem($id) < 1)
+        if (empty($route) || is_null($route) || $route == NULL)
+            redirect(base_url('store'),'refresh');
+
+        if ($this->store_model->getCategoryExist($route) < 1)
             redirect(base_url('store'),'refresh');
 
         $data = array(
-            'idlink' => $id,
-            'pagetitle' => $this->lang->line('tab_cart'),
-            'lang' => $this->lang->lang(),
+            'route' => $route,
+            'pagetitle' => $this->lang->line('tab_store').' | '.$this->store_model->getCategoryName($route),
+            'lang' => $this->lang->lang()
         );
 
-        if (isset($_GET['tp']))
+        $this->template->build('category', $data);
+    }
+
+    public function cart()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_cart'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('cart', $data);
+    }
+
+    public function addtocart()
+    {
+        $id = $this->input->post('value');
+
+        $data = array(
+            'id' => $id,
+            'name' => $this->store_model->getName($id),
+            'price' => 0,
+            'qty' => 1,
+            'category' => $this->store_model->getCategory($id),
+            'guid' => 0,
+            'dp' => $this->store_model->getPriceDP($id),
+            'vp' => $this->store_model->getPriceVP($id),
+            'options' => array('Key' => uniqid())
+        );
+
+        $qq = $this->cart->insert($data);
+
+        echo $qq ? true : false;
+    }
+ 
+    public function removeitem()
+    {
+        $rowid = $this->input->post('value');
+        $qq = $this->cart->remove($rowid);
+
+        echo $qq ? true : false;
+    }
+
+    public function updatequantity()
+    {
+        $qq = 0;
+        $rowid = $this->input->get('rowid');
+        $qty = $this->input->get('qty');
+
+        if(!empty($rowid) && !empty($qty))
         {
-            $mode = $_GET['tp'];
+            $data = array(
+                'rowid' => $rowid,
+                'qty'   => $qty
+            );
 
-            if ($mode != 'vp' && $mode != 'dp')
-                redirect(base_url('store'),'refresh');
-
-            if ($mode == "vp")
-                $this->store_model->getVPTrue($id);
-            if ($mode == "dp")
-                $this->store_model->getDPTrue($id);
-
-            $data['idlink'] = $id;
-            $this->template->build('cart', $data);
+            $qq = $this->cart->update($data);
         }
+
+        echo $qq ? true : false;
+    }
+
+    public function updatecharacter()
+    {
+        $qq = 0;
+        $rowid = $this->input->get('rowid');
+        $guid = $this->input->get('char');
+
+        if(!empty($rowid) && !empty($guid))
+        {
+            $data = array(
+                'rowid' => $rowid,
+                'guid'   => $guid
+            );
+
+            $qq = $this->cart->update($data);
+        }
+
+        echo $qq ? true : false;
+    }
+
+    public function checkout()
+    {
+        $itemid = $this->input->post('value');
+
+        if($this->cart->count_items() == $this->cart->valid_items())
+            echo $this->store_model->Checkout();
         else
-            redirect(base_url('store'),'refresh');
+            echo 'Selchars';
     }
 }

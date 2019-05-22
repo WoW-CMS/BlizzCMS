@@ -23,7 +23,7 @@
                   <thead>
                     <tr>
                       <th class="uk-table-small"><?= $this->lang->line('placeholder_title'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('placeholder_price'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_price'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_tax'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_points'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>

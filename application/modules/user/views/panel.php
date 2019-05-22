@@ -37,13 +37,7 @@
                     <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
-                    <?php if($this->user_model->getExistInfo() == 0): ?>
-                    <?= form_open('', 'id="syncAccount" class="uk-display-inline" onsubmit="SyncAccount(event)"'); ?>
-                    <button class="uk-button uk-button-default uk-button-small" value="<?= $this->session->userdata('wow_sess_id'); ?>" id="button_sync" type="submit"><i class="fas fa-sync"></i> <?= $this->lang->line('button_sync_account'); ?></button>
-                    <?= form_close(); ?>
-                    <?php else: ?>
                     <a href="<?= base_url('settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= $this->lang->line('button_account_settings'); ?></a>
-                    <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -78,13 +72,33 @@
                     $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                   ?>
                   <div>
-                    <h4 class="uk-h4 uk-text-bold"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></h4>
-                    <div class="uk-grid uk-grid-small uk-child-width-auto" data-uk-grid>
-                      <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id'))->result() as $chars): ?>
-                      <div>
-                        <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($chars->class)); ?>" title="<?= $chars->name ?> (Lvl <?= $chars->level ?>)" width="50" height="50" uk-tooltip>
-                      </div>
-                      <?php endforeach; ?>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></h5>
+                    <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
+                      <table class="uk-table uk-table-divider uk-table-small">
+                        <thead>
+                          <tr>
+                            <th class="uk-table-expand"><i class="fas fa-user"></i> <?= $this->lang->line('table_header_name'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_race'); ?>/<?= $this->lang->line('table_header_class'); ?></th>
+                            <th class="uk-width-small"><i class="fas fa-level-up-alt"></i> <?= $this->lang->line('table_header_level'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-clock"></i> <?= $this->lang->line('table_header_time_played'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-coins"></i> <?= $this->lang->line('table_header_money'); ?></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id'))->result() as $chars): ?>
+                          <tr>
+                            <td><?= $chars->name ?></td>
+                            <td>
+                              <img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($chars->race)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getRaceName($chars->race); ?>" alt="">
+                              <img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($chars->class)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getClassName($chars->class); ?>" alt="">
+                            </td>
+                            <td><?= $chars->level ?></td>
+                            <td><?= $this->wowgeneral->timeConversor($chars->totaltime); ?></td>
+                            <td><?= $this->wowgeneral->moneyConversor($chars->money)['gold']; ?>g <?= $this->wowgeneral->moneyConversor($chars->money)['silver']; ?>s <?= $this->wowgeneral->moneyConversor($chars->money)['copper']; ?>c</td>
+                          </tr>
+                          <?php endforeach; ?>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                   <?php endforeach; ?>
@@ -95,89 +109,3 @@
         </div>
       </div>
     </section>
-
-    <?php if($this->user_model->getExistInfo() == 0): ?>
-    <script>
-      function SyncAccount(e) {
-        e.preventDefault();
-
-        var value = $('#button_sync').attr('value');
-        $.ajax({
-          url:"<?= base_url($lang.'/panel/sync'); ?>",
-          method:"POST",
-          data:{value},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-          },
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response == 'idErr') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: 'id',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-              return false;
-            }
-
-            if (response == 'accErr') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: 'acc',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-              return false;
-            }
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_sync_account'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-            window.location.replace("<?= base_url('panel'); ?>");
-          }
-        });
-      }
-    </script>
-    <?php endif; ?>

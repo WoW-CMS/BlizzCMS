@@ -24,7 +24,7 @@ class General_model extends CI_Model {
 
         if($config == '1' && $this->wowauth->isLogged())
         {
-            if($this->wowauth->getMaintenancePermission($this->session->userdata('wow_sess_gmlevel')))
+            if($this->wowauth->getMaintenancePermission())
                 return true;
             else
                 return false;
@@ -450,6 +450,37 @@ class General_model extends CI_Model {
             return $qq->row('zone_name');
         else
             return 'Unknown Zone';
+    }
+
+    public function moneyConversor($amount)
+    {
+        $gold = substr($amount, 0, -4);
+        $silver = substr($amount, -4, -2);
+        $copper = substr($amount, -2);
+
+        if ($gold == 0)
+            $gold = 0;
+
+        if ($silver == 0)
+            $silver = 0;
+
+        if ($copper == 0)
+            $copper = 0;
+
+        $money = array(
+            'gold' => $gold,
+            'silver' => $silver,
+            'copper' => $copper
+        );
+
+        return $money;
+    }
+
+    public function timeConversor($time)
+    {
+        $dateF = new DateTime('@0');
+        $dateT = new DateTime("@$time");
+        return $dateF->diff($dateT)->format('%aD %hH %iM %sS');
     }
 
     public function tinyEditor($rank)

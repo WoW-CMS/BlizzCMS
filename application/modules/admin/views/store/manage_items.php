@@ -14,6 +14,7 @@
               <ul class="uk-nav uk-nav-default">
                 <li><a href="<?= base_url('admin/store'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_store_categories'); ?></a></li>
                 <li class="uk-active"><a href="<?= base_url('admin/store/items'); ?>"><i class="fas fa-boxes"></i> <?= $this->lang->line('section_store_items'); ?></a></li>
+                <li class="uk-active"><a href="<?= base_url('admin/store/top'); ?>"><i class="fas fa-parachute-box"></i> <?= $this->lang->line('section_store_top'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -23,24 +24,26 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-small"><?= $this->lang->line('table_header_id'); ?></th>
                       <th class="uk-width-medium"><?= $this->lang->line('table_header_name'); ?></th>
-                      <th class="uk-width-small"><?= $this->lang->line('store_item_price'); ?> DP</th>
-                      <th class="uk-width-small"><?= $this->lang->line('store_item_price'); ?> VP</th>
+                      <th class="uk-width-medium"><?= $this->lang->line('placeholder_category'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_price'); ?> <?= $this->lang->line('placeholder_type'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('option_dp'); ?> <?= $this->lang->line('table_header_price'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('option_dp'); ?> <?= $this->lang->line('table_header_price'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($this->admin_model->getShopAll()->result() as $storeall): ?>
+                    <?php foreach($this->admin_model->getAllStoreItems()->result() as $item): ?>
                     <tr>
-                      <td><?= $storeall->itemid ?></td>
-                      <td><?= $storeall->name ?></td>
-                      <td><?= $storeall->price_dp ?></td>
-                      <td><?= $storeall->price_vp ?></td>
+                      <td><?= $item->name ?></td>
+                      <td><?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->wowrealm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?></td>
+                      <td class="uk-text-center"><?= $item->price_type ?></td>
+                      <td class="uk-text-center"><?= $item->dp ?></td>
+                      <td class="uk-text-center"><?= $item->vp ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                          <a href="<?= base_url('admin/store/item/edit/'.$storeall->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
-                          <button class="uk-button uk-button-danger" value="<?= $storeall->id ?>" id="button_delete<?= $storeall->id ?>" onclick="DeleteItem(event, this.value)"><i class="fas fa-trash-alt"></i></button>
+                          <a href="<?= base_url('admin/store/item/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                          <button class="uk-button uk-button-danger" value="<?= $item->id ?>" id="button_delete<?= $item->id ?>" onclick="DeleteItem(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                         </div>
                       </td>
                     </tr>

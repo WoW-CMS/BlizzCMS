@@ -23,10 +23,10 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-3@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_price'); ?></label>
+                  <label class="uk-form-label"><?= $this->lang->line('table_header_price'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
-                      <input class="uk-input" type="number" id="plan_price" placeholder="<?= $this->lang->line('placeholder_price'); ?>" min="1" value="<?= $this->admin_model->getDonateSpecifyPrice($idlink); ?>" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
+                      <input class="uk-input" type="number" id="plan_price" placeholder="<?= $this->lang->line('table_header_price'); ?>" min="1" value="<?= $this->admin_model->getDonateSpecifyPrice($idlink); ?>" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" required>
                     </div>
                   </div>
                 </div>

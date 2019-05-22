@@ -145,12 +145,12 @@ class Forum_model extends CI_Model {
 
     public function getTopicTitle($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('forum_topics')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('forum_topics')->row('title');
     }
 
     public function getTopicDescription($id)
     {
-        return $this->db->select('content')->where('id', $id)->get('forum_topics')->row_array()['content'];
+        return $this->db->select('content')->where('id', $id)->get('forum_topics')->row('content');
     }
 
     public function getCategoryForums($category)
@@ -170,7 +170,7 @@ class Forum_model extends CI_Model {
 
     public function getForumName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('forum')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('forum')->row('name');
     }
 
     public function getSpecifyCategoryPosts($id)
@@ -200,7 +200,7 @@ class Forum_model extends CI_Model {
 
     public function getSpecifyPostContent($id)
     {
-        return $this->db->select('content')->where('id', $id)->get('forum_topics')->row_array()['content'];
+        return $this->db->select('content')->where('id', $id)->get('forum_topics')->row('content');
     }
 
     public function getTopicLocked($id)

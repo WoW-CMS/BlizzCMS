@@ -65,8 +65,8 @@
                   <label class="uk-form-label"><?= $this->lang->line('conf_account_activation'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="register_type">
-                      <option value="TRUE" <?php if($this->config->item('account_activation_required') == TRUE) echo 'selected'; ?>><?= $this->lang->line('option_enable'); ?></option>
-                      <option value="FALSE" <?php if($this->config->item('account_activation_required') == FALSE) echo 'selected'; ?>><?= $this->lang->line('option_disable'); ?></option>
+                      <option value="TRUE" <?php if($this->config->item('account_activation_required') == TRUE) echo 'selected'; ?>><?= $this->lang->line('option_enabled'); ?></option>
+                      <option value="FALSE" <?php if($this->config->item('account_activation_required') == FALSE) echo 'selected'; ?>><?= $this->lang->line('option_disabled'); ?></option>
                     </select>
                   </div>
                 </div>

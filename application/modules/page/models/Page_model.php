@@ -13,17 +13,17 @@ class Page_model extends CI_Model {
 
     public function getName($uri)
     {
-        return $this->db->select('title')->where('uri_friendly', $uri)->get('pages')->row_array()['title'];
+        return $this->db->select('title')->where('uri_friendly', $uri)->get('pages')->row('title');
     }
 
     public function getDesc($uri)
     {
-        return $this->db->select('description')->where('uri_friendly', $uri)->get('pages')->row_array()['description'];
+        return $this->db->select('description')->where('uri_friendly', $uri)->get('pages')->row('description');
     }
 
     public function getDate($uri)
     {
-        return $this->db->select('date')->where('uri_friendly', $uri)->get('pages')->row_array()['date'];
+        return $this->db->select('date')->where('uri_friendly', $uri)->get('pages')->row('date');
     }
 
     public function getVerifyExist($uri)

@@ -10,6 +10,11 @@ class Auth_model extends CI_Model {
     {
         parent::__construct();
         $this->auth = $this->load->database('auth', TRUE);
+
+        if ($this->isLogged() && $this->checkAccountExist() == 0)
+        {
+            $this->synchronizeAccount();
+        }
     }
 
     public function arraySession($id)
@@ -41,7 +46,7 @@ class Auth_model extends CI_Model {
 
     public function getUsernameID($id)
     {
-        return $this->auth->select('username')->where('id', $id)->get('account')->row_array()['username'];
+        return $this->auth->select('username')->where('id', $id)->get('account')->row('username');
     }
 
     public function getEmailID($id)
@@ -85,12 +90,12 @@ class Auth_model extends CI_Model {
 
     public function getImageProfile($id)
     {
-        return $this->db->select('profile')->where('id', $id)->get('users')->row_array()['profile'];
+        return $this->db->select('profile')->where('id', $id)->get('users')->row('profile');
     }
 
     public function getNameAvatar($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('avatars')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('avatars')->row('name');
     }
 
     public function getIDEmail($email)
@@ -165,16 +170,6 @@ class Auth_model extends CI_Model {
         redirect(base_url(),'refresh');
     }
 
-    public function getAccountExist($id)
-    {
-        return $this->auth->select('*')->where('id', $id)->get('account');
-    }
-
-    public function getUsers()
-    {
-        return $this->db->select('*')->get('users');
-    }
-
     public function Battlenet($email, $password)
     {
         return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash("sha256",strtoupper(hash("sha256", strtoupper($email)).":".strtoupper($password))))))));
@@ -191,6 +186,31 @@ class Auth_model extends CI_Model {
         $sha_pass_hash = sha1(strtoupper($username).':'.strtoupper($password));
 
         return strtoupper($sha_pass_hash);
+    }
+
+    public function checkAccountExist()
+    {
+        return $this->db->select('id')->where('id', $this->session->userdata('wow_sess_id'))->get('users')->num_rows();
+    }
+
+    public function synchronizeAccount()
+    {
+        if ($this->checkAccountExist() == 0)
+        {
+            $joindate = strtotime($this->getJoinDateID($this->session->userdata('wow_sess_id')));
+
+            $data = array(
+                'id' => $this->session->userdata('wow_sess_id'),
+                'username' => $this->session->userdata('wow_sess_username'),
+                'email' => $this->session->userdata('wow_sess_email'),
+                'joindate' => $joindate
+            );
+
+            $this->db->insert('users', $data);
+            return true;
+        }
+        else
+            return false;
     }
 
     public function getRankByLevel($gmlevel)
@@ -245,9 +265,9 @@ class Auth_model extends CI_Model {
         }
     }
 
-    public function getMaintenancePermission($gmlevel)
+    public function getMaintenancePermission()
     {
-        $config = $this->config->item('MOD_Level');
+        $config = $this->config->item('mod_access_level');
 
         $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
 

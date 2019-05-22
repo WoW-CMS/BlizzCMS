@@ -144,41 +144,8 @@ class User_model extends CI_Model {
 
     public function changeAvatar($avatar)
     {
-        $sessid = $this->session->userdata('wow_sess_id');
-
-        $this->db->set('profile', $avatar)->where('id', $sessid)->update('users');
+        $this->db->set('profile', $avatar)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
         return true;
-    }
-
-    public function getExistInfo()
-    {
-        $sessid = $this->session->userdata('wow_sess_id');
-        return $this->db->select('id')->where('id', $sessid)->get('users')->num_rows();
-    }
-
-    public function updateInformation($value)
-    {
-        if($this->session->userdata('wow_sess_id') == $value)
-        {
-            if($this->getExistInfo() == 0)
-            {
-                $joindate = strtotime($this->wowauth->getJoinDateID($this->session->userdata('wow_sess_id')));
-
-                $data = array(
-                    'id' => $this->session->userdata('wow_sess_id'),
-                    'username' => $this->session->userdata('wow_sess_username'),
-                    'email' => $this->session->userdata('wow_sess_email'),
-                    'joindate' => $joindate
-                );
-
-                $this->db->insert('users', $data);
-                return true;
-            }
-            else
-                return 'accErr';
-        }
-        else
-            return 'idErr';
     }
 
     public function getDateMember($id)
@@ -203,7 +170,7 @@ class User_model extends CI_Model {
 
     public function getLastIp($id)
     {
-        return $this->auth->select('last_ip')->where('id', $id)->get('account')->row_array()['last_ip'];
+        return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
     }
 
     public function checklogin($username, $password)

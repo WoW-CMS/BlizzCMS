@@ -75,7 +75,6 @@ $route[$lang.'/forgotpassword'] = 'user/forgotpassword';
 $route[$lang.'/activate/(:any)'] = 'user/activate/$2';
 $route[$lang.'/logout'] = 'user/logout';
 $route[$lang.'/panel'] = 'user/panel';
-$route[$lang.'/panel/sync'] = 'user/syncaccount';
 $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/changemail'] = 'user/newemail';
 $route[$lang.'/changepass'] = 'user/newpass';
@@ -116,8 +115,13 @@ $route[$lang.'/news/reply/delete'] = 'news/deletereply';
 
 /*Store*/
 $route[$lang.'/store'] = 'store/index';
-$route[$lang.'/store/(:num)'] = 'store/index/$2';
-$route[$lang.'/cart/(:num)'] = 'store/cart/$2';
+$route[$lang.'/store/(:any)'] = 'store/category/$2/';
+$route[$lang.'/cart'] = 'store/cart';
+$route[$lang.'/cart/checkout'] = 'store/checkout';
+$route[$lang.'/cart/add'] = 'store/addtocart';
+$route[$lang.'/cart/delete'] = 'store/removeitem';
+$route[$lang.'/cart/updatequantity'] = 'store/updatequantity';
+$route[$lang.'/cart/updatecharacter'] = 'store/updatecharacter';
 
 /*Pages*/
 $route[$lang.'/page/(:any)'] = 'page/index/$2/';
@@ -224,6 +228,7 @@ $route[$lang.'/admin/pages/delete'] = 'admin/deletepage';
 /*Store*/
 $route[$lang.'/admin/store'] = 'admin/managestore';
 $route[$lang.'/admin/store/items'] = 'admin/managestoreitems';
+$route[$lang.'/admin/store/top'] = 'admin/managestoretop';
 $route[$lang.'/admin/store/category/create'] = 'admin/createstorecategory';
 $route[$lang.'/admin/store/category/edit/(:num)'] = 'admin/editstorecategory/$2';
 $route[$lang.'/admin/store/category/add'] = 'admin/addstorecategory';
@@ -234,6 +239,11 @@ $route[$lang.'/admin/store/item/edit/(:num)'] = 'admin/editstoreitem/$2';
 $route[$lang.'/admin/store/item/add'] = 'admin/addstoreitem';
 $route[$lang.'/admin/store/item/update'] = 'admin/updatestoreitem';
 $route[$lang.'/admin/store/item/delete'] = 'admin/deletestoreitem';
+$route[$lang.'/admin/store/top/create'] = 'admin/createstoretop';
+$route[$lang.'/admin/store/top/edit/(:num)'] = 'admin/editstoretop/$2';
+$route[$lang.'/admin/store/top/add'] = 'admin/addstoretop';
+$route[$lang.'/admin/store/top/update'] = 'admin/updatestoretop';
+$route[$lang.'/admin/store/top/delete'] = 'admin/deletestoretop';
 
 /*Donate*/
 $route[$lang.'/admin/donate'] = 'admin/donate';

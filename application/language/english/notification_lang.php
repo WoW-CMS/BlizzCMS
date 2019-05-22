@@ -67,13 +67,16 @@ $lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';
 $lang['notification_invalid_key'] = 'The activation key provided is not valid.';
 
 /*Notification Message (General) Lang*/
-$lang['notification_sync_account'] = 'The account has been synchronized with the website';
 $lang['notification_email_changed'] = 'The email has been changed.';
 $lang['notification_password_changed'] = 'The password has been changed.';
 $lang['notification_avatar_changed'] = 'The avatar has been changed.';
 $lang['notification_wrong_values'] = 'The values are wrong';
 $lang['notification_select_type'] = 'Select a type';
 $lang['notification_select_priority'] = 'Select a priority';
+$lang['notification_select_category'] = 'Select a Category';
+$lang['notification_select_realm'] = 'Select a Realm';
+$lang['notification_select_character'] = 'Select a Character';
+$lang['notification_select_item'] = 'Select a Item';
 $lang['notification_report_created'] = 'The report has been created.';
 $lang['notification_title_empty'] = 'Title is Empty';
 $lang['notification_description_empty'] = 'Description is empty';
@@ -86,6 +89,12 @@ $lang['notification_topic_created'] = 'The topic has been created.';
 $lang['notification_donation_successful'] = 'The donation has been successfully completed, check your donor points in your account.';
 $lang['notification_donation_canceled'] = 'The donation has been canceled.';
 $lang['notification_donation_error'] = 'The information provided in the transaction does not match.';
+$lang['notification_store_chars_error'] = 'Select your character in each item.';
+$lang['notification_store_item_insufficient_points'] = 'You do not have enough points to buy.';
+$lang['notification_store_item_purchased'] = 'The items has been purchased, please check your mail in-game.';
+$lang['notification_store_item_added'] = 'The selected item has been added to your cart.';
+$lang['notification_store_item_removed'] = 'The selected item has been removed from your cart.';
+$lang['notification_store_cart_error'] = 'The cart update failed, please try again.';
 
 /*Notification Message (Admin) Lang*/
 $lang['notification_changelog_created'] = 'The changelog has been created.';
@@ -113,6 +122,9 @@ $lang['notification_slide_deleted'] = 'The slide has been deleted.';
 $lang['notification_item_created'] = 'The item has been created.';
 $lang['notification_item_edited'] = 'The item has been edited.';
 $lang['notification_item_deleted'] = 'The item has been deleted.';
+$lang['notification_top_created'] = 'The top item has been created.';
+$lang['notification_top_edited'] = 'The top item has been edited.';
+$lang['notification_top_deleted'] = 'The top item has been deleted.';
 $lang['notification_topsite_created'] = 'The topsite has been created.';
 $lang['notification_topsite_edited'] = 'The topsite has been edited.';
 $lang['notification_topsite_deleted'] = 'The topsite has been deleted.';
@@ -130,6 +142,14 @@ $lang['notification_tax_empty'] = 'Tax is empty';
 $lang['notification_price_empty'] = 'Price is empty';
 $lang['notification_incorrect_update'] = 'Unexpected update';
 
+$lang['notification_route_inuse'] = 'The route is already in use please choose another one.';
+
+$lang['notification_account_updated'] = 'The account has been updated.';
+$lang['notification_dp_vp_empty'] = 'DP/VP is empty';
+$lang['notification_account_banned'] = 'The account has been banned.';
+$lang['notification_reason_empty'] = 'Reason is empty';
+$lang['notification_account_ban_remove'] = 'The ban in the account has been removed.';
+$lang['notification_rank_empty'] = 'Rank is empty';
 $lang['notification_rank_granted'] = 'The rank has been granted.';
 $lang['notification_rank_removed'] = 'The rank has been deleted.';
 

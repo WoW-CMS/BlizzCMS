@@ -165,8 +165,14 @@ h6,
   border-style: solid;
   border-color: rgba(255, 255, 255, .05);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, .2);
-  width: 180px;
+  min-width: 180px;
   padding: 10px 0;
+}
+
+.uk-navbar-dropdown .blizzcms-cart-dropdown {
+  color: rgba(255, 255, 255, .8);
+  font-size: 12px;
+  padding: 4px 8px;
 }
 
 .uk-offcanvas-bar {
@@ -250,6 +256,10 @@ h6,
   padding: 10px;
 }
 
+.uk-card-default .uk-card-footer {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
 .uk-card-default.news-card {
   background: rgba(9, 85, 135, .1);
   color: rgba(255, 255, 255, .7);
@@ -288,6 +298,10 @@ h6,
 }
 
 .uk-card-body {
+  padding: 15px;
+}
+
+.uk-card-footer {
   padding: 15px;
 }
 
@@ -418,6 +432,12 @@ h6,
   border-color: #00aeff;
 }
 
+.uk-button-default:disabled {
+  background: #00aeff;
+  color: #fff;
+  border-color: #00aeff;
+}
+
 .uk-button-danger {
   background: #ca0e28;
   border: 1px solid #ff002f;
@@ -439,6 +459,12 @@ h6,
   border-color: #ff002f;
 }
 
+.uk-button-danger:disabled {
+  background: #ff002f;
+  color: #fff;
+  border-color: #ff002f;
+}
+
 .uk-button-secondary {
   background: #151C23;
   border: 1px solid #292e33;
@@ -455,6 +481,12 @@ h6,
 
 .uk-button-secondary.uk-active,
 .uk-button-secondary:active {
+  background: #292e33;
+  color: #fff;
+  border-color: #292e33;
+}
+
+.uk-button-secondary:disabled {
   background: #292e33;
   color: #fff;
   border-color: #292e33;
@@ -681,6 +713,7 @@ h6,
   width: 24px;
   height: 24px;
   margin: 0 3px;
+  vertical-align: middle;
 }
 
 .vp-icon {
@@ -692,6 +725,7 @@ h6,
   width: 24px;
   height: 24px;
   margin: 0 3px;
+  vertical-align: middle;
 }
 
 .uk-logo {
@@ -813,6 +847,112 @@ h6,
 
 .space-large {
   height: 80px;
+}
+
+.uk-nav-default.nav-store > li > a {
+  color: #ececec;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  padding: 10px 20px;
+}
+
+.uk-nav-default.nav-store > li:first-child > a {
+  border-top: none;
+}
+
+.uk-nav-default.nav-store > li > a:focus,
+.uk-nav-default.nav-store > li > a:hover {
+  background: rgba(255, 255, 255, .025);
+  color: #fff;
+}
+
+.uk-nav-default.nav-store > li.uk-active > a {
+  background: rgba(255, 255, 255, .025);
+  color: #fff;
+}
+
+.nav-store ul.uk-nav-sub {
+  padding: 0;
+}
+
+.uk-nav-default.nav-store .uk-nav-sub a {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  color: #ececec;
+  padding: 10px 40px;
+  word-break: break-all;
+}
+
+.uk-nav-default.nav-store .uk-nav-sub a:focus,
+.uk-nav-default.nav-store .uk-nav-sub a:hover {
+  background: rgba(255, 255, 255, .025);
+  color: #fff;
+}
+
+.uk-nav-default.nav-store .uk-nav-sub li.uk-active > a {
+  background: rgba(255, 255, 255, .025);
+  color: #fff;
+}
+
+.uk-nav-parent-icon > .uk-parent > a::after {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23ececec%22%20stroke-width%3D%221.1%22%20points%3D%2210%201%204%207%2010%2013%22%20%2F%3E%0D%0A%3C%2Fsvg%3E");
+}
+
+.uk-nav-parent-icon > .uk-parent.uk-open > a::after {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.1%22%20points%3D%221%204%207%2010%2013%204%22%20%2F%3E%0D%0A%3C%2Fsvg%3E");
+}
+
+.blizzcms-item-container {
+  background: rgba(0, 0, 0, .15);
+  cursor: default;
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, .4), 0 0 0 1px rgba(255, 255, 255, .1);
+  padding: 5px;
+}
+
+.blizzcms-item-header {
+  cursor: pointer;
+}
+
+.blizzcms-item-body {
+  margin-top: 10px;
+}
+
+.blizzcms-item-body .blizzcms-item-price {
+  font-size: 13px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.item-store-icon {
+  position: relative;
+  display: inline-block;
+  border: 3px solid #0e86ca;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 -1px rgba(255, 255, 255, .08);
+  height: 46px;
+  width: 46px;
+}
+
+.item-store-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #000;
+}
+
+.item-store-icon img {
+  height: 46px;
+  width: 46px;
+}
+
+.blizzcms-store-summary .uk-accordion-title {
+  background-color: rgba(74, 74, 74, .7);
+  border-radius: 3px;
+  border: 1px solid #4a4a4a;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 6px;
 }
 
 /*

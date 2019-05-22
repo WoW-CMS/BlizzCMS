@@ -61,13 +61,10 @@ class Donate_model extends CI_Model
     {
         $qq = $this->db->select('dp')->where('id', $this->session->userdata('wow_sess_id'))->get('users');
 
-        if($qq->num_rows())
+        if ($qq->num_rows())
             return $qq->row('dp');
         else
-        {
-            $this->db->set('id', $this->session->userdata('wow_sess_id'))->set('dp', '0')->insert('users');
             return '0';
-        }
     }
 
     public function getDonate($id)

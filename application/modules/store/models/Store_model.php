@@ -11,19 +11,24 @@ class Store_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getShopTop10()
+    public function getStoreTop()
     {
-        return $this->db->select('id_store')->order_by('id', "DESC")->limit('10')->get('store_top'); 
+        return $this->db->select('*')->order_by('id', 'ASC')->limit('15')->get('store_top')->result();
     }
 
-    public function getShopTop()
+    public function getName($id)
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('store_top');
+        return $this->db->select('name')->where('id', $id)->get('store_items')->row('name');
     }
 
-    public function getExistItem($id)
+    public function getDescription($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_items')->num_rows();
+        return $this->db->select('description')->where('id', $id)->get('store_items')->row('description');
+    }
+
+    public function getCategory($id)
+    {
+        return $this->db->select('category')->where('id', $id)->get('store_items')->row('category');
     }
 
     public function getType($id)
@@ -31,14 +36,19 @@ class Store_model extends CI_Model {
         return $this->db->select('type')->where('id', $id)->get('store_items')->row('type');
     }
 
-    public function getItem($id)
+    public function getPriceType($id)
     {
-        return $this->db->select('itemid')->where('id', $id)->get('store_items')->row('itemid');
+        return $this->db->select('price_type')->where('id', $id)->get('store_items')->row('price_type');
     }
 
-    public function getQuery($id)
+    public function getPriceDP($id)
     {
-        return $this->db->select('qquery')->where('id', $id)->get('store_items')->row('qquery');
+        return $this->db->select('dp')->where('id', $id)->get('store_items')->row('dp');
+    }
+
+    public function getPriceVP($id)
+    {
+        return $this->db->select('vp')->where('id', $id)->get('store_items')->row('vp');
     }
 
     public function getIcon($id)
@@ -46,118 +56,229 @@ class Store_model extends CI_Model {
         return $this->db->select('icon')->where('id', $id)->get('store_items')->row('icon');
     }
 
-    public function getName($id)
+    public function getCommand($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('store_items')->row_array()['name'];
+        return $this->db->select('command')->where('id', $id)->get('store_items')->row('command');
     }
 
-    public function getImage($id)
+    public function getItemExist($id)
     {
-        return $this->db->select('image')->where('id', $id)->get('store_items')->row_array()['image'];
+        return $this->db->select('*')->where('id', $id)->get('store_items')->num_rows();
     }
 
-    public function getGroup($id)
+    public function getRoute($id)
     {
-        return $this->db->select('category')->where('id', $id)->get('store_items')->row('category');
+        return $this->db->select('route')->where('id', $id)->get('store_categories')->row('route');
     }
 
-    public function getPriceType($id, $type)
+    public function getCategoryExist($route)
     {
-        if ($type == "dp")
-            return $this->db->select('price_dp')->where('id', $id)->get('store_items')->row('price_dp');
-
-        if ($type == "vp")
-            return $this->db->select('price_vp')->where('id', $id)->get('store_items')->row('price_vp');
+        return $this->db->select('route')->where('route', $route)->get('store_categories')->num_rows();
     }
 
-    public function getVPTrue($id)
+    public function getCategoryId($route)
     {
-        $qq = $this->db->select('price_vp')->where('id', $id)->get('store_items')->row('price_vp');
-
-        if (!is_null($qq) && $qq > 0)
-            return true;
-        else
-            redirect(base_url('store'),'refresh');
+        return $this->db->select('id')->where('route', $route)->get('store_categories')->row('id');
     }
 
-    public function getDPTrue($id)
+    public function getCategoryName($route)
     {
-        $qq = $this->db->select('price_dp')->where('id', $id)->get('store_items')->row('price_dp');
-
-        if (!is_null($qq) && $qq > 0)
-            return true;
-        else
-            redirect(base_url('store'),'refresh');
+        return $this->db->select('name')->where('route', $route)->get('store_categories')->row('name');
     }
 
-    public function getShopGeneral($id)
+    public function getCategoryRealm($route)
     {
-        if($id != '' && $id != '0') {
-            return $this->db->select('*')->where('category', $id)->get('store_items');
-        } else {
-            return $this->db->select('*')->get('store_items');
-        }
+        return $this->db->select('realmid')->where('route', $route)->get('store_categories')->row('realmid');
     }
 
-    public function getShopGeneralGP($id)
+    public function getCategoryRealmId($category)
     {
-        return $this->db->select('*')->where('category', $id)->get('store_items');
+        return $this->db->select('realmid')->where('id', $category)->get('store_categories')->row('realmid');
     }
 
-    public function getGroups()
+    public function getCategoryItems($route)
     {
-        return $this->db->select('*')->get('store_categories');
+        $id = $this->getCategoryId($route);
+        return $this->db->select('*')->where('category', $id)->get('store_items')->result();
     }
 
-    public function getSpecifyGroup($id)
+    public function getCategories($realmid)
     {
-        return $this->db->select('name')->where('id', $id)->get('store_categories')->row_array()['name'];
+        return $this->db->select('*')->where('realmid', $realmid)->get('store_categories');
     }
 
-    public function insertHistory($idstore, $itemid, $accountid, $charid, $method, $price, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri, $multirealm)
+    public function getItem($id)
+    {
+        return $this->db->select('*')->where('id', $id)->get('store_items')->row_array();
+    }
+
+    public function insertStoreLog($accountid, $charid, $name, $type, $pricetype, $dp, $vp)
     {
         $date = $this->wowgeneral->getTimestamp();
-        $multirealm = $this->wowrealm->getRealmConnectionData($multirealm);
-        $getCharName = $this->wowrealm->getNameCharacterSpecifyGuid($multirealm, $charid);
-        $subject = $this->lang->line('store_senditem_subject');
-        $message = $this->lang->line('store_senditem_text');
 
         $data = array(
-            'idstore' => $idstore,
-            'itemid' => $itemid,
-            'date' => $date,
             'accountid' => $accountid,
             'charid' => $charid,
-            'method' => $method
+            'item_name' => $name,
+            'type' => $type,
+            'price_type' => $pricetype,
+            'dp' => $dp,
+            'vp' => $vp,
+            'date' => $date
         );
 
-        if ($method == "dp")
+        $this->db->insert('store_logs', $data);
+    }
+
+    public function PurchaseItem($id, $charid)
+    {
+        $accountid = $this->session->userdata('wow_sess_id');
+        $item = $this->getItem($id);
+        $realm = $this->getCategoryRealmId($item['category']);
+        $info = $this->wowrealm->getRealm($realm)->row_array();
+
+        $dpprice = $item['dp'];
+        $vpprice = $item['vp'];
+
+        $multirealm = $this->wowrealm->getRealmConnectionData($realm);
+        $charname = $this->wowrealm->getNameCharacterSpecifyGuid($multirealm, $charid);
+        $charexist = $this->wowrealm->getCharExistGuid($multirealm, $charid);
+        $charcheck = $this->wowrealm->getAccountCharGuid($multirealm, $charid);
+        $subject = $this->lang->line('soap_send_subject');
+        $message = $this->lang->line('soap_send_body');
+
+        if($charexist > 0 && $charcheck == $accountid)
         {
-            if ($this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id')) >= $price)
+            if($item['price_type'] == 1)
             {
-                $this->db->insert('store_logs', $data);
-                $this->db->query("UPDATE users SET dp = (dp-$price) WHERE id = $accountid");
+                if ($item['type'] == 1)
+                {
+                    $this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 2)
+                {
+                    $this->wowrealm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 3)
+                {
+                    $this->wowrealm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 4)
+                {
+                    $this->wowrealm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 5)
+                {
+                    $this->wowrealm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 6)
+                {
+                    $this->wowrealm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 7)
+                {
+                    $this->wowrealm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
 
-                $this->wowrealm->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
+                $this->db->query("UPDATE users SET dp = (dp-$dpprice) WHERE id = $accountid");
+                $this->insertStoreLog($accountid, $charid, $item['name'], $item['type'], $item['price_type'], $dpprice, '0');
+                return true;
+            }
+            else if ($item['price_type'] == 2)
+            {
+                if ($item['type'] == 1)
+                {
+                    $this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 2)
+                {
+                    $this->wowrealm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 3)
+                {
+                    $this->wowrealm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 4)
+                {
+                    $this->wowrealm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 5)
+                {
+                    $this->wowrealm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 6)
+                {
+                    $this->wowrealm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 7)
+                {
+                    $this->wowrealm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
 
-                redirect(base_url('store?complete'),'refresh');
+                $this->db->query("UPDATE users SET vp = (vp-$vpprice) WHERE id = $accountid");
+                $this->insertStoreLog($accountid, $charid, $item['name'], $item['type'], $item['price_type'], '0', $vpprice);
+                return true;
+            }
+            else if ($item['price_type'] == 3)
+            {
+                if ($item['type'] == 1)
+                {
+                    $this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 2)
+                {
+                    $this->wowrealm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 3)
+                {
+                    $this->wowrealm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 4)
+                {
+                    $this->wowrealm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 5)
+                {
+                    $this->wowrealm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 6)
+                {
+                    $this->wowrealm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+                else if ($item['type'] == 7)
+                {
+                    $this->wowrealm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+                }
+
+                $this->db->query("UPDATE users SET dp = (dp-$dpprice), vp = (vp-$vpprice) WHERE id = $accountid");
+                $this->insertStoreLog($accountid, $charid, $item['name'], $item['type'], $item['price_type'], $dpprice, $vpprice);
+                return true;
             }
             else
-                redirect(base_url('store?error'),'refresh');
+                return false;
         }
         else
-        {
-            if ($this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id')) >= $price)
-            {
-                $this->db->insert('store_logs', $data);
-                $this->db->query("UPDATE users SET vp = (vp-$price) WHERE id = $accountid");
+            return false;
+    }
 
-                $this->wowrealm->commandSoap('.send items '.$getCharName.' "'.$subject.'" "'.$message.'" '.$itemid, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
+    public function Checkout()
+    {
+        $accountid = $this->session->userdata('wow_sess_id');
+        $dptotal = $this->cart->total_dp();
+        $vptotal = $this->cart->total_vp();
 
-                redirect(base_url('store?complete'),'refresh');
+        if($this->wowgeneral->getCharDPTotal($accountid) >= $dptotal && $this->wowgeneral->getCharVPTotal($accountid) >= $vptotal) {
+            foreach($this->cart->contents() as $item) {
+                $count = 1;
+                while ($count <= $item['qty']) {
+                    $this->PurchaseItem($item['id'], $item['guid']);
+                    $count++;
+                }
             }
-            else
-                redirect(base_url('store?error'),'refresh');
+            $this->cart->destroy();
+            return true;
         }
+        else
+            return 'insPoints';
     }
 }
