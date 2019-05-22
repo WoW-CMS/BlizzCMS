@@ -12,11 +12,34 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="updatecategoryForm" onsubmit="UpdateCategoryForm(event)"'); ?>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
+                <div class="uk-grid-small" uk-grid>
+                  <div class="uk-inline uk-width-1-2@s">
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
+                    <div class="uk-form-controls">
+                      <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
+                        <input class="uk-input" type="text" id="store_category_name" value="<?= $this->admin_model->getStoreCategoryName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="uk-inline uk-width-1-2@s">
+                    <label class="uk-form-label"><?= $this->lang->line('table_header_realm'); ?></label>
+                    <div class="uk-form-controls">
+                      <select class="uk-select" id="store_category_realm">
+                        <option value="0"><?= $this->lang->line('notification_select_realm'); ?></option>
+                        <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
+                        <option value="<?= $MultiRealm->realmID ?>" <?php if($this->admin_model->getStoreCategoryRealm($idlink) == $MultiRealm->realmID) echo 'selected'; ?>><?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="uk-margin-small">
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                    <input class="uk-input" type="text" id="store_category" value="<?= $this->admin_model->getStoreCategoryName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                    <input class="uk-input" type="text" id="store_category_route" value="<?= $this->admin_model->getStoreCategoryRoute($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_route'); ?>" required>
                   </div>
                 </div>
               </div>
@@ -34,13 +57,31 @@
         e.preventDefault();
 
         var id = "<?= $idlink ?>";
-        var category = $('#store_category').val();
-        if(category == ''){
+        var name = $('#store_category_name').val();
+        var realm = $('#store_category_realm').val();
+        var route = $('#store_category_route').val();
+        if(name == ''){
           $.amaran({
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              message: '<?= $this->lang->line('notification_name_empty'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        if(realm == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_realm'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -54,7 +95,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/store/category/update'); ?>",
           method:"POST",
-          data:{id, category},
+          data:{id, name, route, realm},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -74,6 +115,23 @@
           success:function(response){
             if(!response)
               alert(response);
+
+            if (response == 'Rouerr') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_route_inuse'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              return false;
+            }
 
             if (response) {
               $.amaran({

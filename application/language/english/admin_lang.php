@@ -68,6 +68,7 @@ $lang['section_forum_categories'] = 'Forum Categories';
 $lang['section_forum_elements'] = 'Forum Elements';
 $lang['section_store_categories'] = 'Store Categories';
 $lang['section_store_items'] = 'Store Items';
+$lang['section_store_top'] = 'Store TOP Items';
 
 /*Button Lang*/
 $lang['button_select'] = 'Select';
@@ -83,6 +84,7 @@ $lang['table_header_race'] = 'Race';
 $lang['table_header_class'] = 'Class';
 $lang['table_header_level'] = 'Level';
 $lang['table_header_money'] = 'Money';
+$lang['table_header_time_played'] = 'Time Played';
 $lang['table_header_actions'] = 'Actions';
 $lang['table_header_id'] = '#ID';
 $lang['table_header_tax'] = 'Tax';
@@ -122,6 +124,8 @@ $lang['placeholder_create_item'] = 'Create item';
 $lang['placeholder_edit_item'] = 'Edit Item';
 $lang['placeholder_create_topsite'] = 'Create Topsite';
 $lang['placeholder_edit_topsite'] = 'Edit Topsite';
+$lang['placeholder_create_top'] = 'Create TOP Item';
+$lang['placeholder_edit_top'] = 'Edit TOP Item';
 
 $lang['placeholder_upload_image'] = 'Upload Image';
 $lang['placeholder_icon_name'] = 'Icon Name';
@@ -145,12 +149,12 @@ $lang['placeholder_db_hostname'] = 'Database Hostname';
 $lang['placeholder_db_name'] = 'Database Name';
 $lang['placeholder_db_user'] = 'Database User';
 $lang['placeholder_db_password'] = 'Database Password';
-$lang['placeholder_price'] = 'Price';
 $lang['placeholder_account_points'] = 'Account Points';
 $lang['placeholder_account_ban'] = 'Ban Account';
 $lang['placeholder_account_unban'] = 'Unban Account';
 $lang['placeholder_account_grant_rank'] = 'Grant GM Rank';
 $lang['placeholder_account_remove_rank'] = 'Remove GM Rank';
+$lang['placeholder_command'] = 'Command';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Website Name';
@@ -158,6 +162,10 @@ $lang['conf_realmlist'] = 'Realmlist';
 $lang['conf_discord_invid'] = 'Discord Invitation ID';
 $lang['conf_timezone'] = 'Timezone';
 $lang['conf_theme_name'] = 'Theme Name';
+$lang['conf_maintenance_mode'] = 'Maintenance Mode';
+$lang['conf_social_facebook'] = 'Facebook URL';
+$lang['conf_social_twitter'] = 'Twitter URL';
+$lang['conf_social_youtube'] = 'Youtube URL';
 $lang['conf_paypal_currency'] = 'PayPal Currency';
 $lang['conf_paypal_mode'] = 'PayPal Mode';
 $lang['conf_paypal_client'] = 'PayPal Client ID';
@@ -176,8 +184,8 @@ $lang['conf_sender_email'] = 'Sender Email';
 $lang['conf_sender_name'] = 'Sender Name';
 
 /*Status Lang*/
-$lang['status_donate_complete'] = 'Complete';
-$lang['status_donate_cancell'] = 'Cancelled';
+$lang['status_completed'] = 'Completed';
+$lang['status_cancelled'] = 'Cancelled';
 
 /*Options Lang*/
 $lang['option_normal'] = 'Normal';
@@ -185,14 +193,20 @@ $lang['option_dropdown'] = 'Dropdown';
 $lang['option_image'] = 'Image';
 $lang['option_video'] = 'Video';
 $lang['option_iframe'] = 'Iframe';
-$lang['option_enable'] = 'Enable';
-$lang['option_disable'] = 'Disable';
+$lang['option_enabled'] = 'Enabled';
+$lang['option_disabled'] = 'Disabled';
 $lang['option_ssl'] = 'SSL';
 $lang['option_tls'] = 'TLS';
 $lang['option_everyone'] = 'Everyone';
 $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Everyone';
-$lang['option_item'] = 'Item';
+$lang['option_rename'] = 'Rename';
+$lang['option_customize'] = 'Customize';
+$lang['option_change_faction'] = 'Change Faction';
+$lang['option_change_race'] = 'Change Race';
+$lang['option_dp'] = 'DP';
+$lang['option_vp'] = 'VP';
+$lang['option_dp_vp'] = 'DP & VP';
 $lang['option_internal_url'] = 'Internal URL';
 $lang['option_external_url'] = 'External URL';
 $lang['option_on'] = 'On';

@@ -175,12 +175,6 @@ class User extends MX_Controller {
         $this->template->build('panel', $data);
     }
 
-    public function syncaccount()
-    {
-        $value = $this->input->post('value');
-        echo $this->user_model->updateInformation($value);
-    }
-
     public function settings()
     {
         if (!$this->wowgeneral->getMaintenance())

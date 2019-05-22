@@ -68,28 +68,23 @@ class Vote_model extends CI_Model {
 
         $comprobetime = $qqcheck->row('expired_at');
 
-        if($this->wowgeneral->getTimestamp() >= $comprobetime) {
-            $datalog = array(
+        if($this->wowgeneral->getTimestamp() >= $comprobetime)
+        {
+            $vp2 = $this->db->where('id', $userid)->get('users')->row('vp');
+            $vp = ($vp2+$ppoints);
+
+            $data = array('vp' => $vp);
+
+            $logs = array(
                 'idaccount' => $userid,
                 'idvote' => $id,
                 'lasttime' => $mytime,
                 'expired_at' => $expired_at,
-                'points' => $ppoints,
+                'points' => $ppoints
             );
 
-            $qq = $this->db->where('id', $userid)->get('users');
-            if(!$qq->num_rows()) {
-                $datas = array('id' => $userid, 'vp' => $ppoints, 'dp' => '0');
-                $this->db->insert('users', $datas);
-            } else {
-                $vp2 = $this->db->where('id', $userid)->get('users')->row('vp');
-                $vp = ($vp2+$ppoints);
-
-                $data = array('vp' => $vp);
-
-                $this->db->where('id', $userid)->update('users', $data);
-                $this->db->insert('votes_logs', $datalog);
-            }
+            $this->db->where('id', $userid)->update('users', $data);
+            $this->db->insert('votes_logs', $logs);
 
             echo '<script type="text/javascript">
                     window.open( "'.$url.'","_self")

@@ -14,6 +14,7 @@
               <ul class="uk-nav uk-nav-default">
                 <li class="uk-active"><a href="<?= base_url('admin/store'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_store_categories'); ?></a></li>
                 <li><a href="<?= base_url('admin/store/items'); ?>"><i class="fas fa-boxes"></i> <?= $this->lang->line('section_store_items'); ?></a></li>
+                <li><a href="<?= base_url('admin/store/top'); ?>"><i class="fas fa-parachute-box"></i> <?= $this->lang->line('section_store_top'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -23,7 +24,8 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><?= $this->lang->line('placeholder_title'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('placeholder_category'); ?></th>
+                      <th class="uk-table-expand"><?= $this->lang->line('table_header_realm'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
                     </tr>
                   </thead>
@@ -31,6 +33,7 @@
                     <?php foreach($this->admin_model->getCategoryStore()->result() as $list): ?>
                     <tr>
                       <td><?= $list->name; ?></td>
+                      <td><?= $this->wowrealm->getRealmName($list->realmid); ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
                           <a href="<?= base_url('admin/store/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>

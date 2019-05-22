@@ -5,101 +5,97 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <ul class="uk-nav uk-nav-default myaccount-nav">
-              <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-              <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
-              <?php endif; ?>
-              <li class="uk-nav-divider"></li>
-              <?php if($this->wowmodule->getDonationStatus() == '1'): ?>
-              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getVoteStatus() == '1'): ?>
-              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getStoreStatus() == '1'): ?>
-              <li class="uk-active"><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
-              <?php endif; ?>
-              <li class="uk-nav-divider"></li>
-              <?php if($this->wowmodule->getBugtrackerStatus() == '1'): ?>
-              <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getChangelogsStatus() == '1'): ?>
-              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
-              <?php endif; ?>
-            </ul>
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= $this->lang->line('store_categories'); ?></h5>
+              </div>
+              <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
+                <li class="uk-active"><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></a></li>
+                <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
+                <li class="uk-parent">
+                  <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
+                  <ul class="uk-nav-sub">
+                    <?php foreach ($this->store_model->getCategories($MultiRealm->realmID)->result() as $list): ?>
+                    <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?></a></li>
+                    <?php endforeach; ?>
+                  </ul>
+                </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
           </div>
           <div class="uk-width-3-4@m">
-            <?php if(isset($_GET['complete'])): ?>
-            <div class="uk-alert-success" uk-alert>
-              <a class="uk-alert-close" uk-close></a>
-              <p><i class="far fa-check-circle"></i> <?=$this->lang->line('alert_successful_purchase');?></p>
-            </div>
-            <?php endif; ?>
-            <?php if(isset($_GET['error'])): ?>
-            <div class="uk-alert-danger" uk-alert>
-              <a class="uk-alert-close" uk-close></a>
-              <p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('alert_points_insufficient');?></p>
-            </div>
-            <?php endif; ?>
-            <div class="uk-margin-remove-top uk-margin-small-bottom">
-              <div class="uk-grid uk-grid-small" data-uk-grid>
-                <div class="uk-width-expand">
-                  <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?=$this->lang->line('tab_store'); ?></h4>
-                </div>
-                <div class="uk-width-auto">
-                  <form method="post" action="">
-                    <div class="uk-form-controls uk-light">
-                      <select class="uk-select" id="selectCategory">
-                        <option value="0"><?= $this->lang->line('store_select_categories'); ?></option>
-                        <option value="0"><?= $this->lang->line('store_all_categories'); ?></option>
-                        <?php foreach($this->store_model->getGroups()->result() as $ggroups): ?>
-                        <option value="<?= $ggroups->id ?>"><?= $ggroups->name ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <script>
-                        $('#selectCategory').change(function() {
-                          var url = $(this).val(); // get selected value
-                          if (url) { // require a URL
-                            window.location = "<?= base_url('store/'); ?>"+url; // redirect
-                          }
-                          return false;
-                        });
-                      </script>
+            <div class="uk-card uk-card-default uk-card-body">
+              <h5 class="uk-h5 uk-text-bold uk-margin-remove-bottom"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></h5>
+              <hr class="uk-margin-small-top">
+              <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" data-uk-grid>
+               <?php foreach($this->store_model->getStoreTop() as $top): ?>
+                <div>
+                  <div class="blizzcms-item-container">
+                    <div class="blizzcms-item-header uk-text-truncate" uk-tooltip="<?= $this->store_model->getName($top->store_item); ?>" uk-toggle="target: #top-<?= $top->id ?>;animation: uk-animation-slide-top-small">
+                      <div class="item-store-icon">
+                        <img src="https://wow.zamimg.com/images/wow/icons/large/<?= $this->store_model->getIcon($top->store_item); ?>.jpg" alt="">
+                      </div>
+                      <span class="uk-text-middle"><?= $this->store_model->getName($top->store_item); ?></span>
                     </div>
-                  </form>
+                    <div id="top-<?= $top->id ?>" class="blizzcms-item-body" hidden>
+                      <p class="uk-text-break"><?= $this->store_model->getDescription($top->store_item); ?></p>
+                      <hr class="uk-margin-small">
+                      <div class="uk-grid uk-grid-small uk-flex uk-flex-center" data-uk-grid>
+                        <div class="uk-width-auto">
+                          <?php if($this->store_model->getPriceType($top->store_item) == 1): ?>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?></span>
+                          <?php elseif($this->store_model->getPriceType($top->store_item) == 2): ?>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
+                          <?php elseif($this->store_model->getPriceType($top->store_item) == 3): ?>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
+                          <?php endif; ?>
+                        </div>
+                        <div class="uk-width-auto">
+                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->store_item ?>" value="<?= $items->store_item ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <?php endforeach; ?>
               </div>
-            </div>
-            <div class="uk-width-1-1 uk-margin-small">
-              <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-                <thead>
-                  <tr>
-                    <th class="uk-width-small"><i class="fas fa-book"></i> <?=$this->lang->line('table_header_icon');?></th>
-                    <th class="uk-width-medium uk-text-center"><i class="fas fa-info-circle"></i> <?=$this->lang->line('store_item_name');?></th>
-                    <th class="uk-width-medium uk-text-center"><i class="fas fa-cart-plus"></i> <?=$this->lang->line('store_item_price');?></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach($this->store_model->getShopGeneral($idlink)->result() as $itemsG): ?>
-                  <tr class="uk-overflow-auto">
-                    <td>
-                      <img width="50" height="50" class="uk-border-rounded" src="//wow.zamimg.com/images/wow/icons/large/<?= $itemsG->icon ?>.jpg">
-                    </td>
-                    <td class="uk-text-center"><?= $itemsG->name ?></td>
-                    <td class="uk-text-center">
-                      <?php if(!is_null($itemsG->price_dp) && !empty($itemsG->price_dp) && $itemsG->price_dp != '0'): ?>
-                      <a href="<?= base_url($lang.'/cart/'.$itemsG->id.'?tp=dp'); ?>" class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $itemsG->price_dp ?></a>
-                      <?php endif; ?>
-                      <?php if(!is_null($itemsG->price_vp) && !empty($itemsG->price_vp) && $itemsG->price_vp != '0'): ?>
-                      <a href="<?= base_url($lang.'/cart/'.$itemsG->id.'?tp=vp'); ?>" class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $itemsG->price_vp ?></a>
-                      <?php endif; ?>
-                    </td>
-                  </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      function AddItem(e, value) {
+        e.preventDefault();
+
+        $.ajax({
+          url:"<?= base_url($lang.'/cart/add'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_store_item_added'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            location.reload();
+          }
+        });
+      }
+    </script>

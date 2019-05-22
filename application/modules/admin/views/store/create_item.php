@@ -21,14 +21,20 @@
                 </div>
               </div>
               <div class="uk-margin-small">
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
+                <div class="uk-form-controls">
+                  <textarea class="uk-textarea" id="item_description" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_category">
                         <option value="0"><?= $this->lang->line('notification_select_category'); ?></option>
-                        <?php foreach ($this->admin_model->getCategoryStore()->result() as $groupsStore): ?>
-                        <option value="<?= $groupsStore->id ?>"><?= $groupsStore->name ?></option>
+                        <?php foreach ($this->admin_model->getCategoryStore()->result() as $category): ?>
+                        <option value="<?= $category->id ?>"><?= $category->name ?> - <?= $this->wowrealm->getRealmName($category->realmid); ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
@@ -38,7 +44,13 @@
                     <div class="uk-form-controls">
                       <select class="uk-select" id="item_type">
                         <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
-                        <option value="1"><?= $this->lang->line('option_item'); ?></option>
+                        <option value="1"><?= $this->lang->line('placeholder_item'); ?></option>
+                        <option value="2"><?= $this->lang->line('table_header_money'); ?></option>
+                        <option value="3"><?= $this->lang->line('table_header_level'); ?></option>
+                        <option value="4"><?= $this->lang->line('option_rename'); ?></option>
+                        <option value="5"><?= $this->lang->line('option_customize'); ?></option>
+                        <option value="6"><?= $this->lang->line('option_change_faction'); ?></option>
+                        <option value="7"><?= $this->lang->line('option_change_race'); ?></option>
                       </select>
                     </div>
                   </div>
@@ -47,15 +59,20 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?= $this->lang->line('store_item_price'); ?> DP</label>
+                    <label class="uk-form-label"><?=$this->lang->line('placeholder_icon_name');?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="number" id="item_dp_price" placeholder="0" required>
+                      <input class="uk-input" type="text" id="item_icon" placeholder="inv_belt_45">
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?= $this->lang->line('store_item_price'); ?> VP</label>
+                    <label class="uk-form-label"><?= $this->lang->line('table_header_price'); ?> <?= $this->lang->line('placeholder_type'); ?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="number" id="item_vp_price" placeholder="0" required>
+                      <select class="uk-select" id="item_price_type">
+                        <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                        <option value="1"><?= $this->lang->line('option_dp'); ?></option>
+                        <option value="2"><?= $this->lang->line('option_vp'); ?></option>
+                        <option value="3"><?= $this->lang->line('option_dp_vp'); ?></option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -63,24 +80,24 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?= $this->lang->line('placeholder_item'); ?></label>
+                    <label class="uk-form-label"><?= $this->lang->line('option_dp'); ?> <?= $this->lang->line('table_header_price'); ?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="text" id="item_id" placeholder="<?= $this->lang->line('table_header_id'); ?>" required>
+                      <input class="uk-input" type="number" id="item_dp_price" placeholder="0" required>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?=$this->lang->line('placeholder_icon_name');?></label>
+                    <label class="uk-form-label"><?= $this->lang->line('option_vp'); ?> <?= $this->lang->line('table_header_price'); ?></label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="text" id="item_icon" placeholder="inv_belt_45">
+                      <input class="uk-input" type="number" id="item_vp_price" placeholder="0" required>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?=$this->lang->line('placeholder_image_name');?></label>
+                <label class="uk-form-label"><?= $this->lang->line('placeholder_command'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" type="text" id="item_image" placeholder="image.jpg">
+                    <input class="uk-input" type="text" id="item_command" required>
                   </div>
                 </div>
               </div>
@@ -98,35 +115,20 @@
         e.preventDefault();
 
         var name = $.trim($('#item_name').val());
+        var description = $.trim($('#item_description').val());
         var category = $.trim($('#item_category').val());
         var type = $.trim($('#item_type').val());
+        var icon = $.trim($('#item_icon').val());
+        var price_type = $.trim($('#item_price_type').val());
         var dp_price = $.trim($('#item_dp_price').val());
         var vp_price = $.trim($('#item_vp_price').val());
-        var itemid = $.trim($('#item_id').val());
-        var icon = $.trim($('#item_icon').val());
-        var image = $.trim($('#item_image').val());
+        var command = $.trim($('#item_command').val());
         if(name == ''){
           $.amaran({
             'theme': 'awesome error',
             'content': {
               title: '<?= $this->lang->line('notification_title_error'); ?>',
               message: '<?= $this->lang->line('notification_name_empty'); ?>',
-              info: '',
-              icon: 'fas fa-times-circle'
-            },
-            'delay': 5000,
-            'position': 'top right',
-            'inEffect': 'slideRight',
-            'outEffect': 'slideRight'
-          });
-          return false;
-        }
-        if(type == 0){
-          $.amaran({
-            'theme': 'awesome error',
-            'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_type'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -153,10 +155,26 @@
           });
           return false;
         }
+        if(type == 0 || price_type == 0){
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              message: '<?= $this->lang->line('notification_select_type'); ?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
         $.ajax({
           url:"<?= base_url($lang.'/admin/store/item/add'); ?>",
           method:"POST",
-          data:{name, category, type, dp_price, vp_price, itemid, icon, image},
+          data:{name, description, category, type, price_type, dp_price, vp_price, icon, command},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

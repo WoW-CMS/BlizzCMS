@@ -384,6 +384,10 @@ ul.uk-nav-sub {
   font-size: 0.75rem;
 }
 
+.uk-card-secondary.character-list .uk-card-body {
+  padding: 0;
+}
+
 .uk-card-secondary > :not([class*="uk-card-media"]) {
   color: #efefef;
 }
@@ -463,6 +467,11 @@ ul.uk-nav-sub {
   font-weight: 700;
   line-height: 34px;
   padding: 2px 12px;
+}
+
+.uk-button-small {
+  line-height: 30px;
+  padding: 0 10px;
 }
 
 .uk-button-primary {

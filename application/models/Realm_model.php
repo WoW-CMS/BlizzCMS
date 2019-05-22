@@ -89,12 +89,12 @@ class Realm_model extends CI_Model {
 
     public function getRealmName($id)
     {
-        return $this->auth->select('name')->where('id', $id)->get('realmlist')->row_array()['name'];
+        return $this->auth->select('name')->where('id', $id)->get('realmlist')->row('name');
     }
 
     public function realmGetHostname($id)
     {
-        return $this->auth->select('address')->where('id', $id)->get('realmlist')->row_array()['address'];
+        return $this->auth->select('address')->where('id', $id)->get('realmlist')->row('address');
     }
 
     public function getGeneralCharactersSpecifyAcc($multiRealm, $id)
@@ -118,13 +118,25 @@ class Realm_model extends CI_Model {
     public function getNameCharacterSpecifyGuid($multirealm, $id)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row_array()['name'];
+        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
     }
 
     public function getCharNameAlreadyExist($name, $multirealm)
     {
         $this->multirealm = $multirealm;
         return $this->multirealm->select('name')->where('name', $name)->get('characters');
+    }
+
+    public function getCharExistGuid($multirealm, $id)
+    {
+        $this->multirealm = $multirealm;
+        return $this->multirealm->select('guid')->where('guid', $id)->get('characters')->num_rows();
+    }
+
+    public function getAccountCharGuid($multirealm, $id)
+    {
+        $this->multirealm = $multirealm;
+        return $this->multirealm->select('account')->where('guid', $id)->get('characters')->row('account');
     }
 
     public function getCharBanSpecifyGuid($id, $multirealm)
@@ -136,7 +148,7 @@ class Realm_model extends CI_Model {
     public function getCharName($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row_array()['name'];
+        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
     }
 
     public function getCharLevel($id, $multirealm)

@@ -44,18 +44,18 @@ class Pvp_model extends CI_Model {
     public function getRaceGuid($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('race')->where('guid', $id)->get('characters')->row_array()['race'];
+        return $this->multirealm->select('race')->where('guid', $id)->get('characters')->row('race');
     }
 
     public function getClassGuid($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('class')->where('guid', $id)->get('characters')->row_array()['class'];
+        return $this->multirealm->select('class')->where('guid', $id)->get('characters')->row('class');
     }
 
     public function getNameGuid($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row_array()['name'];
+        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
     }
 }

@@ -64,7 +64,8 @@ $datalib = array(
 	'form_validation',
 	'parser',
 	'template',
-	'Wowcms'
+	'Wowcms',
+	'cart'
 );
 $autoload['libraries'] = $datalib;
 

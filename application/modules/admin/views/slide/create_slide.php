@@ -22,7 +22,7 @@
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea" id="slide_description" rows="5"></textarea>
+                <textarea class="uk-textarea" id="slide_description" rows="3"></textarea>
               </div>
             </div>
             <div class="uk-margin-small">

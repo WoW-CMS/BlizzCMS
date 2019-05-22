@@ -44,6 +44,11 @@ class Admin_model extends CI_Model {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('users')->result();
     }
 
+    public function getAccountExist($id)
+    {
+        return $this->auth->select('*')->where('id', $id)->get('users')->num_rows();
+    }
+
     public function getAdminCharactersList($multirealm)
     {
         $this->multirealm = $multirealm;
@@ -58,8 +63,8 @@ class Admin_model extends CI_Model {
     public function getDonateStatus($id)
     {
         switch ($id) {
-            case 0: return $this->lang->line('status_donate_cancell'); break;
-            case 1: return $this->lang->line('status_donate_complete'); break;
+            case 0: return $this->lang->line('status_cancelled'); break;
+            case 1: return $this->lang->line('status_completed'); break;
         }
     }
 
@@ -159,16 +164,20 @@ class Admin_model extends CI_Model {
         return $this->db->select('id')->get('news')->num_rows();
     }
 
-    public function updateGeneralSettings($project, $timezone, $discord, $realmlist, $theme)
+    public function updateGeneralSettings($project, $timezone, $maintenance, $discord, $realmlist, $theme, $facebook, $twitter, $youtube)
     {
         $this->load->library('config_writer');
 
         $writer = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
         $writer->write('website_name', $project);
         $writer->write('timezone', $timezone);
+        $writer->write('maintenance_mode', $maintenance);
         $writer->write('discord_invitation', $discord);
         $writer->write('realmlist', $realmlist);
         $writer->write('theme_name', $theme);
+        $writer->write('social_facebook', $facebook);
+        $writer->write('social_twitter', $twitter);
+        $writer->write('social_youtube', $youtube);
         return true;
     }
 
@@ -273,32 +282,32 @@ class Admin_model extends CI_Model {
 
     public function getMenuSpecifyName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('menu')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('menu')->row('name');
     }
 
     public function getMenuSpecifyUrl($id)
     {
-        return $this->db->select('url')->where('id', $id)->get('menu')->row_array()['url'];
+        return $this->db->select('url')->where('id', $id)->get('menu')->row('url');
     }
 
     public function getMenuSpecifyIcon($id)
     {
-        return $this->db->select('icon')->where('id', $id)->get('menu')->row_array()['icon'];
+        return $this->db->select('icon')->where('id', $id)->get('menu')->row('icon');
     }
 
     public function getMenuSpecifyMain($id)
     {
-        return $this->db->select('main')->where('id', $id)->get('menu')->row_array()['main'];
+        return $this->db->select('main')->where('id', $id)->get('menu')->row('main');
     }
 
     public function getMenuSpecifyChild($id)
     {
-        return $this->db->select('child')->where('id', $id)->get('menu')->row_array()['child'];
+        return $this->db->select('child')->where('id', $id)->get('menu')->row('child');
     }
 
     public function getMenuSpecifyType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('menu')->row_array()['type'];
+        return $this->db->select('type')->where('id', $id)->get('menu')->row('type');
     }
 
     public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
@@ -363,47 +372,47 @@ class Admin_model extends CI_Model {
 
     public function getRealmSpecifyHost($id)
     {
-        return $this->db->select('hostname')->where('id', $id)->get('realms')->row_array()['hostname'];
+        return $this->db->select('hostname')->where('id', $id)->get('realms')->row('hostname');
     }
 
     public function getRealmSpecifyUser($id)
     {
-        return $this->db->select('username')->where('id', $id)->get('realms')->row_array()['username'];
+        return $this->db->select('username')->where('id', $id)->get('realms')->row('username');
     }
 
     public function getRealmSpecifyPass($id)
     {
-        return $this->db->select('password')->where('id', $id)->get('realms')->row_array()['password'];
+        return $this->db->select('password')->where('id', $id)->get('realms')->row('password');
     }
 
     public function getRealmSpecifyCharDB($id)
     {
-        return $this->db->select('char_database')->where('id', $id)->get('realms')->row_array()['char_database'];
+        return $this->db->select('char_database')->where('id', $id)->get('realms')->row('char_database');
     }
 
     public function getRealmSpecifyId($id)
     {
-        return $this->db->select('realmID')->where('id', $id)->get('realms')->row_array()['realmID'];
+        return $this->db->select('realmID')->where('id', $id)->get('realms')->row('realmID');
     }
 
     public function getRealmSpecifyConsoleHost($id)
     {
-        return $this->db->select('console_hostname')->where('id', $id)->get('realms')->row_array()['console_hostname'];
+        return $this->db->select('console_hostname')->where('id', $id)->get('realms')->row('console_hostname');
     }
 
     public function getRealmSpecifyConsoleUser($id)
     {
-        return $this->db->select('console_username')->where('id', $id)->get('realms')->row_array()['console_username'];
+        return $this->db->select('console_username')->where('id', $id)->get('realms')->row('console_username');
     }
 
     public function getRealmSpecifyConsolePass($id)
     {
-        return $this->db->select('console_password')->where('id', $id)->get('realms')->row_array()['console_password'];
+        return $this->db->select('console_password')->where('id', $id)->get('realms')->row('console_password');
     }
 
     public function getRealmSpecifyConsolePort($id)
     {
-        return $this->db->select('console_port')->where('id', $id)->get('realms')->row_array()['console_port'];
+        return $this->db->select('console_port')->where('id', $id)->get('realms')->row('console_port');
     }
 
     public function insertSlide($title, $description, $type, $route)
@@ -456,22 +465,22 @@ class Admin_model extends CI_Model {
 
     public function getSlideSpecifyTitle($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('slides')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('slides')->row('title');
     }
 
     public function getSlideSpecifyDescription($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('slides')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('slides')->row('description');
     }
 
     public function getSlideSpecifyType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('slides')->row_array()['type'];
+        return $this->db->select('type')->where('id', $id)->get('slides')->row('type');
     }
 
     public function getSlideSpecifyRoute($id)
     {
-        return $this->db->select('route')->where('id', $id)->get('slides')->row_array()['route'];
+        return $this->db->select('route')->where('id', $id)->get('slides')->row('route');
     }
 
     public function insertNews($title, $description, $image)
@@ -539,17 +548,17 @@ class Admin_model extends CI_Model {
 
     public function getFileNameImage($id)
     {
-        return $this->db->select('image')->where('id', $id)->get('news')->row_array()['image'];
+        return $this->db->select('image')->where('id', $id)->get('news')->row('image');
     }
 
     public function getNewsSpecifyName($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('news')->row_array()['title'];
+        return $this->db->select('title')->where('id', $id)->get('news')->row('title');
     }
 
     public function getNewsSpecifyDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('news')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('news')->row('description');
     }
 
     public function insertChangelog($title, $description)
@@ -614,7 +623,7 @@ class Admin_model extends CI_Model {
 
     public function getChangelogSpecifyDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('changelogs')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('changelogs')->row('description');
     }
 
     public function insertPage($title, $uri, $description)
@@ -622,12 +631,13 @@ class Admin_model extends CI_Model {
         $date = $this->wowgeneral->getTimestamp();
         $rand = rand(1, 15);
 
-        if($this->pagecheckUri($uri) == TRUE) {
+        if($this->pagecheckUri($uri) == TRUE)
+        {
             $new_uri = $uri."-".$rand;
 
             $data = array(
                 'title' => $title,
-                'uri_friendly' => $new_uri,
+                'uri_friendly' => strtolower($new_uri),
                 'description' => $description,
                 'date' => $date
             );
@@ -653,7 +663,7 @@ class Admin_model extends CI_Model {
 
         $update = array(
             'title' => $title,
-            'uri_friendly' => $uri,
+            'uri_friendly' => strtolower($uri),
             'description' => $description,
             'date' => $date
         );
@@ -688,11 +698,10 @@ class Admin_model extends CI_Model {
     {
         $qq = $this->db->select('uri_friendly')->where('uri_friendly', $uri)->get('pages')->row('uri_friendly');
 
-        if($qq == $uri) {
+        if($qq == $uri)
             return true;
-        } else {
+        else
             return false;
-        }
     }
 
     public function getPagesSpecifyName($id)
@@ -707,7 +716,7 @@ class Admin_model extends CI_Model {
 
     public function getPagesSpecifyDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('pages')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('pages')->row('description');
     }
 
     public function insertTopsite($name, $url, $time, $points, $image)
@@ -810,24 +819,48 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function insertStoreCategory($name)
+    public function insertStoreCategory($name, $route, $realmid)
     {
-        $data = array(
-            'name' => $name,
-        );
+        if($this->StoreCategoryCheckRoute($route))
+        {
+            $data = array(
+                'name' => $name,
+                'route' => strtolower($route),
+                'realmid' => $realmid
+            );
 
-        $this->db->insert('store_categories', $data);
-        return true;
+            $this->db->insert('store_categories', $data);
+            return true;
+        }
+        else
+            return 'Rouerr';
     }
 
-    public function updateSpecifyStoreCategory($idlink, $group)
+    public function updateSpecifyStoreCategory($idlink, $name, $route, $realmid)
     {
-        $update = array(
-            'name' => $group,
-        );
+        if($this->StoreCategoryCheckRoute($route))
+        {
+            $update = array(
+                'name' => $name,
+                'route' => strtolower($route),
+                'realmid' => $realmid
+            );
 
-        $this->db->where('id', $idlink)->update('store_categories', $update);
-        return true;
+            $this->db->where('id', $idlink)->update('store_categories', $update);
+            return true;
+        }
+        else
+            return 'Rouerr';
+    }
+
+    public function StoreCategoryCheckRoute($route)
+    {
+        $qq = $this->db->select('route')->where('route', $route)->get('store_categories')->row('route');
+
+        if($qq == $name)
+            return true;
+        else
+            return false;
     }
 
     public function deleteStoreCategory($id)
@@ -848,60 +881,89 @@ class Admin_model extends CI_Model {
 
     public function getStoreCategoryName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('store_categories')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('store_categories')->row('name');
     }
 
-    public function insertItem($name, $category, $type, $pricedp, $pricevp, $itemid, $icon, $image)
+    public function getStoreCategoryRoute($id)
     {
-        if ($pricevp == '0' && $pricedp == '0')
-        redirect(base_url('admin/store'),'refresh');
+        return $this->db->select('route')->where('id', $id)->get('store_categories')->row('route');
+    }
 
-        if ($pricedp == '0')
-            $pricedp = NULL;
+    public function getStoreCategoryRealm($id)
+    {
+        return $this->db->select('realmid')->where('id', $id)->get('store_categories')->row('realmid');
+    }
 
-        if ($pricevp == '0')
-            $pricevp = NULL;
+    public function insertItem($name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command)
+    {
+        if ($price_type == 1) {
+            $setdp = $pricedp;
+            $setvp = 0;
+        }
+        else if ($price_type == 2) {
+            $setdp = 0;
+            $setvp = $pricevp;
+        }
+        else if($price_type == 3) {
+            $setdp = $pricedp;
+            $setvp = $pricevp;
+        }
 
         $data = array(
             'name' => $name,
+            'description' => $description,
             'category' => $category,
             'type' => $type,
-            'price_dp' => $pricedp,
-            'price_vp' => $pricevp,
-            'itemid' => $itemid,
+            'price_type' => $price_type,
+            'dp' => $setdp,
+            'vp' => $setvp,
             'icon' => $icon,
-            'image' => $image
+            'command' => $command
         );
 
         $this->db->insert('store_items', $data);
         return true;
     }
 
-    public function updateSpecifyItem($id, $name, $category, $type, $pricedp, $pricevp, $itemid, $icon, $image)
+    public function updateSpecifyItem($id, $name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command)
     {
+        if ($price_type == 1) {
+            $setdp = $pricedp;
+            $setvp = 0;
+        }
+        else if ($price_type == 2) {
+            $setdp = 0;
+            $setvp = $pricevp;
+        }
+        else if($price_type == 3) {
+            $setdp = $pricedp;
+            $setvp = $pricevp;
+        }
+
         $update = array(
             'name' => $name,
+            'description' => $description,
             'category' => $category,
             'type' => $type,
-            'price_dp' => $pricedp,
-            'price_vp' => $pricevp,
-            'itemid' => $itemid,
+            'price_type' => $price_type,
+            'dp' => $setdp,
+            'vp' => $setvp,
             'icon' => $icon,
-            'image' => $image
+            'command' => $command
         );
 
         $this->db->where('id', $id)->update('store_items', $update);
         return true;
     }
 
-    public function delShopItm($id)
+    public function delStoreItem($id)
     {
         $this->db->where('id', $id)->delete('store_items');
-        $this->db->where('id_store', $id)->delete('store_top');
+        $this->db->where('store_item', $id)->delete('store_top');
         return true;
     }
 
-    public function getShopAll()
+    public function getAllStoreItems()
     {
         return $this->db->select('*')->order_by('id', 'ASC')->get('store_items');
     }
@@ -916,39 +978,85 @@ class Admin_model extends CI_Model {
         return $this->db->select('name')->where('id', $id)->get('store_items')->row('name');
     }
 
-    public function getItemSpecifyDpPrice($id)
+    public function getItemSpecifyDescription($id)
     {
-        return $this->db->select('price_dp')->where('id', $id)->get('store_items')->row_array()['price_dp'];
+        return $this->db->select('description')->where('id', $id)->get('store_items')->row('description');
     }
 
-    public function getItemSpecifyVpPrice($id)
+    public function getItemSpecifyCategory($id)
     {
-        return $this->db->select('price_vp')->where('id', $id)->get('store_items')->row_array()['price_vp'];
-    }
-
-    public function getItemSpecifyId($id)
-    {
-        return $this->db->select('itemid')->where('id', $id)->get('store_items')->row_array()['itemid'];
-    }
-
-    public function getItemSpecifyIcon($id)
-    {
-        return $this->db->select('icon')->where('id', $id)->get('store_items')->row_array()['icon'];
-    }
-
-    public function getItemSpecifyImg($id)
-    {
-        return $this->db->select('image')->where('id', $id)->get('store_items')->row_array()['image'];
-    }
-
-    public function getItemSpecifyGroup($id)
-    {
-        return $this->db->select('category')->where('id', $id)->get('store_items')->row_array()['category'];
+        return $this->db->select('category')->where('id', $id)->get('store_items')->row('category');
     }
 
     public function getItemSpecifyType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('store_items')->row_array()['type'];
+        return $this->db->select('type')->where('id', $id)->get('store_items')->row('type');
+    }
+
+    public function getItemSpecifyPriceType($id)
+    {
+        return $this->db->select('price_type')->where('id', $id)->get('store_items')->row('price_type');
+    }
+
+    public function getItemSpecifyDpPrice($id)
+    {
+        return $this->db->select('dp')->where('id', $id)->get('store_items')->row('dp');
+    }
+
+    public function getItemSpecifyVpPrice($id)
+    {
+        return $this->db->select('vp')->where('id', $id)->get('store_items')->row('vp');
+    }
+
+    public function getItemSpecifyIcon($id)
+    {
+        return $this->db->select('icon')->where('id', $id)->get('store_items')->row('icon');
+    }
+
+    public function getItemSpecifyCommand($id)
+    {
+        return $this->db->select('command')->where('id', $id)->get('store_items')->row('command');
+    }
+
+    public function insertStoreTop($item)
+    {
+        $data = array(
+            'store_item' => $item
+        );
+
+        $this->db->insert('store_top', $data);
+        return true;
+    }
+
+    public function updateSpecifyStoreTop($idlink, $item)
+    {
+        $update = array(
+            'store_item' => $item
+        );
+
+        $this->db->where('id', $idlink)->update('store_top', $update);
+        return true;
+    }
+
+    public function deleteStoreTop($id)
+    {
+        $this->db->where('id', $id)->delete('store_top');
+        return true;
+    }
+
+    public function getAllTopItems()
+    {
+        return $this->db->select('*')->order_by('id', 'DESC')->get('store_top')->result();
+    }
+
+    public function getStoreTopSpecifyRows($id)
+    {
+        return $this->db->select('*')->where('id', $id)->get('store_categories')->num_rows();
+    }
+
+    public function getTopSpecifyItem($id)
+    {
+        return $this->db->select('store_item')->where('id', $id)->get('store_top')->row('store_item');
     }
 
     public function insertDonation($name, $price, $tax, $points)
@@ -990,22 +1098,22 @@ class Admin_model extends CI_Model {
 
     public function getDonateSpecifyName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('donate')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('donate')->row('name');
     }
 
     public function getDonateSpecifyPrice($id)
     {
-        return $this->db->select('price')->where('id', $id)->get('donate')->row_array()['price'];
+        return $this->db->select('price')->where('id', $id)->get('donate')->row('price');
     }
 
     public function getDonateSpecifyTax($id)
     {
-        return $this->db->select('tax')->where('id', $id)->get('donate')->row_array()['tax'];
+        return $this->db->select('tax')->where('id', $id)->get('donate')->row('tax');
     }
 
     public function getDonateSpecifyPoints($id)
     {
-        return $this->db->select('points')->where('id', $id)->get('donate')->row_array()['points'];
+        return $this->db->select('points')->where('id', $id)->get('donate')->row('points');
     }
 
     public function insertForum($name, $description, $icon, $type, $category)
@@ -1054,27 +1162,27 @@ class Admin_model extends CI_Model {
 
     public function getSpecifyForumName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('forum')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('forum')->row('name');
     }
 
     public function getSpecifyForumDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('forum')->row_array()['description'];
+        return $this->db->select('description')->where('id', $id)->get('forum')->row('description');
     }
 
     public function getSpecifyForumIcon($id)
     {
-        return $this->db->select('icon')->where('id', $id)->get('forum')->row_array()['icon'];
+        return $this->db->select('icon')->where('id', $id)->get('forum')->row('icon');
     }
 
     public function getSpecifyForumCategory($id)
     {
-        return $this->db->select('category')->where('id', $id)->get('forum')->row_array()['category'];
+        return $this->db->select('category')->where('id', $id)->get('forum')->row('category');
     }
 
     public function getSpecifyForumType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('forum')->row_array()['type'];
+        return $this->db->select('type')->where('id', $id)->get('forum')->row('type');
     }
 
     public function insertForumCategory($category)
@@ -1115,6 +1223,6 @@ class Admin_model extends CI_Model {
 
     public function getForumCategoryName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('forum_category')->row_array()['name'];
+        return $this->db->select('name')->where('id', $id)->get('forum_category')->row('name');
     }
 }

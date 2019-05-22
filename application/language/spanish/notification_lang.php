@@ -67,13 +67,16 @@ $lang['notification_valid_key_desc'] = 'Ahora puedes iniciar sesión con tu cuen
 $lang['notification_invalid_key'] = 'La clave de activación proporcionada no es válida.';
 
 /*Notification Message (General) Lang*/
-$lang['notification_sync_account'] = 'La cuenta ha sido sincronizada con el sitio web';
 $lang['notification_email_changed'] = 'El correo electrónico ha sido cambiado.';
 $lang['notification_password_changed'] = 'La contraseña ha sido cambiada.';
 $lang['notification_avatar_changed'] = 'El avatar ha sido cambiado.';
 $lang['notification_wrong_values'] = 'Los valores son incorrectos';
 $lang['notification_select_type'] = 'Seleccione un tipo';
 $lang['notification_select_priority'] = 'Seleccione una prioridad';
+$lang['notification_select_category'] = 'Seleccione una categoría';
+$lang['notification_select_realm'] = 'Seleccione un reino';
+$lang['notification_select_character'] = 'Selecciona un personaje';
+$lang['notification_select_item'] = 'Seleccione un item';
 $lang['notification_report_created'] = 'El informe ha sido creado.';
 $lang['notification_title_empty'] = 'El título está vacío';
 $lang['notification_description_empty'] = 'La descripción está vacía';
@@ -86,6 +89,12 @@ $lang['notification_topic_created'] = 'El topic ha sido creado.';
 $lang['notification_donation_successful'] = 'La donación se ha completado con éxito, verifique los puntos donor en su cuenta.';
 $lang['notification_donation_canceled'] = 'La donación ha sido cancelada.';
 $lang['notification_donation_error'] = 'La información proporcionada en la transacción no coincide.';
+$lang['notification_store_chars_error'] = 'Seleccione su personaje en cada artículo.';
+$lang['notification_store_item_insufficient_points'] = 'No tienes suficientes puntos para comprar.';
+$lang['notification_store_item_purchased'] = 'Los artículos han sido comprados, por favor revisa tu correo en el juego.';
+$lang['notification_store_item_added'] = 'El artículo seleccionado ha sido añadido a su carrito.';
+$lang['notification_store_item_removed'] = 'El artículo seleccionado ha sido eliminado de su carrito.';
+$lang['notification_store_cart_error'] = 'La actualización del carrito falló, por favor intente de nuevo.';
 
 /*Notification Message (Admin) Lang*/
 $lang['notification_changelog_created'] = 'El changelog ha sido creado.';
@@ -113,6 +122,9 @@ $lang['notification_slide_deleted'] = 'El slide ha sido eliminado.';
 $lang['notification_item_created'] = 'El item ha sido creado.';
 $lang['notification_item_edited'] = 'El item ha sido editado.';
 $lang['notification_item_deleted'] = 'El item ha sido eliminado.';
+$lang['notification_top_created'] = 'El top item ha sido creado.';
+$lang['notification_top_edited'] = 'El top item ha sido editado.';
+$lang['notification_top_deleted'] = 'El top item ha sido eliminado.';
 $lang['notification_topsite_created'] = 'El topsite ha sido creado.';
 $lang['notification_topsite_edited'] = 'El topsite ha sido editado.';
 $lang['notification_topsite_deleted'] = 'El topsite ha sido eliminado.';
@@ -130,6 +142,14 @@ $lang['notification_tax_empty'] = 'El impuesto esta vacio';
 $lang['notification_price_empty'] = 'El precio esta vacio';
 $lang['notification_incorrect_update'] = 'Actualización inesperada';
 
+$lang['notification_route_inuse'] = 'La ruta ya está en uso por favor elija otra.';
+
+$lang['notification_account_updated'] = 'La cuenta ha sido actualizada.';
+$lang['notification_dp_vp_empty'] = 'DP/VP está vacío';
+$lang['notification_account_banned'] = 'La cuenta ha sido prohibida.';
+$lang['notification_reason_empty'] = 'La razon esta vacia';
+$lang['notification_account_ban_remove'] = 'La prohibición en la cuenta ha sido eliminada.';
+$lang['notification_rank_empty'] = 'El rango está vacío';
 $lang['notification_rank_granted'] = 'El rango ha sido otorgado.';
 $lang['notification_rank_removed'] = 'El rango ha sido removido.';
 

@@ -1,116 +1,274 @@
-<?php
-if (isset($_POST['buyNowGetItem'])):
-  $charselect = $_POST['charSelects'];
-
-  $method = $_GET['tp'];
-  $price = $this->store_model->getPriceType($idlink, $_GET['tp']);
-  $result_explode = explode('|', $charselect);
-
-  $soapUser = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_username'];
-  $soapPass = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_password'];
-  $soapHost = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_hostname'];
-  $soapPort = $this->wowrealm->getRealm($result_explode[0])->row_array()['console_port'];
-  $soap_uri = $this->wowrealm->getRealm($result_explode[0])->row_array()['emulator'];
-
-  $this->store_model->insertHistory(
-    $idlink, 
-    $this->store_model->getItem($idlink), 
-    $this->session->userdata('wow_sess_id'), 
-    $result_explode[1], 
-    $method,
-    $price,
-    $soapUser, 
-    $soapPass, 
-    $soapHost, 
-    $soapPort, 
-    $soap_uri,
-    $result_explode[0]);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-medium" data-uk-grid>
-          <div class="uk-width-1-4@m">
-            <ul class="uk-nav uk-nav-default myaccount-nav">
-              <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-              <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
-              <?php endif; ?>
-              <li class="uk-nav-divider"></li>
-              <?php if($this->wowmodule->getDonationStatus() == '1'): ?>
-              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getVoteStatus() == '1'): ?>
-              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getStoreStatus() == '1'): ?>
-              <li class="uk-active"><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
-              <?php endif; ?>
-              <li class="uk-nav-divider"></li>
-              <?php if($this->wowmodule->getBugtrackerStatus() == '1'): ?>
-              <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getChangelogsStatus() == '1'): ?>
-              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
-              <?php endif; ?>
-            </ul>
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-header">
+            <h5 class="uk-h5 uk-text-bold"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('tab_cart'); ?></h5>
           </div>
-          <div class="uk-width-3-4@m">
-             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-shopping-bag"></i> <?= $this->lang->line('tab_cart'); ?></h4>
+          <div class="uk-card-body">
             <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
-              <table class="uk-table uk-table-middle uk-table-divider">
+              <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?=$this->lang->line('store_item_name');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-list-ul"></i> <?=$this->lang->line('store_select_character');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-shopping-bag"></i> <?=$this->lang->line('store_item_price');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-cart-plus"></i> Buyout</th>
+                    <th class="uk-width-medium"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_item_name'); ?></th>
+                    <th class="uk-width-medium"><i class="fas fa-list-ul"></i> <?= $this->lang->line('table_header_character'); ?></th>
+                    <th class="uk-width-small"><i class="fas fa-coins"></i> <?= $this->lang->line('table_header_price'); ?></th>
+                    <th class="uk-table-shrink"><i class="fas fa-sort-numeric-up"></i> <?= $this->lang->line('table_header_quantity'); ?></th>
+                    <th class="uk-table-shrink"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <form action="" method="post" accept-charset="utf-8">
-                    <tr>
-                      <td><?= $this->store_model->getName($idlink); ?></td>
-                      <td>
-                        <div class="uk-form-controls uk-light">
-                          <select class="uk-select uk-width-1-1" name="charSelects">
-                            <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm): 
-                              $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-                            ?>
-                              <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm ,$this->session->userdata('wow_sess_id'))->result() as $listchar): ?>
-                              <option value="<?= $charsMultiRealm->id ?>|<?= $listchar->guid ?>"><?= $listchar->name ?> - <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></option>
-                              <?php endforeach; ?>
-                            <?php endforeach; ?>
-                          </select>
-                        </div>
-                      </td>
-                      <td class="uk-text-center">
-                        <?php if($_GET['tp'] == "dp"): ?>
-                        <a class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->store_model->getPriceType($idlink, $_GET['tp']); ?></a>
-                        <?php else: ?>
-                        <a class="url-flex-points"><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->store_model->getPriceType($idlink, $_GET['tp']); ?></a>
-                        <?php endif; ?>
-                      </td>
-                      <td class="uk-text-center">
-                        <?php if ($_GET['tp'] == "dp")
-                          $qqs = $this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id'));
-                        else
-                          $qqs = $this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id'));
-                        ?>
-                        <?php if ($qqs >= $this->store_model->getPriceType($idlink, $_GET['tp'])): ?>
-                        <button type="submit" name="buyNowGetItem" class="uk-button uk-button-default uk-width-3-4 uk-button-small" title="<?= $this->lang->line('button_buy'); ?>"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('button_buy'); ?></button>
-                        <?php else: ?>
-                        <div class="uk-alert-warning" uk-alert><p><i class="fas fa-exclamation-triangle"></i> <?=$this->lang->line('alert_points_insufficient');?></p></div>
-                        <?php endif; ?>
-                      </td>
-                    </tr>
-                  </form>
+                  <?php if($this->cart->total_items() > 0): ?>
+                  <?php foreach($this->cart->contents() as $item): ?>
+                  <tr>
+                    <td><?= $item["name"]; ?></td>
+                    <td>
+                      <div class="uk-form-controls uk-light">
+                        <select class="uk-select uk-width-1-1" onchange="updateCharacter(this, '<?php echo $item["rowid"]; ?>')">
+                          <option value="0"><?= $this->lang->line('notification_select_character'); ?></option>
+                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($this->wowrealm->getRealmConnectionData($this->store_model->getCategoryRealmId($item["category"])) ,$this->session->userdata('wow_sess_id'))->result() as $listchar): ?>
+                          <option value="<?= $listchar->guid ?>" <?php if($listchar->guid == $item["guid"]) echo 'selected'; ?>><?= $listchar->name ?> - (<?= $this->lang->line('table_header_realm'); ?>: <?= $this->wowrealm->getRealmName($this->store_model->getCategoryRealmId($item["category"])); ?>)</option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                      <?php if($this->store_model->getPriceType($item["id"]) == 1): ?>
+                      <span class="uk-text-small"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $item["dp"]; ?></span>
+                      <?php elseif($this->store_model->getPriceType($item["id"]) == 2): ?>
+                      <span class="uk-text-small"><span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
+                      <?php elseif($this->store_model->getPriceType($item["id"]) == 3): ?>
+                      <span class="uk-text-small"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $item["vp"]; ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
+                      <?php endif; ?>
+                    </td>
+                    <td>
+                      <div class="uk-form-controls uk-light">
+                        <input class="uk-input uk-width-1-1" type="number" min="1" value="<?= $item["qty"]; ?>" onchange="updateQuantity(this, '<?php echo $item["rowid"]; ?>')">
+                      </div>
+                    </td>
+                    <td>
+                      <button class="uk-button uk-button-danger" value="<?= $item["rowid"]; ?>" id="button_delete<?= $item["rowid"]; ?>" onclick="deleteItem(event, this.value)"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                  <?php endif; ?>
                 </tbody>
               </table>
+            </div>
+          </div>
+          <div class="uk-card-footer">
+            <div class="uk-grid uk-grid-small" data-uk-grid>
+              <div class="uk-width-expand@s">
+                <a href="<?= base_url('store'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= $this->lang->line('button_buying'); ?></a>
+              </div>
+              <div class="uk-width-auto@s uk-flex uk-flex-middle">
+                <?php if($this->cart->total_items() > 0): ?>
+                <p class="uk-margin-small uk-text-small"><span class="uk-text-uppercase uk-text-bold">Total:</span> <span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->cart->total_dp(); ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->cart->total_vp(); ?></p>
+                <?php endif; ?>
+              </div>
+              <div class="uk-width-auto@s">
+                <?php if($this->cart->total_items() > 0): ?>
+                <button class="uk-button uk-button-default uk-button-small" value="1" id="button_checkout" onclick="Checkout(event, this.value)"><?= $this->lang->line('button_checkout'); ?> <i class="fas fa-shopping-cart"></i></button>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      $('#button_checkout').click(function(){
+        var button = $(this);
+        button.attr('disabled', 'disabled');
+        setTimeout(function() {
+         button.removeAttr('disabled');
+        },8000);
+      });
+      function updateQuantity(obj, rowid) {
+        $.ajax({
+          url:"<?= base_url($lang.'/cart/updatequantity'); ?>",
+          type:"GET",
+          data:{rowid:rowid, qty:obj.value},
+          dataType:"text",
+          success: function(response) {
+            if(!response){
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_store_cart_error'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+
+            if(response){
+              location.reload();
+            }
+          }
+        });
+      }
+      function updateCharacter(obj, rowid) {
+        $.ajax({
+          url:"<?= base_url($lang.'/cart/updatecharacter'); ?>",
+          type:"GET",
+          data:{rowid:rowid, char:obj.value},
+          dataType:"text",
+          success: function(response) {
+            if(!response){
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_store_cart_error'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+
+            if(response){
+              location.reload();
+            }
+          }
+        });
+      }
+      function deleteItem(e, value) {
+        e.preventDefault();
+
+        $.ajax({
+          url:"<?= base_url($lang.'/cart/delete'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_store_item_removed'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 6000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            location.reload();
+          }
+        });
+      }
+      function Checkout(e, value) {
+        e.preventDefault();
+
+        $.ajax({
+          url:"<?= base_url($lang.'/cart/checkout'); ?>",
+          method:"POST",
+          data:{value},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response == 'Selchars') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_store_chars_error'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 8000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              return false;
+            }
+
+            if (response == 'insPoints') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_store_item_insufficient_points'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 8000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              return false;
+            }
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_store_item_purchased'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 8000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+            location.reload();
+          }
+        });
+      }
+    </script>
