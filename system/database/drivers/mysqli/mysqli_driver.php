@@ -388,7 +388,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 * @param	string
 	 * @return	string
 	 */
-	protected function _escape_str($str)
+	protected function _escape_str($str, $like = FALSE)
 	{
 		if (is_array($str))
         {
@@ -416,7 +416,7 @@ class CI_DB_mysqli_driver extends CI_DB {
         }
     
         return $str;
-    	}
+    }
 
 	// --------------------------------------------------------------------
 
