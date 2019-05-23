@@ -105,7 +105,7 @@ class AutoUpdate
      *
      * @var bool
      */
-    private $sslVerifyHost = true;
+    private $sslVerifyHost = false;
 
     /**
      * Url to the update folder on the server.
