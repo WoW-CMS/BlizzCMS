@@ -1266,6 +1266,7 @@ class Admin extends MX_Controller {
     public function updateforum()
     {
         $id = $this->input->post('id');
+        $name = $this->input->post('name');
         $description = $this->input->post('description');
         $icon = $this->input->post('icon');
         $type = $this->input->post('type');
