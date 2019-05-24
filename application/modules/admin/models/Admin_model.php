@@ -46,7 +46,7 @@ class Admin_model extends CI_Model {
 
     public function getAccountExist($id)
     {
-        return $this->auth->select('*')->where('id', $id)->get('users')->num_rows();
+        return $this->db->select('*')->where('id', $id)->get('users')->num_rows();
     }
 
     public function getAdminCharactersList($multirealm)
