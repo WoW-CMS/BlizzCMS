@@ -27,7 +27,7 @@
                   <td><?= $donateInfo->payment_id ?></td>
                   <td><?= $donateInfo->hash ?></td>
                   <td><?= $donateInfo->total ?></td>
-                  <td><?= $this->admin_model->getDonateStatus($donateInfo->complete); ?></td>
+                  <td><?= $this->admin_model->getDonateStatus($donateInfo->status); ?></td>
                   <td><?= $donateInfo->create_time ?></td>
                   <td><?= $donateInfo->points ?></td>
                 </tr>
