@@ -61,8 +61,7 @@ class Bugtracker_model extends CI_Model {
 
     public function getAllBugs()
     {
-        $this->db->from('bugtracker');
-        return $this->db->count_all_results();
+        return $this->db->select('id')->where('close', '0')->get('bugtracker')->num_rows();
     }
 
     public function bugtrackerList()
