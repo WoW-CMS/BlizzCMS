@@ -98,7 +98,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-facebook-f"></i></span>
-                          <input class="uk-input" type="text" id="social_facebook" value="<?= $this->config->item('social_facebook'); ?>">
+                          <input class="uk-input" type="url" id="social_facebook" value="<?= $this->config->item('social_facebook'); ?>">
                         </div>
                       </div>
                     </div>
@@ -107,7 +107,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-twitter"></i></span>
-                          <input class="uk-input" type="text" id="social_twiter" value="<?= $this->config->item('social_twitter'); ?>">
+                          <input class="uk-input" type="url" id="social_twitter" value="<?= $this->config->item('social_twitter'); ?>">
                         </div>
                       </div>
                     </div>
@@ -120,7 +120,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-youtube"></i></span>
-                          <input class="uk-input" type="text" id="social_youtube" value="<?= $this->config->item('social_youtube'); ?>">
+                          <input class="uk-input" type="url" id="social_youtube" value="<?= $this->config->item('social_youtube'); ?>">
                         </div>
                       </div>
                     </div>
