@@ -117,7 +117,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                          <input class="uk-input" type="text" id="smtp_password" value="<?= $this->config->item('smtp_pass'); ?>">
+                          <input class="uk-input" type="password" id="smtp_password" value="<?= $this->config->item('smtp_pass'); ?>">
                         </div>
                       </div>
                     </div>

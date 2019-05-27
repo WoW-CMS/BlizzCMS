@@ -76,7 +76,7 @@
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label">Discord Invitation ID:</label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="text" id="website_invitation" placeholder="WGGGVgX" required>
+                      <input class="uk-input" type="text" id="website_invitation" pattern=".{,7}" placeholder="WGGGVgX" required>
                     </div>
                   </div>
                 </div>

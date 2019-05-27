@@ -19,13 +19,24 @@ class Home_model extends CI_Model {
 
     public function getDiscordInfo()
     {
+        $invitation = $this->config->item('discord_invitation');
         error_reporting(0);
-        if ($this->wowmodule->getDiscordStatus())
+
+        if ($this->wowmodule->getDiscordStatus() && strlen($invitation) == 7)
         {
-            $invitation = $this->config->item('discord_invitation');
-            $discord = file_get_contents('https://discordapp.com/api/v6/invite/'.$invitation.'?with_counts=true');
-            $vars = json_decode($discord, true);
-            return $vars;
+            $discordapi = $this->cache->file->get('discordapi');
+
+            if ($discordapi !== false) {
+                $api = json_decode($discordapi, true);
+                return $api;
+            }
+            else {
+                $this->cache->file->save('discordapi', file_get_contents('https://discordapp.com/api/v6/invite/'.$invitation.'?with_counts=true'), 300);
+                $check = $this->cache->file->get('discordapi');
+
+                if ($check !== false)
+                    return $this->getDiscordInfo();
+            }
         }
     }
 

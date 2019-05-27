@@ -85,7 +85,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
-                          <input class="uk-input" type="text" id="discord_invitation" value="<?= $this->config->item('discord_invitation'); ?>" required>
+                          <input class="uk-input" type="text" id="discord_invitation" pattern=".{,7}" value="<?= $this->config->item('discord_invitation'); ?>" required>
                         </div>
                       </div>
                     </div>
