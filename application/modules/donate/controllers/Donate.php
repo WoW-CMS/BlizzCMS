@@ -59,9 +59,6 @@ class Donate extends MX_Controller
 
         if(!$this->wowauth->isLogged())
             redirect(base_url('login'),'refresh');
-
-        if ($this->wowauth->checkAccountExist() == 0)
-            redirect(base_url('panel'),'refresh');
     }
     
     public function index()
