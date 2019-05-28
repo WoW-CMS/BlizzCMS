@@ -275,3 +275,6 @@ $route[$lang.'/admin/forum/category/edit/(:num)'] = 'admin/editforumcategory/$2'
 $route[$lang.'/admin/forum/category/add'] = 'admin/addforumcategory';
 $route[$lang.'/admin/forum/category/update'] = 'admin/updateforumcategory';
 $route[$lang.'/admin/forum/category/delete'] = 'admin/deleteforumcategory';
+
+/*Check*/
+$route[$lang.'/admin/checksoap'] = 'admin/checkSoap';
