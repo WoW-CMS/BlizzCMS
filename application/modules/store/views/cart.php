@@ -40,7 +40,7 @@
                       <?php elseif($this->store_model->getPriceType($item["id"]) == 2): ?>
                       <span class="uk-text-small"><span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
                       <?php elseif($this->store_model->getPriceType($item["id"]) == 3): ?>
-                      <span class="uk-text-small"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $item["vp"]; ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
+                      <span class="uk-text-small"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $item["dp"]; ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
                       <?php endif; ?>
                     </td>
                     <td>
