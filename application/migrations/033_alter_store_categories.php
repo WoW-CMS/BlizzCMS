@@ -10,16 +10,13 @@ class Migration_alter_store_categories extends CI_Migration {
               'route' => array(
                       'type' => 'VARCHAR',
                       'constraint' => '150',
-                      'null' => FALSE,
-                      'unique' => TRUE,
-                      'after' => 'name'
+                      'null' => FALSE
               ),
               'realmid' => array(
                       'type' => 'INT',
                       'constraint' => '10',
                       'unsigned' => TRUE,
-                      'default' => '0',
-                      'after' => 'route'
+                      'default' => '0'
               ),
       ));
     }
