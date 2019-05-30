@@ -227,8 +227,11 @@ $route[$lang.'/admin/pages/delete'] = 'admin/deletepage';
 
 /*Store*/
 $route[$lang.'/admin/store'] = 'admin/managestore';
+$route[$lang.'/admin/store/(:num)'] = 'admin/managestore/$2';
 $route[$lang.'/admin/store/items'] = 'admin/managestoreitems';
+$route[$lang.'/admin/store/items/(:num)'] = 'admin/managestoreitems/$2';
 $route[$lang.'/admin/store/top'] = 'admin/managestoretop';
+$route[$lang.'/admin/store/top/(:num)'] = 'admin/managestoretop/$2';
 $route[$lang.'/admin/store/category/create'] = 'admin/createstorecategory';
 $route[$lang.'/admin/store/category/edit/(:num)'] = 'admin/editstorecategory/$2';
 $route[$lang.'/admin/store/category/add'] = 'admin/addstorecategory';
@@ -264,7 +267,9 @@ $route[$lang.'/admin/topsites/delete'] = 'admin/deletetopsite';
 
 /*Forum*/
 $route[$lang.'/admin/forum'] = 'admin/manageforum';
+$route[$lang.'/admin/forum/(:num)'] = 'admin/manageforum/$2';
 $route[$lang.'/admin/forum/elements'] = 'admin/manageforumelements';
+$route[$lang.'/admin/forum/elements/(:num)'] = 'admin/manageforumelements/$2';
 $route[$lang.'/admin/forum/create'] = 'admin/createforum';
 $route[$lang.'/admin/forum/edit/(:num)'] = 'admin/editforum/$2';
 $route[$lang.'/admin/forum/add'] = 'admin/addforum';

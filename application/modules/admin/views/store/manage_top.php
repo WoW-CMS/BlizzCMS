@@ -30,7 +30,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($this->admin_model->getAllTopItems() as $top): ?>
+                    <?php if(isset($storetopList) && !empty($storetopList)): ?>
+                    <?php foreach($storetopList as $top): ?>
                     <tr>
                       <td><?= $this->admin_model->getItemSpecifyName($top->store_item); ?></td>
                       <td><?= $this->admin_model->getStoreCategoryName($this->admin_model->getItemSpecifyCategory($top->store_item)); ?></td>
@@ -42,8 +43,14 @@
                       </td>
                     </tr>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
+              </div>
+              <div class="uk-card-footer">
+                <div class="uk-text-right">
+                  <?php if (isset($storetopList) && is_array($storetopList)) echo $pagination_links; ?>
+                </div>
               </div>
             </div>
           </div>
