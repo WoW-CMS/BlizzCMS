@@ -88,6 +88,8 @@ class Home extends MX_Controller {
         if ($this->migration->current() === FALSE)
         {
             show_error($this->migration->error_string());
+        } else {
+            redirect(base_url());
         }
     }
 

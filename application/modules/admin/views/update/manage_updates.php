@@ -165,7 +165,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/cms'); ?>");
+            window.location.replace("<?= base_url('dbmigrate'); ?>");
           }
         });
       }
