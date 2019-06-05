@@ -62,12 +62,10 @@ class Update_model extends CI_Model
             $result = $update->update($simulate);
             if ($result === true)
             {
-                // echo 'Update simulation successful<br>';
                 return true;
             }
             else
             {
-                // echo 'Update simulation failed: ' . $result . '!<br>';
                 return 'UpdErr';
             }
         }
