@@ -16,7 +16,7 @@
                 <div class="uk-form-controls">
                   <select class="uk-select" id="store_top_item">
                     <option value="0"><?= $this->lang->line('notification_select_item'); ?></option>
-                    <?php foreach ($this->admin_model->getAllStoreItems()->result() as $item): ?>
+                    <?php foreach ($this->admin_model->getStoreItems() as $item): ?>
                     <option value="<?= $item->id ?>"><?= $item->name ?> (<?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->wowrealm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?>)</option>
                     <?php endforeach; ?>
                   </select>

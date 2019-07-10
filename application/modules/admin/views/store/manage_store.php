@@ -30,7 +30,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($this->admin_model->getCategoryStore()->result() as $list): ?>
+                    <?php if(isset($storecategoryList) && !empty($storecategoryList)): ?>
+                    <?php foreach($storecategoryList as $list): ?>
                     <tr>
                       <td><?= $list->name; ?></td>
                       <td><?= $this->wowrealm->getRealmName($list->realmid); ?></td>
@@ -42,8 +43,14 @@
                       </td>
                     </tr>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
+              </div>
+              <div class="uk-card-footer">
+                <div class="uk-text-right">
+                  <?php if (isset($storecategoryList) && is_array($storecategoryList)) echo $pagination_links; ?>
+                </div>
               </div>
             </div>
           </div>

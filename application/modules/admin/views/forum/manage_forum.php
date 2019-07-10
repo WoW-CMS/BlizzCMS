@@ -28,7 +28,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($this->admin_model->getForumCategoryList()->result() as $list): ?>
+                    <?php if(isset($forumcategoryList) && !empty($forumcategoryList)): ?>
+                    <?php foreach($forumcategoryList as $list): ?>
                     <tr>
                       <td><?= $list->name ?></td>
                       <td>
@@ -39,8 +40,14 @@
                       </td>
                     </tr>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                   </tbody>
                 </table>
+              </div>
+              <div class="uk-card-footer">
+                <div class="uk-text-right">
+                  <?php if (isset($forumcategoryList) && is_array($forumcategoryList)) echo $pagination_links; ?>
+                </div>
               </div>
             </div>
           </div>

@@ -56,9 +56,9 @@
       function AddCategoryForm(e) {
         e.preventDefault();
 
-        var name = $('#store_category_name').val();
-        var realm = $('#store_category_realm').val();
-        var route = $('#store_category_route').val();
+        var name = $.trim($('#store_category_name').val());
+        var realm = $.trim($('#store_category_realm').val());
+        var route = $.trim($('#store_category_route').val());
         if(name == ''){
           $.amaran({
             'theme': 'awesome error',

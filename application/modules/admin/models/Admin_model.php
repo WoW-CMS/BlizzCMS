@@ -33,13 +33,13 @@ class Admin_model extends CI_Model {
         $this->_offset = $offset;
     }
 
-    public function getAllAccounts()
+    public function countAccounts()
     {
         $this->db->from('users');
         return $this->db->count_all_results();
     }
 
-    public function AccountsList()
+    public function accountsList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('users')->result();
     }
@@ -354,13 +354,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllRealms()
+    public function countRealms()
     {
         $this->db->from('realms');
         return $this->db->count_all_results();
     }
 
-    public function RealmsList()
+    public function realmsList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('realms')->result();
     }
@@ -447,13 +447,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllSlides()
+    public function countSlides()
     {
         $this->db->from('slides');
         return $this->db->count_all_results();
     }
 
-    public function SlidesList()
+    public function slidesList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('slides')->result();
     }
@@ -525,13 +525,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllNews()
+    public function countNews()
     {
         $this->db->from('news');
         return $this->db->count_all_results();
     }
 
-    public function NewsList()
+    public function newsList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('news')->result();
     }
@@ -595,13 +595,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllChangelogs()
+    public function countChangelogs()
     {
         $this->db->from('changelogs');
         return $this->db->count_all_results();
     }
 
-    public function ChangelogsList()
+    public function changelogsList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('changelogs')->result();
     }
@@ -678,13 +678,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllPages()
+    public function countPages()
     {
         $this->db->from('pages');
         return $this->db->count_all_results();
     }
 
-    public function PagesList()
+    public function pagesList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('pages')->result();
     }
@@ -753,13 +753,13 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllTopsites()
+    public function countTopsites()
     {
         $this->db->from('votes');
         return $this->db->count_all_results();
     }
 
-    public function TopsitesList()
+    public function topsitesList()
     {
         return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('votes')->result();
     }
@@ -869,6 +869,17 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    public function countStoreCategories()
+    {
+        $this->db->from('store_categories');
+        return $this->db->count_all_results();
+    }
+
+    public function storeCategoryList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_categories')->result();
+    }
+
     public function getCategoryStore()
     {
         return $this->db->select('*')->get('store_categories');
@@ -963,9 +974,20 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllStoreItems()
+    public function countStoreItems()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('store_items');
+        $this->db->from('store_items');
+        return $this->db->count_all_results();
+    }
+
+    public function storeItemList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_items')->result();
+    }
+
+    public function getStoreItems()
+    {
+        return $this->db->select('*')->order_by('id', 'ASC')->get('store_items')->result();
     }
 
     public function getItemSpecifyRows($id)
@@ -1044,9 +1066,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getAllTopItems()
+    public function countStoreTop()
     {
-        return $this->db->select('*')->order_by('id', 'DESC')->get('store_top')->result();
+        $this->db->from('store_categories');
+        return $this->db->count_all_results();
+    }
+
+    public function storeTopList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_categories')->result();
     }
 
     public function getStoreTopSpecifyRows($id)
@@ -1150,9 +1178,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function getForumForumList()
+    public function countForumElements()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('forum');
+        $this->db->from('forum');
+        return $this->db->count_all_results();
+    }
+
+    public function forumElementList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('forum')->result();
     }
 
     public function getSpecifyForumRows($id)
@@ -1209,6 +1243,17 @@ class Admin_model extends CI_Model {
     {
         $this->db->where('id', $id)->delete('forum_category');
         return true;
+    }
+
+    public function countForumCategories()
+    {
+        $this->db->from('forum_category');
+        return $this->db->count_all_results();
+    }
+
+    public function forumCategoryList()
+    {
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('forum_category')->result();
     }
 
     public function getForumCategoryList()
