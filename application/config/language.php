@@ -27,30 +27,6 @@ $config['supported_languages'] = array(
      'folder' => 'english',
      'direction' => 'ltr',
      'codes' => array('en', 'english', 'en_US'),
-  ),
-  'bl' => array(
-     'name' => 'Bulgarian',
-     'folder' => 'bulgarian',
-     'direction' => 'ltr',
-     'codes' => array('bl', 'bulgarian', 'bg_BG'),
-  ),
-  'de' => array(
-     'name' => 'German',
-     'folder' => 'german',
-     'direction' => 'ltr',
-     'codes' => array('de', 'german', 'de_DE'),
-  ),
-  'fr' => array(
-     'name' => 'French',
-     'folder' => 'french',
-     'direction' => 'ltr',
-     'codes' => array('fr', 'french', 'fr_FR'),
-  ),
-  'ru' => array(
-    'name' => 'Russian',
-    'folder' => 'russian',
-    'direction' => 'ltr',
-    'codes' => array('ru', 'russian', 'ru_RU'),
   )
 );
 
