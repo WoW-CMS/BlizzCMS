@@ -1068,18 +1068,18 @@ class Admin_model extends CI_Model {
 
     public function countStoreTop()
     {
-        $this->db->from('store_categories');
+        $this->db->from('store_top');
         return $this->db->count_all_results();
     }
 
     public function storeTopList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_categories')->result();
+        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_top')->result();
     }
 
     public function getStoreTopSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_categories')->num_rows();
+        return $this->db->select('*')->where('id', $id)->get('store_top')->num_rows();
     }
 
     public function getTopSpecifyItem($id)
