@@ -36,10 +36,6 @@
  * @filesource
  */
 
-if(file_exists("migration/index.php")):
-    header("Location: migration");
-    die();
-endif;
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -317,19 +313,3 @@ switch (ENVIRONMENT)
  * And away we go...
  */
 require_once BASEPATH.'core/CodeIgniter.php';
-
-/*
- * --------------------------------------------------------------------
- * LOAD THE LICENSE FILE
- * --------------------------------------------------------------------
- *
- * And away we go...
- */
-	if (!file_exists(BASEPATH.'libraries/Wowcms.php'))
-	{
-		echo '<script type="text/javascript">
-						window.open("https://wow-cms.com","_self")
-				</script>';
-	} else {
-			require_once(BASEPATH.'libraries/Wowcms.php');
-	}
