@@ -56,6 +56,7 @@ $lang['admin_nav_store'] = 'Store';
 $lang['admin_nav_manage_store'] = 'Manage Store';
 $lang['admin_nav_forum'] = 'Forum';
 $lang['admin_nav_manage_forum'] = 'Manage Forum';
+$lang['admin_nav_logs'] = 'Logs System';
 
 /*Sections Lang*/
 $lang['section_general_settings'] = 'General Settings';
@@ -69,6 +70,8 @@ $lang['section_forum_elements'] = 'Forum Elements';
 $lang['section_store_categories'] = 'Store Categories';
 $lang['section_store_items'] = 'Store Items';
 $lang['section_store_top'] = 'Store TOP Items';
+$lang['section_logs_dp'] = 'Donation logs';
+$lang['section_logs_vp'] = 'Vote logs';
 
 /*Button Lang*/
 $lang['button_select'] = 'Select';
@@ -182,6 +185,15 @@ $lang['conf_smtp_username'] = 'SMTP Username';
 $lang['conf_smtp_password'] = 'SMTP Password';
 $lang['conf_sender_email'] = 'Sender Email';
 $lang['conf_sender_name'] = 'Sender Name';
+
+/*Logs */
+$lang['placeholder_logs_dp'] = 'Donation';
+$lang['placeholder_logs_quantity'] = 'Quantity';
+$lang['placeholder_logs_hash'] = 'Hash';
+$lang['placeholder_logs_voteid'] = 'Vote ID';
+$lang['placeholder_logs_points'] = 'Points';
+$lang['placeholder_logs_lasttime'] = 'Last time';
+$lang['placeholder_logs_expiredtime'] = 'Expired time';
 
 /*Status Lang*/
 $lang['status_completed'] = 'Completed';

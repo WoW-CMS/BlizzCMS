@@ -56,6 +56,7 @@ $lang['admin_nav_store'] = 'Tienda';
 $lang['admin_nav_manage_store'] = 'Administrar Tienda';
 $lang['admin_nav_forum'] = 'Foro';
 $lang['admin_nav_manage_forum'] = 'Administrar Foro';
+$lang['admin_nav_logs'] = 'Sistema de Logs';
 
 /*Sections Lang*/
 $lang['section_general_settings'] = 'Configuración General';
@@ -69,6 +70,8 @@ $lang['section_forum_elements'] = 'Elementos del Foro';
 $lang['section_store_categories'] = 'Categorías de la Tienda';
 $lang['section_store_items'] = 'Items de la Tienda';
 $lang['section_store_top'] = 'Items TOP de la Tienda';
+$lang['section_logs_dp'] = 'Logs de donación';
+$lang['section_logs_vp'] = 'Logs de votación';
 
 /*Button Lang*/
 $lang['button_select'] = 'Seleccionar';
@@ -182,6 +185,15 @@ $lang['conf_smtp_username'] = 'Usuario del SMTP';
 $lang['conf_smtp_password'] = 'Contraseña del SMTP';
 $lang['conf_sender_email'] = 'Correo electrónico del remitente';
 $lang['conf_sender_name'] = 'Nombre del remitente';
+
+/*Logs */
+$lang['placeholder_logs_dp'] = 'Donación';
+$lang['placeholder_logs_quantity'] = 'Cantidad';
+$lang['placeholder_logs_hash'] = 'Hash';
+$lang['placeholder_logs_voteid'] = 'ID de la Votación';
+$lang['placeholder_logs_points'] = 'Puntos';
+$lang['placeholder_logs_lasttime'] = 'Última vez';
+$lang['placeholder_logs_expiredtime'] = 'Tiempo para expirar';
 
 /*Status Lang*/
 $lang['status_completed'] = 'Terminado';
