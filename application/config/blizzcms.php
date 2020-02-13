@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = 'Dev-beta';
+$config['website_name'] = '';
 
 /**
  *
@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  * Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = 'WGGASD';
+$config['discord_invitation'] = '';
 
 /**
  *
@@ -44,7 +44,7 @@ $config['discord_invitation'] = 'WGGASD';
  * Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = 'local.blizzcms.test';
+$config['realmlist'] = '';
 
 /**
  *
@@ -62,7 +62,7 @@ $config['realmlist'] = 'local.blizzcms.test';
  * 8 = Battle for Azeroth
  *
 */
-$config['expansion'] = '8';
+$config['expansion'] = '';
 
 /**
  *
