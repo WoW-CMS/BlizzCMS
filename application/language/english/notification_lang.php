@@ -156,3 +156,5 @@ $lang['notification_rank_removed'] = 'The rank has been deleted.';
 $lang['notification_cms_updated'] = 'The CMS has been updated';
 $lang['notification_cms_update_error'] = 'The CMS could not be updated';
 $lang['notification_cms_not_updated'] = 'A new version has not been found to update';
+
+$lang['notification_select_category'] = 'It is not subcategory';

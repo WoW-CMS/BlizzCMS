@@ -9,6 +9,8 @@ application/config/blizzcms.php
 application/config/database.php
 application/config/plus.php
 
+migrations/*
+
 application/logs/*
 !application/logs/index.html
 
@@ -37,3 +39,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+migration/index.php
+migration/class/Core.php
+migration/class/index.html
+migration/config/config.php
+migration/config/index.html

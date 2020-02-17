@@ -12,11 +12,18 @@
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
                 <li><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></a></li>
                 <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
-                <li class="uk-parent <?php if($MultiRealm->id == $this->store_model->getCategoryRealm($route)) echo 'uk-open'; ?>">
+                <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
                   <ul class="uk-nav-sub">
                     <?php foreach ($this->store_model->getCategories($MultiRealm->realmID)->result() as $list): ?>
-                    <li <?php if($list->route == $route) echo 'class="uk-active"'; ?>><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?></a></li>
+                      <?php if($list->father == 0): ?>
+                        <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?></a></li>
+                      <?php elseif($list->id == $list->father) : ?>
+                        <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?></a></li>
+                        <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
+                          <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?></a></li>
+                        </ul>
+                      <?php endif; ?>
                     <?php endforeach; ?>
                   </ul>
                 </li>

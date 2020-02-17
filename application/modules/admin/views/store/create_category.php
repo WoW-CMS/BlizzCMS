@@ -13,7 +13,7 @@
             <?= form_open('', 'id="addcategoryForm" onsubmit="AddCategoryForm(event)"'); ?>
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
-                  <div class="uk-inline uk-width-1-2@s">
+                  <div class="uk-inline uk-width-1-3@s">
                     <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
                     <div class="uk-form-controls">
                       <div class="uk-inline uk-width-1-1">
@@ -22,13 +22,24 @@
                       </div>
                     </div>
                   </div>
-                  <div class="uk-inline uk-width-1-2@s">
+                  <div class="uk-inline uk-width-1-3@s">
                     <label class="uk-form-label"><?= $this->lang->line('table_header_realm'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="store_category_realm">
                         <option value="0"><?= $this->lang->line('notification_select_realm'); ?></option>
                         <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
                         <option value="<?= $MultiRealm->realmID ?>"><?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="uk-inline uk-width-1-3@s">
+                    <label class="uk-form-label"><?= $this->lang->line('table_header_subcategory'); ?></label>
+                    <div class="uk-form-controls">
+                      <select class="uk-select" id="store_category_father">
+                        <option value="0"><?= $this->lang->line('notification_select_category'); ?></option>
+                        <?php foreach ($this->admin_model->getCategoryStore()->result() as $Category): ?>
+                        <option value="<?= $Category->id ?>"><?= $Category->name ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
@@ -59,6 +70,8 @@
         var name = $.trim($('#store_category_name').val());
         var realm = $.trim($('#store_category_realm').val());
         var route = $.trim($('#store_category_route').val());
+        var father = $.trim($('#store_category_father').val());
+
         if(name == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -94,7 +107,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/store/category/add'); ?>",
           method:"POST",
-          data:{name, route, realm},
+          data:{name, route, realm, father},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

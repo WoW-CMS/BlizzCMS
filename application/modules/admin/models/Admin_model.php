@@ -819,14 +819,15 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function insertStoreCategory($name, $route, $realmid)
+    public function insertStoreCategory($name, $route, $realmid, $father)
     {
         if($this->StoreCategoryCheckRoute($route))
         {
             $data = array(
                 'name' => $name,
                 'route' => strtolower($route),
-                'realmid' => $realmid
+                'realmid' => $realmid,
+                'father' => $father
             );
 
             $this->db->insert('store_categories', $data);

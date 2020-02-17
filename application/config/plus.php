@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * https://www.google.com/recaptcha/admin#list
  *
 */
-$config['recaptcha_sitekey'] = '6LfJFEAUAAAAAKBrGYQaX-TeWGBG1vTNlqUuNyNA';
+$config['recaptcha_sitekey'] = '';
 
 /**
  *
@@ -20,9 +20,9 @@ $config['recaptcha_sitekey'] = '6LfJFEAUAAAAAKBrGYQaX-TeWGBG1vTNlqUuNyNA';
  * and account activation.
  *
 */
-$config['smtp_host'] = 'cp162176.hpdns.net';
-$config['smtp_user'] = 'dzy@dzywolf.me';
-$config['smtp_pass'] = 'r5hxfIazAXmn';
+$config['smtp_host'] = '';
+$config['smtp_user'] = '';
+$config['smtp_pass'] = '';
 $config['smtp_port'] = '465';
 $config['smtp_crypto'] = 'ssl';
 
@@ -33,8 +33,8 @@ $config['smtp_crypto'] = 'ssl';
  * Write the necessary information to use in sending emails.
  *
 */
-$config['email_settings_sender'] = 'dzy@dzywolf.me';
-$config['email_settings_sender_name'] = 'BlizzCMS';
+$config['email_settings_sender'] = '';
+$config['email_settings_sender_name'] = '';
 
 /**
  *
@@ -73,4 +73,4 @@ $config['mod_access_level'] = '2';
  * Still not licensed? Generate at https://wow-cms.com/en/licenses
  *
 */
-$config['license_plus'] = 'JPQOZ-GK0XI-6FOYT-FL94L';
+$config['license_plus'] = '';

@@ -83,6 +83,7 @@ $lang['button_grant'] = 'Grant';
 $lang['button_update_version'] = 'Update to latest version';
 
 /*Table header Lang*/
+$lang['table_header_subcategory'] = 'Select a subcategory';
 $lang['table_header_race'] = 'Race';
 $lang['table_header_class'] = 'Class';
 $lang['table_header_level'] = 'Level';

@@ -281,4 +281,9 @@ class Store_model extends CI_Model {
         else
             return 'insPoints';
     }
+
+    public function getChildStoreCategory($id)
+    {
+        return $this->db->select('*')->where('father', $id)->get('store_categories');
+    }
 }
