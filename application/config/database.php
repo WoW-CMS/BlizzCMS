@@ -6,7 +6,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-    'hostname' => '%HOSTNAME%',
+	'hostname' => '%HOSTNAME%',
 	'username' => '%USERNAME%',
 	'password' => '%PASSWORD%',
 	'database' => '%DATABASE%',
@@ -28,10 +28,10 @@ $db['default'] = array(
 
 $db['auth'] = array(
 	'dsn'	=> '',
-    'hostname' => '%HOSTNAME%',
-	'username' => '%USERNAME%',
-	'password' => '%PASSWORD%',
-	'database' => '%DATABASE%',
+	'hostname' => '%HOSTNAME2%',
+	'username' => '%USERNAME2%',
+	'password' => '%PASSWORD2%',
+	'database' => '%DATABASE2%',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

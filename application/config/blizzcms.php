@@ -94,4 +94,4 @@ $config['social_youtube'] = '';
  * Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '0';
+$config['migrate_status'] = '1';
