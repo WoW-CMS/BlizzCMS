@@ -8,11 +8,11 @@ class Migration_alter_store_menu extends CI_Migration {
     {
       $this->dbforge->add_column('store_categories', array(
               'main' => array(
-                'type' => 'INT',
-                'constraint' => '10',
-                'default' => '1',
-                'after' => 'name'
-              )
+                      'type' => 'INT',
+                      'constraint' => '10',
+                      'default' => '1',
+                      'after' => 'name'
+              ),
               'father' => array(
                       'type' => 'INT',
                       'constraint' => '10',
