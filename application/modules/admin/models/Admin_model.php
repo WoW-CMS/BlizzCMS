@@ -823,12 +823,25 @@ class Admin_model extends CI_Model {
     {
         if($this->StoreCategoryCheckRoute($route))
         {
-            $data = array(
-                'name' => $name,
-                'route' => strtolower($route),
-                'realmid' => $realmid,
-                'father' => $father
-            );
+            if($father == 0)  // Por lo cual no es subcategoria
+            {
+                $data = array(
+                    'name' => $name,
+                    'route' => strtolower($route),
+                    'realmid' => $realmid,
+                    'main' => '2',
+                    'father' => $father
+                );
+            } else {
+                $data = array(
+                    'name' => $name,
+                    'route' => strtolower($route),
+                    'realmid' => $realmid,
+                    'main' => '1',
+                    'father' => $father
+                );
+            }
+
 
             $this->db->insert('store_categories', $data);
             return true;

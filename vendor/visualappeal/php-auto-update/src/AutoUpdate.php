@@ -197,7 +197,7 @@ class AutoUpdate
     public function __construct($tempDir = null, $installDir = null, $maxExecutionTime = 60)
     {
         // Init logger
-        $this->log = new Logger('auto-update');
+        $this->log = new Logger('WOW-CMS.COM UPDATER');
         $this->log->pushHandler(new NullHandler());
 
         $this->setTempDir(($tempDir !== null) ? $tempDir : __DIR__ . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR);

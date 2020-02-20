@@ -107,6 +107,11 @@ class Store_model extends CI_Model {
         return $this->db->select('*')->where('realmid', $realmid)->get('store_categories');
     }
 
+    public function getSubCategories($realmid, $idfather)
+    {
+        return $this->db->select('*')->where('realmid', $realmid)->where('father', $idfather)->get('store_categories');
+    }
+
     public function getItem($id)
     {
         return $this->db->select('*')->where('id', $id)->get('store_items')->row_array();

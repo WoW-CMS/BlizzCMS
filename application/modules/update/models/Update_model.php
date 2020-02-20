@@ -18,7 +18,7 @@ class Update_model extends CI_Model
 
     public function getCurrentVersion()
     {
-        $version = '1.0.5';
+        $version = '1.0.6';
         return $version;
     }
 
@@ -40,7 +40,7 @@ class Update_model extends CI_Model
 
     public function checkUpdates()
     {
-        $update = new AutoUpdate(FCPATH.'/temp', FCPATH.'/', 60);
+        $update = new AutoUpdate(FCPATH.'temp', FCPATH.'', 60);
         $update->setCurrentVersion($this->getCurrentVersion()); // Current version of your application. This value should be from a database or another file which will be updated with the installation of a new version
         $update->setUpdateUrl('https://wow-cms.com'); //Replace the url with your server update url
 
