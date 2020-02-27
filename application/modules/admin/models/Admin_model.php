@@ -521,7 +521,6 @@ class Admin_model extends CI_Model {
     public function delSpecifyNew($id)
     {
         $this->db->where('id', $id)->delete('news');
-        $this->db->where('id_new', $id)->delete('news_top');
         return true;
     }
 
