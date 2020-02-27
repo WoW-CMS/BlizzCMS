@@ -283,3 +283,4 @@ $route[$lang.'/admin/forum/category/delete'] = 'admin/deleteforumcategory';
 
 /*Check*/
 $route[$lang.'/admin/checksoap'] = 'admin/checkSoap';
+

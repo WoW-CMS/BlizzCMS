@@ -3,118 +3,119 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Store_model extends CI_Model {
 
+    protected $top;
+    protected $item;
+    protected $categories;
+
     /**
      * Store_model constructor.
      */
     public function __construct()
     {
-        parent::__construct();
+        $this->top = 'store_top';
+        $this->item = 'store_items';
+        $this->categories = 'store_categories';
     }
 
     public function getStoreTop()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->limit('15')->get('store_top')->result();
+        return $this->db->select('*')->order_by('id', 'ASC')->limit('15')->get($this->top)->result();
     }
 
     public function getName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('store_items')->row('name');
+        return $this->db->select('name')->where('id', $id)->get($this->item)->row('name');
     }
 
     public function getDescription($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('store_items')->row('description');
+        return $this->db->select('description')->where('id', $id)->get($this->item)->row('description');
     }
 
     public function getCategory($id)
     {
-        return $this->db->select('category')->where('id', $id)->get('store_items')->row('category');
+        return $this->db->select('category')->where('id', $id)->get($this->item)->row('category');
     }
 
     public function getType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('store_items')->row('type');
+        return $this->db->select('type')->where('id', $id)->get($this->item)->row('type');
     }
 
     public function getPriceType($id)
     {
-        return $this->db->select('price_type')->where('id', $id)->get('store_items')->row('price_type');
+        return $this->db->select('price_type')->where('id', $id)->get($this->item)->row('price_type');
     }
 
     public function getPriceDP($id)
     {
-        return $this->db->select('dp')->where('id', $id)->get('store_items')->row('dp');
+        return $this->db->select('dp')->where('id', $id)->get($this->item)->row('dp');
     }
 
     public function getPriceVP($id)
     {
-        return $this->db->select('vp')->where('id', $id)->get('store_items')->row('vp');
+        return $this->db->select('vp')->where('id', $id)->get($this->item)->row('vp');
     }
 
     public function getIcon($id)
     {
-        return $this->db->select('icon')->where('id', $id)->get('store_items')->row('icon');
+        return $this->db->select('icon')->where('id', $id)->get($this->item)->row('icon');
     }
 
     public function getCommand($id)
     {
-        return $this->db->select('command')->where('id', $id)->get('store_items')->row('command');
+        return $this->db->select('command')->where('id', $id)->get($this->item)->row('command');
     }
 
     public function getItemExist($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_items')->num_rows();
+        return $this->db->select('*')->where('id', $id)->get($this->item)->num_rows();
     }
 
     public function getRoute($id)
     {
-        return $this->db->select('route')->where('id', $id)->get('store_categories')->row('route');
+        return $this->db->select('route')->where('id', $id)->get($this->categories)->row('route');
     }
 
     public function getCategoryExist($route)
     {
-        return $this->db->select('route')->where('route', $route)->get('store_categories')->num_rows();
+        return $this->db->select('route')->where('route', $route)->get($this->categories)->num_rows();
     }
 
     public function getCategoryId($route)
     {
-        return $this->db->select('id')->where('route', $route)->get('store_categories')->row('id');
+        return $this->db->select('id')->where('route', $route)->get($this->categories)->row('id');
     }
 
     public function getCategoryName($route)
     {
-        return $this->db->select('name')->where('route', $route)->get('store_categories')->row('name');
+        return $this->db->select('name')->where('route', $route)->get($this->categories)->row('name');
     }
 
     public function getCategoryRealm($route)
     {
-        return $this->db->select('realmid')->where('route', $route)->get('store_categories')->row('realmid');
+        return $this->db->select('realmid')->where('route', $route)->get($this->categories)->row('realmid');
     }
 
     public function getCategoryRealmId($category)
     {
-        return $this->db->select('realmid')->where('id', $category)->get('store_categories')->row('realmid');
+        return $this->db->select('realmid')->where('id', $category)->get($this->categories)->row('realmid');
     }
 
     public function getCategoryItems($route)
     {
         $id = $this->getCategoryId($route);
-        return $this->db->select('*')->where('category', $id)->get('store_items')->result();
+        return $this->db->select('*')->where('category', $id)->get($this->item)->result();
     }
 
     public function getCategories($realmid)
     {
-        return $this->db->select('*')->where('realmid', $realmid)->get('store_categories');
-    }
-
-    public function getSubCategories($realmid, $idfather)
-    {
-        return $this->db->select('*')->where('realmid', $realmid)->where('father', $idfather)->get('store_categories');
+        return $this->db->select('*')->where('realmid', $realmid)->get($this->categories);
     }
 
     public function getItem($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_items')->row_array();
+        return $this->db->select('*')->where('id', $id)->get($this->item)->row_array();
     }
 
     public function insertStoreLog($accountid, $charid, $name, $type, $pricetype, $dp, $vp)
@@ -289,6 +290,6 @@ class Store_model extends CI_Model {
 
     public function getChildStoreCategory($id)
     {
-        return $this->db->select('*')->where('father', $id)->get('store_categories');
+        return $this->db->select('*')->where('father', $id)->get($this->categories);
     }
 }

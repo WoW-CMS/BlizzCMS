@@ -819,30 +819,24 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function insertStoreCategory($name, $route, $realmid, $father)
+    public function getDropDownsSpecify()
+    {
+        return $this->db->select('*')->where('main', '2')->where('father', '0')->get('store_categories');
+
+    }
+
+    public function insertStoreCategory($name, $route, $realmid, $main, $father)
     {
         if($this->StoreCategoryCheckRoute($route))
         {
-            if($father == 0)  // Por lo cual no es subcategoria
-            {
-                $data = array(
-                    'name' => $name,
-                    'route' => strtolower($route),
-                    'realmid' => $realmid,
-                    'main' => '2',
-                    'father' => $father
-                );
-            } else {
-                $data = array(
-                    'name' => $name,
-                    'route' => strtolower($route),
-                    'realmid' => $realmid,
-                    'main' => '1',
-                    'father' => $father
-                );
-            }
-
-
+            $data = array(
+                'name' => $name,
+                'route' => strtolower($route),
+                'realmid' => $realmid,
+                'main' => $main,
+                'father' => $father
+            );
+    
             $this->db->insert('store_categories', $data);
             return true;
         }

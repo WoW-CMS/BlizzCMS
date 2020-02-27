@@ -34,24 +34,38 @@
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-3@s">
-                    <label class="uk-form-label"><?= $this->lang->line('table_header_subcategory'); ?></label>
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
                     <div class="uk-form-controls">
-                      <select class="uk-select" id="store_category_father">
-                        <option value="0"><?= $this->lang->line('notification_select_category'); ?></option>
-                        <?php foreach ($this->admin_model->getCategoryStore()->result() as $Category): ?>
-                        <option value="<?= $Category->id ?>"><?= $Category->name ?></option>
-                        <?php endforeach; ?>
+                      <select class="uk-select" id="store_category_main">
+                        <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                        <option value="1"><?= $this->lang->line('option_normal'); ?></option>
+                        <option value="2"><?= $this->lang->line('option_dropdown'); ?></option>
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
-                <div class="uk-form-controls">
+              <div class="uk-grid-small" uk-grid>
+                <div class="uk-inline uk-width-1-2@s">
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_child_menu'); ?> <span class="uk-text-bold">(<?= $this->lang->line('table_header_id'); ?>)</span></label>
+                  <div class="uk-form-controls">
+                      <select class="uk-select" id="store_category_child">
+                        <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                        <?php foreach($this->admin_model->getDropDownsSpecify()->result() as $child): ?>
+                          <option value="<?= $child->id ?>"><?= $child->name ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                  </div>
+                </div>
+                <div class="uk-inline uk-width-1-2@s">
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
+                  <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
                     <input class="uk-input" type="text" id="store_category_route" placeholder="<?= $this->lang->line('placeholder_route'); ?>" required>
                   </div>
+                </div>
                 </div>
               </div>
               <div class="uk-margin-small">
@@ -70,7 +84,8 @@
         var name = $.trim($('#store_category_name').val());
         var realm = $.trim($('#store_category_realm').val());
         var route = $.trim($('#store_category_route').val());
-        var father = $.trim($('#store_category_father').val());
+        var main = $.trim($('#store_category_main').val());
+        var father = $.trim($('#store_category_child').val());
 
         if(name == ''){
           $.amaran({
@@ -107,7 +122,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/store/category/add'); ?>",
           method:"POST",
-          data:{name, route, realm, father},
+          data:{name, route, realm, main, father},
           dataType:"text",
           beforeSend: function(){
             $.amaran({

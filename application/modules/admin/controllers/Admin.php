@@ -1035,9 +1035,10 @@ class Admin extends MX_Controller {
         $name = $this->input->post('name');
         $route = $this->input->post('route');
         $realm = $this->input->post('realm');
-        $father = $this->input->post('father', FALSE);
+        $main = $this->input->post('main');
+        $father = $this->input->post('father');
 
-        echo $this->admin_model->insertStoreCategory($name, $route, $realm, $father);
+        echo $this->admin_model->insertStoreCategory($name, $route, $realm, $main, $father);
     }
 
     public function updatestorecategory()
@@ -1046,8 +1047,7 @@ class Admin extends MX_Controller {
         $name = $this->input->post('name');
         $route = $this->input->post('route');
         $realm = $this->input->post('realm');
-        $father = $this->input->post('father');
-        echo $this->admin_model->updateSpecifyStoreCategory($id, $name, $route, $realm, $father);
+        echo $this->admin_model->updateSpecifyStoreCategory($id, $name, $route, $realm);
     }
 
     public function deletestorecategory()

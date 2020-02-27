@@ -12,19 +12,21 @@
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
                 <li><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></a></li>
                 <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
-                <li class="uk-parent">
+                  <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
-                  <ul class="uk-nav-sub">
-                    <?php foreach ($this->store_model->getCategories($MultiRealm->realmID)->result() as $list): ?>
-                      <?php if($list->main == 2 and $list->father == 0): ?>
+                  <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav>
+                  <?php foreach ($this->store_model->getCategories($MultiRealm->realmID)->result() as $list): ?>
+                      <?php if($list->main == 2): ?>
                         <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?> </a></li>
-                      <?php elseif($list->main == 1) : ?>
-                        <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?>  (menu)</a></li>
-                        <?php foreach ($this->store_model->getSubCategories($MultiRealm->realmID, $list->id)->result() as $submenu): ?>
-                        <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
-                          <li><a href="<?= base_url('store/'.$list->route); ?>"><i class="fas fa-tag"></i> <?= $list->name ?></a></li>
-                        </ul>
+                      <?php elseif($list->main == 1 and $list->father == 0) : ?>
+                        <li class="uk-parent">
+                        <a href="#"><?= $list->name ?></a>
+                          <ul class="uk-nav-sub">
+                        <?php foreach($this->store_model->getChildStoreCategory($list->id)->result() as $child): ?>
+                            <li><a href="<?= base_url('store/'.$child->route); ?>"><?= $child->name ?></a></li>
                         <?php endforeach; ?>
+                          </ul>
+                        </li>
                       <?php endif; ?>
                     <?php endforeach; ?>
                   </ul>
