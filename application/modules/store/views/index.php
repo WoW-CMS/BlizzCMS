@@ -19,15 +19,15 @@
                       <?php foreach($this->store_model->getCategories($MultiRealm->realmID)->result() as $menulist): ?>
                         <?php if($menulist->main == '2' && $menulist->father == '0'): ?>
                         <li class="uk-parent">
-                            <a href="#"><?= $menulist->name ?></a>
+                            <a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menulist->name ?></a>
                             <ul class="uk-nav-sub">
                                 <?php foreach ($this->store_model->getChildStoreCategory($menulist->id)->result() as $menuchildlist): ?>
-                                  <li><a href="#"><?= $menuchildlist->name ?></a></li>
+                                  <li><a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menuchildlist->name ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </li>
                         <?php elseif($menulist->main == '1' && $menulist->father == '0'): ?>
-                        <li><a href="#"><?= $menulist->name ?></a></li>
+                        <li><a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menulist->name ?></a></li>
                         <?php endif; ?>
                       <?php endforeach; ?>
                   </ul>
