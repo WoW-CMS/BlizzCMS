@@ -54,15 +54,26 @@ class User extends MX_Controller {
         if ($this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
+
         if ($this->wowgeneral->getExpansionAction() == 1)
         {
-            $data = array(
+            if($this->wowgeneral->getEmulatorAction() == 1){
+                $data = array(
+                    'pagetitle' => $this->lang->line('tab_login'),
+                    'recapKey' => $this->config->item('recaptcha_sitekey'),
+                    'lang' => $this->lang->lang(),
+                );
+    
+                $this->template->build('login2', $data);
+            }else{
+            
+                $data = array(
                 'pagetitle' => $this->lang->line('tab_login'),
                 'recapKey' => $this->config->item('recaptcha_sitekey'),
                 'lang' => $this->lang->lang(),
             );
-
-            $this->template->build('login1', $data);
+                $this->template->build('login1', $data);
+            }
         }
         else
         {
@@ -89,6 +100,8 @@ class User extends MX_Controller {
         $password = $this->input->post('password');
         echo $this->user_model->checkloginbattle($email, $password);
     }
+
+
 
     public function register()
     {

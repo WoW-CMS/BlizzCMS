@@ -22,7 +22,7 @@
                             <a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menulist->name ?></a>
                             <ul class="uk-nav-sub">
                                 <?php foreach ($this->store_model->getChildStoreCategory($menulist->id)->result() as $menuchildlist): ?>
-                                  <li><a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menuchildlist->name ?></a></li>
+                                  <li><a href="<?= base_url('/store/'.$menuchildlist->name) ?>"><?= $menuchildlist->name ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </li>

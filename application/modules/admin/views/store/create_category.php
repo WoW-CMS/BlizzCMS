@@ -52,7 +52,7 @@
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_child_menu'); ?> <span class="uk-text-bold">(<?= $this->lang->line('table_header_id'); ?>)</span></label>
                   <div class="uk-form-controls">
                       <select class="uk-select" id="store_category_child">
-                        <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                        <option value="0"><?= $this->lang->line('notification_select_category'); ?></option>
                         <?php foreach($this->admin_model->getDropDownsSpecify()->result() as $child): ?>
                           <option value="<?= $child->id ?>"><?= $child->name ?></option>
                         <?php endforeach; ?>

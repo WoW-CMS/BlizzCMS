@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  * Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = '';
+$config['discord_invitation'] = 'WJ7SFmy';
 
 /**
  *
@@ -45,6 +45,16 @@ $config['discord_invitation'] = '';
  *
 */
 $config['realmlist'] = '';
+
+/**
+ * Emulator Supported
+ * 
+ * true = Legacy Emulator (https://github.com/The-Cataclysm-Preservation-Project/TrinityCore)
+ * false = Disabled this feature (BlizzCMS - Old)
+ * 
+ */
+
+ $config['emulator_legacy'] = true;
 
 /**
  *
@@ -62,7 +72,7 @@ $config['realmlist'] = '';
  * 8 = Battle for Azeroth
  *
 */
-$config['expansion'] = '';
+$config['expansion'] = '4';
 
 /**
  *
@@ -94,4 +104,4 @@ $config['social_youtube'] = '';
  * Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '1';
+$config['migrate_status'] = '0';

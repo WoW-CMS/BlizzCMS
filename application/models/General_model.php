@@ -58,6 +58,22 @@ class General_model extends CI_Model {
             return '0';
     }
 
+    public function getEmulatorAction()
+    {
+        $emulator = $this->config->item('emulator_legacy');
+
+        if($emulator == true)
+        {
+            switch($emulator)
+            {
+                case true:
+                    return "1";
+                break;
+            }
+        }
+
+    }
+
     public function getExpansionAction()
     {
         $expansion = $this->config->item('expansion');

@@ -251,14 +251,42 @@ class User_model extends CI_Model {
                         {
                             if ($this->wowgeneral->getExpansionAction() == 1)
                             {
-                                $data = array(
-                                    'username' => $username,
-                                    'sha_pass_hash' => $passwordAc,
-                                    'email' => $email,
-                                    'expansion' => $expansion,
-                                );
+                                if($this->wowgeneral->getEmulatorAction() == 1)
+                                {
+                                    $data = array(
+                                        'username' => $username,
+                                        'sha_pass_hash' => $passwordAc,
+                                        'email' => $email,
+                                        'expansion' => $expansion,
+                                        'battlenet_index' => '1',
+                                    );
+    
+                                    $this->auth->insert('account', $data);
+    
+                                    $id = $this->wowauth->getIDAccount($username);
+    
+                                    $data1 = array(
+                                        'id' => $id,
+                                        'email' => $email,
+                                        'sha_pass_hash' => $passwordBn,
+                                    );
+    
+                                    $this->auth->insert('battlenet_accounts', $data1);
+    
+                                    $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
+                                }
+                                else
+                                {
+                                    $data = array(
+                                        'username' => $username,
+                                        'sha_pass_hash' => $passwordAc,
+                                        'email' => $email,
+                                        'expansion' => $expansion,
+                                    );
+    
+                                    $this->auth->insert('account', $data);
+                                }
 
-                                $this->auth->insert('account', $data);
                             }
                             else
                             {
