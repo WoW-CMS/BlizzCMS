@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  * Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = 'WJ7SFmy';
+$config['discord_invitation'] = '';
 
 /**
  *
@@ -54,7 +54,7 @@ $config['realmlist'] = '';
  * 
  */
 
- $config['emulator_legacy'] = true;
+ $config['emulator_legacy'] = false;
 
 /**
  *
@@ -72,7 +72,7 @@ $config['realmlist'] = '';
  * 8 = Battle for Azeroth
  *
 */
-$config['expansion'] = '4';
+$config['expansion'] = '';
 
 /**
  *
@@ -104,4 +104,4 @@ $config['social_youtube'] = '';
  * Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '0';
+$config['migrate_status'] = '1';
