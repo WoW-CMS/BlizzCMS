@@ -57,10 +57,12 @@ $lang['notification_captcha_error'] = 'Por favor revise el captcha';
 $lang['notification_password_lenght_error'] = 'Longitud de contraseña incorrecta. Por favor, use una contraseña entre 5 y 16 caracteres';
 $lang['notification_account_already_exist'] = 'Esta cuenta ya existe';
 $lang['notification_password_not_match'] = 'Las contraseñas no coinciden';
+$lang['notification_usernamepass_not_match'] = 'La contraseña no coincide con este usuario';
 $lang['notification_same_password'] = 'La contraseña es la misma.';
 $lang['notification_currentpass_not_match'] = 'La contraseña actual no es correcta';
 $lang['notification_used_email'] = 'El Correo ya está en uso';
 $lang['notification_email_not_match'] = 'Los correos electrónicos no coinciden';
+$lang['notification_username_not_match'] = 'El usuario no coincide';
 $lang['notification_expansion_not_found'] = 'Expansión no encontrada';
 $lang['notification_valid_key'] = 'Cuenta activada';
 $lang['notification_valid_key_desc'] = 'Ahora puedes iniciar sesión con tu cuenta.';
@@ -68,6 +70,7 @@ $lang['notification_invalid_key'] = 'La clave de activación proporcionada no es
 
 /*Notification Message (General) Lang*/
 $lang['notification_email_changed'] = 'El correo electrónico ha sido cambiado.';
+$lang['notification_username_changed'] = 'El usuario ha sido cambiado.';
 $lang['notification_password_changed'] = 'La contraseña ha sido cambiada.';
 $lang['notification_avatar_changed'] = 'El avatar ha sido cambiado.';
 $lang['notification_wrong_values'] = 'Los valores son incorrectos';

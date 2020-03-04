@@ -21,6 +21,7 @@ class Auth_model extends CI_Model {
     {
         $data = array(
             'wow_sess_username'  => $this->getUsernameID($id),
+            'blizz_sess_username' => $this->getSiteUsernameID($id),
             'wow_sess_email'     => $this->getEmailID($id),
             'wow_sess_id'        => $id,
             'wow_sess_expansion'	=> $this->getExpansionID($id),
@@ -47,6 +48,11 @@ class Auth_model extends CI_Model {
     public function getUsernameID($id)
     {
         return $this->auth->select('username')->where('id', $id)->get('account')->row('username');
+    }
+
+    public function getSiteUsernameID($id)
+    {
+        return $this->db->select('username')->where('id', $id)->get('users')->row('username');
     }
 
     public function getEmailID($id)

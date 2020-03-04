@@ -207,6 +207,15 @@ class User extends MX_Controller {
         $this->template->build('settings', $data);
     }
 
+    public function newusername()
+    {
+        $username = $this->input->post('newusername');
+        $renewusername = $this->input->post('renewusername');
+        $password = $this->input->post('password');
+
+        echo $this->user_model->changeUsername($username, $renewusername, $password);
+    }
+
     public function newpass()
     {
         $oldpass = $this->input->post('oldpass');

@@ -30,6 +30,60 @@
           </div>
           <div class="uk-width-3-4@m">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('button_account_settings'); ?></h4>
+            <!-- Start div change username -->
+            <div class="uk-card-default myaccount-card uk-margin-small">
+                <div class="uk-card-header">
+                  <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= $this->lang->line('panel_change_username'); ?></h5>
+                </div>
+
+                <!-- Start card body changeUsername -->
+                <div class="uk-card-body">
+                  <?= form_open('', 'id="changeUsernameForm" onsubmit="ChangeUsernameForm(event)"') ?>
+                    <div class="uk-margin uk-light">
+                      <label class="uk-form-label"><?= $this->lang->line('panel_current_username'); ?>: </label>
+                      <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                          <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
+                          <input class="uk-input uk-disabled" type="text" placeholder="<?= $this->wowauth->getSiteUsernameID($this->session->userdata('wow_sess_id')); ?>" disabled>
+                        </div>
+                      </div>
+                    <div class="uk-margin uk-light">
+                      <div class="uk-grid uk-grid-small" data-uk-grid>
+                        <div class="uk-inline uk-width-1-2@s">
+                          <label class="uk-form-label"><?= $this->lang->line('placeholder_new_username'); ?>:</label>
+                          <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                              <span class="uk-form-icon"><i class="far fa-user fa-lg"></i> </span>
+                              <input class="uk-input" id="change_newusername" type="text" placeholder="<?= $this->lang->line('placeholder_new_username'); ?>" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="uk-inline uk-width-1-2@s">
+                          <label class="uk-form-label"><?= $this->lang->line('placeholder_confirm_username'); ?>:</label>
+                          <div class="uk-form-controls">
+                            <div class="uk-inline uk-width-1-1">
+                              <span class="uk-form-icon"><i class="far fa-user fa-lg"></i> </span>
+                              <input class="uk-input" id="change_renewusername" type="text" placeholder="<?= $this->lang->line('placeholder_confirm_username'); ?>" required>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                    </div>
+                  <div class="uk-margin uk-light">
+                    <div class="uk-form-controls">
+                      <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
+                        <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="uk-margin">
+                    <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> Guardar Cambios</button>
+                  </div>
+                  <?= form_close(); ?>
+                </div>
+            </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h5>
@@ -154,6 +208,112 @@
     </section>
 
     <script>
+      function ChangeUsernameForm(e) {
+        e.preventDefault();
+
+        var newusername = $('#change_newusername').val();
+        var renewusername = $('#change_renewusername').val();
+        var password = $('#change_password').val();
+
+
+        if(newusername == '' || renewusername == '') {
+          $.amaran({
+            'theme': 'awesome error',
+            'content': {
+              title: '<?=$this->lang->line('notification_title_error'); ?>',
+              message: '<?=$this->lang->line('notification_username_empty');?>',
+              info: '',
+              icon: 'fas fa-times-circle'
+            },
+            'delay': 5000,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight'
+          });
+          return false;
+        }
+        $.ajax({
+          url:"<?= base_url($lang.'/changeusername'); ?>",
+          method:"POST",
+          data:{newusername, renewusername, password},
+          dataType:"text",
+          beforeSend: function(){
+            $.amaran({
+              'theme': 'awesome info',
+              'content': {
+                title: '<?= $this->lang->line('notification_title_info'); ?>',
+                message: '<?= $this->lang->line('notification_checking'); ?>',
+                info: '',
+                icon: 'fas fa-sign-in-alt'
+              },
+              'delay': 5000,
+              'position': 'top right',
+              'inEffect': 'slideRight',
+              'outEffect': 'slideRight'
+            });
+          },
+          success:function(response){
+            if(!response)
+              alert(response);
+
+            if (response == 'epassnotMatch') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_usernamepass_not_match'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              $('#changeemailForm')[0].reset();
+              return false;
+            }
+
+            if (response == 'enoMatch') {
+              $.amaran({
+                'theme': 'awesome error',
+                'content': {
+                  title: '<?= $this->lang->line('notification_title_error'); ?>',
+                  message: '<?= $this->lang->line('notification_username_not_match'); ?>',
+                  info: '',
+                  icon: 'fas fa-times-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+              $('#changeemailForm')[0].reset();
+              return false;
+            }
+
+            if (response) {
+              $.amaran({
+                'theme': 'awesome ok',
+                  'content': {
+                  title: '<?= $this->lang->line('notification_title_success'); ?>',
+                  message: '<?= $this->lang->line('notification_username_changed'); ?>',
+                  info: '',
+                  icon: 'fas fa-check-circle'
+                },
+                'delay': 5000,
+                'position': 'top right',
+                'inEffect': 'slideRight',
+                'outEffect': 'slideRight'
+              });
+            }
+
+            $('#changeUsernameForm')[0].reset();
+            window.location.replace("<?= base_url('logout'); ?>");
+          }
+        });
+      }
+                        
       function ChangeEmailForm(e) {
         e.preventDefault();
 

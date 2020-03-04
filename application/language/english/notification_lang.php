@@ -59,8 +59,10 @@ $lang['notification_account_already_exist'] = 'This account already exists';
 $lang['notification_password_not_match'] = 'Passwords do not match';
 $lang['notification_same_password'] = 'The password is the same.';
 $lang['notification_currentpass_not_match'] = 'Old Password do not match';
+$lang['notification_usernamepass_not_match'] = 'The password do not match for this username';
 $lang['notification_used_email'] = 'Email in use';
 $lang['notification_email_not_match'] = 'Email do not match';
+$lang['notification_username_not_match'] = 'Username do not match';
 $lang['notification_expansion_not_found'] = 'Expansion not found';
 $lang['notification_valid_key'] = 'Account Activated';
 $lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';
@@ -68,6 +70,7 @@ $lang['notification_invalid_key'] = 'The activation key provided is not valid.';
 
 /*Notification Message (General) Lang*/
 $lang['notification_email_changed'] = 'The email has been changed.';
+$lang['notification_username_changed'] = 'The username has been changed.';
 $lang['notification_password_changed'] = 'The password has been changed.';
 $lang['notification_avatar_changed'] = 'The avatar has been changed.';
 $lang['notification_wrong_values'] = 'The values are wrong';

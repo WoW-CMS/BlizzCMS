@@ -34,7 +34,7 @@
                   <?php else: ?>
                   <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('wow_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
+                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('blizz_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -143,7 +143,7 @@
                 <?php else: ?>
                 <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
                 <?php endif; ?>
-                <span class="uk-label"><?= $this->session->userdata('wow_sess_username'); ?></span>
+                <span class="uk-label"><?= $this->session->userdata('blizz_sess_username'); ?></span>
               </div>
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>

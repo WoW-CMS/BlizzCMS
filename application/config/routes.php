@@ -79,6 +79,7 @@ $route[$lang.'/settings'] = 'user/settings';
 $route[$lang.'/changemail'] = 'user/newemail';
 $route[$lang.'/changepass'] = 'user/newpass';
 $route[$lang.'/changeavatar'] = 'user/newavatar';
+$route[$lang.'/changeusername'] = 'user/newusername';
 
 /*Vote*/
 $route[$lang.'/vote'] = 'vote/index';
