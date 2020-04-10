@@ -12,28 +12,26 @@
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
                 <li><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></a></li>
                 <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
-                  <li class="uk-parent">
+                <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
                   <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav>
-                    <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                      <?php foreach($this->store_model->getCategories($MultiRealm->realmID)->result() as $menulist): ?>
-                        <?php if($menulist->main == '2' && $menulist->father == '0'): ?>
-                        <li class="uk-parent">
-                            <a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menulist->name ?></a>
-                            <ul class="uk-nav-sub">
-                                <?php foreach ($this->store_model->getChildStoreCategory($menulist->id)->result() as $menuchildlist): ?>
-                                  <li><a href="<?= base_url('/store/'.$menuchildlist->name) ?>"><?= $menuchildlist->name ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </li>
-                        <?php elseif($menulist->main == '1' && $menulist->father == '0'): ?>
-                        <li><a href="<?= base_url('/store/'.$menulist->name) ?>"><?= $menulist->name ?></a></li>
-                        <?php endif; ?>
-                      <?php endforeach; ?>
+                    <?php foreach($this->store_model->getCategories($MultiRealm->realmID)->result() as $menulist): ?>
+                    <?php if($menulist->main == '2' && $menulist->father == '0'): ?>
+                    <li class="uk-parent">
+                      <a href="#"><?= $menulist->name ?></a>
+                      <ul class="uk-nav-sub">
+                        <?php foreach ($this->store_model->getChildStoreCategory($menulist->id)->result() as $menuchildlist): ?>
+                        <li><a href="<?= base_url('store/'.$menuchildlist->route) ?>"><?= $menuchildlist->name ?></a></li>
+                        <?php endforeach; ?>
+                      </ul>
+                    </li>
+                    <?php elseif($menulist->main == '1' && $menulist->father == '0'): ?>
+                    <li><a href="<?= base_url('store/'.$menulist->route) ?>"><?= $menulist->name ?></a></li>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                   </ul>
-                </ul>
                 </li>
-              <?php endforeach; ?>
+                <?php endforeach; ?>
               </ul>
             </div>
           </div>
