@@ -127,17 +127,21 @@ class Store extends MX_Controller {
         $rowid = $this->input->get('rowid');
         $qty = $this->input->get('qty');
 
-        if(!empty($rowid) && !empty($qty))
-        {
+        $qty = (ctype_digit((string) $qty) && $qty != 0) ? $qty : 0;
+
+        if (empty($rowid) || empty($qty)) {
+            echo false;
+        }
+        else {
             $data = array(
                 'rowid' => $rowid,
                 'qty'   => $qty
             );
 
             $qq = $this->cart->update($data);
-        }
 
-        echo $qq ? true : false;
+            echo $qq ? true : false;
+        }
     }
 
     public function updatecharacter()
@@ -146,17 +150,21 @@ class Store extends MX_Controller {
         $rowid = $this->input->get('rowid');
         $guid = $this->input->get('char');
 
-        if(!empty($rowid) && !empty($guid))
-        {
+        $guid = (ctype_digit((string) $guid) && $guid != 0) ? $guid : 0;
+
+        if (empty($rowid) || empty($guid)) {
+            echo false;
+        }
+        else {
             $data = array(
                 'rowid' => $rowid,
                 'guid'   => $guid
             );
 
             $qq = $this->cart->update($data);
-        }
 
-        echo $qq ? true : false;
+            echo $qq ? true : false;
+        }
     }
 
     public function checkout()
