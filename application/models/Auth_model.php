@@ -201,22 +201,18 @@ class Auth_model extends CI_Model {
 
     public function synchronizeAccount()
     {
-        if ($this->checkAccountExist() == 0)
-        {
-            $joindate = strtotime($this->getJoinDateID($this->session->userdata('wow_sess_id')));
-
-            $data = array(
-                'id' => $this->session->userdata('wow_sess_id'),
-                'username' => $this->session->userdata('wow_sess_username'),
-                'email' => $this->session->userdata('wow_sess_email'),
-                'joindate' => $joindate
-            );
-
-            $this->db->insert('users', $data);
-            return true;
-        }
-        else
+        if ($this->checkAccountExist() != 0) {
             return false;
+        }
+
+        $this->db->insert('users', array(
+            'id' => $this->session->userdata('wow_sess_id'),
+            'username' => $this->session->userdata('wow_sess_username'),
+            'email' => $this->session->userdata('wow_sess_email'),
+            'joindate' => strtotime($this->getJoinDateID($this->session->userdata('wow_sess_id')))
+        ));
+
+        return true;
     }
 
     public function getRankByLevel($gmlevel)

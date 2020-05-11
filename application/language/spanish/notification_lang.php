@@ -62,7 +62,6 @@ $lang['notification_same_password'] = 'La contraseña es la misma.';
 $lang['notification_currentpass_not_match'] = 'La contraseña actual no es correcta';
 $lang['notification_used_email'] = 'El Correo ya está en uso';
 $lang['notification_email_not_match'] = 'Los correos electrónicos no coinciden';
-$lang['notification_username_not_match'] = 'El usuario no coincide';
 $lang['notification_expansion_not_found'] = 'Expansión no encontrada';
 $lang['notification_valid_key'] = 'Cuenta activada';
 $lang['notification_valid_key_desc'] = 'Ahora puedes iniciar sesión con tu cuenta.';

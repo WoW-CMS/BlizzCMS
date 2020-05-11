@@ -48,32 +48,19 @@
                         </div>
                       </div>
                     <div class="uk-margin uk-light">
-                      <div class="uk-grid uk-grid-small" data-uk-grid>
-                        <div class="uk-inline uk-width-1-2@s">
-                          <label class="uk-form-label"><?= $this->lang->line('placeholder_new_username'); ?>:</label>
-                          <div class="uk-form-controls">
-                            <div class="uk-inline uk-width-1-1">
-                              <span class="uk-form-icon"><i class="far fa-user fa-lg"></i> </span>
-                              <input class="uk-input" id="change_newusername" type="text" placeholder="<?= $this->lang->line('placeholder_new_username'); ?>" required>
-                            </div>
-                          </div>
+                      <label class="uk-form-label"><?= $this->lang->line('placeholder_new_username'); ?>:</label>
+                      <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                          <span class="uk-form-icon"><i class="far fa-user fa-lg"></i> </span>
+                          <input class="uk-input" id="new_username" type="text" placeholder="<?= $this->lang->line('placeholder_new_username'); ?>" required>
                         </div>
-                        <div class="uk-inline uk-width-1-2@s">
-                          <label class="uk-form-label"><?= $this->lang->line('placeholder_confirm_username'); ?>:</label>
-                          <div class="uk-form-controls">
-                            <div class="uk-inline uk-width-1-1">
-                              <span class="uk-form-icon"><i class="far fa-user fa-lg"></i> </span>
-                              <input class="uk-input" id="change_renewusername" type="text" placeholder="<?= $this->lang->line('placeholder_confirm_username'); ?>" required>
-                            </div>
-                          </div>
-                        </div>
-                      </div> 
+                      </div>
                     </div>
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
                       <div class="uk-inline uk-width-1-1">
                         <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                        <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
+                        <input class="uk-input" id="user_current_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
                       </div>
                     </div>
                   </div>
@@ -106,7 +93,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
-                          <input class="uk-input" id="change_newemail" type="email" placeholder="<?= $this->lang->line('placeholder_new_email'); ?>" required>
+                          <input class="uk-input" id="new_email" type="email" placeholder="<?= $this->lang->line('placeholder_new_email'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -115,7 +102,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope fa-lg"></i></span>
-                          <input class="uk-input" id="change_renewemail" type="email" placeholder="<?= $this->lang->line('placeholder_confirm_email'); ?>" required>
+                          <input class="uk-input" id="renew_email" type="email" placeholder="<?= $this->lang->line('placeholder_confirm_email'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -125,7 +112,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                      <input class="uk-input" id="change_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
+                      <input class="uk-input" id="current_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -146,7 +133,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key fa-lg"></i></span>
-                      <input class="uk-input" id="change_oldpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_current_password'); ?>" required>
+                      <input class="uk-input" id="old_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_current_password'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -157,7 +144,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-unlock fa-lg"></i></span>
-                          <input class="uk-input" id="change_newpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_new_password'); ?>" required>
+                          <input class="uk-input" id="new_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_new_password'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -166,7 +153,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-lock fa-lg"></i></span>
-                          <input class="uk-input" id="change_renewpass" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_re_password'); ?>" required>
+                          <input class="uk-input" id="renew_password" type="password" pattern=".{5,16}" placeholder="<?= $this->lang->line('placeholder_re_password'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -211,12 +198,10 @@
       function ChangeUsernameForm(e) {
         e.preventDefault();
 
-        var newusername = $('#change_newusername').val();
-        var renewusername = $('#change_renewusername').val();
-        var password = $('#change_password').val();
+        var newusername = $('#new_username').val();
+        var password = $('#user_current_password').val();
 
-
-        if(newusername == '' || renewusername == '') {
+        if(newusername == '') {
           $.amaran({
             'theme': 'awesome error',
             'content': {
@@ -235,7 +220,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/changeusername'); ?>",
           method:"POST",
-          data:{newusername, renewusername, password},
+          data:{newusername, password},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -274,24 +259,6 @@
               return false;
             }
 
-            if (response == 'enoMatch') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_username_not_match'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-              $('#changeemailForm')[0].reset();
-              return false;
-            }
-
             if (response) {
               $.amaran({
                 'theme': 'awesome ok',
@@ -317,9 +284,9 @@
       function ChangeEmailForm(e) {
         e.preventDefault();
 
-        var newemail = $('#change_newemail').val();
-        var renewemail = $('#change_renewemail').val();
-        var password = $('#change_password').val();
+        var newemail = $('#new_email').val();
+        var renewemail = $('#renew_email').val();
+        var password = $('#current_password').val();
         if(newemail == '' || renewemail == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -473,9 +440,9 @@
       function ChangePasswordForm(e) {
         e.preventDefault();
 
-        var oldpass = $('#change_oldpass').val();
-        var newpass = $('#change_newpass').val();
-        var renewpass = $('#change_renewpass').val();
+        var oldpass = $('#old_password').val();
+        var newpass = $('#new_password').val();
+        var renewpass = $('#renew_password').val();
         if(oldpass == '' || newpass == '' || renewpass == ''){
           $.amaran({
             'theme': 'awesome error',
