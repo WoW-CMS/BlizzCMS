@@ -52,16 +52,14 @@ class Admin extends MX_Controller {
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
 
-        if(!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
-
-        if(!$this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            redirect(base_url(),'refresh');
+		if (!is_logged() || is_logged() && !is_authorized('acp')) {
+			redirect(base_url(),'refresh');
+		}
 
         if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
             redirect(base_url(),'refresh');
 
-        $this->template->set_theme('admin');
+		$this->template->set_theme('admin');
 
         $this->wowlocadm = base_url('application/themes/'.$this->template->get_theme().'/');
         $this->wowlocdef = base_url('application/themes/'.config_item('theme_name').'/');
@@ -76,109 +74,109 @@ class Admin extends MX_Controller {
         $this->template->build('index', $data);
     }
 
-    /**
-     * System functions
-     */
-    public function settings()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'lang' => $this->lang->lang()
-        );
+	/**
+	 * System functions
+	 */
+	public function managesettings()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('button_admin_panel'),
+			'lang' => $this->lang->lang()
+		);
 
-        $this->template->build('settings/general_settings', $data);
-    }
+		$this->template->build('settings/general_settings', $data);
+	}
 
-    public function updatesettings()
-    {
-        $project = $this->input->post('project');
-        $timezone = $this->input->post('timezone');
-        $maintenance = $this->input->post('maintenance');
-        $discord = $this->input->post('discord');
-        $realmlist = $this->input->post('realmlist');
-        $theme = $this->input->post('theme');
-        $facebook = $this->input->post('facebook');
-        $twitter = $this->input->post('twitter');
-        $youtube = $this->input->post('youtube');
-        echo $this->admin_model->updateGeneralSettings($project, $timezone, $maintenance, $discord, $realmlist, $theme, $facebook, $twitter, $youtube);
-    }
+	public function updatesettings()
+	{
+		$project = $this->input->post('project');
+		$timezone = $this->input->post('timezone');
+		$maintenance = $this->input->post('maintenance');
+		$discord = $this->input->post('discord');
+		$realmlist = $this->input->post('realmlist');
+		$theme = $this->input->post('theme');
+		$facebook = $this->input->post('facebook');
+		$twitter = $this->input->post('twitter');
+		$youtube = $this->input->post('youtube');
+		echo $this->admin_model->updateGeneralSettings($project, $timezone, $maintenance, $discord, $realmlist, $theme, $facebook, $twitter, $youtube);
+	}
 
-    public function optionalsettings()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'lang' => $this->lang->lang()
-        );
+	public function optionalsettings()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('button_admin_panel'),
+			'lang' => $this->lang->lang()
+		);
 
-        $this->template->build('settings/optional_settings', $data);
-    }
+		$this->template->build('settings/optional_settings', $data);
+	}
 
-    public function updateoptionalsettings()
-    {
-        $adminlvl = $this->input->post('adminlvl');
-        $modlvl = $this->input->post('modlvl');
-        $recaptcha = $this->input->post('recaptcha');
-        $register = $this->input->post('register');
-        $smtphost = $this->input->post('smtphost');
-        $smtpport = $this->input->post('smtpport');
-        $smtpcrypto = $this->input->post('smtpcrypto');
-        $smtpuser = $this->input->post('smtpuser');
-        $smtppass = $this->input->post('smtppass');
-        $sender = $this->input->post('sender');
-        $sendername = $this->input->post('sendername');
-        echo $this->admin_model->updateOptionalSettings($adminlvl, $modlvl, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername);
-    }
+	public function updateoptionalsettings()
+	{
+		$adminlvl = $this->input->post('adminlvl');
+		$modlvl = $this->input->post('modlvl');
+		$recaptcha = $this->input->post('recaptcha');
+		$register = $this->input->post('register');
+		$smtphost = $this->input->post('smtphost');
+		$smtpport = $this->input->post('smtpport');
+		$smtpcrypto = $this->input->post('smtpcrypto');
+		$smtpuser = $this->input->post('smtpuser');
+		$smtppass = $this->input->post('smtppass');
+		$sender = $this->input->post('sender');
+		$sendername = $this->input->post('sendername');
+		echo $this->admin_model->updateOptionalSettings($adminlvl, $modlvl, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername);
+	}
 
-    public function seosettings()
-    {
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'lang' => $this->lang->lang()
-        );
+	public function seosettings()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('button_admin_panel'),
+			'lang' => $this->lang->lang()
+		);
 
-        $this->template->build('settings/seo_settings', $data);
-    }
+		$this->template->build('settings/seo_settings', $data);
+	}
 
-    public function updateseosettings()
-    {
-        $meta = $this->input->post('meta');
-        $description = $this->input->post('description');
-        $keywords = $this->input->post('keywords');
-        $twitter = $this->input->post('twitter');
-        $graph = $this->input->post('graph');
-        echo $this->admin_model->updateSeoSettings($meta, $description, $keywords, $twitter, $graph);
-    }
+	public function updateseosettings()
+	{
+		$meta = $this->input->post('meta');
+		$description = $this->input->post('description');
+		$keywords = $this->input->post('keywords');
+		$twitter = $this->input->post('twitter');
+		$graph = $this->input->post('graph');
+		echo $this->admin_model->updateSeoSettings($meta, $description, $keywords, $twitter, $graph);
+	}
 
-    public function modulesettings()
-    {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
-            $tiny = $this->wowgeneral->tinyEditor('Admin');
-        else
-            $tiny = $this->wowgeneral->tinyEditor('User');
+	public function modulesettings()
+	{
+		if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		else
+			$tiny = $this->wowgeneral->tinyEditor('User');
 
-        $data = array(
-            'pagetitle' => $this->lang->line('button_admin_panel'),
-            'tiny' => $tiny,
-            'lang' => $this->lang->lang()
-        );
+		$data = array(
+			'pagetitle' => $this->lang->line('button_admin_panel'),
+			'tiny' => $tiny,
+			'lang' => $this->lang->lang()
+		);
 
-        $this->template->build('settings/module_settings', $data);
-    }
+		$this->template->build('settings/module_settings', $data);
+	}
 
-    public function updatedonatesettings()
-    {
-        $currency = $this->input->post('currency');
-        $mode = $this->input->post('mode');
-        $client = $this->input->post('client');
-        $password = $this->input->post('password');
-        echo $this->admin_model->updateDonateSettings($currency, $mode, $client, $password);
-    }
+	public function updatedonatesettings()
+	{
+		$currency = $this->input->post('currency');
+		$mode = $this->input->post('mode');
+		$client = $this->input->post('client');
+		$password = $this->input->post('password');
+		echo $this->admin_model->updateDonateSettings($currency, $mode, $client, $password);
+	}
 
-    public function updatebugtrackersettings()
-    {
-        $description = $this->input->post('description');
-        echo $this->admin_model->updateBugtrackerSettings($description);
-    }
+	public function updatebugtrackersettings()
+	{
+		$description = $this->input->post('description');
+		echo $this->admin_model->updateBugtrackerSettings($description);
+	}
 
     public function managemodules()
     {
@@ -1387,6 +1385,33 @@ class Admin extends MX_Controller {
         $id = $this->input->post('value');
         echo $this->admin_model->deleteForum($id);
     }
+
+	/**
+	 * Rank Managament 1.0.7 Dev
+	 */
+
+	public function manageRank()
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('button_admin_panel'),
+			'listrank' => $this->admin_model->listRanks()->result(),
+			'lang' => $this->lang->lang()
+		);
+
+		$this->template->build('permissions/permissions', $data);
+	}
+
+	public function viewRank($id)
+	{
+		$data = array(
+			'pagetitle' => $this->lang->line('button_admin_panel'),
+			'id' => $id,
+			'viewrank' => $this->admin_model->viewRank($id)->result(),
+			'lang' => $this->lang->lang()
+		);
+
+		$this->template->build('permissions/viewpermission', $data);
+	}
 
     public function checkSoap()
     {

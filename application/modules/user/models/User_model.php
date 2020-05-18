@@ -279,6 +279,14 @@ class User_model extends CI_Model {
         return $this->auth->select('id')->where('username', $username)->get('account')->row('id');
     }
 
+	public function checkRankWeb($id)
+	{
+		$db = $this->db->select('rank')->where('id', $id)->get('users')->row('rank');
+
+		return $this->db->select('name')->where('id', $db)->get('permissions_groups')->row('name');
+
+	}
+
     public function checkemailid($email)
     {
         return $this->auth->select('id')->where('email', $email)->get('account')->row('id');

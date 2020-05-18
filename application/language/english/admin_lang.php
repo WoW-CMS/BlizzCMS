@@ -72,6 +72,8 @@ $lang['section_store_items'] = 'Store Items';
 $lang['section_store_top'] = 'Store TOP Items';
 $lang['section_logs_dp'] = 'Donation logs';
 $lang['section_logs_vp'] = 'Vote logs';
+$lang['section_rank_list'] = 'List Groups';
+$lang['section_rank_create'] = 'Create Groups';
 
 /*Button Lang*/
 $lang['button_select'] = 'Select';
@@ -139,6 +141,7 @@ $lang['placeholder_item'] = 'Item';
 $lang['placeholder_image_name'] = 'Image Name';
 $lang['placeholder_reason'] = 'Reason';
 $lang['placeholder_gmlevel'] = 'GM Level';
+$lang['placeholder_website_rank'] = 'Website Rank';
 $lang['placeholder_url'] = 'URL';
 $lang['placeholder_child_menu'] = 'Child Menu';
 $lang['placeholder_url_type'] = 'URL Type';
@@ -158,6 +161,7 @@ $lang['placeholder_account_ban'] = 'Ban Account';
 $lang['placeholder_account_unban'] = 'Unban Account';
 $lang['placeholder_account_grant_rank'] = 'Grant GM Rank';
 $lang['placeholder_account_remove_rank'] = 'Remove GM Rank';
+$lang['placeholder_website_grant_rank'] = 'Grant Website Rank';
 $lang['placeholder_command'] = 'Command';
 
 /*Config Lang*/

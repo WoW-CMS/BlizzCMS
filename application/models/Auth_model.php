@@ -20,20 +20,25 @@ class Auth_model extends CI_Model {
     public function arraySession($id)
     {
         $data = array(
+			'blizz_sess_username' => $this->getSiteUsernameID($id),
+			'blizz_sess_rank'=> $this->getRankWeb($id),
             'wow_sess_username'  => $this->getUsernameID($id),
-            'blizz_sess_username' => $this->getSiteUsernameID($id),
             'wow_sess_email'     => $this->getEmailID($id),
             'wow_sess_id'        => $id,
             'wow_sess_expansion'	=> $this->getExpansionID($id),
             'wow_sess_last_ip'   => $this->getLastIPID($id),
             'wow_sess_last_login'=> $this->getLastLoginID($id),
             'wow_sess_gmlevel'   => $this->getRank($id),
-            'wow_sess_ban_status'=> $this->getBanStatus($id),
             'logged_in' => TRUE
         );
 
         return $this->sessionConnect($data);
     }
+
+	public function getRankSpecify($id)
+	{
+		return $this->db->select('rank')->where('id', $id)->get('users');
+	}
 
     public function getGmSpecify($id)
     {
@@ -145,6 +150,16 @@ class Auth_model extends CI_Model {
         else
             return '0';
     }
+
+	public function getRankWeb($id)
+	{
+		$qq = $this->db->select('rank')->where('id', $id)->get('users');
+
+		if($qq->num_rows())
+			return $qq->row('rank');
+		else
+			return '0';
+	}
 
     public function getBanStatus($id)
     {
