@@ -47,7 +47,12 @@
                       <div class="item-store-icon">
                         <img src="https://wow.zamimg.com/images/wow/icons/large/<?= $this->store_model->getIcon($top->store_item); ?>.jpg" alt="">
                       </div>
-                      <span class="uk-text-middle"><?= $this->store_model->getName($top->store_item); ?></span>
+					  <!-- START CODE TO TOOLTIPS WOWHEAD -->
+                     <span class="uk-text-middle">
+						<a href="#" data-wowhead="item=<?= $this->store_model->getCommand($top->store_item); ?>"> <?= $this->store_model->getName($top->store_item); ?>
+						</a>
+					</span>
+					<!-- END CODE TO TOOLTIPS WOWHEAD -->
                     </div>
                     <div id="top-<?= $top->id ?>" class="blizzcms-item-body" hidden>
                       <p class="uk-text-break"><?= $this->store_model->getDescription($top->store_item); ?></p>
