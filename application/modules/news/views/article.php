@@ -38,6 +38,9 @@
                         </div>
                       </div>
                       <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
+						<?php if($this->wowauth->getRank($commentss->author) > 0): ?>
+						<div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
+						<?php endif; ?>
                     </div>
                     <div class="uk-width-expand@s">
                       <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $commentss->date); ?></p>
