@@ -47,7 +47,9 @@
                       <div class="item-store-icon">
                         <img src="https://wow.zamimg.com/images/wow/icons/large/<?= $items->icon ?>.jpg" alt="icon">
                       </div>
-                      <span class="uk-text-middle"><?= $items->name ?></span>
+					  <!-- START CODE TO TOOLTIPS WOWHEAD -->
+                      <span class="uk-text-middle"><a href="#" data-wowhead="item=<?= $items->command ?>"><?= $items->name ?></a></span>
+					  <!-- END CODE TO TOOLTIPS WOWHEAD -->
                     </div>
                     <div id="item-<?= $items->id ?>" class="blizzcms-item-body" hidden>
                       <p class="uk-text-break"><?= $items->description ?></p>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= $template['location'].'assets/css/main.css'; ?>" />
     <script src="<?= $template['assets'].'core/uikit/js/uikit.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'core/uikit/js/uikit-icons.min.js'; ?>"></script>
+	<script> const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false, dropchance: true}; </script> 
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">
