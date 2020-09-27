@@ -10,6 +10,29 @@
 | **Apache Modules** | mod_headers - mod_rewrite - mod_expires |
 | **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap |
 
+## In linux (Apache Modules)
+
+```sh
+a2enmod headers
+a2enmod rewrite
+a2enmod expires
+```
+
+### Edit Sites Available
+/etc/apache2/sites-available/000-default.conf
+
+```
+<Directory "/var/www/html">
+	AllowOverride All
+</Directory>
+```
+
+### Restarting the service
+
+```sh
+/etc/init.d/apache2 restart or service apache2 restart
+```
+
 ## Useful Links
 
 * [Website](https://wow-cms.com)
@@ -26,4 +49,4 @@
 
 ## Copyright
 
-Copyright © 2019 [WoW-CMS](https://wow-cms.com).
+Copyright © 2020 [WoW-CMS](https://wow-cms.com).
