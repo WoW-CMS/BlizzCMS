@@ -251,6 +251,19 @@ class vfsStreamWrapperMkDirTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
+     * @group  issue_131
+     * @since  1.6.3
+     */
+    public function allowsRecursiveMkDirWithDirectoryName0()
+    {
+        vfsStream::setup('root');
+        $subdir  = vfsStream::url('root/a/0');
+        mkdir($subdir, 0777, true);
+        $this->assertFileExists($subdir);
+    }
+
+    /**
+     * @test
      * @group  permissions
      * @group  bug_15
      */
@@ -260,163 +273,6 @@ class vfsStreamWrapperMkDirTestCase extends vfsStreamWrapperBaseTestCase
         vfsStreamWrapper::setRoot(new vfsStreamDirectory('root', 0000));
         $this->assertFalse(@opendir(vfsStream::url('root')));
         $this->assertFalse(@dir(vfsStream::url('root')));
-    }
-
-    /**
-     * @test
-     */
-    public function directoryIteration()
-    {
-        $dir = dir($this->fooURL);
-        $i   = 0;
-        while (false !== ($entry = $dir->read())) {
-            $i++;
-            $this->assertTrue('bar' === $entry || 'baz2' === $entry);
-        }
-
-        $this->assertEquals(2, $i, 'Directory foo contains two children, but got ' . $i . ' children while iterating over directory contents');
-        $dir->rewind();
-        $i   = 0;
-        while (false !== ($entry = $dir->read())) {
-            $i++;
-            $this->assertTrue('bar' === $entry || 'baz2' === $entry);
-        }
-
-        $this->assertEquals(2, $i, 'Directory foo contains two children, but got ' . $i . ' children while iterating over directory contents');
-        $dir->close();
-    }
-
-    /**
-     * @test
-     */
-    public function directoryIterationWithDot()
-    {
-        $dir = dir($this->fooURL . '/.');
-        $i   = 0;
-        while (false !== ($entry = $dir->read())) {
-            $i++;
-            $this->assertTrue('bar' === $entry || 'baz2' === $entry);
-        }
-
-        $this->assertEquals(2, $i, 'Directory foo contains two children, but got ' . $i . ' children while iterating over directory contents');
-        $dir->rewind();
-        $i   = 0;
-        while (false !== ($entry = $dir->read())) {
-            $i++;
-            $this->assertTrue('bar' === $entry || 'baz2' === $entry);
-        }
-
-        $this->assertEquals(2, $i, 'Directory foo contains two children, but got ' . $i . ' children while iterating over directory contents');
-        $dir->close();
-    }
-
-    /**
-     * assure that a directory iteration works as expected
-     *
-     * @test
-     * @group  regression
-     * @group  bug_2
-     */
-    public function directoryIterationWithOpenDir_Bug_2()
-    {
-        $handle = opendir($this->fooURL);
-        $i   = 0;
-        while (false !== ($entry = readdir($handle))) {
-            $i++;
-            $this->assertTrue('bar' === $entry || 'baz2' === $entry);
-        }
-
-        $this->assertEquals(2, $i, 'Directory foo contains two children, but got ' . $i . ' children while iterating over directory contents');
-
-        rewind($handle);
-        $i   = 0;
-        while (false !== ($entry = readdir($handle))) {
-            $i++;
-            $this->assertTrue('bar' === $entry || 'baz2' === $entry);
-        }
-
-        $this->assertEquals(2, $i, 'Directory foo contains two children, but got ' . $i . ' children while iterating over directory contents');
-        closedir($handle);
-    }
-
-    /**
-     * assure that a directory iteration works as expected
-     *
-     * @author  Christoph Bloemer
-     * @test
-     * @group  regression
-     * @group  bug_4
-     */
-    public function directoryIteration_Bug_4()
-    {
-        $dir   = $this->fooURL;
-        $list1 = array();
-        if ($handle = opendir($dir)) {
-            while (false !== ($listItem = readdir($handle))) {
-                if ('.'  != $listItem && '..' != $listItem) {
-                    if (is_file($dir . '/' . $listItem) === true) {
-                        $list1[] = 'File:[' . $listItem . ']';
-                    } elseif (is_dir($dir . '/' . $listItem) === true) {
-                        $list1[] = 'Folder:[' . $listItem . ']';
-                    }
-                }
-            }
-
-            closedir($handle);
-        }
-
-        $list2 = array();
-        if ($handle = opendir($dir)) {
-            while (false !== ($listItem = readdir($handle))) {
-                if ('.'  != $listItem && '..' != $listItem) {
-                    if (is_file($dir . '/' . $listItem) === true) {
-                        $list2[] = 'File:[' . $listItem . ']';
-                    } elseif (is_dir($dir . '/' . $listItem) === true) {
-                        $list2[] = 'Folder:[' . $listItem . ']';
-                    }
-                }
-            }
-
-            closedir($handle);
-        }
-
-        $this->assertEquals($list1, $list2);
-        $this->assertEquals(2, count($list1));
-        $this->assertEquals(2, count($list2));
-    }
-
-    /**
-     * assure that a directory iteration works as expected
-     *
-     * @test
-     */
-    public function directoryIterationShouldBeIndependent()
-    {
-        $list1   = array();
-        $list2   = array();
-        $handle1 = opendir($this->fooURL);
-        if (false !== ($listItem = readdir($handle1))) {
-            $list1[] = $listItem;
-        }
-
-        $handle2 = opendir($this->fooURL);
-        if (false !== ($listItem = readdir($handle2))) {
-            $list2[] = $listItem;
-        }
-
-        if (false !== ($listItem = readdir($handle1))) {
-            $list1[] = $listItem;
-        }
-
-        if (false !== ($listItem = readdir($handle2))) {
-            $list2[] = $listItem;
-        }
-
-        closedir($handle1);
-        closedir($handle2);
-        $this->assertEquals($list1, $list2);
-        $this->assertEquals(2, count($list1));
-        $this->assertEquals(2, count($list2));
     }
 
     /**
@@ -558,6 +414,34 @@ class vfsStreamWrapperMkDirTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
+     * @group bug_115
+     */
+    public function accessWithExcessDoubleDotsReturnsCorrectContent()
+    {
+        $this->assertEquals('baz2',
+            file_get_contents(vfsStream::url('foo/../../../../bar/../baz2'))
+        );
+    }
+
+    /**
+     * @test
+     * @group bug_115
+     */
+    public function alwaysResolvesRootDirectoryAsOwnParentWithDoubleDot()
+    {
+        vfsStreamWrapper::getRoot()->chown(vfsStream::OWNER_USER_1);
+
+        $this->assertTrue(is_dir(vfsStream::url('foo/..')));
+        $stat = stat(vfsStream::url('foo/..'));
+        $this->assertEquals(
+            vfsStream::OWNER_USER_1,
+            $stat['uid']
+        );
+    }
+
+
+    /**
+     * @test
      * @since  0.11.0
      * @group  issue_23
      */
@@ -614,4 +498,3 @@ class vfsStreamWrapperMkDirTestCase extends vfsStreamWrapperBaseTestCase
         $this->assertNotNull($root->getChild('testFolder'));
     }
 }
-?>

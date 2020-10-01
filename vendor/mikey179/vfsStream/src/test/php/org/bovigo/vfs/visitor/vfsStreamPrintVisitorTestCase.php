@@ -18,7 +18,7 @@ use org\bovigo\vfs\vfsStreamFile;
  * @see    https://github.com/mikey179/vfsStream/issues/10
  * @group  issue_10
  */
-class vfsStreamPrintVisitorTestCase extends \PHPUnit_Framework_TestCase
+class vfsStreamPrintVisitorTestCase extends \BC_PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -55,6 +55,20 @@ class vfsStreamPrintVisitorTestCase extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function visitFileWritesBlockDeviceToStream()
+    {
+        $output       = vfsStream::newFile('foo.txt')
+                                       ->at(vfsStream::setup());
+        $printVisitor = new vfsStreamPrintVisitor(fopen('vfs://root/foo.txt', 'wb'));
+        $this->assertSame($printVisitor,
+                          $printVisitor->visitBlockDevice(vfsStream::newBlock('bar'))
+        );
+        $this->assertEquals("- [bar]\n", $output->getContent());
+    }
+
+    /**
+     * @test
+     */
     public function visitDirectoryWritesDirectoryNameToStream()
     {
         $output       = vfsStream::newFile('foo.txt')
@@ -86,4 +100,3 @@ class vfsStreamPrintVisitorTestCase extends \PHPUnit_Framework_TestCase
         $this->assertEquals("- root\n  - test\n    - foo\n      - test.txt\n    - baz.txt\n  - foo.txt\n", file_get_contents('vfs://root/foo.txt'));
     }
 }
-?>

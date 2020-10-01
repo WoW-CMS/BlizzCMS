@@ -16,7 +16,7 @@ use org\bovigo\vfs\vfsStream;
  * @see    https://github.com/mikey179/vfsStream/issues/10
  * @group  issue_10
  */
-class vfsStreamStructureVisitorTestCase extends \PHPUnit_Framework_TestCase
+class vfsStreamStructureVisitorTestCase extends \BC_PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -26,6 +26,20 @@ class vfsStreamStructureVisitorTestCase extends \PHPUnit_Framework_TestCase
         $structureVisitor = new vfsStreamStructureVisitor();
         $this->assertEquals(array('foo.txt' => 'test'),
                             $structureVisitor->visitFile(vfsStream::newFile('foo.txt')
+                                                                  ->withContent('test')
+                                               )
+                                             ->getStructure()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function visitFileCreatesStructureForBlock()
+    {
+        $structureVisitor = new vfsStreamStructureVisitor();
+        $this->assertEquals(array('[foo]' => 'test'),
+                            $structureVisitor->visitBlockDevice(vfsStream::newBlock('foo')
                                                                   ->withContent('test')
                                                )
                                              ->getStructure()
@@ -69,4 +83,3 @@ class vfsStreamStructureVisitorTestCase extends \PHPUnit_Framework_TestCase
         );
     }
 }
-?>

@@ -28,6 +28,10 @@ class vfsStreamContainerIterator implements \Iterator
     public function __construct(array $children)
     {
         $this->children = $children;
+        if (vfsStream::useDotfiles()) {
+            array_unshift($this->children, new DotDirectory('.'), new DotDirectory('..'));
+        }
+
         reset($this->children);
     }
 
@@ -87,4 +91,3 @@ class vfsStreamContainerIterator implements \Iterator
         return (false !== current($this->children));
     }
 }
-?>
