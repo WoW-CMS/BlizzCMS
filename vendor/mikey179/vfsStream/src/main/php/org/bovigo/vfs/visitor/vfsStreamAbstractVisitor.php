@@ -9,6 +9,8 @@
  */
 namespace org\bovigo\vfs\visitor;
 use org\bovigo\vfs\vfsStreamContent;
+use org\bovigo\vfs\vfsStreamBlock;
+
 /**
  * Abstract base class providing an implementation for the visit() method.
  *
@@ -27,12 +29,19 @@ abstract class vfsStreamAbstractVisitor implements vfsStreamVisitor
     public function visit(vfsStreamContent $content)
     {
         switch ($content->getType()) {
+            case vfsStreamContent::TYPE_BLOCK:
+                $this->visitBlockDevice($content);
+                break;
+
             case vfsStreamContent::TYPE_FILE:
                 $this->visitFile($content);
                 break;
 
             case vfsStreamContent::TYPE_DIR:
-                $this->visitDirectory($content);
+                if (!$content->isDot()) {
+                    $this->visitDirectory($content);
+                }
+
                 break;
 
             default:
@@ -41,5 +50,15 @@ abstract class vfsStreamAbstractVisitor implements vfsStreamVisitor
 
         return $this;
     }
+
+    /**
+     * visit a block device and process it
+     *
+     * @param   vfsStreamBlock $block
+     * @return  vfsStreamVisitor
+     */
+    public function visitBlockDevice(vfsStreamBlock $block)
+    {
+        return $this->visitFile($block);
+    }
 }
-?>

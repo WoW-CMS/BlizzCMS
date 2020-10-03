@@ -1,25 +1,27 @@
-<?php
+<?php declare(strict_types=1);
 /*
- * This file is part of the GlobalState package.
+ * This file is part of sebastian/global-state.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\GlobalState;
+
+use const PHP_EOL;
+use function is_array;
+use function is_scalar;
+use function serialize;
+use function sprintf;
+use function var_export;
 
 /**
  * Exports parts of a Snapshot as PHP code.
  */
-class CodeExporter
+final class CodeExporter
 {
-    /**
-     * @param  Snapshot $snapshot
-     * @return string
-     */
-    public function constants(Snapshot $snapshot)
+    public function constants(Snapshot $snapshot): string
     {
         $result = '';
 
@@ -35,11 +37,22 @@ class CodeExporter
         return $result;
     }
 
-    /**
-     * @param  Snapshot $snapshot
-     * @return string
-     */
-    public function iniSettings(Snapshot $snapshot)
+    public function globalVariables(Snapshot $snapshot): string
+    {
+        $result = '$GLOBALS = [];' . PHP_EOL;
+
+        foreach ($snapshot->globalVariables() as $name => $value) {
+            $result .= sprintf(
+                '$GLOBALS[%s] = %s;' . PHP_EOL,
+                $this->exportVariable($name),
+                $this->exportVariable($value)
+            );
+        }
+
+        return $result;
+    }
+
+    public function iniSettings(Snapshot $snapshot): string
     {
         $result = '';
 
@@ -54,13 +67,9 @@ class CodeExporter
         return $result;
     }
 
-    /**
-     * @param  mixed  $variable
-     * @return string
-     */
-    private function exportVariable($variable)
+    private function exportVariable($variable): string
     {
-        if (is_scalar($variable) || is_null($variable) ||
+        if (is_scalar($variable) || null === $variable ||
             (is_array($variable) && $this->arrayOnlyContainsScalars($variable))) {
             return var_export($variable, true);
         }
@@ -68,18 +77,14 @@ class CodeExporter
         return 'unserialize(' . var_export(serialize($variable), true) . ')';
     }
 
-    /**
-     * @param  array $array
-     * @return bool
-     */
-    private function arrayOnlyContainsScalars(array $array)
+    private function arrayOnlyContainsScalars(array $array): bool
     {
         $result = true;
 
         foreach ($array as $element) {
             if (is_array($element)) {
-                $result = self::arrayOnlyContainsScalars($element);
-            } elseif (!is_scalar($element) && !is_null($element)) {
+                $result = $this->arrayOnlyContainsScalars($element);
+            } elseif (!is_scalar($element) && null !== $element) {
                 $result = false;
             }
 

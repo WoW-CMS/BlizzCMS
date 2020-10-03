@@ -95,9 +95,29 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
         $this->assertTrue(unlink($this->baz2URL));
         $this->assertFalse(file_exists($this->baz2URL)); // make sure statcache was cleared
         $this->assertEquals(array($this->bar), $this->foo->getChildren());
-        $this->assertFalse(unlink($this->fooURL . '/another'));
-        $this->assertFalse(unlink(vfsStream::url('another')));
+        $this->assertFalse(@unlink($this->fooURL . '/another'));
+        $this->assertFalse(@unlink(vfsStream::url('another')));
         $this->assertEquals(array($this->bar), $this->foo->getChildren());
+    }
+
+    /**
+     * @test
+     * @group  issue_49
+     */
+    public function unlinkReturnsFalseWhenFileDoesNotExist()
+    {
+        vfsStream::setup()->addChild(vfsStream::newFile('foo.blubb'));
+        $this->assertFalse(@unlink(vfsStream::url('foo.blubb2')));
+    }
+
+    /**
+     * @test
+     * @group  issue_49
+     */
+    public function unlinkReturnsFalseWhenFileDoesNotExistAndFileWithSameNameExistsInRoot()
+    {
+        vfsStream::setup()->addChild(vfsStream::newFile('foo.blubb'));
+        $this->assertFalse(@unlink(vfsStream::url('foo.blubb')));
     }
 
     /**
@@ -191,12 +211,22 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
      *
      * @test
      */
-    public function directoriesAndNonExistingFilesAreNeverExecutable()
+    public function directoriesAndNonExistingFilesAreSometimesExecutable()
     {
-        $this->assertFalse(is_executable($this->fooURL));
-        $this->assertFalse(is_executable($this->fooURL . '/.'));
-        $this->assertFalse(is_executable($this->barURL));
-        $this->assertFalse(is_executable($this->barURL . '/.'));
+        // Inconsistent behavior has been fixed in 7.3
+        // see https://github.com/php/php-src/commit/94b4abdbc4d
+        if (PHP_VERSION_ID >= 70300) {
+            $this->assertTrue(is_executable($this->fooURL));
+            $this->assertTrue(is_executable($this->fooURL . '/.'));
+            $this->assertTrue(is_executable($this->barURL));
+            $this->assertTrue(is_executable($this->barURL . '/.'));
+        } else {
+            $this->assertFalse(is_executable($this->fooURL));
+            $this->assertFalse(is_executable($this->fooURL . '/.'));
+            $this->assertFalse(is_executable($this->barURL));
+            $this->assertFalse(is_executable($this->barURL . '/.'));
+        }
+
         $this->assertFalse(is_executable($this->fooURL . '/another'));
         $this->assertFalse(is_executable(vfsStream::url('another')));
     }
@@ -398,7 +428,7 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
     public function renameDirectoryWithDotsInTarget()
     {
         // move foo/bar to foo/baz3
-        $baz3URL = vfsStream::url('foo/../foo/baz3/.');
+        $baz3URL = vfsStream::url('foo/../baz3/.');
         $this->assertTrue(rename($this->barURL . '/.', $baz3URL));
         $this->assertFileExists($baz3URL);
         $this->assertFileNotExists($this->barURL);
@@ -599,13 +629,14 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
-     * @group  issue_33
-     * @since  1.1.0
+     * @group     issue_33
+     * @since     1.1.0
+     * @requires  PHP 5.4.0
      */
     public function truncateRemovesSuperflouosContent()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
+        if (strstr(PHP_VERSION, 'hiphop') !== false) {
+            $this->markTestSkipped('Not supported on hhvm');
         }
 
         $handle = fopen($this->baz1URL, "r+");
@@ -617,13 +648,14 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
-     * @group  issue_33
-     * @since  1.1.0
+     * @group     issue_33
+     * @since     1.1.0
+     * @requires  PHP 5.4.0
      */
     public function truncateToGreaterSizeAddsZeroBytes()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
+        if (strstr(PHP_VERSION, 'hiphop') !== false) {
+            $this->markTestSkipped('Not supported on hhvm');
         }
 
         $handle = fopen($this->baz1URL, "r+");
@@ -636,28 +668,22 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
-     * @group  issue_11
+     * @group     issue_11
+     * @requires  PHP 5.4.0
      */
     public function touchCreatesNonExistingFile()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
-        }
-
         $this->assertTrue(touch($this->fooURL . '/new.txt'));
         $this->assertTrue($this->foo->hasChild('new.txt'));
     }
 
     /**
      * @test
-     * @group  issue_11
+     * @group     issue_11
+     * @requires  PHP 5.4.0
      */
     public function touchChangesAccessAndModificationTimeForFile()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
-        }
-
         $this->assertTrue(touch($this->baz1URL, 303, 313));
         $this->assertEquals(303, $this->baz1->filemtime());
         $this->assertEquals(313, $this->baz1->fileatime());
@@ -665,29 +691,24 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
-     * @group  issue_11
+     * @group     issue_11
+     * @group     issue_80
+     * @requires  PHP 5.4.0
      */
-    public function touchDoesNotChangeTimesWhenNoTimesGiven()
+    public function touchChangesTimesToCurrentTimestampWhenNoTimesGiven()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
-        }
-
         $this->assertTrue(touch($this->baz1URL));
-        $this->assertEquals(300, $this->baz1->filemtime());
-        $this->assertEquals(300, $this->baz1->fileatime());
+        $this->assertEquals(time(), $this->baz1->filemtime(), '', 1);
+        $this->assertEquals(time(), $this->baz1->fileatime(), '', 1);
     }
 
     /**
      * @test
-     * @group  issue_11
+     * @group     issue_11
+     * @requires  PHP 5.4.0
      */
     public function touchWithModifiedTimeChangesAccessAndModifiedTime()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
-        }
-
         $this->assertTrue(touch($this->baz1URL, 303));
         $this->assertEquals(303, $this->baz1->filemtime());
         $this->assertEquals(303, $this->baz1->fileatime());
@@ -695,17 +716,74 @@ class vfsStreamWrapperTestCase extends vfsStreamWrapperBaseTestCase
 
     /**
      * @test
-     * @group  issue_11
+     * @group     issue_11
+     * @requires  PHP 5.4.0
      */
     public function touchChangesAccessAndModificationTimeForDirectory()
     {
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped('Requires PHP 5.4');
-        }
-
         $this->assertTrue(touch($this->fooURL, 303, 313));
         $this->assertEquals(303, $this->foo->filemtime());
         $this->assertEquals(313, $this->foo->fileatime());
     }
+
+    /**
+     * @test
+     * @group  issue_34
+     * @since  1.2.0
+     */
+    public function pathesAreCorrectlySet()
+    {
+        $this->assertEquals(vfsStream::path($this->fooURL), $this->foo->path());
+        $this->assertEquals(vfsStream::path($this->barURL), $this->bar->path());
+        $this->assertEquals(vfsStream::path($this->baz1URL), $this->baz1->path());
+        $this->assertEquals(vfsStream::path($this->baz2URL), $this->baz2->path());
+    }
+
+    /**
+     * @test
+     * @group  issue_34
+     * @since  1.2.0
+     */
+    public function urlsAreCorrectlySet()
+    {
+        $this->assertEquals($this->fooURL, $this->foo->url());
+        $this->assertEquals($this->barURL, $this->bar->url());
+        $this->assertEquals($this->baz1URL, $this->baz1->url());
+        $this->assertEquals($this->baz2URL, $this->baz2->url());
+    }
+
+    /**
+     * @test
+     * @group  issue_34
+     * @since  1.2.0
+     */
+    public function pathIsUpdatedAfterMove()
+    {
+        // move foo/bar/baz1 to foo/baz3
+        $baz3URL = vfsStream::url('foo/baz3');
+        $this->assertTrue(rename($this->baz1URL, $baz3URL));
+        $this->assertEquals(vfsStream::path($baz3URL), $this->baz1->path());
+    }
+
+    /**
+     * @test
+     * @group  issue_34
+     * @since  1.2.0
+     */
+    public function urlIsUpdatedAfterMove()
+    {
+        // move foo/bar/baz1 to foo/baz3
+        $baz3URL = vfsStream::url('foo/baz3');
+        $this->assertTrue(rename($this->baz1URL, $baz3URL));
+        $this->assertEquals($baz3URL, $this->baz1->url());
+    }
+
+    /**
+     * @test
+     */
+    public function fileCopy()
+    {
+        $baz3URL = vfsStream::url('foo/baz3');
+        $this->assertTrue(copy($this->baz1URL, $baz3URL));
+    }
 }
-?>

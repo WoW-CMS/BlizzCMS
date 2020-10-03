@@ -13,7 +13,7 @@ namespace org\bovigo\vfs;
  *
  * @group  zip
  */
-class vfsStreamZipTestCase extends \PHPUnit_Framework_TestCase
+class vfsStreamZipTestCase extends \BC_PHPUnit_Framework_TestCase
 {
     /**
      * set up test environment
@@ -37,7 +37,7 @@ class vfsStreamZipTestCase extends \PHPUnit_Framework_TestCase
     public function createZipArchive()
     {
         $zip = new ZipArchive();
-        $this->assertTrue($zip->open(vfsStream::url('root/test.zip'), ZIPARCHIVE::CREATE));
+        $this->assertTrue($zip->open(vfsStream::url('root/test.zip'), ZipArchive::CREATE));
         $this->assertTrue($zip->addFromString("testfile1.txt", "#1 This is a test string added as testfile1.txt.\n"));
         $this->assertTrue($zip->addFromString("testfile2.txt", "#2 This is a test string added as testfile2.txt.\n"));
         $zip->setArchiveComment('a test');
@@ -50,4 +50,3 @@ class vfsStreamZipTestCase extends \PHPUnit_Framework_TestCase
         var_dump(file_exists(vfsStream::url('root/test.zip')));
     }
 }
-?>
