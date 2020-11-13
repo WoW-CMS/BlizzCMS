@@ -1277,4 +1277,19 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('name')->where('id', $id)->get('forum_category')->row('name');
     }
+
+    public function listRanks()
+	{
+		return $this->db->select('*')->order_by('id', 'ASC')->get('permissions_groups');
+	}
+
+	public function viewRank($id)
+	{
+		return $this->db->select('*')->where('group_id', $id)->get('permissions_linked');
+	}
+
+	public function getRank($id)
+	{
+		return $this->db->select('*')->where('id', $id)->get('permissions');
+	}
 }

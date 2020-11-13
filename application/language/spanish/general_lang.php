@@ -216,6 +216,7 @@ $lang['panel_member'] = 'Miembro desde';
 $lang['panel_chars_list'] = 'Lista de Personajes';
 $lang['panel_account_details'] = 'Detalles de la cuenta';
 $lang['panel_last_ip'] = 'Última IP';
+$lang['panel_web_rank'] = 'Rango';
 $lang['panel_change_email'] = 'Cambiar Correo electrónico';
 $lang['panel_change_username'] = 'Cambiar el nombre de usuario';
 $lang['panel_change_password'] = 'Cambiar Contraseña';

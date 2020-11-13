@@ -57,6 +57,10 @@
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('panel_last_ip'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
+					  <tr>
+						  <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('panel_web_rank'); ?></span></td>
+						  <td class="uk-table-expand"><?= $this->user_model->checkRankWeb($this->session->userdata('wow_sess_id')); ?></td>
+					  </tr>
                     </tbody>
                   </table>
                 </div>

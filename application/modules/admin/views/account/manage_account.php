@@ -102,6 +102,23 @@
                 </div>
                 <?= form_close(); ?>
                 <?php endif; ?>
+
+				<h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('placeholder_website_grant_rank'); ?></span></h5>
+				<?= form_open('', 'id="grantrankWebsiteForm" onsubmit="GrantRankWebsiteForm(event)"'); ?>
+				  <div class="uk-margin-small">
+					  <label class="uk-form-label"><?= $this->lang->line('placeholder_website_rank'); ?></label>
+					  	<div class="uk-inline uk-width-1-1">
+							<div class="uk-form-controls">
+								<input class="uk-input" type="number" id="account_gmrank" min="0" max="5" placeholder="<?= $this->lang->line('placeholder_website_rank'); ?>" required>
+							</div>
+						</div>
+				  </div>
+				  <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
+					  <div class="uk-width-1-2@s">
+						  <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_addrank"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_grant'); ?></button>
+					  </div>
+				  </div>
+				  <?= form_close(); ?>
               </div>
             </div>
           </div>
