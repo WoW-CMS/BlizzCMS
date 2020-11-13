@@ -62,6 +62,7 @@ $lang['notification_currentpass_not_match'] = 'Old Password do not match';
 $lang['notification_usernamepass_not_match'] = 'The password do not match for this username';
 $lang['notification_used_email'] = 'Email in use';
 $lang['notification_email_not_match'] = 'Email do not match';
+$lang['notification_username_not_match'] = 'Username do not match';
 $lang['notification_expansion_not_found'] = 'Expansion not found';
 $lang['notification_valid_key'] = 'Account Activated';
 $lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';

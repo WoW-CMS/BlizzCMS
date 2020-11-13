@@ -554,5 +554,4 @@ class General_model extends CI_Model {
     {
         return $this->db->select('*')->where('child', $id)->get('menu');
     }
-
 }
