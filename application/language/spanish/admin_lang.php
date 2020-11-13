@@ -139,7 +139,6 @@ $lang['placeholder_item'] = 'Item';
 $lang['placeholder_image_name'] = 'Nombre de la imágen';
 $lang['placeholder_reason'] = 'Razón';
 $lang['placeholder_gmlevel'] = 'Nivel de GM';
-$lang['placeholder_website_rank'] = 'Rango en el sitio web';
 $lang['placeholder_url'] = 'URL';
 $lang['placeholder_child_menu'] = 'Child Menu';
 $lang['placeholder_url_type'] = 'Tipo de URL';
@@ -159,7 +158,6 @@ $lang['placeholder_account_ban'] = 'Bannear Cuenta';
 $lang['placeholder_account_unban'] = 'Desbanear Cuenta';
 $lang['placeholder_account_grant_rank'] = 'Otorgar Rango GM';
 $lang['placeholder_account_remove_rank'] = 'Remover Rango GM';
-$lang['placeholder_website_grant_rank'] = 'Otorgar Rango en la Pagina';
 $lang['placeholder_command'] = 'Comando';
 
 /*Config Lang*/

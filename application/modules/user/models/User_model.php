@@ -19,49 +19,96 @@ class User_model extends CI_Model {
         $newaccpass = $this->wowauth->Account($this->session->userdata('wow_sess_username'), $newpass);
         $newaccbnetpass = $this->wowauth->Battlenet($this->session->userdata('wow_sess_email'), $newpass);
 
-        $change = array(
-            'sha_pass_hash' => $newaccpass,
-            'sessionkey' => '',
-            'v' => '',
-            's' => ''
-        );
-
-        if (strlen($newpass) < 5 && strlen($newpass) > 16) {
-            return 'lengError';
+        if($this->wowgeneral->getExpansionAction() == 1) {
+            if($this->wowgeneral->getEmulatorAction() == 1) {
+                if ($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($passbnet)) {
+                    if ($newaccbnetpass == $this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id'))) {
+                        return 'samePass';
+                    }
+                    else
+                        if(strlen($newpass) >= 5 && strlen($newpass) <= 16) {
+                            if($newpass == $renewpass) {
+                                $change = array(
+                                    'sha_pass_hash' => $newaccpass,
+                                    'sessionkey' => '',
+                                    'v' => '',
+                                    's' => ''
+                                );
+    
+                                $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
+    
+                                $this->auth->set('sha_pass_hash', $newaccbnetpass)->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts');
+                                return true;
+                            }
+                            else
+                                return 'noMatch';
+                        }
+                        else
+                            return 'lengError';
+                }
+                else
+                    return 'passnotMatch';
+            }
+            else
+            {
+                if ($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id')) == strtoupper($passnobnet)) {
+                    if($newaccpass == $this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id'))) {
+                        return 'samePass';
+                    }
+                    else
+                        if(strlen($newpass) >= 5 && strlen($newpass) <= 16) {
+                            if ($newpass == $renewpass) {
+                                    $change = array(
+                                        'sha_pass_hash' => $newaccpass,
+                                        'sessionkey' => '',
+                                        'v' => '',
+                                        's' => ''
+                                    );
+    
+                                    $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
+                                    return true;
+                            }
+                            else
+                                return 'noMatch';
+                        }
+                        else
+                            return 'lengError';
+                }
+                else
+                    return 'passnotMatch';
+            }
         }
+        elseif($this->wowgeneral->getExpansionAction() == 2) {
+            if ($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($passbnet)) {
+                if ($newaccbnetpass == $this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id'))) {
+                    return 'samePass';
+                }
+                else
+                    if(strlen($newpass) >= 5 && strlen($newpass) <= 16) {
+                        if($newpass == $renewpass) {
+                            $change = array(
+                                'sha_pass_hash' => $newaccpass,
+                                'sessionkey' => '',
+                                'v' => '',
+                                's' => ''
+                            );
 
-        if ($newpass != $renewpass) {
-            return 'noMatch';
-        }
+                            $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
 
-        if ($this->wowgeneral->getExpansionAction() == 1) {
-            if (strtoupper($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id'))) != strtoupper($passnobnet)) {
+                            $this->auth->set('sha_pass_hash', $newaccbnetpass)->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts');
+                            return true;
+                        }
+                        else
+                            return 'noMatch';
+                    }
+                    else
+                        return 'lengError';
+            }
+            else
                 return 'passnotMatch';
-            }
-
-            if ($newaccpass == strtoupper($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id')))) {
-                return 'samePass';
-            }
-
-            $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
-            return true;
         }
-
-        if ($this->wowgeneral->getExpansionAction() == 2) {
-            if (strtoupper($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id'))) != strtoupper($passbnet)) {
-                return 'passnotMatch';
-            }
-
-            if ($newaccbnetpass == strtoupper($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')))) {
-                return 'samePass';
-            }
-
-            $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('account', $change);
-            $this->auth->set('sha_pass_hash', $newaccbnetpass)->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts');
-            return true;
-        }
-
-        return 'expError';
+        else
+            return 'expError';
     }
 
     public function changeEmail($newemail, $renewemail, $password)
@@ -70,45 +117,79 @@ class User_model extends CI_Model {
         $bnet = $this->wowauth->Battlenet($this->session->userdata('wow_sess_email'), $password);
         $newbnetpass = $this->wowauth->Battlenet($newemail, $password);
 
-        if ($newemail != $renewemail) {
-            return 'enoMatch';
-        }
-
-        if ($this->getExistEmail(strtoupper($newemail)) > 0) {
-            return 'usedEmail';
-        }
-
-        if ($this->wowgeneral->getExpansionAction() == 1) {
-            if (strtoupper($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id'))) != strtoupper($nobnet)) {
-                return 'epassnotMatch';
+        if($this->wowgeneral->getExpansionAction() == 1) {
+            if($this->wowgeneral->getEmulatorAction() == 1) {
+                if ($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($bnet)) {
+                    if($newemail == $renewemail) {
+                        if($this->getExistEmail(strtoupper($newemail)) > 0) {
+                            return 'usedEmail';
+                        }
+                        else
+                            $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
+    
+                            $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+    
+                            $update = array(
+                                'sha_pass_hash' => $newbnetpass,
+                                'email' => $newemail
+                            );
+    
+                            $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts', $update);
+                            return true;
+                    }
+                    else
+                        return 'enoMatch';
+                }
+                else
+                    return 'epassnotMatch';
             }
+            else
+            {
+                if ($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id')) == strtoupper($nobnet)) {
+                    if($newemail == $renewemail) {
+                        if($this->getExistEmail(strtoupper($newemail)) > 0) {
+                            return 'usedEmail';
+                        }
+                        else
+                            $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
 
-            $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
-
-            $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
-
-            return true;
-        }
-
-        if ($this->wowgeneral->getExpansionAction() == 2) {
-            if (strtoupper($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id'))) != strtoupper($bnet)) {
-                return 'epassnotMatch';
+                            $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+                            return true;
+                    }
+                    else
+                        return 'enoMatch';
+                }
+                else
+                    return 'epassnotMatch';
             }
-
-            $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
-
-            $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
-
-            $update = array(
-                'sha_pass_hash' => $newbnetpass,
-                'email' => $newemail
-            );
-
-            $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts', $update);
-            return true;
         }
+        elseif($this->wowgeneral->getExpansionAction() == 2) {
+            if ($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($bnet)) {
+                if($newemail == $renewemail) {
+                    if($this->getExistEmail(strtoupper($newemail)) > 0) {
+                        return 'usedEmail';
+                    }
+                    else
+                        $this->auth->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('account');
 
-        return 'expaError';
+                        $this->db->set('email', $newemail)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+
+                        $update = array(
+                            'sha_pass_hash' => $newbnetpass,
+                            'email' => $newemail
+                        );
+
+                        $this->auth->where('id', $this->session->userdata('wow_sess_id'))->update('battlenet_accounts', $update);
+                        return true;
+                }
+                else
+                    return 'enoMatch';
+            }
+            else
+                return 'epassnotMatch';
+        }
+        else
+            return 'expaError';
     }
 
     public function getExistEmail($email)
@@ -155,31 +236,35 @@ class User_model extends CI_Model {
     public function checklogin($username, $password)
     {
         $id = $this->wowauth->getIDAccount($username);
-        $password = $this->wowauth->Account($username, $password);
 
-        if ($id == 0) {
+        if ($id == "0")
             return 'uspErr';
-        }
-
-        if (strtoupper($this->wowauth->getPasswordAccountID($id)) == strtoupper($password))
-            return $this->wowauth->arraySession($id);
         else
-            return 'uspErr';
+        {
+            $password = $this->wowauth->Account($username, $password);
+
+            if (strtoupper($this->wowauth->getPasswordAccountID($id)) == strtoupper($password))
+                return $this->wowauth->arraySession($id);
+            else
+                return 'uspErr';
+        }
     }
 
     public function checkloginbattle($email, $password)
     {
         $id = $this->wowauth->getIDEmail($email);
-        $password = $this->wowauth->Battlenet($email, $password);
 
-        if ($id == 0) {
+        if ($id == "0")
             return 'empErr';
-        }
-
-        if (strtoupper($this->wowauth->getPasswordBnetID($id)) == strtoupper($password))
-            return $this->wowauth->arraySession($id);
         else
-            return 'empErr';
+        {
+            $password = $this->wowauth->Battlenet($email, $password);
+
+            if (strtoupper($this->wowauth->getPasswordBnetID($id)) == strtoupper($password))
+                return $this->wowauth->arraySession($id);
+            else
+                return 'empErr';
+        }
     }
 
     public function insertRegister($username, $email, $password, $repassword)
@@ -194,98 +279,130 @@ class User_model extends CI_Model {
         $pendinguser = $this->getIDPendingUsername($username);
         $pendingemail = $this->getIDPendingEmail($email);
 
-        if ($checkuser != 0 && $pendinguser != 0) {
-            return 'regUser';
-        }
+        if($checkuser == "0" && $pendinguser == "0") {
+            if($checkemail == "0" && $pendingemail == "0") {
+                if(strlen($password) >= 5 && strlen($password) <= 16 || strlen($repassword) >= 5 && strlen($repassword) <= 16) {
+                    if($password == $repassword)
+                    {
+                        if($this->config->item('account_activation_required') == TRUE)
+                        {
+                            $data = array(
+                                'username' => $username,
+                                'email' => $email,
+                                'password' => $passwordAc,
+                                'password_bnet' => $passwordBn,
+                                'expansion' => $expansion,
+                                'joindate' => $date,
+                                'key' => sha1($username.$email.$date)
+                            );
 
-        if ($checkemail != 0 && $pendingemail != 0) {
-            return 'regEmail';
-        }
+                            $this->db->insert('pending_users', $data);
 
-        if (strlen($password) < 5 && strlen($password) > 16 || strlen($repassword) < 5 && strlen($repassword) > 16) {
-            return 'regLeng';
-        }
+                            $link = base_url().'activate/'.$data['key'];
 
-        if ($password != $repassword) {
-            return 'regPass';
-        }
+                            $mail_message = 'Hi, You have created the account <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> please use this link to activate your account: <a target="_blank" href="'.$link.'" class="font-weight: bold;">Activate Now</a><br>';
+                            $mail_message .= 'Kind regards,<br>';
+                            $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
 
-        if ($this->config->item('account_activation_required') == TRUE) {
+                            $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_account_activation'), $mail_message);
+                            return 'regAct';
+                        }
+                        else
+                        {
+                            if ($this->wowgeneral->getExpansionAction() == 1)
+                            {
+                                if($this->wowgeneral->getEmulatorAction() == 1)
+                                {
+                                    $data = array(
+                                        'username' => $username,
+                                        'sha_pass_hash' => $passwordAc,
+                                        'email' => $email,
+                                        'expansion' => $expansion,
+                                        'battlenet_index' => '1',
+                                    );
+    
+                                    $this->auth->insert('account', $data);
+    
+                                    $id = $this->wowauth->getIDAccount($username);
+    
+                                    $data1 = array(
+                                        'id' => $id,
+                                        'email' => $email,
+                                        'sha_pass_hash' => $passwordBn,
+                                    );
+    
+                                    $this->auth->insert('battlenet_accounts', $data1);
+    
+                                    $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
+                                }
+                                else
+                                {
+                                    $data = array(
+                                        'username' => $username,
+                                        'sha_pass_hash' => $passwordAc,
+                                        'email' => $email,
+                                        'expansion' => $expansion,
+                                    );
+    
+                                    $this->auth->insert('account', $data);
+                                }
 
-            $key = sha1($username.$email.$date);
-            $link = base_url('activate/'.$key);
+                            }
+                            else
+                            {
+                                $data = array(
+                                    'username' => $username,
+                                    'sha_pass_hash' => $passwordAc,
+                                    'email' => $email,
+                                    'expansion' => $expansion,
+                                    'battlenet_index' => '1',
+                                );
 
-            $this->db->insert('pending_users', array(
-                'username' => $username,
-                'email' => $email,
-                'password' => $passwordAc,
-                'password_bnet' => $passwordBn,
-                'expansion' => $expansion,
-                'joindate' => $date,
-                'key' => $key
-            ));
+                                $this->auth->insert('account', $data);
 
-            $mail_message = 'Hi, You have created the account <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> please use this link to activate your account: <a target="_blank" href="'.$link.'" class="font-weight: bold;">Activate Now</a><br>';
-            $mail_message .= 'Kind regards,<br>';
-            $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
+                                $id = $this->wowauth->getIDAccount($username);
 
-            $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_account_activation'), $mail_message);
-            return 'regAct';
-        }
+                                $data1 = array(
+                                    'id' => $id,
+                                    'email' => $email,
+                                    'sha_pass_hash' => $passwordBn,
+                                );
 
-        if ($this->wowgeneral->getExpansionAction() == 1) {
-            $this->auth->insert('account', array(
-                'username' => $username,
-                'sha_pass_hash' => $passwordAc,
-                'email' => $email,
-                'expansion' => $expansion,
-            ));
+                                $this->auth->insert('battlenet_accounts', $data1);
+
+                                $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
+                            }
+
+                            $id = $this->wowauth->getIDAccount($username);
+
+                            $data3 = array(
+                                'id' => $id,
+                                'username' => $username,
+                                'email' => $email,
+                                'joindate' => $date
+                            );
+
+                            $this->db->insert('users', $data3);
+                            return true;
+                        }
+                    }
+                    else
+                        return 'regPass';
+                }
+                else
+                    return 'regLeng';
+            }
+            else
+                return 'regEmail';
         }
         else
-        {
-            $this->auth->insert('account', array(
-                'username' => $username,
-                'sha_pass_hash' => $passwordAc,
-                'email' => $email,
-                'expansion' => $expansion,
-                'battlenet_index' => '1'
-            ));
-
-            $id = $this->wowauth->getIDAccount($username);
-
-            $this->auth->insert('battlenet_accounts', array(
-                'id' => $id,
-                'email' => $email,
-                'sha_pass_hash' => $passwordBn
-            ));
-
-            $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
-        }
-
-        $id = $this->wowauth->getIDAccount($username);
-
-        $this->db->insert('users', array(
-            'id' => $id,
-            'username' => $username,
-            'email' => $email,
-            'joindate' => $date
-        ));
-
-        return true;
+            return 'regUser';
     }
 
     public function checkuserid($username)
     {
         return $this->auth->select('id')->where('username', $username)->get('account')->row('id');
     }
-
-	public function checkRankWeb($id)
-	{
-		$db = $this->db->select('rank')->where('id', $id)->get('users')->row('rank');
-
-		return $this->db->select('name')->where('id', $db)->get('permissions_groups')->row('name');
-
-	}
 
     public function checkemailid($email)
     {
@@ -297,43 +414,50 @@ class User_model extends CI_Model {
         $ucheck = $this->checkuserid($username);
         $echeck = $this->checkemailid($email);
 
-        if ($ucheck != $echeck) {
-            return 'sendErr';
-        }
+        if ($ucheck == $echeck)
+        {
+            $allowed_chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            $password_generated = "";
+            $password_generated = substr(str_shuffle($allowed_chars), 0, 14);
+            $newpass = $password_generated;
+            $newpassI = $this->wowauth->Account($username, $newpass);
+            $newpassII = $this->wowauth->Battlenet($email, $newpass);
 
-        $this->load->helper('string');
+            if ($this->wowgeneral->getExpansionAction() == 1)
+            {
+                $accupdate = array(
+                    'sha_pass_hash' => $newpassI,
+                    'sessionkey' => '',
+                    'v' => '',
+                    's' => ''
+                );
 
-        $newpass = random_string('alnum', 14);
-        $newpassI = $this->wowauth->Account($username, $newpass);
-        $newpassII = $this->wowauth->Battlenet($email, $newpass);
+                $this->auth->where('id', $ucheck)->update('account', $accupdate);
+            }
+            else
+            {
+                $accupdate = array(
+                    'sha_pass_hash' => $newpassI,
+                    'sessionkey' => '',
+                    'v' => '',
+                    's' => ''
+                );
 
-        if ($this->wowgeneral->getExpansionAction() == 1) {
-            $this->auth->where('id', $ucheck)->update('account', array(
-                'sha_pass_hash' => $newpassI,
-                'sessionkey' => '',
-                'v' => '',
-                's' => ''
-            ));
+                $this->auth->where('id', $ucheck)->update('account', $accupdate);
+
+                $this->auth->set('sha_pass_hash', $newpassII)->where('id', $echeck)->update('battlenet_accounts');
+            }
+
+            $mail_message = 'Hi, <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> You have sent a request for your account password to be reset.<br>';
+            $mail_message .= 'Your new password is: <span style="font-weight: bold;">'.$password_generated.'</span><br>';
+            $mail_message .= 'Please change your password again as soon as you log in!<br>';
+            $mail_message .= 'Kind regards,<br>';
+            $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
+
+            return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
         }
         else
-        {
-            $this->auth->where('id', $ucheck)->update('account', array(
-                'sha_pass_hash' => $newpassI,
-                'sessionkey' => '',
-                'v' => '',
-                's' => ''
-            ));
-
-            $this->auth->set('sha_pass_hash', $newpassII)->where('id', $echeck)->update('battlenet_accounts');
-        }
-
-        $mail_message = 'Hi, <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> You have sent a request for your account password to be reset.<br>';
-        $mail_message .= 'Your new password is: <span style="font-weight: bold;">'.$password_generated.'</span><br>';
-        $mail_message .= 'Please change your password again as soon as you log in!<br>';
-        $mail_message .= 'Kind regards,<br>';
-        $mail_message .= $this->config->item('email_settings_sender_name').' Support.';
-
-        return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
+            return 'sendErr';
     }
 
     public function getIDPendingUsername($account)
@@ -363,58 +487,66 @@ class User_model extends CI_Model {
 
     public function activateAccount($key)
     {
+
         $check = $this->checkPendingUser($key);
         $temp = $this->getTempUser($key);
 
-        if ($check == 1) {
+        if($check == "1") {
             if ($this->wowgeneral->getExpansionAction() == 1)
             {
-                $this->auth->insert('account', array(
-                    'username' => $temp['username'],
-                    'sha_pass_hash' => $temp['password'],
-                    'email' => $temp['email'],
-                    'expansion' => $temp['expansion']
-                ));
-            }
-            else
-            {
-                $this->auth->insert('account', array(
+                $data = array(
                     'username' => $temp['username'],
                     'sha_pass_hash' => $temp['password'],
                     'email' => $temp['email'],
                     'expansion' => $temp['expansion'],
-                    'battlenet_index' => '1'
-                ));
+                );
+
+                $this->auth->insert('account', $data);
+            }
+            else
+            {
+                $data = array(
+                    'username' => $temp['username'],
+                    'sha_pass_hash' => $temp['password'],
+                    'email' => $temp['email'],
+                    'expansion' => $temp['expansion'],
+                    'battlenet_index' => '1',
+                );
+
+                $this->auth->insert('account', $data);
 
                 $id = $this->wowauth->getIDAccount($temp['username']);
 
-                $this->auth->insert('battlenet_accounts', array(
+                $data1 = array(
                     'id' => $id,
                     'email' => $temp['email'],
                     'sha_pass_hash' => $temp['password_bnet']
-                ));
+                );
+
+                $this->auth->insert('battlenet_accounts', $data1);
 
                 $this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
             }
 
             $id = $this->wowauth->getIDAccount($temp['username']);
 
-            $this->db->insert('users', array(
+            $data3 = array(
                 'id' => $id,
                 'username' => $temp['username'],
                 'email' => $temp['email'],
                 'joindate' => $temp['joindate']
-            ));
+            );
+
+            $this->db->insert('users', $data3);
 
             $this->removeTempUser($key);
 
             $this->session->set_flashdata('account_activation','true');
             redirect(base_url('login'));
         }
-        else {
+        else
             $this->session->set_flashdata('account_activation','false');
             redirect(base_url('login'));
-        }
     }
 
 
@@ -422,27 +554,50 @@ class User_model extends CI_Model {
      * Change UserName for website
      */
 
-     public function changeUsername($newusername, $password)
+     public function changeUsername($newusername, $renewusername, $password)
      {
         $nobnet = $this->wowauth->Account($this->session->userdata('wow_sess_username'), $password);
         $bnet = $this->wowauth->Battlenet($this->session->userdata('wow_sess_email'), $password);
 
-        if ($this->wowgeneral->getExpansionAction() == 1) {
-            if (strtoupper($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id'))) != strtoupper($nobnet)) {
-                return 'epassnotMatch';
+        if($this->wowgeneral->getExpansionAction() == 1) {
+            if($this->wowgeneral->getEmulatorAction() == 1) {
+                if ($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($bnet)) {
+                    if($newusername == $renewusername) {
+                        $this->db->set('username', $newusername)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+                        return true;
+                    }
+                    else
+                        return 'enoMatch';
+                }
+                else
+                    return 'epassnotMatch';
             }
-
-            $this->db->set('username', $newusername)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
-            return true;
+            else
+            {
+                if ($this->wowauth->getPasswordAccountID($this->session->userdata('wow_sess_id')) == strtoupper($nobnet)) {
+                    if($newusername == $renewusername) {
+                        $this->db->set('username', $newusername)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+                        return true;
+                    }
+                    else
+                        return 'enoMatch';
+                }
+                else
+                    return 'epassnotMatch';
+            }
         }
         else
         {
-            if (strtoupper($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id'))) != strtoupper($bnet)) {
-                return 'epassnotMatch';
+            if ($this->wowauth->getPasswordBnetID($this->session->userdata('wow_sess_id')) == strtoupper($bnet)) {
+                if($newusername == $renewusername) {
+                    $this->db->set('username', $newusername)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+                    return true;
+                }
+                else
+                    return 'enoMatch';
             }
-
-            $this->db->set('username', $newusername)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
-            return true;
+            else
+                return 'epassnotMatch';
         }
      }
 }
