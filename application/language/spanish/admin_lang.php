@@ -159,6 +159,7 @@ $lang['placeholder_account_unban'] = 'Desbanear Cuenta';
 $lang['placeholder_account_grant_rank'] = 'Otorgar Rango GM';
 $lang['placeholder_account_remove_rank'] = 'Remover Rango GM';
 $lang['placeholder_command'] = 'Comando';
+$lang['placeholder_emulator'] = 'Emulador';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Nombre del Sitio Web';

@@ -310,7 +310,7 @@ class Admin_model extends CI_Model {
         return $this->db->select('type')->where('id', $id)->get('menu')->row('type');
     }
 
-    public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
+    public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, $emulator)
     {
         $data = array(
             'hostname' => $hostname,
@@ -322,14 +322,14 @@ class Admin_model extends CI_Model {
             'console_username' => $soapuser,
             'console_password' => $soappass,
             'console_port' => $soapport,
-            'emulator' => 'TC'
+            'emulator' => $emulator
         );
 
         $this->db->insert('realms', $data);
         return true;
     }
 
-    public function updateSpecifyRealm($id, $hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport)
+    public function updateSpecifyRealm($id, $hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, $emulator)
     {
         $update = array(
             'hostname' => $hostname,
@@ -341,7 +341,7 @@ class Admin_model extends CI_Model {
             'console_username' => $soapuser,
             'console_password' => $soappass,
             'console_port' => $soapport,
-            'emulator' => 'TC'
+            'emulator' => $emulator
         );
 
         $this->db->where('id', $id)->update('realms', $update);
@@ -413,6 +413,11 @@ class Admin_model extends CI_Model {
     public function getRealmSpecifyConsolePort($id)
     {
         return $this->db->select('console_port')->where('id', $id)->get('realms')->row('console_port');
+    }
+
+    public function getRealmSpecifyEmulator($id)
+    {
+        return $this->db->select('emulator')->where('id', $id)->get('realms')->row('emulator');
     }
 
     public function insertSlide($title, $description, $type, $route)
