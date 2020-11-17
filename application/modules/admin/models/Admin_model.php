@@ -220,6 +220,8 @@ class Admin_model extends CI_Model {
         $writer = $this->config_writer->get_instance(APPPATH.'modules/donate/config/donate.php', 'config');
         $writer->write('paypal_currency', $currency);
         $writer->write('paypal_mode', $mode);
+        $writer->write('paypal_userid', $client);
+        $writer->write('paypal_secretpass', $password);
         $writer->write('paypal_client', $client);
         $writer->write('paypal_password', $password);
         return true;

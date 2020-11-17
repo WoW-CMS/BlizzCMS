@@ -153,8 +153,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            $('#updatedonateForm')[0].reset();
-            window.location.replace("<?= base_url('admin/settings/module'); ?>");
+            window.location.replace("<?= base_url('admin/settings/'); ?>");
           }
         });
       }
@@ -217,8 +216,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            $('#updatebugtrackerForm')[0].reset();
-            window.location.replace("<?= base_url('admin/settings/module'); ?>");
+            window.location.replace("<?= base_url('admin/settings/'); ?>");
           }
         });
       }
