@@ -82,6 +82,22 @@
               </div>
             </div>
             <div class="uk-margin-small">
+              <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-inline uk-width-1-2@s">
+                  <label class="uk-form-label"><?= $this->lang->line('placeholder_emulator'); ?></label>
+                  <div class="uk-form-controls">
+                    <select class="uk-select" id="emulator" required>
+                      <option value="MaNGOS" <?= $this->admin_model->getRealmSpecifyEmulator($idlink) == 'MaNGOS' ? 'selected' : '' ?>>CMaNGOS</option>
+                      <option value="TC" <?= $this->admin_model->getRealmSpecifyEmulator($idlink) == 'TC' ? 'selected' : '' ?>>TrinityCore</option>
+                      <option value="AC" <?= $this->admin_model->getRealmSpecifyEmulator($idlink) == 'AC' ? 'selected' : '' ?>>AzerothCore</option>
+                      <option value="SF" <?= $this->admin_model->getRealmSpecifyEmulator($idlink) == 'SF' ? 'selected' : '' ?>>Skyfire Project</option>
+                      <option value="Oregon" <?= $this->admin_model->getRealmSpecifyEmulator($idlink) == 'Oregon' ? 'selected' : '' ?>>OregonCore</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin-small">
               <button class="uk-button uk-button-primary uk-width-1-1" type="submit" name="button_uprealm"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
             </div>
             <?= form_close(); ?>
@@ -104,6 +120,7 @@
         var chardb = $('#character_database').val();
         var charuser = $('#character_username').val();
         var charpass = $('#character_password').val();
+        var emulator = $('#emulator').val();
 
         if(realmid == ''){
           $.amaran({
@@ -121,10 +138,11 @@
           });
           return false;
         }
+
         $.ajax({
           url:"<?= base_url($lang.'/admin/realms/update'); ?>",
           method:"POST",
-          data:{id, realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass},
+          data:{id, realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass, emulator},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -160,8 +178,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            $('#updaterealmForm')[0].reset();
-            window.location.replace("<?= base_url('admin/realms/edit/'.$idlink); ?>");
+            window.location.replace("<?= base_url('admin/realms/'); ?>");
           }
         });
       }

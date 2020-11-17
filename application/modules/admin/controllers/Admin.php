@@ -455,7 +455,8 @@ class Admin extends MX_Controller {
         $char_db = $this->input->post('chardb');
         $char_user = $this->input->post('charuser');
         $char_pass = $this->input->post('charpass');
-        echo $this->admin_model->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port);
+        $emulator = $this->input->post('emulator');
+        echo $this->admin_model->insertRealm($char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, $emulator);
     }
 
     public function updaterealm()
@@ -470,7 +471,8 @@ class Admin extends MX_Controller {
         $char_db = $this->input->post('chardb');
         $char_user = $this->input->post('charuser');
         $char_pass = $this->input->post('charpass');
-        echo $this->admin_model->updateSpecifyRealm($id, $char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port);
+        $emulator = $this->input->post('emulator');
+        echo $this->admin_model->updateSpecifyRealm($id, $char_host, $char_user, $char_pass, $char_db, $realmid, $soap_host, $soap_user, $soap_pass, $soap_port, $emulator);
     }
 
     public function deleterealm()
