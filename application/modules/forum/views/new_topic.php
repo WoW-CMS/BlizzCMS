@@ -33,7 +33,7 @@
                 </div>
               </div>
             </div>
-            <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
+            <?php if($this->wowauth->getIsAdmin()): ?>
             <div class="uk-margin">
               <div class="uk-form-controls">
                 <div class="uk-grid uk-grid-small uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>

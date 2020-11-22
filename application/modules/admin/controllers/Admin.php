@@ -55,7 +55,7 @@ class Admin extends MX_Controller {
         if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if(!$this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if(!$this->wowauth->getIsAdmin())
             redirect(base_url(),'refresh');
 
         if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
@@ -151,7 +151,7 @@ class Admin extends MX_Controller {
 
     public function modulesettings()
     {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -597,7 +597,7 @@ class Admin extends MX_Controller {
 
     public function createnews()
     {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -619,7 +619,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getNewsSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -673,7 +673,7 @@ class Admin extends MX_Controller {
 
     public function createchangelog()
     {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -695,7 +695,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -764,7 +764,7 @@ class Admin extends MX_Controller {
 
     public function createpage()
     {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -786,7 +786,7 @@ class Admin extends MX_Controller {
         if ($this->admin_model->getPagesSpecifyRows($id) < 1)
             redirect(base_url(),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getIsAdmin())
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
