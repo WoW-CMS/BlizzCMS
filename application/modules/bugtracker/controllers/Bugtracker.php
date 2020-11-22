@@ -19,9 +19,6 @@ class Bugtracker extends MX_Controller
 		$this->load->model('bugtracker_model');
 		$this->load->config('bugtracker');
 
-		if(!ini_get('date.timezone'))
-		   date_default_timezone_set($this->config->item('timezone'));
-
 		if(!$this->wowgeneral->getMaintenance())
 			redirect(base_url('maintenance'),'refresh');
 

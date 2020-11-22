@@ -24,9 +24,6 @@ class Donate extends MX_Controller
 		$this->load->model('donate_model');
 		$this->load->config('donate');
 
-		if(!ini_get('date.timezone'))
-		   date_default_timezone_set($this->config->item('timezone'));
-
 		if(!$this->wowgeneral->getMaintenance())
 			redirect(base_url('maintenance'),'refresh');
 

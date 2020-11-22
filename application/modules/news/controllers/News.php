@@ -18,9 +18,6 @@ class News extends MX_Controller
 		parent::__construct();
 		$this->load->model('news_model');
 
-		if(!ini_get('date.timezone'))
-		   date_default_timezone_set($this->config->item('timezone'));
-
 		if(!$this->wowgeneral->getMaintenance())
 			redirect(base_url('maintenance'),'refresh');
 

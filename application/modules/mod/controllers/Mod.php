@@ -21,9 +21,6 @@ class Mod extends MX_Controller
 		parent::__construct();
 		$this->load->model('mod_model');
 
-		if(!ini_get('date.timezone'))
-		   date_default_timezone_set($this->config->item('timezone'));
-
 		if(!$this->wowauth->isLogged())
 			redirect(base_url(),'refresh');
 
