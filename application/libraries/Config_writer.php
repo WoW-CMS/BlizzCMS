@@ -8,14 +8,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @return \Array_Config_Writer
  */
 
-require_once APPPATH.'libraries/configwriter/class-array-config-writer.php';
+require_once APPPATH . 'libraries/configwriter/class-array-config-writer.php';
 
-class Config_Writer {
-    public function get_instance($file = null, $variable_name = 'config')
-    {
-        if(!$file){
-            $file = APPPATH.'config/config.php';
-        }
-        return new Array_Config_Writer($file , $variable_name);
-    }
+class Config_Writer
+{
+	public function get_instance($file = null, $variable_name = 'config')
+	{
+		if (! $file)
+		{
+			$file = APPPATH . 'config/config.php';
+		}
+
+		return new Array_Config_Writer($file , $variable_name);
+	}
 }
