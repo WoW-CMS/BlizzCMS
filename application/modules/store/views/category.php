@@ -7,10 +7,10 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-default">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= $this->lang->line('store_categories'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('store_categories'); ?></h5>
               </div>
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
-                <li><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></a></li>
+                <li><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></a></li>
                 <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
                 <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
@@ -57,15 +57,15 @@
                       <div class="uk-grid uk-grid-small uk-flex uk-flex-center" data-uk-grid>
                         <div class="uk-width-auto">
                           <?php if($items->price_type == 1): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?></span>
                           <?php elseif($items->price_type == 2): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
                           <?php elseif($items->price_type == 3): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title:<?=lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
                           <?php endif; ?>
                         </div>
                         <div class="uk-width-auto">
-                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
+                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= lang('button_cart'); ?></button>
                         </div>
                       </div>
                     </div>
@@ -96,8 +96,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_store_item_added'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_store_item_added'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

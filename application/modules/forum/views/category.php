@@ -11,13 +11,13 @@
             <div class="uk-width-auto">
               <?php if($this->wowauth->isLogged()): ?>
               <div class="uk-text-center uk-text-right@s">
-                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></a>
+                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('button_new_topic'); ?></a>
               </div>
               <?php endif; ?>
             </div>
           </div>
         </div>
-        <p class="uk-text-uppercase uk-text-bold uk-margin-small"><?= $this->lang->line('forum_topic_list'); ?></p>
+        <p class="uk-text-uppercase uk-text-bold uk-margin-small"><?= lang('forum_topic_list'); ?></p>
         <div class="uk-overflow-auto uk-margin-small">
           <table class="uk-table dark-table uk-table-hover uk-table-middle">
             <tbody>

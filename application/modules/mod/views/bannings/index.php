@@ -13,7 +13,7 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= $this->lang->line('placeholder_username'); ?></th>
+                  <th class="uk-width-small"><?= lang('placeholder_username'); ?></th>
                   <th class="uk-width-medium uk-text-center">Reason</th>
                   <th class="uk-width-small uk-text-center">Length</th>
                   <th class="uk-width-small uk-text-center">Banned By</th>

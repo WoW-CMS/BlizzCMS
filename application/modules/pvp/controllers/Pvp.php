@@ -55,7 +55,7 @@ class Pvp extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_pvp_statistics'),
+            'pagetitle' => lang('tab_pvp_statistics'),
             'realms' => $this->wowrealm->getRealms()->result()
         );
 

@@ -46,7 +46,7 @@ class General extends CI_Controller {
     public function error404()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_error'),
+            'pagetitle' => lang('tab_error'),
         );
 
         $this->template->build('404', $data);
@@ -55,7 +55,7 @@ class General extends CI_Controller {
     public function maintenance()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_maintenance'),
+            'pagetitle' => lang('tab_maintenance'),
         );
 
         $this->template->build('maintenance', $data);

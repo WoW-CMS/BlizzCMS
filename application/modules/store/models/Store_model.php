@@ -150,8 +150,8 @@ class Store_model extends CI_Model {
         $charname = $this->wowrealm->getNameCharacterSpecifyGuid($multirealm, $charid);
         $charexist = $this->wowrealm->getCharExistGuid($multirealm, $charid);
         $charcheck = $this->wowrealm->getAccountCharGuid($multirealm, $charid);
-        $subject = $this->lang->line('soap_send_subject');
-        $message = $this->lang->line('soap_send_body');
+        $subject = lang('soap_send_subject');
+        $message = lang('soap_send_body');
 
         if($charexist > 0 && $charcheck == $accountid)
         {

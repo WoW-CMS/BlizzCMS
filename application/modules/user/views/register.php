@@ -3,14 +3,14 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></span></h4>
+        <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></span></h4>
         <?= form_open('', 'id="registerForm" onsubmit="RegisterForm(event)"'); ?>
         <div class="uk-margin uk-light">
-          <label class="uk-form-label"><?= $this->lang->line('label_login_info'); ?></label>
+          <label class="uk-form-label"><?= lang('label_login_info'); ?></label>
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
-              <input class="uk-input" type="text" id="register_username" pattern=".{3,}" title="3 characters minimum" placeholder="<?= $this->lang->line('placeholder_username'); ?>" required>
+              <input class="uk-input" type="text" id="register_username" pattern=".{3,}" title="3 characters minimum" placeholder="<?= lang('placeholder_username'); ?>" required>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-              <input class="uk-input" type="email" id="register_email" placeholder="<?= $this->lang->line('placeholder_email'); ?>" required>
+              <input class="uk-input" type="email" id="register_email" placeholder="<?= lang('placeholder_email'); ?>" required>
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-unlock-alt fa-lg"></i></span>
-              <input class="uk-input" type="password" id="register_password" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= $this->lang->line('placeholder_password'); ?>" required>
+              <input class="uk-input" type="password" id="register_password" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= lang('placeholder_password'); ?>" required>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
           <div class="uk-form-controls">
             <div class="uk-inline uk-width-1-1">
               <span class="uk-form-icon"><i class="fas fa-lock fa-lg"></i></span>
-              <input class="uk-input" type="password" id="register_repassword" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= $this->lang->line('placeholder_re_password'); ?>" required>
+              <input class="uk-input" type="password" id="register_repassword" pattern=".{5,16}" title="5 characters minimum and maximum 16" placeholder="<?= lang('placeholder_re_password'); ?>" required>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
           </div>
           <div class="uk-width-1-2@m"></div>
           <div class="uk-width-1-4@m">
-            <button class="uk-button uk-button-default uk-width-1-1" id="button_register" type="submit"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></button>
+            <button class="uk-button uk-button-default uk-width-1-1" id="button_register" type="submit"><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></button>
           </div>
         </div>
         <?= form_close(); ?>
@@ -69,8 +69,8 @@
             $.amaran({
               'theme': 'awesome error',
               'content': {
-                title: '<?= $this->lang->line('notification_title_error'); ?>',
-                message: '<?= $this->lang->line('notification_captcha_error'); ?>',
+                title: '<?= lang('notification_title_error'); ?>',
+                message: '<?= lang('notification_captcha_error'); ?>',
                 info: '',
                 icon: 'fas fa-shield-alt'
               },
@@ -92,8 +92,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_username_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_username_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -109,8 +109,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_password_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_password_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -131,8 +131,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -150,8 +150,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_account_already_exist'); ?>',
+                  title: '<?= lang('notification_title_error'); ?>',
+                  message: '<?= lang('notification_account_already_exist'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -168,8 +168,8 @@
                 $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_used_email'); ?>',
+                  title: '<?= lang('notification_title_error'); ?>',
+                  message: '<?= lang('notification_used_email'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -186,8 +186,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_password_lenght_error'); ?>',
+                  title: '<?= lang('notification_title_error'); ?>',
+                  message: '<?= lang('notification_password_lenght_error'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -204,8 +204,8 @@
                 $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_password_not_match'); ?>',
+                  title: '<?= lang('notification_title_error'); ?>',
+                  message: '<?= lang('notification_password_not_match'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -222,8 +222,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_account_activation'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_account_activation'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -240,8 +240,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_new_account'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_new_account'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

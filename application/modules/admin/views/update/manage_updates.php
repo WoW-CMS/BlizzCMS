@@ -12,8 +12,8 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default" uk-switcher="connect: #manage-updates">
-                <li><a href="javascript:void(0)"><i class="fas fa-wrench"></i> <?= $this->lang->line('section_update_cms'); ?></a></li>
-                <li><a href="javascript:void(0)"><i class="fas fa-tasks"></i> <?= $this->lang->line('section_check_information'); ?></a></li>
+                <li><a href="javascript:void(0)"><i class="fas fa-wrench"></i> <?= lang('section_update_cms'); ?></a></li>
+                <li><a href="javascript:void(0)"><i class="fas fa-tasks"></i> <?= lang('section_check_information'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -25,13 +25,13 @@
                     <div class="uk-grid uk-grid-small" data-uk-grid>
                       <div class="uk-width-auto@m uk-text-center uk-text-left@m">
                         <h3 class="uk-h3 uk-text-bold uk-margin-remove"><span uk-icon="icon: blizzcms-icon;ratio: 0.8"></span> V<?= $this->update_model->getCurrentVersion(); ?> </h3>
-                        <p class="uk-margin-small uk-text-small"><?= $this->lang->line('cms_version_currently'); ?></p>
+                        <p class="uk-margin-small uk-text-small"><?= lang('cms_version_currently'); ?></p>
                       </div>
                       <div class="uk-width-expand uk-text-center uk-text-right@m">
-                        <button href="<?= base_url('admin/cms/update') ?>" class="uk-button uk-button-primary uk-button-large" id="button_updatecms" onclick="UpdateCMS(event)"><i class="fas fa-sync fa-spin"></i> <?= $this->lang->line('button_update_version'); ?></button>
+                        <button href="<?= base_url('admin/cms/update') ?>" class="uk-button uk-button-primary uk-button-large" id="button_updatecms" onclick="UpdateCMS(event)"><i class="fas fa-sync fa-spin"></i> <?= lang('button_update_version'); ?></button>
                       </div>
                     </div>
-                    <p class="uk-text-small uk-margin-small"><span class="uk-text-bold uk-text-warning"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('notification_title_warning'); ?>:</span> <?= $this->lang->line('cms_warning_update'); ?></p>
+                    <p class="uk-text-small uk-margin-small"><span class="uk-text-bold uk-text-warning"><i class="fas fa-exclamation-triangle"></i> <?= lang('notification_title_warning'); ?>:</span> <?= lang('cms_warning_update'); ?></p>
                   </div>
                 </div>
               </li>
@@ -41,41 +41,41 @@
                     <table class="uk-table uk-table-divider uk-table-small">
                       <thead>
                         <tr>
-                          <th class="uk-table-expand"><?= $this->lang->line('table_header_information'); ?></th>
-                          <th class="uk-table-expand"><?= $this->lang->line('table_header_value'); ?></th>
+                          <th class="uk-table-expand"><?= lang('table_header_information'); ?></th>
+                          <th class="uk-table-expand"><?= lang('table_header_value'); ?></th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td class="uk-text-bold"><?= $this->lang->line('cms_php_version'); ?></td>
+                          <td class="uk-text-bold"><?= lang('cms_php_version'); ?></td>
                           <td><?= phpversion() ?></td>
                         </tr>
                         <tr>
-                          <td class="uk-text-bold"><?= $this->lang->line('cms_allow_fopen'); ?></td>
+                          <td class="uk-text-bold"><?= lang('cms_allow_fopen'); ?></td>
                           <td>
                             <?php if(ini_get('allow_url_fopen')): ?>
-                            <span class="uk-label uk-label-success"><?= $this->lang->line('option_on'); ?></span>
+                            <span class="uk-label uk-label-success"><?= lang('option_on'); ?></span>
                             <?php else: ?>
-                            <span class="uk-label uk-label-danger"><?= $this->lang->line('option_off'); ?></span>
+                            <span class="uk-label uk-label-danger"><?= lang('option_off'); ?></span>
                             <?php endif; ?>
                           </td>
                         </tr>
                         <tr>
-                          <td class="uk-text-bold"><?= $this->lang->line('cms_allow_include'); ?></td>
+                          <td class="uk-text-bold"><?= lang('cms_allow_include'); ?></td>
                           <td>
                             <?php if(ini_get('allow_url_include')): ?>
-                            <span class="uk-label uk-label-success"><?= $this->lang->line('option_on'); ?></span>
+                            <span class="uk-label uk-label-success"><?= lang('option_on'); ?></span>
                             <?php else: ?>
-                            <span class="uk-label uk-label-danger"><?= $this->lang->line('option_off'); ?></span>
+                            <span class="uk-label uk-label-danger"><?= lang('option_off'); ?></span>
                             <?php endif; ?>
                           </td>
                         </tr>
                         <tr>
-                          <td class="uk-text-bold"><?= $this->lang->line('cms_loaded_modules'); ?></td>
+                          <td class="uk-text-bold"><?= lang('cms_loaded_modules'); ?></td>
                           <td><?= $this->update_model->getApacheModules(); ?></td>
                         </tr>
                         <tr>
-                          <td class="uk-text-bold"><?= $this->lang->line('cms_loaded_extensions'); ?></td>
+                          <td class="uk-text-bold"><?= lang('cms_loaded_extensions'); ?></td>
                           <td><?= $this->update_model->getPHPExtensions(); ?></td>
                         </tr>
                       </tbody>
@@ -101,8 +101,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -120,8 +120,8 @@
               $.amaran({
                 'theme': 'awesome warning',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_warning'); ?>',
-                  message: '<?= $this->lang->line('notification_cms_not_updated'); ?>',
+                  title: '<?= lang('notification_title_warning'); ?>',
+                  message: '<?= lang('notification_cms_not_updated'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -137,8 +137,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_cms_update_error'); ?>',
+                  title: '<?= lang('notification_title_error'); ?>',
+                  message: '<?= lang('notification_cms_update_error'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -154,8 +154,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_cms_updated'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_cms_updated'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

@@ -21,10 +21,10 @@
             <ul class="uk-navbar-nav">
               <?php if (!$this->wowauth->isLogged()): ?>
               <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
-              <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= $this->lang->line('button_register'); ?></a></li>
+              <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('button_register'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
-              <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
+              <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('button_login'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
               <?php if ($this->wowauth->isLogged()): ?>
@@ -41,17 +41,17 @@
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->wowauth->isLogged()): ?>
                     <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-                    <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                    <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if($this->wowauth->getIsModerator()): ?>
-                    <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= $this->lang->line('button_mod_panel'); ?></a></li>
+                    <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if($this->wowmodule->getACPStatus() == '1'): ?>
                     <?php if($this->wowauth->getIsAdmin()): ?>
-                    <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
+                    <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
-                    <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
+                    <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                     <?php endif; ?>
                   </ul>
                 </div>
@@ -61,10 +61,10 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <div class="blizzcms-cart-dropdown">
                     <?php if($this->cart->total_items() > 0): ?>
-                    <p class="uk-text-center uk-margin-small"><?= $this->lang->line('store_cart_added'); ?> <span class="uk-text-bold"><?= $this->cart->total_items() ?> <?= $this->lang->line('table_header_items'); ?></span> <?= $this->lang->line('store_cart_in_your'); ?></p>
-                    <a href="<?= base_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-eye"></i> <?= $this->lang->line('button_view_cart'); ?></a>
+                    <p class="uk-text-center uk-margin-small"><?= lang('store_cart_added'); ?> <span class="uk-text-bold"><?= $this->cart->total_items() ?> <?= lang('table_header_items'); ?></span> <?= lang('store_cart_in_your'); ?></p>
+                    <a href="<?= base_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-eye"></i> <?= lang('button_view_cart'); ?></a>
                     <?php else: ?>
-                    <p class="uk-text-center uk-margin-remove"><?= $this->lang->line('store_cart_no_items'); ?></p>
+                    <p class="uk-text-center uk-margin-remove"><?= lang('store_cart_no_items'); ?></p>
                     <?php endif; ?>
                   </div>
                 </div>
@@ -125,8 +125,8 @@
             <?php if ($this->wowauth->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title:<?=$this->lang->line('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id')); ?></li>
-                <li><span uk-tooltip="title:<?=$this->lang->line('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id')); ?></li>
+                <li><span uk-tooltip="title:<?=lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id')); ?></li>
+                <li><span uk-tooltip="title:<?=lang('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id')); ?></li>
               </ul>
             </div>
             <?php endif; ?>
@@ -150,22 +150,22 @@
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 <?php if (!$this->wowauth->isLogged()): ?>
                 <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
-                <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
+                <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></a></li>
                 <?php endif; ?>
                 <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
-                <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
+                <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($this->wowauth->isLogged()): ?>
                 <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-                <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php if($this->wowmodule->getACPStatus() == '1'): ?>
                 <?php if($this->wowauth->getIsAdmin()): ?>
-                <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
+                <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>
-                <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
+                <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                 <?php endif; ?>
                 <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
                 <?php if($menulist->main == '2'): ?>
@@ -219,7 +219,7 @@
           <a target="_blank" href="<?= $this->config->item('social_twitter'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-twitter"></i></a>
           <a target="_blank" href="<?= $this->config->item('social_youtube'); ?>" class="uk-icon-button"><i class="fab fa-youtube"></i></a>
         </div>
-        <p class="uk-text-center uk-margin-small">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= $this->config->item('website_name'); ?></span>. <?= $this->lang->line('footer_rights'); ?></p>
+        <p class="uk-text-center uk-margin-small">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= $this->config->item('website_name'); ?></span>. <?= lang('footer_rights'); ?></p>
         <p class="uk-text-small uk-margin-small uk-text-center">World of Warcraft® and Blizzard Entertainment® are all trademarks or registered trademarks of Blizzard Entertainment in the United States and/or other countries. These terms and all related materials, logos, and images are copyright © Blizzard Entertainment. This site is in no way associated with or endorsed by Blizzard Entertainment®.</p>
         <p class="uk-h6 uk-text-bold uk-text-uppercase uk-margin-small uk-text-center">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
       </div>

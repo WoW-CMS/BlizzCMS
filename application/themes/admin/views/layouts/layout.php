@@ -31,12 +31,12 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                    <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                     <?php if($this->wowauth->getIsModerator()): ?>
-                    <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= $this->lang->line('button_mod_panel'); ?></a></li>
+                    <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>
-                    <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
+                    <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -51,43 +51,43 @@
               <span class="rev-label uk-margin-small-bottom"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->update_model->getCurrentVersion(); ?></a></span>
             </div>
             <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-              <li><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
+              <li><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('admin_nav_dashboard'); ?></a></li>
               <li class="uk-parent">
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_nav_system'); ?></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= lang('admin_nav_system'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= base_url('admin/settings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-sliders-h"></i></span><?= $this->lang->line('admin_nav_manage_settings'); ?></a></li>
-                  <li><a href="<?= base_url('admin/modules'); ?>"><span class="admin-subnav-icon"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_nav_manage_modules'); ?></a></li>
+                  <li><a href="<?= base_url('admin/settings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-sliders-h"></i></span><?= lang('admin_nav_manage_settings'); ?></a></li>
+                  <li><a href="<?= base_url('admin/modules'); ?>"><span class="admin-subnav-icon"><i class="fas fa-puzzle-piece"></i></span><?= lang('admin_nav_manage_modules'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('admin_nav_users'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= base_url('admin/accounts'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= $this->lang->line('admin_nav_accounts'); ?></a></li>
+                  <li><a href="<?= base_url('admin/accounts'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= lang('admin_nav_accounts'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-mouse-pointer"></i></span><?= $this->lang->line('admin_nav_website'); ?></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-mouse-pointer"></i></span><?= lang('admin_nav_website'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= base_url('admin/menu'); ?>"><span class="admin-subnav-icon"><i class="fas fa-link"></i></span><?= $this->lang->line('admin_nav_menu'); ?></a></li>
-                  <li><a href="<?= base_url('admin/realms'); ?>"><span class="admin-subnav-icon"><i class="fas fa-server"></i></span><?= $this->lang->line('admin_nav_realms'); ?></a></li>
-                  <li><a href="<?= base_url('admin/slides'); ?>"><span class="admin-subnav-icon"><i class="fas fa-images"></i></span><?= $this->lang->line('admin_nav_slides'); ?></a></li>
-                  <li><a href="<?= base_url('admin/news'); ?>"><span class="admin-subnav-icon"><i class="fas fa-newspaper"></i></span><?= $this->lang->line('admin_nav_news'); ?></a></li>
-                  <li><a href="<?= base_url('admin/changelogs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= $this->lang->line('admin_nav_changelogs'); ?></a></li>
-                  <li><a href="<?= base_url('admin/pages'); ?>"><span class="admin-subnav-icon"><i class="fas fa-file-alt"></i></span><?= $this->lang->line('admin_nav_pages'); ?></a></li>
+                  <li><a href="<?= base_url('admin/menu'); ?>"><span class="admin-subnav-icon"><i class="fas fa-link"></i></span><?= lang('admin_nav_menu'); ?></a></li>
+                  <li><a href="<?= base_url('admin/realms'); ?>"><span class="admin-subnav-icon"><i class="fas fa-server"></i></span><?= lang('admin_nav_realms'); ?></a></li>
+                  <li><a href="<?= base_url('admin/slides'); ?>"><span class="admin-subnav-icon"><i class="fas fa-images"></i></span><?= lang('admin_nav_slides'); ?></a></li>
+                  <li><a href="<?= base_url('admin/news'); ?>"><span class="admin-subnav-icon"><i class="fas fa-newspaper"></i></span><?= lang('admin_nav_news'); ?></a></li>
+                  <li><a href="<?= base_url('admin/changelogs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= lang('admin_nav_changelogs'); ?></a></li>
+                  <li><a href="<?= base_url('admin/pages'); ?>"><span class="admin-subnav-icon"><i class="fas fa-file-alt"></i></span><?= lang('admin_nav_pages'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-store"></i></span><?= $this->lang->line('admin_nav_store'); ?></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-store"></i></span><?= lang('admin_nav_store'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= base_url('admin/store'); ?>"><span class="admin-subnav-icon"><i class="fas fa-shopping-cart"></i></span><?= $this->lang->line('admin_nav_manage_store'); ?></a></li>
-                  <li><a href="<?= base_url('admin/donate'); ?>"><span class="admin-subnav-icon"><i class="fas fa-donate"></i></span><?= $this->lang->line('admin_nav_donate_methods'); ?></a></li>
-                  <li><a href="<?= base_url('admin/topsites'); ?>"><span class="admin-subnav-icon"><i class="fas fa-star"></i></span><?= $this->lang->line('admin_nav_topsites'); ?></a></li>
+                  <li><a href="<?= base_url('admin/store'); ?>"><span class="admin-subnav-icon"><i class="fas fa-shopping-cart"></i></span><?= lang('admin_nav_manage_store'); ?></a></li>
+                  <li><a href="<?= base_url('admin/donate'); ?>"><span class="admin-subnav-icon"><i class="fas fa-donate"></i></span><?= lang('admin_nav_donate_methods'); ?></a></li>
+                  <li><a href="<?= base_url('admin/topsites'); ?>"><span class="admin-subnav-icon"><i class="fas fa-star"></i></span><?= lang('admin_nav_topsites'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_nav_forum'); ?></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= lang('admin_nav_forum'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= base_url('admin/forum'); ?>"><span class="admin-subnav-icon"><i class="fas fa-bookmark"></i></span><?= $this->lang->line('admin_nav_manage_forum'); ?></a></li>
+                  <li><a href="<?= base_url('admin/forum'); ?>"><span class="admin-subnav-icon"><i class="fas fa-bookmark"></i></span><?= lang('admin_nav_manage_forum'); ?></a></li>
                 </ul>
               </li>
             </ul>
@@ -100,53 +100,53 @@
         <div class="uk-navbar" uk-navbar="mode: click">
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <li class="uk-active"><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
+              <li class="uk-active"><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('admin_nav_dashboard'); ?></a></li>
               <li>
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= $this->lang->line('admin_nav_system'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= lang('admin_nav_system'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('admin/settings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-sliders-h"></i></span><?= $this->lang->line('admin_nav_manage_settings'); ?></a></li>
-                    <li><a href="<?= base_url('admin/modules'); ?>"><span class="admin-subnav-icon"><i class="fas fa-puzzle-piece"></i></span><?= $this->lang->line('admin_nav_manage_modules'); ?></a></li>
+                    <li><a href="<?= base_url('admin/settings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-sliders-h"></i></span><?= lang('admin_nav_manage_settings'); ?></a></li>
+                    <li><a href="<?= base_url('admin/modules'); ?>"><span class="admin-subnav-icon"><i class="fas fa-puzzle-piece"></i></span><?= lang('admin_nav_manage_modules'); ?></a></li>
                   </ul>
                 </div>
               </li>
               <li>
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('admin_nav_users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('admin/accounts'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= $this->lang->line('admin_nav_accounts'); ?></a></li>
+                    <li><a href="<?= base_url('admin/accounts'); ?>"><span class="admin-subnav-icon"><i class="fas fa-users-cog"></i></span><?= lang('admin_nav_accounts'); ?></a></li>
                   </ul>
                 </div>
               </li>
               <li>
-                <a href="javascript:void(0)"><span class="uk-margin-small-right" ><i class="fas fa-mouse-pointer"></i></span><?= $this->lang->line('admin_nav_website'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right" ><i class="fas fa-mouse-pointer"></i></span><?= lang('admin_nav_website'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('admin/menu'); ?>"><span class="admin-subnav-icon"><i class="fas fa-link"></i></span><?= $this->lang->line('admin_nav_menu'); ?></a></li>
-                    <li><a href="<?= base_url('admin/realms'); ?>"><span class="admin-subnav-icon"><i class="fas fa-server"></i></span><?= $this->lang->line('admin_nav_realms'); ?></a></li>
-                    <li><a href="<?= base_url('admin/slides'); ?>"><span class="admin-subnav-icon"><i class="fas fa-images"></i></span><?= $this->lang->line('admin_nav_slides'); ?></a></li>
-                    <li><a href="<?= base_url('admin/news'); ?>"><span class="admin-subnav-icon"><i class="fas fa-newspaper"></i></span><?= $this->lang->line('admin_nav_news'); ?></a></li>
-                    <li><a href="<?= base_url('admin/changelogs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= $this->lang->line('admin_nav_changelogs'); ?></a></li>
-                    <li><a href="<?= base_url('admin/pages'); ?>"><span class="admin-subnav-icon"><i class="fas fa-file-alt"></i></span><?= $this->lang->line('admin_nav_pages'); ?></a></li>
+                    <li><a href="<?= base_url('admin/menu'); ?>"><span class="admin-subnav-icon"><i class="fas fa-link"></i></span><?= lang('admin_nav_menu'); ?></a></li>
+                    <li><a href="<?= base_url('admin/realms'); ?>"><span class="admin-subnav-icon"><i class="fas fa-server"></i></span><?= lang('admin_nav_realms'); ?></a></li>
+                    <li><a href="<?= base_url('admin/slides'); ?>"><span class="admin-subnav-icon"><i class="fas fa-images"></i></span><?= lang('admin_nav_slides'); ?></a></li>
+                    <li><a href="<?= base_url('admin/news'); ?>"><span class="admin-subnav-icon"><i class="fas fa-newspaper"></i></span><?= lang('admin_nav_news'); ?></a></li>
+                    <li><a href="<?= base_url('admin/changelogs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= lang('admin_nav_changelogs'); ?></a></li>
+                    <li><a href="<?= base_url('admin/pages'); ?>"><span class="admin-subnav-icon"><i class="fas fa-file-alt"></i></span><?= lang('admin_nav_pages'); ?></a></li>
                   </ul>
                 </div>
               </li>
               <li>
-                 <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-store"></i></span><?= $this->lang->line('admin_nav_store'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                 <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-store"></i></span><?= lang('admin_nav_store'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('admin/store'); ?>"><span class="admin-subnav-icon"><i class="fas fa-shopping-cart"></i></span><?= $this->lang->line('admin_nav_manage_store'); ?></a></li>
-                    <li><a href="<?= base_url('admin/donate'); ?>"><span class="admin-subnav-icon"><i class="fas fa-donate"></i></span><?= $this->lang->line('admin_nav_donate_methods'); ?></a></li>
-                    <li><a href="<?= base_url('admin/topsites'); ?>"><span class="admin-subnav-icon"><i class="fas fa-star"></i></span><?= $this->lang->line('admin_nav_topsites'); ?></a></li>
-                    <li><a href="<?= base_url('admin/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_donate_vote_logs'); ?></a></li>
+                    <li><a href="<?= base_url('admin/store'); ?>"><span class="admin-subnav-icon"><i class="fas fa-shopping-cart"></i></span><?= lang('admin_nav_manage_store'); ?></a></li>
+                    <li><a href="<?= base_url('admin/donate'); ?>"><span class="admin-subnav-icon"><i class="fas fa-donate"></i></span><?= lang('admin_nav_donate_methods'); ?></a></li>
+                    <li><a href="<?= base_url('admin/topsites'); ?>"><span class="admin-subnav-icon"><i class="fas fa-star"></i></span><?= lang('admin_nav_topsites'); ?></a></li>
+                    <li><a href="<?= base_url('admin/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= lang('admin_nav_donate_vote_logs'); ?></a></li>
                   </ul>
                 </div>
               </li>
               <li>
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_nav_forum'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= lang('admin_nav_forum'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('admin/forum'); ?>"><span class="admin-subnav-icon"><i class="fas fa-bookmark"></i></span><?= $this->lang->line('admin_nav_manage_forum'); ?></a></li>
+                    <li><a href="<?= base_url('admin/forum'); ?>"><span class="admin-subnav-icon"><i class="fas fa-bookmark"></i></span><?= lang('admin_nav_manage_forum'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -162,7 +162,7 @@
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container uk-container-expand">
         <hr class="uk-hr">
-        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= $this->lang->line('footer_rights'); ?></p>
+        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('footer_rights'); ?></p>
       </div>
     </section>
     <script src="<?= base_url('assets/core/js/jquery.countTo.js'); ?>"></script>

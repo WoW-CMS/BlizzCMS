@@ -13,9 +13,9 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-medium"><?= $this->lang->line('placeholder_title'); ?></th>
-                  <th class="uk-width-small"><?= $this->lang->line('table_header_date'); ?></th>
-                  <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
+                  <th class="uk-width-medium"><?= lang('placeholder_title'); ?></th>
+                  <th class="uk-width-small"><?= lang('table_header_date'); ?></th>
+                  <th class="uk-width-small uk-text-center"><?= lang('table_header_actions'); ?></th>
                 </tr>
               </thead>
               <tbody>

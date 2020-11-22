@@ -63,7 +63,7 @@ class Mod extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('button_mod_panel'),
+            'pagetitle' => lang('button_mod_panel'),
         );
 
         $this->template->build('index', $data);
@@ -72,7 +72,7 @@ class Mod extends MX_Controller {
     public function queue()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('button_mod_panel'),
+            'pagetitle' => lang('button_mod_panel'),
         );
 
         $this->template->build('queue/index', $data);
@@ -81,7 +81,7 @@ class Mod extends MX_Controller {
     public function reports()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('button_mod_panel'),
+            'pagetitle' => lang('button_mod_panel'),
         );
 
         $this->template->build('reports/index', $data);
@@ -90,7 +90,7 @@ class Mod extends MX_Controller {
     public function logs()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('button_mod_panel'),
+            'pagetitle' => lang('button_mod_panel'),
         );
 
         $this->template->build('logs/index', $data);
@@ -99,7 +99,7 @@ class Mod extends MX_Controller {
     public function bannings()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('button_mod_panel'),
+            'pagetitle' => lang('button_mod_panel'),
         );
 
         $this->template->build('bannings/index', $data);
@@ -108,7 +108,7 @@ class Mod extends MX_Controller {
     public function warnings()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('button_mod_panel'),
+            'pagetitle' => lang('button_mod_panel'),
         );
 
         $this->template->build('warnings/index', $data);

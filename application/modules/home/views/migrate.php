@@ -104,8 +104,8 @@
                   $.amaran({
                     'theme': 'awesome error',
                     'content': {
-                      title: '<?= $this->lang->line('notification_title_error'); ?>',
-                      message: '<?= $this->lang->line('notification_name_empty'); ?>',
+                      title: '<?= lang('notification_title_error'); ?>',
+                      message: '<?= lang('notification_name_empty'); ?>',
                       info: '',
                       icon: 'fas fa-times-circle'
                     },
@@ -125,8 +125,8 @@
                     $.amaran({
                       'theme': 'awesome info',
                       'content': {
-                        title: '<?= $this->lang->line('notification_title_info'); ?>',
-                        message: '<?= $this->lang->line('notification_checking'); ?>',
+                        title: '<?= lang('notification_title_info'); ?>',
+                        message: '<?= lang('notification_checking'); ?>',
                         info: '',
                         icon: 'fas fa-sign-in-alt'
                       },
@@ -144,8 +144,8 @@
                       $.amaran({
                         'theme': 'awesome ok',
                           'content': {
-                          title: '<?= $this->lang->line('notification_title_success'); ?>',
-                          message: '<?= $this->lang->line('notification_migration'); ?>',
+                          title: '<?= lang('notification_title_success'); ?>',
+                          message: '<?= lang('notification_migration'); ?>',
                           info: '',
                           icon: 'fas fa-check-circle'
                         },

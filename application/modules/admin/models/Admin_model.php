@@ -63,8 +63,8 @@ class Admin_model extends CI_Model {
     public function getDonateStatus($id)
     {
         switch ($id) {
-            case 0: return $this->lang->line('status_cancelled'); break;
-            case 1: return $this->lang->line('status_completed'); break;
+            case 0: return lang('status_cancelled'); break;
+            case 1: return lang('status_completed'); break;
         }
     }
 
@@ -85,7 +85,7 @@ class Admin_model extends CI_Model {
         $id = $this->session->userdata('wow_sess_id');
 
         if (empty($reason))
-            $reason = $this->lang->line('log_banned');
+            $reason = lang('log_banned');
 
         $data2 = array(
             'id' => $iduser,

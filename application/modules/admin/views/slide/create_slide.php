@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('placeholder_create_slide'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> <?= lang('placeholder_create_slide'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= base_url('admin/slides'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -12,15 +12,15 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="addslideForm" onsubmit="AddSlideForm(event)"'); ?>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= $this->lang->line('placeholder_title'); ?></label>
+              <label class="uk-form-label"><?= lang('placeholder_title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
-                  <input class="uk-input" type="text" id="slide_title" placeholder="<?= $this->lang->line('placeholder_title'); ?>" required>
+                  <input class="uk-input" type="text" id="slide_title" placeholder="<?= lang('placeholder_title'); ?>" required>
                 </div>
               </div>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
+              <label class="uk-form-label"><?= lang('placeholder_description'); ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea" id="slide_description" rows="3"></textarea>
               </div>
@@ -28,18 +28,18 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-3@s">
-                  <label class="uk-form-label"><?=$this->lang->line('placeholder_type');?></label>
+                  <label class="uk-form-label"><?=lang('placeholder_type');?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="slide_type">
-                      <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
-                      <option value="1"><?= $this->lang->line('option_image'); ?></option>
-                      <option value="2"><?= $this->lang->line('option_video'); ?></option>
-                      <option value="3"><?= $this->lang->line('option_iframe'); ?></option>
+                      <option value="0"><?= lang('notification_select_type'); ?></option>
+                      <option value="1"><?= lang('option_image'); ?></option>
+                      <option value="2"><?= lang('option_video'); ?></option>
+                      <option value="3"><?= lang('option_iframe'); ?></option>
                     </select>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-2-3@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_route'); ?></label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="text" id="slide_route" placeholder="URL or Image Name" required>
                   </div>
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_slide"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
+              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_slide"><i class="fas fa-check-circle"></i> <?= lang('button_create'); ?></button>
             </div>
             <?= form_close(); ?>
           </div>
@@ -67,8 +67,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_title_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_title_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -83,8 +83,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_type'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_select_type'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -104,8 +104,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -123,8 +123,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_slide_created'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_slide_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

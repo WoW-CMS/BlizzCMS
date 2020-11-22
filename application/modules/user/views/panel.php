@@ -7,37 +7,37 @@
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
-              <li class="uk-active"><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
+              <li class="uk-active"><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getDonationStatus() == '1'): ?>
-              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
+              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=lang('navbar_donate_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getVoteStatus() == '1'): ?>
-              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
+              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=lang('navbar_vote_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStoreStatus() == '1'): ?>
-              <li><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
+              <li><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=lang('tab_store'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getBugtrackerStatus() == '1'): ?>
-              <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
+              <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=lang('tab_bugtracker'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getChangelogsStatus() == '1'): ?>
-              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
+              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=lang('tab_changelogs'); ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('tab_account'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_account'); ?></h4>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
                   <div class="uk-width-expand@m">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= $this->lang->line('panel_account_details'); ?></h5>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= lang('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
-                    <a href="<?= base_url('settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= $this->lang->line('button_account_settings'); ?></a>
+                    <a href="<?= base_url('settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= lang('button_account_settings'); ?></a>
                   </div>
                 </div>
               </div>
@@ -46,15 +46,15 @@
                   <table class="uk-table uk-table-small">
                     <tbody>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_username'); ?></span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_username'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->wowauth->getUsernameID($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('placeholder_email'); ?></span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_email'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->wowauth->getEmailID($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= $this->lang->line('panel_last_ip'); ?></span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('panel_last_ip'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('wow_sess_id')); ?></td>
                       </tr>
                     </tbody>
@@ -64,7 +64,7 @@
             </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= $this->lang->line('panel_chars_list'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('panel_chars_list'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
@@ -77,11 +77,11 @@
                       <table class="uk-table uk-table-divider uk-table-small">
                         <thead>
                           <tr>
-                            <th class="uk-table-expand"><i class="fas fa-user"></i> <?= $this->lang->line('table_header_name'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_race'); ?>/<?= $this->lang->line('table_header_class'); ?></th>
-                            <th class="uk-width-small"><i class="fas fa-level-up-alt"></i> <?= $this->lang->line('table_header_level'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-clock"></i> <?= $this->lang->line('table_header_time_played'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-coins"></i> <?= $this->lang->line('table_header_money'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('table_header_name'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?= lang('table_header_race'); ?>/<?= lang('table_header_class'); ?></th>
+                            <th class="uk-width-small"><i class="fas fa-level-up-alt"></i> <?= lang('table_header_level'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-clock"></i> <?= lang('table_header_time_played'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-coins"></i> <?= lang('table_header_money'); ?></th>
                           </tr>
                         </thead>
                         <tbody>

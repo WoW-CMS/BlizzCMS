@@ -195,67 +195,67 @@ class General_model extends CI_Model {
         switch ($race)
         {
             case 1:
-                return $this->lang->line('race_human');
+                return lang('race_human');
                 break;
             case 2:
-                return $this->lang->line('race_orc');
+                return lang('race_orc');
                 break;
             case 3:
-                return $this->lang->line('race_dwarf');
+                return lang('race_dwarf');
                 break;
             case 4:
-                return $this->lang->line('race_night_elf');
+                return lang('race_night_elf');
                 break;
             case 5:
-                return $this->lang->line('race_undead');
+                return lang('race_undead');
                 break;
             case 6:
-                return $this->lang->line('race_tauren');
+                return lang('race_tauren');
                 break;
             case 7:
-                return $this->lang->line('race_gnome');
+                return lang('race_gnome');
                 break;
             case 8:
-                return $this->lang->line('race_troll');
+                return lang('race_troll');
                 break;
             case 9:
-                return $this->lang->line('race_goblin');
+                return lang('race_goblin');
                 break;
             case 10:
-                return $this->lang->line('race_blood_elf');
+                return lang('race_blood_elf');
                 break;
             case 11:
-                return $this->lang->line('race_draenei');
+                return lang('race_draenei');
                 break;
             case 22:
-                return $this->lang->line('race_worgen');
+                return lang('race_worgen');
                 break;
             case 24:
-                return $this->lang->line('race_panda_neutral');
+                return lang('race_panda_neutral');
                 break;
             case 25:
-                return $this->lang->line('race_panda_alli');
+                return lang('race_panda_alli');
                 break;
             case 26:
-                return $this->lang->line('race_panda_horde');
+                return lang('race_panda_horde');
                 break;
             case 27:
-                return $this->lang->line('race_nightborne');
+                return lang('race_nightborne');
                 break;
             case 28:
-                return $this->lang->line('race_highmountain_tauren');
+                return lang('race_highmountain_tauren');
                 break;
             case 29:
-                return $this->lang->line('race_void_elf');
+                return lang('race_void_elf');
                 break;
             case 30:
-                return $this->lang->line('race_lightforged_draenei');
+                return lang('race_lightforged_draenei');
                 break;
             case 34:
-                return $this->lang->line('race_dark_iron_dwarf');
+                return lang('race_dark_iron_dwarf');
                 break;
             case 36:
-                return $this->lang->line('race_maghar_orc');
+                return lang('race_maghar_orc');
                 break;
         }
     }
@@ -407,40 +407,40 @@ class General_model extends CI_Model {
         switch ($class)
         {
             case 1:
-                return $this->lang->line('class_warrior');
+                return lang('class_warrior');
                 break;
             case 2:
-                return $this->lang->line('class_paladin');
+                return lang('class_paladin');
                 break;
             case 3:
-                return $this->lang->line('class_hunter');
+                return lang('class_hunter');
                 break;
             case 4:
-                return $this->lang->line('class_rogue');
+                return lang('class_rogue');
                 break;
             case 5:
-                return $this->lang->line('class_priest');
+                return lang('class_priest');
                 break;
             case 6:
-                return $this->lang->line('class_dk');
+                return lang('class_dk');
                 break;
             case 7:
-                return $this->lang->line('class_shamman');
+                return lang('class_shamman');
                 break;
             case 8:
-                return $this->lang->line('class_mage');
+                return lang('class_mage');
                 break;
             case 9:
-                return $this->lang->line('class_warlock');
+                return lang('class_warlock');
                 break;
             case 10:
-                return $this->lang->line('class_monk');
+                return lang('class_monk');
                 break;
             case 11:
-                return $this->lang->line('class_druid');
+                return lang('class_druid');
                 break;
             case 12:
-                return $this->lang->line('class_demonhunter');
+                return lang('class_demonhunter');
                 break;
         }
     }
@@ -450,10 +450,10 @@ class General_model extends CI_Model {
         switch ($gender)
         {
             case 0:
-                return $this->lang->line('gender_male');
+                return lang('gender_male');
                 break;
             case 1:
-                return $this->lang->line('gender_female');
+                return lang('gender_female');
                 break;
         }
     }

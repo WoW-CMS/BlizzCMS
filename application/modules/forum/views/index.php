@@ -24,7 +24,7 @@
                     </td>
                     <td class="uk-width-small uk-text-center">
                       <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
-                      <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
+                      <span class="uk-text-small"><?= lang('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
@@ -49,7 +49,7 @@
                     </td>
                     <td class="uk-width-small uk-text-center">
                       <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
-                      <span class="uk-text-small"><?= $this->lang->line('forum_posts_count'); ?></span>
+                      <span class="uk-text-small"><?= lang('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
@@ -71,7 +71,7 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-forum">
               <div class="uk-card-header">
-                <h3 class="uk-card-title"><i class="fas fa-book-open"></i> <?= $this->lang->line('forum_last_activity'); ?></h3>
+                <h3 class="uk-card-title"><i class="fas fa-book-open"></i> <?= lang('forum_last_activity'); ?></h3>
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider">
@@ -79,11 +79,11 @@
                   <li>
                     <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
                     <?php if($this->forum_model->getLastRepliesCount($lastest->id) == 0): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastest->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastest->author) ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastest->date) ?></p>
                     <?php else: ?>
                     <?php foreach ($this->forum_model->getLastReplies($lastest->id)->result() as $replies): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= $this->lang->line('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($replies->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($replies->author) ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $replies->date) ?></p>
                     <?php endforeach; ?>
                     <?php endif; ?>
@@ -96,7 +96,7 @@
         </div>
         <div class="uk-card uk-card-forum uk-margin-small">
           <div class="uk-card-header">
-            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= $this->lang->line('forum_whos_online'); ?></h3>
+            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= lang('forum_whos_online'); ?></h3>
           </div>
           <div class="uk-card-body">
             <p class="uk-margin-remove">0 users active in the past 15 minutes (0 members, 0 of whom are invisible, and 0 guests).</p>
@@ -106,21 +106,21 @@
                 <div class="forum-who-icon"><i class="far fa-comments fa-lg"></i></div>
                 <div class="forum-who-text">
                   <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostReplies() ?></span><br>
-                  <span><?= $this->lang->line('forum_replies_count'); ?></span>
+                  <span><?= lang('forum_replies_count'); ?></span>
                 </div>
               </div>
               <div>
               <div class="forum-who-icon"><i class="far fa-file-alt fa-lg"></i></div>
                 <div class="forum-who-text">
                   <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostGeneral() ?></span><br>
-                  <span><?= $this->lang->line('forum_topics_count'); ?></span>
+                  <span><?= lang('forum_topics_count'); ?></span>
                 </div>
               </div>
               <div>
                 <div class="forum-who-icon"><i class="far fa-user fa-lg"></i></div>
                 <div class="forum-who-text">
                   <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountUsers() ?></span><br>
-                  <span><?= $this->lang->line('forum_users_count'); ?></span>
+                  <span><?= lang('forum_users_count'); ?></span>
                 </div>
               </div>
             </div>
