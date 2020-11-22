@@ -11,82 +11,82 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mod extends MX_Controller {
+class Mod extends MX_Controller
+{
+	private $wowlocmod = '',
+			$wowlocref = '';
 
-    private $wowlocmod = '',
-            $wowlocref = '';
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('mod_model');
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('mod_model');
+		if(!ini_get('date.timezone'))
+		   date_default_timezone_set($this->config->item('timezone'));
 
-        if(!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
+		if(!$this->wowauth->isLogged())
+			redirect(base_url(),'refresh');
 
-        if(!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+		if(!$this->wowauth->getIsModerator())
+			redirect(base_url(),'refresh');
 
-        if(!$this->wowauth->getIsModerator())
-            redirect(base_url(),'refresh');
+		$this->template->set_theme('mod');
 
-        $this->template->set_theme('mod');
+		$this->wowlocmod = base_url('application/themes/'.$this->template->get_theme().'/');
+		$this->wowlocref = base_url('application/themes/'.config_item('theme_name').'/');
+	}
 
-        $this->wowlocmod = base_url('application/themes/'.$this->template->get_theme().'/');
-        $this->wowlocref = base_url('application/themes/'.config_item('theme_name').'/');
-    }
+	public function index()
+	{
+		$data = array(
+			'pagetitle' => lang('button_mod_panel'),
+		);
 
-    public function index()
-    {
-        $data = array(
-            'pagetitle' => lang('button_mod_panel'),
-        );
+		$this->template->build('index', $data);
+	}
 
-        $this->template->build('index', $data);
-    }
+	public function queue()
+	{
+		$data = array(
+			'pagetitle' => lang('button_mod_panel'),
+		);
 
-    public function queue()
-    {
-        $data = array(
-            'pagetitle' => lang('button_mod_panel'),
-        );
+		$this->template->build('queue/index', $data);
+	}
 
-        $this->template->build('queue/index', $data);
-    }
+	public function reports()
+	{
+		$data = array(
+			'pagetitle' => lang('button_mod_panel'),
+		);
 
-    public function reports()
-    {
-        $data = array(
-            'pagetitle' => lang('button_mod_panel'),
-        );
+		$this->template->build('reports/index', $data);
+	}
 
-        $this->template->build('reports/index', $data);
-    }
+	public function logs()
+	{
+		$data = array(
+			'pagetitle' => lang('button_mod_panel'),
+		);
 
-    public function logs()
-    {
-        $data = array(
-            'pagetitle' => lang('button_mod_panel'),
-        );
+		$this->template->build('logs/index', $data);
+	}
 
-        $this->template->build('logs/index', $data);
-    }
+	public function bannings()
+	{
+		$data = array(
+			'pagetitle' => lang('button_mod_panel'),
+		);
 
-    public function bannings()
-    {
-        $data = array(
-            'pagetitle' => lang('button_mod_panel'),
-        );
+		$this->template->build('bannings/index', $data);
+	}
 
-        $this->template->build('bannings/index', $data);
-    }
+	public function warnings()
+	{
+		$data = array(
+			'pagetitle' => lang('button_mod_panel'),
+		);
 
-    public function warnings()
-    {
-        $data = array(
-            'pagetitle' => lang('button_mod_panel'),
-        );
-
-        $this->template->build('warnings/index', $data);
-    }
+		$this->template->build('warnings/index', $data);
+	}
 }
