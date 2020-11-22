@@ -47,7 +47,6 @@ class Admin extends MX_Controller {
         $this->load->model('update/update_model');
         $this->config->load('donate/donate');
         $this->config->load('bugtracker/bugtracker');
-        $this->load->library('pagination');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));

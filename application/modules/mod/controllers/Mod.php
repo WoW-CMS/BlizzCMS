@@ -44,7 +44,6 @@ class Mod extends MX_Controller {
     {
         parent::__construct();
         $this->load->model('mod_model');
-        $this->load->library('pagination');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
