@@ -4,12 +4,12 @@ defined('EXT') or define('EXT', '.php');
 
 global $CFG;
 
-/* get module locations from config settings or use the default module location and offset */
-is_array(Modules::$locations = $CFG->item('modules_locations')) or Modules::$locations = array(
+// get module locations from config settings or use the default module location and offset
+is_array(Modules::$locations = $CFG->item('modules_locations')) or Modules::$locations = [
     APPPATH.'modules/' => '../modules/',
-);
+];
 
-/* PHP5 spl_autoload */
+// PHP5 spl_autoload
 spl_autoload_register('Modules::autoload');
 
 /**
@@ -73,7 +73,7 @@ class Modules
             if (method_exists($class, $method)) {
                 ob_start();
                 $args = func_get_args();
-                $output = call_user_func_array(array($class, $method), array_slice($args, 1));
+                $output = call_user_func_array([$class, $method], array_slice($args, 1));
                 $buffer = ob_get_clean();
                 return $output ?? $buffer;
             }
@@ -111,34 +111,34 @@ class Modules
             }
         }
 
-        /* get the requested controller class name */
+        // get the requested controller class name
         $alias = strtolower(basename($module));
 
-        /* create or return an existing controller from the registry */
+        // create or return an existing controller from the registry
         if (!isset(self::$registry[$alias])) {
-        // Backward function
+            // Backward function
             // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
             if (version_compare(phpversion(), '7.1', '<')) {
                 // php version isn't high enough
-                /* find the controller */
+                // find the controller
                 list($class) = CI::$APP->router->locate(explode('/', $module));
             } else {
                 [$class] = CI::$APP->router->locate(explode('/', $module));
             }
 
-            /* controller cannot be located */
+            // controller cannot be located
             if (empty($class)) {
                 return;
             }
 
-            /* set the module directory */
+            // set the module directory
             $path = APPPATH.'controllers/'.CI::$APP->router->directory;
 
-            /* load the controller class */
+            // load the controller class
             $class .= CI::$APP->config->item('controller_suffix');
             self::load_file(ucfirst($class), $path);
 
-            /* create and register the new controller */
+            // create and register the new controller
             $controller = ucfirst($class);
             self::$registry[$alias] = new $controller($params);
         }
@@ -157,12 +157,12 @@ class Modules
      */
     public static function autoload($class)
     {
-        /* don't autoload CI_ prefixed classes or those using the config subclass_prefix */
+        // don't autoload CI_ prefixed classes or those using the config subclass_prefix
         if (strstr($class, 'CI_') || strstr($class, config_item('subclass_prefix'))) {
             return;
         }
 
-        /* autoload Modular Extensions MX core classes */
+        // autoload Modular Extensions MX core classes
         if (strstr($class, 'MX_')) {
             if (is_file($location = dirname(__FILE__).'/'.substr($class, 3).EXT)) {
                 include_once $location;
@@ -171,13 +171,13 @@ class Modules
             show_error('Failed to load MX core class: '.$class);
         }
 
-        /* autoload core classes */
+        // autoload core classes
         if (is_file($location = APPPATH.'core/'.ucfirst($class).EXT)) {
             include_once $location;
             return;
         }
 
-        /* autoload library classes */
+        // autoload library classes
         if (is_file($location = APPPATH.'libraries/'.ucfirst($class).EXT)) {
             include_once $location;
             return;
@@ -208,7 +208,7 @@ class Modules
             }
             include_once $location;
         } else {
-            /* load config or language array */
+            // load config or language array
             include $location;
 
             if (! isset($$type) || ! is_array($$type)) {
@@ -243,7 +243,7 @@ class Modules
         $file_ext = pathinfo($file, PATHINFO_EXTENSION) ? $file : $file.EXT;
 
         $path = ltrim(implode('/', $segments).'/', '/');
-        $module ? $modules[$module] = $path : $modules = array();
+        $module ? $modules[$module] = $path : $modules = [];
 
         if (! empty($segments)) {
             $modules[array_shift($segments)] = ltrim(implode('/', $segments).'/', '/');
@@ -255,16 +255,16 @@ class Modules
 
                 if ($base === 'libraries/' || $base === 'models/') {
                     if (is_file($fullpath.ucfirst($file_ext))) {
-                        return array($fullpath, ucfirst($file));
+                        return [$fullpath, ucfirst($file)];
                     }
-                } elseif /* load non-class files */
+                } elseif // load non-class files
                 (is_file($fullpath.$file_ext)) {
-                    return array($fullpath, $file);
+                    return [$fullpath, $file];
                 }
             }
         }
 
-        return array(false, $file);
+        return [false, $file];
     }
 
     /**
@@ -279,7 +279,7 @@ class Modules
      */
     public static function parse_routes($module, $uri)
     {
-        /* load the route file */
+        // load the route file
         if (! isset(self::$routes[$module])) {
             // Backward function
             // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
@@ -302,7 +302,7 @@ class Modules
         // Add http verb support for each module routing
         $http_verb = isset($_SERVER['REQUEST_METHOD']) ? strtolower($_SERVER['REQUEST_METHOD']) : 'cli';
 
-        /* parse module routes */
+        // parse module routes
         foreach (self::$routes[$module] as $key => $val) {
             // Add http verb support for each module routing
             if (is_array($val)) {
@@ -315,7 +315,7 @@ class Modules
                 }
             }
 
-            $key = str_replace(array(':any', ':num'), array('.+', '[0-9]+'), $key);
+            $key = str_replace([':any', ':num'], ['.+', '[0-9]+'], $key);
 
             if (preg_match('#^'.$key.'$#', $uri)) {
                 if (strpos($val, '$') !== false && strpos($key, '(') !== false) {

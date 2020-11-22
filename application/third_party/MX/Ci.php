@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-/* load MX core classes */
+// load MX core classes
 require_once __DIR__ .'/Lang.php';
 require_once __DIR__ .'/Config.php';
 
@@ -48,12 +48,12 @@ class CI
     public function __construct()
     {
 
-        /* assign the application instance */
+        // assign the application instance
         self::$APP = CI_Controller::get_instance();
 
         global $LANG, $CFG;
 
-        /* re-assign language and config for modules */
+        // re-assign language and config for modules
         if (! $LANG instanceof MX_Lang) {
             $LANG = new MX_Lang;
         }
@@ -63,5 +63,5 @@ class CI
     }
 }
 
-/* create the application object */
+// create the application object
 new CI;

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-/* load the MX core module class */
+// load the MX core module class
 require_once __DIR__ .'/Modules.php';
 
 /**
@@ -59,7 +59,7 @@ class MX_Router extends CI_Router
      *
      * @param  array        $segments [description]
      */
-    protected function _set_request($segments = array())
+    protected function _set_request($segments = [])
     {
         if ($this->translate_uri_dashes === true) {
             foreach (range(0, 2) as $v) {
@@ -110,7 +110,7 @@ class MX_Router extends CI_Router
     protected function _set_default_controller()
     {
         if (empty($this->directory)) {
-            /* set the default controller module path */
+            // set the default controller module path
             $this->_set_module_path($this->default_controller);
         }
 
@@ -148,27 +148,27 @@ class MX_Router extends CI_Router
         // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
         if (version_compare(phpversion(), '7.1', '<')) {
             // php version isn't high enough
-            /* get the segments array elements */
+            // get the segments array elements
             list($module, $directory, $controller) = array_pad($segments, 3, null);
         } else {
             [$module, $directory, $controller] = array_pad($segments, 3, null);
         }
 
-        /* check modules */
+        // check modules
         foreach (Modules::$locations as $location => $offset) {
-            /* module exists? */
+            // module exists?
             if (is_dir($source = $location.$module.'/controllers/')) {
                 $this->module = $module;
                 $this->directory = $offset.$module.'/controllers/';
 
-                /* module sub-controller exists? */
+                // module sub-controller exists?
                 if ($directory) {
-                    /* module sub-directory exists? */
+                    // module sub-directory exists?
                     if (is_dir($source.$directory.'/')) {
                         $source .= $directory.'/';
                         $this->directory .= $directory.'/';
 
-                        /* module sub-directory controller exists? */
+                        // module sub-directory controller exists?
                         if ($controller) {
                             if (is_file($source.ucfirst($controller).$ext)) {
                                 $this->located = 3;
@@ -184,7 +184,7 @@ class MX_Router extends CI_Router
                     }
                 }
 
-                /* module controller exists? */
+                // module controller exists?
                 if (is_file($source.ucfirst($module).$ext)) {
                     $this->located = 1;
                     return $segments;
@@ -196,27 +196,27 @@ class MX_Router extends CI_Router
             return;
         }
 
-        /* application sub-directory controller exists? */
+        // application sub-directory controller exists?
         if ($directory) {
             if (is_file(APPPATH.'controllers/'.$module.'/'.ucfirst($directory).$ext)) {
                 $this->directory = $module.'/';
                 return array_slice($segments, 1);
             }
 
-            /* application sub-sub-directory controller exists? */
+            // application sub-sub-directory controller exists?
             if ($controller && is_file(APPPATH . 'controllers/' . $module . '/' . $directory . '/' . ucfirst($controller) . $ext)) {
                 $this->directory = $module.'/'.$directory.'/';
                 return array_slice($segments, 2);
             }
         }
 
-        /* application controllers sub-directory exists? */
+        // application controllers sub-directory exists?
         if (is_dir(APPPATH.'controllers/'.$module.'/')) {
             $this->directory = $module.'/';
             return array_slice($segments, 1);
         }
 
-        /* application controller exists? */
+        // application controller exists?
         if (is_file(APPPATH.'controllers/'.ucfirst($module).$ext)) {
             return $segments;
         }
@@ -237,7 +237,7 @@ class MX_Router extends CI_Router
             $sgs = sscanf($_route, '%[^/]/%[^/]/%[^/]/%s', $module, $directory, $class, $method);
 
             // set the module/controller directory location if found
-            if ($this->locate(array($module, $directory, $class))) {
+            if ($this->locate([$module, $directory, $class])) {
                 //reset to class/method
                 switch ($sgs) {
                     case 1: $_route = $module.'/index';

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-/* load MX core classes */
+// load MX core classes
 require_once __DIR__ .'/Lang.php';
 require_once __DIR__ .'/Config.php';
 
@@ -41,20 +41,20 @@ class CI extends CI_Controller
 {
     public static $APP;
 
-/**
- * [__construct description]
- *
- * @method __construct
- */
+    /**
+     * [__construct description]
+     *
+     * @method __construct
+     */
     public function __construct()
     {
 
-        /* assign the application instance */
+        // assign the application instance
         self::$APP = $this;
 
         global $LANG, $CFG;
 
-        /* re-assign language and config for modules */
+        // re-assign language and config for modules
         if (! $LANG instanceof MX_Lang) {
             $LANG = new MX_Lang;
         }
@@ -66,5 +66,5 @@ class CI extends CI_Controller
     }
 }
 
-/* create the application object */
+// create the application object
 new CI;

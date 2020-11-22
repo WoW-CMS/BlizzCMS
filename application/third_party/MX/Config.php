@@ -70,7 +70,7 @@ class MX_Config extends CI_Config
         }
 
         if ($config = Modules::load_file($file, $path, 'config')) {
-            /* reference to the config array */
+            // reference to the config array
             $current_config =& $this->config;
 
             if ($use_sections === true) {
