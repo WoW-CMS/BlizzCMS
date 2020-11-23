@@ -16,7 +16,7 @@ class Bugtracker_model extends CI_Model
 
 	public function getBugtracker()
 	{
-		return $this->db->select('*')->where('close', '0')->get('bugtracker');
+		return $this->db->where('close', '0')->get('bugtracker');
 	}
 
 	public function changePriority($id, $priority)
@@ -66,7 +66,7 @@ class Bugtracker_model extends CI_Model
 
 	public function bugtrackerList()
 	{
-		return $this->db->select('*')->where('close', '0')->order_by('id', 'DESC')->limit($this->_pageNumber, $this->_offset)->get('bugtracker')->result();
+		return $this->db->where('close', '0')->order_by('id', 'DESC')->limit($this->_pageNumber, $this->_offset)->get('bugtracker')->result();
 	}
 
 	public function insertIssue($title, $description, $type, $priority)
@@ -96,7 +96,7 @@ class Bugtracker_model extends CI_Model
 
 	public function getTypes()
 	{
-		return $this->db->select('*')->get('bugtracker_type');
+		return $this->db->get('bugtracker_type');
 	}
 
 	public function getType($id)
@@ -126,7 +126,7 @@ class Bugtracker_model extends CI_Model
 
 	public function getPriorities()
 	{
-		return $this->db->select('*')->get('bugtracker_priority');
+		return $this->db->get('bugtracker_priority');
 	}
 
 	public function getPriority($id)
@@ -136,17 +136,17 @@ class Bugtracker_model extends CI_Model
 
 	public function getPriorityGeneral()
 	{
-		return $this->db->select('*')->get('bugtracker_priority');
+		return $this->db->get('bugtracker_priority');
 	}
 
 	public function getStatusGeneral()
 	{
-		return $this->db->select('*')->get('bugtracker_status');
+		return $this->db->get('bugtracker_status');
 	}
 
 	public function getTypesGeneral()
 	{
-		return $this->db->select('*')->get('bugtracker_type');
+		return $this->db->get('bugtracker_type');
 	}
 
 	public function getPriorityID($id)

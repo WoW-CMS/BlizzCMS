@@ -14,7 +14,7 @@ class Home_model extends CI_Model
 
 	public function getSlides()
 	{
-		return $this->db->select('*')->order_by('id', 'ASC')->get('slides');
+		return $this->db->order_by('id', 'ASC')->get('slides');
 	}
 
 	public function getDiscordInfo()

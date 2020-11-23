@@ -41,12 +41,12 @@ class Admin_model extends CI_Model
 
 	public function accountsList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('users')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('users')->result();
 	}
 
 	public function getAccountExist($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('users')->num_rows();
+		return $this->db->where('id', $id)->get('users')->num_rows();
 	}
 
 	public function getAdminCharactersList($multirealm)
@@ -57,7 +57,7 @@ class Admin_model extends CI_Model
 
 	public function getUserHistoryDonate($id)
 	{
-		return $this->db->select('*')->where('user_id', $id)->order_by('id', 'DESC')->get('donate_logs');
+		return $this->db->where('user_id', $id)->order_by('id', 'DESC')->get('donate_logs');
 	}
 
 	public function getDonateStatus($id)
@@ -274,12 +274,12 @@ class Admin_model extends CI_Model
 
 	public function getMenu()
 	{
-		return $this->db->select('*')->get('menu')->result();
+		return $this->db->get('menu')->result();
 	}
 
 	public function getMenuSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('menu')->num_rows();
+		return $this->db->where('id', $id)->get('menu')->num_rows();
 	}
 
 	public function getMenuSpecifyName($id)
@@ -364,12 +364,12 @@ class Admin_model extends CI_Model
 
 	public function realmsList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('realms')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('realms')->result();
 	}
 
 	public function getRealmsSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('realms')->num_rows();
+		return $this->db->where('id', $id)->get('realms')->num_rows();
 	}
 
 	public function getRealmSpecifyHost($id)
@@ -462,12 +462,12 @@ class Admin_model extends CI_Model
 
 	public function slidesList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('slides')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('slides')->result();
 	}
 
 	public function getSlidesSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('slides')->num_rows();
+		return $this->db->where('id', $id)->get('slides')->num_rows();
 	}
 
 	public function getSlideSpecifyTitle($id)
@@ -539,12 +539,12 @@ class Admin_model extends CI_Model
 
 	public function newsList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('news')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('news')->result();
 	}
 
 	public function getNewsSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('news')->num_rows();
+		return $this->db->where('id', $id)->get('news')->num_rows();
 	}
 
 	public function getNewIDperDate($date)
@@ -609,7 +609,7 @@ class Admin_model extends CI_Model
 
 	public function changelogsList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('changelogs')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('changelogs')->result();
 	}
 
 	public function getChangelogsCreated()
@@ -619,7 +619,7 @@ class Admin_model extends CI_Model
 
 	public function getChangelogSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('changelogs')->num_rows();
+		return $this->db->where('id', $id)->get('changelogs')->num_rows();
 	}
 
 	public function getChangelogSpecifyName($id)
@@ -692,12 +692,12 @@ class Admin_model extends CI_Model
 
 	public function pagesList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('pages')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('pages')->result();
 	}
 
 	public function getPagesSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('pages')->num_rows();
+		return $this->db->where('id', $id)->get('pages')->num_rows();
 	}
 
 	public function pagecheckUri($uri)
@@ -767,12 +767,12 @@ class Admin_model extends CI_Model
 
 	public function topsitesList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('votes')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('votes')->result();
 	}
 
 	public function getTopsitesSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('votes')->num_rows();
+		return $this->db->where('id', $id)->get('votes')->num_rows();
 	}
 
 	public function getTopsiteSpecifyName($id)
@@ -802,7 +802,7 @@ class Admin_model extends CI_Model
 
 	public function getModules()
 	{
-		return $this->db->select('*')->get('modules')->result();
+		return $this->db->get('modules')->result();
 	}
 
 	public function enableSpecifyModule($id)
@@ -827,7 +827,7 @@ class Admin_model extends CI_Model
 
 	public function getDropDownsSpecify()
 	{
-		return $this->db->select('*')->where('main', '2')->where('father', '0')->get('store_categories');
+		return $this->db->where('main', '2')->where('father', '0')->get('store_categories');
 
 	}
 
@@ -891,17 +891,17 @@ class Admin_model extends CI_Model
 
 	public function storeCategoryList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_categories')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('store_categories')->result();
 	}
 
 	public function getCategoryStore()
 	{
-		return $this->db->select('*')->get('store_categories');
+		return $this->db->get('store_categories');
 	}
 
 	public function getStoreCategorySpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('store_categories')->num_rows();
+		return $this->db->where('id', $id)->get('store_categories')->num_rows();
 	}
 
 	public function getStoreCategoryName($id)
@@ -996,17 +996,17 @@ class Admin_model extends CI_Model
 
 	public function storeItemList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_items')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('store_items')->result();
 	}
 
 	public function getStoreItems()
 	{
-		return $this->db->select('*')->order_by('id', 'ASC')->get('store_items')->result();
+		return $this->db->order_by('id', 'ASC')->get('store_items')->result();
 	}
 
 	public function getItemSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('store_items')->num_rows();
+		return $this->db->where('id', $id)->get('store_items')->num_rows();
 	}
 
 	public function getItemSpecifyName($id)
@@ -1088,12 +1088,12 @@ class Admin_model extends CI_Model
 
 	public function storeTopList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_top')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('store_top')->result();
 	}
 
 	public function getStoreTopSpecifyRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('store_top')->num_rows();
+		return $this->db->where('id', $id)->get('store_top')->num_rows();
 	}
 
 	public function getTopSpecifyItem($id)
@@ -1135,7 +1135,7 @@ class Admin_model extends CI_Model
 
 	public function getDonateList()
 	{
-		return $this->db->select('*')->order_by('id', 'ASC')->get('donate')->result();
+		return $this->db->order_by('id', 'ASC')->get('donate')->result();
 	}
 
 	public function getDonateSpecifyName($id)
@@ -1200,12 +1200,12 @@ class Admin_model extends CI_Model
 
 	public function forumElementList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('forum')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('forum')->result();
 	}
 
 	public function getSpecifyForumRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('forum')->num_rows();
+		return $this->db->where('id', $id)->get('forum')->num_rows();
 	}
 
 	public function getSpecifyForumName($id)
@@ -1267,17 +1267,17 @@ class Admin_model extends CI_Model
 
 	public function forumCategoryList()
 	{
-		return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('forum_category')->result();
+		return $this->db->limit($this->_pageNumber, $this->_offset)->get('forum_category')->result();
 	}
 
 	public function getForumCategoryList()
 	{
-		return $this->db->select('*')->order_by('id', 'ASC')->get('forum_category');
+		return $this->db->order_by('id', 'ASC')->get('forum_category');
 	}
 
 	public function getSpecifyForumCategoryRows($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('forum_category')->num_rows();
+		return $this->db->where('id', $id)->get('forum_category')->num_rows();
 	}
 
 	public function getForumCategoryName($id)

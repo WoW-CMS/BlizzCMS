@@ -43,7 +43,7 @@ class Forum_model extends CI_Model
 
 	public function getComments($id)
 	{
-		return $this->db->select('*')->where('topic', $id)->get('forum_replies');
+		return $this->db->where('topic', $id)->get('forum_replies');
 	}
 
 	public function getCountPostAuthor($id)
@@ -58,32 +58,32 @@ class Forum_model extends CI_Model
 
 	public function getCountPostGeneral()
 	{
-		return $this->db->select('*')->get('forum_topics')->num_rows();
+		return $this->db->get('forum_topics')->num_rows();
 	}
 
 	public function getCountPostReplies()
 	{
-		return $this->db->select('*')->get('forum_replies')->num_rows();
+		return $this->db->get('forum_replies')->num_rows();
 	}
 
 	public function getCountUsers()
 	{
-		return $this->db->select('*')->get('users')->num_rows();
+		return $this->db->get('users')->num_rows();
 	}
 
 	public function getLastPostCategory($id)
 	{
-		return $this->db->select('*')->where('forums', $id)->limit('1')->order_by('date', 'DESC')->get('forum_topics');
+		return $this->db->where('forums', $id)->limit('1')->order_by('date', 'DESC')->get('forum_topics');
 	}
 
 	public function getLastPosts()
 	{
-		return $this->db->select('*')->limit('5')->order_by('date', 'ASC')->get('forum_topics');
+		return $this->db->limit('5')->order_by('date', 'ASC')->get('forum_topics');
 	}
 
 	public function getLastReplies($id)
 	{
-		return $this->db->select('*')->where('topic', $id)->limit('1')->order_by('date', 'DESC')->get('forum_replies');
+		return $this->db->where('topic', $id)->limit('1')->order_by('date', 'DESC')->get('forum_replies');
 	}
 
 	public function getLastRepliesCount($id)
@@ -175,12 +175,12 @@ class Forum_model extends CI_Model
 
 	public function getSpecifyCategoryPosts($id)
 	{
-		return $this->db->select('*')->where('forums', $id)->order_by('id', 'ASC')->get('forum_topics');
+		return $this->db->where('forums', $id)->order_by('id', 'ASC')->get('forum_topics');
 	}
 
 	public function getSpecifyCategoryPostsPined($id)
 	{
-		return $this->db->select('*')->where('forums', $id)->where('pinned', '1')->order_by('id', 'DESC')->get('forum_topics');
+		return $this->db->where('forums', $id)->where('pinned', '1')->order_by('id', 'DESC')->get('forum_topics');
 	}
 
 	public function getSpecifyPostName($id)

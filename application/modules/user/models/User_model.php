@@ -199,7 +199,7 @@ class User_model extends CI_Model
 
 	public function getAllAvatars()
 	{
-		return $this->db->select('*')->order_by('id ASC')->get('avatars');
+		return $this->db->order_by('id ASC')->get('avatars');
 	}
 
 	public function changeAvatar($avatar)
@@ -477,7 +477,7 @@ class User_model extends CI_Model
 
 	public function getTempUser($key)
 	{
-		return $this->db->select('*')->where('key', $key)->get('pending_users')->row_array();
+		return $this->db->where('key', $key)->get('pending_users')->row_array();
 	}
 
 	public function removeTempUser($key)

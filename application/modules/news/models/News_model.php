@@ -34,7 +34,7 @@ class News_model extends CI_Model
 
 	public function getComments($idlink)
 	{
-		return $this->db->select('*')->where('id_new', $idlink)->get('news_comments');
+		return $this->db->where('id_new', $idlink)->get('news_comments');
 	}
 
 	public function getNewTitle($id)
@@ -64,16 +64,16 @@ class News_model extends CI_Model
 
 	public function getNewSpecifyID($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('news');
+		return $this->db->where('id', $id)->get('news');
 	}
 
 	public function getNewsList()
 	{
-		return $this->db->select('*')->order_by('id', 'DESC')->limit('4')->get('news');
+		return $this->db->order_by('id', 'DESC')->limit('4')->get('news');
 	}
 
 	public function getExtendedNewsList()
 	{
-		return $this->db->select('*')->order_by('id', 'DESC')->limit('8')->get('news');
+		return $this->db->order_by('id', 'DESC')->limit('8')->get('news');
 	}
 }

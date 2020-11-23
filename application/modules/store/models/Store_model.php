@@ -19,7 +19,7 @@ class Store_model extends CI_Model
 
 	public function getStoreTop()
 	{
-		return $this->db->select('*')->order_by('id', 'ASC')->limit('15')->get($this->top)->result();
+		return $this->db->order_by('id', 'ASC')->limit('15')->get($this->top)->result();
 	}
 
 	public function getName($id)
@@ -69,7 +69,7 @@ class Store_model extends CI_Model
 
 	public function getItemExist($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get($this->item)->num_rows();
+		return $this->db->where('id', $id)->get($this->item)->num_rows();
 	}
 
 	public function getRoute($id)
@@ -105,17 +105,17 @@ class Store_model extends CI_Model
 	public function getCategoryItems($route)
 	{
 		$id = $this->getCategoryId($route);
-		return $this->db->select('*')->where('category', $id)->get($this->item)->result();
+		return $this->db->where('category', $id)->get($this->item)->result();
 	}
 
 	public function getCategories($realmid)
 	{
-		return $this->db->select('*')->where('realmid', $realmid)->get($this->categories);
+		return $this->db->where('realmid', $realmid)->get($this->categories);
 	}
 
 	public function getItem($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get($this->item)->row_array();
+		return $this->db->where('id', $id)->get($this->item)->row_array();
 	}
 
 	public function insertStoreLog($accountid, $charid, $name, $type, $pricetype, $dp, $vp)
@@ -290,6 +290,6 @@ class Store_model extends CI_Model
 
 	public function getChildStoreCategory($id)
 	{
-		return $this->db->select('*')->where('father', $id)->get($this->categories);
+		return $this->db->where('father', $id)->get($this->categories);
 	}
 }

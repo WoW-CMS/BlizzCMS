@@ -49,12 +49,12 @@ class Donate_model extends CI_Model
 
 	public function getSpecifyDonate($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('donate');
+		return $this->db->where('id', $id)->get('donate');
 	}
 
 	public function getDonations()
 	{
-		return $this->db->select('*')->get('donate');
+		return $this->db->get('donate');
 	}
 
 	public function getCurrentDP()

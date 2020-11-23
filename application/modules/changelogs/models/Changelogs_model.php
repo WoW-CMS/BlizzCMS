@@ -18,7 +18,7 @@ class Changelogs_model extends CI_Model
 
 	public function getChangelogs()
 	{
-		return $this->db->select('*')->order_by('id', 'DESC')->limit('20')->get('changelogs');
+		return $this->db->order_by('id', 'DESC')->limit('20')->get('changelogs');
 	}
 
 	public function getLastID()

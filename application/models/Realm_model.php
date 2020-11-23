@@ -17,12 +17,12 @@ class Realm_model extends CI_Model
 
 	public function getRealms()
 	{
-		return $this->db->select('*')->get('realms');
+		return $this->db->get('realms');
 	}
 
 	public function getRealm($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('realms');
+		return $this->db->where('id', $id)->get('realms');
 	}
 
 	public function getRealmPort($id)
