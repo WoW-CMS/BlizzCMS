@@ -45,7 +45,7 @@
                     <div class="uk-width-expand@s">
                       <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $commentss->date); ?></p>
                       <?= $commentss->commentary ?>
-                      <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
+                      <?php if($this->wowauth->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
                       <div class="uk-margin-small-top">
                         <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                       </div>

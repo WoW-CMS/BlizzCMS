@@ -82,7 +82,7 @@ class Admin_model extends CI_Model
 	public function insertBanAccount($iduser, $reason)
 	{
 		$date = now();
-		$id = $this->session->userdata('wow_sess_id');
+		$id = $this->session->userdata('id');
 
 		if (empty($reason))
 			$reason = lang('log_banned');

@@ -59,7 +59,7 @@ class Donate_model extends CI_Model
 
 	public function getCurrentDP()
 	{
-		$qq = $this->db->select('dp')->where('id', $this->session->userdata('wow_sess_id'))->get('users');
+		$qq = $this->db->select('dp')->where('id', $this->session->userdata('id'))->get('users');
 
 		if ($qq->num_rows())
 			return $qq->row('dp');
@@ -130,7 +130,7 @@ class Donate_model extends CI_Model
 
 			//prepare and execute
 			$dataInsert = array(
-				'user_id' => $this->session->userdata('wow_sess_id'),
+				'user_id' => $this->session->userdata('id'),
 				'payment_id' => $payment->getId(),
 				'hash' => $hash,
 				'total' => $payment->transactions[0]->amount->total,
@@ -173,7 +173,7 @@ class Donate_model extends CI_Model
 			$obtained_points = $this->getSpecifyDonate($donate)->row('points');
 			$total = ($this->getCurrentDP() + $obtained_points);
 
-			$this->db->set('dp', $total)->where('id', $this->session->userdata('wow_sess_id'))->update('users');
+			$this->db->set('dp', $total)->where('id', $this->session->userdata('id'))->update('users');
 
 			$this->session->set_flashdata('donation_status','success');
 			redirect(base_url($this->lang->lang().'/donate'));

@@ -30,12 +30,12 @@
               <?php if ($this->wowauth->isLogged()): ?>
               <li class="uk-visible@m">
                 <a href="#">
-                  <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
-                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="30" height="30" alt="Avatar">
+                  <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
+                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('id')))); ?>" width="30" height="30" alt="Avatar">
                   <?php else: ?>
                   <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('blizz_sess_username'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
+                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('nickname'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -125,8 +125,8 @@
             <?php if ($this->wowauth->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title:<?=lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->wowgeneral->getCharDPTotal($this->session->userdata('wow_sess_id')); ?></li>
-                <li><span uk-tooltip="title:<?=lang('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->wowgeneral->getCharVPTotal($this->session->userdata('wow_sess_id')); ?></li>
+                <li><span uk-tooltip="title:<?=lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->wowgeneral->getCharDPTotal($this->session->userdata('id')); ?></li>
+                <li><span uk-tooltip="title:<?=lang('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->wowgeneral->getCharVPTotal($this->session->userdata('id')); ?></li>
               </ul>
             </div>
             <?php endif; ?>
@@ -139,12 +139,12 @@
               <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('website_name'); ?></p>
               <?php if ($this->wowauth->isLogged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
-                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')))); ?>" width="36" height="36" alt="Avatar">
+                <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
+                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('id')))); ?>" width="36" height="36" alt="Avatar">
                 <?php else: ?>
                 <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
                 <?php endif; ?>
-                <span class="uk-label"><?= $this->session->userdata('blizz_sess_username'); ?></span>
+                <span class="uk-label"><?= $this->session->userdata('nickname'); ?></span>
               </div>
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>

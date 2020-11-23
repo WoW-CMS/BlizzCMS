@@ -49,7 +49,7 @@ class Forum extends MX_Controller
 		);
 
 		if ($this->forum_model->getType($id) == 2 && $this->wowauth->isLogged())
-			if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
+			if ($this->wowauth->getRank($this->session->userdata('id')) > 0) { }
 		else
 			redirect(base_url('forum'),'refresh');
 
@@ -62,7 +62,7 @@ class Forum extends MX_Controller
 			redirect(base_url('forum'),'refresh');
 
 		if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->wowauth->isLogged())
-			if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
+			if ($this->wowauth->getRank($this->session->userdata('id')) > 0) { }
 		else
 			redirect(base_url('forum'),'refresh');
 
@@ -103,7 +103,7 @@ class Forum extends MX_Controller
 		if (!$this->wowauth->isLogged())
 			redirect(base_url(),'refresh');
 
-		$ssesid = $this->session->userdata('wow_sess_id');
+		$ssesid = $this->session->userdata('id');
 		$topicid = $this->input->post('topic');
 		$reply = $_POST['reply'];
 		echo $this->forum_model->insertComment($reply, $topicid, $ssesid);
@@ -125,7 +125,7 @@ class Forum extends MX_Controller
 
 		$category = $this->input->post('category');
 		$title = $this->input->post('title');
-		$ssesid = $this->session->userdata('wow_sess_id');
+		$ssesid = $this->session->userdata('id');
 		$description = $_POST['description'];
 		echo $this->forum_model->insertTopic($category, $title, $ssesid, $description, '0', '0');
 	}

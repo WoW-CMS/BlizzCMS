@@ -46,7 +46,7 @@ class News extends MX_Controller
 		if (!$this->wowauth->isLogged())
 			redirect(base_url(),'refresh');
 
-		$ssesid = $this->session->userdata('wow_sess_id');
+		$ssesid = $this->session->userdata('id');
 		$newsid = $this->input->post('news');
 		$reply = $_POST['reply'];
 		echo $this->news_model->insertComment($reply, $newsid, $ssesid);

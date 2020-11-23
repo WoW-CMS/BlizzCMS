@@ -18,6 +18,8 @@
 - Remove unused function ``$this->wowauth->getExpansionID()``
 - Remove unused function ``$this->wowauth->getLastIPID()``
 - Remove unused function ``$this->wowauth->getLastLoginID()``
+- Remove unneeded ``->select('*')``
+- Rename session data
 
 ### Bugs Fixed
 

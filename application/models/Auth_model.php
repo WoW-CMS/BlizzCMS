@@ -20,12 +20,12 @@ class Auth_model extends CI_Model
 	public function arraySession($id)
 	{
 		$this->session->set_userdata([
-			'wow_sess_id'         => $id,
-			'wow_sess_username'   => $this->getUsernameID($id),
-			'blizz_sess_username' => $this->getSiteUsernameID($id),
-			'wow_sess_email'      => $this->getEmailID($id),
-			'wow_sess_gmlevel'    => $this->getRank($id),
-			'logged_in'           => TRUE
+			'id'        => $id,
+			'username'  => $this->getUsernameID($id),
+			'nickname'  => $this->getSiteUsernameID($id),
+			'email'     => $this->getEmailID($id),
+			'gmlevel'   => $this->getRank($id),
+			'logged_in' => TRUE
 		]);
 
 		return true;
@@ -33,7 +33,7 @@ class Auth_model extends CI_Model
 
 	public function isLogged()
 	{
-		if ($this->session->userdata('wow_sess_username'))
+		if ($this->session->userdata('username'))
 			return true;
 		else
 			return false;
@@ -160,19 +160,19 @@ class Auth_model extends CI_Model
 
 	public function checkAccountExist()
 	{
-		return $this->db->select('id')->where('id', $this->session->userdata('wow_sess_id'))->get('users')->num_rows();
+		return $this->db->select('id')->where('id', $this->session->userdata('id'))->get('users')->num_rows();
 	}
 
 	public function synchronizeAccount()
 	{
 		if ($this->checkAccountExist() == 0)
 		{
-			$joindate = strtotime($this->getJoinDateID($this->session->userdata('wow_sess_id')));
+			$joindate = strtotime($this->getJoinDateID($this->session->userdata('id')));
 
 			$data = array(
-				'id' => $this->session->userdata('wow_sess_id'),
-				'username' => $this->session->userdata('wow_sess_username'),
-				'email' => $this->session->userdata('wow_sess_email'),
+				'id' => $this->session->userdata('id'),
+				'username' => $this->session->userdata('username'),
+				'email' => $this->session->userdata('email'),
 				'joindate' => $joindate
 			);
 
@@ -187,7 +187,7 @@ class Auth_model extends CI_Model
 	{
 		$config = $this->config->item('admin_access_level');
 
-		$qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
+		$qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('id'))->get('account_access');
 
 		if(!$qq->row('gmlevel'))
 			return false;
@@ -206,7 +206,7 @@ class Auth_model extends CI_Model
 	{
 		$config = $this->config->item('mod_access_level');
 
-		$qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
+		$qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('id'))->get('account_access');
 
 		if(!$qq->row('gmlevel'))
 			return false;

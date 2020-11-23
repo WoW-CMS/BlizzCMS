@@ -44,7 +44,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
-                          <input class="uk-input uk-disabled" type="text" placeholder="<?= $this->wowauth->getSiteUsernameID($this->session->userdata('wow_sess_id')); ?>" disabled>
+                          <input class="uk-input uk-disabled" type="text" placeholder="<?= $this->wowauth->getSiteUsernameID($this->session->userdata('id')); ?>" disabled>
                         </div>
                       </div>
                     <div class="uk-margin uk-light">
@@ -95,7 +95,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-                      <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->wowauth->getEmailID($this->session->userdata('wow_sess_id')); ?>" disabled>
+                      <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->wowauth->getEmailID($this->session->userdata('id')); ?>" disabled>
                     </div>
                   </div>
                 </div>
@@ -190,7 +190,7 @@
                       <?php foreach($this->user_model->getAllAvatars()->result() as $avatar): ?>
                         <div>
                           <img class="uk-border-rounded uk-margin-small" src="<?= base_url('assets/images/profiles/'.$avatar->name); ?>" width="60" height="60">
-                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="change_avatar" value="<?= $avatar->id ?>" <?php if($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id')) == $avatar->id) echo 'checked'; ?>>
+                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="change_avatar" value="<?= $avatar->id ?>" <?php if($this->wowauth->getImageProfile($this->session->userdata('id')) == $avatar->id) echo 'checked'; ?>>
                         </div>
                       <?php endforeach; ?>
                     </div>

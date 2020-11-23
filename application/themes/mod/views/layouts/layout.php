@@ -22,12 +22,12 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="javascript:void(0)">
-                  <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('wow_sess_id'))); ?>" alt="Avatar">
+                  <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('id'))); ?>" alt="Avatar">
                   <?php else: ?>
                   <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="Avatar">
                   <?php endif; ?>
-                  <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('wow_sess_username'); ?><span uk-icon="icon: triangle-down"></span></span>
+                  <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname'); ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">

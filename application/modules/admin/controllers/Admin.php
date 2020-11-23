@@ -27,7 +27,7 @@ class Admin extends MX_Controller
 		if(!$this->wowauth->getIsAdmin())
 			redirect(base_url(),'refresh');
 
-		if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
+		if($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
 			redirect(base_url(),'refresh');
 
 		$this->template->set_theme('admin');

@@ -47,15 +47,15 @@
                     <tbody>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_username'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->wowauth->getUsernameID($this->session->userdata('wow_sess_id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->wowauth->getUsernameID($this->session->userdata('id')); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_email'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->wowauth->getEmailID($this->session->userdata('wow_sess_id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->wowauth->getEmailID($this->session->userdata('id')); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('panel_last_ip'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('wow_sess_id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('id')); ?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -85,7 +85,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id'))->result() as $chars): ?>
+                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('id'))->result() as $chars): ?>
                           <tr>
                             <td><?= $chars->name ?></td>
                             <td>

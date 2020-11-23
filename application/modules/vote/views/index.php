@@ -43,7 +43,7 @@
                     </div>
                     <p class="uk-text-small uk-text-center uk-margin-small"><?= $voteList->points ?> <?= lang('panel_vp'); ?></p>
                     <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-text-center uk-margin-remove-bottom uk-margin-small-top"><?= lang('vote_next_time'); ?></h5>
-                    <div class="uk-grid-collapse uk-child-width-auto uk-flex-center uk-margin-small-bottom" uk-grid uk-countdown="date: <?= date('c', $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('wow_sess_id'))); ?>">
+                    <div class="uk-grid-collapse uk-child-width-auto uk-flex-center uk-margin-small-bottom" uk-grid uk-countdown="date: <?= date('c', $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('id'))); ?>">
                       <div>
                         <div class="uk-countdown-number uk-countdown-days"></div>
                       </div>
@@ -60,7 +60,7 @@
                         <div class="uk-countdown-number uk-countdown-seconds"></div>
                       </div>
                     </div>
-                    <?php if(now() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('wow_sess_id'))): ?>
+                    <?php if(now() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('id'))): ?>
                       <?= form_open(base_url('vote/votenow/'.$voteList->id)); ?>
                         <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-vote-yea"></i> <?= lang('tab_vote'); ?></button>
                       <?= form_close(); ?>

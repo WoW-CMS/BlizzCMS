@@ -138,7 +138,7 @@ class Store_model extends CI_Model
 
 	public function PurchaseItem($id, $charid)
 	{
-		$accountid = $this->session->userdata('wow_sess_id');
+		$accountid = $this->session->userdata('id');
 		$item = $this->getItem($id);
 		$realm = $this->getCategoryRealmId($item['category']);
 		$info = $this->wowrealm->getRealm($realm)->row_array();
@@ -269,7 +269,7 @@ class Store_model extends CI_Model
 
 	public function Checkout()
 	{
-		$accountid = $this->session->userdata('wow_sess_id');
+		$accountid = $this->session->userdata('id');
 		$dptotal = $this->cart->total_dp();
 		$vptotal = $this->cart->total_vp();
 

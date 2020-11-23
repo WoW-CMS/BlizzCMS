@@ -77,7 +77,7 @@ endif; ?>
               </div>
             </div>
             <hr>
-            <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0): ?>
+            <?php if($this->wowauth->getRank($this->session->userdata('id')) > 0): ?>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
               <div>
                 <form method="post" action="">
