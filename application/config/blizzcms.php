@@ -12,15 +12,6 @@ $config['website_name'] = '';
 
 /**
  *
- * Timezone
- *
- * http://php.net/manual/en/timezones.php
- *
-*/
-$config['timezone'] = 'GMT';
-
-/**
- *
  * Maintenance Mode
  *
  * 1 = Enable | 0 = Disable

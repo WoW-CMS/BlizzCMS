@@ -17,9 +17,6 @@ class Online extends MX_Controller
 	{
 		parent::__construct();
 		$this->load->model('online_model');
-
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
 	}
 
 	public function index()

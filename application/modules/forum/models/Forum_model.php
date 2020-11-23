@@ -22,7 +22,7 @@ class Forum_model extends CI_Model
 		$type = '2';
 		$log_enter = $this->logs->__setLogs($author, $type, $topicid, $function, $reply);
 
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$data = array(
 			'topic' => $topicid,
@@ -101,7 +101,7 @@ class Forum_model extends CI_Model
 		$function = '[Guardian/Topic]';
 		$type = '1';
 		$log_enter = $this->logs->__setLogs($userid, $category, $type, $function, $title);
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$data = array(
 			'forums' => $category,
@@ -124,7 +124,7 @@ class Forum_model extends CI_Model
 
 	public function updateTopic($idlink, $title, $description, $locked, $pinned)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$data = array(
 			'title' => $title,

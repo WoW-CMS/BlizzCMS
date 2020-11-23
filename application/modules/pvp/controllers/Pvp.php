@@ -18,9 +18,6 @@ class Pvp extends MX_Controller
 		parent::__construct();
 		$this->load->model('pvp_model');
 
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getPVPStatus())
 			redirect(base_url(),'refresh');
 	}

@@ -24,9 +24,6 @@ class Donate extends MX_Controller
 		$this->load->model('donate_model');
 		$this->load->config('donate');
 
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getDonationStatus())
 			redirect(base_url(),'refresh');
 

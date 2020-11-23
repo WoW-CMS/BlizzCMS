@@ -19,9 +19,6 @@ class Bugtracker extends MX_Controller
 		$this->load->model('bugtracker_model');
 		$this->load->config('bugtracker');
 
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getBugtrackerStatus())
 			redirect(base_url(),'refresh');
 

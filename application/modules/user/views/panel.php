@@ -89,12 +89,12 @@
                           <tr>
                             <td><?= $chars->name ?></td>
                             <td>
-                              <img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($chars->race)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getRaceName($chars->race); ?>" alt="">
-                              <img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($chars->class)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getClassName($chars->class); ?>" alt="">
+                              <img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.race_icon($chars->race)); ?>" width="20" height="20" title="<?= race_name($chars->race); ?>" alt="">
+                              <img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.class_icon($chars->class)); ?>" width="20" height="20" title="<?= class_name($chars->class); ?>" alt="">
                             </td>
                             <td><?= $chars->level ?></td>
-                            <td><?= $this->wowgeneral->timeConversor($chars->totaltime); ?></td>
-                            <td><?= $this->wowgeneral->moneyConversor($chars->money)['gold']; ?>g <?= $this->wowgeneral->moneyConversor($chars->money)['silver']; ?>s <?= $this->wowgeneral->moneyConversor($chars->money)['copper']; ?>c</td>
+                            <td><?= time_converter($chars->totaltime); ?></td>
+                            <td><?= money_converter($chars->money); ?></td>
                           </tr>
                           <?php endforeach; ?>
                         </tbody>

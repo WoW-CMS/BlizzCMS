@@ -19,9 +19,6 @@ class Forum extends MX_Controller
 		$this->load->model('forum_model');
 		$this->load->model('logs_model', 'logs'); // Logs System
 
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getForumStatus())
 			redirect(base_url(),'refresh');
 	}

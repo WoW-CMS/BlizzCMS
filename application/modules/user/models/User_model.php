@@ -269,7 +269,7 @@ class User_model extends CI_Model
 
 	public function insertRegister($username, $email, $password, $repassword)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 		$expansion = $this->wowgeneral->getRealExpansionDB();
 		$passwordAc = $this->wowauth->Account($username, $password);
 		$passwordBn = $this->wowauth->Battlenet($email, $password);

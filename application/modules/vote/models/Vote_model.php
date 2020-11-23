@@ -49,7 +49,7 @@ class Vote_model extends CI_Model
 	public function voteNow($id)
 	{
 		$userid = $this->session->userdata('wow_sess_id');
-		$mytime = $this->wowgeneral->getTimestamp();
+		$mytime = now();
 		$ppoints = $this->getVotePoints($id);
 		$votetime = $this->getVoteTime($id);
 
@@ -68,7 +68,7 @@ class Vote_model extends CI_Model
 
 		$comprobetime = $qqcheck->row('expired_at');
 
-		if($this->wowgeneral->getTimestamp() >= $comprobetime)
+		if(now() >= $comprobetime)
 		{
 			$vp2 = $this->db->where('id', $userid)->get('users')->row('vp');
 			$vp = ($vp2+$ppoints);

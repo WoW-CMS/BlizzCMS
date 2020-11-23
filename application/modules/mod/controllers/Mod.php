@@ -13,9 +13,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mod extends MX_Controller
 {
-	private $wowlocmod = '',
-			$wowlocref = '';
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -28,9 +25,6 @@ class Mod extends MX_Controller
 			redirect(base_url(),'refresh');
 
 		$this->template->set_theme('mod');
-
-		$this->wowlocmod = base_url('application/themes/'.$this->template->get_theme().'/');
-		$this->wowlocref = base_url('application/themes/'.config_item('theme_name').'/');
 	}
 
 	public function index()

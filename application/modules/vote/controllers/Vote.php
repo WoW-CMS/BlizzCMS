@@ -18,9 +18,6 @@ class Vote extends MX_Controller
 		parent::__construct();
 		$this->load->model('vote_model');
 
-		if (!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getVoteStatus())
 			redirect(base_url(),'refresh');
 

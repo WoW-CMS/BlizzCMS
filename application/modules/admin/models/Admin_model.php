@@ -81,7 +81,7 @@ class Admin_model extends CI_Model
 
 	public function insertBanAccount($iduser, $reason)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 		$id = $this->session->userdata('wow_sess_id');
 
 		if (empty($reason))
@@ -492,7 +492,7 @@ class Admin_model extends CI_Model
 
 	public function insertNews($title, $description, $image)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$data = array(
 			'title' => $title,
@@ -511,7 +511,7 @@ class Admin_model extends CI_Model
 		$unlink = $this->getFileNameImage($id);
 		unlink('./assets/images/news/'.$unlink);
 
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$update = array(
 			'title' => $title,
@@ -569,7 +569,7 @@ class Admin_model extends CI_Model
 
 	public function insertChangelog($title, $description)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$data = array(
 			'title' => $title,
@@ -583,7 +583,7 @@ class Admin_model extends CI_Model
 
 	public function updateSpecifyChangelog($id, $title, $description)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$update = array(
 			'title' => $title,
@@ -634,7 +634,7 @@ class Admin_model extends CI_Model
 
 	public function insertPage($title, $uri, $description)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 		$rand = rand(1, 15);
 
 		if($this->pagecheckUri($uri) == TRUE)
@@ -665,7 +665,7 @@ class Admin_model extends CI_Model
 
 	public function updateSpecifyPage($id, $title, $uri, $description)
 	{
-		$date = $this->wowgeneral->getTimestamp();
+		$date = now();
 
 		$update = array(
 			'title' => $title,

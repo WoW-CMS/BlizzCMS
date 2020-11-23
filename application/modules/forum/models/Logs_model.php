@@ -19,7 +19,7 @@ class Logs_model extends CI_Model
 		'idtopic' => $idtopic,
 		'function' => $function,
 		'annotation' => $annotation,
-		'datetime' => $this->wowgeneral->getTimestamp(),
+		'datetime' => now(),
 	  );
 	  $this->db->insert('mod_logs', $data);
 	}

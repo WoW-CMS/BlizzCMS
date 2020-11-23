@@ -147,8 +147,8 @@
                         <tr>
                           <td><?= $chars->guid ?></td>
                           <td><?= $chars->name ?></td>
-                          <td><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($chars->race)); ?>" width="24" height="24" title="<?=$this->wowgeneral->getRaceName($chars->race);?>" alt="Race"></td>
-                          <td><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($chars->class)); ?>" width="24" height="24" title="<?=$this->wowgeneral->getClassName($chars->class);?>" alt="Class"></td>
+                          <td><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.race_icon($chars->race)); ?>" width="24" height="24" title="<?=race_name($chars->race);?>" alt="Race"></td>
+                          <td><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.class_icon($chars->class)); ?>" width="24" height="24" title="<?=class_name($chars->class);?>" alt="Class"></td>
                           <td><?= $chars->level ?></td>
                           <td class="uk-text-center"><?= $chars->money ?></td>
                           <td class="uk-text-center"><?= $chars->totalKills ?></td>

@@ -19,9 +19,6 @@ class Home extends MX_Controller
 		$this->load->model('home_model');
 		$this->load->model('news/news_model');
 		$this->load->config('home');
-
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
 	}
 
 	public function index()

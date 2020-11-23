@@ -60,7 +60,7 @@
                         <div class="uk-countdown-number uk-countdown-seconds"></div>
                       </div>
                     </div>
-                    <?php if($this->wowgeneral->getTimestamp() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('wow_sess_id'))): ?>
+                    <?php if(now() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('wow_sess_id'))): ?>
                       <?= form_open(base_url('vote/votenow/'.$voteList->id)); ?>
                         <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-vote-yea"></i> <?= lang('tab_vote'); ?></button>
                       <?= form_close(); ?>

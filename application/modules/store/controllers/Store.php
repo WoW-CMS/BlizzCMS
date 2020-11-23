@@ -18,9 +18,6 @@ class Store extends MX_Controller
 		parent::__construct();
 		$this->load->model('store_model');
 
-		if (!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getStoreStatus())
 			redirect(base_url(),'refresh');
 

@@ -18,9 +18,6 @@ class News extends MX_Controller
 		parent::__construct();
 		$this->load->model('news_model');
 
-		if(!$this->wowgeneral->getMaintenance())
-			redirect(base_url('maintenance'),'refresh');
-
 		if (!$this->wowmodule->getNewsStatus())
 			redirect(base_url(),'refresh');
 	}

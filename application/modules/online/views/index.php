@@ -30,8 +30,8 @@
                   <tr>
                     <td class="uk-text-capitalize"><?= $online->name ?></td>
                     <td class="uk-text-center"><?= $online->level ?></td>
-                    <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($online->race)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getRaceName($online->race); ?>" alt="<?= $this->wowgeneral->getRaceName($online->race); ?>"></td>
-                    <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($online->class)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getClassName($online->class); ?>" alt="<?= $this->wowgeneral->getClassName($online->class); ?>"></td>
+                    <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.race_icon($online->race)); ?>" width="20" height="20" title="<?= race_name($online->race); ?>" alt="<?= race_name($online->race); ?>"></td>
+                    <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.class_icon($online->class)); ?>" width="20" height="20" title="<?= class_name($online->class); ?>" alt="<?= class_name($online->class); ?>"></td>
                     <td class="uk-text-center"><?= $this->wowgeneral->getSpecifyZone($online->zone); ?></td>
                   </tr>
                   <?php endforeach; ?>
