@@ -125,7 +125,7 @@ if (! function_exists('race_name'))
 				return lang('race_maghar_orc');
 				break;
 			default:
-				return lang();
+				return lang('unknown');
 				break;
 		}
 	}
@@ -260,7 +260,7 @@ if (! function_exists('class_name'))
 				return lang('class_demonhunter');
 				break;
 			default:
-				return lang();
+				return lang('unknown');
 				break;
 		}
 	}

@@ -12,7 +12,12 @@
 - Remove unused function ``$this->wowgeneral->getGender()``
 - Remove function ``$this->wowgeneral->getMaintenance()``
 - Remove function ``$this->wowauth->getMaintenancePermission()``
-
+- Remove function ``$this->wowauth->sessionConnect()``
+- Remove unused function ``$this->wowauth->getRankByLevel()``
+- Remove unused function ``$this->wowauth->getSpecifyEmail()``
+- Remove unused function ``$this->wowauth->getExpansionID()``
+- Remove unused function ``$this->wowauth->getLastIPID()``
+- Remove unused function ``$this->wowauth->getLastLoginID()``
 
 ### Bugs Fixed
 

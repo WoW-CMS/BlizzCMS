@@ -13,7 +13,7 @@ class General_model extends CI_Model
 
 	public function getUserInfoGeneral($id)
 	{
-		return $this->db->select('*')->where('id', $id)->get('users');
+		return $this->db->where('id', $id)->get('users');
 	}
 
 	public function getCharDPTotal($id)
@@ -111,7 +111,7 @@ class General_model extends CI_Model
 		if($qq->num_rows())
 			return $qq->row('zone_name');
 		else
-			return 'Unknown Zone';
+			return lang('unknown');
 	}
 
 	public function tinyEditor($rank)
@@ -138,17 +138,17 @@ class General_model extends CI_Model
 	{
 		$this->load->library('email');
 
-		$config = array(
-			'protocol'  => 'smtp',
-			'smtp_host' => $this->config->item('smtp_host'),
-			'smtp_user' => $this->config->item('smtp_user'),
-			'smtp_pass' => $this->config->item('smtp_pass'),
-			'smtp_port' => $this->config->item('smtp_port'),
+		$this->email->initialize([
+			'protocol'    => 'smtp',
+			'smtp_host'   => $this->config->item('smtp_host'),
+			'smtp_user'   => $this->config->item('smtp_user'),
+			'smtp_pass'   => $this->config->item('smtp_pass'),
+			'smtp_port'   => $this->config->item('smtp_port'),
 			'smtp_crypto' => $this->config->item('smtp_crypto'),
-			'mailtype'  => 'html',
-			'charset'   => 'utf-8'
-		);
-		$this->email->initialize($config);
+			'mailtype'    => 'html',
+			'charset'     => 'utf-8'
+		]);
+
 		$this->email->set_mailtype("html");
 		$this->email->set_newline("\r\n");
 
@@ -162,11 +162,11 @@ class General_model extends CI_Model
 
 	public function getMenu()
 	{
-		return $this->db->select('*')->get('menu');
+		return $this->db->get('menu')->result();
 	}
 
 	public function getMenuChild($id)
 	{
-		return $this->db->select('*')->where('child', $id)->get('menu');
+		return $this->db->where('child', $id)->get('menu')->result();
 	}
 }
