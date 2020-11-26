@@ -5,7 +5,7 @@
 - Add missing languages to system
 - Update HMVC
 - Add pagination library to autoload
-- Use ``lang`` (helper function) instead ``$this->lang->line()``
+- Use ``lang()`` (helper function) instead ``$this->lang->line()``
 - Use config ``time_reference`` instead function ``date_default_timezone_set()`` on each controller
 - Remove unused function ``$this->wowgeneral->getMaxLevel()``
 - Remove unused function ``$this->wowgeneral->getExpansionName()``
@@ -21,6 +21,7 @@
 - Remove unneeded ``->select('*')``
 - Rename session data
 - Remove function ``$this->home_model->getDiscordInfo()``
+- Use ``config_item()`` instead ``$this->config->item(()``
 
 ### Bugs Fixed
 

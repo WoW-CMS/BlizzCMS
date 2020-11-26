@@ -30,7 +30,7 @@ class General_model extends CI_Model
 
 	public function getEmulatorAction()
 	{
-		$emulator = $this->config->item('emulator_legacy');
+		$emulator = config_item('emulator_legacy');
 
 		if($emulator == true)
 		{
@@ -46,7 +46,7 @@ class General_model extends CI_Model
 
 	public function getExpansionAction()
 	{
-		$expansion = $this->config->item('expansion');
+		$expansion = config_item('expansion');
 		switch ($expansion)
 		{
 			case 1:
@@ -66,7 +66,7 @@ class General_model extends CI_Model
 
 	public function getRealExpansionDB()
 	{
-		$expansion = $this->config->item('expansion');
+		$expansion = config_item('expansion');
 		switch ($expansion)
 		{
 			case 1:
@@ -132,11 +132,11 @@ class General_model extends CI_Model
 
 		$this->email->initialize([
 			'protocol'    => 'smtp',
-			'smtp_host'   => $this->config->item('smtp_host'),
-			'smtp_user'   => $this->config->item('smtp_user'),
-			'smtp_pass'   => $this->config->item('smtp_pass'),
-			'smtp_port'   => $this->config->item('smtp_port'),
-			'smtp_crypto' => $this->config->item('smtp_crypto'),
+			'smtp_host'   => config_item('smtp_host'),
+			'smtp_user'   => config_item('smtp_user'),
+			'smtp_pass'   => config_item('smtp_pass'),
+			'smtp_port'   => config_item('smtp_port'),
+			'smtp_crypto' => config_item('smtp_crypto'),
 			'mailtype'    => 'html',
 			'charset'     => 'utf-8'
 		]);
@@ -145,7 +145,7 @@ class General_model extends CI_Model
 		$this->email->set_newline("\r\n");
 
 		$this->email->to($to);
-		$this->email->from($this->config->item('email_settings_sender'), $this->config->item('email_settings_sender_name'));
+		$this->email->from(config_item('email_settings_sender'), config_item('email_settings_sender_name'));
 		$this->email->subject($subject);
 		$this->email->message($message);
 

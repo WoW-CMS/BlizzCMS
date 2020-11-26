@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><?= $this->config->item('website_name'); ?> - <?= $pagetitle ?></title>
+    <title><?= config_item('website_name'); ?> - <?= $pagetitle ?></title>
     <?= $template['metadata']; ?>
     <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico'; ?>" />
     <link rel="stylesheet" href="<?= $template['assets'].'core/uikit/css/uikit.min.css'; ?>" />
@@ -15,7 +15,7 @@
       <div class="uk-container">
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
-            <a href="<?= base_url(); ?>" class="uk-navbar-item uk-logo uk-margin-small-right"><?= $this->config->item('website_name'); ?></a>
+            <a href="<?= base_url(); ?>" class="uk-navbar-item uk-logo uk-margin-small-right"><?= config_item('website_name'); ?></a>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
@@ -136,7 +136,7 @@
           <div class="uk-offcanvas-bar">
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <div class="uk-panel">
-              <p class="uk-logo uk-text-center uk-margin-small"><?= $this->config->item('website_name'); ?></p>
+              <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('website_name'); ?></p>
               <?php if ($this->wowauth->isLogged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
                 <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
@@ -215,11 +215,11 @@
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container">
         <div class="uk-text-center">
-          <a target="_blank" href="<?= $this->config->item('social_facebook'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-facebook-f"></i></a>
-          <a target="_blank" href="<?= $this->config->item('social_twitter'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-twitter"></i></a>
-          <a target="_blank" href="<?= $this->config->item('social_youtube'); ?>" class="uk-icon-button"><i class="fab fa-youtube"></i></a>
+          <a target="_blank" href="<?= config_item('social_facebook'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-facebook-f"></i></a>
+          <a target="_blank" href="<?= config_item('social_twitter'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="<?= config_item('social_youtube'); ?>" class="uk-icon-button"><i class="fab fa-youtube"></i></a>
         </div>
-        <p class="uk-text-center uk-margin-small">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= $this->config->item('website_name'); ?></span>. <?= lang('footer_rights'); ?></p>
+        <p class="uk-text-center uk-margin-small">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('website_name'); ?></span>. <?= lang('footer_rights'); ?></p>
         <p class="uk-text-small uk-margin-small uk-text-center">World of Warcraft® and Blizzard Entertainment® are all trademarks or registered trademarks of Blizzard Entertainment in the United States and/or other countries. These terms and all related materials, logos, and images are copyright © Blizzard Entertainment. This site is in no way associated with or endorsed by Blizzard Entertainment®.</p>
         <p class="uk-h6 uk-text-bold uk-text-uppercase uk-margin-small uk-text-center">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
       </div>

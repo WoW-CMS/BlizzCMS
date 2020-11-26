@@ -29,8 +29,8 @@
                   <label class="uk-form-label">Meta Tags Status</label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="seo_metastatus">
-                      <option value="TRUE" <?php if($this->config->item('seo_meta_enable') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
-                      <option value="FALSE" <?php if($this->config->item('seo_meta_enable') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
+                      <option value="TRUE" <?php if(config_item('seo_meta_enable') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
+                      <option value="FALSE" <?php if(config_item('seo_meta_enable') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
                     </select>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen-square"></i></span>
-                          <input class="uk-input" type="text" id="seo_description" value="<?= $this->config->item('seo_meta_desc'); ?>">
+                          <input class="uk-input" type="text" id="seo_description" value="<?= config_item('seo_meta_desc'); ?>">
                         </div>
                       </div>
                     </div>
@@ -50,7 +50,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen-square"></i></span>
-                          <input class="uk-input" type="text" id="seo_keywords" value="<?= $this->config->item('seo_meta_keywords'); ?>">
+                          <input class="uk-input" type="text" id="seo_keywords" value="<?= config_item('seo_meta_keywords'); ?>">
                         </div>
                       </div>
                     </div>
@@ -61,8 +61,8 @@
                   <label class="uk-form-label">Twitter Tags Status</label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="seo_twitterstatus">
-                      <option value="TRUE" <?php if($this->config->item('seo_twitter_enable') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
-                      <option value="FALSE" <?php if($this->config->item('seo_twitter_enable') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
+                      <option value="TRUE" <?php if(config_item('seo_twitter_enable') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
+                      <option value="FALSE" <?php if(config_item('seo_twitter_enable') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
                     </select>
                   </div>
                 </div>
@@ -71,8 +71,8 @@
                   <label class="uk-form-label">Open Graph Tags Status</label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="seo_graphstatus">
-                      <option value="TRUE" <?php if($this->config->item('seo_og_enable') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
-                      <option value="FALSE" <?php if($this->config->item('seo_og_enable') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
+                      <option value="TRUE" <?php if(config_item('seo_og_enable') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
+                      <option value="FALSE" <?php if(config_item('seo_og_enable') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
                     </select>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><?= $this->config->item('website_name'); ?> - <?= $pagetitle ?></title>
+    <title><?= config_item('website_name'); ?> - <?= $pagetitle ?></title>
     <?= $template['metadata']; ?>
     <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico' ?>" />
     <link rel="stylesheet" href="<?= $template['assets'].'core/uikit/css/uikit.min.css' ?>" />

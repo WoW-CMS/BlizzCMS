@@ -32,11 +32,11 @@ class Donate_model extends CI_Model
 	public function getApi()
 	{
 		$api = new ApiContext(
-		  new OAuthTokenCredential($this->config->item('paypal_userid'), $this->config->item('paypal_secretpass'))
+		  new OAuthTokenCredential(config_item('paypal_userid'), config_item('paypal_secretpass'))
 		);
 
 		$api->setConfig([
-			'mode' => $this->config->item('paypal_mode'),
+			'mode' => config_item('paypal_mode'),
 			'http.ConnectionTimeOut' => 30,
 			'log.LogEnabled' => false,
 			'log.FileName' => 'paypal_logs',
@@ -87,7 +87,7 @@ class Donate_model extends CI_Model
 
 		//item
 		$item->setName('Donation')
-		->setCurrency($this->config->item('paypal_currency'))
+		->setCurrency(config_item('paypal_currency'))
 		->setQuantity(1)
 		->setPrice($setPrice);
 
@@ -99,7 +99,7 @@ class Donate_model extends CI_Model
 		->setTax($setTax)
 		->setSubtotal($setPrice);
 		
-		$amount->setCurrency($this->config->item('paypal_currency'))
+		$amount->setCurrency(config_item('paypal_currency'))
 		->setTotal($setTotal)
 		->setDetails($details);
 

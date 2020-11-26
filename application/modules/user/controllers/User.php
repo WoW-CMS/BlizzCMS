@@ -33,7 +33,7 @@ class User extends MX_Controller
 			if($this->wowgeneral->getEmulatorAction() == 1){
 				$data = array(
 					'pagetitle' => lang('tab_login'),
-					'recapKey' => $this->config->item('recaptcha_sitekey'),
+					'recapKey' => config_item('recaptcha_sitekey'),
 					'lang' => $this->lang->lang(),
 				);
 	
@@ -42,7 +42,7 @@ class User extends MX_Controller
 			
 				$data = array(
 				'pagetitle' => lang('tab_login'),
-				'recapKey' => $this->config->item('recaptcha_sitekey'),
+				'recapKey' => config_item('recaptcha_sitekey'),
 				'lang' => $this->lang->lang(),
 			);
 				$this->template->build('login1', $data);
@@ -52,7 +52,7 @@ class User extends MX_Controller
 		{
 			$data = array(
 				'pagetitle' => lang('tab_login'),
-				'recapKey' => $this->config->item('recaptcha_sitekey'),
+				'recapKey' => config_item('recaptcha_sitekey'),
 				'lang' => $this->lang->lang(),
 			);
 
@@ -86,7 +86,7 @@ class User extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('tab_register'),
-			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'recapKey' => config_item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang(),
 		);
 
@@ -118,7 +118,7 @@ class User extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('tab_reset'),
-			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'recapKey' => config_item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang(),
 		);
 

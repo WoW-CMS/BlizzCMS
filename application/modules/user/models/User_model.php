@@ -284,7 +284,7 @@ class User_model extends CI_Model
 				if(strlen($password) >= 5 && strlen($password) <= 16 || strlen($repassword) >= 5 && strlen($repassword) <= 16) {
 					if($password == $repassword)
 					{
-						if($this->config->item('account_activation_required') == TRUE)
+						if(config_item('account_activation_required') == TRUE)
 						{
 							$data = array(
 								'username' => $username,
@@ -302,7 +302,7 @@ class User_model extends CI_Model
 
 							$mail_message = 'Hi, You have created the account <span style="font-weight: bold;text-transform: uppercase;">'.$username.'</span> please use this link to activate your account: <a target="_blank" href="'.$link.'" class="font-weight: bold;">Activate Now</a><br>';
 							$mail_message .= 'Kind regards,<br>';
-							$mail_message .= $this->config->item('email_settings_sender_name').' Support.';
+							$mail_message .= config_item('email_settings_sender_name').' Support.';
 
 							$this->wowgeneral->smtpSendEmail($email, lang('email_account_activation'), $mail_message);
 							return 'regAct';
@@ -452,7 +452,7 @@ class User_model extends CI_Model
 			$mail_message .= 'Your new password is: <span style="font-weight: bold;">'.$password_generated.'</span><br>';
 			$mail_message .= 'Please change your password again as soon as you log in!<br>';
 			$mail_message .= 'Kind regards,<br>';
-			$mail_message .= $this->config->item('email_settings_sender_name').' Support.';
+			$mail_message .= config_item('email_settings_sender_name').' Support.';
 
 			return $this->wowgeneral->smtpSendEmail($email, lang('email_password_recovery'), $mail_message);
 		}

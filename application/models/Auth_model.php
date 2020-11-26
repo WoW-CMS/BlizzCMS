@@ -183,7 +183,7 @@ class Auth_model extends CI_Model
 
 	public function getIsAdmin()
 	{
-		$config = $this->config->item('admin_access_level');
+		$config = config_item('admin_access_level');
 		$query  = $this->auth->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
 
 		if (empty($query))
@@ -196,7 +196,7 @@ class Auth_model extends CI_Model
 
 	public function getIsModerator()
 	{
-		$config = $this->config->item('mod_access_level');
+		$config = config_item('mod_access_level');
 		$query  = $this->auth->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
 
 		if (empty($query))
