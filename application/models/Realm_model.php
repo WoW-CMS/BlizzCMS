@@ -3,16 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Realm_model extends CI_Model
 {
-	private $RealmStatus;
-	
-	/**
-	 * General_model constructor.
-	 */
+	protected $auth;
+	protected $RealmStatus;
+
 	public function __construct()
 	{
-		parent::__construct();
-		$this->RealmStatus = null;
 		$this->auth = $this->load->database('auth', TRUE);
+		$this->RealmStatus = null;
 	}
 
 	public function getRealms()

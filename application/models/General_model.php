@@ -3,14 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class General_model extends CI_Model
 {
-	/**
-	 * General_model constructor.
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function getUserInfoGeneral($id)
 	{
 		return $this->db->where('id', $id)->get('users');

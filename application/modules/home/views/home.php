@@ -105,25 +105,13 @@
               <?php endforeach ?>
             </div>
             <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
-              <?php if ($this->wowgeneral->getExpansionAction() == 1): ?>
-              <i class="fas fa-gamepad"></i> Set Realmlist <?= $this->config->item('realmlist'); ?>
-              <?php else: ?>
-              <i class="fas fa-gamepad"></i> Set Portal "<?= $this->config->item('realmlist'); ?>"
-              <?php endif ?>
+              <i class="fas fa-gamepad"></i> <?= config_item('realmlist'); ?>
             </h5>
             <?php endif ?>
-            <?php if ($this->wowmodule->getDiscordStatus() == '1' && $this->config->item('discord_type') == '1'): ?>
+            <?php if ($this->wowmodule->getDiscordStatus()): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= lang('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
-              <a target="_blank" class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_invitation'); ?>" title="Join us on Discord">
-                <img src="https://discordapp.com/api/guilds/<?= $discord_id ?>/embed.png?style=banner3">
-              </a>
-            </div>
-            <?php endif ?>
-            <?php if ($this->wowmodule->getDiscordStatus() == '1' && $this->config->item('discord_type') == '2'): ?>
-            <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= lang('home_discord'); ?></h4>
-            <div class="uk-text-center uk-margin-small">
-              <iframe src="https://discordapp.com/widget?id=<?= $discord_id ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
+              <iframe src="https://discordapp.com/widget?id=<?= config_item('discord_invitation') ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
             </div>
             <?php endif ?>
           </div>

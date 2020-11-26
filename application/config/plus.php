@@ -65,12 +65,3 @@ $config['admin_access_level'] = '3';
  *
 */
 $config['mod_access_level'] = '2';
-
-/**
- *
- * BlizzCMS Plus License
- *
- * Still not licensed? Generate at https://wow-cms.com/en/licenses
- *
-*/
-$config['license_plus'] = '';

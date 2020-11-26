@@ -20,6 +20,7 @@
 - Remove unused function ``$this->wowauth->getLastLoginID()``
 - Remove unneeded ``->select('*')``
 - Rename session data
+- Remove function ``$this->home_model->getDiscordInfo()``
 
 ### Bugs Fixed
 

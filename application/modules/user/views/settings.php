@@ -44,7 +44,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-user fa-lg"></i></span>
-                          <input class="uk-input uk-disabled" type="text" placeholder="<?= $this->wowauth->getSiteUsernameID($this->session->userdata('id')); ?>" disabled>
+                          <input class="uk-input uk-disabled" type="text" placeholder="<?= $this->session->userdata('nickname'); ?>" disabled>
                         </div>
                       </div>
                     <div class="uk-margin uk-light">
@@ -95,7 +95,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-envelope fa-lg"></i></span>
-                      <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->wowauth->getEmailID($this->session->userdata('id')); ?>" disabled>
+                      <input class="uk-input uk-disabled" type="email" placeholder="<?= $this->session->userdata('email'); ?>" disabled>
                     </div>
                   </div>
                 </div>

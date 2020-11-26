@@ -3,15 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Module_model extends CI_Model
 {
-	protected $modules_table;
-
-	/**
-	 * Module_model constructor.
-	 */
-	public function __construct()
-	{
-		$this->modules_table = 'modules';
-	}
+	protected $modules_table = 'modules';
 
 	public function getDiscordStatus()
 	{

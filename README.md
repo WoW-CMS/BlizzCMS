@@ -1,13 +1,13 @@
 # _BlizzCMS Plus_
-**_BlizzCMS Plus_** is a restructured and improved version of BlizzCMS **v1**. The development of this version is made constantly by the developers of **WoW-CMS** in closed source taking into consideration that it is necessary to obtain a **license** for a public use.
+**_BlizzCMS Plus_** is a restructured and improved version of BlizzCMS **v1**. The development of this version is made constantly by the developers of **WoW-CMS**.
 
-[![Project Status](https://img.shields.io/badge/Status-In_Development-yellow.svg?style=flat-square)](#)
-[![Project Version](https://img.shields.io/badge/Version-1.0.4-green.svg?style=flat-square)](#)
+[![Project Status](https://img.shields.io/badge/Status-Refactoring-red.svg?style=flat-square)](#)
+[![Project Version](https://img.shields.io/badge/Version-1.1.0-green.svg?style=flat-square)](#)
 
 | Requirements | Description |
 | :----------- | :---------- |
-| **PHP Version** | **7.1 or newer** is recommended |
-| **Apache Modules** | mod_headers - mod_rewrite - mod_expires |
+| **PHP Version** | **7.3 or newer** is recommended |
+| **Apache Modules** | mod_rewrite |
 | **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap |
 
 ## In linux (Apache Modules)
@@ -43,9 +43,6 @@ a2enmod expires
 
 * @perioner - *Back/Front-End Developer*
 * @DZywolf - *Back/Front-End Developer*
-
-## Inactive Developers
-* @vipo - *Back-End Developer*
 
 ## Copyright
 

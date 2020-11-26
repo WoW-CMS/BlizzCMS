@@ -12,15 +12,6 @@ $config['website_name'] = '';
 
 /**
  *
- * Maintenance Mode
- *
- * 1 = Enable | 0 = Disable
- *
-*/
-$config['maintenance_mode'] = '0';
-
-/**
- *
  * Invitation Discord
  *
  * Write the invitation of your discord channel.
@@ -36,16 +27,6 @@ $config['discord_invitation'] = '';
  *
 */
 $config['realmlist'] = '';
-
-/**
- * Emulator Supported
- * 
- * true = Legacy Emulator (https://github.com/The-Cataclysm-Preservation-Project/TrinityCore)
- * false = Disabled this feature (BlizzCMS - Old)
- * 
- */
-
- $config['emulator_legacy'] = false;
 
 /**
  *

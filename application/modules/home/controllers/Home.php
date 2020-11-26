@@ -28,23 +28,16 @@ class Home extends MX_Controller
 			$data = array(
 				'lang' => $this->lang->lang()
 			);
+
 			$this->load->view('migrate', $data);
 		}
 		else
 		{
-			$discord = $this->home_model->getDiscordInfo();
-
 			$data = array(
 				'pagetitle' => lang('tab_home'),
 				'slides' => $this->home_model->getSlides()->result(),
 				'NewsList' => $this->news_model->getNewsList()->result(),
-				'realmsList' => $this->wowrealm->getRealms()->result(),
-				// Discord
-				'discord_code' => $discord['code'],
-				'discord_id' => $discord['guild']['id'],
-				'discord_icon' => $discord['guild']['icon'],
-				'discord_name' => $discord['guild']['name'],
-				'discord_counts' => $discord['approximate_presence_count'],
+				'realmsList' => $this->wowrealm->getRealms()->result()
 			);
 
 			$this->template->build('home', $data);
@@ -69,7 +62,6 @@ class Home extends MX_Controller
 		$invitation = $this->input->post('invitation');
 		$realmlist = $this->input->post('realmlist');
 		$expansion = $this->input->post('expansion');
-		$license = $this->input->post('license');
-		echo $this->home_model->updateconfigs($name, $invitation, $realmlist, $expansion, $license);
+		echo $this->home_model->updateconfigs($name, $invitation, $realmlist, $expansion);
 	}
 }

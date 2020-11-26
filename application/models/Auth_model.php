@@ -3,12 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth_model extends CI_Model
 {
+	protected $auth;
+
 	/**
 	 * Auth_model constructor.
 	 */
 	public function __construct()
 	{
-		parent::__construct();
 		$this->auth = $this->load->database('auth', TRUE);
 
 		if ($this->isLogged() && $this->checkAccountExist() == 0)
@@ -117,17 +118,14 @@ class Auth_model extends CI_Model
 
 	public function getJoinDateID($id)
 	{
-		return $this->auth->select('joindate')->where('id', $id)->get('account')->row('joindate');
+		return $this->auth->where('id', $id)->get('account')->row('joindate');
 	}
 
 	public function getRank($id)
 	{
-		$qq = $this->auth->select('gmlevel')->where('id', $id)->get('account_access');
+		$query = $this->auth->where('id', $id)->get('account_access')->row('gmlevel');
 
-		if($qq->num_rows())
-			return $qq->row('gmlevel');
-		else
-			return '0';
+		return ! empty($query) ? $query : 0;
 	}
 
 	public function getBanStatus($id)
@@ -160,7 +158,7 @@ class Auth_model extends CI_Model
 
 	public function checkAccountExist()
 	{
-		return $this->db->select('id')->where('id', $this->session->userdata('id'))->get('users')->num_rows();
+		return $this->db->where('id', $this->session->userdata('id'))->get('users')->num_rows();
 	}
 
 	public function synchronizeAccount()
@@ -186,38 +184,26 @@ class Auth_model extends CI_Model
 	public function getIsAdmin()
 	{
 		$config = $this->config->item('admin_access_level');
+		$query  = $this->auth->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
 
-		$qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('id'))->get('account_access');
-
-		if(!$qq->row('gmlevel'))
-			return false;
-		else
+		if (empty($query))
 		{
-			if($qq->row('gmlevel') >= $config)
-				return true;
-			else
-			{
-				return false;
-			}
+			return false;
 		}
+
+		return ($query >= (int) $config);
 	}
 
 	public function getIsModerator()
 	{
 		$config = $this->config->item('mod_access_level');
+		$query  = $this->auth->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
 
-		$qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('id'))->get('account_access');
-
-		if(!$qq->row('gmlevel'))
-			return false;
-		else
+		if (empty($query))
 		{
-			if($qq->row('gmlevel') >= $config)
-				return true;
-			else
-			{
-				return false;
-			}
+			return false;
 		}
+
+		return ($query >= (int) $config);
 	}
 }

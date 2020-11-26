@@ -511,7 +511,6 @@ ul.uk-nav-sub {
 }
 
 .uk-pagination > * > * {
-  display: flex;
   background: #090e40;
   border-radius: 50%;
   color: #fff;

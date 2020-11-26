@@ -76,15 +76,9 @@
                   <div class="uk-inline uk-width-1-2@s">
                     <label class="uk-form-label">Discord Invitation ID:</label>
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="text" id="website_invitation" pattern=".{,7}" placeholder="WGGGVgX" required>
+                      <input class="uk-input" type="text" id="website_invitation" placeholder="WGGGVgX" required>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="uk-margin-small uk-light">
-                <label class="uk-form-label">License Key:</label>
-                <div class="uk-form-controls">
-                  <input class="uk-input" type="text" id="website_license" placeholder="XXXXX-XXXXX-XXXXX-XXXXX" pattern="^[A-Z0-9]{5,}-?[A-Z0-9]{5,}-?[A-Z0-9]{5,}-?[A-Z0-9]{5,}$" required>
                 </div>
               </div>
               <div class="uk-margin">
@@ -99,7 +93,6 @@
                 var realmlist = $('#website_realmlist').val();
                 var expansion = $('#website_expansion').val();
                 var invitation = $('#website_invitation').val();
-                var license = $('#website_license').val();
                 if(name == ''){
                   $.amaran({
                     'theme': 'awesome error',
@@ -119,7 +112,7 @@
                 $.ajax({
                   url:"<?= base_url($lang.'/confmigrate'); ?>",
                   method:"POST",
-                  data:{name, invitation, realmlist, expansion, license},
+                  data:{name, invitation, realmlist, expansion},
                   dataType:"text",
                   beforeSend: function(){
                     $.amaran({

@@ -726,7 +726,6 @@ h6,
 }
 
 .uk-pagination > * > * {
-  display: flex;
   background: #0e86ca;
   border: 1px solid #00aeff;
   color: #fff;

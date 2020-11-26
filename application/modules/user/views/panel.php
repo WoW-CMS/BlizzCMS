@@ -47,11 +47,11 @@
                     <tbody>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_username'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->wowauth->getUsernameID($this->session->userdata('id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->session->userdata('username'); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_email'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->wowauth->getEmailID($this->session->userdata('id')); ?></td>
+                        <td class="uk-table-expand"><?= $this->session->userdata('email'); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('panel_last_ip'); ?></span></td>
