@@ -136,6 +136,5 @@ $autoload['model'] = array(
 	'Settings_model',
 	'Base_model'  => 'base',
 	'Auth_model'  => 'auth',
-	'Realm_model' => 'realm',
-	'Module_model' => 'wowmodule'
+	'Realm_model' => 'realm'
 );
