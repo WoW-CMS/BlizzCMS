@@ -511,7 +511,7 @@ class Admin extends MX_Controller
 		$description = $this->input->post('description');
 		$type = $this->input->post('type');
 		$route = $this->input->post('route');
-		echo $this->wowmodule->insertSlide($title, $description, $type, $route);
+		echo $this->admin_model->insertSlide($title, $description, $type, $route);
 	}
 
 	public function updateslide()
