@@ -133,8 +133,9 @@ $autoload['language'] = array('general', 'notification', 'admin');
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
-	'auth_model'    => 'wowauth',
-	'general_model' => 'wowgeneral',
-	'realm_model'   => 'wowrealm',
-	'module_model'  => 'wowmodule'
+	'Settings_model',
+	'Auth_model'     => 'wowauth',
+	'General_model'  => 'wowgeneral',
+	'Realm_model'    => 'wowrealm',
+	'Module_model'   => 'wowmodule'
 );
