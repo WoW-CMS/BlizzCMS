@@ -21,7 +21,7 @@ class Vote extends MX_Controller
 		if (!$this->wowmodule->getVoteStatus())
 			redirect(base_url(),'refresh');
 
-		if (!$this->wowauth->isLogged())
+		if (!$this->auth->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 

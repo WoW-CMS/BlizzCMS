@@ -24,13 +24,13 @@ class User extends MX_Controller
 		if (!$this->wowmodule->getLoginStatus())
 			redirect(base_url(),'refresh');
 
-		if ($this->wowauth->isLogged())
+		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 
-		if ($this->wowgeneral->getExpansionAction() == 1)
+		if ($this->base->getExpansionAction() == 1)
 		{
-			if($this->wowgeneral->getEmulatorAction() == 1){
+			if($this->base->getEmulatorAction() == 1){
 				$data = array(
 					'pagetitle' => lang('tab_login'),
 					'recapKey' => config_item('recaptcha_sitekey'),
@@ -81,7 +81,7 @@ class User extends MX_Controller
 		if (!$this->wowmodule->getRegisterStatus())
 			redirect(base_url(),'refresh');
 
-		if ($this->wowauth->isLogged())
+		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(
@@ -113,7 +113,7 @@ class User extends MX_Controller
 		if (!$this->wowmodule->getRecoveryStatus())
 			redirect(base_url(),'refresh');
 
-		if ($this->wowauth->isLogged())
+		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(
@@ -142,7 +142,7 @@ class User extends MX_Controller
 		if (!$this->wowmodule->getUCPStatus())
 			redirect(base_url(),'refresh');
 
-		if (!$this->wowauth->isLogged())
+		if (!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(
@@ -158,7 +158,7 @@ class User extends MX_Controller
 		if (!$this->wowmodule->getUCPStatus())
 			redirect(base_url(),'refresh');
 
-		if (!$this->wowauth->isLogged())
+		if (!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(

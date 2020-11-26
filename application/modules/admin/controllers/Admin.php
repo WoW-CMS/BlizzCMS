@@ -21,10 +21,10 @@ class Admin extends MX_Controller
 		$this->config->load('donate/donate');
 		$this->config->load('bugtracker/bugtracker');
 
-		if(!$this->wowauth->isLogged())
+		if(!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
-		if(!$this->wowauth->getIsAdmin())
+		if(!$this->auth->getIsAdmin())
 			redirect(base_url(),'refresh');
 
 		if($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
@@ -117,10 +117,10 @@ class Admin extends MX_Controller
 
 	public function modulesettings()
 	{
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -563,10 +563,10 @@ class Admin extends MX_Controller
 
 	public function createnews()
 	{
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -585,10 +585,10 @@ class Admin extends MX_Controller
 		if ($this->admin_model->getNewsSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -639,10 +639,10 @@ class Admin extends MX_Controller
 
 	public function createchangelog()
 	{
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -661,10 +661,10 @@ class Admin extends MX_Controller
 		if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -730,10 +730,10 @@ class Admin extends MX_Controller
 
 	public function createpage()
 	{
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -752,10 +752,10 @@ class Admin extends MX_Controller
 		if ($this->admin_model->getPagesSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
@@ -1358,9 +1358,9 @@ class Admin extends MX_Controller
 
 	public function checkSoap()
 	{
-		foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm) {
+		foreach ($this->realm->getRealms()->result() as $charsMultiRealm) {
 
-			echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
+			echo $this->realm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
 		}
 	}
 }

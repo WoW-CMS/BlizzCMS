@@ -37,7 +37,7 @@ class Home extends MX_Controller
 				'pagetitle' => lang('tab_home'),
 				'slides' => $this->home_model->getSlides()->result(),
 				'NewsList' => $this->news_model->getNewsList()->result(),
-				'realmsList' => $this->wowrealm->getRealms()->result()
+				'realmsList' => $this->realm->getRealms()->result()
 			);
 
 			$this->template->build('home', $data);

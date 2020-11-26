@@ -1,8 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class General_model extends CI_Model
+class Base_model extends CI_Model
 {
+	protected $menu = 'menu';
+
+	public function get_menu()
+	{
+		return $this->db->get($this->menu)->result();
+	}
+
+	public function getMenuChild($id)
+	{
+		return $this->db->where('child', $id)->get($this->menu)->result();
+	}
+
 	public function getUserInfoGeneral($id)
 	{
 		return $this->db->where('id', $id)->get('users');
@@ -150,15 +162,5 @@ class General_model extends CI_Model
 		$this->email->message($message);
 
 		return $this->email->send();
-	}
-
-	public function getMenu()
-	{
-		return $this->db->get('menu')->result();
-	}
-
-	public function getMenuChild($id)
-	{
-		return $this->db->where('child', $id)->get('menu')->result();
 	}
 }

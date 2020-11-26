@@ -24,7 +24,7 @@
                 <?php foreach($accountsList as $account): ?>
                 <tr>
                   <td>
-                    <img class="uk-preserve-width uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($account->profile)); ?>" alt="Avatar" width="36">
+                    <img class="uk-preserve-width uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($account->profile)); ?>" alt="Avatar" width="36">
                     <span class="uk-text-middle"><?= $account->username ?></span>
                   </td>
                   <td class="uk-text-center"><?= $account->email ?></td>

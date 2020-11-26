@@ -27,7 +27,7 @@ class Donate extends MX_Controller
 		if (!$this->wowmodule->getDonationStatus())
 			redirect(base_url(),'refresh');
 
-		if(!$this->wowauth->isLogged())
+		if(!$this->auth->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 	

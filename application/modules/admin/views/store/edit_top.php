@@ -17,7 +17,7 @@
                   <select class="uk-select" id="store_top_item">
                     <option value="0"><?= lang('notification_select_item'); ?></option>
                     <?php foreach ($this->admin_model->getStoreItems() as $item): ?>
-                    <option value="<?= $item->id ?>"<?php if($this->admin_model->getTopSpecifyItem($idlink) == $item->id) echo 'selected'; ?>><?= $item->name ?> (<?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->wowrealm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?>)</option>
+                    <option value="<?= $item->id ?>"<?php if($this->admin_model->getTopSpecifyItem($idlink) == $item->id) echo 'selected'; ?>><?= $item->name ?> (<?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->realm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?>)</option>
                     <?php endforeach; ?>
                   </select>
                 </div>

@@ -34,7 +34,7 @@
                       <select class="uk-select" id="item_category">
                         <option value="0"><?= lang('notification_select_category'); ?></option>
                         <?php foreach ($this->admin_model->getCategoryStore()->result() as $category): ?>
-                        <option value="<?= $category->id ?>" <?php if($this->admin_model->getItemSpecifyCategory($idlink) == $category->id) echo 'selected'; ?>><?= $category->name ?> - <?= $this->wowrealm->getRealmName($category->realmid); ?></option>
+                        <option value="<?= $category->id ?>" <?php if($this->admin_model->getItemSpecifyCategory($idlink) == $category->id) echo 'selected'; ?>><?= $category->name ?> - <?= $this->realm->getRealmName($category->realmid); ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>

@@ -28,24 +28,24 @@
                 <div class="uk-card uk-card-default uk-card-body">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-6@s">
-                      <div class="Author <?php if($this->wowauth->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                      <div class="Author <?php if($this->auth->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                         <div class="topic-author-avatar profile">
-                          <?php if($this->wowgeneral->getUserInfoGeneral($commentss->author)->num_rows()): ?>
-                          <img src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($commentss->author))); ?>" alt="" />
+                          <?php if($this->base->getUserInfoGeneral($commentss->author)->num_rows()): ?>
+                          <img src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($this->auth->getImageProfile($commentss->author))); ?>" alt="" />
                           <?php else: ?>
                           <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                           <?php endif; ?>
                         </div>
                       </div>
-                      <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
-						<?php if($this->wowauth->getRank($commentss->author) > 0): ?>
+                      <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->auth->getUsernameID($commentss->author); ?></p>
+						<?php if($this->auth->getRank($commentss->author) > 0): ?>
 						<div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
 						<?php endif; ?>
                     </div>
                     <div class="uk-width-expand@s">
                       <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $commentss->date); ?></p>
                       <?= $commentss->commentary ?>
-                      <?php if($this->wowauth->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
+                      <?php if($this->auth->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
                       <div class="uk-margin-small-top">
                         <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                       </div>
@@ -55,7 +55,7 @@
                 </div>
               </div>
               <?php endforeach; ?>
-              <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+              <?php if(!$this->auth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
                   <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
@@ -66,7 +66,7 @@
                 </div>
               </div>
               <?php endif; ?>
-              <?php if($this->wowauth->isLogged()): ?>
+              <?php if($this->auth->isLogged()): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
                   <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
@@ -102,7 +102,7 @@
         </div>
       </div>
     </section>
-    <?php if($this->wowauth->isLogged()): ?>
+    <?php if($this->auth->isLogged()): ?>
     <?= $tiny ?>
     <script>
       function ReplyForm(e) {

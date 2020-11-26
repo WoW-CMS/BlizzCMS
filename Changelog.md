@@ -21,7 +21,9 @@
 - Remove unneeded ``->select('*')``
 - Rename session data
 - Remove function ``$this->home_model->getDiscordInfo()``
-- Use ``config_item()`` instead ``$this->config->item(()``
+- Add load settings from db
+- Use ``config_item()`` instead ``$this->config->item()``
+- Rename global models ``$this->auth`` instead ``$this->wowauth``, ``$this->base`` instead ``$this->wowgeneral`` and ``$this->realm`` instead ``$this->wowrealm``
 
 ### Bugs Fixed
 

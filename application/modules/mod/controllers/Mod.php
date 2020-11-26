@@ -18,10 +18,10 @@ class Mod extends MX_Controller
 		parent::__construct();
 		$this->load->model('mod_model');
 
-		if(!$this->wowauth->isLogged())
+		if(!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
-		if(!$this->wowauth->getIsModerator())
+		if(!$this->auth->getIsModerator())
 			redirect(base_url(),'refresh');
 
 		$this->template->set_theme('mod');

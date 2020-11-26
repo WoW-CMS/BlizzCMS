@@ -21,7 +21,7 @@ class Changelogs extends MX_Controller
 		if (!$this->wowmodule->getChangelogsStatus())
 			redirect(base_url(),'refresh');
 
-		if(!$this->wowauth->isLogged())
+		if(!$this->auth->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 

@@ -27,8 +27,8 @@
                     <div class="uk-form-controls">
                       <select class="uk-select" id="store_category_realm">
                         <option value="0"><?= lang('notification_select_realm'); ?></option>
-                        <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
-                        <option value="<?= $MultiRealm->realmID ?>"><?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></option>
+                        <?php foreach ($this->realm->getRealms()->result() as $MultiRealm): ?>
+                        <option value="<?= $MultiRealm->realmID ?>"><?= $this->realm->getRealmName($MultiRealm->realmID); ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>

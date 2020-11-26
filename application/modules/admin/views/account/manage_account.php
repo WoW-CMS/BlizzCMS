@@ -16,10 +16,10 @@
             <div class="uk-grid uk-grid-medium" data-uk-grid>
               <div class="uk-width-1-4@s">
                 <div class="uk-flex uk-flex-center uk-margin-small">
-                  <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($idlink))); ?>" height="170" alt="Avatar">
+                  <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($this->auth->getImageProfile($idlink))); ?>" height="170" alt="Avatar">
                 </div>
                 <div class="uk-text-center uk-margin-small">
-                  <?php foreach ($this->wowgeneral->getUserInfoGeneral($idlink)->result() as $info): ?>
+                  <?php foreach ($this->base->getUserInfoGeneral($idlink)->result() as $info): ?>
                   <h3 class="uk-h3 uk-text-bold uk-margin-remove"><i class="fas fa-user"></i> <?= $info->username ?></h3>
                   <p class="uk-margin-remove"><i class="fas fa-envelope"></i> <?= $info->email ?></p>
                   <?php endforeach; ?>
@@ -33,13 +33,13 @@
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('panel_dp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->wowgeneral->getCharDPTotal($idlink); ?>" placeholder="<?= lang('panel_dp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->base->getCharDPTotal($idlink); ?>" placeholder="<?= lang('panel_dp'); ?>" required>
                       </div>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('panel_vp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->wowgeneral->getCharVPTotal($idlink); ?>" placeholder="<?= lang('panel_vp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->base->getCharVPTotal($idlink); ?>" placeholder="<?= lang('panel_vp'); ?>" required>
                       </div>
                     </div>
                   </div>
@@ -77,7 +77,7 @@
                 </div>
                 <?= form_close(); ?>
                 <?php endif; ?>
-                <?php if($this->wowauth->getGmSpecify($idlink)->num_rows()): ?>
+                <?php if($this->auth->getGmSpecify($idlink)->num_rows()): ?>
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-minus"></i> <?= lang('placeholder_account_remove_rank'); ?></span></h5>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">
@@ -116,8 +116,8 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default" uk-switcher="connect: #acc-characters">
-                <?php foreach($this->wowrealm->getRealms()->result() as $realm): ?>
-                <li><a href="javascript:void(0)"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($realm->realmID); ?></a></li>
+                <?php foreach($this->realm->getRealms()->result() as $realm): ?>
+                <li><a href="javascript:void(0)"><i class="fas fa-server"></i> <?= $this->realm->getRealmName($realm->realmID); ?></a></li>
                 <?php endforeach; ?>
               </ul>
             </div>
@@ -126,8 +126,8 @@
             <div class="uk-card uk-card-secondary character-list uk-card-body">
               <div class="uk-overflow-auto">
                 <ul id="acc-characters" class="uk-switcher">
-                  <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
-                    $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+                  <?php foreach ($this->realm->getRealms()->result() as $charsMultiRealm):
+                    $multiRealm = $this->realm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                   ?>
                   <li>
                     <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
@@ -143,7 +143,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm, $idlink)->result() as $chars): ?>
+                        <?php foreach($this->realm->getGeneralCharactersSpecifyAcc($multiRealm, $idlink)->result() as $chars): ?>
                         <tr>
                           <td><?= $chars->guid ?></td>
                           <td><?= $chars->name ?></td>

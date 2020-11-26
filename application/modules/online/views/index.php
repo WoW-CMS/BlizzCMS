@@ -6,12 +6,12 @@
         <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?=lang('tab_online');?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .onlineplayers">
           <?php foreach ($realms as $realm): ?>
-          <li><a href="#"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($realm->realmID); ?></a></li>
+          <li><a href="#"><i class="fas fa-server"></i> <?= $this->realm->getRealmName($realm->realmID); ?></a></li>
           <?php endforeach; ?>
         </ul>
         <ul class="uk-switcher onlineplayers uk-margin-small">
           <?php foreach ($realms as $charsMultiRealm):
-            $multiRealm = $this->wowrealm->getRealmConnectionData($charsMultiRealm->id);
+            $multiRealm = $this->realm->getRealmConnectionData($charsMultiRealm->id);
           ?>
           <li>
             <div class="uk-overflow-auto uk-margin-small">
@@ -32,7 +32,7 @@
                     <td class="uk-text-center"><?= $online->level ?></td>
                     <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.race_icon($online->race)); ?>" width="20" height="20" title="<?= race_name($online->race); ?>" alt="<?= race_name($online->race); ?>"></td>
                     <td class="uk-text-center"><img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.class_icon($online->class)); ?>" width="20" height="20" title="<?= class_name($online->class); ?>" alt="<?= class_name($online->class); ?>"></td>
-                    <td class="uk-text-center"><?= $this->wowgeneral->getSpecifyZone($online->zone); ?></td>
+                    <td class="uk-text-center"><?= $this->base->getSpecifyZone($online->zone); ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

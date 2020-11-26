@@ -68,11 +68,11 @@
               </div>
               <div class="uk-card-body">
                 <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
-                  <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
-                    $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
+                  <?php foreach ($this->realm->getRealms()->result() as $charsMultiRealm):
+                    $multiRealm = $this->realm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                   ?>
                   <div>
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></h5>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-server"></i> <?= $this->realm->getRealmName($charsMultiRealm->realmID); ?></h5>
                     <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
                       <table class="uk-table uk-table-divider uk-table-small">
                         <thead>
@@ -85,7 +85,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('id'))->result() as $chars): ?>
+                          <?php foreach($this->realm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('id'))->result() as $chars): ?>
                           <tr>
                             <td><?= $chars->name ?></td>
                             <td>

@@ -26,10 +26,10 @@ class News extends MX_Controller
 	{
 		$this->load->model('forum/forum_model');
 
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'idlink' => $id,
@@ -43,7 +43,7 @@ class News extends MX_Controller
 
 	public function reply()
 	{
-		if (!$this->wowauth->isLogged())
+		if (!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 		$ssesid = $this->session->userdata('id');
@@ -54,7 +54,7 @@ class News extends MX_Controller
 
 	public function deletereply()
 	{
-		if (!$this->wowauth->isLogged())
+		if (!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
 		$id = $this->input->post('value');

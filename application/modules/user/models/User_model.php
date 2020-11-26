@@ -14,15 +14,15 @@ class User_model extends CI_Model
 
 	public function changePassword($oldpass, $newpass, $renewpass)
 	{
-		$passnobnet = $this->wowauth->Account($this->session->userdata('username'), $oldpass);
-		$passbnet = $this->wowauth->Battlenet($this->session->userdata('email'), $oldpass);
-		$newaccpass = $this->wowauth->Account($this->session->userdata('username'), $newpass);
-		$newaccbnetpass = $this->wowauth->Battlenet($this->session->userdata('email'), $newpass);
+		$passnobnet = $this->auth->Account($this->session->userdata('username'), $oldpass);
+		$passbnet = $this->auth->Battlenet($this->session->userdata('email'), $oldpass);
+		$newaccpass = $this->auth->Account($this->session->userdata('username'), $newpass);
+		$newaccbnetpass = $this->auth->Battlenet($this->session->userdata('email'), $newpass);
 
-		if($this->wowgeneral->getExpansionAction() == 1) {
-			if($this->wowgeneral->getEmulatorAction() == 1) {
-				if ($this->wowauth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($passbnet)) {
-					if ($newaccbnetpass == $this->wowauth->getPasswordBnetID($this->session->userdata('id'))) {
+		if($this->base->getExpansionAction() == 1) {
+			if($this->base->getEmulatorAction() == 1) {
+				if ($this->auth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($passbnet)) {
+					if ($newaccbnetpass == $this->auth->getPasswordBnetID($this->session->userdata('id'))) {
 						return 'samePass';
 					}
 					else
@@ -51,8 +51,8 @@ class User_model extends CI_Model
 			}
 			else
 			{
-				if ($this->wowauth->getPasswordAccountID($this->session->userdata('id')) == strtoupper($passnobnet)) {
-					if($newaccpass == $this->wowauth->getPasswordAccountID($this->session->userdata('id'))) {
+				if ($this->auth->getPasswordAccountID($this->session->userdata('id')) == strtoupper($passnobnet)) {
+					if($newaccpass == $this->auth->getPasswordAccountID($this->session->userdata('id'))) {
 						return 'samePass';
 					}
 					else
@@ -78,9 +78,9 @@ class User_model extends CI_Model
 					return 'passnotMatch';
 			}
 		}
-		elseif($this->wowgeneral->getExpansionAction() == 2) {
-			if ($this->wowauth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($passbnet)) {
-				if ($newaccbnetpass == $this->wowauth->getPasswordBnetID($this->session->userdata('id'))) {
+		elseif($this->base->getExpansionAction() == 2) {
+			if ($this->auth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($passbnet)) {
+				if ($newaccbnetpass == $this->auth->getPasswordBnetID($this->session->userdata('id'))) {
 					return 'samePass';
 				}
 				else
@@ -113,13 +113,13 @@ class User_model extends CI_Model
 
 	public function changeEmail($newemail, $renewemail, $password)
 	{
-		$nobnet = $this->wowauth->Account($this->session->userdata('username'), $password);
-		$bnet = $this->wowauth->Battlenet($this->session->userdata('email'), $password);
-		$newbnetpass = $this->wowauth->Battlenet($newemail, $password);
+		$nobnet = $this->auth->Account($this->session->userdata('username'), $password);
+		$bnet = $this->auth->Battlenet($this->session->userdata('email'), $password);
+		$newbnetpass = $this->auth->Battlenet($newemail, $password);
 
-		if($this->wowgeneral->getExpansionAction() == 1) {
-			if($this->wowgeneral->getEmulatorAction() == 1) {
-				if ($this->wowauth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
+		if($this->base->getExpansionAction() == 1) {
+			if($this->base->getEmulatorAction() == 1) {
+				if ($this->auth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
 					if($newemail == $renewemail) {
 						if($this->getExistEmail(strtoupper($newemail)) > 0) {
 							return 'usedEmail';
@@ -145,7 +145,7 @@ class User_model extends CI_Model
 			}
 			else
 			{
-				if ($this->wowauth->getPasswordAccountID($this->session->userdata('id')) == strtoupper($nobnet)) {
+				if ($this->auth->getPasswordAccountID($this->session->userdata('id')) == strtoupper($nobnet)) {
 					if($newemail == $renewemail) {
 						if($this->getExistEmail(strtoupper($newemail)) > 0) {
 							return 'usedEmail';
@@ -163,8 +163,8 @@ class User_model extends CI_Model
 					return 'epassnotMatch';
 			}
 		}
-		elseif($this->wowgeneral->getExpansionAction() == 2) {
-			if ($this->wowauth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
+		elseif($this->base->getExpansionAction() == 2) {
+			if ($this->auth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
 				if($newemail == $renewemail) {
 					if($this->getExistEmail(strtoupper($newemail)) > 0) {
 						return 'usedEmail';
@@ -235,16 +235,16 @@ class User_model extends CI_Model
 
 	public function checklogin($username, $password)
 	{
-		$id = $this->wowauth->getIDAccount($username);
+		$id = $this->auth->getIDAccount($username);
 
 		if ($id == "0")
 			return 'uspErr';
 		else
 		{
-			$password = $this->wowauth->Account($username, $password);
+			$password = $this->auth->Account($username, $password);
 
-			if (strtoupper($this->wowauth->getPasswordAccountID($id)) == strtoupper($password))
-				return $this->wowauth->arraySession($id);
+			if (strtoupper($this->auth->getPasswordAccountID($id)) == strtoupper($password))
+				return $this->auth->arraySession($id);
 			else
 				return 'uspErr';
 		}
@@ -252,16 +252,16 @@ class User_model extends CI_Model
 
 	public function checkloginbattle($email, $password)
 	{
-		$id = $this->wowauth->getIDEmail($email);
+		$id = $this->auth->getIDEmail($email);
 
 		if ($id == "0")
 			return 'empErr';
 		else
 		{
-			$password = $this->wowauth->Battlenet($email, $password);
+			$password = $this->auth->Battlenet($email, $password);
 
-			if (strtoupper($this->wowauth->getPasswordBnetID($id)) == strtoupper($password))
-				return $this->wowauth->arraySession($id);
+			if (strtoupper($this->auth->getPasswordBnetID($id)) == strtoupper($password))
+				return $this->auth->arraySession($id);
 			else
 				return 'empErr';
 		}
@@ -270,12 +270,12 @@ class User_model extends CI_Model
 	public function insertRegister($username, $email, $password, $repassword)
 	{
 		$date = now();
-		$expansion = $this->wowgeneral->getRealExpansionDB();
-		$passwordAc = $this->wowauth->Account($username, $password);
-		$passwordBn = $this->wowauth->Battlenet($email, $password);
+		$expansion = $this->base->getRealExpansionDB();
+		$passwordAc = $this->auth->Account($username, $password);
+		$passwordBn = $this->auth->Battlenet($email, $password);
 
-		$checkuser = $this->wowauth->getIDAccount($username);
-		$checkemail = $this->wowauth->getIDEmail($email);
+		$checkuser = $this->auth->getIDAccount($username);
+		$checkemail = $this->auth->getIDEmail($email);
 		$pendinguser = $this->getIDPendingUsername($username);
 		$pendingemail = $this->getIDPendingEmail($email);
 
@@ -304,14 +304,14 @@ class User_model extends CI_Model
 							$mail_message .= 'Kind regards,<br>';
 							$mail_message .= config_item('email_settings_sender_name').' Support.';
 
-							$this->wowgeneral->smtpSendEmail($email, lang('email_account_activation'), $mail_message);
+							$this->base->smtpSendEmail($email, lang('email_account_activation'), $mail_message);
 							return 'regAct';
 						}
 						else
 						{
-							if ($this->wowgeneral->getExpansionAction() == 1)
+							if ($this->base->getExpansionAction() == 1)
 							{
-								if($this->wowgeneral->getEmulatorAction() == 1)
+								if($this->base->getEmulatorAction() == 1)
 								{
 									$data = array(
 										'username' => $username,
@@ -323,7 +323,7 @@ class User_model extends CI_Model
 	
 									$this->auth->insert('account', $data);
 	
-									$id = $this->wowauth->getIDAccount($username);
+									$id = $this->auth->getIDAccount($username);
 	
 									$data1 = array(
 										'id' => $id,
@@ -360,7 +360,7 @@ class User_model extends CI_Model
 
 								$this->auth->insert('account', $data);
 
-								$id = $this->wowauth->getIDAccount($username);
+								$id = $this->auth->getIDAccount($username);
 
 								$data1 = array(
 									'id' => $id,
@@ -373,7 +373,7 @@ class User_model extends CI_Model
 								$this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
 							}
 
-							$id = $this->wowauth->getIDAccount($username);
+							$id = $this->auth->getIDAccount($username);
 
 							$data3 = array(
 								'id' => $id,
@@ -420,10 +420,10 @@ class User_model extends CI_Model
 			$password_generated = "";
 			$password_generated = substr(str_shuffle($allowed_chars), 0, 14);
 			$newpass = $password_generated;
-			$newpassI = $this->wowauth->Account($username, $newpass);
-			$newpassII = $this->wowauth->Battlenet($email, $newpass);
+			$newpassI = $this->auth->Account($username, $newpass);
+			$newpassII = $this->auth->Battlenet($email, $newpass);
 
-			if ($this->wowgeneral->getExpansionAction() == 1)
+			if ($this->base->getExpansionAction() == 1)
 			{
 				$accupdate = array(
 					'sha_pass_hash' => $newpassI,
@@ -454,7 +454,7 @@ class User_model extends CI_Model
 			$mail_message .= 'Kind regards,<br>';
 			$mail_message .= config_item('email_settings_sender_name').' Support.';
 
-			return $this->wowgeneral->smtpSendEmail($email, lang('email_password_recovery'), $mail_message);
+			return $this->base->smtpSendEmail($email, lang('email_password_recovery'), $mail_message);
 		}
 		else
 			return 'sendErr';
@@ -492,7 +492,7 @@ class User_model extends CI_Model
 		$temp = $this->getTempUser($key);
 
 		if($check == "1") {
-			if ($this->wowgeneral->getExpansionAction() == 1)
+			if ($this->base->getExpansionAction() == 1)
 			{
 				$data = array(
 					'username' => $temp['username'],
@@ -515,7 +515,7 @@ class User_model extends CI_Model
 
 				$this->auth->insert('account', $data);
 
-				$id = $this->wowauth->getIDAccount($temp['username']);
+				$id = $this->auth->getIDAccount($temp['username']);
 
 				$data1 = array(
 					'id' => $id,
@@ -528,7 +528,7 @@ class User_model extends CI_Model
 				$this->auth->set('battlenet_account', $id)->where('id', $id)->update('account');
 			}
 
-			$id = $this->wowauth->getIDAccount($temp['username']);
+			$id = $this->auth->getIDAccount($temp['username']);
 
 			$data3 = array(
 				'id' => $id,
@@ -556,12 +556,12 @@ class User_model extends CI_Model
 
 	 public function changeUsername($newusername, $renewusername, $password)
 	 {
-		$nobnet = $this->wowauth->Account($this->session->userdata('username'), $password);
-		$bnet = $this->wowauth->Battlenet($this->session->userdata('email'), $password);
+		$nobnet = $this->auth->Account($this->session->userdata('username'), $password);
+		$bnet = $this->auth->Battlenet($this->session->userdata('email'), $password);
 
-		if($this->wowgeneral->getExpansionAction() == 1) {
-			if($this->wowgeneral->getEmulatorAction() == 1) {
-				if ($this->wowauth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
+		if($this->base->getExpansionAction() == 1) {
+			if($this->base->getEmulatorAction() == 1) {
+				if ($this->auth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
 					if($newusername == $renewusername) {
 						$this->db->set('username', $newusername)->where('id', $this->session->userdata('id'))->update('users');
 						return true;
@@ -574,7 +574,7 @@ class User_model extends CI_Model
 			}
 			else
 			{
-				if ($this->wowauth->getPasswordAccountID($this->session->userdata('id')) == strtoupper($nobnet)) {
+				if ($this->auth->getPasswordAccountID($this->session->userdata('id')) == strtoupper($nobnet)) {
 					if($newusername == $renewusername) {
 						$this->db->set('username', $newusername)->where('id', $this->session->userdata('id'))->update('users');
 						return true;
@@ -588,7 +588,7 @@ class User_model extends CI_Model
 		}
 		else
 		{
-			if ($this->wowauth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
+			if ($this->auth->getPasswordBnetID($this->session->userdata('id')) == strtoupper($bnet)) {
 				if($newusername == $renewusername) {
 					$this->db->set('username', $newusername)->where('id', $this->session->userdata('id'))->update('users');
 					return true;

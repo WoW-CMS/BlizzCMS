@@ -6,12 +6,12 @@
         <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-fist-raised"></i> <?=lang('tab_pvp_statistics');?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .pvp-statistics">
           <?php foreach ($realms as $charsMultiRealm): ?>
-          <li><a href="#"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></a></li>
+          <li><a href="#"><i class="fas fa-server"></i> <?= $this->realm->getRealmName($charsMultiRealm->realmID); ?></a></li>
           <?php endforeach; ?>
         </ul>
         <ul class="uk-switcher pvp-statistics uk-margin-small">
           <?php foreach ($realms as $charsMultiRealm):
-            $multiRealm = $this->wowrealm->getRealmConnectionData($charsMultiRealm->id);
+            $multiRealm = $this->realm->getRealmConnectionData($charsMultiRealm->id);
           ?>
           <li>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-3@m" data-uk-grid>

@@ -34,7 +34,7 @@
                     <?php foreach($storecategoryList as $list): ?>
                     <tr>
                       <td><?= $list->name; ?></td>
-                      <td><?= $this->wowrealm->getRealmName($list->realmid); ?></td>
+                      <td><?= $this->realm->getRealmName($list->realmid); ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
                           <a href="<?= base_url('admin/store/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>

@@ -190,7 +190,7 @@
                       <?php foreach($this->user_model->getAllAvatars()->result() as $avatar): ?>
                         <div>
                           <img class="uk-border-rounded uk-margin-small" src="<?= base_url('assets/images/profiles/'.$avatar->name); ?>" width="60" height="60">
-                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="change_avatar" value="<?= $avatar->id ?>" <?php if($this->wowauth->getImageProfile($this->session->userdata('id')) == $avatar->id) echo 'checked'; ?>>
+                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="change_avatar" value="<?= $avatar->id ?>" <?php if($this->auth->getImageProfile($this->session->userdata('id')) == $avatar->id) echo 'checked'; ?>>
                         </div>
                       <?php endforeach; ?>
                     </div>

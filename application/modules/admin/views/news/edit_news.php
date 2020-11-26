@@ -15,7 +15,7 @@
 
           if ($image['type'] == 'image/jpeg')
           {
-            $random = $this->wowauth->randomUTF();
+            $random = $this->auth->randomUTF();
             $name_new = sha1($image['name'].$random).'.jpg';
 
             move_uploaded_file($image["tmp_name"], "./assets/images/news/" . $name_new);
@@ -23,7 +23,7 @@
             $this->admin_model->updateSpecifyNews($idlink, $title, $desc, $name_new);
           }
           elseif($image['type'] == 'image/png') {
-            $random = $this->wowauth->randomUTF();
+            $random = $this->auth->randomUTF();
             $name_new = sha1($image['name'].$random).'.png';
 
             move_uploaded_file($image["tmp_name"], "./assets/images/news/" . $name_new);

@@ -25,7 +25,7 @@
                 <?php foreach($realmsList as $realmsID): ?>
                 <tr>
                   <td><?= $realmsID->realmID; ?></td>
-                  <td><?= $this->wowrealm->getRealmName($realmsID->realmID); ?></td>
+                  <td><?= $this->realm->getRealmName($realmsID->realmID); ?></td>
                   <td><?= $realmsID->char_database; ?></td>
                   <td><?= $realmsID->console_port; ?></td>
                   <td>

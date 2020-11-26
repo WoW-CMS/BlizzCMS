@@ -22,8 +22,8 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="javascript:void(0)">
-                  <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->session->userdata('id'))); ?>" alt="">
+                  <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->auth->getNameAvatar($this->auth->getImageProfile($this->session->userdata('id'))); ?>" alt="">
                   <?php else: ?>
                   <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>"  alt="">
                   <?php endif; ?>
@@ -32,7 +32,7 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->wowauth->getIsModerator()): ?>
+                    <?php if($this->auth->getIsModerator()): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>

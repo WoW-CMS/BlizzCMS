@@ -22,7 +22,7 @@ class Bugtracker extends MX_Controller
 		if (!$this->wowmodule->getBugtrackerStatus())
 			redirect(base_url(),'refresh');
 
-		if(!$this->wowauth->isLogged())
+		if(!$this->auth->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 
@@ -58,10 +58,10 @@ class Bugtracker extends MX_Controller
 
 	public function newreport()
 	{
-		if($this->wowauth->getIsAdmin())
-			$tiny = $this->wowgeneral->tinyEditor('Admin');
+		if($this->auth->getIsAdmin())
+			$tiny = $this->base->tinyEditor('Admin');
 		else
-			$tiny = $this->wowgeneral->tinyEditor('User');
+			$tiny = $this->base->tinyEditor('User');
 
 		$data = array(
 			'pagetitle' => lang('tab_bugtracker'),

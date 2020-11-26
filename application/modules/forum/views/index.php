@@ -30,13 +30,13 @@
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
                         <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
-                        by <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastpost->author) ?></span>
+                        by <span class="uk-text-primary"><?= $this->auth->getUsernameID($lastpost->author) ?></span>
                       <?php endforeach; ?>
                     </td>
                   </tr>
                   <?php elseif($sections->type == 2): ?>
-                  <?php if($this->wowauth->isLogged()): ?>
-                  <?php if($this->wowauth->getRank($this->session->userdata('id')) > 0): ?>
+                  <?php if($this->auth->isLogged()): ?>
+                  <?php if($this->auth->getRank($this->session->userdata('id')) > 0): ?>
                   <tr>
                     <td class="uk-table-shrink">
                       <i class="forum-icon" style="background-image: url('<?= base_url('assets/images/forums/'.$sections->icon); ?>')"></i>
@@ -55,7 +55,7 @@
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
                         <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
-                        by <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastpost->author) ?></span>
+                        by <span class="uk-text-primary"><?= $this->auth->getUsernameID($lastpost->author) ?></span>
                       <?php endforeach; ?>
                     </td>
                   </tr>
@@ -79,11 +79,11 @@
                   <li>
                     <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
                     <?php if($this->forum_model->getLastRepliesCount($lastest->id) == 0): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($lastest->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->auth->getUsernameID($lastest->author) ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastest->date) ?></p>
                     <?php else: ?>
                     <?php foreach ($this->forum_model->getLastReplies($lastest->id)->result() as $replies): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->wowauth->getUsernameID($replies->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->auth->getUsernameID($replies->author) ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $replies->date) ?></p>
                     <?php endforeach; ?>
                     <?php endif; ?>

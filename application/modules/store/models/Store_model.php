@@ -141,15 +141,15 @@ class Store_model extends CI_Model
 		$accountid = $this->session->userdata('id');
 		$item = $this->getItem($id);
 		$realm = $this->getCategoryRealmId($item['category']);
-		$info = $this->wowrealm->getRealm($realm)->row_array();
+		$info = $this->realm->getRealm($realm)->row_array();
 
 		$dpprice = $item['dp'];
 		$vpprice = $item['vp'];
 
-		$multirealm = $this->wowrealm->getRealmConnectionData($realm);
-		$charname = $this->wowrealm->getNameCharacterSpecifyGuid($multirealm, $charid);
-		$charexist = $this->wowrealm->getCharExistGuid($multirealm, $charid);
-		$charcheck = $this->wowrealm->getAccountCharGuid($multirealm, $charid);
+		$multirealm = $this->realm->getRealmConnectionData($realm);
+		$charname = $this->realm->getNameCharacterSpecifyGuid($multirealm, $charid);
+		$charexist = $this->realm->getCharExistGuid($multirealm, $charid);
+		$charcheck = $this->realm->getAccountCharGuid($multirealm, $charid);
 		$subject = lang('soap_send_subject');
 		$message = lang('soap_send_body');
 
@@ -159,31 +159,31 @@ class Store_model extends CI_Model
 			{
 				if ($item['type'] == 1)
 				{
-					$this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 2)
 				{
-					$this->wowrealm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 3)
 				{
-					$this->wowrealm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 4)
 				{
-					$this->wowrealm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 5)
 				{
-					$this->wowrealm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 6)
 				{
-					$this->wowrealm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 7)
 				{
-					$this->wowrealm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 
 				$this->db->query("UPDATE users SET dp = (dp-$dpprice) WHERE id = $accountid");
@@ -194,31 +194,31 @@ class Store_model extends CI_Model
 			{
 				if ($item['type'] == 1)
 				{
-					$this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 2)
 				{
-					$this->wowrealm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 3)
 				{
-					$this->wowrealm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 4)
 				{
-					$this->wowrealm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 5)
 				{
-					$this->wowrealm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 6)
 				{
-					$this->wowrealm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 7)
 				{
-					$this->wowrealm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 
 				$this->db->query("UPDATE users SET vp = (vp-$vpprice) WHERE id = $accountid");
@@ -229,31 +229,31 @@ class Store_model extends CI_Model
 			{
 				if ($item['type'] == 1)
 				{
-					$this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 2)
 				{
-					$this->wowrealm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 3)
 				{
-					$this->wowrealm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 4)
 				{
-					$this->wowrealm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 5)
 				{
-					$this->wowrealm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 6)
 				{
-					$this->wowrealm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 				else if ($item['type'] == 7)
 				{
-					$this->wowrealm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
 				}
 
 				$this->db->query("UPDATE users SET dp = (dp-$dpprice), vp = (vp-$vpprice) WHERE id = $accountid");
@@ -273,7 +273,7 @@ class Store_model extends CI_Model
 		$dptotal = $this->cart->total_dp();
 		$vptotal = $this->cart->total_vp();
 
-		if($this->wowgeneral->getCharDPTotal($accountid) >= $dptotal && $this->wowgeneral->getCharVPTotal($accountid) >= $vptotal) {
+		if($this->base->getCharDPTotal($accountid) >= $dptotal && $this->base->getCharVPTotal($accountid) >= $vptotal) {
 			foreach($this->cart->contents() as $item) {
 				$count = 1;
 				while ($count <= $item['qty']) {

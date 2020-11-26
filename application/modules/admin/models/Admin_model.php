@@ -97,7 +97,7 @@ class Admin_model extends CI_Model
 
 		$this->auth->insert('account_banned', $data2);
 
-		if ($this->wowgeneral->getExpansionAction() == 2)
+		if ($this->base->getExpansionAction() == 2)
 			$this->auth->insert('battlenet_account_bans', $data2);
 
 		return true;
@@ -107,7 +107,7 @@ class Admin_model extends CI_Model
 	{
 		$this->auth->where('id', $id)->delete('account_banned');
 
-		if ($this->wowgeneral->getExpansionAction() == 2)
+		if ($this->base->getExpansionAction() == 2)
 			$this->auth->where('id', $id)->delete('battlenet_account_bans');
 
 		return true;

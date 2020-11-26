@@ -37,7 +37,7 @@
                     <?php foreach($storeitemList as $item): ?>
                     <tr>
                       <td><?= $item->name ?></td>
-                      <td><?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->wowrealm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?></td>
+                      <td><?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->realm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?></td>
                       <td class="uk-text-center"><?= $item->price_type ?></td>
                       <td class="uk-text-center"><?= $item->dp ?></td>
                       <td class="uk-text-center"><?= $item->vp ?></td>
