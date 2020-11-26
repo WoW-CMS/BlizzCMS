@@ -12,9 +12,6 @@ class Mod_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-
-		if (!$this->wowmodule->getACPStatus())
-			redirect(base_url(),'refresh');
 	}
 
 	public function setLimit($limit)

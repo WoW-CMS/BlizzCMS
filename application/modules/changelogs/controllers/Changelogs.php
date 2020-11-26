@@ -18,9 +18,6 @@ class Changelogs extends MX_Controller
 		parent::__construct();
 		$this->load->model('changelogs_model');
 
-		if (!$this->wowmodule->getChangelogsStatus())
-			redirect(base_url(),'refresh');
-
 		if(!$this->auth->isLogged())
 			redirect(base_url('login'),'refresh');
 	}

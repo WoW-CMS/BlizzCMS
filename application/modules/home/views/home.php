@@ -1,5 +1,4 @@
     <section class="uk-section uk-padding-remove slider-section">
-      <?php if($this->wowmodule->getSlideshowStatus()): ?>
       <?php if($this->home_model->getSlides()->num_rows()): ?>
       <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: fade;autoplay: true;autoplay-interval: 6000;min-height: 150;max-height: 300;">
         <ul class="uk-slideshow-items">
@@ -32,13 +31,11 @@
         </div>
       </div>
       <?php endif ?>
-      <?php endif ?>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
           <div class="uk-width-2-3@s">
-            <?php if ($this->wowmodule->getNewsStatus()): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fas fa-newspaper fa-sm"></i> <?= lang('home_latest_news'); ?></h4>
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($NewsList as $news): ?>
@@ -59,10 +56,8 @@
               </div>
               <?php endforeach ?>
             </div>
-            <?php endif ?>
           </div>
           <div class="uk-width-1-3@s">
-            <?php if($this->wowmodule->getRealmStatus()): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fas fa-server fa-sm"></i> <?= lang('home_server_status'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
               <?php foreach ($realmsList as $charsMultiRealm): 
@@ -107,13 +102,10 @@
             <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
               <i class="fas fa-gamepad"></i> <?= config_item('realmlist'); ?>
             </h5>
-            <?php endif ?>
-            <?php if ($this->wowmodule->getDiscordStatus()): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= lang('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <iframe src="https://discordapp.com/widget?id=<?= config_item('discord_invitation') ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
             </div>
-            <?php endif ?>
           </div>
         </div>
       </div>

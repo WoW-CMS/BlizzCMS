@@ -20,12 +20,8 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <?php if (!$this->auth->isLogged()): ?>
-              <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('button_register'); ?></a></li>
-              <?php endif; ?>
-              <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('button_login'); ?></a></li>
-              <?php endif; ?>
               <?php endif; ?>
               <?php if ($this->auth->isLogged()): ?>
               <li class="uk-visible@m">
@@ -40,16 +36,12 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->auth->isLogged()): ?>
-                    <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php endif; ?>
                     <?php if($this->auth->getIsModerator()): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowmodule->getACPStatus() == '1'): ?>
                     <?php if($this->auth->getIsAdmin()): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
-                    <?php endif; ?>
                     <?php endif; ?>
                     <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                     <?php endif; ?>
@@ -149,21 +141,13 @@
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 <?php if (!$this->auth->isLogged()): ?>
-                <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
                 <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></a></li>
-                <?php endif; ?>
-                <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
                 <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a></li>
                 <?php endif; ?>
-                <?php endif; ?>
                 <?php if ($this->auth->isLogged()): ?>
-                <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                <?php endif; ?>
-                <?php if($this->wowmodule->getACPStatus() == '1'): ?>
                 <?php if($this->auth->getIsAdmin()): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
-                <?php endif; ?>
                 <?php endif; ?>
                 <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                 <?php endif; ?>

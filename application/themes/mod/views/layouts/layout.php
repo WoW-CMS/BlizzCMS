@@ -32,10 +32,8 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->wowmodule->getACPStatus() == '1'): ?>
                     <?php if($this->auth->getIsAdmin()): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
-                    <?php endif; ?>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>
                     <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>

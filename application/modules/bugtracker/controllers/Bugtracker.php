@@ -19,9 +19,6 @@ class Bugtracker extends MX_Controller
 		$this->load->model('bugtracker_model');
 		$this->load->config('bugtracker');
 
-		if (!$this->wowmodule->getBugtrackerStatus())
-			redirect(base_url(),'refresh');
-
 		if(!$this->auth->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
@@ -75,9 +72,6 @@ class Bugtracker extends MX_Controller
 	public function report($id)
 	{
 		if (empty($id) || is_null($id) || $id == '0')
-			redirect(base_url(),'refresh');
-
-		if (!$this->wowmodule->getBugtrackerStatus())
 			redirect(base_url(),'refresh');
 
 		$data = array(

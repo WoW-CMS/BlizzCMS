@@ -13,9 +13,6 @@ class Admin_model extends CI_Model
 	{
 		parent::__construct();
 		$this->auth = $this->load->database('auth', TRUE);
-
-		if (!$this->wowmodule->getACPStatus())
-			redirect(base_url(),'refresh');
 	}
 
 	public function setLimit($limit)

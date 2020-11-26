@@ -21,9 +21,6 @@ class User extends MX_Controller
 
 	public function login()
 	{
-		if (!$this->wowmodule->getLoginStatus())
-			redirect(base_url(),'refresh');
-
 		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
@@ -78,9 +75,6 @@ class User extends MX_Controller
 
 	public function register()
 	{
-		if (!$this->wowmodule->getRegisterStatus())
-			redirect(base_url(),'refresh');
-
 		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
@@ -110,9 +104,6 @@ class User extends MX_Controller
 
 	public function recovery()
 	{
-		if (!$this->wowmodule->getRecoveryStatus())
-			redirect(base_url(),'refresh');
-
 		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
@@ -139,9 +130,6 @@ class User extends MX_Controller
 
 	public function panel()
 	{
-		if (!$this->wowmodule->getUCPStatus())
-			redirect(base_url(),'refresh');
-
 		if (!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
@@ -155,9 +143,6 @@ class User extends MX_Controller
 
 	public function settings()
 	{
-		if (!$this->wowmodule->getUCPStatus())
-			redirect(base_url(),'refresh');
-
 		if (!$this->auth->isLogged())
 			redirect(base_url(),'refresh');
 

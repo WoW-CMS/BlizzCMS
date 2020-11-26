@@ -23,9 +23,9 @@
         </div>
         <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
+            <?php if (config_item('captcha_forgot') == 'true'): ?>
             <div class="uk-margin-small">
-              <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+              <div class="g-recaptcha" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
             </div>
             <?php endif; ?>
           </div>
@@ -42,7 +42,7 @@
       function RecoveryForm(e) {
         e.preventDefault();
 
-        var restatus = "<?= $this->wowmodule->getreCaptchaStatus(); ?>";
+        var restatus = false;
 
         if(restatus){
           var ren = grecaptcha.getResponse();
