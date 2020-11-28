@@ -4,15 +4,60 @@
  *
  * @author  WoW-CMS
  * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright  Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com
- * @since   Version 1.0.1
- * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MY_Cart extends CI_Cart {
+class MY_Cart extends CI_Cart
+{
+	/**
+	 * Reference to the CodeIgniter instance
+	 *
+	 * @var object
+	 */
+	protected $CI;
 
+	/**
+	 * These are the regular expression rules that we use to validate the product ID and product name
+	 * alpha-numeric, dashes, underscores, or periods
+	 *
+	 * @var string
+	 */
+	public $product_id_rules = '\.a-z0-9_-';
+
+	/**
+	 * These are the regular expression rules that we use to validate the product ID and product name
+	 * Regex may contain only alphanumeric characters, spaces, and  ~ ! # $ % & [ ] * - _ + = | : . ' characters.
+	 *
+	 * @var string
+	 */
+	public $product_name_rules = "A-Z0-9 ~!#$%\&\[\]\*\-_+=|:.'";
+
+	/**
+	 * only allow safe product names
+	 *
+	 * @var bool
+	 */
+	public $product_name_safe = TRUE;
+
+	/**
+	 * Contents of the cart
+	 *
+	 * @var array
+	 */
+	protected $_cart_contents = array();
+
+	/**
+	 * Shopping Class Constructor
+	 *
+	 * The constructor loads the Session class, used to store the shopping cart contents.
+	 *
+	 * @param	array
+	 * @return	void
+	 */
 	public function __construct($params = array())
 	{
 		// Set the super object to a local variable for use later
@@ -97,10 +142,11 @@ class MY_Cart extends CI_Cart {
 
 		// Prep the price, dp and vp. Remove leading zeros and anything that isn't a number or decimal point.
 		$items['price'] = (float) $items['price'];
-		$items['category'] = (float) $items['category'];
 		$items['dp'] = (float) $items['dp'];
 		$items['vp'] = (float) $items['vp'];
-		$items['guid'] = (float) $items['guid'];
+		// Prep category and guid
+		$items['category'] = (int) $items['category'];
+		$items['guid'] = (int) $items['guid'];
 
 		// We now need to create a unique identifier for the item being inserted into the cart.
 		// Every time something is added to the cart it is stored in the master cart array.
@@ -180,11 +226,6 @@ class MY_Cart extends CI_Cart {
 			$items['price'] = (float) $items['price'];
 		}
 
-		if (isset($items['category']))
-		{
-			$items['category'] = (float) $items['category'];
-		}
-
 		if (isset($items['dp']))
 		{
 			$items['dp'] = (float) $items['dp'];
@@ -195,9 +236,14 @@ class MY_Cart extends CI_Cart {
 			$items['vp'] = (float) $items['vp'];
 		}
 
+		if (isset($items['category']))
+		{
+			$items['category'] = (int) $items['category'];
+		}
+
 		if (isset($items['guid']))
 		{
-			$items['guid'] = (float) $items['guid'];
+			$items['guid'] = (int) $items['guid'];
 		}
 
 		// product id & name shouldn't be changed

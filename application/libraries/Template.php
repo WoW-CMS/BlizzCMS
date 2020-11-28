@@ -8,8 +8,6 @@
  * @license https://opensource.org/licenses/MIT MIT License
  * @license http://dbad-license.org DBAD License
  * @link    https://wow-cms.com
- * @since   Version 1.0.1
- * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 

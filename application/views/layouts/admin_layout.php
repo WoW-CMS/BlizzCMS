@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= config_item('website_name'); ?> - <?= $pagetitle ?></title>
-    <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico' ?>">
+    <link rel="icon" type="image/x-icon" href="<?= $template['assets'].'images/favicon.ico' ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'uikit/css/uikit.min.css' ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'amaranjs/css/amaran.min.css'; ?>">
-    <link rel="stylesheet" href="<?= $template['assets'].'css/admin.css' ?>">
+    <link rel="stylesheet" href="<?= $template['assets'].'css/panel.css' ?>">
     <script src="<?= $template['assets'].'uikit/js/uikit.min.js' ?>"></script>
     <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js' ?>"></script>
     <script src="<?= $template['assets'].'js/jquery.min.js'; ?>"></script>
