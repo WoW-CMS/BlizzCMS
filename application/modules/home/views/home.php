@@ -5,7 +5,7 @@
           <?php foreach ($slides as $slides): ?>
           <?php if ($slides->type == 1): ?>
           <li>
-            <img src="<?= $template['location'].'assets/images/slides/'.$slides->route; ?>" alt="<?= $slides->title ?>" uk-cover>
+            <img src="<?= $template['assets'].'images/slides/'.$slides->route; ?>" alt="<?= $slides->title ?>" uk-cover>
             <div class="uk-container uk-position-relative uk-margin-large-top">
               <h2 class="uk-h2 uk-position-medium uk-text-left uk-margin-remove"><?= $slides->title ?></h2>
               <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slides->description ?></p>
@@ -13,7 +13,7 @@
           </li>
           <?php elseif ($slides->type == 2): ?>
           <li>
-            <video src="<?= $template['location'].'assets/images/slides/'.$slides->route; ?>" autoplay loop playslinline uk-cover></video>
+            <video src="<?= $template['assets'].'images/slides/'.$slides->route; ?>" autoplay loop playslinline uk-cover></video>
             <div class="uk-container uk-position-relative uk-margin-large-top">
               <h2 class="uk-h2 uk-position-medium uk-text-left uk-margin-remove"><?= $slides->title ?></h2>
               <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slides->description ?></p>

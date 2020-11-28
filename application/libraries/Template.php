@@ -1,17 +1,18 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-
+<?php
 /**
- * CodeIgniter Template Class
+ * BlizzCMS
  *
- * Build your CodeIgniter pages much easier with partials, breadcrumbs, layouts and themes
- *
- * @package			CodeIgniter
- * @subpackage		Libraries
- * @category		Libraries
- * @author			Philip Sturgeon
- * @license			http://philsturgeon.co.uk/code/dbad-license
- * @link			http://getsparks.org/packages/template/show
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2011 - 2019, Philip Sturgeon (https://phil.tech/)
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @license http://dbad-license.org DBAD License
+ * @link    https://wow-cms.com
+ * @since   Version 1.0.1
+ * @filesource
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Template
 {
 	private $_module = '';
@@ -60,39 +61,6 @@ class Template
 		{
 			$this->initialize($config);
 		}
-
-		$js = APPPATH.'js/';
-		$css = APPPATH.'css/';
-		$assets = 'assets/';
-		$routes = APPPATH.'themes/'.$this->_theme.'/';
-
-		$this->set_metadata('charset', 'utf-8', 'other');
-		$this->set_metadata('viewport', 'width=device-width, initial-scale=1');
-		if($this->_ci->config->item('seo_meta_enable'))
-		{
-			$this->set_metadata('description', $this->_ci->config->item('seo_meta_desc'));
-			$this->set_metadata('keywords', $this->_ci->config->item('seo_meta_keywords'));
-		}
-		if($this->_ci->config->item('seo_og_enable'))
-		{
-			$this->set_metadata('og:title', $this->_ci->config->item('seo_title'), 'property');
-			$this->set_metadata('og:type', $this->_ci->config->item('seo_meta_desc'), 'property');
-			$this->set_metadata('og:image', $this->_ci->config->item('seo_imgurl'), 'property');
-			$this->set_metadata('og:url', $this->_ci->config->item('base_url'), 'property');
-		}
-		if($this->_ci->config->item('seo_twitter_enable'))
-		{
-			$this->set_metadata('twitter:card', 'summary');
-			$this->set_metadata('twitter:title', $this->_ci->config->item('seo_title'));
-			$this->set_metadata('twitter:url', $this->_ci->config->item('base_url'));
-			$this->set_metadata('twitter:description', $this->_ci->config->item('seo_meta_desc'));
-			$this->set_metadata('twitter:image', $this->_ci->config->item('seo_imgurl'));
-		}
-		$this->set_metadata('script', base_url($assets.'core/js/jquery.min.js'), 'script');
-		$this->set_metadata('script', base_url($assets.'core/fontawesome/js/all.js'), 'script');
-		$this->set_metadata('stylesheet', base_url($assets.'core/amaranjs/css/amaran.min.css'), 'link');
-		$this->set_metadata('script', base_url($assets.'core/amaranjs/js/jquery.amaran.min.js'), 'script');
-		$this->set_metadata('script', 'https://www.google.com/recaptcha/api.js', 'script');
 
 		log_message('debug', 'Template Class Initialized');
 	}
@@ -238,12 +206,12 @@ class Template
 		}
 
 		// Output template variables to the template
-		$template['title']	= $this->_title;
+		$template['title']       = $this->_title;
 		$template['breadcrumbs'] = $this->_breadcrumbs;
-		$template['metadata']	= implode("\n\t\t", $this->_metadata);
-		$template['partials']	= array();
-		$template['location']	= base_url('application/themes/'.$this->get_theme().'/');
-		$template['assets']	= base_url('assets/');
+		$template['metadata']    = implode("\n\t\t", $this->_metadata);
+		$template['partials']    = array();
+		$template['location']    = base_url('application/themes/'.$this->get_theme().'/');
+		$template['assets']      = base_url('assets/core/');
 
 		// Assign by reference, as all loaded views will need access to partials
 		$this->_data['template'] =& $template;
@@ -360,7 +328,7 @@ class Template
 	 * @param	  string	$type		Meta-data comes in a few types, links for example
 	 * @return	void
 	 */
-	public function set_metadata($name, $content, $type = 'meta', $extra = '')
+	public function set_metadata($name, $content, $type = 'meta')
 	{
 		$name = htmlspecialchars(strip_tags($name));
 		$content = htmlspecialchars(strip_tags($content));
@@ -374,11 +342,7 @@ class Template
 		switch($type)
 		{
 			case 'meta':
-				$this->_metadata[$name] = '<meta name="'.$name.'" content="'.$content.'" '.$extra.' />';
-			break;
-
-			case 'other':
-				$this->_metadata[$content] = '<meta '.$name.'="'.$content.'" />';
+				$this->_metadata[$name] = '<meta name="'.$name.'" content="'.$content.'" />';
 			break;
 
 			case 'property':
@@ -386,11 +350,7 @@ class Template
 			break;
 
 			case 'link':
-				$this->_metadata[$content] = '<link rel="'.$name.'" href="'.$content.'" '.$extra.' />';
-			break;
-
-			case 'script':
-				$this->_metadata[$content] = '<script src="'.$content.'" ></script>';
+				$this->_metadata[$content] = '<link rel="'.$name.'" href="'.$content.'" />';
 			break;
 		}
 
@@ -717,7 +677,7 @@ class Template
 		}
 
 		// Use the web version
-		else if (is_dir($view_folder.'web/'))
+		elseif (is_dir($view_folder.'web/'))
 		{
 			$view_folder .= 'web/';
 		}
@@ -840,5 +800,3 @@ class Template
 		return pathinfo($file, PATHINFO_EXTENSION) ? '' : '.php';
 	}
 }
-
-// END Template class

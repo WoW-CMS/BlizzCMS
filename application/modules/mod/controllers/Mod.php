@@ -24,7 +24,8 @@ class Mod extends MX_Controller
 		if(!$this->website->getIsModerator())
 			redirect(base_url(),'refresh');
 
-		$this->template->set_theme('mod');
+		$this->template->set_theme();
+		$this->template->set_layout('mod_layout');
 	}
 
 	public function index()

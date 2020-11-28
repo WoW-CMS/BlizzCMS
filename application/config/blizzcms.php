@@ -53,10 +53,10 @@ $config['expansion'] = '';
  * Write the name of your theme
  * The name is the same as the main folder
  * The css must also have the same name
- * Default: default
+ * Default: ''
  *
 */
-$config['theme_name'] = 'default';
+$config['theme_name'] = '';
 
 /**
  *

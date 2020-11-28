@@ -30,7 +30,8 @@ class Admin extends MX_Controller
 		if($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
 			redirect(base_url(),'refresh');
 
-		$this->template->set_theme('admin');
+		$this->template->set_theme();
+		$this->template->set_layout('admin_layout');
 	}
 
 	public function index()

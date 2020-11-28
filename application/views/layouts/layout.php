@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= config_item('website_name'); ?> - <?= $pagetitle ?></title>
-    <?= $template['metadata']; ?>
-    <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico'; ?>" />
-    <link rel="stylesheet" href="<?= $template['assets'].'core/uikit/css/uikit.min.css'; ?>" />
-    <link rel="stylesheet" href="<?= $template['location'].'assets/css/main.css'; ?>" />
-    <script src="<?= $template['assets'].'core/uikit/js/uikit.min.js'; ?>"></script>
-    <script src="<?= $template['assets'].'core/uikit/js/uikit-icons.min.js'; ?>"></script>
-	<script> const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false, dropchance: true}; </script> 
+    <link rel="icon" type="image/x-icon" href="<?= $template['location'].'assets/images/favicon.ico'; ?>">
+    <link rel="stylesheet" href="<?= $template['assets'].'uikit/css/uikit.min.css'; ?>">
+    <link rel="stylesheet" href="<?= $template['assets'].'amaranjs/css/amaran.min.css'; ?>">
+    <link rel="stylesheet" href="<?= $template['assets'].'css/main.css'; ?>">
+    <script src="<?= $template['assets'].'uikit/js/uikit.min.js'; ?>"></script>
+    <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js'; ?>"></script>
+    <script src="<?= $template['assets'].'js/jquery.min.js'; ?>"></script>
+    <script src="<?= $template['assets'].'fontawesome/js/all.js'; ?>" defer></script>
+    <script src="<?= $template['assets'].'amaranjs/js/jquery.amaran.min.js'; ?>"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script> const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false, dropchance: true}; </script> 
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">

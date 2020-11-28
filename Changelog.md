@@ -25,6 +25,7 @@
 - Use ``config_item()`` instead ``$this->config->item()``
 - Rename global models ``$this->website`` instead ``$this->wowauth``, ``$this->base`` instead ``$this->wowgeneral`` and ``$this->realm`` instead ``$this->wowrealm``
 - Remove global model ``Module``
+- Use ``layouts`` views for default theme instead different ``theme`` folders
 
 ### Bugs Fixed
 
