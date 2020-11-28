@@ -22,7 +22,7 @@
               <tbody>
                 <?php foreach ($this->mod_model->getLogs()->result() as $logs): ?>
                   <tr>
-                    <td><?= $this->auth->getUsernameID($logs->userid); ?></td>
+                    <td><?= $this->website->getUsernameID($logs->userid); ?></td>
                     <td class="uk-text-center"><?= date('d-m-Y', $logs->datetime) ?></td>
                     <td class="uk-text-center">
                       <?php if($logs->type == 1): ?>

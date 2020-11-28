@@ -28,7 +28,7 @@ endif; ?>
                 <h4 class="uk-h4 uk-text-bold"><span uk-icon="icon: comments; ratio: 1.2"></span>&nbsp;<?= $this->forum_model->getSpecifyPostName($idlink); ?></h4>
               </div>
               <div class="uk-width-auto">
-                <?php if($this->auth->isLogged()): ?>
+                <?php if($this->website->isLogged()): ?>
                 <?php if($this->forum_model->getSpecifyPostAuthor($idlink) == $this->session->userdata('id')): ?>
                 <div class="uk-text-center uk-text-right@s">
                   <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= lang('button_edit_topic'); ?></a>
@@ -41,18 +41,18 @@ endif; ?>
           <div class="uk-card-body">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-1-6@s">
-                <div class="Author <?php if($this->auth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                <div class="Author <?php if($this->website->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                   <div class="topic-author-avatar profile">
                     <?php if($this->base->getUserInfoGeneral($this->forum_model->getSpecifyPostAuthor($idlink))->num_rows()): ?>
-                    <img src="<?= base_url('assets/images/profiles/').$this->auth->getNameAvatar($this->auth->getImageProfile($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="" />
+                    <img src="<?= base_url('assets/images/profiles/').$this->website->getNameAvatar($this->website->getImageProfile($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="" />
                     <?php else: ?>
                     <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                     <?php endif; ?>
                   </div>
                 </div>
-                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->auth->getUsernameID($this->forum_model->getSpecifyPostAuthor($idlink)); ?></p>
+                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->getUsernameID($this->forum_model->getSpecifyPostAuthor($idlink)); ?></p>
                 <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountPostAuthor($this->forum_model->getSpecifyPostAuthor($idlink)); ?> <?= lang('forum_post_count'); ?></p>
-                <?php if($this->auth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
+                <?php if($this->website->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif; ?>
               </div>
@@ -69,25 +69,25 @@ endif; ?>
             <div class="uk-card uk-card-default uk-card-body">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-6@s">
-                  <div class="Author <?php if($this->auth->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                  <div class="Author <?php if($this->website->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                     <div class="topic-author-avatar profile">
                       <?php if($this->base->getUserInfoGeneral($commentss->author)->num_rows()): ?>
-                      <img src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($this->auth->getImageProfile($commentss->author))); ?>" alt="" />
+                      <img src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($commentss->author))); ?>" alt="" />
                       <?php else: ?>
                       <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                       <?php endif; ?>
                     </div>
                   </div>
-                  <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->auth->getUsernameID($commentss->author); ?></p>
+                  <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->getUsernameID($commentss->author); ?></p>
                   <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountPostAuthor($commentss->author); ?> <?= lang('forum_post_count'); ?></p>
-                  <?php if($this->auth->getRank($commentss->author) > 0): ?>
+                  <?php if($this->website->getRank($commentss->author) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                   <?php endif; ?>
                 </div>
                 <div class="uk-width-expand@s">
                   <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $commentss->date); ?></p>
                   <?= $commentss->commentary ?>
-                  <?php if($this->auth->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
+                  <?php if($this->website->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
                     <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                   </div>
@@ -97,7 +97,7 @@ endif; ?>
             </div>
           </div>
           <?php endforeach; ?>
-          <?php if(!$this->auth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+          <?php if(!$this->website->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
@@ -118,7 +118,7 @@ endif; ?>
             </div>
           </div>
           <?php endif; ?>
-          <?php if($this->auth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+          <?php if($this->website->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
@@ -142,7 +142,7 @@ endif; ?>
         </div>
       </div>
     </section>
-    <?php if($this->auth->isLogged()): ?>
+    <?php if($this->website->isLogged()): ?>
     <?= $tiny ?>
     <script>
       function TopicReplyForm(e) {

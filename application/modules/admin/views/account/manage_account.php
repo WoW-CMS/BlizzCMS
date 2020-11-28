@@ -16,7 +16,7 @@
             <div class="uk-grid uk-grid-medium" data-uk-grid>
               <div class="uk-width-1-4@s">
                 <div class="uk-flex uk-flex-center uk-margin-small">
-                  <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($this->auth->getImageProfile($idlink))); ?>" height="170" alt="Avatar">
+                  <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($idlink))); ?>" height="170" alt="Avatar">
                 </div>
                 <div class="uk-text-center uk-margin-small">
                   <?php foreach ($this->base->getUserInfoGeneral($idlink)->result() as $info): ?>
@@ -77,7 +77,7 @@
                 </div>
                 <?= form_close(); ?>
                 <?php endif; ?>
-                <?php if($this->auth->getGmSpecify($idlink)->num_rows()): ?>
+                <?php if($this->website->getGmSpecify($idlink)->num_rows()): ?>
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-minus"></i> <?= lang('placeholder_account_remove_rank'); ?></span></h5>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">

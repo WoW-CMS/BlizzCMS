@@ -23,7 +23,7 @@ class News extends MX_Controller
 	{
 		$this->load->model('forum/forum_model');
 
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -39,7 +39,7 @@ class News extends MX_Controller
 
 	public function reply()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$ssesid = $this->session->userdata('id');
@@ -50,7 +50,7 @@ class News extends MX_Controller
 
 	public function deletereply()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$id = $this->input->post('value');

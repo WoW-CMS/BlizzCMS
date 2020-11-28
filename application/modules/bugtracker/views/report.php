@@ -55,7 +55,7 @@ endif; ?>
                   </div>
                   <div class="uk-width-1-4@s">
                     <ul class="uk-list uk-text-small">
-                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->auth->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></li>
+                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->website->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></li>
                       <li><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></li>
                       <li><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></li>
                       <li><i class="fas fa-tags"></i> <?= lang('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></li>
@@ -65,7 +65,7 @@ endif; ?>
               </div>
             </div>
             <hr>
-            <?php if($this->auth->getRank($this->session->userdata('id')) > 0): ?>
+            <?php if($this->website->getRank($this->session->userdata('id')) > 0): ?>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
               <div>
                 <form method="post" action="">

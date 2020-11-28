@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-donate"></i> <?= lang('placeholder_donation_logs'); ?> - <?= $this->auth->getUsernameID($idlink); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-donate"></i> <?= lang('placeholder_donation_logs'); ?> - <?= $this->website->getUsernameID($idlink); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="" class="uk-icon-button"><i class="fas fa-info"></i></a>

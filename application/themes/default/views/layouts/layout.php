@@ -19,15 +19,15 @@
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              <?php if (!$this->auth->isLogged()): ?>
+              <?php if (!$this->website->isLogged()): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('button_register'); ?></a></li>
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('button_login'); ?></a></li>
               <?php endif; ?>
-              <?php if ($this->auth->isLogged()): ?>
+              <?php if ($this->website->isLogged()): ?>
               <li class="uk-visible@m">
                 <a href="#">
                   <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($this->auth->getImageProfile($this->session->userdata('id')))); ?>" width="30" height="30" alt="Avatar">
+                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($this->session->userdata('id')))); ?>" width="30" height="30" alt="Avatar">
                   <?php else: ?>
                   <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
                   <?php endif; ?>
@@ -35,12 +35,12 @@
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php if ($this->auth->isLogged()): ?>
+                    <?php if ($this->website->isLogged()): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->auth->getIsModerator()): ?>
+                    <?php if($this->website->getIsModerator()): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->auth->getIsAdmin()): ?>
+                    <?php if($this->website->getIsAdmin()): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
@@ -114,7 +114,7 @@
             <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#mobile" uk-toggle></a>
           </div>
           <div class="uk-navbar-right">
-            <?php if ($this->auth->isLogged()): ?>
+            <?php if ($this->website->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
                 <li><span uk-tooltip="title:<?=lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->base->getCharDPTotal($this->session->userdata('id')); ?></li>
@@ -129,10 +129,10 @@
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <div class="uk-panel">
               <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('website_name'); ?></p>
-              <?php if ($this->auth->isLogged()): ?>
+              <?php if ($this->website->isLogged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
                 <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->auth->getNameAvatar($this->auth->getImageProfile($this->session->userdata('id')))); ?>" width="36" height="36" alt="Avatar">
+                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($this->session->userdata('id')))); ?>" width="36" height="36" alt="Avatar">
                 <?php else: ?>
                 <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
                 <?php endif; ?>
@@ -140,13 +140,13 @@
               </div>
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                <?php if (!$this->auth->isLogged()): ?>
+                <?php if (!$this->website->isLogged()): ?>
                 <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></a></li>
                 <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a></li>
                 <?php endif; ?>
-                <?php if ($this->auth->isLogged()): ?>
+                <?php if ($this->website->isLogged()): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                <?php if($this->auth->getIsAdmin()): ?>
+                <?php if($this->website->getIsAdmin()): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                 <?php endif; ?>
                 <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>

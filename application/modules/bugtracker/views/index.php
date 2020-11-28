@@ -22,7 +22,7 @@
                   <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_bugtracker'); ?></h4>
               </div>
               <div class="uk-width-auto">
-                <?php if ($this->auth->isLogged()): ?>
+                <?php if ($this->website->isLogged()): ?>
                 <div class="uk-text-center uk-text-right@s">
                   <a href="<?= base_url('bugtracker/new'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('button_create_report'); ?></a>
                 </div>

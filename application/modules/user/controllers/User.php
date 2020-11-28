@@ -21,7 +21,7 @@ class User extends MX_Controller
 
 	public function login()
 	{
-		if ($this->auth->isLogged())
+		if ($this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		if ($this->base->getExpansionAction() == 1)
@@ -71,7 +71,7 @@ class User extends MX_Controller
 
 	public function register()
 	{
-		if ($this->auth->isLogged())
+		if ($this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(
@@ -99,7 +99,7 @@ class User extends MX_Controller
 
 	public function recovery()
 	{
-		if ($this->auth->isLogged())
+		if ($this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(
@@ -124,7 +124,7 @@ class User extends MX_Controller
 
 	public function panel()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(
@@ -136,7 +136,7 @@ class User extends MX_Controller
 
 	public function settings()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$data = array(

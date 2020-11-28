@@ -19,7 +19,7 @@ class Bugtracker extends MX_Controller
 		$this->load->model('bugtracker_model');
 		$this->load->config('bugtracker');
 
-		if(!$this->auth->isLogged())
+		if(!$this->website->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 
@@ -55,7 +55,7 @@ class Bugtracker extends MX_Controller
 
 	public function newreport()
 	{
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');

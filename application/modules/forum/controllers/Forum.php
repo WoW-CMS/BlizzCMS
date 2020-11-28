@@ -34,7 +34,7 @@ class Forum extends MX_Controller
 		if (empty($id) || is_null($id))
 			redirect(base_url('forum'),'refresh');
 
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -45,8 +45,8 @@ class Forum extends MX_Controller
 			'tiny' => $tiny
 		);
 
-		if ($this->forum_model->getType($id) == 2 && $this->auth->isLogged())
-			if ($this->auth->getRank($this->session->userdata('id')) > 0) { }
+		if ($this->forum_model->getType($id) == 2 && $this->website->isLogged())
+			if ($this->website->getRank($this->session->userdata('id')) > 0) { }
 		else
 			redirect(base_url('forum'),'refresh');
 
@@ -58,12 +58,12 @@ class Forum extends MX_Controller
 		if (empty($id) || is_null($id))
 			redirect(base_url('forum'),'refresh');
 
-		if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->auth->isLogged())
-			if ($this->auth->getRank($this->session->userdata('id')) > 0) { }
+		if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->website->isLogged())
+			if ($this->website->getRank($this->session->userdata('id')) > 0) { }
 		else
 			redirect(base_url('forum'),'refresh');
 
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -79,7 +79,7 @@ class Forum extends MX_Controller
 
 	public function newtopic($idlink)
 	{
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -95,7 +95,7 @@ class Forum extends MX_Controller
 
 	public function reply()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$ssesid = $this->session->userdata('id');
@@ -106,7 +106,7 @@ class Forum extends MX_Controller
 
 	public function deletereply()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$id = $this->input->post('value');
@@ -115,7 +115,7 @@ class Forum extends MX_Controller
 
 	public function addtopic()
 	{
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
 		$category = $this->input->post('category');

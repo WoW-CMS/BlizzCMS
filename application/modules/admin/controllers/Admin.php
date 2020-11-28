@@ -21,10 +21,10 @@ class Admin extends MX_Controller
 		$this->config->load('donate/donate');
 		$this->config->load('bugtracker/bugtracker');
 
-		if(!$this->auth->isLogged())
+		if(!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
-		if(!$this->auth->getIsAdmin())
+		if(!$this->website->getIsAdmin())
 			redirect(base_url(),'refresh');
 
 		if($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
@@ -114,7 +114,7 @@ class Admin extends MX_Controller
 
 	public function modulesettings()
 	{
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -546,7 +546,7 @@ class Admin extends MX_Controller
 
 	public function createnews()
 	{
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -567,7 +567,7 @@ class Admin extends MX_Controller
 		if ($this->admin_model->getNewsSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -619,7 +619,7 @@ class Admin extends MX_Controller
 
 	public function createchangelog()
 	{
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -640,7 +640,7 @@ class Admin extends MX_Controller
 		if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -707,7 +707,7 @@ class Admin extends MX_Controller
 
 	public function createpage()
 	{
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -728,7 +728,7 @@ class Admin extends MX_Controller
 		if ($this->admin_model->getPagesSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		if($this->auth->getIsAdmin())
+		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');

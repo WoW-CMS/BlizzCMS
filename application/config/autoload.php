@@ -134,7 +134,7 @@ $autoload['language'] = array('general', 'notification', 'admin');
 */
 $autoload['model'] = array(
 	'Settings_model',
-	'Base_model'  => 'base',
-	'Auth_model'  => 'auth',
-	'Realm_model' => 'realm'
+	'Base_model'    => 'base',
+	'Website_model' => 'website',
+	'Realm_model'   => 'realm'
 );

@@ -24,7 +24,7 @@ class Donate extends MX_Controller
 		$this->load->model('donate_model');
 		$this->load->config('donate');
 
-		if(!$this->auth->isLogged())
+		if(!$this->website->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 	

@@ -18,7 +18,7 @@ class Store extends MX_Controller
 		parent::__construct();
 		$this->load->model('store_model');
 
-		if (!$this->auth->isLogged())
+		if (!$this->website->isLogged())
 			redirect(base_url('login'),'refresh');
 	}
 

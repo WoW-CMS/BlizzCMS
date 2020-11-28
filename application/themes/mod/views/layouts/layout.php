@@ -23,7 +23,7 @@
               <li>
                 <a href="javascript:void(0)">
                   <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->auth->getNameAvatar($this->auth->getImageProfile($this->session->userdata('id'))); ?>" alt="Avatar">
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->website->getNameAvatar($this->website->getImageProfile($this->session->userdata('id'))); ?>" alt="Avatar">
                   <?php else: ?>
                   <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="Avatar">
                   <?php endif; ?>
@@ -32,7 +32,7 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->auth->getIsAdmin()): ?>
+                    <?php if($this->website->getIsAdmin()): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>
