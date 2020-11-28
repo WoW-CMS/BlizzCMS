@@ -86,7 +86,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/topsites/add'); ?>",
+          url:"<?= base_url('admin/topsites/add'); ?>",
           method:"POST",
           data:{name, url, time, points, image},
           dataType:"text",

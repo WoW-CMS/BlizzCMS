@@ -190,7 +190,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/update'); ?>",
+          url:"<?= base_url('admin/account/update'); ?>",
           method:"POST",
           data:{id, dp, vp},
           dataType:"text",
@@ -255,7 +255,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/ban'); ?>",
+          url:"<?= base_url('admin/account/ban'); ?>",
           method:"POST",
           data:{id, reason},
           dataType:"text",
@@ -302,7 +302,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/unban'); ?>",
+          url:"<?= base_url('admin/account/unban'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -366,7 +366,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/grantrank'); ?>",
+          url:"<?= base_url('admin/account/grantrank'); ?>",
           method:"POST",
           data:{id, rank},
           dataType:"text",
@@ -413,7 +413,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/delrank'); ?>",
+          url:"<?= base_url('admin/account/delrank'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

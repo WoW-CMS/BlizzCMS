@@ -54,7 +54,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/realms/delete'); ?>",
+          url:"<?= base_url('admin/realms/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

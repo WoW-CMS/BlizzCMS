@@ -83,7 +83,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/donate/update'); ?>",
+          url:"<?= base_url('admin/donate/update'); ?>",
           method:"POST",
           data:{id, title, price, tax, points},
           dataType:"text",

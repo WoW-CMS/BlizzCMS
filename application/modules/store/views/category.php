@@ -84,7 +84,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/cart/add'); ?>",
+          url:"<?= base_url('cart/add'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

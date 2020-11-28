@@ -93,7 +93,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/category/update'); ?>",
+          url:"<?= base_url('admin/store/category/update'); ?>",
           method:"POST",
           data:{id, name, route, realm},
           dataType:"text",

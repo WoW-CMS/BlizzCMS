@@ -52,7 +52,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/category/update'); ?>",
+          url:"<?= base_url('admin/forum/category/update'); ?>",
           method:"POST",
           data:{id, category},
           dataType:"text",

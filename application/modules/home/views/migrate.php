@@ -110,7 +110,7 @@
                   return false;
                 }
                 $.ajax({
-                  url:"<?= base_url($lang.'/confmigrate'); ?>",
+                  url:"<?= base_url('confmigrate'); ?>",
                   method:"POST",
                   data:{name, invitation, realmlist, expansion},
                   dataType:"text",

@@ -60,7 +60,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/category/delete'); ?>",
+          url:"<?= base_url('admin/forum/category/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

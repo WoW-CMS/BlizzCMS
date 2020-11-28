@@ -158,7 +158,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/bugtracker/create'); ?>",
+          url:"<?= base_url('bugtracker/create'); ?>",
           method:"POST",
           data:{title, description, type, priority},
           dataType:"text",

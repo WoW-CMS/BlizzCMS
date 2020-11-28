@@ -138,7 +138,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/realms/add'); ?>",
+          url:"<?= base_url('admin/realms/add'); ?>",
           method:"POST",
           data:{realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass, emulator},
           dataType:"text",

@@ -58,7 +58,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/donate/delete'); ?>",
+          url:"<?= base_url('admin/donate/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

@@ -31,7 +31,6 @@ class News extends MX_Controller
 		$data = array(
 			'idlink' => $id,
 			'pagetitle' => lang('tab_news'),
-			'lang' => $this->lang->lang(),
 			'tiny' => $tiny
 		);
 

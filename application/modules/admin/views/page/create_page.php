@@ -68,7 +68,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/pages/add'); ?>",
+          url:"<?= base_url('admin/pages/add'); ?>",
           method:"POST",
           data:{title, uri, description},
           dataType:"text",

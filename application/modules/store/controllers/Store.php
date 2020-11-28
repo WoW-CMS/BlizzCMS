@@ -25,8 +25,7 @@ class Store extends MX_Controller
 	public function index()
 	{
 		$data = array(
-			'pagetitle' => lang('tab_store'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('tab_store')
 		);
 
 		$this->template->build('index', $data);
@@ -42,8 +41,7 @@ class Store extends MX_Controller
 
 		$data = array(
 			'route' => $route,
-			'pagetitle' => lang('tab_store').' | '.$this->store_model->getCategoryName($route),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('tab_store').' | '.$this->store_model->getCategoryName($route)
 		);
 
 		$this->template->build('category', $data);
@@ -52,8 +50,7 @@ class Store extends MX_Controller
 	public function cart()
 	{
 		$data = array(
-			'pagetitle' => lang('tab_cart'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('tab_cart')
 		);
 
 		$this->template->build('cart', $data);

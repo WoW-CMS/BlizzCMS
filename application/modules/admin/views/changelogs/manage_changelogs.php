@@ -50,7 +50,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/changelogs/delete'); ?>",
+          url:"<?= base_url('admin/changelogs/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

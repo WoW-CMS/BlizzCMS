@@ -24,14 +24,12 @@ class User extends MX_Controller
 		if ($this->auth->isLogged())
 			redirect(base_url(),'refresh');
 
-
 		if ($this->base->getExpansionAction() == 1)
 		{
 			if($this->base->getEmulatorAction() == 1){
 				$data = array(
 					'pagetitle' => lang('tab_login'),
-					'recapKey' => config_item('recaptcha_sitekey'),
-					'lang' => $this->lang->lang(),
+					'recapKey' => config_item('recaptcha_sitekey')
 				);
 	
 				$this->template->build('login2', $data);
@@ -39,8 +37,7 @@ class User extends MX_Controller
 			
 				$data = array(
 				'pagetitle' => lang('tab_login'),
-				'recapKey' => config_item('recaptcha_sitekey'),
-				'lang' => $this->lang->lang(),
+				'recapKey' => config_item('recaptcha_sitekey')
 			);
 				$this->template->build('login1', $data);
 			}
@@ -49,8 +46,7 @@ class User extends MX_Controller
 		{
 			$data = array(
 				'pagetitle' => lang('tab_login'),
-				'recapKey' => config_item('recaptcha_sitekey'),
-				'lang' => $this->lang->lang(),
+				'recapKey' => config_item('recaptcha_sitekey')
 			);
 
 			$this->template->build('login2', $data);
@@ -81,7 +77,6 @@ class User extends MX_Controller
 		$data = array(
 			'pagetitle' => lang('tab_register'),
 			'recapKey' => config_item('recaptcha_sitekey'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$this->template->build('register', $data);
@@ -110,7 +105,6 @@ class User extends MX_Controller
 		$data = array(
 			'pagetitle' => lang('tab_reset'),
 			'recapKey' => config_item('recaptcha_sitekey'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$this->template->build('recovery', $data);
@@ -135,7 +129,6 @@ class User extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('tab_account'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$this->template->build('panel', $data);
@@ -148,7 +141,6 @@ class User extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('tab_account'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$this->template->build('settings', $data);

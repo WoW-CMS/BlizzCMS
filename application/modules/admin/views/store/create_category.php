@@ -120,7 +120,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/category/add'); ?>",
+          url:"<?= base_url('admin/store/category/add'); ?>",
           method:"POST",
           data:{name, route, realm, main, father},
           dataType:"text",

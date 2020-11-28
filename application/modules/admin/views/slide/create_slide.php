@@ -96,7 +96,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/slides/add'); ?>",
+          url:"<?= base_url('admin/slides/add'); ?>",
           method:"POST",
           data:{title, description, type, route},
           dataType:"text",

@@ -123,7 +123,7 @@
         }
 
         $.ajax({
-          url:"<?= base_url($lang.'/newacc'); ?>",
+          url:"<?= base_url('newacc'); ?>",
           method:"POST",
           data:{username, email, password, repassword},
           dataType:"text",

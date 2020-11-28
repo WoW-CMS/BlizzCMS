@@ -115,7 +115,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/module/updonate'); ?>",
+          url:"<?= base_url('admin/settings/module/updonate'); ?>",
           method:"POST",
           data:{currency, mode, client, password},
           dataType:"text",
@@ -178,7 +178,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/module/upbugtracker'); ?>",
+          url:"<?= base_url('admin/settings/module/upbugtracker'); ?>",
           method:"POST",
           data:{description},
           dataType:"text",

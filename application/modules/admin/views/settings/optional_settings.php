@@ -188,7 +188,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/optional/update'); ?>",
+          url:"<?= base_url('admin/settings/optional/update'); ?>",
           method:"POST",
           data:{adminlvl, modlvl, recaptcha, register, smtphost, smtpport, smtpcrypto, smtpuser, smtppass, sender, sendername},
           dataType:"text",

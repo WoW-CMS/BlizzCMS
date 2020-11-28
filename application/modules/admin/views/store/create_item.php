@@ -172,7 +172,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/item/add'); ?>",
+          url:"<?= base_url('admin/store/item/add'); ?>",
           method:"POST",
           data:{name, description, category, type, price_type, dp_price, vp_price, icon, command},
           dataType:"text",

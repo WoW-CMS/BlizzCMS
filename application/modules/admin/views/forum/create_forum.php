@@ -125,7 +125,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/add'); ?>",
+          url:"<?= base_url('admin/forum/add'); ?>",
           method:"POST",
           data:{name, description, icon, type, category},
           dataType:"text",

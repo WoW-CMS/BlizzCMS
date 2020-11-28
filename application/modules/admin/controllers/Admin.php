@@ -48,8 +48,7 @@ class Admin extends MX_Controller
 	public function settings()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('settings/general_settings', $data);
@@ -72,8 +71,7 @@ class Admin extends MX_Controller
 	public function optionalsettings()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('settings/optional_settings', $data);
@@ -98,8 +96,7 @@ class Admin extends MX_Controller
 	public function seosettings()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('settings/seo_settings', $data);
@@ -124,8 +121,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('settings/module_settings', $data);
@@ -149,8 +145,7 @@ class Admin extends MX_Controller
 	public function managemodules()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('settings/manage_modules', $data);
@@ -171,8 +166,7 @@ class Admin extends MX_Controller
 	public function cmsmanage()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('update/manage_updates', $data);
@@ -226,8 +220,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('account/manage_account', $data);
@@ -289,8 +282,7 @@ class Admin extends MX_Controller
 	public function managemenu()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('menu/manage_menu', $data);
@@ -299,8 +291,7 @@ class Admin extends MX_Controller
 	public function createmenu()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('menu/create_menu', $data);
@@ -316,8 +307,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('menu/edit_menu', $data);
@@ -355,8 +345,7 @@ class Admin extends MX_Controller
 	public function managerealms()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countRealms();
@@ -386,8 +375,7 @@ class Admin extends MX_Controller
 	public function createrealm()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('realm/create_realm', $data);
@@ -403,8 +391,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('realm/edit_realm', $data);
@@ -450,8 +437,7 @@ class Admin extends MX_Controller
 	public function manageslides()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countSlides();
@@ -481,8 +467,7 @@ class Admin extends MX_Controller
 	public function createslide()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('slide/create_slide', $data);
@@ -498,8 +483,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('slide/edit_slide', $data);
@@ -533,8 +517,7 @@ class Admin extends MX_Controller
 	public function managenews()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countNews();
@@ -570,8 +553,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('news/create_news', $data);
@@ -593,8 +575,7 @@ class Admin extends MX_Controller
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
 			'idlink' => $id,
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('news/edit_news', $data);
@@ -609,8 +590,7 @@ class Admin extends MX_Controller
 	public function managechangelogs()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countChangelogs();
@@ -646,8 +626,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('changelogs/create_changelog', $data);
@@ -669,8 +648,7 @@ class Admin extends MX_Controller
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
 			'idlink' => $id,
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('changelogs/edit_changelog', $data);
@@ -700,8 +678,7 @@ class Admin extends MX_Controller
 	public function managepages()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countPages();
@@ -737,8 +714,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('page/create_page', $data);
@@ -760,8 +736,7 @@ class Admin extends MX_Controller
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
 			'idlink' => $id,
-			'tiny' => $tiny,
-			'lang' => $this->lang->lang()
+			'tiny' => $tiny
 		);
 
 		$this->template->build('page/edit_page', $data);
@@ -793,8 +768,7 @@ class Admin extends MX_Controller
 	public function managetopsites()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countTopsites();
@@ -824,8 +798,7 @@ class Admin extends MX_Controller
 	public function createtopsite()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('vote/create_topsite', $data);
@@ -841,8 +814,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('vote/edit_topsite', $data);
@@ -882,7 +854,6 @@ class Admin extends MX_Controller
 	{
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$config['total_rows'] = $this->admin_model->countStoreCategories();
@@ -913,7 +884,6 @@ class Admin extends MX_Controller
 	{
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$config['total_rows'] = $this->admin_model->countStoreItems();
@@ -944,7 +914,6 @@ class Admin extends MX_Controller
 	{
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang(),
 		);
 
 		$config['total_rows'] = $this->admin_model->countStoreTop();
@@ -974,8 +943,7 @@ class Admin extends MX_Controller
 	public function createstorecategory()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('store/create_category', $data);
@@ -991,8 +959,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('store/edit_category', $data);
@@ -1027,8 +994,7 @@ class Admin extends MX_Controller
 	public function createstoreitem()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('store/create_item', $data);
@@ -1044,8 +1010,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('store/edit_item', $data);
@@ -1089,8 +1054,7 @@ class Admin extends MX_Controller
 	public function createstoretop()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('store/create_top', $data);
@@ -1106,8 +1070,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('store/edit_top', $data);
@@ -1135,8 +1098,7 @@ class Admin extends MX_Controller
 	public function donate()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('donate/manage_methods', $data);
@@ -1145,8 +1107,7 @@ class Admin extends MX_Controller
 	public function createdonateplan()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('donate/create_plan', $data);
@@ -1159,8 +1120,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('donate/edit_plan', $data);
@@ -1197,8 +1157,7 @@ class Admin extends MX_Controller
 	public function manageforum()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countForumCategories();
@@ -1228,8 +1187,7 @@ class Admin extends MX_Controller
 	public function manageforumelements()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$config['total_rows'] = $this->admin_model->countForumElements();
@@ -1259,8 +1217,7 @@ class Admin extends MX_Controller
 	public function createforumcategory()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('forum/create_category', $data);
@@ -1276,8 +1233,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('forum/edit_category', $data);
@@ -1305,8 +1261,7 @@ class Admin extends MX_Controller
 	public function createforum()
 	{
 		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-			'lang' => $this->lang->lang()
+			'pagetitle' => lang('button_admin_panel')
 		);
 
 		$this->template->build('forum/create_forum', $data);
@@ -1322,8 +1277,7 @@ class Admin extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('button_admin_panel'),
-			'idlink' => $id,
-			'lang' => $this->lang->lang()
+			'idlink' => $id
 		);
 
 		$this->template->build('forum/edit_forum', $data);

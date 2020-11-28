@@ -59,7 +59,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/changelogs/update'); ?>",
+          url:"<?= base_url('admin/changelogs/update'); ?>",
           method:"POST",
           data:{id, title, description},
           dataType:"text",

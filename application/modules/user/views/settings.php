@@ -221,7 +221,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/changeusername'); ?>",
+          url:"<?= base_url('changeusername'); ?>",
           method:"POST",
           data:{newusername, renewusername, password},
           dataType:"text",
@@ -343,7 +343,7 @@
         }
 
         $.ajax({
-          url:"<?= base_url($lang.'/changemail'); ?>",
+          url:"<?= base_url('changemail'); ?>",
           method:"POST",
           data:{newemail, renewemail, password},
           dataType:"text",
@@ -481,7 +481,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/changepass'); ?>",
+          url:"<?= base_url('changepass'); ?>",
           method:"POST",
           data:{oldpass, newpass, renewpass},
           dataType:"text",
@@ -635,7 +635,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/changeavatar'); ?>",
+          url:"<?= base_url('changeavatar'); ?>",
           method:"POST",
           data:{avatar},
           dataType:"text",

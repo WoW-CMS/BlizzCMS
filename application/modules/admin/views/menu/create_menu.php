@@ -131,7 +131,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/menu/add'); ?>",
+          url:"<?= base_url('admin/menu/add'); ?>",
           method:"POST",
           data:{name, url, icon, main, child, type},
           dataType:"text",

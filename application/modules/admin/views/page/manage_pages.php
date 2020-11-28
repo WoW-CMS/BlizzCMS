@@ -52,7 +52,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/pages/delete'); ?>",
+          url:"<?= base_url('admin/pages/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

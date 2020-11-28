@@ -173,7 +173,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/item/update'); ?>",
+          url:"<?= base_url('admin/store/item/update'); ?>",
           method:"POST",
           data:{id, name, description, category, type, price_type, dp_price, vp_price, icon, command},
           dataType:"text",

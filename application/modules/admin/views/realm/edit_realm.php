@@ -140,7 +140,7 @@
         }
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/realms/update'); ?>",
+          url:"<?= base_url('admin/realms/update'); ?>",
           method:"POST",
           data:{id, realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass, emulator},
           dataType:"text",

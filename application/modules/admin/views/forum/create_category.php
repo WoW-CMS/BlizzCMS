@@ -51,7 +51,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/category/add'); ?>",
+          url:"<?= base_url('admin/forum/category/add'); ?>",
           method:"POST",
           data:{category},
           dataType:"text",

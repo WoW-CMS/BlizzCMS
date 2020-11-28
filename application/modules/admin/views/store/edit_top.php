@@ -54,7 +54,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/top/update'); ?>",
+          url:"<?= base_url('admin/store/top/update'); ?>",
           method:"POST",
           data:{id, item},
           dataType:"text",

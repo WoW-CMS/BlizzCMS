@@ -47,7 +47,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/menu/delete'); ?>",
+          url:"<?= base_url('admin/menu/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

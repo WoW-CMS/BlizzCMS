@@ -168,7 +168,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/update'); ?>",
+          url:"<?= base_url('admin/settings/update'); ?>",
           method:"POST",
           data:{project, timezone, maintenance, discord, realmlist, theme, facebook, twitter, youtube},
           dataType:"text",

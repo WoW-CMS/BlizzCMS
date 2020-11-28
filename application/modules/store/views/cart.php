@@ -89,7 +89,7 @@
       });
       function updateQuantity(obj, rowid) {
         $.ajax({
-          url:"<?= base_url($lang.'/cart/updatequantity'); ?>",
+          url:"<?= base_url('cart/updatequantity'); ?>",
           type:"GET",
           data:{rowid:rowid, qty:obj.value},
           dataType:"text",
@@ -118,7 +118,7 @@
       }
       function updateCharacter(obj, rowid) {
         $.ajax({
-          url:"<?= base_url($lang.'/cart/updatecharacter'); ?>",
+          url:"<?= base_url('cart/updatecharacter'); ?>",
           type:"GET",
           data:{rowid:rowid, char:obj.value},
           dataType:"text",
@@ -149,7 +149,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/cart/delete'); ?>",
+          url:"<?= base_url('cart/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -195,7 +195,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/cart/checkout'); ?>",
+          url:"<?= base_url('cart/checkout'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

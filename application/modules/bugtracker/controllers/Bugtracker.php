@@ -62,7 +62,6 @@ class Bugtracker extends MX_Controller
 
 		$data = array(
 			'pagetitle' => lang('tab_bugtracker'),
-			'lang' => $this->lang->lang(),
 			'tiny' => $tiny,
 		);
 

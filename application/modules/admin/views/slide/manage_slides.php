@@ -52,7 +52,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/slides/delete'); ?>",
+          url:"<?= base_url('admin/slides/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

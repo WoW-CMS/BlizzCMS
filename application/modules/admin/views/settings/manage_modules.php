@@ -42,7 +42,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/modules/enable'); ?>",
+          url:"<?= base_url('admin/modules/enable'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -88,7 +88,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/modules/disable'); ?>",
+          url:"<?= base_url('admin/modules/disable'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

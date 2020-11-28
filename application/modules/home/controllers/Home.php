@@ -25,9 +25,7 @@ class Home extends MX_Controller
 	{
 		if (config_item('migrate_status') == '1')
 		{
-			$data = array(
-				'lang' => $this->lang->lang()
-			);
+			$data = array();
 
 			$this->load->view('migrate', $data);
 		}

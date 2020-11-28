@@ -128,7 +128,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/news/reply'); ?>",
+          url:"<?= base_url('news/reply'); ?>",
           method:"POST",
           data:{news, reply},
           dataType:"text",
@@ -175,7 +175,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/news/reply/delete'); ?>",
+          url:"<?= base_url('news/reply/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

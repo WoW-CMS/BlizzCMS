@@ -130,7 +130,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/update'); ?>",
+          url:"<?= base_url('admin/forum/update'); ?>",
           method:"POST",
           data:{id, name, description, icon, type, category},
           dataType:"text",

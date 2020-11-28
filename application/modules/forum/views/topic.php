@@ -168,7 +168,7 @@ endif; ?>
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/forum/topic/reply'); ?>",
+          url:"<?= base_url('forum/topic/reply'); ?>",
           method:"POST",
           data:{topic, reply},
           dataType:"text",
@@ -215,7 +215,7 @@ endif; ?>
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/forum/topic/reply/delete'); ?>",
+          url:"<?= base_url('forum/topic/reply/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

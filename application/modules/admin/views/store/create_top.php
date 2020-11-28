@@ -53,7 +53,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/top/add'); ?>",
+          url:"<?= base_url('admin/store/top/add'); ?>",
           method:"POST",
           data:{item},
           dataType:"text",

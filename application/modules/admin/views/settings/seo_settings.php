@@ -113,7 +113,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/seo/update'); ?>",
+          url:"<?= base_url('admin/settings/seo/update'); ?>",
           method:"POST",
           data:{meta, description, keywords, twitter, graph},
           dataType:"text",

@@ -71,7 +71,6 @@ class Forum extends MX_Controller
 		$data = array(
 			'idlink' => $id,
 			'pagetitle' => lang('tab_forum'),
-			'lang' => $this->lang->lang(),
 			'tiny' => $tiny
 		);
 
@@ -88,7 +87,6 @@ class Forum extends MX_Controller
 		$data = array(
 			'idlink' => $idlink,
 			'pagetitle' => lang('tab_forum'),
-			'lang' => $this->lang->lang(),
 			'tiny' => $tiny,
 		);
 
