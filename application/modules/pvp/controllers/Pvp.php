@@ -19,10 +19,11 @@ class Pvp extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_pvp_statistics'),
+		$data = [
 			'realms' => $this->realm->getRealms()->result()
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_pvp_statistics'));
 
 		$this->template->build('index', $data);
 	}

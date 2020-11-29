@@ -25,10 +25,11 @@ class Page extends MX_Controller
 		if ($this->page_model->getVerifyExist($uri) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'uri' => $uri,
-			'pagetitle' => $this->page_model->getName($uri),
-		);
+		$data = [
+			'uri' => $uri
+		];
+
+		$this->template->title(config_item('app_name'), $this->page_model->getName($uri));
 
 		$this->template->build('index', $data);
 	}

@@ -22,10 +22,11 @@ class Vote extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_vote'),
-			'voteList' => $this->vote_model->getVotes(),
-		);
+		$data = [
+			'voteList' => $this->vote_model->getVotes()
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_vote'));
 
 		$this->template->build('index', $data);
 	}

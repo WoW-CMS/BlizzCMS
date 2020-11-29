@@ -20,11 +20,9 @@ class Forum extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_forum'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_forum'));
 
-		$this->template->build('index', $data);
+		$this->template->build('index');
 	}
 
 	public function category($id)
@@ -37,16 +35,17 @@ class Forum extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
+		$data = [
 			'idlink' => $id,
-			'pagetitle' => lang('tab_forum'),
 			'tiny' => $tiny
-		);
+		];
 
 		if ($this->forum_model->getType($id) == 2 && $this->website->isLogged())
 			if ($this->website->getRank($this->session->userdata('id')) > 0) { }
 		else
 			redirect(base_url('forum'),'refresh');
+
+		$this->template->title(config_item('app_name'), lang('tab_forum'));
 
 		$this->template->build('category', $data);
 	}
@@ -66,11 +65,12 @@ class Forum extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
+		$data = [
 			'idlink' => $id,
-			'pagetitle' => lang('tab_forum'),
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_forum'));
 
 		$this->template->build('topic', $data);
 	}
@@ -82,11 +82,12 @@ class Forum extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
+		$data = [
 			'idlink' => $idlink,
-			'pagetitle' => lang('tab_forum'),
-			'tiny' => $tiny,
-		);
+			'tiny' => $tiny
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_forum'));
 
 		$this->template->build('new_topic', $data);
 	}

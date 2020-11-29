@@ -22,32 +22,22 @@ class User extends MX_Controller
 		if ($this->website->isLogged())
 			redirect(base_url(),'refresh');
 
+		$this->template->title(config_item('app_name'), lang('tab_login'));
+
 		if ($this->base->getExpansionAction() == 1)
 		{
-			if($this->base->getEmulatorAction() == 1){
-				$data = array(
-					'pagetitle' => lang('tab_login'),
-					'recapKey' => config_item('recaptcha_sitekey')
-				);
-	
-				$this->template->build('login2', $data);
-			}else{
-			
-				$data = array(
-				'pagetitle' => lang('tab_login'),
-				'recapKey' => config_item('recaptcha_sitekey')
-			);
-				$this->template->build('login1', $data);
+			if ($this->base->getEmulatorAction() == 1)
+			{
+				$this->template->build('login2');
+			}
+			else
+			{
+				$this->template->build('login1');
 			}
 		}
 		else
 		{
-			$data = array(
-				'pagetitle' => lang('tab_login'),
-				'recapKey' => config_item('recaptcha_sitekey')
-			);
-
-			$this->template->build('login2', $data);
+			$this->template->build('login2');
 		}
 	}
 
@@ -65,19 +55,14 @@ class User extends MX_Controller
 		echo $this->user_model->checkloginbattle($email, $password);
 	}
 
-
-
 	public function register()
 	{
 		if ($this->website->isLogged())
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('tab_register'),
-			'recapKey' => config_item('recaptcha_sitekey'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_register'));
 
-		$this->template->build('register', $data);
+		$this->template->build('register');
 	}
 
 	public function newaccount()
@@ -100,12 +85,9 @@ class User extends MX_Controller
 		if ($this->website->isLogged())
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('tab_reset'),
-			'recapKey' => config_item('recaptcha_sitekey'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_reset'));
 
-		$this->template->build('recovery', $data);
+		$this->template->build('recovery');
 	}
 
 	public function forgotpassword()
@@ -125,11 +107,9 @@ class User extends MX_Controller
 		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('tab_account'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_account'));
 
-		$this->template->build('panel', $data);
+		$this->template->build('panel');
 	}
 
 	public function settings()
@@ -137,11 +117,9 @@ class User extends MX_Controller
 		if (!$this->website->isLogged())
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('tab_account'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_account'));
 
-		$this->template->build('settings', $data);
+		$this->template->build('settings');
 	}
 
 	public function newusername()

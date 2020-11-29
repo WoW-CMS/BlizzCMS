@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= config_item('website_name'); ?> - <?= $pagetitle ?></title>
+    <title><?= $template['title']; ?></title>
     <link rel="icon" type="image/x-icon" href="<?= $template['assets'].'images/favicon.ico'; ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'uikit/css/uikit.min.css'; ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'amaranjs/css/amaran.min.css'; ?>">
@@ -86,7 +86,7 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php foreach ($this->base->getMenuChild($menulist->id) as $menuchildlist): ?>
+                    <?php foreach ($this->base->get_parent_menu($menulist->id) as $menuchildlist): ?>
                       <li>
                         <?php if($menuchildlist->type == '1'): ?>
                         <a href="<?= base_url($menuchildlist->url); ?>">
@@ -164,7 +164,7 @@
                     <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                   </a>
                   <ul class="uk-nav-sub">
-                    <?php foreach ($this->base->getMenuChild($menulist->id) as $menuchildlist): ?>
+                    <?php foreach ($this->base->get_parent_menu($menulist->id) as $menuchildlist): ?>
                     <li>
                       <?php if($menuchildlist->type == '1'): ?>
                       <a href="<?= base_url($menuchildlist->url); ?>">

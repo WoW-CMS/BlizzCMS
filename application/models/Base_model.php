@@ -4,15 +4,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Base_model extends CI_Model
 {
 	protected $menu = 'menu';
+	protected $slides = 'slides';
 
+	/**
+	 * Get all rows of menu
+	 *
+	 * @return array
+	 */
 	public function get_menu()
 	{
+		if (! $this->db->table_exists($this->menu))
+		{
+			return [];
+		}
+
 		return $this->db->get($this->menu)->result();
 	}
 
-	public function getMenuChild($id)
+	/**
+	 * Get rows of parent menu
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	public function get_parent_menu($id)
 	{
 		return $this->db->where('child', $id)->get($this->menu)->result();
+	}
+
+	/**
+	 * Get all rows of slides
+	 *
+	 * @return arrau
+	 */
+	public function get_slides()
+	{
+		if (! $this->db->table_exists($this->slides))
+		{
+			return [];
+		}
+
+		return $this->db->get($this->slides)->result();
 	}
 
 	public function getUserInfoGeneral($id)

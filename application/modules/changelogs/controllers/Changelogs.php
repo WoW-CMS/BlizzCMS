@@ -22,10 +22,8 @@ class Changelogs extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_changelogs'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_changelogs'));
 
-		$this->template->build('index', $data);
+		$this->template->build('index');
 	}
 }

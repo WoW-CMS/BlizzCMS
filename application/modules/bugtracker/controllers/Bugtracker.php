@@ -58,10 +58,11 @@ class Bugtracker extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('tab_bugtracker'),
+		$data = [
 			'tiny' => $tiny,
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
 
 		$this->template->build('new_report', $data);
 	}
@@ -71,10 +72,11 @@ class Bugtracker extends MX_Controller
 		if (empty($id) || is_null($id) || $id == '0')
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'idlink' => $id,
-			'pagetitle' => lang('tab_bugtracker'),
-		);
+		$data = [
+			'idlink' => $id
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
 
 		$this->template->build('report', $data);
 	}

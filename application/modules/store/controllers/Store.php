@@ -22,11 +22,9 @@ class Store extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_store')
-		);
+		$this->template->title(config_item('app_name'), lang('tab_store'));
 
-		$this->template->build('index', $data);
+		$this->template->build('index');
 	}
 
 	public function category($route)
@@ -37,21 +35,20 @@ class Store extends MX_Controller
 		if ($this->store_model->getCategoryExist($route) < 1)
 			redirect(base_url('store'),'refresh');
 
-		$data = array(
-			'route' => $route,
-			'pagetitle' => lang('tab_store').' | '.$this->store_model->getCategoryName($route)
-		);
+		$data = [
+			'route' => $route
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_store'));
 
 		$this->template->build('category', $data);
 	}
 
 	public function cart()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_cart')
-		);
+		$this->template->title(config_item('app_name'), lang('tab_cart'));
 
-		$this->template->build('cart', $data);
+		$this->template->build('cart');
 	}
 
 	public function addtocart()

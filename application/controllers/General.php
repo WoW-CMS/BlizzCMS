@@ -11,25 +11,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class General extends CI_Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function error404()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_error'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_error'));
 
-		$this->template->build('404', $data);
+		$this->template->build('404');
 	}
 
 	public function maintenance()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_maintenance'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_maintenance'));
 
 		$this->template->build('maintenance', $data);
 	}

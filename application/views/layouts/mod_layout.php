@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= config_item('website_name'); ?> - <?= $pagetitle ?></title>
+    <title><?= $template['title']; ?></title>
     <link rel="icon" type="image/x-icon" href="<?= $template['assets'].'images/favicon.ico' ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'uikit/css/uikit.min.css' ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'amaranjs/css/amaran.min.css'; ?>">

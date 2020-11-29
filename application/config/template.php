@@ -32,10 +32,10 @@ $config['parser_body_enabled'] = FALSE;
  *
  * What string should be used to separate title segments sent via $this->template->title('Foo', 'Bar');
  *
- * Default: ' | '
+ * Default: ' – '
  *
 */
-$config['title_separator'] = ' | ';
+$config['title_separator'] = ' – ';
 
 /**
  *

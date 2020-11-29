@@ -26,11 +26,12 @@ class News extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
+		$data = [
 			'idlink' => $id,
-			'pagetitle' => lang('tab_news'),
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_news'));
 
 		$this->template->build('article', $data);
 	}

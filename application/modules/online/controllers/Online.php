@@ -19,10 +19,11 @@ class Online extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_online'),
+		$data = [
 			'realms' => $this->realm->getRealms()->result()
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('tab_online'));
 
 		$this->template->build('index', $data);
 	}

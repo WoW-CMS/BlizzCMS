@@ -28,11 +28,9 @@ class Donate extends MX_Controller
 	
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_donate'),
-		);
+		$this->template->title(config_item('app_name'), lang('tab_donate'));
 
-		$this->template->build('index', $data);
+		$this->template->build('index');
 	}
 
 	public function check($id)
