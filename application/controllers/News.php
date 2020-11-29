@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class News extends CI_Controller
 {
-	public function index($id)
+	public function index($id = null)
 	{
 		if (empty($id) || ! $this->base->find_news($id))
 		{
