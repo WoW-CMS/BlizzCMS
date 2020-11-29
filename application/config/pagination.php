@@ -1,30 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * Pagination Config
+ * BlizzCMS
  *
- * Applying codeigniter's standard pagination config with twitter 
- * bootstrap stylings
- *
- * @author      TechArise Team
- * @link        http://codeigniter.com/user_guide/libraries/pagination.html
- * @email       info@techarise.com
- *
- * @file        pagination.php
- * @version     1.0.0.1
- * @date        24/09/2017
- *
- * Copyright (c) 2017
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://wow-cms.com
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['per_page'] = 25;
-$config['num_links'] = 2;
+$config['page_query_string'] = TRUE;
+$config['query_string_segment'] = 'page';
 
-$config['use_page_numbers'] = TRUE;
-$config['page_query_string'] = FALSE;
-
-$config['query_string_segment'] = '';
-$config['full_tag_open'] = '<ul class="pagination uk-pagination uk-flex-right uk-margin">';
+$config['full_tag_open'] = '<ul class="pagination uk-pagination uk-margin">';
 $config['full_tag_close'] = '</ul>';
 
 $config['first_link'] = '&laquo; First';

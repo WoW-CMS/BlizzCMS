@@ -533,7 +533,7 @@ ul.uk-nav-sub {
   background: rgba(223, 232, 240, .2);
 }
 
-.uk-pagination > * {
+.uk-pagination > :nth-child(n+2) {
   padding-left: 8px;
 }
 

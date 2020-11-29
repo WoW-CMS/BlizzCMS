@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Base_model extends CI_Model
 {
 	protected $menu = 'menu';
+	protected $news = 'news';
+	protected $news_comments = 'news_comments';
 	protected $slides = 'slides';
 
 	/**
@@ -25,7 +27,7 @@ class Base_model extends CI_Model
 	 * Get rows of parent menu
 	 *
 	 * @param int $id
-	 * @return array
+	 * @return object
 	 */
 	public function get_parent_menu($id)
 	{
@@ -35,7 +37,7 @@ class Base_model extends CI_Model
 	/**
 	 * Get all rows of slides
 	 *
-	 * @return arrau
+	 * @return array
 	 */
 	public function get_slides()
 	{
@@ -45,6 +47,65 @@ class Base_model extends CI_Model
 		}
 
 		return $this->db->get($this->slides)->result();
+	}
+
+	/**
+	 * Get a news row
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_news($id)
+	{
+		return $this->db->where('id', $id)->get($this->news)->row();
+	}
+
+	/**
+	 * Find if the news exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_news($id)
+	{
+		$query = $this->db->where('id', $id)->get($this->news)->num_rows();
+
+		return ($query == 1);
+	}
+
+	/**
+	 * Get all comments of a news
+	 *
+	 * @param int $id
+	 * @param int $limit
+	 * @param int $start
+	 * @return array
+	 */
+	public function get_news_comments($id, $limit, $start)
+	{
+		return $this->db->where('id_new', $id)->order_by('date', 'ASC')->limit($limit, $start)->get($this->news_comments)->result();
+	}
+
+	/**
+	 * Count all comments of a news
+	 *
+	 * @param int $id
+	 * @return int
+	 */
+	public function count_news_comments($id)
+	{
+		return $this->db->where('id_new', $id)->count_all_results($this->news_comments);
+	}
+
+	/**
+	 * Get news list
+	 *
+	 * @param int $limit
+	 * @return array
+	 */
+	public function get_news_list($limit = 5)
+	{
+		return $this->db->order_by('id', 'DESC')->limit($limit)->get($this->news)->result();
 	}
 
 	public function getUserInfoGeneral($id)

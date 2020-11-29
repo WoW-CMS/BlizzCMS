@@ -47,7 +47,7 @@
                     <div class="uk-width-2-3@s uk-card-body">
                       <h5 class="uk-h5 uk-text-bold uk-margin-small"><?= $article->title ?></h5>
                       <p class="uk-text-small uk-margin-small"><?= mb_substr(ucfirst(strtolower(strip_tags($article->description))), 0, 160, "UTF-8").' ...'; ?></p>
-                      <p class="uk-text-small uk-margin-remove uk-text-right"><i class="far fa-comment-alt"></i> <?= $this->news_model->getCommentCount($article->id); ?> <?= lang('news_comments'); ?></p>
+                      <p class="uk-text-small uk-margin-remove uk-text-right"><i class="far fa-comment-alt"></i> <?= $this->base->count_news_comments($article->id); ?> <?= lang('news_comments'); ?></p>
                     </div>
                   </div>
                 </a>

@@ -721,7 +721,7 @@ h6,
   font-size: .875rem;
 }
 
-.uk-pagination > * {
+.uk-pagination > :nth-child(n+2) {
   padding-left: 8px;
 }
 

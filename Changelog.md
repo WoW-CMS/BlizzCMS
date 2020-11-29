@@ -28,6 +28,7 @@
 - Use ``config_item()`` instead ``$this->config->item()``
 - Use ``$template['title']`` in HTML title tag
 - Move home module to main controllers
+- Move news module to main controllers
 
 ### Bugs Fixed
 
@@ -46,3 +47,4 @@
 - Deprecated ``$this->base->getMenu()`` in favor of ``$this->base->get_menu()``
 - Deprecated ``$this->base->getMenuChild()`` in favor of ``$this->base->get_parent_menu()``
 - Deprecated ``$this->home_model->getSlides()`` in favor of ``$this->base->get_slides()``
+- Deprecated ``$this->news_model->getCommentCount()`` in favor of $this->base->count_news_comments()``
