@@ -6,10 +6,11 @@ class Base_model extends CI_Model
 	protected $menu = 'menu';
 	protected $news = 'news';
 	protected $news_comments = 'news_comments';
+	protected $pages = 'pages';
 	protected $slides = 'slides';
 
 	/**
-	 * Get all rows of menu
+	 * Get all menu rows
 	 *
 	 * @return array
 	 */
@@ -24,10 +25,10 @@ class Base_model extends CI_Model
 	}
 
 	/**
-	 * Get rows of parent menu
+	 * Get all parent menu rows
 	 *
 	 * @param int $id
-	 * @return object
+	 * @return array
 	 */
 	public function get_parent_menu($id)
 	{
@@ -35,7 +36,7 @@ class Base_model extends CI_Model
 	}
 
 	/**
-	 * Get all rows of slides
+	 * Get all slides rows
 	 *
 	 * @return array
 	 */
@@ -50,7 +51,7 @@ class Base_model extends CI_Model
 	}
 
 	/**
-	 * Get a news row
+	 * Get news
 	 *
 	 * @param int $id
 	 * @return object
@@ -106,6 +107,30 @@ class Base_model extends CI_Model
 	public function get_news_list($limit = 5)
 	{
 		return $this->db->order_by('id', 'DESC')->limit($limit)->get($this->news)->result();
+	}
+
+	/**
+	 * Get page
+	 *
+	 * @param string $uri
+	 * @return object
+	 */
+	public function get_page($uri)
+	{
+		return $this->db->where('uri_friendly', $uri)->get($this->pages)->row();
+	}
+
+	/**
+	 * Find if the page exists
+	 *
+	 * @param string $uri
+	 * @return boolean
+	 */
+	public function find_page($uri)
+	{
+		$query = $this->db->where('uri_friendly', $uri)->get($this->pages)->num_rows();
+
+		return ($query == 1);
 	}
 
 	public function getUserInfoGeneral($id)
