@@ -32,7 +32,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" id="project_name" value="<?= config_item('website_name'); ?>" required>
+                          <input class="uk-input" type="text" id="project_name" value="<?= config_item('app_name'); ?>">
                         </div>
                       </div>
                     </div>
@@ -41,7 +41,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mouse-pointer"></i></span>
-                          <input class="uk-input" type="text" id="realmlist" value="<?= config_item('realmlist'); ?>" required>
+                          <input class="uk-input" type="text" id="realmlist" value="<?= config_item('realmlist'); ?>">
                         </div>
                       </div>
                     </div>
@@ -54,7 +54,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-columns"></i></span>
-                          <input class="uk-input" type="text" id="theme_name" value="<?= config_item('theme_name'); ?>" required>
+                          <input class="uk-input" type="text" id="theme_name" value="<?= config_item('theme_name'); ?>">
                         </div>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="far fa-clock"></i></span>
-                          <input class="uk-input" type="text" id="time_zone" value="<?= config_item('timezone'); ?>" required>
+                          <input class="uk-input" type="text" id="time_zone" value="<?= config_item('timezone'); ?>">
                         </div>
                       </div>
                     </div>
@@ -85,7 +85,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-discord"></i></span>
-                          <input class="uk-input" type="text" id="discord_invitation" pattern=".{,7}" value="<?= config_item('discord_invitation'); ?>" required>
+                          <input class="uk-input" type="text" id="discord_invitation" value="<?= config_item('discord_server_id'); ?>">
                         </div>
                       </div>
                     </div>
@@ -98,7 +98,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-facebook-f"></i></span>
-                          <input class="uk-input" type="url" id="social_facebook" value="<?= config_item('social_facebook'); ?>">
+                          <input class="uk-input" type="url" id="social_facebook" value="<?= config_item('facebook_url'); ?>">
                         </div>
                       </div>
                     </div>
@@ -107,7 +107,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-twitter"></i></span>
-                          <input class="uk-input" type="url" id="social_twitter" value="<?= config_item('social_twitter'); ?>">
+                          <input class="uk-input" type="url" id="social_twitter" value="<?= config_item('twitter_url'); ?>">
                         </div>
                       </div>
                     </div>
@@ -120,7 +120,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-youtube"></i></span>
-                          <input class="uk-input" type="url" id="social_youtube" value="<?= config_item('social_youtube'); ?>">
+                          <input class="uk-input" type="url" id="social_youtube" value="<?= config_item('youtube_url'); ?>">
                         </div>
                       </div>
                     </div>

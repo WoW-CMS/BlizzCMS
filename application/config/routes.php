@@ -53,8 +53,9 @@ $route['default_controller'] = 'home';
 $route['404_override'] = 'general/error404';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['confmigrate'] = 'home/setconfig';
-$route['dbmigrate'] = 'home/migrateNow';
+$route['install']['get'] = 'installer/index';
+$route['install/settings'] = 'installer/settings';
+$route['install/finish']['get'] = 'installer/finish';
 
 /*User*/
 $route['login']['get'] = 'user/login';

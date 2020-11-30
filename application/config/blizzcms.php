@@ -1,23 +1,13 @@
 <?php
+/**
+ * BlizzCMS
+ *
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://wow-cms.com
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-/**
- *
- * Website Name
- *
- * Write the name of your website this will appear by default.
- *
-*/
-$config['website_name'] = '';
-
-/**
- *
- * Invitation Discord
- *
- * Write the invitation of your discord channel.
- *
-*/
-$config['discord_invitation'] = '';
 
 /**
  *
@@ -57,23 +47,3 @@ $config['expansion'] = '';
  *
 */
 $config['theme_name'] = '';
-
-/**
- *
- * Social Links
- *
- * Write the links for redirect to your social networks.
- *
-*/
-$config['social_facebook'] = '';
-$config['social_twitter'] = '';
-$config['social_youtube'] = '';
-
-/**
- *
- * Migrate Status
- *
- * Warning: Don't change this configuration.
- *
-*/
-$config['migrate_status'] = '1';

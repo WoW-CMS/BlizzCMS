@@ -36,10 +36,6 @@
  * @filesource
  */
 
-if(file_exists("migration/index.php")):
-    header("Location: migration");
-    die();
-endif;
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

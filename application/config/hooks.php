@@ -17,3 +17,10 @@ $hook['post_controller_constructor'][] = array(
 	'filename' => 'Settings.php',
 	'filepath' => 'hooks'
 );
+
+$hook['post_controller_constructor'][] = array(
+	'class' => 'Installer',
+	'function' => 'initialize',
+	'filename' => 'Installer.php',
+	'filepath' => 'hooks'
+);

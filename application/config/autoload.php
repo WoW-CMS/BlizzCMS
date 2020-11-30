@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'pagination', 'template', 'cart');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'pagination', 'template', 'encryption', 'cart');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language', '
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('blizzcms', 'plus', 'seo');
+$autoload['config'] = array('installer', 'blizzcms', 'plus');
 
 /*
 | -------------------------------------------------------------------

@@ -261,21 +261,21 @@ class Base_model extends CI_Model
 		$this->load->library('email');
 
 		$this->email->initialize([
-			'protocol'    => 'smtp',
-			'smtp_host'   => config_item('smtp_host'),
-			'smtp_user'   => config_item('smtp_user'),
-			'smtp_pass'   => config_item('smtp_pass'),
-			'smtp_port'   => config_item('smtp_port'),
-			'smtp_crypto' => config_item('smtp_crypto'),
+			'protocol'    => config_item('email_protocol'),
+			'smtp_host'   => config_item('email_hostname'),
+			'smtp_user'   => config_item('email_username'),
+			'smtp_pass'   => config_item('email_password'),
+			'smtp_port'   => config_item('email_port'),
+			'smtp_crypto' => config_item('email_crypto'),
 			'mailtype'    => 'html',
 			'charset'     => 'utf-8'
 		]);
 
-		$this->email->set_mailtype("html");
+		$this->email->set_mailtype('html');
 		$this->email->set_newline("\r\n");
 
 		$this->email->to($to);
-		$this->email->from(config_item('email_settings_sender'), config_item('email_settings_sender_name'));
+		$this->email->from(config_item('email_sender'), config_item('email_sender_name'));
 		$this->email->subject($subject);
 		$this->email->message($message);
 

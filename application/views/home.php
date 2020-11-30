@@ -100,10 +100,12 @@
             <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
               <i class="fas fa-gamepad"></i> <?= config_item('realmlist'); ?>
             </h5>
+            <?php if (! empty(config_item('discord_server_id'))): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= lang('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
-              <iframe src="https://discordapp.com/widget?id=<?= config_item('discord_invitation') ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
+              <iframe src="https://discordapp.com/widget?id=<?= config_item('discord_server_id'); ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
             </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>

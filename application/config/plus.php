@@ -1,4 +1,12 @@
 <?php
+/**
+ * BlizzCMS
+ *
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://wow-cms.com
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -11,42 +19,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
 */
 $config['recaptcha_sitekey'] = '';
-
-/**
- *
- * SMTP
- *
- * Write the necessary information for use SMTP to use in recovery password
- * and account activation.
- *
-*/
-$config['smtp_host'] = '';
-$config['smtp_user'] = '';
-$config['smtp_pass'] = '';
-$config['smtp_port'] = '465';
-$config['smtp_crypto'] = 'ssl';
-
-/**
- *
- * Email Settings
- *
- * Write the necessary information to use in sending emails.
- *
-*/
-$config['email_settings_sender'] = '';
-$config['email_settings_sender_name'] = '';
-
-/**
- *
- * Account Activation
- *
- * Enable or Disable the option to activate accounts by email.
- *
- * TRUE  = Enable
- * FALSE = Disable
- *
-*/
-$config['account_activation_required'] = FALSE;
 
 /**
  *

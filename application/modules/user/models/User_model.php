@@ -284,7 +284,7 @@ class User_model extends CI_Model
 				if(strlen($password) >= 5 && strlen($password) <= 16 || strlen($repassword) >= 5 && strlen($repassword) <= 16) {
 					if($password == $repassword)
 					{
-						if(config_item('account_activation_required') == TRUE)
+						if(config_item('register_validation') == TRUE)
 						{
 							$data = array(
 								'username' => $username,
