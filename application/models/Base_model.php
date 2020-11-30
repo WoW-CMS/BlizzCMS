@@ -268,11 +268,9 @@ class Base_model extends CI_Model
 			'smtp_port'   => config_item('email_port'),
 			'smtp_crypto' => config_item('email_crypto'),
 			'mailtype'    => 'html',
-			'charset'     => 'utf-8'
+			'charset'     => 'utf-8',
+			'newline'     => "\r\n"
 		]);
-
-		$this->email->set_mailtype('html');
-		$this->email->set_newline("\r\n");
 
 		$this->email->to($to);
 		$this->email->from(config_item('email_sender'), config_item('email_sender_name'));

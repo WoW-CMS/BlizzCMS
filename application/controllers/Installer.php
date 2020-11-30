@@ -19,6 +19,8 @@ class Installer extends CI_Controller
 		{
 			show_404();
 		}
+
+		$this->lang->load('installer');
 	}
 
 	/**
@@ -39,15 +41,15 @@ class Installer extends CI_Controller
 
 		$data = [
 			'requirements' => [
-				['requirement' => lang('in_php_version'), 'enable' => $version],
-				['requirement' => lang('in_gd_extension'), 'enable' => $gd_ext],
-				['requirement' => lang('in_gmp_extension'), 'enable' => $gmp_ext],
-				['requirement' => lang('in_curl_extension'), 'enable' => $curl_ext],
-				['requirement' => lang('in_mbstring_extension'), 'enable' => $mbstring_ext],
-				['requirement' => lang('in_mysql_extension'), 'enable' => $mysql_ext],
-				['requirement' => lang('in_openssl_extension'), 'enable' => $openssl_ext],
-				['requirement' => lang('in_soap_extension'), 'enable' => $soap_ext],
-				['requirement' => lang('in_cache_writable'), 'enable' => $cache]
+				['requirement' => lang('php_version'), 'enable' => $version],
+				['requirement' => lang('gd_extension'), 'enable' => $gd_ext],
+				['requirement' => lang('gmp_extension'), 'enable' => $gmp_ext],
+				['requirement' => lang('curl_extension'), 'enable' => $curl_ext],
+				['requirement' => lang('mbstring_extension'), 'enable' => $mbstring_ext],
+				['requirement' => lang('mysql_extension'), 'enable' => $mysql_ext],
+				['requirement' => lang('openssl_extension'), 'enable' => $openssl_ext],
+				['requirement' => lang('soap_extension'), 'enable' => $soap_ext],
+				['requirement' => lang('cache_writable'), 'enable' => $cache]
 			],
 			'button' => $button
 		];
@@ -125,7 +127,7 @@ class Installer extends CI_Controller
 
 					if (! $rewriteDB)
 					{
-						$this->session->set_flashdata('error', lang('in_settings_config_error'));
+						$this->session->set_flashdata('error', lang('settings_config_error'));
 						return $this->load->view('installer/settings');
 					}
 
@@ -142,7 +144,7 @@ class Installer extends CI_Controller
 					redirect(site_url('install/finish'));
 				}
 
-				$this->session->set_flashdata('error', lang('in_settings_db_error'));
+				$this->session->set_flashdata('error', lang('settings_db_error'));
 				$this->load->view('installer/settings');
 			}
 		}

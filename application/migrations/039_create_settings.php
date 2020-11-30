@@ -42,7 +42,11 @@ class Migration_Create_settings extends CI_Migration
 			array('key' => 'email_port', 'value' => '25'),
 			array('key' => 'email_crypto', 'value' => 'tls'),
 			array('key' => 'email_sender', 'value' => NULL),
-			array('key' => 'email_sender_name', 'value' => NULL)
+			array('key' => 'email_sender_name', 'value' => NULL),
+			array('key' => 'realmlist', 'value' => NULL),
+			array('key' => 'expansion', 'value' => 0),
+			array('key' => 'admin_access_level', 'value' => 3),
+			array('key' => 'mod_access_level', 'value' => 2)
 		);
 		$this->db->insert_batch('settings', $data);
 	}

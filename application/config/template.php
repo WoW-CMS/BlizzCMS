@@ -61,7 +61,7 @@ $config['layout'] = 'layout';
  * Default: ''
  *
 */
-$config['theme'] = config_item('theme_name');
+$config['theme'] = '';
 
 /**
  *

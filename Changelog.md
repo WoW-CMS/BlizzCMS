@@ -31,6 +31,7 @@
 - Move news module to main controllers
 - Move page module to main controllers
 - Override function ``show_404()``
+- Add new installer
 
 ### Bugs Fixed
 
