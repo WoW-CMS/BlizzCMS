@@ -25,10 +25,12 @@ class Forum extends MX_Controller
 		$this->template->build('index');
 	}
 
-	public function category($id)
+	public function category($id = null)
 	{
-		if (empty($id) || is_null($id))
-			redirect(base_url('forum'),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
@@ -50,10 +52,12 @@ class Forum extends MX_Controller
 		$this->template->build('category', $data);
 	}
 
-	public function topic($id)
+	public function topic($id = null)
 	{
-		if (empty($id) || is_null($id))
-			redirect(base_url('forum'),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->website->isLogged())
 			if ($this->website->getRank($this->session->userdata('id')) > 0) { }
@@ -75,8 +79,13 @@ class Forum extends MX_Controller
 		$this->template->build('topic', $data);
 	}
 
-	public function newtopic($idlink)
+	public function newtopic($idlink = null)
 	{
+		if (empty($idlink))
+		{
+			show_404();
+		}
+
 		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
@@ -94,8 +103,10 @@ class Forum extends MX_Controller
 
 	public function reply()
 	{
-		if (!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 
 		$ssesid = $this->session->userdata('id');
 		$topicid = $this->input->post('topic');
@@ -105,8 +116,10 @@ class Forum extends MX_Controller
 
 	public function deletereply()
 	{
-		if (!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 
 		$id = $this->input->post('value');
 		echo $this->forum_model->removeComment($id);
@@ -115,7 +128,9 @@ class Forum extends MX_Controller
 	public function addtopic()
 	{
 		if (!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		{
+			redirect('login');
+		}
 
 		$category = $this->input->post('category');
 		$title = $this->input->post('title');

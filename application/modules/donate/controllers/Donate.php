@@ -22,10 +22,12 @@ class Donate extends MX_Controller
 		$this->load->model('donate_model');
 		$this->load->config('donate');
 
-		if(!$this->website->isLogged())
-			redirect(base_url('login'),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 	}
-	
+
 	public function index()
 	{
 		$this->template->title(config_item('app_name'), lang('tab_donate'));

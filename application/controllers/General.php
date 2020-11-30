@@ -17,11 +17,4 @@ class General extends CI_Controller
 
 		$this->template->build('404');
 	}
-
-	public function maintenance()
-	{
-		$this->template->title(config_item('app_name'), lang('tab_maintenance'));
-
-		$this->template->build('maintenance', $data);
-	}
 }

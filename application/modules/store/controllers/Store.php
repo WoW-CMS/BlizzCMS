@@ -16,8 +16,10 @@ class Store extends MX_Controller
 		parent::__construct();
 		$this->load->model('store_model');
 
-		if (!$this->website->isLogged())
-			redirect(base_url('login'),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 	}
 
 	public function index()
@@ -27,10 +29,12 @@ class Store extends MX_Controller
 		$this->template->build('index');
 	}
 
-	public function category($route)
+	public function category($route = null)
 	{
-		if (empty($route) || is_null($route) || $route == NULL)
-			redirect(base_url('store'),'refresh');
+		if (empty($route))
+		{
+			show_404();
+		}
 
 		if ($this->store_model->getCategoryExist($route) < 1)
 			redirect(base_url('store'),'refresh');

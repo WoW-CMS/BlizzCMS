@@ -19,14 +19,20 @@ class Admin extends MX_Controller
 		$this->config->load('donate/donate');
 		$this->config->load('bugtracker/bugtracker');
 
-		if(!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 
-		if(!$this->website->getIsAdmin())
-			redirect(base_url(),'refresh');
+		if (! $this->website->getIsAdmin())
+		{
+			redirect('panel');
+		}
 
-		if($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
-			redirect(base_url(),'refresh');
+		if ($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
+		{
+			redirect('panel');
+		}
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');
@@ -34,11 +40,9 @@ class Admin extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('index', $data);
+		$this->template->build('index');
 	}
 
 	/**
@@ -46,11 +50,9 @@ class Admin extends MX_Controller
 	 */
 	public function settings()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('settings/general_settings', $data);
+		$this->template->build('settings/general_settings');
 	}
 
 	public function updatesettings()
@@ -69,11 +71,9 @@ class Admin extends MX_Controller
 
 	public function optionalsettings()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('settings/optional_settings', $data);
+		$this->template->build('settings/optional_settings');
 	}
 
 	public function updateoptionalsettings()
@@ -94,11 +94,9 @@ class Admin extends MX_Controller
 
 	public function seosettings()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('settings/seo_settings', $data);
+		$this->template->build('settings/seo_settings');
 	}
 
 	public function updateseosettings()
@@ -118,10 +116,11 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('settings/module_settings', $data);
 	}
@@ -143,11 +142,9 @@ class Admin extends MX_Controller
 
 	public function managemodules()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('settings/manage_modules', $data);
+		$this->template->build('settings/manage_modules');
 	}
 
 	public function enablemodule()
@@ -164,11 +161,9 @@ class Admin extends MX_Controller
 
 	public function cmsmanage()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('update/manage_updates', $data);
+		$this->template->build('update/manage_updates');
 	}
 
 	public function updatecms()
@@ -181,10 +176,6 @@ class Admin extends MX_Controller
 	 */
 	public function accounts()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-		);
-
 		$config['total_rows'] = $this->admin_model->countAccounts();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -206,37 +197,45 @@ class Admin extends MX_Controller
 			$data['accountsList'] = $this->admin_model->accountsList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('account/accounts', $data);
 	}
 
-	public function accountmanage($id)
+	public function accountmanage($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getAccountExist($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('account/manage_account', $data);
 	}
 
-	public function accountdonatelogs($id)
+	public function accountdonatelogs($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getAccountExist($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('account/manage_donate_logs', $data);
 	}
@@ -280,34 +279,33 @@ class Admin extends MX_Controller
 	 */
 	public function managemenu()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('menu/manage_menu', $data);
+		$this->template->build('menu/manage_menu');
 	}
 
 	public function createmenu()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('menu/create_menu', $data);
+		$this->template->build('menu/create_menu');
 	}
 
-	public function editmenu($id)
+	public function editmenu($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getMenuSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('menu/edit_menu', $data);
 	}
@@ -343,10 +341,6 @@ class Admin extends MX_Controller
 
 	public function managerealms()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countRealms();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -368,30 +362,33 @@ class Admin extends MX_Controller
 			$data['realmsList'] = $this->admin_model->realmsList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('realm/manage_realms', $data);
 	}
 
 	public function createrealm()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('realm/create_realm', $data);
+		$this->template->build('realm/create_realm');
 	}
 
-	public function editrealm($id)
+	public function editrealm($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getRealmsSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('realm/edit_realm', $data);
 	}
@@ -435,10 +432,6 @@ class Admin extends MX_Controller
 
 	public function manageslides()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countSlides();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -460,30 +453,33 @@ class Admin extends MX_Controller
 			$data['slidesList'] = $this->admin_model->slidesList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('slide/manage_slides', $data);
 	}
 
 	public function createslide()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('slide/create_slide', $data);
+		$this->template->build('slide/create_slide');
 	}
 
-	public function editslide($id)
+	public function editslide($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getSlidesSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('slide/edit_slide', $data);
 	}
@@ -515,10 +511,6 @@ class Admin extends MX_Controller
 
 	public function managenews()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countNews();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -540,6 +532,8 @@ class Admin extends MX_Controller
 			$data['newsList'] = $this->admin_model->newsList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('news/manage_news', $data);
 	}
 
@@ -550,18 +544,21 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('news/create_news', $data);
 	}
 
-	public function editnews($id)
+	public function editnews($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getNewsSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
@@ -571,11 +568,12 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id,
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('news/edit_news', $data);
 	}
@@ -588,10 +586,6 @@ class Admin extends MX_Controller
 
 	public function managechangelogs()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countChangelogs();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -613,6 +607,8 @@ class Admin extends MX_Controller
 			$data['changelogsList'] = $this->admin_model->changelogsList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('changelogs/manage_changelogs', $data);
 	}
 
@@ -623,18 +619,21 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('changelogs/create_changelog', $data);
 	}
 
-	public function editchangelog($id)
+	public function editchangelog($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
@@ -644,11 +643,12 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id,
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('changelogs/edit_changelog', $data);
 	}
@@ -676,10 +676,6 @@ class Admin extends MX_Controller
 
 	public function managepages()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countPages();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -701,6 +697,8 @@ class Admin extends MX_Controller
 			$data['pagesList'] = $this->admin_model->pagesList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('page/manage_pages', $data);
 	}
 
@@ -711,18 +709,21 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('page/create_page', $data);
 	}
 
-	public function editpage($id)
+	public function editpage($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getPagesSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
@@ -732,11 +733,12 @@ class Admin extends MX_Controller
 		else
 			$tiny = $this->base->tinyEditor('User');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id,
 			'tiny' => $tiny
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('page/edit_page', $data);
 	}
@@ -766,10 +768,6 @@ class Admin extends MX_Controller
 
 	public function managetopsites()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countTopsites();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -791,30 +789,33 @@ class Admin extends MX_Controller
 			$data['topsitesList'] = $this->admin_model->topsitesList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('vote/manage_topsites', $data);
 	}
 
 	public function createtopsite()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('vote/create_topsite', $data);
+		$this->template->build('vote/create_topsite');
 	}
 
-	public function edittopsite($id)
+	public function edittopsite($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getTopsitesSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('vote/edit_topsite', $data);
 	}
@@ -851,10 +852,6 @@ class Admin extends MX_Controller
 	 */
 	public function managestore()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-		);
-
 		$config['total_rows'] = $this->admin_model->countStoreCategories();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -876,15 +873,13 @@ class Admin extends MX_Controller
 			$data['storecategoryList'] = $this->admin_model->storeCategoryList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('store/manage_store', $data);
 	}
 
 	public function managestoreitems()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-		);
-
 		$config['total_rows'] = $this->admin_model->countStoreItems();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -906,15 +901,13 @@ class Admin extends MX_Controller
 			$data['storeitemList'] = $this->admin_model->storeItemList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('store/manage_items', $data);
 	}
 
 	public function managestoretop()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
-		);
-
 		$config['total_rows'] = $this->admin_model->countStoreTop();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -936,30 +929,33 @@ class Admin extends MX_Controller
 			$data['storetopList'] = $this->admin_model->storeTopList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('store/manage_top', $data);
 	}
 
 	public function createstorecategory()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('store/create_category', $data);
+		$this->template->build('store/create_category');
 	}
 
-	public function editstorecategory($id)
+	public function editstorecategory($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getStoreCategorySpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('store/edit_category', $data);
 	}
@@ -992,25 +988,26 @@ class Admin extends MX_Controller
 
 	public function createstoreitem()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('store/create_item', $data);
+		$this->template->build('store/create_item');
 	}
 
-	public function editstoreitem($id)
+	public function editstoreitem($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getItemSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('store/edit_item', $data);
 	}
@@ -1052,25 +1049,26 @@ class Admin extends MX_Controller
 
 	public function createstoretop()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('store/create_top', $data);
 	}
 
-	public function editstoretop($id)
+	public function editstoretop($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getStoreTopSpecifyRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('store/edit_top', $data);
 	}
@@ -1096,31 +1094,30 @@ class Admin extends MX_Controller
 
 	public function donate()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('donate/manage_methods', $data);
+		$this->template->build('donate/manage_methods');
 	}
 
 	public function createdonateplan()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('donate/create_plan', $data);
+		$this->template->build('donate/create_plan');
 	}
 
-	public function editdonateplan($id)
+	public function editdonateplan($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('donate/edit_plan', $data);
 	}
@@ -1155,10 +1152,6 @@ class Admin extends MX_Controller
 	 */
 	public function manageforum()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countForumCategories();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -1180,15 +1173,13 @@ class Admin extends MX_Controller
 			$data['forumcategoryList'] = $this->admin_model->forumCategoryList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('forum/manage_forum', $data);
 	}
 
 	public function manageforumelements()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
-
 		$config['total_rows'] = $this->admin_model->countForumElements();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -1210,30 +1201,33 @@ class Admin extends MX_Controller
 			$data['forumelementList'] = $this->admin_model->forumElementList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+
 		$this->template->build('forum/manage_elements', $data);
 	}
 
 	public function createforumcategory()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('forum/create_category', $data);
+		$this->template->build('forum/create_category');
 	}
 
-	public function editforumcategory($id)
+	public function editforumcategory($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getSpecifyForumCategoryRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('forum/edit_category', $data);
 	}
@@ -1259,25 +1253,26 @@ class Admin extends MX_Controller
 
 	public function createforum()
 	{
-		$data = array(
-			'pagetitle' => lang('button_admin_panel')
-		);
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
-		$this->template->build('forum/create_forum', $data);
+		$this->template->build('forum/create_forum');
 	}
 
-	public function editforum($id)
+	public function editforum($id = null)
 	{
-		if (is_null($id) || empty($id))
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		if ($this->admin_model->getSpecifyForumRows($id) < 1)
 			redirect(base_url(),'refresh');
 
-		$data = array(
-			'pagetitle' => lang('button_admin_panel'),
+		$data = [
 			'idlink' => $id
-		);
+		];
+
+		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
 
 		$this->template->build('forum/edit_forum', $data);
 	}

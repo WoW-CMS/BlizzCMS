@@ -46,7 +46,9 @@ class News extends CI_Controller
 	public function reply()
 	{
 		if (! $this->website->isLogged())
-			redirect(base_url(),'refresh');
+		{
+			redirect('login');
+		}
 
 		$this->db->insert('news_comments', [
 			'id_new'     => $this->input->post('news', TRUE),
@@ -61,7 +63,9 @@ class News extends CI_Controller
 	public function deletereply()
 	{
 		if (! $this->website->isLogged())
-			redirect(base_url(),'refresh');
+		{
+			redirect('login');
+		}
 
 		$this->db->where('id', $this->input->post('value', TRUE))->delete('news_comments');
 

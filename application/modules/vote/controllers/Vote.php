@@ -16,8 +16,10 @@ class Vote extends MX_Controller
 		parent::__construct();
 		$this->load->model('vote_model');
 
-		if (!$this->website->isLogged())
-			redirect(base_url('login'),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 	}
 
 	public function index()

@@ -20,7 +20,9 @@ class User extends MX_Controller
 	public function login()
 	{
 		if ($this->website->isLogged())
-			redirect(base_url(),'refresh');
+		{
+			redirect('panel');
+		}
 
 		$this->template->title(config_item('app_name'), lang('tab_login'));
 
@@ -58,7 +60,9 @@ class User extends MX_Controller
 	public function register()
 	{
 		if ($this->website->isLogged())
-			redirect(base_url(),'refresh');
+		{
+			redirect('panel');
+		}
 
 		$this->template->title(config_item('app_name'), lang('tab_register'));
 
@@ -76,6 +80,11 @@ class User extends MX_Controller
 
 	public function logout()
 	{
+		if (! $this->website->isLogged())
+		{
+			show_404();
+		}
+
 		$this->session->sess_destroy();
 		redirect(base_url(),'refresh');
 	}
@@ -83,7 +92,9 @@ class User extends MX_Controller
 	public function recovery()
 	{
 		if ($this->website->isLogged())
-			redirect(base_url(),'refresh');
+		{
+			redirect('panel');
+		}
 
 		$this->template->title(config_item('app_name'), lang('tab_reset'));
 
@@ -104,8 +115,10 @@ class User extends MX_Controller
 
 	public function panel()
 	{
-		if (!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 
 		$this->template->title(config_item('app_name'), lang('tab_account'));
 
@@ -114,8 +127,10 @@ class User extends MX_Controller
 
 	public function settings()
 	{
-		if (!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 
 		$this->template->title(config_item('app_name'), lang('tab_account'));
 

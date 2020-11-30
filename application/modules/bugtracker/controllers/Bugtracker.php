@@ -17,16 +17,14 @@ class Bugtracker extends MX_Controller
 		$this->load->model('bugtracker_model');
 		$this->load->config('bugtracker');
 
-		if(!$this->website->isLogged())
-			redirect(base_url('login'),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 	}
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('tab_bugtracker'),
-		);
-
 		$config['total_rows'] = $this->bugtracker_model->getAllBugs();
 		$data['total_count'] = $config['total_rows'];
 		$config['suffix'] = '';
@@ -48,6 +46,8 @@ class Bugtracker extends MX_Controller
 			$data['bugtrackerList'] = $this->bugtracker_model->bugtrackerList();
 		}
 
+		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
+
 		$this->template->build('index', $data);
 	}
 
@@ -67,10 +67,12 @@ class Bugtracker extends MX_Controller
 		$this->template->build('new_report', $data);
 	}
 
-	public function report($id)
+	public function report($id = null)
 	{
-		if (empty($id) || is_null($id) || $id == '0')
-			redirect(base_url(),'refresh');
+		if (empty($id))
+		{
+			show_404();
+		}
 
 		$data = [
 			'idlink' => $id

@@ -16,8 +16,10 @@ class Changelogs extends MX_Controller
 		parent::__construct();
 		$this->load->model('changelogs_model');
 
-		if(!$this->website->isLogged())
-			redirect(base_url('login'),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 	}
 
 	public function index()

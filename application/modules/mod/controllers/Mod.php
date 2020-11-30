@@ -16,11 +16,15 @@ class Mod extends MX_Controller
 		parent::__construct();
 		$this->load->model('mod_model');
 
-		if(!$this->website->isLogged())
-			redirect(base_url(),'refresh');
+		if (! $this->website->isLogged())
+		{
+			redirect('login');
+		}
 
-		if(!$this->website->getIsModerator())
-			redirect(base_url(),'refresh');
+		if (! $this->website->getIsModerator())
+		{
+			redirect('panel');
+		}
 
 		$this->template->set_theme();
 		$this->template->set_layout('mod_layout');
@@ -28,55 +32,43 @@ class Mod extends MX_Controller
 
 	public function index()
 	{
-		$data = array(
-			'pagetitle' => lang('button_mod_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
 
-		$this->template->build('index', $data);
+		$this->template->build('index');
 	}
 
 	public function queue()
 	{
-		$data = array(
-			'pagetitle' => lang('button_mod_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
 
-		$this->template->build('queue/index', $data);
+		$this->template->build('queue/index');
 	}
 
 	public function reports()
 	{
-		$data = array(
-			'pagetitle' => lang('button_mod_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
 
-		$this->template->build('reports/index', $data);
+		$this->template->build('reports/index');
 	}
 
 	public function logs()
 	{
-		$data = array(
-			'pagetitle' => lang('button_mod_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
 
-		$this->template->build('logs/index', $data);
+		$this->template->build('logs/index');
 	}
 
 	public function bannings()
 	{
-		$data = array(
-			'pagetitle' => lang('button_mod_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
 
-		$this->template->build('bannings/index', $data);
+		$this->template->build('bannings/index');
 	}
 
 	public function warnings()
 	{
-		$data = array(
-			'pagetitle' => lang('button_mod_panel'),
-		);
+		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
 
-		$this->template->build('warnings/index', $data);
+		$this->template->build('warnings/index');
 	}
 }

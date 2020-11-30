@@ -30,6 +30,7 @@
 - Move home module to main controllers
 - Move news module to main controllers
 - Move page module to main controllers
+- Override function ``show_404()``
 
 ### Bugs Fixed
 
