@@ -39,7 +39,7 @@ class Home extends CI_Controller
 			show_error($this->migration->error_string());
 		}
 
-		redirect(base_url());
+		redirect(site_url());
 	}
 
 	public function setconfig()

@@ -31,13 +31,10 @@ class Store extends MX_Controller
 
 	public function category($route = null)
 	{
-		if (empty($route))
+		if (empty($route) || $this->store_model->getCategoryExist($route) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->store_model->getCategoryExist($route) < 1)
-			redirect(base_url('store'),'refresh');
 
 		$data = [
 			'route' => $route

@@ -500,7 +500,7 @@ class Admin_model extends CI_Model
 
 		$this->db->insert('news', $data);
 
-		redirect(base_url('admin/news'),'refresh');
+		redirect('admin/news');
 	}
 
 	public function updateSpecifyNews($id, $title, $description, $image)
@@ -519,7 +519,7 @@ class Admin_model extends CI_Model
 
 		$this->db->where('id', $id)->update('news', $update);
 
-		redirect(base_url('admin/news'),'refresh');
+		redirect('admin/news');
 	}
 
 	public function delSpecifyNew($id)

@@ -34,10 +34,12 @@ class Website_model extends CI_Model
 
 	public function isLogged()
 	{
-		if ($this->session->userdata('username'))
+		if ($this->session->userdata('id') && $this->session->logged_in)
+		{
 			return true;
-		else
-			return false;
+		}
+
+		return false;
 	}
 
 	public function getGmSpecify($id)

@@ -86,7 +86,7 @@ class User extends MX_Controller
 		}
 
 		$this->session->sess_destroy();
-		redirect(base_url(),'refresh');
+		redirect(site_url());
 	}
 
 	public function recovery()

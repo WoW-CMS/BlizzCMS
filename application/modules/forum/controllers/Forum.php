@@ -42,11 +42,6 @@ class Forum extends MX_Controller
 			'tiny' => $tiny
 		];
 
-		if ($this->forum_model->getType($id) == 2 && $this->website->isLogged())
-			if ($this->website->getRank($this->session->userdata('id')) > 0) { }
-		else
-			redirect(base_url('forum'),'refresh');
-
 		$this->template->title(config_item('app_name'), lang('tab_forum'));
 
 		$this->template->build('category', $data);
@@ -58,11 +53,6 @@ class Forum extends MX_Controller
 		{
 			show_404();
 		}
-
-		if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->website->isLogged())
-			if ($this->website->getRank($this->session->userdata('id')) > 0) { }
-		else
-			redirect(base_url('forum'),'refresh');
 
 		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');

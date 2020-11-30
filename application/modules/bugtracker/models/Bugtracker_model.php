@@ -22,26 +22,21 @@ class Bugtracker_model extends CI_Model
 	public function changePriority($id, $priority)
 	{
 		return $this->db->set('priority', $priority)->where('id', $id)->update('bugtracker');
-
-		redirect(base_url('bugtracker/report/').$id,'refresh');
 	}
 
 	public function closeIssue($id)
 	{
 		return $this->db->set('close','1')->where('id', $id)->update('bugtracker');
-		redirect(base_url('bugtracker/report/').$id,'refresh');
 	}
 
 	public function changeType($id, $type)
 	{
 		return $this->db->set('type', $type)->where('id', $id)->update('bugtracker');
-		redirect(base_url('bugtracker/report/').$id,'refresh');
 	}
 
 	public function changeStatus($id, $status)
 	{
 		return $this->db->set('status', $status)->where('id', $id)->update('bugtracker');
-		redirect(base_url('bugtracker/report/').$id,'refresh');
 	}
 
 	public function setLimit($limit)

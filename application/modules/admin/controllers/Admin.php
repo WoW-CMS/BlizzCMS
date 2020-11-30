@@ -204,13 +204,10 @@ class Admin extends MX_Controller
 
 	public function accountmanage($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getAccountExist($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getAccountExist($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -223,13 +220,10 @@ class Admin extends MX_Controller
 
 	public function accountdonatelogs($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getAccountExist($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getAccountExist($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -293,13 +287,10 @@ class Admin extends MX_Controller
 
 	public function editmenu($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getMenuSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getMenuSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -376,13 +367,10 @@ class Admin extends MX_Controller
 
 	public function editrealm($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getRealmsSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getRealmsSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -467,13 +455,10 @@ class Admin extends MX_Controller
 
 	public function editslide($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getSlidesSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getSlidesSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -555,13 +540,10 @@ class Admin extends MX_Controller
 
 	public function editnews($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getNewsSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getNewsSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
@@ -630,13 +612,10 @@ class Admin extends MX_Controller
 
 	public function editchangelog($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getChangelogSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
@@ -720,13 +699,10 @@ class Admin extends MX_Controller
 
 	public function editpage($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getPagesSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getPagesSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		if($this->website->getIsAdmin())
 			$tiny = $this->base->tinyEditor('Admin');
@@ -803,13 +779,10 @@ class Admin extends MX_Controller
 
 	public function edittopsite($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getTopsitesSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getTopsitesSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -943,13 +916,10 @@ class Admin extends MX_Controller
 
 	public function editstorecategory($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getStoreCategorySpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getStoreCategorySpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -995,13 +965,10 @@ class Admin extends MX_Controller
 
 	public function editstoreitem($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getItemSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getItemSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -1056,13 +1023,10 @@ class Admin extends MX_Controller
 
 	public function editstoretop($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getStoreTopSpecifyRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getStoreTopSpecifyRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -1215,13 +1179,10 @@ class Admin extends MX_Controller
 
 	public function editforumcategory($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getSpecifyForumCategoryRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getSpecifyForumCategoryRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
@@ -1260,13 +1221,10 @@ class Admin extends MX_Controller
 
 	public function editforum($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || $this->admin_model->getSpecifyForumRows($id) < 1)
 		{
 			show_404();
 		}
-
-		if ($this->admin_model->getSpecifyForumRows($id) < 1)
-			redirect(base_url(),'refresh');
 
 		$data = [
 			'idlink' => $id
