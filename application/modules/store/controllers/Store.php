@@ -14,12 +14,13 @@ class Store extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('store_model');
 
 		if (! $this->website->isLogged())
 		{
 			redirect('login');
 		}
+
+		$this->load->model('store_model');
 	}
 
 	public function index()

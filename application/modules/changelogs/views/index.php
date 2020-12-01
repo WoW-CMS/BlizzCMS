@@ -18,28 +18,29 @@
           </div>
           <div class="uk-width-3-4@m">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_changelogs'); ?></h4>
-            <?php if($this->changelogs_model->getAll()->num_rows()): ?>
+            <?php if (isset($changelogs) && ! empty($changelogs)): ?>
             <div class="uk-grid uk-grid-small uk-child-width-1-1" data-uk-grid>
-              <?php foreach($this->changelogs_model->getChangelogs()->result() as $changelogsList): ?>
+              <?php foreach ($changelogs as $changelog): ?>
               <div>
                 <div class="uk-card uk-card-default uk-margin-small">
                   <div class="uk-card-header">
                     <div class="uk-grid uk-grid-small" data-uk-grid>
                       <div class="uk-width-expand@s">
-                        <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelogsList->title ?></h5>
+                        <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelog->title; ?></h5>
                       </div>
                       <div class="uk-width-auto@s">
-                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelogsList->date); ?></p>
+                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelog->date); ?></p>
                       </div>
                     </div>
                   </div>
                   <div class="uk-card-body">
-                    <?= $changelogsList->description ?>
+                    <?= $changelog->description; ?>
                   </div>
                 </div>
               </div>
               <?php endforeach; ?>
             </div>
+            <?= $links; ?>
             <?php else: ?>
             <div class="uk-alert-warning" uk-alert>
               <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= lang('alert_changelog_not_found'); ?></p>

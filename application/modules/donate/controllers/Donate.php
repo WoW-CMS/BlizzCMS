@@ -19,13 +19,14 @@ class Donate extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('donate_model');
-		$this->load->config('donate');
 
 		if (! $this->website->isLogged())
 		{
 			redirect('login');
 		}
+
+		$this->load->model('donate_model');
+		$this->load->config('donate');
 	}
 
 	public function index()

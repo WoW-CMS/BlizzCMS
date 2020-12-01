@@ -15,7 +15,7 @@ class Forum extends MX_Controller
 	{
 		parent::__construct();
 		$this->load->model('forum_model');
-		$this->load->model('logs_model', 'logs'); // Logs System
+		$this->load->model('logs_model', 'logs');
 	}
 
 	public function index()

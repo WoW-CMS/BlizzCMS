@@ -14,37 +14,34 @@ class Bugtracker extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('bugtracker_model');
-		$this->load->config('bugtracker');
 
 		if (! $this->website->isLogged())
 		{
 			redirect('login');
 		}
+
+		$this->load->model('bugtracker_model');
+		$this->load->config('bugtracker');
 	}
 
 	public function index()
 	{
-		$config['total_rows'] = $this->bugtracker_model->getAllBugs();
-		$data['total_count'] = $config['total_rows'];
-		$config['suffix'] = '';
+		$config = [
+			'base_url'    => site_url('bugtracker'),
+			'total_rows'  => $this->bugtracker_model->count_reports(),
+			'per_page'    => 15,
+			'uri_segment' => 2
+		];
 
-		if ($config['total_rows'] > 0)
-		{
-			$page_number = $this->uri->segment(3);
-			$config['base_url'] = base_url().'bugtracker/';
+		$this->pagination->initialize($config);
 
-			if (empty($page_number))
-				$page_number = 1;
+		$get = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
 
-			$offset = ($page_number - 1) * $this->pagination->per_page;
-			$this->bugtracker_model->setPageNumber($this->pagination->per_page);
-			$this->bugtracker_model->setOffset($offset);
-			$this->pagination->initialize($config);
-
-			$data['pagination_links'] = $this->pagination->create_links();
-			$data['bugtrackerList'] = $this->bugtracker_model->bugtrackerList();
-		}
+		$data = [
+			'reports' => $this->bugtracker_model->get_all($config['per_page'], $page),
+			'links'   => $this->pagination->create_links()
+		];
 
 		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
 
@@ -59,7 +56,7 @@ class Bugtracker extends MX_Controller
 			$tiny = $this->base->tinyEditor('User');
 
 		$data = [
-			'tiny' => $tiny,
+			'tiny' => $tiny
 		];
 
 		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
@@ -69,13 +66,13 @@ class Bugtracker extends MX_Controller
 
 	public function report($id = null)
 	{
-		if (empty($id))
+		if (empty($id) || ! $this->bugtracker_model->find_report($id))
 		{
 			show_404();
 		}
 
 		$data = [
-			'idlink' => $id
+			'report' => $this->bugtracker_model->get_report($id)
 		];
 
 		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
@@ -85,10 +82,65 @@ class Bugtracker extends MX_Controller
 
 	public function create()
 	{
-		$title = $this->input->post('title');
-		$description = $_POST['description'];
-		$type = $this->input->post('type');
-		$priority = $this->input->post('priority');
+		$title       = $this->input->post('title', TRUE);
+		$description = $this->input->post('description');
+		$type        = $this->input->post('type', TRUE);
+		$priority    = $this->input->post('priority', TRUE);
 		echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);
+	}
+
+	public function update_priority()
+	{
+		if (! $this->website->getIsModerator())
+		{
+			redirect('bugtracker');
+		}
+
+		$id       = $this->input->post('id', TRUE);
+		$priority = $this->input->post('priority', TRUE);
+		$this->bugtracker_model->change_priority($id, $priority);
+
+		redirect('bugtracker/report/'.$id);
+	}
+
+	public function update_status()
+	{
+		if (! $this->website->getIsModerator())
+		{
+			redirect('bugtracker');
+		}
+
+		$id     = $this->input->post('id', TRUE);
+		$status = $this->input->post('status', TRUE);
+		$this->bugtracker_model->change_status($id, $status);
+
+		redirect('bugtracker/report/'.$id);
+	}
+
+	public function update_type()
+	{
+		if (! $this->website->getIsModerator())
+		{
+			redirect('bugtracker');
+		}
+
+		$id   = $this->input->post('id', TRUE);
+		$type = $this->input->post('type', TRUE);
+		$this->bugtracker_model->change_type($id, $type);
+
+		redirect('bugtracker/report/'.$id);
+	}
+
+	public function close_report()
+	{
+		if (! $this->website->getIsModerator())
+		{
+			redirect('bugtracker');
+		}
+
+		$id = $this->input->post('id', TRUE);
+		$this->bugtracker_model->close_report($id);
+
+		redirect('bugtracker/report/'.$id);
 	}
 }

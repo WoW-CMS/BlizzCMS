@@ -41,55 +41,45 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if(isset($bugtrackerList) && !empty($bugtrackerList)): ?>
-                  <?php foreach($bugtrackerList as $tracker): ?>
-                    <tr>
-                      <td class="uk-table-link">
-                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
-                          <?= $tracker->id ?>
-                        </a>
-                      </td>
-                      <td class="uk-table-link">
-                        <a href="<?= base_url('bugtracker/report/'.$tracker->id); ?>" class="uk-link-reset">
-                          <?= $tracker->title ?>
-                        </a>
-                      </td>
-                      <td><?= $this->bugtracker_model->getType($tracker->type); ?></td>
-                      <td class="uk-text-center">
-                        <?php if ($tracker->priority == 1): ?>
-                        <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
-                        <?php elseif($tracker->priority == 2): ?>
-                        <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
-                        <?php else: ?>
-                        <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getPriority($tracker->priority); ?></span>
-                        <?php endif; ?>
-                      </td>
-                      <td class="uk-text-center">
-                        <?php if ($tracker->status == 1 || $tracker->status == 8 || $tracker->status == 3): ?>
-                        <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
-                        <?php elseif($tracker->status == 2 || $tracker->status == 5 || $tracker->status == 6): ?>
-                        <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
-                        <?php else: ?>
-                        <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($tracker->status); ?></span>
-                        <?php endif; ?>
-                      </td>
-                    </tr>
+                  <?php foreach($reports as $report): ?>
+                  <tr>
+                    <td class="uk-table-link">
+                      <a href="<?= base_url('bugtracker/report/'.$report->id); ?>" class="uk-link-reset">
+                        <?= $report->id; ?>
+                      </a>
+                    </td>
+                    <td class="uk-table-link">
+                      <a href="<?= base_url('bugtracker/report/'.$report->id); ?>" class="uk-link-reset">
+                        <?= $report->title; ?>
+                      </a>
+                    </td>
+                    <td><?= $this->bugtracker_model->getType($report->type); ?></td>
+                    <td class="uk-text-center">
+                      <?php if ($report->priority == 1): ?>
+                      <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($report->priority); ?></span>
+                      <?php elseif($report->priority == 2): ?>
+                      <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getPriority($report->priority); ?></span>
+                      <?php else: ?>
+                      <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getPriority($report->priority); ?></span>
+                      <?php endif; ?>
+                    </td>
+                    <td class="uk-text-center">
+                      <?php if ($report->status == 1 || $report->status == 8 || $report->status == 3): ?>
+                      <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span>
+                      <?php elseif ($report->status == 2 || $report->status == 5 || $report->status == 6): ?>
+                      <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($report->status); ?></span>
+                      <?php else: ?>
+                      <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($report->status); ?></span>
+                      <?php endif; ?>
+                    </td>
+                  </tr>
                   <?php endforeach; ?>
-                  <?php else: ?>
-                    <tr>
-                      <td class="uk-text-warning uk-text-bold"><i class="fas fa-exclamation-circle"></i> <?= lang('bugtracker_report_notfound'); ?></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  <?php endif; ?>
                 </tbody>
               </table>
-            </div> 
-            <div class="uk-text-right">
-              <?php if (isset($bugtrackerList) && is_array($bugtrackerList)) echo $pagination_links; ?>
             </div>
+            <?php if (isset($reports) && ! empty($reports)): ?>
+            <?= $links; ?>
+            <?php endif; ?>
           </div>
         </div>
       </div>

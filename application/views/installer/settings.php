@@ -43,7 +43,7 @@
             </div>
             <?php endif; ?>
             <?= form_open(current_url()); ?>
-              <h5 class="uk-h5 uk-heading-line uk-margin-small uk-text-uppercase uk-text-bold"><span><i class="fas fa-cog fa-spin"></i> General</span></h5>
+              <h5 class="uk-h5 uk-heading-line uk-margin-small uk-text-uppercase uk-text-bold"><span><i class="fas fa-cog"></i> General</span></h5>
               <div class="uk-margin-small uk-light">
                 <label class="uk-form-label">Language:</label>
                 <div class="uk-form-controls">

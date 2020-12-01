@@ -3,95 +3,103 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bugtracker_model extends CI_Model
 {
-	private $_limit,
-			$_pageNumber,
-			$_offset;
+	protected $bugtracker = 'bugtracker';
+
 	/**
-	 * Bugtracker_model constructor.
+	 * Get all reports
+	 *
+	 * @param int $limit
+	 * @param int $start
+	 * @return array
 	 */
-	public function __construct()
+	public function get_all($limit, $start)
 	{
-		parent::__construct();
+		return $this->db->where('close', 0)->order_by('id', 'DESC')->limit($limit, $start)->get($this->bugtracker)->result();
 	}
 
-	public function getBugtracker()
+	/**
+	 * Count all reports
+	 *
+	 * @return int
+	 */
+	public function count_reports()
 	{
-		return $this->db->where('close', '0')->get('bugtracker');
+		return $this->db->count_all($this->bugtracker);
 	}
 
-	public function changePriority($id, $priority)
+	/**
+	 * Get report
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_report($id)
 	{
-		return $this->db->set('priority', $priority)->where('id', $id)->update('bugtracker');
+		return $this->db->where('id', $id)->get($this->bugtracker)->row();
 	}
 
-	public function closeIssue($id)
+	/**
+	 * Find if the report exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_report($id)
 	{
-		return $this->db->set('close','1')->where('id', $id)->update('bugtracker');
+		$query = $this->db->where('id', $id)->get($this->bugtracker)->num_rows();
+
+		return ($query == 1);
 	}
 
-	public function changeType($id, $type)
+	public function change_priority($id, $priority)
 	{
-		return $this->db->set('type', $type)->where('id', $id)->update('bugtracker');
+		return $this->db->set('priority', $priority)->where('id', $id)->update($this->bugtracker);
 	}
 
-	public function changeStatus($id, $status)
+	public function change_type($id, $type)
 	{
-		return $this->db->set('status', $status)->where('id', $id)->update('bugtracker');
+		return $this->db->set('type', $type)->where('id', $id)->update($this->bugtracker);
 	}
 
-	public function setLimit($limit)
+	public function change_status($id, $status)
 	{
-		$this->_limit = $limit;
+		return $this->db->set('status', $status)->where('id', $id)->update($this->bugtracker);
 	}
 
-	public function setPageNumber($pageNumber)
+	public function close_report($id)
 	{
-		$this->_pageNumber = $pageNumber;
-	}
-
-	public function setOffset($offset)
-	{
-		$this->_offset = $offset;
-	}
-
-	public function getAllBugs()
-	{
-		return $this->db->select('id')->where('close', '0')->get('bugtracker')->num_rows();
-	}
-
-	public function bugtrackerList()
-	{
-		return $this->db->where('close', '0')->order_by('id', 'DESC')->limit($this->_pageNumber, $this->_offset)->get('bugtracker')->result();
+		return $this->db->set('close', 1)->where('id', $id)->update($this->bugtracker);
 	}
 
 	public function insertIssue($title, $description, $type, $priority)
 	{
-		$date = now();
-		$author = $this->session->userdata('id');
-
-		$data = array(
-			'title' => $title,
+		$this->db->insert($this->bugtracker, [
+			'title'       => $title,
 			'description' => $description,
-			'status' => '1',
-			'type' => $type,
-			'priority' => $priority,
-			'date' => $date,
-			'author' => $author,
-			'close' => '0',
-		);
+			'status'      => '1',
+			'type'        => $type,
+			'priority'    => $priority,
+			'date'        => now(),
+			'author'      => $this->session->userdata('id'),
+			'close'       => '0'
+		]);
 
-		$this->db->insert('bugtracker', $data);
 		return true;
 	}
 
-	public function getIDPostPerDate($date)
+	public function all_priorities()
 	{
-		return $this->db->select('id')->where('date', $date)->get('bugtracker')->row('id');
+		return $this->db->get('bugtracker_priority')->result();
 	}
 
-	public function getTypes()
+	public function all_status()
 	{
-		return $this->db->get('bugtracker_type');
+		return $this->db->get('bugtracker_status')->result();
+	}
+
+	public function all_types()
+	{
+		return $this->db->get('bugtracker_type')->result();
 	}
 
 	public function getType($id)
@@ -99,73 +107,13 @@ class Bugtracker_model extends CI_Model
 		return $this->db->select('title')->where('id', $id)->get('bugtracker_type')->row('title');
 	}
 
-	public function getTitleIssue($id)
-	{
-		return $this->db->select('title')->where('id', $id)->get('bugtracker')->row('title');
-	}
-
-	public function getDescIssue($id)
-	{
-		return $this->db->select('description')->where('id', $id)->get('bugtracker')->row('description');
-	}
-
 	public function getStatus($id)
 	{
 		return $this->db->select('title')->where('id', $id)->get('bugtracker_status')->row('title');
 	}
 
-	public function getStatusID($id)
-	{
-		return $this->db->select('status')->where('id', $id)->get('bugtracker')->row('status');
-	}
-
-	public function getPriorities()
-	{
-		return $this->db->get('bugtracker_priority');
-	}
-
 	public function getPriority($id)
 	{
 		return $this->db->select('title')->where('id', $id)->get('bugtracker_priority')->row('title');
-	}
-
-	public function getPriorityGeneral()
-	{
-		return $this->db->get('bugtracker_priority');
-	}
-
-	public function getStatusGeneral()
-	{
-		return $this->db->get('bugtracker_status');
-	}
-
-	public function getTypesGeneral()
-	{
-		return $this->db->get('bugtracker_type');
-	}
-
-	public function getPriorityID($id)
-	{
-		return $this->db->select('priority')->where('id', $id)->get('bugtracker')->row('priority');
-	}
-
-	public function getTypeID($id)
-	{
-		return $this->db->select('type')->where('id', $id)->get('bugtracker')->row('type');
-	}
-
-	public function getDate($id)
-	{
-		return $this->db->select('date')->where('id', $id)->get('bugtracker')->row('date');
-	}
-
-	public function closeStatus($id)
-	{
-		return $this->db->select('close')->where('id', $id)->get('bugtracker')->row('close');
-	}
-
-	public function getAuthor($id)
-	{
-		return $this->db->select('author')->where('id', $id)->get('bugtracker')->row('author');
 	}
 }

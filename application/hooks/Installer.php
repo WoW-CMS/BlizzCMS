@@ -15,7 +15,7 @@ class Installer
 	{
 		$CI =& get_instance();
 
-		if ($CI->config->item('installer_blocked') == NULL && !in_array($CI->uri->segment(1), ['install']))
+		if (is_null($CI->config->item('installer_blocked')) && ! in_array($CI->uri->segment(1), ['install']))
 		{
 			redirect('install');
 		}

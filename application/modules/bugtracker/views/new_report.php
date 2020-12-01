@@ -46,7 +46,7 @@
                       <div class="uk-form-controls">
                         <select class="uk-select" id="report_type">
                           <option value="0"><?= lang('notification_select_type'); ?></option>
-                          <?php foreach($this->bugtracker_model->getTypes()->result() as $types): ?>
+                          <?php foreach ($this->bugtracker_model->all_types() as $types): ?>
                           <option value="<?= $types->id; ?>"><?= $types->title ?></option>
                           <?php endforeach; ?>
                         </select>
@@ -57,7 +57,7 @@
                       <div class="uk-form-controls">
                         <select class="uk-select" id="report_priority">
                           <option value="0"><?= lang('notification_select_priority'); ?></option>
-                          <?php foreach($this->bugtracker_model->getPriorities()->result() as $priorities): ?>
+                          <?php foreach ($this->bugtracker_model->all_priorities() as $priorities): ?>
                           <option value="<?= $priorities->id; ?>"><?= $priorities->title ?></option>
                           <?php endforeach; ?>
                         </select>

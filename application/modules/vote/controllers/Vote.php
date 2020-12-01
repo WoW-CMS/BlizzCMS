@@ -14,12 +14,13 @@ class Vote extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('vote_model');
 
 		if (! $this->website->isLogged())
 		{
 			redirect('login');
 		}
+
+		$this->load->model('vote_model');
 	}
 
 	public function index()

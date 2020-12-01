@@ -21,7 +21,7 @@ class News extends CI_Controller
 		$config = [
 			'base_url'    => site_url('news/' . $id),
 			'total_rows'  => $this->base->count_news_comments($id),
-			'per_page'    => 10,
+			'per_page'    => 15,
 			'uri_segment' => 3
 		];
 

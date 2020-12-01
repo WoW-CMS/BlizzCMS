@@ -1,23 +1,3 @@
-<?php
-if (isset($_POST['changePriory'])):
-  $value = $_POST['prioryValue'];
-  $this->bugtracker_model->changePriority($idlink, $value);
-endif;
-
-if (isset($_POST['changeStatus'])):
-  $value = $_POST['StatusValue'];
-  $this->bugtracker_model->changeStatus($idlink, $value);
-endif;
-
-if (isset($_POST['changetypes'])):
-  $value = $_POST['typesValue'];
-  $this->bugtracker_model->changeType($idlink, $value);
-endif;
-
-if (isset($_POST['btn_closeBugtracker'])):
-  $this->bugtracker_model->closeIssue($idlink);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -41,87 +21,91 @@ endif; ?>
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-expand@s">
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= $this->bugtracker_model->getTitleIssue($idlink); ?></h5>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= $report->title; ?></h5>
                   </div>
                   <div class="uk-width-auto@s">
-                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $this->bugtracker_model->getDate($idlink)); ?></p>
+                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $report->date); ?></p>
                   </div>
                 </div>
               </div>
               <div class="uk-card-body">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-3-4@s">
-                    <?= $this->bugtracker_model->getDescIssue($idlink); ?>
+                    <?= $report->description; ?>
                   </div>
                   <div class="uk-width-1-4@s">
                     <ul class="uk-list uk-text-small">
-                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->website->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></li>
-                      <li><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></li>
-                      <li><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></li>
-                      <li><i class="fas fa-tags"></i> <?= lang('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></li>
+                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->website->getUsernameID($report->author); ?></li>
+                      <li><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($report->type); ?></span></li>
+                      <li><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($report->priority); ?></span></li>
+                      <li><i class="fas fa-tags"></i> <?= lang('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span></li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
             <hr>
-            <?php if($this->website->getRank($this->session->userdata('id')) > 0): ?>
+            <?php if ($this->website->getIsModerator()): ?>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
               <div>
-                <form method="post" action="">
+                <?= form_open(site_url('bugtracker/priority')); ?>
+                  <?= form_hidden('id', $report->id); ?>
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
-                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="prioryValue">
-                        <?php foreach($this->bugtracker_model->getPriorityGeneral()->result() as $priory): ?>
+                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="priority">
+                        <?php foreach($this->bugtracker_model->all_priorities() as $priory): ?>
                         <option value="<?= $priory->id ?>"><?= $priory->title ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changePriory"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
-                </form>
+                <?= form_close(); ?>
               </div>
               <div>
-                <form method="post" action="">
+                <?= form_open(site_url('bugtracker/status')); ?>
+                  <?= form_hidden('id', $report->id); ?>
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
-                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="StatusValue">
-                        <?php foreach($this->bugtracker_model->getStatusGeneral()->result() as $priory): ?>
+                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="status">
+                        <?php foreach($this->bugtracker_model->all_status() as $priory): ?>
                         <option value="<?= $priory->id ?>"><?= $priory->title ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changeStatus"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
-                </form>
+                <?= form_close(); ?>
               </div>
               <div>
-                <form method="post" action="">
+                <?= form_open(site_url('bugtracker/type')); ?>
+                  <?= form_hidden('id', $report->id); ?>
                   <div class="uk-margin uk-light">
                     <div class="uk-form-controls">
-                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="typesValue">
-                        <?php foreach($this->bugtracker_model->getTypesGeneral()->result() as $priory): ?>
+                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="type">
+                        <?php foreach($this->bugtracker_model->all_types() as $priory): ?>
                         <option value="<?= $priory->id ?>"><?= $priory->title ?></option>
                         <?php endforeach; ?>
                       </select>
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changetypes"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
-                </form>
+                <?= form_close(); ?>
               </div>
             </div>
             <div>
-              <div class="uk-margin-small">
-                <form method="post" action="">
-                  <button type="submit" name="btn_closeBugtracker" class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle"></i> <?= lang('button_close'); ?></button>
-                </form>
-              </div>
+              <?= form_open(site_url('bugtracker/close')); ?>
+                <?= form_hidden('id', $report->id); ?>
+                <div class="uk-margin-small">
+                  <button class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle" type="submit"></i> <?= lang('button_close'); ?></button>
+                </div>
+              <?= form_close(); ?>
             </div>
             <?php endif; ?>
           </div>

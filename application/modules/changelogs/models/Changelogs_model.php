@@ -3,26 +3,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Changelogs_model extends CI_Model
 {
+	protected $changelogs = 'changelogs';
+
 	/**
-	 * Changelogs_model constructor.
+	 * Get all changelogs
+	 *
+	 * @param int $limit
+	 * @param int $start
+	 * @return array
 	 */
-	public function __construct()
+	public function get_all($limit, $start)
 	{
-		parent::__construct();
+		return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->changelogs)->result();
 	}
 
-	public function getAll()
+	/**
+	 * Count all changelogs
+	 *
+	 * @return int
+	 */
+	public function count_changelogs()
 	{
-		return $this->db->select('id')->get('changelogs');
-	}
-
-	public function getChangelogs()
-	{
-		return $this->db->order_by('id', 'DESC')->limit('20')->get('changelogs');
-	}
-
-	public function getLastID()
-	{
-		return $this->db->select('id')->order_by('id', 'DESC')->limit('1')->get('changelogs')->row('id');
+		return $this->db->count_all($this->changelogs);
 	}
 }

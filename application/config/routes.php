@@ -87,11 +87,14 @@ $route['donate/canceled'] = 'donate/canceled';
 $route['changelogs']['get'] = 'changelogs/index';
 
 /*Bugtracker*/
-$route['bugtracker'] = 'bugtracker/index';
-$route['bugtracker/(:num)'] = 'bugtracker/index/$1';
-$route['bugtracker/new'] = 'bugtracker/newreport';
-$route['bugtracker/create'] = 'bugtracker/create';
-$route['bugtracker/report/(:num)'] = 'bugtracker/report/$1';
+$route['bugtracker']['get'] = 'bugtracker/index';
+$route['bugtracker/new']['get'] = 'bugtracker/newreport';
+$route['bugtracker/create']['post'] = 'bugtracker/create';
+$route['bugtracker/type']['post'] = 'bugtracker/update_type';
+$route['bugtracker/status']['post'] = 'bugtracker/update_status';
+$route['bugtracker/priority']['post'] = 'bugtracker/update_priority';
+$route['bugtracker/close']['post'] = 'bugtracker/close_report';
+$route['bugtracker/report/(:num)']['get'] = 'bugtracker/report/$1';
 
 /*Forum*/
 $route['forum'] = 'forum/index';
@@ -118,13 +121,13 @@ $route['cart/updatequantity'] = 'store/updatequantity';
 $route['cart/updatecharacter'] = 'store/updatecharacter';
 
 /*Pages*/
-$route['page/(:any)'] = 'page/index/$1';
+$route['page/(:any)']['get'] = 'page/index/$1';
 
 /*PvP*/
-$route['pvp'] = 'pvp/index';
+$route['pvp']['get'] = 'pvp/index';
 
 /*Online*/
-$route['online'] = 'online/index';
+$route['online']['get'] = 'online/index';
 
 /**
  * Mod Routes

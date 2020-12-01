@@ -14,7 +14,6 @@ class Mod extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('mod_model');
 
 		if (! $this->website->isLogged())
 		{
@@ -25,6 +24,8 @@ class Mod extends MX_Controller
 		{
 			redirect('panel');
 		}
+
+		$this->load->model('mod_model');
 
 		$this->template->set_theme();
 		$this->template->set_layout('mod_layout');

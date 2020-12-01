@@ -22,6 +22,7 @@
                 </article>
               </div>
             </div>
+            <?php if (isset($comments) && ! empty($comments)): ?>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin" data-uk-grid>
               <?php foreach ($comments as $comment): ?>
               <div>
@@ -57,6 +58,7 @@
               <?php endforeach; ?>
             </div>
             <?= $links; ?>
+            <?php endif; ?>
             <?php if ($this->website->isLogged()): ?>
             <div class="uk-card uk-card-default uk-card-body uk-margin-small">
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
