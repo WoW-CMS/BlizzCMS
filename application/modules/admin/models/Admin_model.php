@@ -12,7 +12,6 @@ class Admin_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-		$this->auth = $this->load->database('auth', TRUE);
 	}
 
 	public function setLimit($limit)
@@ -92,20 +91,24 @@ class Admin_model extends CI_Model
 			'banreason' => $reason,
 		);
 
-		$this->auth->insert('account_banned', $data2);
+		$this->auth->connect()->insert('account_banned', $data2);
 
 		if ($this->base->getExpansionAction() == 2)
-			$this->auth->insert('battlenet_account_bans', $data2);
+		{
+			$this->auth->connect()->insert('battlenet_account_bans', $data2);
+		}
 
 		return true;
 	}
 
 	public function delBanAccount($id)
 	{
-		$this->auth->where('id', $id)->delete('account_banned');
+		$this->auth->connect()->where('id', $id)->delete('account_banned');
 
 		if ($this->base->getExpansionAction() == 2)
-			$this->auth->where('id', $id)->delete('battlenet_account_bans');
+		{
+			$this->auth->connect()->where('id', $id)->delete('battlenet_account_bans');
+		}
 
 		return true;
 	}
@@ -119,34 +122,29 @@ class Admin_model extends CI_Model
 			'RealmID' => '-1'
 		);
 
-		$this->auth->insert('account_access', $data);
+		$this->auth->connect()->insert('account_access', $data);
 		return true;
 	}
 
 	public function delRankAccount($id)
 	{
-		$this->auth->where('id', $id)->delete('account_access');
+		$this->auth->connect()->where('id', $id)->delete('account_access');
 		return true;
 	}
 
 	public function getBanCount()
 	{
-		return $this->auth->select('id')->get('account_banned')->num_rows();
-	}
-
-	public function getBanSpecify($id)
-	{
-		return $this->auth->select('*')->where('id', $id)->where('active', '1')->get('account_banned');
+		return $this->auth->connect()->select('id')->get('account_banned')->num_rows();
 	}
 
 	public function getGmCount($idrealm)
 	{
-		return $this->auth->select('id')->where('RealmID', $idrealm)->or_where('RealmID', '-1')->get('account_access')->num_rows();
+		return $this->auth->connect()->select('id')->where('RealmID', $idrealm)->or_where('RealmID', '-1')->get('account_access')->num_rows();
 	}
 
 	public function getAccCreated()
 	{
-		return $this->auth->select('id')->get('account')->num_rows();
+		return $this->auth->connect()->select('id')->get('account')->num_rows();
 	}
 
 	public function getCharOn($multirealm)
@@ -500,7 +498,7 @@ class Admin_model extends CI_Model
 
 		$this->db->insert('news', $data);
 
-		redirect('admin/news');
+		redirect(site_url('admin/news'));
 	}
 
 	public function updateSpecifyNews($id, $title, $description, $image)
@@ -519,7 +517,7 @@ class Admin_model extends CI_Model
 
 		$this->db->where('id', $id)->update('news', $update);
 
-		redirect('admin/news');
+		redirect(site_url('admin/news'));
 	}
 
 	public function delSpecifyNew($id)

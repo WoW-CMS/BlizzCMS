@@ -3,12 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Realm_model extends CI_Model
 {
-	protected $auth;
 	protected $RealmStatus;
 
 	public function __construct()
 	{
-		$this->auth = $this->load->database('auth', TRUE);
 		$this->RealmStatus = null;
 	}
 
@@ -24,7 +22,7 @@ class Realm_model extends CI_Model
 
 	public function getRealmPort($id)
 	{
-		return $this->auth->select('port')->where('id', $id)->get('realmlist')->row('port');
+		return $this->auth->connect()->select('port')->where('id', $id)->get('realmlist')->row('port');
 	}
 
 	public function RealmStatus($MultiRealm, $host, $status = false)
@@ -87,12 +85,12 @@ class Realm_model extends CI_Model
 
 	public function getRealmName($id)
 	{
-		return $this->auth->select('name')->where('id', $id)->get('realmlist')->row('name');
+		return $this->auth->connect()->select('name')->where('id', $id)->get('realmlist')->row('name');
 	}
 
 	public function realmGetHostname($id)
 	{
-		return $this->auth->select('address')->where('id', $id)->get('realmlist')->row('address');
+		return $this->auth->connect()->select('address')->where('id', $id)->get('realmlist')->row('address');
 	}
 
 	public function getGeneralCharactersSpecifyAcc($multiRealm, $id)
