@@ -33,13 +33,13 @@
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('panel_dp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->base->getCharDPTotal($idlink); ?>" placeholder="<?= lang('panel_dp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->website->get_user($idlink, 'dp'); ?>" placeholder="<?= lang('panel_dp'); ?>" required>
                       </div>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('panel_vp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->base->getCharVPTotal($idlink); ?>" placeholder="<?= lang('panel_vp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->website->get_user($idlink, 'vp'); ?>" placeholder="<?= lang('panel_vp'); ?>" required>
                       </div>
                     </div>
                   </div>
@@ -50,7 +50,7 @@
                   </div>
                 </div>
                 <?= form_close(); ?>
-                <?php if($this->admin_model->getBanSpecify($idlink)->num_rows()): ?>
+                <?php if ($this->auth->is_banned($idlink)): ?>
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="far fa-check-circle"></i> <?= lang('placeholder_account_unban'); ?></span></h5>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
@@ -77,7 +77,7 @@
                 </div>
                 <?= form_close(); ?>
                 <?php endif; ?>
-                <?php if($this->website->getGmSpecify($idlink)->num_rows()): ?>
+                <?php if ($this->auth->get_gmlevel($idlink) > 0): ?>
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-minus"></i> <?= lang('placeholder_account_remove_rank'); ?></span></h5>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">

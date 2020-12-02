@@ -18,13 +18,9 @@
 }
 
 html {
-  background: transparent;
+  background: #f7f7fc;
   color: #6a7a8c;
   font-family: -apple-system,BlinkMacSystemFont,"Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-}
-
-body {
-  background-color: #f0f2f7;
 }
 
 .uk-h1,
@@ -49,7 +45,7 @@ h6 {
 
 .uk-background-primary {
   background-image: url('../images/bg-main.png');
-  background-color: #090e40;
+  background-color: #000635;
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -99,7 +95,7 @@ h6 {
   line-height: 1.5;
   font-size: .75rem;
   font-weight: 700;
-  color: #090e40;
+  color: #000635;
   vertical-align: middle;
   white-space: nowrap;
   border-radius: 2px;
@@ -241,7 +237,7 @@ header .uk-navbar-nav > li > a {
 }
 
 .uk-offcanvas-bar {
-  background-color: #090e40;
+  background-color: #000635;
   padding: 0;
 }
 
@@ -291,13 +287,13 @@ ul.uk-nav-sub {
 }
 
 .uk-card-secondary {
-  background-color: #090e40;
+  background-color: #000635;
   border-radius: 4px;
   box-shadow: 0 2px 15px -10px rgba(0, 0, 0, .4), inset 0 1px 10px rgba(0, 0, 0, .15);
 }
 
 .uk-card-update {
-  background-color: #090e40;
+  background-color: #000635;
   background-image: url('../images/bg-main.png');
   background-repeat: no-repeat;
   background-position: center top;
@@ -320,7 +316,7 @@ ul.uk-nav-sub {
 }
 
 .uk-card-default .uk-card-header {
-  background-color: #090e40;
+  background-color: #000635;
   border-radius: 4px 4px 0 0;
   color: #fff;
 }
@@ -416,7 +412,11 @@ ul.uk-nav-sub {
 
 .uk-alert {
   border-radius: 4px;
-  padding: 8px 16px;
+  padding: 7px 14px;
+}
+
+.uk-alert-close {
+  top: 12px;
 }
 
 .uk-heading-line > ::after, .uk-heading-line > ::before {
@@ -483,7 +483,7 @@ ul.uk-nav-sub {
 }
 
 .uk-icon-button {
-  background: #090e40;
+  background: #000635;
   color: #fff;
   transition: all ease-in .15s;
 }
@@ -511,7 +511,7 @@ ul.uk-nav-sub {
 }
 
 .uk-table th {
-  background: #090e40;
+  background: #000635;
   color: #fff;
 }
 
@@ -538,7 +538,7 @@ ul.uk-nav-sub {
 }
 
 .uk-pagination > * > * {
-  background: #090e40;
+  background: #000635;
   border-radius: 50%;
   color: #fff;
   font-size: .9375rem;

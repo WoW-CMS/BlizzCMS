@@ -17,12 +17,12 @@ class Mod extends MX_Controller
 
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
-		if (! $this->website->getIsModerator())
+		if (! $this->auth->is_moderator())
 		{
-			redirect('panel');
+			redirect(site_url('panel'));
 		}
 
 		$this->load->model('mod_model');

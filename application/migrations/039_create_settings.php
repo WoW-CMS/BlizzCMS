@@ -43,6 +43,8 @@ class Migration_Create_settings extends CI_Migration
 			array('key' => 'email_crypto', 'value' => 'tls'),
 			array('key' => 'email_sender', 'value' => NULL),
 			array('key' => 'email_sender_name', 'value' => NULL),
+			array('key' => 'emulator', 'value' => NULL),
+			array('key' => 'emulator_bnet', 'value' => 'false'),
 			array('key' => 'realmlist', 'value' => NULL),
 			array('key' => 'expansion', 'value' => 0),
 			array('key' => 'admin_access_level', 'value' => 3),

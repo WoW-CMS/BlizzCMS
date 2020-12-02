@@ -35,7 +35,7 @@
                   </div>
                   <div class="uk-width-1-4@s">
                     <ul class="uk-list uk-text-small">
-                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->website->getUsernameID($report->author); ?></li>
+                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->auth->get_user($report->author, 'nickname'); ?></li>
                       <li><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($report->type); ?></span></li>
                       <li><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($report->priority); ?></span></li>
                       <li><i class="fas fa-tags"></i> <?= lang('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span></li>
@@ -45,7 +45,7 @@
               </div>
             </div>
             <hr>
-            <?php if ($this->website->getIsModerator()): ?>
+            <?php if ($this->auth->is_moderator()): ?>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
               <div>
                 <?= form_open(site_url('bugtracker/priority')); ?>

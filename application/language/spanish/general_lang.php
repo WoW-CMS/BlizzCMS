@@ -77,9 +77,6 @@ $lang['unknown'] = 'Desconocido';
 $lang['label_open'] = 'Abierto';
 $lang['label_closed'] = 'Cerrado';
 
-/*Form Label Lang*/
-$lang['label_login_info'] = 'Información de registro';
-
 /*Input Placeholder Lang*/
 $lang['placeholder_username'] = 'Nombre de usuario';
 $lang['placeholder_email'] = 'Correo electrónico';
@@ -87,8 +84,7 @@ $lang['placeholder_password'] = 'Contraseña';
 $lang['placeholder_re_password'] = 'Repetir contraseña';
 $lang['placeholder_current_password'] = 'Contraseña actual';
 $lang['placeholder_new_password'] = 'Nueva Contraseña';
-$lang['placeholder_new_username'] = 'Nuevo usuario';
-$lang['placeholder_confirm_username'] = 'Confirmar Nuevo Usuario';
+$lang['placeholder_new_nickname'] = 'New Nickname';
 $lang['placeholder_new_email'] = 'Nuevo correo';
 $lang['placeholder_confirm_email'] = 'Confirmar nuevo correo';
 $lang['placeholder_create_bug_report'] = 'Crear informe de error';
@@ -100,6 +96,7 @@ $lang['placeholder_uri'] = 'URL amigable (Ejemplo: tos)';
 $lang['placeholder_highl'] = 'Destacado';
 $lang['placeholder_lock'] = 'Bloquear';
 $lang['placeholder_subject'] = 'Asunto';
+$lang['placeholder_nickname'] = 'Nickname';
 
 /*Table header Lang*/
 $lang['table_header_name'] = 'Nombre';
@@ -192,9 +189,10 @@ $lang['panel_chars_list'] = 'Lista de Personajes';
 $lang['panel_account_details'] = 'Detalles de la cuenta';
 $lang['panel_last_ip'] = 'Última IP';
 $lang['panel_change_email'] = 'Cambiar Correo electrónico';
-$lang['panel_change_username'] = 'Cambiar el nombre de usuario';
+$lang['panel_change_nickname'] = 'Change Nickname';
 $lang['panel_change_password'] = 'Cambiar Contraseña';
 $lang['panel_replace_pass_by'] = 'Reemplazar contraseña por';
+$lang['panel_current_nickname'] = 'Current Nickname';
 $lang['panel_current_email'] = 'Dirección de correo electrónico actual';
 $lang['panel_replace_email_by'] = 'Reemplazar correo electrónico por';
 

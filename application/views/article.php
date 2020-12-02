@@ -29,7 +29,7 @@
                 <div class="uk-card uk-card-default uk-card-body">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-1-6@s">
-                      <div class="Author <?php if($this->website->getRank($comment->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                      <div class="Author <?php if($this->auth->get_gmlevel($comment->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                         <div class="topic-author-avatar profile">
                           <?php if ($this->base->getUserInfoGeneral($comment->author)->num_rows()): ?>
                           <img src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($comment->author))); ?>" alt="" />
@@ -38,15 +38,15 @@
                           <?php endif; ?>
                         </div>
                       </div>
-                      <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->website->getUsernameID($comment->author); ?></p>
-                      <?php if ($this->website->getRank($comment->author) > 0): ?>
+                      <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->website->get_user($comment->author, 'nickname'); ?></p>
+                      <?php if ($this->auth->get_gmlevel($comment->author) > 0): ?>
                       <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                       <?php endif; ?>
                     </div>
                     <div class="uk-width-expand@s">
                       <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $comment->date); ?></p>
                       <?= $comment->commentary ?>
-                      <?php if ($this->website->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->author && now() < strtotime('+30 minutes', $comment->date)): ?>
+                      <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->author && now() < strtotime('+30 minutes', $comment->date)): ?>
                       <div class="uk-margin-small-top">
                         <button class="uk-button uk-button-danger uk-button-small" value="<?= $comment->id ?>" id="button_delete<?= $comment->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                       </div>

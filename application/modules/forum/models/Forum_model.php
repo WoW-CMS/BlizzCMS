@@ -135,7 +135,7 @@ class Forum_model extends CI_Model
 
 		$this->db->where('id', $idlink)->update('forum_topics', $data);
 
-		redirect('forum/topic/'.$idlink);
+		redirect(site_url('forum/topic/'.$idlink));
 	}
 
 	public function getType($id)

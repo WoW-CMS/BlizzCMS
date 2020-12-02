@@ -133,29 +133,19 @@ class Base_model extends CI_Model
 		return ($query == 1);
 	}
 
+	/**
+	 * Get all avatars rows
+	 *
+	 * @return array
+	 */
+	public function get_avatars()
+	{
+		return $this->db->order_by('id', 'ASC')->get('avatars')->result();
+	}
+
 	public function getUserInfoGeneral($id)
 	{
 		return $this->db->where('id', $id)->get('users');
-	}
-
-	public function getCharDPTotal($id)
-	{
-		$qq = $this->db->select('dp')->where('id', $id)->get('users');
-
-		if ($qq->num_rows())
-			return $qq->row('dp');
-		else
-			return '0';
-	}
-
-	public function getCharVPTotal($id)
-	{
-		$qq = $this->db->select('vp')->where('id', $id)->get('users');
-
-		if ($qq->num_rows())
-			return $qq->row('vp');
-		else
-			return '0';
 	}
 
 	public function getEmulatorAction()
@@ -256,7 +246,7 @@ class Base_model extends CI_Model
 		}
 	}
 
-	public function smtpSendEmail($to, $subject, $message)
+	public function send_email($to, $subject, $message)
 	{
 		$this->load->library('email');
 

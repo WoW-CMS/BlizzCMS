@@ -32,7 +32,7 @@ class Forum extends MX_Controller
 			show_404();
 		}
 
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -54,7 +54,7 @@ class Forum extends MX_Controller
 			show_404();
 		}
 
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -76,7 +76,7 @@ class Forum extends MX_Controller
 			show_404();
 		}
 
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -95,7 +95,7 @@ class Forum extends MX_Controller
 	{
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$ssesid = $this->session->userdata('id');
@@ -108,7 +108,7 @@ class Forum extends MX_Controller
 	{
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$id = $this->input->post('value');
@@ -119,7 +119,7 @@ class Forum extends MX_Controller
 	{
 		if (!$this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$category = $this->input->post('category');

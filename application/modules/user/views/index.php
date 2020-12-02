@@ -1,5 +1,5 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-xsmall uk-padding-remove uk-height-small header-section">
+
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
@@ -17,7 +17,6 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_account'); ?></h4>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
@@ -34,16 +33,16 @@
                   <table class="uk-table uk-table-small">
                     <tbody>
                       <tr>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_nickname'); ?></span></td>
+                        <td class="uk-table-expand"><?= $this->session->userdata('nickname'); ?></td>
+                      </tr>
+                      <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_username'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->session->userdata('username'); ?></td>
                       </tr>
                       <tr>
                         <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_email'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->session->userdata('email'); ?></td>
-                      </tr>
-                      <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('panel_last_ip'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->user_model->getLastIp($this->session->userdata('id')); ?></td>
                       </tr>
                     </tbody>
                   </table>

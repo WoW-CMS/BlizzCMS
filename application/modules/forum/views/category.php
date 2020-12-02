@@ -37,10 +37,10 @@
                   <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->getComments($lists->id)->num_rows(); ?>
                 </td>
                 <td class="uk-width-small uk-text-center">
-                  <?php if($this->website->getRank($lists->author) > 0): ?>
-                  <span class="topic-forum-staff"><?= $this->website->getUsernameID($lists->author); ?></span>
+                  <?php if($this->auth->get_gmlevel($lists->author) > 0): ?>
+                  <span class="topic-forum-staff"><?= $this->website->get_user($lists->author, 'nickname'); ?></span>
                   <?php else: ?>
-                  <span class="topic-forum-member"><?= $this->website->getUsernameID($lists->author); ?></span>
+                  <span class="topic-forum-member"><?= $this->website->get_user($lists->author, 'nickname'); ?></span>
                   <?php endif; ?>
                 </td>
                 <td class="uk-width-small uk-text-center uk-text-meta"><?= date('d-m-Y', $lists->date); ?></td>
@@ -68,10 +68,10 @@
                   <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->getComments($lists->id)->num_rows(); ?>
                 </td>
                 <td class="uk-width-small uk-text-center">
-                  <?php if($this->website->getRank($lists->author) > 0): ?>
-                  <span class="topic-forum-staff"><?= $this->website->getUsernameID($lists->author); ?></span>
+                  <?php if($this->auth->get_gmlevel($lists->author) > 0): ?>
+                  <span class="topic-forum-staff"><?= $this->website->get_user($lists->author, 'nickname'); ?></span>
                   <?php else: ?>
-                  <span class="topic-forum-member"><?= $this->website->getUsernameID($lists->author); ?></span>
+                  <span class="topic-forum-member"><?= $this->website->get_user($lists->author, 'nickname'); ?></span>
                   <?php endif; ?>
                 </td>
                 <td class="uk-width-small uk-text-center uk-text-meta"><?= date('d-m-Y', $lists->date); ?></td>

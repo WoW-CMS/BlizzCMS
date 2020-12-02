@@ -14,25 +14,26 @@ class Admin extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		if (! $this->website->isLogged())
+		{
+			redirect(site_url('login'));
+		}
+
+		if (! $this->auth->is_admin())
+		{
+			redirect(site_url('panel'));
+		}
+
+		if ($this->auth->is_banned($this->session->userdata('id')))
+		{
+			redirect(site_url('panel'));
+		}
+
 		$this->load->model('admin_model');
 		$this->load->model('update/update_model');
 		$this->config->load('donate/donate');
 		$this->config->load('bugtracker/bugtracker');
-
-		if (! $this->website->isLogged())
-		{
-			redirect('login');
-		}
-
-		if (! $this->website->getIsAdmin())
-		{
-			redirect('panel');
-		}
-
-		if ($this->admin_model->getBanSpecify($this->session->userdata('id'))->num_rows())
-		{
-			redirect('panel');
-		}
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');
@@ -111,7 +112,7 @@ class Admin extends MX_Controller
 
 	public function modulesettings()
 	{
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -524,7 +525,7 @@ class Admin extends MX_Controller
 
 	public function createnews()
 	{
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -545,7 +546,7 @@ class Admin extends MX_Controller
 			show_404();
 		}
 
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -596,7 +597,7 @@ class Admin extends MX_Controller
 
 	public function createchangelog()
 	{
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -617,7 +618,7 @@ class Admin extends MX_Controller
 			show_404();
 		}
 
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -683,7 +684,7 @@ class Admin extends MX_Controller
 
 	public function createpage()
 	{
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -704,7 +705,7 @@ class Admin extends MX_Controller
 			show_404();
 		}
 
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');

@@ -14,157 +14,200 @@ class User extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		if (! $this->website->isLogged())
+		{
+			redirect(site_url('login'));
+		}
+
 		$this->load->model('user_model');
+
+		$this->template->set_partial('alerts', 'static/alerts');
 	}
 
-	public function login()
+	public function index()
 	{
-		if ($this->website->isLogged())
-		{
-			redirect('panel');
-		}
-
-		$this->template->title(config_item('app_name'), lang('tab_login'));
-
-		if ($this->base->getExpansionAction() == 1)
-		{
-			if ($this->base->getEmulatorAction() == 1)
-			{
-				$this->template->build('login2');
-			}
-			else
-			{
-				$this->template->build('login1');
-			}
-		}
-		else
-		{
-			$this->template->build('login2');
-		}
-	}
-
-	public function verify1()
-	{
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		echo $this->user_model->checklogin($username, $password);
-	}
-
-	public function verify2()
-	{
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
-		echo $this->user_model->checkloginbattle($email, $password);
-	}
-
-	public function register()
-	{
-		if ($this->website->isLogged())
-		{
-			redirect('panel');
-		}
-
-		$this->template->title(config_item('app_name'), lang('tab_register'));
-
-		$this->template->build('register');
-	}
-
-	public function newaccount()
-	{
-		$username = $this->input->post('username');
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
-		$repassword = $this->input->post('repassword');
-		echo $this->user_model->insertRegister($username, $email, $password, $repassword);
-	}
-
-	public function logout()
-	{
-		if (! $this->website->isLogged())
-		{
-			show_404();
-		}
-
-		$this->session->sess_destroy();
-		redirect(site_url());
-	}
-
-	public function recovery()
-	{
-		if ($this->website->isLogged())
-		{
-			redirect('panel');
-		}
-
-		$this->template->title(config_item('app_name'), lang('tab_reset'));
-
-		$this->template->build('recovery');
-	}
-
-	public function forgotpassword()
-	{
-		$username = $this->input->post('username');
-		$email = $this->input->post('email');
-		echo $this->user_model->sendpassword($username, $email);
-	}
-
-	public function activate($key)
-	{
-		echo $this->user_model->activateAccount($key);
-	}
-
-	public function panel()
-	{
-		if (! $this->website->isLogged())
-		{
-			redirect('login');
-		}
-
 		$this->template->title(config_item('app_name'), lang('tab_account'));
 
-		$this->template->build('panel');
+		$this->template->build('index');
 	}
 
 	public function settings()
 	{
-		if (! $this->website->isLogged())
-		{
-			redirect('login');
-		}
-
 		$this->template->title(config_item('app_name'), lang('tab_account'));
 
 		$this->template->build('settings');
 	}
 
-	public function newusername()
+	public function change_nickname()
 	{
-		$username = $this->input->post('newusername');
-		$renewusername = $this->input->post('renewusername');
-		$password = $this->input->post('password');
+		if ($this->input->method() != 'post')
+		{
+			show_404();
+		}
 
-		echo $this->user_model->changeUsername($username, $renewusername, $password);
+		$this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			return $this->settings();
+		}
+		else
+		{
+			$nickname = $this->input->post('nickname', TRUE);
+			$password = $this->input->post('password');
+			$user     = $this->website->get_user();
+
+			if (! $this->auth->valid_password($user->username, $password))
+			{
+				$this->session->set_flashdata('error', '---');
+				redirect(site_url('settings'));
+			}
+
+			$this->db->set('nickname', $nickname)->where('id', $this->session->userdata('id'))->update('users');
+			$this->session->set_userdata('nickname', $nickname);
+
+			$this->session->set_flashdata('success', lang('alert_nickname_changed'));
+			redirect(site_url('settings'));
+		}
 	}
 
-	public function newpass()
+	public function change_email()
 	{
-		$oldpass = $this->input->post('oldpass');
-		$newpass = $this->input->post('newpass');
-		$renewpass = $this->input->post('renewpass');
-		echo $this->user_model->changePassword($oldpass, $newpass, $renewpass);
+		if ($this->input->method() != 'post')
+		{
+			show_404();
+		}
+
+		$this->form_validation->set_rules('new_email', 'New Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('confirm_new_email', 'New Email Confirmation', 'trim|required|matches[new_email]');
+		$this->form_validation->set_rules('cu_password', 'Password', 'trim|required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			return $this->settings();
+		}
+		else
+		{
+			$new_email  = $this->input->post('new_email', TRUE);
+			$password   = $this->input->post('cu_password');
+			$user       = $this->website->get_user();
+
+			if (! $this->auth->account_unique($new_email, 'email'))
+			{
+				$this->session->set_flashdata('error', '---');
+				redirect(site_url('settings'));
+			}
+
+			if (! $this->auth->valid_password($user->username, $password))
+			{
+				$this->session->set_flashdata('error', '---');
+				redirect(site_url('settings'));
+			}
+
+			$this->auth->connect()->set('email', $new_email)->where('id', $user->id)->update('account');
+
+			// If emulator support bnet update password on table
+			if (config_item('emulator_bnet') == 'true')
+			{
+				$bnet = game_hash($new_email, $password, 'bnet');
+
+				$this->auth->connect()->where('id', $id)->update('battlenet_accounts', [
+					'email'         => $new_email,
+					'sha_pass_hash' => $bnet
+				]);
+			}
+
+			$this->db->set('email', $new_email)->where('id', $id)->update('users');
+
+			$this->session->set_flashdata('success', lang('alert_email_changed'));
+			redirect(site_url('settings'));
+		}
 	}
 
-	public function newemail()
+	public function change_password()
 	{
-		$newemail = $this->input->post('newemail');
-		$renewemail = $this->input->post('renewemail');
-		$password = $this->input->post('password');
-		echo $this->user_model->changeEmail($newemail, $renewemail, $password);
+		if ($this->input->method() != 'post')
+		{
+			show_404();
+		}
+
+		$this->form_validation->set_rules('current_password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|min_length[8]|max_length[32]|differs[password]');
+		$this->form_validation->set_rules('confirm_new_password', 'New Password Confirmation', 'trim|required|min_length[8]|max_length[32]|matches[new_password]');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			return $this->settings();
+		}
+		else
+		{
+			$password     = $this->input->post('current_password');
+			$new_password = $this->input->post('new_password');
+			$user         = $this->website->get_user();
+			$emulator     = config_item('emulator');
+
+			if (! $this->auth->valid_password($user->username, $password))
+			{
+				$this->session->set_flashdata('error', '---');
+				redirect(site_url('settings'));
+			}
+
+			if (in_array($emulator, ['trinity'], true))
+			{
+				$salt = random_bytes(32);
+
+				$this->auth->connect()->where('id', $user->id)->update('account', [
+					'salt'     => $salt,
+					'verifier' => game_hash($user->username, $new_password, 'srp6', $salt)
+				]);
+			}
+			elseif (in_array($emulator, ['azeroth', 'old_trinity'], true))
+			{
+				$this->auth->connect()->where('id', $user->id)->update('account', [
+					'sha_pass_hash' => game_hash($user->username, $new_password),
+					'sessionkey'    => '',
+					'v'             => '',
+					's'             => ''
+				]);
+			}
+
+			// If emulator support bnet update password on table
+			if (config_item('emulator_bnet') == 'true')
+			{
+				$bnet = game_hash($user->email, $new_password, 'bnet');
+
+				$this->auth->connect()->set('sha_pass_hash', $bnet)->where('id', $user->id)->update('battlenet_accounts');
+			}
+
+			$this->session->set_flashdata('success', lang('alert_password_changed'));
+			redirect(site_url('settings'));
+		}
 	}
 
-	public function newavatar()
+	public function change_avatar()
 	{
-		$avatar = $this->input->post('avatar');
-		echo $this->user_model->changeAvatar($avatar);
+		if ($this->input->method() != 'post')
+		{
+			show_404();
+		}
+
+		$this->form_validation->set_rules('avatar', 'Avatar', 'trim|required|is_natural_no_zero');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			return $this->settings();
+		}
+		else
+		{
+			$avatar = $this->input->post('avatar', TRUE);
+			$id     = $this->session->userdata('id');
+
+			$this->db->set('profile', $avatar)->where('id', $id)->update('users');
+
+			$this->session->set_flashdata('success', lang('alert_avatar_changed'));
+			redirect(site_url('settings'));
+		}
 	}
 }

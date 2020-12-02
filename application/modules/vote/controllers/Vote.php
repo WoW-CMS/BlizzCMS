@@ -17,7 +17,7 @@ class Vote extends MX_Controller
 
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$this->load->model('vote_model');

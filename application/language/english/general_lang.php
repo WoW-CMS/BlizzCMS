@@ -34,8 +34,8 @@ $lang['navbar_donate_panel'] = 'Donate Panel';
 
 /*Button Lang*/
 $lang['button_register'] = 'Register';
-$lang['button_login'] = 'Log In';
-$lang['button_logout'] = 'Log Out';
+$lang['button_login'] = 'Login';
+$lang['button_logout'] = 'Logout';
 $lang['button_forgot_password'] = 'Forgot your password?';
 $lang['button_user_panel'] = 'User Panel';
 $lang['button_admin_panel'] = 'Admin Panel';
@@ -77,9 +77,6 @@ $lang['unknown'] = 'Unknown';
 $lang['label_open'] = 'Open';
 $lang['label_closed'] = 'Closed';
 
-/*Form Label Lang*/
-$lang['label_login_info'] = 'Login Information';
-
 /*Input Placeholder Lang*/
 $lang['placeholder_username'] = 'Username';
 $lang['placeholder_email'] = 'Email Address';
@@ -87,8 +84,7 @@ $lang['placeholder_password'] = 'Password';
 $lang['placeholder_re_password'] = 'Repeat Password';
 $lang['placeholder_current_password'] = 'Current Password';
 $lang['placeholder_new_password'] = 'New Password';
-$lang['placeholder_new_username'] = 'New Username';
-$lang['placeholder_confirm_username'] = 'Confirm New Username';
+$lang['placeholder_new_nickname'] = 'New Nickname';
 $lang['placeholder_new_email'] = 'New Email';
 $lang['placeholder_confirm_email'] = 'Confirm New Email';
 $lang['placeholder_create_bug_report'] = 'Create Bug Report';
@@ -100,6 +96,7 @@ $lang['placeholder_uri'] = 'Friendly URL (Example: tos)';
 $lang['placeholder_highl'] = 'Highlight';
 $lang['placeholder_lock'] = 'Lock';
 $lang['placeholder_subject'] = 'Subject';
+$lang['placeholder_nickname'] = 'Nickname';
 
 /*Table header Lang*/
 $lang['table_header_name'] = 'Name';
@@ -192,10 +189,10 @@ $lang['panel_chars_list'] = 'Characters List';
 $lang['panel_account_details'] = 'Account Details';
 $lang['panel_last_ip'] = 'Last IP';
 $lang['panel_change_email'] = 'Change Email Address';
-$lang['panel_change_username'] = 'Change Username';
+$lang['panel_change_nickname'] = 'Change Nickname';
 $lang['panel_change_password'] = 'Change Password';
 $lang['panel_replace_pass_by'] = 'Replace password by';
-$lang['panel_current_username'] = 'Current Username';
+$lang['panel_current_nickname'] = 'Current Nickname';
 $lang['panel_current_email'] = 'Current Email Address';
 $lang['panel_replace_email_by'] = 'Replace Email by';
 
@@ -227,7 +224,7 @@ $lang['vote_next_time'] = 'Next vote in:';
 /*Forum Lang*/
 $lang['forum_posts_count'] = 'Posts';
 $lang['forum_topic_locked'] = 'This topic is locked.';
-$lang['forum_comment_locked'] = 'Have something to say? Log in to join the conversation.';
+$lang['forum_comment_locked'] = 'Have something to say? Login to join the conversation.';
 $lang['forum_comment_header'] = 'Join the Conversation';
 $lang['forum_not_authorized'] = 'Not Authorized';
 $lang['forum_post_history'] = 'View Post History';

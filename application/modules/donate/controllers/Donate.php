@@ -9,10 +9,8 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require './vendor/autoload.php';
-
-use \PayPal\Api\Payment;
-use \PayPal\Api\PaymentExecution;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
 
 class Donate extends MX_Controller
 {
@@ -22,7 +20,7 @@ class Donate extends MX_Controller
 
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$this->load->model('donate_model');
@@ -40,17 +38,22 @@ class Donate extends MX_Controller
 	{
 		$execute = new PaymentExecution();
 
-		$paymentId = $_GET['paymentId'];
-		$payerId = $_GET['PayerID'];
-		$payment = Payment::get($paymentId, $this->donate_model->getApi());
+		$paymentId = $this->input->get('paymentId');
+		$payerId   = $this->input->get('PayerID');
+		$payment   = Payment::get($paymentId, $this->donate_model->getApi());
 
 		$execute->setPayerId($payerId);
-		try {
+
+		try
+		{
 			$result = $payment->execute($execute, $this->donate_model->getApi());
-		} catch (Exception $e) {
+		}
+		catch (\Exception $e)
+		{
 			die($e);
 		}
-		$this->donate_model->completeTransaction($id, $_GET['paymentId']);
+
+		$this->donate_model->completeTransaction($id, $paymentId);
 	}
 
 	public function canceled()

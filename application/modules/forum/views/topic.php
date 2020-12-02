@@ -41,7 +41,7 @@ endif; ?>
           <div class="uk-card-body">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-1-6@s">
-                <div class="Author <?php if($this->website->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                <div class="Author <?php if($this->auth->get_gmlevel($this->forum_model->getSpecifyPostAuthor($idlink)) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                   <div class="topic-author-avatar profile">
                     <?php if($this->base->getUserInfoGeneral($this->forum_model->getSpecifyPostAuthor($idlink))->num_rows()): ?>
                     <img src="<?= base_url('assets/images/profiles/').$this->website->getNameAvatar($this->website->getImageProfile($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="" />
@@ -50,9 +50,9 @@ endif; ?>
                     <?php endif; ?>
                   </div>
                 </div>
-                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->getUsernameID($this->forum_model->getSpecifyPostAuthor($idlink)); ?></p>
+                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->get_user($this->forum_model->getSpecifyPostAuthor($idlink), 'nickname'); ?></p>
                 <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountPostAuthor($this->forum_model->getSpecifyPostAuthor($idlink)); ?> <?= lang('forum_post_count'); ?></p>
-                <?php if($this->website->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
+                <?php if($this->auth->get_gmlevel($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif; ?>
               </div>
@@ -69,7 +69,7 @@ endif; ?>
             <div class="uk-card uk-card-default uk-card-body">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-6@s">
-                  <div class="Author <?php if($this->website->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                  <div class="Author <?php if($this->auth->get_gmlevel($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                     <div class="topic-author-avatar profile">
                       <?php if($this->base->getUserInfoGeneral($commentss->author)->num_rows()): ?>
                       <img src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($commentss->author))); ?>" alt="" />
@@ -78,16 +78,16 @@ endif; ?>
                       <?php endif; ?>
                     </div>
                   </div>
-                  <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->getUsernameID($commentss->author); ?></p>
+                  <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->get_user($commentss->author, 'nickname'); ?></p>
                   <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountPostAuthor($commentss->author); ?> <?= lang('forum_post_count'); ?></p>
-                  <?php if($this->website->getRank($commentss->author) > 0): ?>
+                  <?php if($this->auth->get_gmlevel($commentss->author) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                   <?php endif; ?>
                 </div>
                 <div class="uk-width-expand@s">
                   <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $commentss->date); ?></p>
                   <?= $commentss->commentary ?>
-                  <?php if($this->website->getRank($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
+                  <?php if($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
                     <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                   </div>

@@ -3,35 +3,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Website_model extends CI_Model
 {
-	protected $auth;
-
 	/**
-	 * Auth_model constructor.
+	 * Authentication
+	 *
+	 * @param string $username
+	 * @param string $password
+	 * @return boolean
 	 */
-	public function __construct()
+	public function authentication($username, $password)
 	{
-		$this->auth = $this->load->database('auth', TRUE);
+		$accgame  = $this->auth->connect()->where('username', $username)->or_where('email', $username)->get('account')->row();
+		$emulator = config_item('emulator');
 
-		if ($this->isLogged() && $this->checkAccountExist() == 0)
+		if (empty($accgame))
 		{
-			$this->synchronizeAccount();
+			return false;
 		}
-	}
 
-	public function arraySession($id)
-	{
+		switch ($emulator)
+		{
+			case 'trinity':
+				$validate = ($accgame->verifier === game_hash($accgame->username, $password, 'srp6', $accgame->salt));
+				break;
+			case 'azeroth':
+			case 'old_trinity':
+				$validate = hash_equals(strtoupper($accgame->sha_pass_hash), game_hash($accgame->username, $password));
+				break;
+			default:
+				$validate = false;
+				break;
+		}
+
+		if (! $validate)
+		{
+			return false;
+		}
+
+		// if account on website don't exist sync values from game account
+		if (! $this->find_user($accgame->id))
+		{
+			$this->db->insert('users', [
+				'id'       => $accgame->id,
+				'nickname' => $accgame->username,
+				'username' => $accgame->username,
+				'email'    => $accgame->email,
+				'joindate' => strtotime($accgame->joindate)
+			]);
+		}
+
+		$data = $this->get_user($accgame->id);
+		// Set session
 		$this->session->set_userdata([
-			'id'        => $id,
-			'username'  => $this->getUsernameID($id),
-			'nickname'  => $this->getSiteUsernameID($id),
-			'email'     => $this->getEmailID($id),
-			'gmlevel'   => $this->getRank($id),
+			'id'        => $data->id,
+			'nickname'  => $data->nickname,
+			'username'  => $data->username,
+			'email'     => $data->email,
+			'gmlevel'   => $this->auth->get_gmlevel($data->id),
 			'logged_in' => TRUE
 		]);
 
-		return true;
+		return true;	
 	}
 
+	/**
+	 * Check if user is logged
+	 *
+	 * @return boolean
+	 */
 	public function isLogged()
 	{
 		if ($this->session->userdata('id') && $this->session->logged_in)
@@ -40,60 +78,6 @@ class Website_model extends CI_Model
 		}
 
 		return false;
-	}
-
-	public function getGmSpecify($id)
-	{
-		return $this->auth->select('id')->where('id', $id)->get('account_access');
-	}
-
-	public function randomUTF()
-	{
-		return rand(0, 999999999);
-	}
-
-	public function getUsernameID($id)
-	{
-		return $this->auth->select('username')->where('id', $id)->get('account')->row('username');
-	}
-
-	public function getSiteUsernameID($id)
-	{
-		return $this->db->select('username')->where('id', $id)->get('users')->row('username');
-	}
-
-	public function getEmailID($id)
-	{
-		return $this->auth->select('email')->where('id', $id)->get('account')->row('email');
-	}
-
-	public function getPasswordAccountID($id)
-	{
-		return $this->auth->select('sha_pass_hash')->where('id', $id)->get('account')->row('sha_pass_hash');
-	}
-
-	public function getPasswordBnetID($id)
-	{
-		return $this->auth->select('sha_pass_hash')->where('id', $id)->get('battlenet_accounts')->row('sha_pass_hash');
-	}
-
-	public function getSpecifyAccount($account)
-	{
-		$account = strtoupper($account);
-
-		return $this->auth->select('id')->where('username', $account)->get('account');
-	}
-
-	public function getIDAccount($account)
-	{
-		$account = strtoupper($account);
-
-		$qq = $this->auth->select('id')->where('username', $account)->get('account');
-		
-		if($qq->num_rows())
-			return $qq->row('id');
-		else
-			return '0';
 	}
 
 	public function getImageProfile($id)
@@ -106,106 +90,42 @@ class Website_model extends CI_Model
 		return $this->db->select('name')->where('id', $id)->get('avatars')->row('name');
 	}
 
-	public function getIDEmail($email)
+	/**
+	 * Check if user exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_user($id)
 	{
-		$email = strtoupper($email);
+		$query = $this->db->where('id', $id)->get('users')->num_rows();
 
-		$qq = $this->auth->select('id')->where('email', $email)->get('account');
-
-		if($qq->num_rows())
-			return $qq->row('id');
-		else
-			return '0';
+		return ($query == 1);
 	}
 
-	public function getJoinDateID($id)
+	/**
+	 * Get user information
+	 *
+	 * @param int $id
+	 * @param string $column
+	 * @return mixed
+	 */
+	public function get_user($id = null, $column = null)
 	{
-		return $this->auth->where('id', $id)->get('account')->row('joindate');
-	}
+		$id = $id ?? $this->session->userdata('id');
 
-	public function getRank($id)
-	{
-		$query = $this->auth->where('id', $id)->get('account_access')->row('gmlevel');
-
-		return ! empty($query) ? $query : 0;
-	}
-
-	public function getBanStatus($id)
-	{
-		$qq = $this->auth->where('id', $id)->where('active', '1')->get('account_banned');
-
-		if ($qq->num_rows())
-			return true;
-		else
-			return false;
-	}
-
-	public function Battlenet($email, $password)
-	{
-		return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash("sha256",strtoupper(hash("sha256", strtoupper($email)).":".strtoupper($password))))))));
-	}
-
-	public function Account($username, $password)
-	{
-		if (!is_string($username))
-			$username = "";
-
-		if (!is_string($password))
-			$password = "";
-
-		$sha_pass_hash = sha1(strtoupper($username).':'.strtoupper($password));
-
-		return strtoupper($sha_pass_hash);
-	}
-
-	public function checkAccountExist()
-	{
-		return $this->db->where('id', $this->session->userdata('id'))->get('users')->num_rows();
-	}
-
-	public function synchronizeAccount()
-	{
-		if ($this->checkAccountExist() == 0)
-		{
-			$joindate = strtotime($this->getJoinDateID($this->session->userdata('id')));
-
-			$data = array(
-				'id' => $this->session->userdata('id'),
-				'username' => $this->session->userdata('username'),
-				'email' => $this->session->userdata('email'),
-				'joindate' => $joindate
-			);
-
-			$this->db->insert('users', $data);
-			return true;
-		}
-		else
-			return false;
-	}
-
-	public function getIsAdmin()
-	{
-		$config = config_item('admin_access_level');
-		$query  = $this->auth->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
+		$query = $this->db->where('id', $id)->get('users')->row();
 
 		if (empty($query))
 		{
-			return false;
+			return null;
 		}
 
-		return ($query >= (int) $config);
-	}
-
-	public function getIsModerator()
-	{
-		$config = config_item('mod_access_level');
-		$query  = $this->auth->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
-
-		if (empty($query))
+		if (property_exists($query, $column))
 		{
-			return false;
+			return $query->$column;
 		}
 
-		return ($query >= (int) $config);
+		return $query;
 	}
 }

@@ -37,7 +37,7 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->website->getIsModerator()): ?>
+                    <?php if($this->auth->is_moderator()): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>

@@ -41,10 +41,6 @@
               <?php endforeach; ?>
             </div>
             <?= $links; ?>
-            <?php else: ?>
-            <div class="uk-alert-warning" uk-alert>
-              <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= lang('alert_changelog_not_found'); ?></p>
-            </div>
             <?php endif; ?>
           </div>
         </div>

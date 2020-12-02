@@ -269,18 +269,21 @@ class Store_model extends CI_Model
 
 	public function Checkout()
 	{
-		$accountid = $this->session->userdata('id');
 		$dptotal = $this->cart->total_dp();
 		$vptotal = $this->cart->total_vp();
 
-		if($this->base->getCharDPTotal($accountid) >= $dptotal && $this->base->getCharVPTotal($accountid) >= $vptotal) {
-			foreach($this->cart->contents() as $item) {
+		if ($this->website->get_user(null, 'dp') >= $dptotal && $this->website->get_user(null, 'vp') >= $vptotal)
+		{
+			foreach($this->cart->contents() as $item)
+			{
 				$count = 1;
-				while ($count <= $item['qty']) {
+				while ($count <= $item['qty'])
+				{
 					$this->PurchaseItem($item['id'], $item['guid']);
 					$count++;
 				}
 			}
+
 			$this->cart->destroy();
 			return true;
 		}

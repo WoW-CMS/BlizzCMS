@@ -57,36 +57,42 @@ $route['install']['get'] = 'installer/index';
 $route['install/settings'] = 'installer/settings';
 $route['install/finish']['get'] = 'installer/finish';
 
-/*User*/
-$route['login']['get'] = 'user/login';
-$route['register']['get'] = 'user/register';
-$route['recovery']['get'] = 'user/recovery';
-$route['newacc']['post'] = 'user/newaccount';
-$route['classicverify']['post'] = 'user/verify1';
-$route['bnetverify']['post'] = 'user/verify2';
-$route['forgotpassword']['post'] = 'user/forgotpassword';
-$route['activate/(:any)']['get'] = 'user/activate/$1';
-$route['logout']['get'] = 'user/logout';
-$route['panel']['get'] = 'user/panel';
-$route['settings']['get'] = 'user/settings';
-$route['changemail']['post'] = 'user/newemail';
-$route['changepass']['post'] = 'user/newpass';
-$route['changeavatar']['post'] = 'user/newavatar';
-$route['changeusername']['post'] = 'user/newusername';
+$route['login'] = 'auth/login';
+$route['logout']['get'] = 'auth/logout';
+$route['register'] = 'auth/register';
+$route['recovery'] = 'auth/recovery';
 
-/*Vote*/
+/**
+ * User Routes
+*/
+$route['panel']['get'] = 'user/index';
+$route['settings']['get'] = 'user/settings';
+$route['settings/email']['post'] = 'user/change_email';
+$route['settings/password']['post'] = 'user/change_password';
+$route['settings/avatar']['post'] = 'user/change_avatar';
+$route['settings/nickname']['post'] = 'user/change_nickname';
+
+/**
+ * Vote Routes
+*/
 $route['vote']['get'] = 'vote/index';
 $route['vote/votenow/(:num)'] = 'vote/votenow/$1';
 
-/*Donate*/
+/**
+ * Donate Routes
+*/
 $route['donate']['get'] = 'donate/index';
 $route['donate/check/(:any)'] = 'donate/check/$1';
 $route['donate/canceled'] = 'donate/canceled';
 
-/*Changelog*/
+/**
+ * Changelogs Routes
+*/
 $route['changelogs']['get'] = 'changelogs/index';
 
-/*Bugtracker*/
+/**
+ * Bugtracker Routes
+*/
 $route['bugtracker']['get'] = 'bugtracker/index';
 $route['bugtracker/new']['get'] = 'bugtracker/newreport';
 $route['bugtracker/create']['post'] = 'bugtracker/create';
@@ -96,7 +102,9 @@ $route['bugtracker/priority']['post'] = 'bugtracker/update_priority';
 $route['bugtracker/close']['post'] = 'bugtracker/close_report';
 $route['bugtracker/report/(:num)']['get'] = 'bugtracker/report/$1';
 
-/*Forum*/
+/**
+ * Forum Routes
+*/
 $route['forum'] = 'forum/index';
 $route['forum/category/(:num)'] = 'forum/category/$1';
 $route['forum/topic/(:num)'] = 'forum/topic/$1';
@@ -105,12 +113,16 @@ $route['forum/topic/create'] = 'forum/addtopic';
 $route['forum/topic/reply'] = 'forum/reply';
 $route['forum/topic/reply/delete'] = 'forum/deletereply';
 
-/*News*/
+/**
+ * News Routes
+*/
 $route['news/(:num)']['get'] = 'news/index/$1';
 $route['news/reply']['post'] = 'news/reply';
 $route['news/reply/delete']['post'] = 'news/deletereply';
 
-/*Store*/
+/**
+ * Store Routes
+*/
 $route['store'] = 'store/index';
 $route['store/(:any)'] = 'store/category/$1';
 $route['cart'] = 'store/cart';
@@ -131,7 +143,6 @@ $route['online']['get'] = 'online/index';
 
 /**
  * Mod Routes
- *
 */
 $route['mod'] = 'mod/index';
 $route['mod/queue'] = 'mod/queue';
@@ -142,7 +153,6 @@ $route['mod/warnings'] = 'mod/warnings';
 
 /**
  * Admin Routes
- *
 */
 $route['admin'] = 'admin/index';
 $route['admin/cms'] = 'admin/cmsmanage';

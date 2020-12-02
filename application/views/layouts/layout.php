@@ -43,10 +43,10 @@
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->website->isLogged()): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->website->getIsModerator()): ?>
+                    <?php if($this->auth->is_moderator()): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->website->getIsAdmin()): ?>
+                    <?php if($this->auth->is_admin()): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
@@ -123,8 +123,8 @@
             <?php if ($this->website->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title:<?=lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->base->getCharDPTotal($this->session->userdata('id')); ?></li>
-                <li><span uk-tooltip="title:<?=lang('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->base->getCharVPTotal($this->session->userdata('id')); ?></li>
+                <li><span uk-tooltip="title:<?=lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->website->get_user(null, 'dp'); ?></li>
+                <li><span uk-tooltip="title:<?=lang('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->website->get_user(null, 'vp'); ?></li>
               </ul>
             </div>
             <?php endif; ?>
@@ -152,7 +152,7 @@
                 <?php endif; ?>
                 <?php if ($this->website->isLogged()): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                <?php if($this->website->getIsAdmin()): ?>
+                <?php if($this->auth->is_admin()): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                 <?php endif; ?>
                 <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
@@ -202,16 +202,16 @@
 
     <?= $template['body']; ?>
 
-    <section class="uk-section uk-section-xsmall">
+    <section class="uk-section uk-section-xsmall footer-section">
       <div class="uk-container">
-        <div class="uk-text-center">
-          <a target="_blank" href="<?= config_item('facebook_url'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-facebook-f"></i></a>
-          <a target="_blank" href="<?= config_item('twitter_url'); ?>" class="uk-icon-button uk-margin-small-right"><i class="fab fa-twitter"></i></a>
-          <a target="_blank" href="<?= config_item('youtube_url'); ?>" class="uk-icon-button"><i class="fab fa-youtube"></i></a>
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
+          <div class="uk-width-auto@s">
+            <p class="uk-h6 uk-text-bold uk-text-uppercase uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
+          </div>
+          <div class="uk-width-expand@s">
+            <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('app_name'); ?></span>. <?= lang('footer_rights'); ?></p>
+          </div>
         </div>
-        <p class="uk-text-center uk-margin-small">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('app_name'); ?></span>. <?= lang('footer_rights'); ?></p>
-        <p class="uk-text-small uk-margin-small uk-text-center">World of Warcraft® and Blizzard Entertainment® are all trademarks or registered trademarks of Blizzard Entertainment in the United States and/or other countries. These terms and all related materials, logos, and images are copyright © Blizzard Entertainment. This site is in no way associated with or endorsed by Blizzard Entertainment®.</p>
-        <p class="uk-h6 uk-text-bold uk-text-uppercase uk-margin-small uk-text-center">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
       </div>
     </section>
   </body>

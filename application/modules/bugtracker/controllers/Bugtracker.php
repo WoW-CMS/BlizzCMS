@@ -17,7 +17,7 @@ class Bugtracker extends MX_Controller
 
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$this->load->model('bugtracker_model');
@@ -50,7 +50,7 @@ class Bugtracker extends MX_Controller
 
 	public function newreport()
 	{
-		if($this->website->getIsAdmin())
+		if($this->auth->is_admin())
 			$tiny = $this->base->tinyEditor('Admin');
 		else
 			$tiny = $this->base->tinyEditor('User');
@@ -91,56 +91,56 @@ class Bugtracker extends MX_Controller
 
 	public function update_priority()
 	{
-		if (! $this->website->getIsModerator())
+		if (! $this->auth->is_moderator())
 		{
-			redirect('bugtracker');
+			redirect(site_url('bugtracker'));
 		}
 
 		$id       = $this->input->post('id', TRUE);
 		$priority = $this->input->post('priority', TRUE);
 		$this->bugtracker_model->change_priority($id, $priority);
 
-		redirect('bugtracker/report/'.$id);
+		redirect(site_url('bugtracker/report/'.$id));
 	}
 
 	public function update_status()
 	{
-		if (! $this->website->getIsModerator())
+		if (! $this->auth->is_moderator())
 		{
-			redirect('bugtracker');
+			redirect(site_url('bugtracker'));
 		}
 
 		$id     = $this->input->post('id', TRUE);
 		$status = $this->input->post('status', TRUE);
 		$this->bugtracker_model->change_status($id, $status);
 
-		redirect('bugtracker/report/'.$id);
+		redirect(site_url('bugtracker/report/'.$id));
 	}
 
 	public function update_type()
 	{
-		if (! $this->website->getIsModerator())
+		if (! $this->auth->is_moderator())
 		{
-			redirect('bugtracker');
+			redirect(site_url('bugtracker'));
 		}
 
 		$id   = $this->input->post('id', TRUE);
 		$type = $this->input->post('type', TRUE);
 		$this->bugtracker_model->change_type($id, $type);
 
-		redirect('bugtracker/report/'.$id);
+		redirect(site_url('bugtracker/report/'.$id));
 	}
 
 	public function close_report()
 	{
-		if (! $this->website->getIsModerator())
+		if (! $this->auth->is_moderator())
 		{
-			redirect('bugtracker');
+			redirect(site_url('bugtracker'));
 		}
 
 		$id = $this->input->post('id', TRUE);
 		$this->bugtracker_model->close_report($id);
 
-		redirect('bugtracker/report/'.$id);
+		redirect(site_url('bugtracker/report/'.$id));
 	}
 }

@@ -64,9 +64,9 @@
                       <?php endif; ?>
                     </td>
                     <td class="uk-text-center">
-                      <?php if ($report->status == 1 || $report->status == 8 || $report->status == 3): ?>
+                      <?php if (in_array($report->status, [1, 3, 8], true)): ?>
                       <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span>
-                      <?php elseif ($report->status == 2 || $report->status == 5 || $report->status == 6): ?>
+                      <?php elseif (in_array($report->status, [2, 5, 6], true)): ?>
                       <span class="uk-label uk-label-warning"><?= $this->bugtracker_model->getStatus($report->status); ?></span>
                       <?php else: ?>
                       <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getStatus($report->status); ?></span>

@@ -32,6 +32,45 @@
 - Move page module to main controllers
 - Override function ``show_404()``
 - Add new installer
+- Remove unneeded model functions in ``bugtracker`` module
+- Remove unneeded model functions in ``changelogs`` module
+- Consolidate new auth model
+- Remove unused function ``$this->auth->getSpecifyAccount()``
+- Remove unused function ``$this->auth->getEmailID()``
+- Remove unused function ``$this->website->getSiteUsernameID()``
+- Remove unused function ``$this->website->randomUTF()``
+- Remove unused function ``$this->website->getGmSpecify()``
+- Remove unused function ``$this->website->checkAccountExist()``
+- Remove unused function ``$this->website->synchronizeAccount()``
+- Remove unused function ``$this->website->arraySession()``
+- Remove unused function ``$this->website->getIDEmail()``
+- Remove unused function ``$this->website->getJoinDateID()``
+- Remove unused function ``$this->website->getPasswordAccountID()``
+- Remove unused function ``$this->website->getPasswordBnetID()``
+- Remove unused function ``$this->website->getIDAccount()``
+- Remove unused function ``$this->base->getCharDPTotal()``
+- Remove unused function ``$this->base->getCharVPTotal()``
+- Remove unused function ``$this->user_model->getExpansion()``
+- Remove unused function ``$this->user_model->getDateMember()``
+- Remove unused function ``$this->user_model->insertRegister()``
+- Remove unused function ``$this->user_model->checkuserid()``
+- Remove unused function ``$this->user_model->checkemailid()``
+- Remove unused function ``$this->user_model->getIDPendingUsername()``
+- Remove unused function ``$this->user_model->getIDPendingEmail()``
+- Remove unused function ``$this->user_model->checkPendingUser()``
+- Remove unused function ``$this->user_model->getTempUser()``
+- Remove unused function ``$this->user_model->removeTempUser()``
+- Remove unused function ``$this->user_model->getLastIp()``
+- Remove unused function ``$this->user_model->changeAvatar()``
+- Remove unused function ``$this->user_model->changeUsername()``
+- Remove unused function ``$this->user_model->changePassword()``
+- Remove unused function ``$this->user_model->changeEmail()``
+- Remove unused function ``$this->user_model->getExistEmail()``
+- Remove user model controller function ``verify1()``
+- Remove user model controller function ``verify2()``
+- Remove user model controller function ``newaccount()``
+- Remove user model controller function ``forgotpassword()``
+- Remove user model controller function ``activate()``
 
 ### Bugs Fixed
 
@@ -51,3 +90,11 @@
 - Deprecated ``$this->base->getMenuChild()`` in favor of ``$this->base->get_parent_menu()``
 - Deprecated ``$this->home_model->getSlides()`` in favor of ``$this->base->get_slides()``
 - Deprecated ``$this->news_model->getCommentCount()`` in favor of ``$this->base->count_news_comments()``
+- Deprecated ``$this->auth->getBanStatus()`` in favor of ``$this->auth->is_banned()``
+- Deprecated ``$this->website->getIsModerator()`` in favor of ``$this->auth->is_moderator()``
+- Deprecated ``$this->website->getIsAdmin()`` in favor of ``$this->auth->is_admin()``
+- Deprecated ``$this->website->getUsernameID()`` in favor of ``$this->website->get_user()``
+- Deprecated ``$this->base->smtpSendEmail()`` in favor of ``$this->base->send_email()``
+- Deprecated ``$this->website->Battlenet()`` and ``$this->website->Account()`` in favor of ``game_hash()``
+- Deprecated ``$this->user_model->checklogin()`` and ``$this->user_model->checkloginbattle()`` in favor of ``$this->website->authentication()``
+- Deprecated ``$this->user_model->getAllAvatars()`` in favor of ``$this->base->get_avatars()``

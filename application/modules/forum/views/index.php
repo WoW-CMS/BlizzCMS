@@ -30,32 +30,32 @@
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
                         <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
-                        by <span class="uk-text-primary"><?= $this->website->getUsernameID($lastpost->author) ?></span>
+                        by <span class="uk-text-primary"><?= $this->website->get_user($lastpost->author, 'nickname') ?></span>
                       <?php endforeach; ?>
                     </td>
                   </tr>
                   <?php elseif($sections->type == 2): ?>
                   <?php if($this->website->isLogged()): ?>
-                  <?php if($this->website->getRank($this->session->userdata('id')) > 0): ?>
+                  <?php if($this->auth->get_gmlevel($this->session->userdata('id')) > 0): ?>
                   <tr>
                     <td class="uk-table-shrink">
                       <i class="forum-icon" style="background-image: url('<?= base_url('assets/images/forums/'.$sections->icon); ?>')"></i>
                     </td>
                     <td class="uk-table-expand uk-table-link uk-text-break">
                       <a href="<?= base_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
-                        <h4 class="uk-h4 uk-margin-remove"><?= $sections->name ?></h4>
-                        <span class="uk-text-meta"><?= $sections->description ?></span>
+                        <h4 class="uk-h4 uk-margin-remove"><?= $sections->name; ?></h4>
+                        <span class="uk-text-meta"><?= $sections->description; ?></span>
                       </a>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
+                      <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id); ?></span>
                       <span class="uk-text-small"><?= lang('forum_posts_count'); ?></span>
                     </td>
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
-                        <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
-                        <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
-                        by <span class="uk-text-primary"><?= $this->website->getUsernameID($lastpost->author) ?></span>
+                        <a href="<?= base_url('forum/topic/'.$lastpost->id); ?>" class="uk-display-block"><?= $lastpost->title; ?></a>
+                        <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date); ?></span>
+                        by <span class="uk-text-primary"><?= $this->website->get_user($lastpost->author, 'nickname'); ?></span>
                       <?php endforeach; ?>
                     </td>
                   </tr>
@@ -79,11 +79,11 @@
                   <li>
                     <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
                     <?php if($this->forum_model->getLastRepliesCount($lastest->id) == 0): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->getUsernameID($lastest->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($lastest->author, 'nickname') ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastest->date) ?></p>
                     <?php else: ?>
                     <?php foreach ($this->forum_model->getLastReplies($lastest->id)->result() as $replies): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->getUsernameID($replies->author) ?></span></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($replies->author, 'nickname') ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $replies->date) ?></p>
                     <?php endforeach; ?>
                     <?php endif; ?>

@@ -23,7 +23,7 @@
                 </div>
               </div>
             </div>
-            <?php if($this->website->getIsAdmin()): ?>
+            <?php if($this->auth->is_admin()): ?>
             <div class="uk-margin">
               <div class="uk-form-controls">
                 <div class="uk-grid uk-grid-small uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>

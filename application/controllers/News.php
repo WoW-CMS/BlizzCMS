@@ -47,7 +47,7 @@ class News extends CI_Controller
 	{
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$this->db->insert('news_comments', [
@@ -64,7 +64,7 @@ class News extends CI_Controller
 	{
 		if (! $this->website->isLogged())
 		{
-			redirect('login');
+			redirect(site_url('login'));
 		}
 
 		$this->db->where('id', $this->input->post('value', TRUE))->delete('news_comments');
