@@ -27,11 +27,7 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="javascript:void(0)">
-                  <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/').$this->website->getNameAvatar($this->website->getImageProfile($this->session->userdata('id'))); ?>" alt="">
-                  <?php else: ?>
-                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/default.png'); ?>"  alt="">
-                  <?php endif; ?>
+                  <img class="uk-border-rounded profile-img" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname'); ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
                 <div class="uk-navbar-dropdown">

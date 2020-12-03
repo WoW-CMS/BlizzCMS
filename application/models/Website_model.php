@@ -80,14 +80,17 @@ class Website_model extends CI_Model
 		return false;
 	}
 
-	public function getImageProfile($id)
+	/**
+	 * Get avatar name of specific user
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function user_avatar($id = null)
 	{
-		return $this->db->select('profile')->where('id', $id)->get('users')->row('profile');
-	}
+		$avatar = $this->get_user($id, 'profile');
 
-	public function getNameAvatar($id)
-	{
-		return $this->db->select('name')->where('id', $id)->get('avatars')->row('name');
+		return $this->db->where('id', $avatar)->get('avatars')->row('name');
 	}
 
 	/**

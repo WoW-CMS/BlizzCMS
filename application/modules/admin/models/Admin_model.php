@@ -93,7 +93,7 @@ class Admin_model extends CI_Model
 
 		$this->auth->connect()->insert('account_banned', $data2);
 
-		if ($this->base->getExpansionAction() == 2)
+		if (config_item('emulator_bnet') == 'true')
 		{
 			$this->auth->connect()->insert('battlenet_account_bans', $data2);
 		}
@@ -105,7 +105,7 @@ class Admin_model extends CI_Model
 	{
 		$this->auth->connect()->where('id', $id)->delete('account_banned');
 
-		if ($this->base->getExpansionAction() == 2)
+		if (config_item('emulator_bnet') == 'true')
 		{
 			$this->auth->connect()->where('id', $id)->delete('battlenet_account_bans');
 		}

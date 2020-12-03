@@ -32,11 +32,7 @@
               <?php if ($this->website->isLogged()): ?>
               <li class="uk-visible@m">
                 <a href="#">
-                  <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($this->session->userdata('id')))); ?>" width="30" height="30" alt="Avatar">
-                  <?php else: ?>
-                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="30" height="30" alt="Avatar">
-                  <?php endif; ?>
+                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" width="30" height="30" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('nickname'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
@@ -137,11 +133,7 @@
               <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('app_name'); ?></p>
               <?php if ($this->website->isLogged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                <?php if($this->base->getUserInfoGeneral($this->session->userdata('id'))->num_rows()): ?>
-                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($this->session->userdata('id')))); ?>" width="36" height="36" alt="Avatar">
-                <?php else: ?>
-                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/default.png'); ?>" width="36" height="36" alt="Avatar">
-                <?php endif; ?>
+                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" width="36" height="36" alt="Avatar">
                 <span class="uk-label"><?= $this->session->userdata('nickname'); ?></span>
               </div>
               <?php endif; ?>
@@ -206,7 +198,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-auto@s">
-            <p class="uk-h6 uk-text-bold uk-text-uppercase uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
+            <p class="uk-text-bold uk-text-uppercase uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
           </div>
           <div class="uk-width-expand@s">
             <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('app_name'); ?></span>. <?= lang('footer_rights'); ?></p>

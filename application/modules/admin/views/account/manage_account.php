@@ -16,13 +16,11 @@
             <div class="uk-grid uk-grid-medium" data-uk-grid>
               <div class="uk-width-1-4@s">
                 <div class="uk-flex uk-flex-center uk-margin-small">
-                  <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($idlink))); ?>" height="170" alt="Avatar">
+                  <img class="uk-border-rounded" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar($user->id)); ?>" height="170" alt="Avatar">
                 </div>
                 <div class="uk-text-center uk-margin-small">
-                  <?php foreach ($this->base->getUserInfoGeneral($idlink)->result() as $info): ?>
-                  <h3 class="uk-h3 uk-text-bold uk-margin-remove"><i class="fas fa-user"></i> <?= $info->username ?></h3>
-                  <p class="uk-margin-remove"><i class="fas fa-envelope"></i> <?= $info->email ?></p>
-                  <?php endforeach; ?>
+                  <h3 class="uk-h3 uk-text-bold uk-margin-remove"><i class="fas fa-user"></i> <?= $user->username; ?></h3>
+                  <p class="uk-margin-remove"><i class="fas fa-envelope"></i> <?= $user->email ?></p>
                 </div>
               </div>
               <div class="uk-width-3-4@s">
@@ -33,13 +31,13 @@
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('panel_dp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->website->get_user($idlink, 'dp'); ?>" placeholder="<?= lang('panel_dp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $user->dp; ?>" placeholder="<?= lang('panel_dp'); ?>" required>
                       </div>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('panel_vp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->website->get_user($idlink, 'vp'); ?>" placeholder="<?= lang('panel_vp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $user->vp; ?>" placeholder="<?= lang('panel_vp'); ?>" required>
                       </div>
                     </div>
                   </div>

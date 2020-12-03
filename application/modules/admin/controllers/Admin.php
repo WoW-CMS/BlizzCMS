@@ -211,7 +211,8 @@ class Admin extends MX_Controller
 		}
 
 		$data = [
-			'idlink' => $id
+			'idlink' => $id,
+			'user'   => $this->website->get_user($id)
 		];
 
 		$this->template->title(config_item('app_name'), lang('button_admin_panel'));

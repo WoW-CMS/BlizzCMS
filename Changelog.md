@@ -50,6 +50,10 @@
 - Remove unused function ``$this->website->getIDAccount()``
 - Remove unused function ``$this->base->getCharDPTotal()``
 - Remove unused function ``$this->base->getCharVPTotal()``
+- Remove unused function ``$this->base->getEmulatorAction()``
+- Remove unused function ``$this->base->getExpansionAction()``
+- Remove unused function ``$this->base->getRealExpansionDB()``
+- Remove unused function ``$this->base->getUserInfoGeneral()``
 - Remove unused function ``$this->user_model->getExpansion()``
 - Remove unused function ``$this->user_model->getDateMember()``
 - Remove unused function ``$this->user_model->insertRegister()``
@@ -98,3 +102,4 @@
 - Deprecated ``$this->website->Battlenet()`` and ``$this->website->Account()`` in favor of ``game_hash()``
 - Deprecated ``$this->user_model->checklogin()`` and ``$this->user_model->checkloginbattle()`` in favor of ``$this->website->authentication()``
 - Deprecated ``$this->user_model->getAllAvatars()`` in favor of ``$this->base->get_avatars()``
+- Deprecated ``$this->website->getImageProfile()`` and ``$this->website->getNameAvatar()`` in favor of ``$this->website->user_avatar()``

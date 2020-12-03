@@ -31,11 +31,7 @@
                     <div class="uk-width-1-6@s">
                       <div class="Author <?php if($this->auth->get_gmlevel($comment->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                         <div class="topic-author-avatar profile">
-                          <?php if ($this->base->getUserInfoGeneral($comment->author)->num_rows()): ?>
-                          <img src="<?= base_url('assets/images/profiles/'.$this->website->getNameAvatar($this->website->getImageProfile($comment->author))); ?>" alt="" />
-                          <?php else: ?>
-                          <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
-                          <?php endif; ?>
+                          <img src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar($comment->author)); ?>" alt="Avatar">
                         </div>
                       </div>
                       <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->website->get_user($comment->author, 'nickname'); ?></p>

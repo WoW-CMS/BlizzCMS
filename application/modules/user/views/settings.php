@@ -172,7 +172,7 @@
                       <?php foreach ($this->base->get_avatars() as $avatar): ?>
                         <div>
                           <img class="uk-border-rounded uk-margin-small" src="<?= base_url('assets/images/profiles/'.$avatar->name); ?>" width="60" height="60">
-                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="avatar" value="<?= $avatar->id ?>" <?php if ($this->website->getImageProfile($this->session->userdata('id')) == $avatar->id) echo 'checked'; ?>>
+                          <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="avatar" value="<?= $avatar->id ?>" <?php if ($this->website->get_user(null, 'profile') == $avatar->id) echo 'checked'; ?>>
                         </div>
                       <?php endforeach; ?>
                     </div>

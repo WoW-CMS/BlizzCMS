@@ -65,7 +65,7 @@ class User extends MX_Controller
 				redirect(site_url('settings'));
 			}
 
-			$this->db->set('nickname', $nickname)->where('id', $this->session->userdata('id'))->update('users');
+			$this->db->set('nickname', $nickname)->where('id', $user->id)->update('users');
 			$this->session->set_userdata('nickname', $nickname);
 
 			$this->session->set_flashdata('success', lang('alert_nickname_changed'));
@@ -113,13 +113,13 @@ class User extends MX_Controller
 			{
 				$bnet = game_hash($new_email, $password, 'bnet');
 
-				$this->auth->connect()->where('id', $id)->update('battlenet_accounts', [
+				$this->auth->connect()->where('id', $user->id)->update('battlenet_accounts', [
 					'email'         => $new_email,
 					'sha_pass_hash' => $bnet
 				]);
 			}
 
-			$this->db->set('email', $new_email)->where('id', $id)->update('users');
+			$this->db->set('email', $new_email)->where('id', $user->id)->update('users');
 
 			$this->session->set_flashdata('success', lang('alert_email_changed'));
 			redirect(site_url('settings'));
