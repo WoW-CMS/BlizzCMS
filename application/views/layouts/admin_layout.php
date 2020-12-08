@@ -26,7 +26,7 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="#">
-                  <img class="uk-border-circle profile-img" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" alt="Avatar">
+                  <img class="uk-border-circle profile-img" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar(); ?>" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname'); ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
                 <div class="uk-navbar-dropdown">
@@ -61,7 +61,7 @@
               <li class="uk-parent">
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('admin_nav_users'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= base_url('admin/users'); ?>"><i class="fas fa-users-cog"></i> <?= lang('admin_nav_accounts'); ?></a></li>
+                  <li><a href="<?= base_url('admin/accounts'); ?>"><i class="fas fa-users-cog"></i> <?= lang('admin_nav_accounts'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
@@ -113,7 +113,7 @@
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('admin_nav_users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('admin/users'); ?>"><i class="fas fa-users-cog"></i> <?= lang('admin_nav_accounts'); ?></a></li>
+                    <li><a href="<?= base_url('admin/accounts'); ?>"><i class="fas fa-users-cog"></i> <?= lang('admin_nav_accounts'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -164,7 +164,7 @@
         <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('footer_rights'); ?></p>
       </div>
     </section>
-    <script src="<?= base_url('assets/core/js/jquery.countTo.js'); ?>"></script>
+    <script src="<?= $template['assets'].'js/jquery.countTo.js'; ?>"></script>
     <script type="text/javascript">$('.blizzcms-count').countTo();</script>
   </body>
 </html>

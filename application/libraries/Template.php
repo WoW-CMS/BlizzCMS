@@ -209,7 +209,8 @@ class Template
 		$template['metadata']    = implode("\n\t\t", $this->_metadata);
 		$template['partials']    = array();
 		$template['location']    = base_url('application/themes/'.$this->get_theme().'/');
-		$template['assets']      = base_url('assets/core/');
+		$template['assets']      = base_url('assets/');
+		$template['uploads']     = base_url('uploads/');
 
 		// Assign by reference, as all loaded views will need access to partials
 		$this->_data['template'] =& $template;

@@ -4,7 +4,7 @@
           <?php foreach ($this->base->get_slides() as $slide): ?>
           <?php if ($slide->type == 1): ?>
           <li>
-            <img src="<?= $template['assets'].'images/slides/'.$slide->route; ?>" alt="<?= $slide->title ?>" uk-cover>
+            <img src="<?= $template['uploads'].'slides/'.$slide->route; ?>" alt="<?= $slide->title ?>" uk-cover>
             <div class="uk-container uk-position-relative uk-margin-large-top">
               <h2 class="uk-h2 uk-position-medium uk-text-left uk-margin-remove"><?= $slide->title ?></h2>
               <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slide->description ?></p>
@@ -12,7 +12,7 @@
           </li>
           <?php elseif ($slide->type == 2): ?>
           <li>
-            <video src="<?= $template['assets'].'images/slides/'.$slide->route; ?>" autoplay loop playslinline uk-cover></video>
+            <video src="<?= $template['uploads'].'slides/'.$slide->route; ?>" autoplay loop playslinline uk-cover></video>
             <div class="uk-container uk-position-relative uk-margin-large-top">
               <h2 class="uk-h2 uk-position-medium uk-text-left uk-margin-remove"><?= $slide->title ?></h2>
               <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slide->description ?></p>
@@ -41,7 +41,7 @@
                 <a href="<?= base_url('news/'.$article->id) ;?>" title="<?= lang('button_read_more'); ?>">
                   <div class="uk-card uk-card-default news-card uk-card-hover uk-grid-collapse uk-margin" uk-grid>
                     <div class="uk-width-1-3@s uk-card-media-left uk-cover-container">
-                      <img src="<?= base_url('assets/images/news/'.$article->image); ?>" alt="<?= $article->title ?>" uk-cover>
+                      <img src="<?= $template['uploads'].'news/'.$article->image; ?>" alt="<?= $article->title ?>" uk-cover>
                       <canvas width="500" height="250"></canvas>
                     </div>
                     <div class="uk-width-2-3@s uk-card-body">

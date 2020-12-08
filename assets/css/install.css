@@ -1,0 +1,154 @@
+/*!
+ * BlizzCMS
+ *
+ * @author  WoW-CMS
+ * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @license https://opensource.org/licenses/MIT MIT License
+ * @link    https://wow-cms.com
+ */
+
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'), url('../fonts/lobster-regular-webfont.woff') format('woff');
+}
+
+html {
+  background: transparent;
+  color: #f3f3f3;
+}
+
+body {
+  background-color: #0e1b3e;
+  background-image: url('../images/bg-install.jpg');
+  background-position: center -120px;
+  background-repeat: no-repeat;
+  font-size: 1rem;
+}
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.uk-h1,
+.uk-h2,
+.uk-h3,
+.uk-h4,
+.uk-h5,
+.uk-h6 {
+  color: #dbdde1;
+}
+
+.uk-logo {
+  font-family: 'Lobster', cursive;
+  font-size: 38px;
+  color: #fff !important;
+}
+
+.uk-navbar-item,
+.uk-navbar-nav > li > a,
+.uk-navbar-toggle {
+  min-height: 60px;
+}
+
+.step-title {
+  font-family: 'Lobster', cursive;
+  color: #fff;
+}
+
+.uk-heading-line > ::after,
+.uk-heading-line > ::before {
+  border-bottom-color: rgba(255, 255, 255, .15);
+}
+
+.uk-alert {
+  padding: 7px 14px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+}
+
+.uk-alert-danger {
+  background: #b92323;
+  color: #fff;
+}
+
+.uk-alert-success {
+  background: #36b923;
+  color: #fff;
+}
+
+.uk-icon-button {
+  background: rgba(255, 255, 255, .15);
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+}
+
+.uk-icon-button.gitlab {
+  background: #fc6d26;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.uk-icon-button:hover.gitlab,
+.uk-icon-button:focus.gitlab {
+  background-color: #ff8245;
+  color: #fff;
+}
+
+.uk-icon-button:active.gitlab,
+.uk-active > .uk-icon-button.gitlab {
+  background-color: #ff8245;
+  color: #fff;
+}
+
+.uk-icon-button.discord {
+  background: #7289DA;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.uk-icon-button:hover.discord,
+.uk-icon-button:focus.discord {
+  background-color: #8598DA;
+  color: #fff;
+}
+
+.uk-icon-button:active.discord,
+.uk-active > .uk-icon-button.discord {
+  background-color: #8598DA;
+  color: #fff;
+}
+
+.uk-button-primary {
+  background-color: #1b3dbb;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 2px;
+}
+
+.uk-button-primary:focus,
+.uk-button-primary:hover {
+  background: #3251c2;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.uk-button-primary.uk-active,
+.uk-button-primary:active {
+  background: #3251c2;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .1);
+}

@@ -32,7 +32,7 @@
                           <td class="uk-text-center"><?=$tops2v2->name?></td>
                           <td class="uk-text-center">
                             <?php foreach ($this->pvp_model->getMemberTeam($tops2v2->arenaTeamId, $multiRealm)->result() as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.class_icon($this->pvp_model->getClassGuid($mmberteam->guid, $multiRealm))); ?>" width="20" height="20" title="<?= $this->pvp_model->getNameGuid($mmberteam->guid, $multiRealm); ?>" alt="">
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($mmberteam->guid, $multiRealm)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($mmberteam->guid, $multiRealm); ?>">
                             <?php endforeach; ?>
                           </td>
                           <td class="uk-text-center"><?=$tops2v2->rating?></td>
@@ -59,7 +59,7 @@
                           <td class="uk-text-center"><?=$tops3v3->name?></td>
                           <td class="uk-text-center">
                             <?php foreach ($this->pvp_model->getMemberTeam($tops3v3->arenaTeamId, $multiRealm)->result() as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.class_icon($this->pvp_model->getClassGuid($mmberteam->guid, $multiRealm))); ?>" width="20" height="20" title="<?= $this->pvp_model->getNameGuid($mmberteam->guid, $multiRealm); ?>" alt="">
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($mmberteam->guid, $multiRealm)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($mmberteam->guid, $multiRealm); ?>">
                             <?php endforeach; ?>
                           </td>
                           <td class="uk-text-center"><?=$tops3v3->rating?></td>
@@ -86,7 +86,7 @@
                           <td class="uk-text-center"><?=$tops5v5->name?></td>
                           <td class="uk-text-center">
                             <?php foreach ($this->pvp_model->getMemberTeam($tops5v5->arenaTeamId, $multiRealm)->result() as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= base_url('assets/images/class/'.class_icon($this->pvp_model->getClassGuid($mmberteam->guid, $multiRealm))); ?>" width="20" height="20" title="<?= $this->pvp_model->getNameGuid($mmberteam->guid, $multiRealm); ?>" alt="">
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($mmberteam->guid, $multiRealm)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($mmberteam->guid, $multiRealm); ?>">
                             <?php endforeach; ?>
                           </td>
                           <td class="uk-text-center"><?=$tops5v5->rating?></td>
@@ -116,9 +116,9 @@
                     <?php foreach($this->pvp_model->getTop20PVP($multiRealm)->result() as $tops): ?>
                       <tr>
                         <td class="uk-text-capitalize"><?= $tops->name ?></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= base_url('assets/images/races/'.race_icon($tops->race)); ?>" width="20" height="20" alt="Race"></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= base_url('assets/images/class/'.class_icon($tops->class)); ?>" width="20" height="20" alt="Class"></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= base_url('assets/images/factions/'.faction_icon($tops->race)); ?>" width="20" height="20" alt="Faction"></td>
+                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($tops->race); ?>" width="20" height="20" alt="Race"></td>
+                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($tops->class); ?>" width="20" height="20" alt="Class"></td>
+                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/faction/'.faction_icon($tops->race); ?>" width="20" height="20" alt="Faction"></td>
                         <td class="uk-text-center"><?= $tops->totalKills ?></td>
                         <td class="uk-text-center"><?= $tops->todayKills ?></td>
                         <td class="uk-text-center"><?= $tops->yesterdayKills ?></td>

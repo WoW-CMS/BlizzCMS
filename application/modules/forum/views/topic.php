@@ -43,7 +43,7 @@ endif; ?>
               <div class="uk-width-1-6@s">
                 <div class="Author <?php if($this->auth->get_gmlevel($this->forum_model->getSpecifyPostAuthor($idlink)) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                   <div class="topic-author-avatar profile">
-                    <img src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="Avatar">
+                    <img src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($this->forum_model->getSpecifyPostAuthor($idlink)); ?>" alt="Avatar">
                   </div>
                 </div>
                 <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->get_user($this->forum_model->getSpecifyPostAuthor($idlink), 'nickname'); ?></p>
@@ -67,7 +67,7 @@ endif; ?>
                 <div class="uk-width-1-6@s">
                   <div class="Author <?php if($this->auth->get_gmlevel($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                     <div class="topic-author-avatar profile">
-                      <img src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar($commentss->author)); ?>" alt="Avatar">
+                      <img src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($commentss->author); ?>" alt="Avatar">
                     </div>
                   </div>
                   <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->get_user($commentss->author, 'nickname'); ?></p>

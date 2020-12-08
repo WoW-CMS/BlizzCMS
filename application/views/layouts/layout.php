@@ -32,7 +32,7 @@
               <?php if ($this->website->isLogged()): ?>
               <li class="uk-visible@m">
                 <a href="#">
-                  <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" width="30" height="30" alt="Avatar">
+                  <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar(); ?>" width="30" height="30" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('nickname'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
@@ -133,7 +133,7 @@
               <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('app_name'); ?></p>
               <?php if ($this->website->isLogged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                <img class="uk-border-circle" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" width="36" height="36" alt="Avatar">
+                <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar(); ?>" width="36" height="36" alt="Avatar">
                 <span class="uk-label"><?= $this->session->userdata('nickname'); ?></span>
               </div>
               <?php endif; ?>

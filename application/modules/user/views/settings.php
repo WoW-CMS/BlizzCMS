@@ -171,7 +171,7 @@
                     <div class="uk-grid uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>
                       <?php foreach ($this->base->get_avatars() as $avatar): ?>
                         <div>
-                          <img class="uk-border-circle uk-margin-small" src="<?= base_url('assets/images/profiles/'.$avatar->name); ?>" width="60" height="60">
+                          <img class="uk-border-circle uk-margin-small" src="<?= $template['uploads'].'avatars/'.$avatar->name; ?>" width="60" height="60">
                           <input class="uk-radio uk-display-block uk-margin-auto-left uk-margin-auto-right change_avatar" type="radio" name="avatar" value="<?= $avatar->id ?>" <?php if ($this->website->get_user(null, 'profile') == $avatar->id) echo 'checked'; ?>>
                         </div>
                       <?php endforeach; ?>

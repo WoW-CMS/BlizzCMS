@@ -26,7 +26,7 @@
               <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="#">
-                  <img class="uk-border-circle profile-img" src="<?= base_url('assets/images/profiles/'.$this->website->user_avatar()); ?>" alt="Avatar">
+                  <img class="uk-border-circle profile-img" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar(); ?>" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname'); ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
                 <div class="uk-navbar-dropdown">
@@ -113,7 +113,7 @@
         <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('footer_rights'); ?></p>
       </div>
     </section>
-    <script src="<?= base_url('assets/core/js/jquery.countTo.js'); ?>"></script>
+    <script src="<?= $template['assets'].'js/jquery.countTo.js'; ?>"></script>
     <script type="text/javascript">$('.blizzcms-count').countTo();</script>
   </body>
 </html>

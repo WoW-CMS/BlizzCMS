@@ -18,7 +18,7 @@
             $random = rand(0, 999999999);
             $name_new = sha1($image['name'].$random).'.jpg';
 
-            move_uploaded_file($image["tmp_name"], "./assets/images/news/" . $name_new);
+            move_uploaded_file($image["tmp_name"], "./upload/news/" . $name_new);
 
             $this->admin_model->insertNews($title, $desc, $name_new);
           }
@@ -26,7 +26,7 @@
             $random = rand(0, 999999999);
             $name_new = sha1($image['name'].$random).'.png';
 
-            move_uploaded_file($image["tmp_name"], "./assets/images/news/" . $name_new);
+            move_uploaded_file($image["tmp_name"], "./upload/news/" . $name_new);
 
             $this->admin_model->insertNews($title, $desc, $name_new);
           }
