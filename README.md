@@ -1,6 +1,8 @@
 # _BlizzCMS Plus_
 **_BlizzCMS Plus_** is a restructured and improved version of BlizzCMS **v1**. The development of this version is made constantly by the developers of **WoW-CMS**.
 
+> This CMS **will not support PHP 8** due to the old structure of its framework. Remember to use **PHP 7.3 or 7.4**
+
 [![Project Status](https://img.shields.io/badge/Status-Refactoring-red.svg?style=flat-square)](#)
 [![Project Version](https://img.shields.io/badge/Version-1.1.0-green.svg?style=flat-square)](#)
 
