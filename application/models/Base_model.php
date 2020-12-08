@@ -143,14 +143,17 @@ class Base_model extends CI_Model
 		return $this->db->order_by('id', 'ASC')->get('avatars')->result();
 	}
 
-	public function getSpecifyZone($zoneid)
+	/**
+	 * Get the specific name of a zone
+	 *
+	 * @param int $zone
+	 * @return string
+	 */
+	public function getSpecifyZone($zone)
 	{
-		$qq = $this->db->select('zone_name')->where('id', $zoneid)->get('zones');
+		$query = $this->db->where('id', $zone)->get('zones')->row('zone_name');
 
-		if($qq->num_rows())
-			return $qq->row('zone_name');
-		else
-			return lang('unknown');
+		return ! empty($query) ? $query : lang('unknown');
 	}
 
 	public function tinyEditor($rank)

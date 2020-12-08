@@ -1,13 +1,10 @@
 /*!
  * BlizzCMS
  *
- * @theme  Default
  * @author  WoW-CMS
  * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com
- * @since   Version 1.0.1
- * @filesource
  */
 
 @font-face {
@@ -627,6 +624,7 @@ h6,
 
 .uk-nav-default.myaccount-nav {
   background: rgba(9, 85, 135, .2);
+  border: 1px solid rgba(255, 255, 255, .1);
   box-shadow: 0 2px 2px rgba(0, 0, 0, .15);
 }
 

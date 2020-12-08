@@ -198,7 +198,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-auto@s">
-            <p class="uk-text-bold uk-text-uppercase uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
+            <p class="uk-text-small uk-text-bold uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com" class="uk-text-uppercase">BlizzCMS</a></p>
           </div>
           <div class="uk-width-expand@s">
             <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('app_name'); ?></span>. <?= lang('footer_rights'); ?></p>

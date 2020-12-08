@@ -7,9 +7,6 @@ class Store_model extends CI_Model
 	protected $item;
 	protected $categories;
 
-	/**
-	 * Store_model constructor.
-	 */
 	public function __construct()
 	{
 		$this->top = 'store_top';

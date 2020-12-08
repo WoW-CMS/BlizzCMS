@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pvp_model extends CI_Model
 {
-	/**
-	 * Pvp_model constructor.
-	 */
 	public function __construct()
 	{
 		parent::__construct();

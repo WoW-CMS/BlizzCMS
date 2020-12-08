@@ -8,9 +8,6 @@ use \VisualAppeal\AutoUpdate;
 
 class Update_model extends CI_Model
 {
-	/**
-	 * Update_model constructor.
-	 */
 	public function __construct()
 	{
 		parent::__construct();

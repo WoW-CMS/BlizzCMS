@@ -11,6 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Page extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function index($uri = null)
 	{
 		if (empty($uri) || ! $this->base->find_page($uri))

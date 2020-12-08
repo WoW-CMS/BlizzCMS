@@ -3,9 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Forum_model extends CI_Model
 {
-	/**
-	 * Forum_model constructor.
-	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -220,11 +217,12 @@ class Forum_model extends CI_Model
 
 	public function addReportByUserId($report, $reportuser, $idtopic)
 	{
-	  $data = array(
-		'userid' => $report,
-		'userreported' => $reportuser,
-		'topic' => $idtopic
-	  );
-	  $this->db->insert('mod_report');
+		$data = array(
+			'userid' => $report,
+			'userreported' => $reportuser,
+			'topic' => $idtopic
+		);
+
+		$this->db->insert('mod_report', $data);
 	}
 }

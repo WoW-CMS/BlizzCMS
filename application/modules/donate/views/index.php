@@ -22,7 +22,6 @@ endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?=lang('tab_donate'); ?></h4>
             <?php if($this->session->flashdata('donation_status') == 'success'): ?>
             <div class="uk-alert-success" uk-alert>
               <a class="uk-alert-close" uk-close></a>

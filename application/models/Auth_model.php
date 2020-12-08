@@ -55,19 +55,6 @@ class Auth_model extends CI_Model
 	}
 
 	/**
-	 * Get gmlevel of account
-	 *
-	 * @param int $id
-	 * @return int
-	 */
-	public function get_gmlevel($id)
-	{
-		$query = $this->auth_db->where('id', $id)->get('account_access')->row('gmlevel');
-
-		return ! empty($query) ? $query : 0;
-	}
-
-	/**
 	 * Get auth account
 	 *
 	 * @param int $id
@@ -93,6 +80,28 @@ class Auth_model extends CI_Model
 	}
 
 	/**
+	 * Get gmlevel of account
+	 *
+	 * @param int $id
+	 * @return int
+	 */
+	public function get_gmlevel($id)
+	{
+		$emulator = config_item('emulator');
+
+		if (in_array($emulator, ['trinity'], true))
+		{
+			$query = $this->auth_db->where('AccountID', $id)->get('account_access')->row('SecurityLevel');		
+		}
+		elseif (in_array($emulator, ['azeroth', 'old_trinity'], true))
+		{
+			$query = $this->auth_db->where('id', $id)->get('account_access')->row('gmlevel');
+		}
+
+		return ! empty($query) ? $query : 0;
+	}
+
+	/**
 	 * Check if account is banned
 	 *
 	 * @param int $id
@@ -113,14 +122,9 @@ class Auth_model extends CI_Model
 	public function is_admin()
 	{
 		$config = config_item('admin_access_level');
-		$query  = $this->auth_db->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
+		$access = $this->get_gmlevel($this->session->userdata('id'));
 
-		if (empty($query))
-		{
-			return false;
-		}
-
-		return ($query >= (int) $config);
+		return ($access >= (int) $config);
 	}
 
 	/**
@@ -131,13 +135,8 @@ class Auth_model extends CI_Model
 	public function is_moderator()
 	{
 		$config = config_item('mod_access_level');
-		$query  = $this->auth_db->where('id', $this->session->userdata('id'))->get('account_access')->row('gmlevel');
+		$access = $this->get_gmlevel($this->session->userdata('id'));
 
-		if (empty($query))
-		{
-			return false;
-		}
-
-		return ($query >= (int) $config);
+		return ($access >= (int) $config);
 	}
 }
