@@ -75,6 +75,8 @@
 - Remove user model controller function ``newaccount()``
 - Remove user model controller function ``forgotpassword()``
 - Remove user model controller function ``activate()``
+- Add HVMC migration
+- Move routes to modules
 
 ### Bugs Fixed
 
