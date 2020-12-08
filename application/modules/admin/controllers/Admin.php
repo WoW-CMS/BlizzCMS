@@ -22,12 +22,12 @@ class Admin extends MX_Controller
 
 		if (! $this->auth->is_admin())
 		{
-			redirect(site_url('panel'));
+			redirect(site_url('user'));
 		}
 
 		if ($this->auth->is_banned($this->session->userdata('id')))
 		{
-			redirect(site_url('panel'));
+			redirect(site_url('user'));
 		}
 
 		$this->load->model('admin_model');

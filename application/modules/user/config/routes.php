@@ -9,9 +9,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['panel']['get'] = 'user/index';
-$route['settings']['get'] = 'user/settings';
-$route['settings/email']['post'] = 'user/change_email';
-$route['settings/password']['post'] = 'user/change_password';
-$route['settings/avatar']['post'] = 'user/change_avatar';
-$route['settings/nickname']['post'] = 'user/change_nickname';
+$route['user']['get'] = 'user/index';
+$route['user/settings']['get'] = 'user/settings';
+$route['user/settings/email']['post'] = 'user/change_email';
+$route['user/settings/password']['post'] = 'user/change_password';
+$route['user/settings/avatar']['post'] = 'user/change_avatar';
+$route['user/settings/nickname']['post'] = 'user/change_nickname';

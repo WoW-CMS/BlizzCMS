@@ -22,7 +22,7 @@ class Auth extends CI_Controller
 	{
 		if ($this->website->isLogged())
 		{
-			redirect(site_url('panel'));
+			redirect(site_url('user'));
 		}
 
 		$this->template->title(config_item('app_name'), lang('tab_login'));
@@ -56,7 +56,7 @@ class Auth extends CI_Controller
 				}
 				else
 				{
-					redirect(site_url('panel'));
+					redirect(site_url('user'));
 				}
 			}
 		}
@@ -81,7 +81,7 @@ class Auth extends CI_Controller
 	{
 		if ($this->website->isLogged())
 		{
-			redirect(site_url('panel'));
+			redirect(site_url('user'));
 		}
 
 		$this->template->title(config_item('app_name'), lang('tab_register'));
@@ -205,7 +205,7 @@ class Auth extends CI_Controller
 	{
 		if ($this->website->isLogged())
 		{
-			redirect(site_url('panel'));
+			redirect(site_url('user'));
 		}
 
 		$this->template->title(config_item('app_name'), lang('tab_reset'));

@@ -22,7 +22,7 @@ class Mod extends MX_Controller
 
 		if (! $this->auth->is_moderator())
 		{
-			redirect(site_url('panel'));
+			redirect(site_url('user'));
 		}
 
 		$this->load->model('mod_model');

@@ -38,7 +38,7 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->website->isLogged()): ?>
-                    <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
+                    <li><a href="<?= base_url('user'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                     <?php if($this->auth->is_moderator()): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
@@ -143,7 +143,7 @@
                 <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a></li>
                 <?php endif; ?>
                 <?php if ($this->website->isLogged()): ?>
-                <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
+                <li><a href="<?= base_url('user'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                 <?php if($this->auth->is_admin()): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                 <?php endif; ?>

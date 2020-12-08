@@ -62,14 +62,14 @@ class User extends MX_Controller
 			if (! $this->auth->valid_password($user->username, $password))
 			{
 				$this->session->set_flashdata('error', '---');
-				redirect(site_url('settings'));
+				redirect(site_url('user/settings'));
 			}
 
 			$this->db->set('nickname', $nickname)->where('id', $user->id)->update('users');
 			$this->session->set_userdata('nickname', $nickname);
 
 			$this->session->set_flashdata('success', lang('alert_nickname_changed'));
-			redirect(site_url('settings'));
+			redirect(site_url('user/settings'));
 		}
 	}
 
@@ -97,13 +97,13 @@ class User extends MX_Controller
 			if (! $this->auth->account_unique($new_email, 'email'))
 			{
 				$this->session->set_flashdata('error', '---');
-				redirect(site_url('settings'));
+				redirect(site_url('user/settings'));
 			}
 
 			if (! $this->auth->valid_password($user->username, $password))
 			{
 				$this->session->set_flashdata('error', '---');
-				redirect(site_url('settings'));
+				redirect(site_url('user/settings'));
 			}
 
 			$this->auth->connect()->set('email', $new_email)->where('id', $user->id)->update('account');
@@ -151,7 +151,7 @@ class User extends MX_Controller
 			if (! $this->auth->valid_password($user->username, $password))
 			{
 				$this->session->set_flashdata('error', '---');
-				redirect(site_url('settings'));
+				redirect(site_url('user/settings'));
 			}
 
 			if (in_array($emulator, ['trinity'], true))
@@ -182,7 +182,7 @@ class User extends MX_Controller
 			}
 
 			$this->session->set_flashdata('success', lang('alert_password_changed'));
-			redirect(site_url('settings'));
+			redirect(site_url('user/settings'));
 		}
 	}
 
@@ -207,7 +207,7 @@ class User extends MX_Controller
 			$this->db->set('profile', $avatar)->where('id', $id)->update('users');
 
 			$this->session->set_flashdata('success', lang('alert_avatar_changed'));
-			redirect(site_url('settings'));
+			redirect(site_url('user/settings'));
 		}
 	}
 }
