@@ -12,7 +12,7 @@
                     <h5 class="uk-h5 uk-text-bold"><i class="fas fa-newspaper"></i> <?= $news->title; ?></h5>
                   </div>
                   <div class="uk-width-auto@s">
-                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $news->date); ?></p>
+                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $news->created_at); ?></p>
                   </div>
                 </div>
               </div>
@@ -40,9 +40,9 @@
                       <?php endif; ?>
                     </div>
                     <div class="uk-width-expand@s">
-                      <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $comment->date); ?></p>
+                      <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $comment->created_at); ?></p>
                       <?= $comment->commentary ?>
-                      <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->author && now() < strtotime('+30 minutes', $comment->date)): ?>
+                      <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->author && now() < strtotime('+30 minutes', $comment->created_at)): ?>
                       <div class="uk-margin-small-top">
                         <button class="uk-button uk-button-danger uk-button-small" value="<?= $comment->id ?>" id="button_delete<?= $comment->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                       </div>

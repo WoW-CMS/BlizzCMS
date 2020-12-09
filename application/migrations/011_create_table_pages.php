@@ -27,7 +27,7 @@ class Migration_create_table_pages extends CI_Migration
 				'null' => FALSE,
 				'unique' => TRUE
 			),
-			'date' => array(
+			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE,

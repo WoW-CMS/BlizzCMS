@@ -24,7 +24,7 @@
                 <?php foreach($pagesList as $pages): ?>
                 <tr>
                   <td><?= $pages->title ?></td>
-                  <td><?= base_url('page/').$pages->uri_friendly; ?></td>
+                  <td><?= base_url('page/'.$pages->slug); ?></td>
                   <td><?= date('Y-m-d', $pages->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">

@@ -56,10 +56,10 @@ class News extends CI_Controller
 		}
 
 		$this->db->insert('news_comments', [
-			'id_new'     => $this->input->post('news', TRUE),
+			'news_id'    => $this->input->post('news', TRUE),
+			'user_id'    => $this->session->userdata('id'),
 			'commentary' => $this->input->post('reply'),
-			'date'       => now(),
-			'author'     => $this->session->userdata('id')
+			'created_at' => now()
 		]);
 
 		echo true;

@@ -32,7 +32,7 @@ class Base_model extends CI_Model
 	 */
 	public function get_parent_menu($id)
 	{
-		return $this->db->where('child', $id)->get($this->menu)->result();
+		return $this->db->where('parent', $id)->get($this->menu)->result();
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Base_model extends CI_Model
 	 */
 	public function get_news_comments($id, $limit, $start)
 	{
-		return $this->db->where('id_new', $id)->order_by('date', 'ASC')->limit($limit, $start)->get($this->news_comments)->result();
+		return $this->db->where('news_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->news_comments)->result();
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Base_model extends CI_Model
 	 */
 	public function count_news_comments($id)
 	{
-		return $this->db->where('id_new', $id)->count_all_results($this->news_comments);
+		return $this->db->where('news_id', $id)->count_all_results($this->news_comments);
 	}
 
 	/**
@@ -112,23 +112,23 @@ class Base_model extends CI_Model
 	/**
 	 * Get page
 	 *
-	 * @param string $uri
+	 * @param string $slug
 	 * @return object
 	 */
-	public function get_page($uri)
+	public function get_page($slug)
 	{
-		return $this->db->where('uri_friendly', $uri)->get($this->pages)->row();
+		return $this->db->where('slug', $slug)->get($this->pages)->row();
 	}
 
 	/**
 	 * Find if the page exists
 	 *
-	 * @param string $uri
+	 * @param string $slug
 	 * @return boolean
 	 */
-	public function find_page($uri)
+	public function find_page($slug)
 	{
-		$query = $this->db->where('uri_friendly', $uri)->get($this->pages)->num_rows();
+		$query = $this->db->where('slug', $slug)->get($this->pages)->num_rows();
 
 		return ($query == 1);
 	}

@@ -146,7 +146,7 @@
                           <td><?= $chars->guid ?></td>
                           <td><?= $chars->name ?></td>
                           <td><img class="uk-border-rounded" src="<?= $template['uploads'].'icons/race/'.race_icon($chars->race); ?>" width="24" height="24" alt="<?= race_name($chars->race); ?>"></td>
-                          <td><img class="uk-border-rounded" src="<?= $template['uploads'].'icons/class/'.class_icon($chars->class)); ?>" width="24" height="24" alt="<?= class_name($chars->class); ?>"></td>
+                          <td><img class="uk-border-rounded" src="<?= $template['uploads'].'icons/class/'.class_icon($chars->class); ?>" width="24" height="24" alt="<?= class_name($chars->class); ?>"></td>
                           <td><?= $chars->level ?></td>
                           <td class="uk-text-center"><?= $chars->money ?></td>
                           <td class="uk-text-center"><?= $chars->totalKills ?></td>

@@ -26,7 +26,7 @@ class Migration_create_table_news_comments extends CI_Migration
 				'type' => 'TEXT',
 				'null' => FALSE
 			),
-			'date' => array(
+			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE,

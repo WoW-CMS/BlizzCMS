@@ -183,11 +183,11 @@ class Auth extends CI_Controller
 
 					// Add user to website db
 					$this->db->insert('users', [
-						'id'       => $id,
-						'nickname' => $nickname,
-						'username' => $username,
-						'email'    => $email,
-						'joindate' => now()
+						'id'        => $id,
+						'nickname'  => $nickname,
+						'username'  => $username,
+						'email'     => $email,
+						'joined_at' => now()
 					]);
 
 					$this->session->set_flashdata('success', lang('alert_account_created'));

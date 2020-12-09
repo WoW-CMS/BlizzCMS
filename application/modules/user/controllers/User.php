@@ -204,7 +204,7 @@ class User extends MX_Controller
 			$avatar = $this->input->post('avatar', TRUE);
 			$id     = $this->session->userdata('id');
 
-			$this->db->set('profile', $avatar)->where('id', $id)->update('users');
+			$this->db->set('avatar', $avatar)->where('id', $id)->update('users');
 
 			$this->session->set_flashdata('success', lang('alert_avatar_changed'));
 			redirect(site_url('user/settings'));

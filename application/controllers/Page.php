@@ -16,15 +16,15 @@ class Page extends CI_Controller
 		parent::__construct();
 	}
 
-	public function index($uri = null)
+	public function index($slug = null)
 	{
-		if (empty($uri) || ! $this->base->find_page($uri))
+		if (empty($slug) || ! $this->base->find_page($slug))
 		{
 			show_404();
 		}
 
 		$data = [
-			'page' => $this->base->get_page($uri)
+			'page' => $this->base->get_page($slug)
 		];
 
 		$this->template->title(config_item('app_name'), $data['page']->title);
