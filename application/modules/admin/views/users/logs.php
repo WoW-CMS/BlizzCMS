@@ -1,15 +1,20 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin" data-uk-grid>
-          <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-donate"></i> <?= lang('placeholder_donation_logs'); ?> - <?= $this->website->get_user($idlink, 'username'); ?></h3>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('donation_logs'); ?></h4>
+            <ul class="uk-breadcrumb uk-margin-remove">
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
+              <li><span><?= lang('admin_nav_accounts'); ?></span></li>
+            </ul>
           </div>
-          <div class="uk-width-auto">
-            <a href="" class="uk-icon-button"><i class="fas fa-info"></i></a>
-          </div>
+          <div class="uk-width-auto"></div>
         </div>
-        <div class="uk-card uk-card-default uk-card-body">
-          <div class="uk-overflow-auto">
+        <div class="uk-card uk-card-default">
+          <div class="uk-card-header">
+            <h4 class="uk-h4"></h4>
+          </div>
+          <div class="uk-card-body uk-padding-remove uk-overflow-auto">
             <table class="uk-table uk-table-divider uk-table-small">
               <thead>
                 <tr>
@@ -22,7 +27,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($this->admin_model->getUserHistoryDonate($idlink)->result() as $donateInfo): ?>
+                <?php foreach ($this->admin_model->getUserHistoryDonate($id) as $donateInfo): ?>
                 <tr>
                   <td><?= $donateInfo->payment_id ?></td>
                   <td><?= $donateInfo->hash ?></td>

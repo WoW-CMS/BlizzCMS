@@ -18,4 +18,11 @@
         <a class="uk-alert-close" uk-close></a>
         <p><i class="fas fa-times-circle"></i> <?= $this->session->flashdata('error'); ?></p>
       </div>
+      <?php elseif ($this->session->flashdata('upload')): ?>
+      <div class="uk-alert-danger uk-margin-small" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <ul class="uk-list uk-margin-remove">
+          <?= $this->session->flashdata('upload'); ?>
+        </ul>
+      </div>
       <?php endif; ?>

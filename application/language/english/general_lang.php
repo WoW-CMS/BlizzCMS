@@ -92,11 +92,12 @@ $lang['placeholder_title'] = 'Title';
 $lang['placeholder_type'] = 'Type';
 $lang['placeholder_description'] = 'Description';
 $lang['placeholder_url'] = 'URL';
-$lang['placeholder_uri'] = 'Friendly URL (Example: tos)';
+$lang['placeholder_slug'] = 'Slug';
 $lang['placeholder_highl'] = 'Highlight';
 $lang['placeholder_lock'] = 'Lock';
 $lang['placeholder_subject'] = 'Subject';
 $lang['placeholder_nickname'] = 'Nickname';
+$lang['placeholder_icon'] = 'Icon';
 
 /*Table header Lang*/
 $lang['table_header_name'] = 'Name';
@@ -114,7 +115,6 @@ $lang['table_header_priority'] = 'Priority';
 $lang['table_header_date'] = 'Date';
 $lang['table_header_author'] = 'Author';
 $lang['table_header_time'] = 'Time';
-$lang['table_header_icon'] = 'Icon';
 $lang['table_header_realm'] = 'Realm';
 $lang['table_header_zone'] = 'Zone';
 $lang['table_header_character'] = 'Character';

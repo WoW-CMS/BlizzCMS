@@ -1,5 +1,14 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_dashboard'); ?></h4>
+            <ul class="uk-breadcrumb uk-margin-remove">
+              <li><span><?= lang('admin_nav_dashboard'); ?></span></li>
+            </ul>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
         <div class="uk-card uk-card-secondary uk-card-body uk-margin-small">
           <div class="uk-grid uk-grid-collapse uk-grid-divider uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-4@m" data-uk-grid>
             <div>
@@ -44,7 +53,7 @@
                     <h4 class="uk-h4"><span class="uk-margin-small-right"><i class="fas fa-server"></i></span>Realm - <?= $this->realm->getRealmName($charsMultiRealm->realmID); ?></h4>
                   </div>
                   <div class="uk-width-expand uk-text-right">
-                    <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button" uk-tooltip="<?= lang('admin_nav_realms'); ?>"><i class="fas fa-cog"></i></a>
+                    <a href="<?= site_url('admin/realms'); ?>" class="uk-icon-button" uk-tooltip="<?= lang('admin_nav_realms'); ?>"><i class="fas fa-cog"></i></a>
                   </div>
                 </div>
               </div>

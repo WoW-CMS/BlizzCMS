@@ -92,11 +92,12 @@ $lang['placeholder_title'] = 'Título';
 $lang['placeholder_type'] = 'Tipo';
 $lang['placeholder_description'] = 'Descripción';
 $lang['placeholder_url'] = 'URL';
-$lang['placeholder_uri'] = 'URL amigable (Ejemplo: tos)';
+$lang['placeholder_slug'] = 'Slug';
 $lang['placeholder_highl'] = 'Destacado';
 $lang['placeholder_lock'] = 'Bloquear';
 $lang['placeholder_subject'] = 'Asunto';
 $lang['placeholder_nickname'] = 'Nickname';
+$lang['placeholder_icon'] = 'Icono';
 
 /*Table header Lang*/
 $lang['table_header_name'] = 'Nombre';
@@ -114,7 +115,6 @@ $lang['table_header_priority'] = 'Prioridad';
 $lang['table_header_date'] = 'Fecha';
 $lang['table_header_author'] = 'Autor';
 $lang['table_header_time'] = 'Tiempo';
-$lang['table_header_icon'] = 'Icono';
 $lang['table_header_realm'] = 'Reino';
 $lang['table_header_zone'] = 'Zona';
 $lang['table_header_character'] = 'Personaje';
