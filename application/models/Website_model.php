@@ -43,11 +43,11 @@ class Website_model extends CI_Model
 		if (! $this->find_user($accgame->id))
 		{
 			$this->db->insert('users', [
-				'id'       => $accgame->id,
-				'nickname' => $accgame->username,
-				'username' => $accgame->username,
-				'email'    => $accgame->email,
-				'joindate' => strtotime($accgame->joindate)
+				'id'        => $accgame->id,
+				'nickname'  => $accgame->username,
+				'username'  => $accgame->username,
+				'email'     => $accgame->email,
+				'joined_at' => strtotime($accgame->joindate)
 			]);
 		}
 
@@ -88,7 +88,7 @@ class Website_model extends CI_Model
 	 */
 	public function user_avatar($id = null)
 	{
-		$avatar = $this->get_user($id, 'profile');
+		$avatar = $this->get_user($id, 'avatar');
 
 		return $this->db->where('id', $avatar)->get('avatars')->row('name');
 	}
