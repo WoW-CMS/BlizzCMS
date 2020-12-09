@@ -80,6 +80,7 @@ h6,
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
   min-height: 40px;
+  text-transform: none;
 }
 
 .uk-navbar-nav > li > a,
