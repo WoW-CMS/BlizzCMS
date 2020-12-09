@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | 'supported_languages' = list of supported languages
 */
-$config['supported_languages'] = array(
+$config['supported_languages'] = [
 	//'bulgarian',
 	//'dutch',
 	'english',
@@ -31,7 +31,7 @@ $config['supported_languages'] = array(
 	//'russian',
 	'spanish',
 	//'swedish'
-);
+];
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ $config['supported_languages'] = array(
 |
 | 'supported_expansions' = list of supported expansions
 */
-$config['supported_expansions'] = array(
+$config['supported_expansions'] = [
 	0 => 'Vanilla Classic',
 	1 => 'The Burning Crusade',
 	2 => 'Wrath of the Lich King',
@@ -53,4 +53,4 @@ $config['supported_expansions'] = array(
 	6 => 'Legion',
 	7 => 'Battle for Azeroth',
 	8 => 'Shadowlands'
-);
+];

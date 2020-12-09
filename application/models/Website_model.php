@@ -81,16 +81,16 @@ class Website_model extends CI_Model
 	}
 
 	/**
-	 * Get avatar name of specific user
+	 * Get avatar image of specific user
 	 *
-	 * @param int $id
+	 * @param int|null $id
 	 * @return boolean
 	 */
 	public function user_avatar($id = null)
 	{
 		$avatar = $this->get_user($id, 'avatar');
 
-		return $this->db->where('id', $avatar)->get('avatars')->row('name');
+		return $this->db->where('id', $avatar)->get('avatars')->row('image');
 	}
 
 	/**
@@ -109,8 +109,8 @@ class Website_model extends CI_Model
 	/**
 	 * Get user information
 	 *
-	 * @param int $id
-	 * @param string $column
+	 * @param int|null $id
+	 * @param string|null $column
 	 * @return mixed
 	 */
 	public function get_user($id = null, $column = null)

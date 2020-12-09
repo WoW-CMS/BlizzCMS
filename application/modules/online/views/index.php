@@ -32,7 +32,7 @@
                     <td class="uk-text-center"><?= $online->level ?></td>
                     <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($online->race); ?>" width="20" height="20" alt="<?= race_name($online->race); ?>"></td>
                     <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($online->class); ?>" width="20" height="20" alt="<?= class_name($online->class); ?>"></td>
-                    <td class="uk-text-center"><?= $this->base->getSpecifyZone($online->zone); ?></td>
+                    <td class="uk-text-center"><?= $this->base->zone_name($online->zone); ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

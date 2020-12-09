@@ -105,3 +105,4 @@
 - Deprecated ``$this->user_model->checklogin()`` and ``$this->user_model->checkloginbattle()`` in favor of ``$this->website->authentication()``
 - Deprecated ``$this->user_model->getAllAvatars()`` in favor of ``$this->base->get_avatars()``
 - Deprecated ``$this->website->getImageProfile()`` and ``$this->website->getNameAvatar()`` in favor of ``$this->website->user_avatar()``
+- Deprecated ``$this->base->getSpecifyZone()`` in favor of ``$this->base->zone_name()``

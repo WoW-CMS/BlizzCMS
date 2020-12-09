@@ -12,33 +12,34 @@ class Migration_create_avatars extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'name' => array(
+			'image' => array(
 				'type' => 'VARCHAR',
-				'constraint' => '100'
+				'constraint' => '255',
+				'null' => FALSE
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('avatars');
 
 		$data = array(
-			array('name' => 'default.png'),
-			array('name' => 'arthas.png'),
-			array('name' => 'deathwing.png'),
-			array('name' => 'garrosh.png'),
-			array('name' => 'ghoul.png'),
-			array('name' => 'hogger.png'),
-			array('name' => 'illidan.png'),
-			array('name' => 'kelthuzad.png'),
-			array('name' => 'kiljeaden.png'),
-			array('name' => 'lurker.png'),
-			array('name' => 'maiev.png'),
-			array('name' => 'malfurion.png'),
-			array('name' => 'neptulon.png'),
-			array('name' => 'nerzhul.png'),
-			array('name' => 'velen.png'),
-			array('name' => 'worgen.png'),
-			array('name' => 'imp.png'),
-			array('name' => 'vault_guardian.png')
+			array('image' => 'default.png'),
+			array('image' => 'arthas.png'),
+			array('image' => 'deathwing.png'),
+			array('image' => 'garrosh.png'),
+			array('image' => 'ghoul.png'),
+			array('image' => 'hogger.png'),
+			array('image' => 'illidan.png'),
+			array('image' => 'kelthuzad.png'),
+			array('image' => 'kiljeaden.png'),
+			array('image' => 'lurker.png'),
+			array('image' => 'maiev.png'),
+			array('image' => 'malfurion.png'),
+			array('image' => 'neptulon.png'),
+			array('image' => 'nerzhul.png'),
+			array('image' => 'velen.png'),
+			array('image' => 'worgen.png'),
+			array('image' => 'imp.png'),
+			array('image' => 'vault_guardian.png')
 		);
 		$this->db->insert_batch('avatars', $data);
 	}

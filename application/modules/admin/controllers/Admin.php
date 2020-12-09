@@ -25,7 +25,7 @@ class Admin extends MX_Controller
 			redirect(site_url('user'));
 		}
 
-		if ($this->auth->is_banned($this->session->userdata('id')))
+		if ($this->auth->is_banned())
 		{
 			redirect(site_url('user'));
 		}

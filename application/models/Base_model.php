@@ -140,20 +140,21 @@ class Base_model extends CI_Model
 	 */
 	public function get_avatars()
 	{
-		return $this->db->order_by('id', 'ASC')->get('avatars')->result();
+		return $this->db->get('avatars')->result();
 	}
 
 	/**
-	 * Get the specific name of a zone
+	 * Get specific name of a zone
 	 *
-	 * @param int $zone
+	 * @param int $id
 	 * @return string
 	 */
-	public function getSpecifyZone($zone)
+	public function zone_name($id)
 	{
-		$query = $this->db->where('id', $zone)->get('zones')->row('zone_name');
+		$data  = $this->lang->load('zones', '', TRUE);
+		$zones = $data['zones'];
 
-		return ! empty($query) ? $query : lang('unknown');
+		return array_key_exists($id, $zones) ? $zones[$id] : lang('unknown');
 	}
 
 	public function tinyEditor($rank)

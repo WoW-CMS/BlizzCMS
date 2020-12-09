@@ -104,11 +104,13 @@ class Auth_model extends CI_Model
 	/**
 	 * Check if account is banned
 	 *
-	 * @param int $id
+	 * @param int|null $id
 	 * @return bool
 	 */
-	public function is_banned($id)
+	public function is_banned($id = null)
 	{
+		$id = $id ?? $this->session->userdata('id');
+
 		$query = $this->auth_db->where(['id' => $id, 'active' => 1])->get('account_banned')->num_rows();
 
 		return ($query >= 1);
