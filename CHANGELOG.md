@@ -75,7 +75,7 @@
 - Remove user model controller function ``newaccount()``
 - Remove user model controller function ``forgotpassword()``
 - Remove user model controller function ``activate()``
-- Add HVMC migration
+- Add HMVC migration
 - Move routes to modules
 - Remove unused function ``$this->realm->getRealmPort()``
 - Remove unused function ``$this->realm->realmGetHostname()``

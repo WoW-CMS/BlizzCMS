@@ -1,44 +1,46 @@
+# Junk Files
 .DS_Store
 
+# Cache
 application/cache/*
 !application/cache/index.html
 
-# Configuration files
-application/config/config.php
-application/config/blizzcms.php
-application/config/database.php
-application/config/plus.php
+# Configs
+application/config/*
 
-migrations/*
-
+# Logs
 application/logs/*
 !application/logs/index.html
 
+# htaccess
 !application/*/.htaccess
 
-# Icons
-assets/icons/*
+# Uploads
+uploads/
 
+# Composer
+vendor/
 composer.lock
 
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
+# Jetbrains editors (PHPStorm, etc)
+.idea/
+*.iml
 
-# IDE Files
-#-------------------------
-/nbproject/
-.idea/*
+# Netbeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
 
-## Sublime Text cache files
+# Sublime Text
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
-/tests/tests/
-/tests/results/
-/migration/*
-application/config/blizzcms.php
-application/config/routes.php
+.phpintel
+/api/
