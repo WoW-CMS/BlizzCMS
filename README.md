@@ -1,5 +1,8 @@
 # _BlizzCMS Plus_
-**_BlizzCMS Plus_** is a restructured and improved version of BlizzCMS **v1**. The development of this version is made constantly by the developers of **WoW-CMS**.
+**_BlizzCMS Plus_** is a complete refactored version of BlizzCMS. This version developed is constantly updated by the Team members of **WoW-CMS** and **Contributors**.
+
+* [Website](https://wow-cms.com)
+* [Discord Chat](https://discord.gg/vZG9vpS)
 
 > This CMS **will not support PHP 8** due to the old structure of its framework. Remember to use **PHP 7.3 or 7.4**
 
@@ -10,7 +13,7 @@
 | :----------- | :---------- |
 | **PHP Version** | **7.3 or newer** is recommended |
 | **Apache Modules** | mod_rewrite |
-| **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap |
+| **PHP Extensions** | curl - gd2 - gmp - mbstring - mysqli - openssl - soap |
 
 ## In linux (Apache Modules)
 
@@ -34,17 +37,6 @@ a2enmod expires
 ```sh
 /etc/init.d/apache2 restart or service apache2 restart
 ```
-
-## Useful Links
-
-* [Website](https://wow-cms.com)
-* [Bugtracker](https://dev.wow-cms.com)
-* [Docs](https://docs.wow-cms.com)
-
-## Active Developers
-
-* @perioner - *Back/Front-End Developer*
-* @DZywolf - *Back/Front-End Developer*
 
 ## Copyright
 
