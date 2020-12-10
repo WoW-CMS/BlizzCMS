@@ -175,7 +175,7 @@ class Realm_model extends CI_Model
 	 * @param string|null $faction
 	 * @return int
 	 */
-	public function _count_characters($realm, $faction = null)
+	private function _count_characters($realm, $faction = null)
 	{
 		$query = $this->char_connect($realm)->where('online', 1);
 

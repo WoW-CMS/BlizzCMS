@@ -29,7 +29,7 @@
                         <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelog->title; ?></h5>
                       </div>
                       <div class="uk-width-auto@s">
-                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelog->date); ?></p>
+                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelog->created_at); ?></p>
                       </div>
                     </div>
                   </div>

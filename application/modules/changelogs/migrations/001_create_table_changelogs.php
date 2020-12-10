@@ -21,7 +21,7 @@ class Migration_create_table_changelogs extends CI_Migration
 				'type' => 'MEDIUMTEXT',
 				'null' => TRUE
 			),
-			'date' => array(
+			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE,
