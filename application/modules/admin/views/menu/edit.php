@@ -16,22 +16,22 @@
         <?= form_open(current_url()); ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('placeholder_edit_menu'); ?></h4>
+            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('edit_menu'); ?></h4>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_name'); ?></label>
+                  <label class="uk-form-label"><?= lang('name'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input uk-width-1-1" type="text" name="name" value="<?= $menu->name; ?>" placeholder="<?= lang('placeholder_name'); ?>">
+                    <input class="uk-input uk-width-1-1" type="text" name="name" value="<?= $menu->name; ?>" placeholder="<?= lang('name'); ?>">
                   </div>
                   <?= form_error('name', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_url'); ?></label>
+                  <label class="uk-form-label"><?= lang('url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input uk-width-1-1" type="text" name="url" value="<?= $menu->url; ?>" placeholder="<?= lang('placeholder_url'); ?>">
+                    <input class="uk-input uk-width-1-1" type="text" name="url" value="<?= $menu->url; ?>" placeholder="<?= lang('url'); ?>">
                   </div>
                   <?= form_error('url', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
@@ -40,14 +40,14 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_icon'); ?></label>
+                  <label class="uk-form-label"><?= lang('icon'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input uk-width-1-1" type="text" name="icon" value="<?= $menu->icon; ?>" placeholder="<?= lang('placeholder_icon'); ?>">
+                    <input class="uk-input uk-width-1-1" type="text" name="icon" value="<?= $menu->icon; ?>" placeholder="<?= lang('icon'); ?>">
                   </div>
                   <?= form_error('icon', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_target'); ?></label>
+                  <label class="uk-form-label"><?= lang('target'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="target">
                       <option value="1" <?php if ($menu->target == 1) echo 'selected'; ?>><?= lang('option_same_tab'); ?></option>
@@ -61,7 +61,7 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_type'); ?></label>
+                  <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="1" <?php if ($menu->type == 1) echo 'selected'; ?>><?= lang('option_normal'); ?></option>
@@ -71,7 +71,7 @@
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_parent'); ?></label>
+                  <label class="uk-form-label"><?= lang('parent'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
                       <option value="0" <?php if ($menu->parent == 0) echo 'selected'; ?>><?= lang('option_whithout_parent'); ?></option>
@@ -86,7 +86,7 @@
             </div>
           </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-save"></i> <?= lang('button_save'); ?></button>
+        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-save"></i> <?= lang('save'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>

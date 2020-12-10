@@ -19,9 +19,9 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=lang('table_header_team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('table_header_members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('table_header_rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?=lang('team_name');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('members');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('rating');?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -46,9 +46,9 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=lang('table_header_team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('table_header_members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('table_header_rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?=lang('team_name');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('members');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('rating');?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -73,9 +73,9 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=lang('table_header_team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('table_header_members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('table_header_rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?=lang('team_name');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('members');?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('rating');?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -101,13 +101,13 @@
                 <table class="uk-table dark-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?=lang('table_header_name');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('table_header_race');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('table_header_class');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?=lang('table_header_faction');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=lang('table_header_total_kills');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=lang('table_header_today_kills');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=lang('table_header_yersterday_kills');?></th>
+                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?=lang('name');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('race');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('class');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?=lang('faction');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=lang('total_kills');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=lang('today_kills');?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=lang('yersterday_kills');?></th>
                     </tr>
                   </thead>
                   <tbody>

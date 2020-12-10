@@ -16,11 +16,11 @@
               <table class="uk-table dark-table uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-table-expand"><i class="fas fa-user"></i> <?=lang('table_header_name');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=lang('table_header_level');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('table_header_race');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('table_header_class');?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-location-arrow"></i> <?=lang('table_header_zone');?></th>
+                    <th class="uk-table-expand"><i class="fas fa-user"></i> <?=lang('name');?></th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=lang('level');?></th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('race');?></th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('class');?></th>
+                    <th class="uk-table-expand uk-text-center"><i class="fas fa-location-arrow"></i> <?=lang('zone');?></th>
                   </tr>
                 </thead>
                 <tbody>

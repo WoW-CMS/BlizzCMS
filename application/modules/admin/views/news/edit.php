@@ -16,18 +16,18 @@
         <?= form_open_multipart(current_url()); ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('placeholder_edit_news'); ?></h4>
+            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('edit_news'); ?></h4>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_title'); ?></label>
+              <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="title" value="<?= $news->title; ?>" placeholder="<?= lang('placeholder_title'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="title" value="<?= $news->title; ?>" placeholder="<?= lang('title'); ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_description'); ?></label>
+              <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea tinyeditor" name="description" rows="12"><?= $news->description; ?></textarea>
               </div>
@@ -40,7 +40,7 @@
                   <div uk-form-custom="target: true">
                     <input type="file" name="image">
                     <input class="uk-input uk-form-width-medium" type="text" disabled>
-                    <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> <?= lang('button_select'); ?></button>
+                    <button class="uk-button uk-button-primary" type="button" tabindex="-1"><i class="fas fa-file-upload"></i> <?= lang('select'); ?></button>
                   </div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-save"></i> <?= lang('button_save'); ?></button>
+        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-save"></i> <?= lang('save'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>

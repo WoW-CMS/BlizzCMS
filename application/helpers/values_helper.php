@@ -106,67 +106,67 @@ if (! function_exists('race_name'))
 		switch ($id)
 		{
 			case 1:
-				return lang('race_human');
+				return lang('human');
 				break;
 			case 2:
-				return lang('race_orc');
+				return lang('orc');
 				break;
 			case 3:
-				return lang('race_dwarf');
+				return lang('dwarf');
 				break;
 			case 4:
-				return lang('race_night_elf');
+				return lang('night_elf');
 				break;
 			case 5:
-				return lang('race_undead');
+				return lang('undead');
 				break;
 			case 6:
-				return lang('race_tauren');
+				return lang('tauren');
 				break;
 			case 7:
-				return lang('race_gnome');
+				return lang('gnome');
 				break;
 			case 8:
-				return lang('race_troll');
+				return lang('troll');
 				break;
 			case 9:
-				return lang('race_goblin');
+				return lang('goblin');
 				break;
 			case 10:
-				return lang('race_blood_elf');
+				return lang('blood_elf');
 				break;
 			case 11:
-				return lang('race_draenei');
+				return lang('draenei');
 				break;
 			case 22:
-				return lang('race_worgen');
+				return lang('worgen');
 				break;
 			case 24:
-				return lang('race_panda_neutral');
+				return lang('panda_neutral');
 				break;
 			case 25:
-				return lang('race_panda_alli');
+				return lang('panda_alliance');
 				break;
 			case 26:
-				return lang('race_panda_horde');
+				return lang('panda_horde');
 				break;
 			case 27:
-				return lang('race_nightborne');
+				return lang('nightborne');
 				break;
 			case 28:
-				return lang('race_highmountain_tauren');
+				return lang('highmountain_tauren');
 				break;
 			case 29:
-				return lang('race_void_elf');
+				return lang('void_elf');
 				break;
 			case 30:
-				return lang('race_lightforged_draenei');
+				return lang('lightforged_draenei');
 				break;
 			case 34:
-				return lang('race_dark_iron_dwarf');
+				return lang('dark_iron_dwarf');
 				break;
 			case 36:
-				return lang('race_maghar_orc');
+				return lang('maghar_orc');
 				break;
 			default:
 				return lang('unknown');
@@ -268,40 +268,40 @@ if (! function_exists('class_name'))
 		switch ($id)
 		{
 			case 1:
-				return lang('class_warrior');
+				return lang('warrior');
 				break;
 			case 2:
-				return lang('class_paladin');
+				return lang('paladin');
 				break;
 			case 3:
-				return lang('class_hunter');
+				return lang('hunter');
 				break;
 			case 4:
-				return lang('class_rogue');
+				return lang('rogue');
 				break;
 			case 5:
-				return lang('class_priest');
+				return lang('priest');
 				break;
 			case 6:
-				return lang('class_dk');
+				return lang('death_knight');
 				break;
 			case 7:
-				return lang('class_shamman');
+				return lang('shamman');
 				break;
 			case 8:
-				return lang('class_mage');
+				return lang('mage');
 				break;
 			case 9:
-				return lang('class_warlock');
+				return lang('warlock');
 				break;
 			case 10:
-				return lang('class_monk');
+				return lang('monk');
 				break;
 			case 11:
-				return lang('class_druid');
+				return lang('druid');
 				break;
 			case 12:
-				return lang('class_demonhunter');
+				return lang('demon_hunter');
 				break;
 			default:
 				return lang('unknown');

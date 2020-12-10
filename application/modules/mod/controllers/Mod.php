@@ -33,42 +33,42 @@ class Mod extends MX_Controller
 
 	public function index()
 	{
-		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
+		$this->template->title(config_item('app_name'), lang('mod_panel'));
 
 		$this->template->build('index');
 	}
 
 	public function queue()
 	{
-		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
+		$this->template->title(config_item('app_name'), lang('mod_panel'));
 
 		$this->template->build('queue/index');
 	}
 
 	public function reports()
 	{
-		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
+		$this->template->title(config_item('app_name'), lang('mod_panel'));
 
 		$this->template->build('reports/index');
 	}
 
 	public function logs()
 	{
-		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
+		$this->template->title(config_item('app_name'), lang('mod_panel'));
 
 		$this->template->build('logs/index');
 	}
 
 	public function bannings()
 	{
-		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
+		$this->template->title(config_item('app_name'), lang('mod_panel'));
 
 		$this->template->build('bannings/index');
 	}
 
 	public function warnings()
 	{
-		$this->template->title(config_item('app_name'), lang('button_mod_panel'));
+		$this->template->title(config_item('app_name'), lang('mod_panel'));
 
 		$this->template->build('warnings/index');
 	}

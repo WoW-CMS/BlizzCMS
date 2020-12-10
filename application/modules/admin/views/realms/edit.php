@@ -16,17 +16,17 @@
         <?= form_open(current_url()); ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('placeholder_edit_realm'); ?></h4>
+            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('edit_realm'); ?></h4>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small-bottom">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_name'); ?></label>
+                  <label class="uk-form-label"><?= lang('name'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-server"></i></span>
-                      <input class="uk-input" type="text" name="name" value="<?= $realm->name; ?>" placeholder="<?= lang('placeholder_name'); ?>">
+                      <input class="uk-input" type="text" name="name" value="<?= $realm->name; ?>" placeholder="<?= lang('name'); ?>">
                     </div>
                   </div>
                   <?= form_error('name', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -81,21 +81,21 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_username'); ?></label>
+                  <label class="uk-form-label"><?= lang('username'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user-circle"></i></span>
-                      <input class="uk-input" type="text" name="char_user" value="<?= $realm->char_username; ?>" placeholder="<?= lang('placeholder_username'); ?>">
+                      <input class="uk-input" type="text" name="char_user" value="<?= $realm->char_username; ?>" placeholder="<?= lang('username'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_user', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_password'); ?></label>
+                  <label class="uk-form-label"><?= lang('password'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="char_pass" value="<?= $realm->char_password; ?>" placeholder="<?= lang('placeholder_password'); ?>">
+                      <input class="uk-input" type="password" name="char_pass" value="<?= $realm->char_password; ?>" placeholder="<?= lang('password'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_pass', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -130,21 +130,21 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_username'); ?></label>
+                  <label class="uk-form-label"><?= lang('username'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user-circle"></i></span>
-                      <input class="uk-input" type="text" name="console_user" value="<?= $realm->console_username; ?>" placeholder="<?= lang('placeholder_username'); ?>">
+                      <input class="uk-input" type="text" name="console_user" value="<?= $realm->console_username; ?>" placeholder="<?= lang('username'); ?>">
                     </div>
                   </div>
                   <?= form_error('console_user', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('placeholder_password'); ?></label>
+                  <label class="uk-form-label"><?= lang('password'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="console_pass" value="<?= $realm->console_password; ?>" placeholder="<?= lang('placeholder_password'); ?>">
+                      <input class="uk-input" type="password" name="console_pass" value="<?= $realm->console_password; ?>" placeholder="<?= lang('password'); ?>">
                     </div>
                   </div>
                   <?= form_error('console_pass', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -178,7 +178,7 @@
             </div>
           </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-save"></i> <?= lang('button_save'); ?></button>
+        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-save"></i> <?= lang('save'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>

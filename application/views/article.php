@@ -44,7 +44,7 @@
                       <?= $comment->commentary ?>
                       <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->author && now() < strtotime('+30 minutes', $comment->created_at)): ?>
                       <div class="uk-margin-small-top">
-                        <button class="uk-button uk-button-danger uk-button-small" value="<?= $comment->id ?>" id="button_delete<?= $comment->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
+                        <button class="uk-button uk-button-danger uk-button-small" value="<?= $comment->id ?>" id="button_delete<?= $comment->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></button>
                       </div>
                       <?php endif; ?>
                     </div>
@@ -63,7 +63,7 @@
                 <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('button_add_reply'); ?></button>
+                <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
               </div>
               <?= form_close(); ?>
             </div>

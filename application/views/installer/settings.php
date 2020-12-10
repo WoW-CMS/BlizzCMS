@@ -59,16 +59,16 @@
               <div class="uk-margin-small uk-light">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Hostname:</label>
+                    <label class="uk-form-label"><?= lang('hostname'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="website_hostname" class="uk-input" type="text" placeholder="Hostname">
+                      <input name="website_hostname" class="uk-input" type="text" placeholder="<?= lang('hostname'); ?>">
                     </div>
                     <?= form_error('website_hostname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Port:</label>
+                    <label class="uk-form-label"><?= lang('port'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="website_port" class="uk-input" type="text" placeholder="Port">
+                      <input name="website_port" class="uk-input" type="text" placeholder="<?= lang('port'); ?>">
                     </div>
                     <?= form_error('website_port', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
@@ -77,16 +77,16 @@
               <div class="uk-margin-small uk-light">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Database:</label>
+                    <label class="uk-form-label"><?= lang('database'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="website_database" class="uk-input" type="text" placeholder="Database">
+                      <input name="website_database" class="uk-input" type="text" placeholder="<?= lang('database'); ?>">
                     </div>
                     <?= form_error('website_database', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Prefix:</label>
+                    <label class="uk-form-label"><?= lang('prefix'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="website_prefix" class="uk-input" type="text" placeholder="Prefix">
+                      <input name="website_prefix" class="uk-input" type="text" placeholder="<?= lang('prefix'); ?>">
                     </div>
                     <?= form_error('website_prefix', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
@@ -95,16 +95,16 @@
               <div class="uk-margin-small uk-light">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-1-2@s">
-                    <label class="uk-form-label">Username:</label>
+                    <label class="uk-form-label"><?= lang('username'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="website_username" class="uk-input" type="text" placeholder="Username">
+                      <input name="website_username" class="uk-input" type="text" placeholder="<?= lang('username'); ?>">
                     </div>
                     <?= form_error('website_username', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
                   <div class="uk-width-1-2@s">
-                    <label class="uk-form-label">Password:</label>
+                    <label class="uk-form-label"><?= lang('password'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="website_password" class="uk-input" type="password" placeholder="Password">
+                      <input name="website_password" class="uk-input" type="password" placeholder="<?= lang('password'); ?>">
                     </div>
                     <?= form_error('website_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
@@ -114,16 +114,16 @@
               <div class="uk-margin-small uk-light">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Hostname:</label>
+                    <label class="uk-form-label"><?= lang('hostname'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="auth_hostname" class="uk-input" type="text" placeholder="Hostname">
+                      <input name="auth_hostname" class="uk-input" type="text" placeholder="<?= lang('hostname'); ?>">
                     </div>
                     <?= form_error('auth_hostname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Port:</label>
+                    <label class="uk-form-label"><?= lang('port'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="auth_port" class="uk-input" type="text" placeholder="Port">
+                      <input name="auth_port" class="uk-input" type="text" placeholder="<?= lang('port'); ?>">
                     </div>
                     <?= form_error('auth_port', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
@@ -132,16 +132,16 @@
               <div class="uk-margin-small uk-light">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Database:</label>
+                    <label class="uk-form-label"><?= lang('database'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="auth_database" class="uk-input" type="text" placeholder="Database">
+                      <input name="auth_database" class="uk-input" type="text" placeholder="<?= lang('database'); ?>">
                     </div>
                     <?= form_error('website_database', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Prefix:</label>
+                    <label class="uk-form-label"><?= lang('prefix'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="auth_prefix" class="uk-input" type="text" placeholder="Prefix">
+                      <input name="auth_prefix" class="uk-input" type="text" placeholder="<?= lang('prefix'); ?>">
                     </div>
                     <?= form_error('website_prefix', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
@@ -150,16 +150,16 @@
               <div class="uk-margin-small uk-light">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Username:</label>
+                    <label class="uk-form-label"><?= lang('username'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="auth_username" class="uk-input" type="text" placeholder="Username">
+                      <input name="auth_username" class="uk-input" type="text" placeholder="<?= lang('username'); ?>">
                     </div>
                     <?= form_error('auth_username', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label">Password:</label>
+                    <label class="uk-form-label"><?= lang('password'); ?>:</label>
                     <div class="uk-form-controls">
-                      <input name="auth_password" class="uk-input" type="password" placeholder="Password">
+                      <input name="auth_password" class="uk-input" type="password" placeholder="<?= lang('password'); ?>">
                     </div>
                     <?= form_error('auth_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                   </div>

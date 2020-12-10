@@ -24,7 +24,7 @@
               <div class="uk-width-auto">
                 <?php if ($this->website->isLogged()): ?>
                 <div class="uk-text-center uk-text-right@s">
-                  <a href="<?= base_url('bugtracker/new'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('button_create_report'); ?></a>
+                  <a href="<?= base_url('bugtracker/new'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('create_report'); ?></a>
                 </div>
                 <?php endif; ?>
               </div>
@@ -33,11 +33,11 @@
               <table class="uk-table uk-table-hover uk-table-small uk-table-divider">
                 <thead>
                   <tr>
-                    <th><i class="fas fa-hashtag"></i> <?=lang('table_header_id'); ?></th>
-                    <th class="uk-table-expand"><i class="fas fa-bookmark"></i> <?= lang('placeholder_title'); ?></th>
-                    <th class="uk-width-small"><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?></th>
-                    <th class="uk-width-small uk-text-center"><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?></th>
-                    <th class="uk-width-small uk-text-center"><i class="fas fa-info-circle"></i> <?= lang('table_header_status'); ?></th>
+                    <th><i class="fas fa-hashtag"></i> <?=lang('id'); ?></th>
+                    <th class="uk-table-expand"><i class="fas fa-bookmark"></i> <?= lang('title'); ?></th>
+                    <th class="uk-width-small"><i class="fas fa-list"></i> <?= lang('type'); ?></th>
+                    <th class="uk-width-small uk-text-center"><i class="fas fa-exclamation-circle"></i> <?= lang('priority'); ?></th>
+                    <th class="uk-width-small uk-text-center"><i class="fas fa-info-circle"></i> <?= lang('status'); ?></th>
                   </tr>
                 </thead>
                 <tbody>

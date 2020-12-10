@@ -31,7 +31,7 @@ endif; ?>
                 <?php if($this->website->isLogged()): ?>
                 <?php if($this->forum_model->getSpecifyPostAuthor($idlink) == $this->session->userdata('id')): ?>
                 <div class="uk-text-center uk-text-right@s">
-                  <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= lang('button_edit_topic'); ?></a>
+                  <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= lang('edit_topic'); ?></a>
                 </div>
                 <?php endif; ?>
                 <?php endif; ?>
@@ -81,7 +81,7 @@ endif; ?>
                   <?= $commentss->commentary ?>
                   <?php if($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $commentss->author && now() < strtotime('+30 minutes', $commentss->date)): ?>
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
-                    <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
+                    <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></button>
                   </div>
                   <?php endif; ?>
                 </div>
@@ -95,7 +95,7 @@ endif; ?>
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
               <div class="glass-box-container">
                 <p class="uk-margin-small"><?= lang('forum_comment_locked'); ?></p>
-                <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a>
+                <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= lang('login'); ?></a>
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@ endif; ?>
                     <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('button_add_reply'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
                   </div>
                   <?= form_close(); ?>
                 </div>

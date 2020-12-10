@@ -24,7 +24,7 @@
                     <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= lang('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
-                    <a href="<?= base_url('user/settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= lang('button_account_settings'); ?></a>
+                    <a href="<?= base_url('user/settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= lang('account_settings'); ?></a>
                   </div>
                 </div>
               </div>
@@ -33,15 +33,15 @@
                   <table class="uk-table uk-table-small">
                     <tbody>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_nickname'); ?></span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('nickname'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->session->userdata('nickname'); ?></td>
                       </tr>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_username'); ?></span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('username'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->session->userdata('username'); ?></td>
                       </tr>
                       <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('placeholder_email'); ?></span></td>
+                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('email'); ?></span></td>
                         <td class="uk-table-expand"><?= $this->session->userdata('email'); ?></td>
                       </tr>
                     </tbody>
@@ -62,11 +62,11 @@
                       <table class="uk-table uk-table-divider uk-table-small">
                         <thead>
                           <tr>
-                            <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('table_header_name'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?= lang('table_header_race'); ?>/<?= lang('table_header_class'); ?></th>
-                            <th class="uk-width-small"><i class="fas fa-level-up-alt"></i> <?= lang('table_header_level'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-clock"></i> <?= lang('table_header_time_played'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-coins"></i> <?= lang('table_header_money'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('name'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?= lang('race'); ?>/<?= lang('class'); ?></th>
+                            <th class="uk-width-small"><i class="fas fa-level-up-alt"></i> <?= lang('level'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-clock"></i> <?= lang('time_played'); ?></th>
+                            <th class="uk-table-expand"><i class="fas fa-coins"></i> <?= lang('money'); ?></th>
                           </tr>
                         </thead>
                         <tbody>

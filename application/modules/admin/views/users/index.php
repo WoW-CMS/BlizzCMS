@@ -18,10 +18,10 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= lang('placeholder_username'); ?></th>
-                  <th class="uk-width-medium"><?= lang('placeholder_email'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_date'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_actions'); ?></th>
+                  <th class="uk-width-small"><?= lang('username'); ?></th>
+                  <th class="uk-width-medium"><?= lang('email'); ?></th>
+                  <th class="uk-width-small"><?= lang('date'); ?></th>
+                  <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
               <tbody>

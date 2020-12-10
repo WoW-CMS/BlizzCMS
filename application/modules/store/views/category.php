@@ -65,7 +65,7 @@
                           <?php endif; ?>
                         </div>
                         <div class="uk-width-auto">
-                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= lang('button_cart'); ?></button>
+                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= lang('cart'); ?></button>
                         </div>
                       </div>
                     </div>

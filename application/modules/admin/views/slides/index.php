@@ -9,7 +9,7 @@
             </ul>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= site_url('admin/slides/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('button_create'); ?></a>
+            <a href="<?= site_url('admin/slides/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('create'); ?></a>
           </div>
         </div>
         <?= $template['partials']['alerts']; ?>
@@ -21,10 +21,10 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-table-expand"><?= lang('placeholder_title'); ?></th>
-                  <th class="uk-table-expand"><?= lang('placeholder_description'); ?></th>
-                  <th class="uk-width-small"><?= lang('placeholder_type'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_actions'); ?></th>
+                  <th class="uk-table-expand"><?= lang('title'); ?></th>
+                  <th class="uk-table-expand"><?= lang('description'); ?></th>
+                  <th class="uk-width-small"><?= lang('type'); ?></th>
+                  <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
               <tbody>
@@ -35,12 +35,12 @@
                   <td><?= $item->type; ?></td>
                   <td>
                     <div class="uk-button-group">
-                      <a href="<?= site_url('admin/slides/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> Edit</a>
+                      <a href="<?= site_url('admin/slides/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
                         <div uk-dropdown="mode: click; boundary: .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
-                            <li><a href="<?= site_url('admin/slides/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> Delete</a></li>
+                            <li><a href="<?= site_url('admin/slides/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
                           </ul>
                         </div>
                       </div>

@@ -39,15 +39,15 @@
                   <div class="uk-card-body">
                     <h5 class="uk-h5 uk-text-bold uk-margin-small"><?= lang('account_information'); ?></h5>
                     <div class="uk-margin">
-                      <label class="uk-form-label"><?= lang('placeholder_username'); ?></label>
+                      <label class="uk-form-label"><?= lang('username'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input uk-disabled" type="text" value="<?= $user->username; ?>" placeholder="<?= lang('placeholder_username'); ?>" disabled>
+                        <input class="uk-input uk-disabled" type="text" value="<?= $user->username; ?>" placeholder="<?= lang('username'); ?>" disabled>
                       </div>
                     </div>
                     <div class="uk-margin">
-                      <label class="uk-form-label"><?= lang('placeholder_nickname'); ?></label>
+                      <label class="uk-form-label"><?= lang('nickname'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="nickname" value="<?= $user->nickname; ?>" placeholder="<?= lang('placeholder_nickname'); ?>">
+                        <input class="uk-input" type="text" name="nickname" value="<?= $user->nickname; ?>" placeholder="<?= lang('nickname'); ?>">
                       </div>
                       <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
@@ -67,7 +67,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-sync"></i> <?= lang('button_update'); ?></button>
+                <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-sync"></i> <?= lang('update'); ?></button>
                 <?= form_close(); ?>
               </li>
               <li>
@@ -77,12 +77,12 @@
                     <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                       <thead>
                         <tr>
-                          <th class="uk-table-shrink"><?= lang('table_header_guid'); ?></th>
-                          <th class="uk-width-small"><?= lang('table_header_name'); ?></th>
-                          <th class="uk-table-shrink"><?= lang('table_header_race'); ?></th>
-                          <th class="uk-table-shrink"><?= lang('table_header_class'); ?></th>
-                          <th class="uk-table-shrink"><?= lang('table_header_level'); ?></th>
-                          <th class="uk-width-small uk-text-center"><?= lang('table_header_money'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('guid'); ?></th>
+                          <th class="uk-width-small"><?= lang('name'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('race'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('class'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('level'); ?></th>
+                          <th class="uk-width-small uk-text-center"><?= lang('money'); ?></th>
                         </tr>
                       </thead>
                       <tbody>

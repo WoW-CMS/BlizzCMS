@@ -21,7 +21,7 @@
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
                   <div class="uk-width-expand@m">
-                    <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= lang('placeholder_create_bug_report'); ?></h4>
+                    <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= lang('create_bug_report'); ?></h4>
                   </div>
                   <div class="uk-width-auto@m">
                     <a href="<?= base_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
@@ -31,21 +31,21 @@
               <div class="uk-card-body">
                 <?= form_open('', 'id="reportForm" onsubmit="ReportForm(event)"'); ?>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label"><?= lang('placeholder_title'); ?></label>
+                  <label class="uk-form-label"><?= lang('title'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen fa-lg"></i></span>
-                      <input class="uk-input" type="text" id="report_title" placeholder="<?= lang('placeholder_title'); ?>" required>
+                      <input class="uk-input" type="text" id="report_title" placeholder="<?= lang('title'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-margin uk-light">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('placeholder_type'); ?></label>
+                      <label class="uk-form-label"><?= lang('type'); ?></label>
                       <div class="uk-form-controls">
                         <select class="uk-select" id="report_type">
-                          <option value="0"><?= lang('notification_select_type'); ?></option>
+                          <option value="0"><?= lang('select_type'); ?></option>
                           <?php foreach ($this->bugtracker_model->all_types() as $types): ?>
                           <option value="<?= $types->id; ?>"><?= $types->title ?></option>
                           <?php endforeach; ?>
@@ -53,10 +53,10 @@
                       </div>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('table_header_priority'); ?></label>
+                      <label class="uk-form-label"><?= lang('priority'); ?></label>
                       <div class="uk-form-controls">
                         <select class="uk-select" id="report_priority">
-                          <option value="0"><?= lang('notification_select_priority'); ?></option>
+                          <option value="0"><?= lang('select_priority'); ?></option>
                           <?php foreach ($this->bugtracker_model->all_priorities() as $priorities): ?>
                           <option value="<?= $priorities->id; ?>"><?= $priorities->title ?></option>
                           <?php endforeach; ?>
@@ -66,7 +66,7 @@
                   </div>
                 </div>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label"><?= lang('placeholder_description'); ?></label>
+                  <label class="uk-form-label"><?= lang('description'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-width-1-1">
                       <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>
@@ -74,7 +74,7 @@
                   </div>
                 </div>
                 <div class="uk-margin">
-                  <button class="uk-button uk-button-default uk-width-1-1" id="button_report" type="submit"><i class="fas fa-plus-circle"></i> <?= lang('button_create'); ?></button>
+                  <button class="uk-button uk-button-default uk-width-1-1" id="button_report" type="submit"><i class="fas fa-plus-circle"></i> <?= lang('create'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>
@@ -114,7 +114,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= lang('notification_title_error'); ?>',
-              message: '<?= lang('notification_select_type'); ?>',
+              message: '<?= lang('select_type'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -130,7 +130,7 @@
             'theme': 'awesome error',
             'content': {
               title: '<?= lang('notification_title_error'); ?>',
-              message: '<?= lang('notification_select_priority'); ?>',
+              message: '<?= lang('select_priority'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },

@@ -16,14 +16,10 @@ $lang['notification_title_error'] = 'Error';
 $lang['notification_title_info'] = 'Information';
 
 /*Notification Message (Login/Register) Lang*/
-$lang['notification_username_empty'] = 'Username is empty';
-$lang['notification_email_empty'] = 'Email is empty';
-$lang['notification_password_empty'] = 'Password is empty';
 $lang['notification_user_error'] = 'The username or password is incorrect. please try again!';
 $lang['notification_email_error'] = 'The email or password is incorrect. please try again!';
 $lang['notification_check_email'] = 'The username or email is incorrect. please try again!';
 $lang['notification_checking'] = 'Checking...';
-$lang['notification_redirection'] = 'Connecting to your account...';
 $lang['notification_new_account'] = 'New account created. redirecting to login...';
 $lang['notification_email_sent'] = 'Email sent. please check your email...';
 $lang['notification_account_activation'] = 'Email sent. please check your email for activate your account.';
@@ -48,19 +44,9 @@ $lang['notification_username_changed'] = 'The username has been changed.';
 $lang['notification_password_changed'] = 'The password has been changed.';
 $lang['notification_avatar_changed'] = 'The avatar has been changed.';
 $lang['notification_wrong_values'] = 'The values are wrong';
-$lang['notification_select_type'] = 'Select a type';
-$lang['notification_select_priority'] = 'Select a priority';
-$lang['notification_select_category'] = 'Select a Category';
-$lang['notification_select_realm'] = 'Select a Realm';
-$lang['notification_select_character'] = 'Select a Character';
-$lang['notification_select_item'] = 'Select a Item';
-$lang['notification_select_parent'] = 'Select a parent';
-$lang['notification_select_target'] = 'Select a target';
 $lang['notification_report_created'] = 'The report has been created.';
 $lang['notification_title_empty'] = 'Title is Empty';
 $lang['notification_description_empty'] = 'Description is empty';
-$lang['notification_name_empty'] = 'Name is empty';
-$lang['notification_id_empty'] = 'id is empty';
 $lang['notification_reply_empty'] = 'Reply is empty';
 $lang['notification_reply_created'] = 'Reply has been sended.';
 $lang['notification_reply_deleted'] = 'Reply has been deleted.';
@@ -109,31 +95,7 @@ $lang['notification_topsite_edited'] = 'The topsite has been edited.';
 $lang['notification_topsite_deleted'] = 'The topsite has been deleted.';
 
 $lang['notification_settings_updated'] = 'The settings has been updated.';
-$lang['notification_module_enabled'] = 'The module has been enabled.';
-$lang['notification_module_disabled'] = 'The module has been disabled.';
-$lang['notification_migration'] = 'The settings have been set.';
-
-$lang['notification_donation_added'] = 'Added donation';
-$lang['notification_donation_deleted'] = 'Deleted donation';
-$lang['notification_donation_updated'] = 'Updated donation';
-$lang['notification_points_empty'] = 'Points is empty';
-$lang['notification_tax_empty'] = 'Tax is empty';
-$lang['notification_price_empty'] = 'Price is empty';
-$lang['notification_incorrect_update'] = 'Unexpected update';
-
-$lang['notification_route_inuse'] = 'The route is already in use please choose another one.';
-
-$lang['notification_account_updated'] = 'The account has been updated.';
-$lang['notification_dp_vp_empty'] = 'DP/VP is empty';
-$lang['notification_account_banned'] = 'The account has been banned.';
-$lang['notification_reason_empty'] = 'Reason is empty';
-$lang['notification_account_ban_remove'] = 'The ban in the account has been removed.';
-$lang['notification_rank_empty'] = 'Rank is empty';
-$lang['notification_rank_granted'] = 'The rank has been granted.';
-$lang['notification_rank_removed'] = 'The rank has been deleted.';
 
 $lang['notification_cms_updated'] = 'The CMS has been updated';
 $lang['notification_cms_update_error'] = 'The CMS could not be updated';
 $lang['notification_cms_not_updated'] = 'A new version has not been found to update';
-
-$lang['notification_select_category'] = 'It is not subcategory';

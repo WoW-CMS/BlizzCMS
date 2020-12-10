@@ -8,9 +8,9 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-small"><?= lang('placeholder_username'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= lang('table_header_date'); ?></th>
-                      <th class="uk-width-medium uk-text-center"><?= lang('table_header_actions'); ?></th>
+                      <th class="uk-width-small"><?= lang('username'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= lang('date'); ?></th>
+                      <th class="uk-width-medium uk-text-center"><?= lang('actions'); ?></th>
                       <th class="uk-width-medium uk-text-center">Information</th>
                     </tr>
                   </thead>
@@ -31,7 +31,7 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-small"><?= lang('placeholder_username'); ?></th>
+                      <th class="uk-width-small"><?= lang('username'); ?></th>
                       <th class="uk-width-medium uk-text-center">Reason</th>
                       <th class="uk-width-small uk-text-center">Length</th>
                       <th class="uk-width-small uk-text-center">Banned By</th>

@@ -11,7 +11,7 @@
             <div class="uk-width-auto">
               <?php if($this->website->isLogged()): ?>
               <div class="uk-text-center uk-text-right@s">
-                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('button_new_topic'); ?></a>
+                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('new_topic'); ?></a>
               </div>
               <?php endif; ?>
             </div>

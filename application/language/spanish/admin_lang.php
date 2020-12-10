@@ -46,96 +46,39 @@ $lang['section_store_items'] = 'Items de la Tienda';
 $lang['section_store_top'] = 'Items TOP de la Tienda';
 $lang['section_logs_dp'] = 'Logs de donación';
 $lang['section_logs_vp'] = 'Logs de votación';
+$lang['update_version'] = 'Actualizar a la última versión';
 
-/*Button Lang*/
-$lang['button_select'] = 'Seleccionar';
-$lang['button_update'] = 'Actualizar';
-$lang['button_unban'] = 'Desbanear';
-$lang['button_ban'] = 'Banear';
-$lang['button_remove'] = 'Remover';
-$lang['button_grant'] = 'Conceder';
-$lang['button_update_version'] = 'Actualizar a la última versión';
-
-/*Table header Lang*/
-$lang['table_header_subcategory'] = 'Selecciona una subcategoría';
-$lang['table_header_race'] = 'Raza';
-$lang['table_header_class'] = 'Clase';
-$lang['table_header_level'] = 'Nivel';
-$lang['table_header_money'] = 'Dinero';
-$lang['table_header_time_played'] = 'Tiempo Jugado';
-$lang['table_header_actions'] = 'Acciones';
-$lang['table_header_id'] = '#ID';
-$lang['table_header_tax'] = 'Impuestos';
-$lang['table_header_points'] = 'Puntos';
-$lang['table_header_type'] = 'Tipo';
-$lang['table_header_module'] = 'Modulo';
-$lang['table_header_payment_id'] = 'Payment ID';
-$lang['table_header_hash'] = 'Hash';
-$lang['table_header_total'] = 'Total';
-$lang['table_header_create_time'] = 'Create Time';
-$lang['table_header_guid'] = 'Guid';
-$lang['table_header_information'] = 'Información';
-$lang['table_header_value'] = 'Valor';
-
-/*Input Placeholder Lang*/
-$lang['placeholder_manage_account'] = 'Administrar Cuenta';
-$lang['placeholder_update_information'] = 'Actualizar Información de la Cuenta';
-$lang['placeholder_donation_logs'] = 'Registros de Donaciones';
-$lang['placeholder_store_logs'] = 'Registros de la Tienda';
-$lang['placeholder_create_changelog'] = 'Crear Changelog';
-$lang['placeholder_edit_changelog'] = 'Editar Changelog';
-$lang['placeholder_create_category'] = 'Crear Categoría';
-$lang['placeholder_edit_category'] = 'Editar Categoría';
-$lang['placeholder_create_forum'] = 'Crear Foro';
-$lang['placeholder_edit_forum'] = 'Editar Foro';
-$lang['placeholder_create_menu'] = 'Crear Menú';
-$lang['placeholder_edit_menu'] = 'Editar Menú';
-$lang['placeholder_create_news'] = 'Crear Noticia';
-$lang['placeholder_edit_news'] = 'Editar Noticia';
-$lang['placeholder_create_page'] = 'Crear Página';
-$lang['placeholder_edit_page'] = 'Editar Página';
-$lang['placeholder_create_realm'] = 'Crear Reino';
-$lang['placeholder_edit_realm'] = 'Editar Reino';
-$lang['placeholder_create_slide'] = 'Crear Slide';
-$lang['placeholder_edit_slide'] = 'Editar Slide';
-$lang['placeholder_create_item'] = 'Crear item';
-$lang['placeholder_edit_item'] = 'Editar Item';
-$lang['placeholder_create_topsite'] = 'Crear Topsite';
-$lang['placeholder_edit_topsite'] = 'Editar Topsite';
-$lang['placeholder_create_top'] = 'Crear TOP Item';
-$lang['placeholder_edit_top'] = 'Editar TOP Item';
-
-$lang['placeholder_upload_image'] = 'Cargar imagen';
-$lang['placeholder_icon_name'] = 'Nombre del icono';
-$lang['placeholder_category'] = 'Categoría';
-$lang['placeholder_name'] = 'Nombre';
-$lang['placeholder_item'] = 'Item';
-$lang['placeholder_image_name'] = 'Nombre de la imágen';
-$lang['placeholder_reason'] = 'Razón';
-$lang['placeholder_gmlevel'] = 'Nivel de GM';
-$lang['placeholder_url'] = 'URL';
-$lang['placeholder_parent'] = 'Parent';
-$lang['placeholder_target'] = 'Target';
-$lang['placeholder_url_type'] = 'Tipo de URL';
-$lang['placeholder_route'] = 'Ruta';
-$lang['placeholder_hours'] = 'Horas';
-$lang['placeholder_hostname'] = 'Hostname';
-$lang['placeholder_database'] = 'Database';
-$lang['placeholder_port'] = 'Port';
-$lang['placeholder_maximum_capacity'] = 'Maximum capacity';
-$lang['placeholder_account_points'] = 'Puntos de la Cuenta';
-$lang['placeholder_account_ban'] = 'Bannear Cuenta';
-$lang['placeholder_account_unban'] = 'Desbanear Cuenta';
-$lang['placeholder_account_grant_rank'] = 'Otorgar Rango GM';
-$lang['placeholder_account_remove_rank'] = 'Remover Rango GM';
-$lang['placeholder_command'] = 'Comando';
-$lang['placeholder_emulator'] = 'Emulador';
+$lang['manage_account'] = 'Administrar Cuenta';
+$lang['update_information'] = 'Actualizar Información de la Cuenta';
+$lang['donation_logs'] = 'Registros de Donaciones';
+$lang['store_logs'] = 'Registros de la Tienda';
+$lang['create_changelog'] = 'Crear Changelog';
+$lang['edit_changelog'] = 'Editar Changelog';
+$lang['create_category'] = 'Crear Categoría';
+$lang['edit_category'] = 'Editar Categoría';
+$lang['create_forum'] = 'Crear Foro';
+$lang['edit_forum'] = 'Editar Foro';
+$lang['create_menu'] = 'Crear Menú';
+$lang['edit_menu'] = 'Editar Menú';
+$lang['create_news'] = 'Crear Noticia';
+$lang['edit_news'] = 'Editar Noticia';
+$lang['create_page'] = 'Crear Página';
+$lang['edit_page'] = 'Editar Página';
+$lang['create_realm'] = 'Crear Reino';
+$lang['edit_realm'] = 'Editar Reino';
+$lang['create_slide'] = 'Crear Slide';
+$lang['edit_slide'] = 'Editar Slide';
+$lang['create_item'] = 'Crear item';
+$lang['edit_item'] = 'Editar Item';
+$lang['create_topsite'] = 'Crear Topsite';
+$lang['edit_topsite'] = 'Editar Topsite';
+$lang['create_top'] = 'Crear TOP Item';
+$lang['edit_top'] = 'Editar TOP Item';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Nombre del Sitio Web';
 $lang['conf_realmlist'] = 'Realmlist';
 $lang['conf_discord_invid'] = 'ID de Invitación de discord';
-$lang['conf_timezone'] = 'Zona horaria';
 $lang['conf_theme_name'] = 'Nombre del Tema';
 $lang['conf_maintenance_mode'] = 'Modo de Mantenimiento';
 $lang['conf_social_facebook'] = 'Facebook URL';
@@ -159,17 +102,13 @@ $lang['conf_sender_email'] = 'Correo electrónico del remitente';
 $lang['conf_sender_name'] = 'Nombre del remitente';
 
 /*Logs */
-$lang['placeholder_logs_dp'] = 'Donación';
-$lang['placeholder_logs_quantity'] = 'Cantidad';
-$lang['placeholder_logs_hash'] = 'Hash';
-$lang['placeholder_logs_voteid'] = 'ID de la Votación';
-$lang['placeholder_logs_points'] = 'Puntos';
-$lang['placeholder_logs_lasttime'] = 'Última vez';
-$lang['placeholder_logs_expiredtime'] = 'Tiempo para expirar';
-
-/*Status Lang*/
-$lang['status_completed'] = 'Terminado';
-$lang['status_cancelled'] = 'Cancelado';
+$lang['logs_dp'] = 'Donación';
+$lang['logs_quantity'] = 'Cantidad';
+$lang['logs_hash'] = 'Hash';
+$lang['logs_voteid'] = 'ID de la Votación';
+$lang['logs_points'] = 'Puntos';
+$lang['logs_lasttime'] = 'Última vez';
+$lang['logs_expiredtime'] = 'Tiempo para expirar';
 
 /*Options Lang*/
 $lang['option_normal'] = 'Normal';

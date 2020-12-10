@@ -12,10 +12,10 @@
               <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-width-medium"><i class="fas fa-info-circle"></i> <?= lang('table_header_item_name'); ?></th>
-                    <th class="uk-width-medium"><i class="fas fa-list-ul"></i> <?= lang('table_header_character'); ?></th>
-                    <th class="uk-width-small"><i class="fas fa-coins"></i> <?= lang('table_header_price'); ?></th>
-                    <th class="uk-table-shrink"><i class="fas fa-sort-numeric-up"></i> <?= lang('table_header_quantity'); ?></th>
+                    <th class="uk-width-medium"><i class="fas fa-info-circle"></i> <?= lang('item_name'); ?></th>
+                    <th class="uk-width-medium"><i class="fas fa-list-ul"></i> <?= lang('character'); ?></th>
+                    <th class="uk-width-small"><i class="fas fa-coins"></i> <?= lang('price'); ?></th>
+                    <th class="uk-table-shrink"><i class="fas fa-sort-numeric-up"></i> <?= lang('quantity'); ?></th>
                     <th class="uk-table-shrink"></th>
                   </tr>
                 </thead>
@@ -27,9 +27,9 @@
                     <td>
                       <div class="uk-form-controls uk-light">
                         <select class="uk-select uk-width-1-1" onchange="updateCharacter(this, '<?php echo $item["rowid"]; ?>')">
-                          <option value="0"><?= lang('notification_select_character'); ?></option>
+                          <option value="0"><?= lang('select_character'); ?></option>
                           <?php foreach($this->realm->account_characters($this->store_model->getCategoryRealmId($item["category"]), $this->session->userdata('id')) as $listchar): ?>
-                          <option value="<?= $listchar->guid ?>" <?php if($listchar->guid == $item["guid"]) echo 'selected'; ?>><?= $listchar->name ?> - (<?= lang('table_header_realm'); ?>: <?= $this->realm->realm_name($this->store_model->getCategoryRealmId($item["category"])); ?>)</option>
+                          <option value="<?= $listchar->guid ?>" <?php if($listchar->guid == $item["guid"]) echo 'selected'; ?>><?= $listchar->name ?> - (<?= lang('realm'); ?>: <?= $this->realm->realm_name($this->store_model->getCategoryRealmId($item["category"])); ?>)</option>
                           <?php endforeach; ?>
                         </select>
                       </div>
@@ -61,7 +61,7 @@
           <div class="uk-card-footer">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-expand@s">
-                <a href="<?= base_url('store'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('button_buying'); ?></a>
+                <a href="<?= base_url('store'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('continue_buying'); ?></a>
               </div>
               <div class="uk-width-auto@s uk-flex uk-flex-middle">
                 <?php if($this->cart->total_items() > 0): ?>
@@ -70,7 +70,7 @@
               </div>
               <div class="uk-width-auto@s">
                 <?php if($this->cart->total_items() > 0): ?>
-                <button class="uk-button uk-button-default uk-button-small" value="1" id="button_checkout" onclick="Checkout(event, this.value)"><?= lang('button_checkout'); ?> <i class="fas fa-shopping-cart"></i></button>
+                <button class="uk-button uk-button-default uk-button-small" value="1" id="button_checkout" onclick="Checkout(event, this.value)"><?= lang('checkout'); ?> <i class="fas fa-shopping-cart"></i></button>
                 <?php endif; ?>
               </div>
             </div>

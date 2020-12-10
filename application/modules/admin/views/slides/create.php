@@ -16,20 +16,20 @@
         <?= form_open(current_url()); ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('placeholder_create_slide'); ?></h4>
+            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('create_slide'); ?></h4>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_title'); ?></label>
+              <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
-                  <input class="uk-input" type="text" name="title" placeholder="<?= lang('placeholder_title'); ?>">
+                  <input class="uk-input" type="text" name="title" placeholder="<?= lang('title'); ?>">
                 </div>
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_description'); ?></label>
+              <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea" name="description" rows="3"></textarea>
               </div>
@@ -38,10 +38,10 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-3@s">
-                  <label class="uk-form-label"><?=lang('placeholder_type');?></label>
+                  <label class="uk-form-label"><?=lang('type');?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="0"><?= lang('notification_select_type'); ?></option>
+                      <option value="0"><?= lang('select_type'); ?></option>
                       <option value="1"><?= lang('option_image'); ?></option>
                       <option value="2"><?= lang('option_video'); ?></option>
                       <option value="3"><?= lang('option_iframe'); ?></option>
@@ -50,7 +50,7 @@
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-2-3@s">
-                  <label class="uk-form-label"><?= lang('placeholder_route'); ?></label>
+                  <label class="uk-form-label"><?= lang('route'); ?></label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="text" name="route" placeholder="URL or Image Name">
                   </div>
@@ -60,7 +60,7 @@
             </div>
           </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('button_create'); ?></button>
+        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('create'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>

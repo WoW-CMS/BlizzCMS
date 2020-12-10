@@ -51,7 +51,7 @@ endif; ?>
                     </h5>
                     <form action="" method="post" accept-charset="utf-8">
                       <div class="uk-margin">
-                        <button class="uk-button uk-button-secondary" type="submit" value="<?= $donateList->id ?>" name="button_donate"><i class="fas fa-donate"></i> <?= lang('button_donate'); ?></button>
+                        <button class="uk-button uk-button-secondary" type="submit" value="<?= $donateList->id ?>" name="button_donate"><i class="fas fa-donate"></i> <?= lang('donate'); ?></button>
                       </div>
                     </form>
                   </div>

@@ -34,27 +34,27 @@
                   </div>
                 </div>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label"><?= lang('placeholder_new_nickname'); ?>:</label>
+                  <label class="uk-form-label"><?= lang('new_nickname'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="far fa-user"></i> </span>
-                      <input class="uk-input" type="text" name="nickname" placeholder="<?= lang('placeholder_new_nickname'); ?>">
+                      <input class="uk-input" type="text" name="nickname" placeholder="<?= lang('new_nickname'); ?>">
                     </div>
                   </div>
                   <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-margin uk-light">
                   <div class="uk-form-controls">
-                    <label class="uk-form-label"><?= lang('placeholder_password'); ?>:</label>
+                    <label class="uk-form-label"><?= lang('password'); ?>:</label>
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="password" placeholder="<?= lang('placeholder_password'); ?>">
+                      <input class="uk-input" type="password" name="password" placeholder="<?= lang('password'); ?>">
                     </div>
                   </div>
                   <?= form_error('password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('button_save_changes'); ?></button>
+                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>
@@ -81,17 +81,17 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="new_email" placeholder="<?= lang('placeholder_new_email'); ?>">
+                          <input class="uk-input" type="email" name="new_email" placeholder="<?= lang('new_email'); ?>">
                         </div>
                       </div>
                       <?= form_error('new_email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('placeholder_confirm_email'); ?>:</label>
+                      <label class="uk-form-label"><?= lang('confirm_email'); ?>:</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="confirm_new_email" placeholder="<?= lang('placeholder_confirm_email'); ?>">
+                          <input class="uk-input" type="email" name="confirm_new_email" placeholder="<?= lang('confirm_email'); ?>">
                         </div>
                       </div>
                       <?= form_error('confirm_new_email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -100,16 +100,16 @@
                 </div>
                 <div class="uk-margin uk-light">
                   <div class="uk-form-controls">
-                    <label class="uk-form-label"><?= lang('placeholder_password'); ?>:</label>
+                    <label class="uk-form-label"><?= lang('password'); ?>:</label>
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="cu_password" placeholder="<?= lang('placeholder_password'); ?>">
+                      <input class="uk-input" type="password" name="cu_password" placeholder="<?= lang('password'); ?>">
                     </div>
                   </div>
                   <?= form_error('cu_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('button_save_changes'); ?></button>
+                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>
@@ -121,11 +121,11 @@
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/password')); ?>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label"><?= lang('placeholder_current_password'); ?>:</label>
+                  <label class="uk-form-label"><?= lang('current_password'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="current_password" placeholder="<?= lang('placeholder_current_password'); ?>">
+                      <input class="uk-input" type="password" name="current_password" placeholder="<?= lang('current_password'); ?>">
                     </div>
                   </div>
                   <?= form_error('current_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -137,17 +137,17 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-unlock"></i></span>
-                          <input class="uk-input" type="password" name="new_password" placeholder="<?= lang('placeholder_new_password'); ?>">
+                          <input class="uk-input" type="password" name="new_password" placeholder="<?= lang('new_password'); ?>">
                         </div>
                       </div>
                       <?= form_error('new_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('placeholder_re_password'); ?></label>
+                      <label class="uk-form-label"><?= lang('re_password'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-lock"></i></span>
-                          <input class="uk-input" type="password" name="confirm_new_password" placeholder="<?= lang('placeholder_re_password'); ?>">
+                          <input class="uk-input" type="password" name="confirm_new_password" placeholder="<?= lang('re_password'); ?>">
                         </div>
                       </div>
                       <?= form_error('confirm_new_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -155,14 +155,14 @@
                   </div>
                 </div>
                 <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('button_save_changes'); ?></button>
+                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>
             </div>
             <div class="uk-card-default myaccount-card uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= lang('button_change_avatar'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= lang('change_avatar'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/avatar')); ?>
@@ -180,7 +180,7 @@
                   <?= form_error('avatar', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('button_save_changes'); ?></button>
+                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes'); ?></button>
                 </div>
                 <?= form_close(); ?>
               </div>

@@ -35,10 +35,10 @@
                   </div>
                   <div class="uk-width-1-4@s">
                     <ul class="uk-list uk-text-small">
-                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->auth->get_user($report->author, 'nickname'); ?></li>
-                      <li><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($report->type); ?></span></li>
-                      <li><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($report->priority); ?></span></li>
-                      <li><i class="fas fa-tags"></i> <?= lang('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span></li>
+                      <li><i class="far fa-user-circle"></i> <?= lang('author'); ?>: <?= $this->auth->get_user($report->author, 'nickname'); ?></li>
+                      <li><i class="fas fa-list"></i> <?= lang('type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($report->type); ?></span></li>
+                      <li><i class="fas fa-exclamation-circle"></i> <?= lang('priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($report->priority); ?></span></li>
+                      <li><i class="fas fa-tags"></i> <?= lang('status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span></li>
                     </ul>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('save_changes'); ?></button>
                   </div>
                 <?= form_close(); ?>
               </div>
@@ -77,7 +77,7 @@
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('save_changes'); ?></button>
                   </div>
                 <?= form_close(); ?>
               </div>
@@ -94,7 +94,7 @@
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('save_changes'); ?></button>
                   </div>
                 <?= form_close(); ?>
               </div>
@@ -103,7 +103,7 @@
               <?= form_open(site_url('bugtracker/close')); ?>
                 <?= form_hidden('id', $report->id); ?>
                 <div class="uk-margin-small">
-                  <button class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle" type="submit"></i> <?= lang('button_close'); ?></button>
+                  <button class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle" type="submit"></i> <?= lang('close'); ?></button>
                 </div>
               <?= form_close(); ?>
             </div>

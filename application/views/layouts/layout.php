@@ -26,8 +26,8 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <?php if (! $this->website->isLogged()): ?>
-              <li class="uk-visible@m"><a href="<?= site_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('button_register'); ?></a></li>
-              <li class="uk-visible@m"><a href="<?= site_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('button_login'); ?></a></li>
+              <li class="uk-visible@m"><a href="<?= site_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('register'); ?></a></li>
+              <li class="uk-visible@m"><a href="<?= site_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('login'); ?></a></li>
               <?php else: ?>
               <li class="uk-visible@m">
                 <a href="#">
@@ -36,14 +36,14 @@
                 </a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('user'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
+                    <li><a href="<?= site_url('user'); ?>"><i class="far fa-user-circle"></i> <?= lang('user_panel'); ?></a></li>
                     <?php if ($this->auth->is_moderator()): ?>
-                    <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
+                    <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if ($this->auth->is_admin()): ?>
-                    <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
+                    <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('admin_panel'); ?></a></li>
                     <?php endif; ?>
-                    <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
+                    <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -52,8 +52,8 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <div class="blizzcms-cart-dropdown">
                     <?php if ($this->cart->total_items() > 0): ?>
-                    <p class="uk-text-center uk-margin-small"><?= lang('store_cart_added'); ?> <span class="uk-text-bold"><?= $this->cart->total_items(); ?> <?= lang('table_header_items'); ?></span> <?= lang('store_cart_in_your'); ?></p>
-                    <a href="<?= site_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-eye"></i> <?= lang('button_view_cart'); ?></a>
+                    <p class="uk-text-center uk-margin-small"><?= lang('store_cart_added'); ?> <span class="uk-text-bold"><?= $this->cart->total_items(); ?> <?= lang('cart_items'); ?></span> <?= lang('store_cart_in_your'); ?></p>
+                    <a href="<?= site_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-eye"></i> <?= lang('view_cart'); ?></a>
                     <?php else: ?>
                     <p class="uk-text-center uk-margin-remove"><?= lang('store_cart_no_items'); ?></p>
                     <?php endif; ?>
@@ -136,14 +136,14 @@
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 <?php if (! $this->website->isLogged()): ?>
-                <li><a href="<?= site_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></a></li>
-                <li><a href="<?= site_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a></li>
+                <li><a href="<?= site_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= lang('register'); ?></a></li>
+                <li><a href="<?= site_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('login'); ?></a></li>
                 <?php else: ?>
-                <li><a href="<?= site_url('user'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
+                <li><a href="<?= site_url('user'); ?>"><i class="far fa-user-circle"></i> <?= lang('user_panel'); ?></a></li>
                 <?php if ($this->auth->is_admin()): ?>
-                <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
+                <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('admin_panel'); ?></a></li>
                 <?php endif; ?>
-                <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
+                <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout'); ?></a></li>
                 <?php endif; ?>
                 <?php foreach ($this->base->get_menu() as $item): ?>
                 <?php if ($item->type == 2): ?>

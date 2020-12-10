@@ -18,12 +18,12 @@
             <table class="uk-table uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= lang('table_header_payment_id'); ?></th>
-                  <th class="uk-width-medium"><?= lang('table_header_hash'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_total'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_status'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_create_time'); ?></th>
-                  <th class="uk-width-small"><?= lang('table_header_points'); ?></th>
+                  <th class="uk-width-small"><?= lang('payment_id'); ?></th>
+                  <th class="uk-width-medium"><?= lang('hash'); ?></th>
+                  <th class="uk-width-small"><?= lang('total'); ?></th>
+                  <th class="uk-width-small"><?= lang('status'); ?></th>
+                  <th class="uk-width-small"><?= lang('date'); ?></th>
+                  <th class="uk-width-small"><?= lang('points'); ?></th>
                 </tr>
               </thead>
               <tbody>

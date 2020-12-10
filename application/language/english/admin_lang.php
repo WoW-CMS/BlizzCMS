@@ -46,96 +46,39 @@ $lang['section_store_items'] = 'Store Items';
 $lang['section_store_top'] = 'Store TOP Items';
 $lang['section_logs_dp'] = 'Donation logs';
 $lang['section_logs_vp'] = 'Vote logs';
+$lang['update_version'] = 'Update to latest version';
 
-/*Button Lang*/
-$lang['button_select'] = 'Select';
-$lang['button_update'] = 'Update';
-$lang['button_unban'] = 'Unban';
-$lang['button_ban'] = 'Ban';
-$lang['button_remove'] = 'Remove';
-$lang['button_grant'] = 'Grant';
-$lang['button_update_version'] = 'Update to latest version';
-
-/*Table header Lang*/
-$lang['table_header_subcategory'] = 'Select a subcategory';
-$lang['table_header_race'] = 'Race';
-$lang['table_header_class'] = 'Class';
-$lang['table_header_level'] = 'Level';
-$lang['table_header_money'] = 'Money';
-$lang['table_header_time_played'] = 'Time Played';
-$lang['table_header_actions'] = 'Actions';
-$lang['table_header_id'] = '#ID';
-$lang['table_header_tax'] = 'Tax';
-$lang['table_header_points'] = 'Points';
-$lang['table_header_type'] = 'Type';
-$lang['table_header_module'] = 'Module';
-$lang['table_header_payment_id'] = 'Payment ID';
-$lang['table_header_hash'] = 'Hash';
-$lang['table_header_total'] = 'Total';
-$lang['table_header_create_time'] = 'Create Time';
-$lang['table_header_guid'] = 'Guid';
-$lang['table_header_information'] = 'Information';
-$lang['table_header_value'] = 'Value';
-
-/*Input Placeholder Lang*/
-$lang['placeholder_manage_account'] = 'Manage Account';
-$lang['placeholder_update_information'] = 'Update Account Information';
-$lang['placeholder_donation_logs'] = 'Donation Logs';
-$lang['placeholder_store_logs'] = 'Store Logs';
-$lang['placeholder_create_changelog'] = 'Create Changelog';
-$lang['placeholder_edit_changelog'] = 'Edit Changelog';
-$lang['placeholder_create_category'] = 'Create Category';
-$lang['placeholder_edit_category'] = 'Edit Category';
-$lang['placeholder_create_forum'] = 'Create Forum';
-$lang['placeholder_edit_forum'] = 'Edit Forum';
-$lang['placeholder_create_menu'] = 'Create Menu';
-$lang['placeholder_edit_menu'] = 'Edit Menu';
-$lang['placeholder_create_news'] = 'Create News';
-$lang['placeholder_edit_news'] = 'Edit News';
-$lang['placeholder_create_page'] = 'Create Page';
-$lang['placeholder_edit_page'] = 'Edit Page';
-$lang['placeholder_create_realm'] = 'Create Realm';
-$lang['placeholder_edit_realm'] = 'Edit Realm';
-$lang['placeholder_create_slide'] = 'Create Slide';
-$lang['placeholder_edit_slide'] = 'Edit Slide';
-$lang['placeholder_create_item'] = 'Create item';
-$lang['placeholder_edit_item'] = 'Edit Item';
-$lang['placeholder_create_topsite'] = 'Create Topsite';
-$lang['placeholder_edit_topsite'] = 'Edit Topsite';
-$lang['placeholder_create_top'] = 'Create TOP Item';
-$lang['placeholder_edit_top'] = 'Edit TOP Item';
-
-$lang['placeholder_upload_image'] = 'Upload Image';
-$lang['placeholder_icon_name'] = 'Icon Name';
-$lang['placeholder_category'] = 'Category';
-$lang['placeholder_name'] = 'Name';
-$lang['placeholder_item'] = 'Item';
-$lang['placeholder_image_name'] = 'Image Name';
-$lang['placeholder_reason'] = 'Reason';
-$lang['placeholder_gmlevel'] = 'GM Level';
-$lang['placeholder_url'] = 'URL';
-$lang['placeholder_parent'] = 'Parent';
-$lang['placeholder_target'] = 'Target';
-$lang['placeholder_url_type'] = 'URL Type';
-$lang['placeholder_route'] = 'Route';
-$lang['placeholder_hours'] = 'Hours';
-$lang['placeholder_hostname'] = 'Hostname';
-$lang['placeholder_database'] = 'Database';
-$lang['placeholder_port'] = 'Port';
-$lang['placeholder_maximum_capacity'] = 'Maximum capacity';
-$lang['placeholder_account_points'] = 'Account Points';
-$lang['placeholder_account_ban'] = 'Ban Account';
-$lang['placeholder_account_unban'] = 'Unban Account';
-$lang['placeholder_account_grant_rank'] = 'Grant GM Rank';
-$lang['placeholder_account_remove_rank'] = 'Remove GM Rank';
-$lang['placeholder_command'] = 'Command';
-$lang['placeholder_emulator'] = 'Emulator';
+$lang['manage_account'] = 'Manage Account';
+$lang['update_information'] = 'Update Account Information';
+$lang['donation_logs'] = 'Donation Logs';
+$lang['store_logs'] = 'Store Logs';
+$lang['create_changelog'] = 'Create Changelog';
+$lang['edit_changelog'] = 'Edit Changelog';
+$lang['create_category'] = 'Create Category';
+$lang['edit_category'] = 'Edit Category';
+$lang['create_forum'] = 'Create Forum';
+$lang['edit_forum'] = 'Edit Forum';
+$lang['create_menu'] = 'Create Menu';
+$lang['edit_menu'] = 'Edit Menu';
+$lang['create_news'] = 'Create News';
+$lang['edit_news'] = 'Edit News';
+$lang['create_page'] = 'Create Page';
+$lang['edit_page'] = 'Edit Page';
+$lang['create_realm'] = 'Create Realm';
+$lang['edit_realm'] = 'Edit Realm';
+$lang['create_slide'] = 'Create Slide';
+$lang['edit_slide'] = 'Edit Slide';
+$lang['create_item'] = 'Create item';
+$lang['edit_item'] = 'Edit Item';
+$lang['create_topsite'] = 'Create Topsite';
+$lang['edit_topsite'] = 'Edit Topsite';
+$lang['create_top'] = 'Create TOP Item';
+$lang['edit_top'] = 'Edit TOP Item';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Website Name';
 $lang['conf_realmlist'] = 'Realmlist';
 $lang['conf_discord_invid'] = 'Discord Invitation ID';
-$lang['conf_timezone'] = 'Timezone';
 $lang['conf_theme_name'] = 'Theme Name';
 $lang['conf_maintenance_mode'] = 'Maintenance Mode';
 $lang['conf_social_facebook'] = 'Facebook URL';
@@ -159,17 +102,13 @@ $lang['conf_sender_email'] = 'Sender Email';
 $lang['conf_sender_name'] = 'Sender Name';
 
 /*Logs */
-$lang['placeholder_logs_dp'] = 'Donation';
-$lang['placeholder_logs_quantity'] = 'Quantity';
-$lang['placeholder_logs_hash'] = 'Hash';
-$lang['placeholder_logs_voteid'] = 'Vote ID';
-$lang['placeholder_logs_points'] = 'Points';
-$lang['placeholder_logs_lasttime'] = 'Last time';
-$lang['placeholder_logs_expiredtime'] = 'Expired time';
-
-/*Status Lang*/
-$lang['status_completed'] = 'Completed';
-$lang['status_cancelled'] = 'Cancelled';
+$lang['logs_dp'] = 'Donation';
+$lang['logs_quantity'] = 'Quantity';
+$lang['logs_hash'] = 'Hash';
+$lang['logs_voteid'] = 'Vote ID';
+$lang['logs_points'] = 'Points';
+$lang['logs_lasttime'] = 'Last time';
+$lang['logs_expiredtime'] = 'Expired time';
 
 /*Options Lang*/
 $lang['option_normal'] = 'Normal';

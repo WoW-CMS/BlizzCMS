@@ -16,25 +16,25 @@
         <?= form_open(current_url()); ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('placeholder_create_page'); ?></h4>
+            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('create_page'); ?></h4>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_title'); ?></label>
+              <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="title" placeholder="<?= lang('placeholder_title'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="title" placeholder="<?= lang('title'); ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_slug'); ?></label>
+              <label class="uk-form-label"><?= lang('slug'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="slug" placeholder="<?= lang('placeholder_slug'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="slug" placeholder="<?= lang('slug'); ?>">
               </div>
               <?= form_error('slug', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('placeholder_description'); ?></label>
+              <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea tinyeditor" name="description" rows="12"></textarea>
               </div>
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('button_create'); ?></button>
+        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('create'); ?></button>
         <?= form_close(); ?>
       </div>
     </section>

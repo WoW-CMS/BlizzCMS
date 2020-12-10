@@ -11,8 +11,8 @@ class Admin_model extends CI_Model
 	public function getDonateStatus($id)
 	{
 		switch ($id) {
-			case 0: return lang('status_cancelled'); break;
-			case 1: return lang('status_completed'); break;
+			case 0: return lang('canceled'); break;
+			case 1: return lang('completed'); break;
 		}
 	}
 
