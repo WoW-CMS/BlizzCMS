@@ -181,9 +181,6 @@ class Realms extends MX_Controller
 			show_404();
 		}
 
-		// foreach ($this->realm->getRealms()->result() as $charsMultiRealm)
-		// {
-			// echo $this->realm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
-		// }
+		// $this->realm->send_command($id, '.server info');
 	}
 }

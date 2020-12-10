@@ -28,8 +28,8 @@
                       <div class="uk-form-controls uk-light">
                         <select class="uk-select uk-width-1-1" onchange="updateCharacter(this, '<?php echo $item["rowid"]; ?>')">
                           <option value="0"><?= lang('notification_select_character'); ?></option>
-                          <?php foreach($this->realm->getGeneralCharactersSpecifyAcc($this->realm->getRealmConnectionData($this->store_model->getCategoryRealmId($item["category"])) ,$this->session->userdata('id'))->result() as $listchar): ?>
-                          <option value="<?= $listchar->guid ?>" <?php if($listchar->guid == $item["guid"]) echo 'selected'; ?>><?= $listchar->name ?> - (<?= lang('table_header_realm'); ?>: <?= $this->realm->getRealmName($this->store_model->getCategoryRealmId($item["category"])); ?>)</option>
+                          <?php foreach($this->realm->account_characters($this->store_model->getCategoryRealmId($item["category"]), $this->session->userdata('id')) as $listchar): ?>
+                          <option value="<?= $listchar->guid ?>" <?php if($listchar->guid == $item["guid"]) echo 'selected'; ?>><?= $listchar->name ?> - (<?= lang('table_header_realm'); ?>: <?= $this->realm->realm_name($this->store_model->getCategoryRealmId($item["category"])); ?>)</option>
                           <?php endforeach; ?>
                         </select>
                       </div>

@@ -77,6 +77,17 @@
 - Remove user model controller function ``activate()``
 - Add HVMC migration
 - Move routes to modules
+- Remove unused function ``$this->realm->getRealmPort()``
+- Remove unused function ``$this->realm->realmGetHostname()``
+- Remove unused function ``$this->realm->connect()``
+- Remove unused function ``$this->realm->getCharNameAlreadyExist()``
+- Remove unused function ``$this->realm->getCharBanSpecifyGuid()``
+- Remove unused function ``$this->realm->getCharActive()``
+- Remove unused function ``$this->realm->getCharLevel()``
+- Remove unused function ``$this->realm->getCharRace()``
+- Remove unused function ``$this->realm->getCharClass()``
+- Remove unused function ``$this->realm->getGeneralCharactersSpecifyGuid()``
+- Remove unused function ``$this->realm->getInformationCharacter()``
 
 ### Bugs Fixed
 
@@ -106,3 +117,17 @@
 - Deprecated ``$this->user_model->getAllAvatars()`` in favor of ``$this->base->get_avatars()``
 - Deprecated ``$this->website->getImageProfile()`` and ``$this->website->getNameAvatar()`` in favor of ``$this->website->user_avatar()``
 - Deprecated ``$this->base->getSpecifyZone()`` in favor of ``$this->base->zone_name()``
+- Deprecated ``$this->realm->RealmStatus()`` in favor of ``$this->realm->is_online()``
+- Deprecated ``$this->realm->commandSoap()`` in favor of ``$this->realm->send_command()``
+- Deprecated ``$this->realm->getRealmConnectionData()`` and ``$this->realm->realmConnection()`` in favor of ``$this->realm->char_connect()``
+- Deprecated ``$this->realm->getCharactersOnlineAlliance()`` and ``$this->realm->getCharactersOnlineHorde()`` in favor of ``$this->realm->count_online()``
+- Deprecated ``$this->realm->getPercentageOnlineAlliance()`` and ``$this->realm->getPercentageOnlineHorde()`` in favor of ``$this->realm->percentage_online()``
+- Deprecated ``$this->realm->getCharExistGuid()`` in favor of ``$this->realm->character_exists()``
+- Deprecated ``$this->realm->getGeneralCharactersSpecifyAcc()`` in favor of ``$this->realm->account_characters()``
+- Deprecated ``$this->realm->getCharName()`` and ``$this->realm->getNameCharacterSpecifyGuid()`` in favor of ``$this->realm->character_name()``
+- Deprecated ``$this->realm->getGuidCharacterSpecifyName()`` in favor of ``$this->realm->character_guid()``
+- Deprecated ``$this->realm->getAccountCharGuid()`` in favor of ``$this->realm->character_linked()``
+
+- Deprecated ``$this->realm->getRealms()`` in favor of ``$this->realm->get_realms()``
+- Deprecated ``$this->realm->getRealm()`` in favor of ``$this->realm->get_realm()``
+- Deprecated ``$this->realm->getRealmName()`` in favor of ``$this->realm->realm_name()``

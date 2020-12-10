@@ -54,3 +54,19 @@ $config['supported_expansions'] = [
 	7 => 'Battle for Azeroth',
 	8 => 'Shadowlands'
 ];
+
+/*
+|--------------------------------------------------------------------------
+| Emulator URN
+|--------------------------------------------------------------------------
+| WARNING!
+| The following variables are directly related to realms.
+| only edit if you know what you're doing!
+|
+| 'emulator_urn' = list of URNs
+*/
+$config['emulator_urn'] = [
+	'old_trinity' => 'TC',
+	'trinity'     => 'TC',
+	'azeroth'     => 'AC'
+];

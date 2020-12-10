@@ -8,51 +8,43 @@ class Pvp_model extends CI_Model
 		parent::__construct();
 	}
 
-	public function getTop20PVP($MultiRealm)
+	public function getTop20PVP($realm)
 	{
-		$this->multirealm = $MultiRealm;
-		return $this->multirealm->select('name, race, class, totalKills, todayKills, yesterdayKills')->where('name !=', '')->order_by('totalKills', 'DESC')->limit('20')->get('characters');
+		return $this->realm->char_connect($realm)->select('name, race, class, totalKills, todayKills, yesterdayKills')->where('name !=', '')->order_by('totalKills', 'DESC')->limit('20')->get('characters')->result();
 	}
 
-	public function getTopArena2v2($multirealm)
+	public function getTopArena2v2($realm)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('rating, seasonWins, arenaTeamId, name')->where('type', '2')->order_by('rating', 'DESC')->limit('10')->get('arena_team');
+		return $this->realm->char_connect($realm)->select('rating, seasonWins, arenaTeamId, name')->where('type', '2')->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
 	}
 
-	public function getTopArena3v3($multirealm)
+	public function getTopArena3v3($realm)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('rating, seasonWins, arenaTeamId, name')->where('type', '3')->order_by('rating', 'DESC')->limit('10')->get('arena_team');
+		return $this->realm->char_connect($realm)->select('rating, seasonWins, arenaTeamId, name')->where('type', '3')->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
 	}
 
-	public function getTopArena5v5($multirealm)
+	public function getTopArena5v5($realm)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('rating, seasonWins, arenaTeamId, name')->where('type', '5')->order_by('rating', 'DESC')->limit('10')->get('arena_team');
+		return $this->realm->char_connect($realm)->select('rating, seasonWins, arenaTeamId, name')->where('type', '5')->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
 	}
 
-	public function getMemberTeam($id, $multirealm)
+	public function getMemberTeam($realm, $team)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('*')->where('arenaTeamId', $id)->get('arena_team_member');
+		return $this->realm->char_connect($realm)->where('arenaTeamId', $team)->get('arena_team_member')->result();
 	}
 
-	public function getRaceGuid($id, $multirealm)
+	public function getRaceGuid($realm, $guid)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('race')->where('guid', $id)->get('characters')->row('race');
+		return $this->realm->char_connect($realm)->where('guid', $guid)->get('characters')->row('race');
 	}
 
-	public function getClassGuid($id, $multirealm)
+	public function getClassGuid($realm, $guid)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('class')->where('guid', $id)->get('characters')->row('class');
+		return $this->realm->char_connect($realm)->where('guid', $id)->get('characters')->row('class');
 	}
 
-	public function getNameGuid($id, $multirealm)
+	public function getNameGuid($realm, $guid)
 	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
+		return $this->realm->char_connect($realm)->where('guid', $id)->get('characters')->row('name');
 	}
 }

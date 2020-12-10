@@ -138,49 +138,47 @@ class Store_model extends CI_Model
 		$accountid = $this->session->userdata('id');
 		$item = $this->getItem($id);
 		$realm = $this->getCategoryRealmId($item['category']);
-		$info = $this->realm->getRealm($realm)->row_array();
 
 		$dpprice = $item['dp'];
 		$vpprice = $item['vp'];
 
-		$multirealm = $this->realm->getRealmConnectionData($realm);
-		$charname = $this->realm->getNameCharacterSpecifyGuid($multirealm, $charid);
-		$charexist = $this->realm->getCharExistGuid($multirealm, $charid);
-		$charcheck = $this->realm->getAccountCharGuid($multirealm, $charid);
+		$charname = $this->realm->character_name($realm, $charid);
+		$charexist = $this->realm->character_exists($realm, $charid);
+		$charcheck = $this->realm->character_linked($realm, $accountid, $charid);
 		$subject = lang('soap_send_subject');
 		$message = lang('soap_send_body');
 
-		if($charexist > 0 && $charcheck == $accountid)
+		if ($charexist && $charcheck)
 		{
 			if($item['price_type'] == 1)
 			{
 				if ($item['type'] == 1)
 				{
-					$this->realm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command']);
 				}
 				else if ($item['type'] == 2)
 				{
-					$this->realm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command']);
 				}
 				else if ($item['type'] == 3)
 				{
-					$this->realm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character level '.$charname.' '.$item['command']);
 				}
 				else if ($item['type'] == 4)
 				{
-					$this->realm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character rename '.$charname);
 				}
 				else if ($item['type'] == 5)
 				{
-					$this->realm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character customize '.$charname);
 				}
 				else if ($item['type'] == 6)
 				{
-					$this->realm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character changefaction '.$charname);
 				}
 				else if ($item['type'] == 7)
 				{
-					$this->realm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character changerace '.$charname);
 				}
 
 				$this->db->query("UPDATE users SET dp = (dp-$dpprice) WHERE id = $accountid");
@@ -191,31 +189,31 @@ class Store_model extends CI_Model
 			{
 				if ($item['type'] == 1)
 				{
-					$this->realm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command']);
 				}
 				else if ($item['type'] == 2)
 				{
-					$this->realm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command']);
 				}
 				else if ($item['type'] == 3)
 				{
-					$this->realm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character level '.$charname.' '.$item['command']);
 				}
 				else if ($item['type'] == 4)
 				{
-					$this->realm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character rename '.$charname);
 				}
 				else if ($item['type'] == 5)
 				{
-					$this->realm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character customize '.$charname);
 				}
 				else if ($item['type'] == 6)
 				{
-					$this->realm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character changefaction '.$charname);
 				}
 				else if ($item['type'] == 7)
 				{
-					$this->realm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character changerace '.$charname);
 				}
 
 				$this->db->query("UPDATE users SET vp = (vp-$vpprice) WHERE id = $accountid");
@@ -226,31 +224,31 @@ class Store_model extends CI_Model
 			{
 				if ($item['type'] == 1)
 				{
-					$this->realm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command']);
 				}
 				else if ($item['type'] == 2)
 				{
-					$this->realm->commandSoap('.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.send money '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command']);
 				}
 				else if ($item['type'] == 3)
 				{
-					$this->realm->commandSoap('.character level '.$charname.' '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character level '.$charname.' '.$item['command']);
 				}
 				else if ($item['type'] == 4)
 				{
-					$this->realm->commandSoap('.character rename '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character rename '.$charname);
 				}
 				else if ($item['type'] == 5)
 				{
-					$this->realm->commandSoap('.character customize '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character customize '.$charname);
 				}
 				else if ($item['type'] == 6)
 				{
-					$this->realm->commandSoap('.character changefaction '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character changefaction '.$charname);
 				}
 				else if ($item['type'] == 7)
 				{
-					$this->realm->commandSoap('.character changerace '.$charname.' ', $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
+					$this->realm->send_command($realm, '.character changerace '.$charname);
 				}
 
 				$this->db->query("UPDATE users SET dp = (dp-$dpprice), vp = (vp-$vpprice) WHERE id = $accountid");

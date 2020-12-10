@@ -6,13 +6,11 @@
         <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?=lang('tab_online');?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .onlineplayers">
           <?php foreach ($realms as $realm): ?>
-          <li><a href="#"><i class="fas fa-server"></i> <?= $this->realm->getRealmName($realm->realmID); ?></a></li>
+          <li><a href="#"><i class="fas fa-server"></i> <?= $realm->name; ?></a></li>
           <?php endforeach; ?>
         </ul>
         <ul class="uk-switcher onlineplayers uk-margin-small">
-          <?php foreach ($realms as $charsMultiRealm):
-            $multiRealm = $this->realm->getRealmConnectionData($charsMultiRealm->id);
-          ?>
+          <?php foreach ($realms as $realm): ?>
           <li>
             <div class="uk-overflow-auto uk-margin-small">
               <table class="uk-table dark-table uk-table-divider uk-table-small">
@@ -26,7 +24,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($this->online_model->getOnlinePlayers($multiRealm)->result() as $online): ?>
+                  <?php foreach($this->online_model->getOnlinePlayers($realm->id) as $online): ?>
                   <tr>
                     <td class="uk-text-capitalize"><?= $online->name ?></td>
                     <td class="uk-text-center"><?= $online->level ?></td>

@@ -3,40 +3,90 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Realm_model extends CI_Model
 {
-	protected $realm_status;
+	protected $status;
+	protected $online;
+	protected $faction_online;
 
 	public function __construct()
 	{
-		$this->realm_status = null;
+		$this->status         = null;
+		$this->online         = null;
+		$this->faction_online = [];
 	}
 
-	public function getRealms()
+	/**
+	 * Get all realms
+	 *
+	 * @return array
+	 */
+	public function get_realms()
 	{
-		return $this->db->get('realms');
+		return $this->db->get('realms')->result();
 	}
 
-	public function getRealm($id)
+	/**
+	 * Get realm
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_realm($id)
 	{
-		return $this->db->where('id', $id)->get('realms');
+		return $this->db->where('id', $id)->get('realms')->row();
 	}
 
-	public function getRealmPort($id)
+	/**
+	 * Get realm name
+	 *
+	 * @param int $id
+	 * @return string
+	 */
+	public function realm_name($id)
 	{
-		return $this->auth->connect()->select('port')->where('id', $id)->get('realmlist')->row('port');
+		return $this->db->where('id', $id)->get('realms')->row('name');
 	}
 
-	public function RealmStatus($MultiRealm, $host, $cache = true)
+	/**
+	 * Return connection to the characters database of a realm
+	 *
+	 * @param int $realm
+	 * @return object
+	 */
+	public function char_connect($realm)
 	{
-		$port = $this->getRealmPort($MultiRealm);
+		$data = $this->get_realm($realm);
 
-		if (! is_null($this->realm_status))
+		$dsn = [
+			'hostname' => $data->char_hostname,
+			'username' => $data->char_username,
+			'password' => $data->char_password,
+			'database' => $data->char_database,
+			'port'     => $data->char_port,
+			'dbdriver' => 'mysqli',
+			'pconnect' => FALSE
+		];
+
+		return $this->load->database($dsn, TRUE);
+	}
+
+	/**
+	 * Check if a realm is online
+	 *
+	 * @param int $realm
+	 * @return boolean
+	 */
+	public function is_online($realm, $cache = true)
+	{
+		$data = $this->get_realm($realm);
+
+		if (! is_null($this->status))
 		{
-			return $this->realm_status;
+			return $this->status;
 		}
 
 		if ($cache)
 		{
-			$get_data = $this->cache->file->get('status_' . $MultiRealm);
+			$get_data = $this->cache->file->get('status_' . $realm);
 
 			if ($get_data !== false)
 			{
@@ -44,214 +94,226 @@ class Realm_model extends CI_Model
 			}
 		}
 
-		if (@fsockopen($host, $port, $errno, $errstr, 1.5))
+		if (@fsockopen($data->realm_hostname, $data->realm_port, $errno, $errstr, 1.5))
 		{
-			$this->realm_status = true;
+			$this->status = true;
 		}
 		else
 		{
-			$this->realm_status = false;
+			$this->status = false;
 		}
 
-		$this->cache->file->save('status_' . $MultiRealm, $this->realm_status ? 'on' : 'off', 300);
-		return $this->realm_status;
+		$this->cache->file->save('status_' . $realm, $this->status ? 'on' : 'off', 300);
+
+		return $this->status;
 	}
 
-	public function getRealmConnectionData($id)
+	/**
+	 * Count characters of a realm
+	 *
+	 * @param int $realm
+	 * @param string|null $faction
+	 * @param bool $cache
+	 * @return int
+	 */
+	public function count_online($realm, $faction = null, $cache = true)
 	{
-		$data = $this->getRealm($id)->row_array();
+		if (empty($faction))
+		{
+			if (! empty($this->online))
+			{
+				return $this->online;
+			}
 
-		return $this->realmConnection(
-			$data['username'],
-			$data['password'],
-			$data['hostname'],
-			$data['char_database']
-		);
-	}
+			// if the cache is enabled
+			if ($cache)
+			{
+				$get_data = $this->cache->file->get('online_' . $realm);
 
-	public function realmConnection($username, $password, $hostname, $database)
-	{
-		$dsn = 'mysqli://'.
-			$username.':'.
-			$password.'@'.
-			$hostname.'/'.
-			$database.'?char_set=utf8&dbcollat=utf8_general_ci&cache_on=true&cachedir=/path/to/cache';
+				if ($get_data !== false)
+				{
+					return $get_data;
+				}
+			}
 
-		return $this->load->database($dsn, TRUE);
-	}
+			// Count all characters online
+			$this->online = $this->_count_characters($realm);
+			$this->cache->file->save('online_' . $realm, $this->online, 300);
 
-	public function getRealmName($id)
-	{
-		return $this->auth->connect()->select('name')->where('id', $id)->get('realmlist')->row('name');
-	}
-
-	public function realmGetHostname($id)
-	{
-		return $this->auth->connect()->select('address')->where('id', $id)->get('realmlist')->row('address');
-	}
-
-	public function getGeneralCharactersSpecifyAcc($multiRealm, $id)
-	{
-		$this->multiRealm = $multiRealm;
-		return $this->multiRealm->select('*')->where('account', $id)->get('characters');
-	}
-
-	public function getGuidCharacterSpecifyName($multiRealm, $name)
-	{
-		$this->multiRealm = $multiRealm;
-		return $this->multiRealm->select('guid')->where('name', $name)->get('characters')->row('guid');
-	}
-
-	public function getGeneralCharactersSpecifyGuid($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('*')->where('guid', $id)->get('characters');
-	}
-
-	public function getNameCharacterSpecifyGuid($multirealm, $id)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
-	}
-
-	public function getCharNameAlreadyExist($name, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('name')->where('name', $name)->get('characters');
-	}
-
-	public function getCharExistGuid($multirealm, $id)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('guid')->where('guid', $id)->get('characters')->num_rows();
-	}
-
-	public function getAccountCharGuid($multirealm, $id)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('account')->where('guid', $id)->get('characters')->row('account');
-	}
-
-	public function getCharBanSpecifyGuid($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('guid')->where('guid', $id)->where('active', '1')->get('character_banned');
-	}
-
-	public function getCharName($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
-	}
-
-	public function getCharLevel($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('level')->where('guid', $id)->get('characters')->row('level');
-	}
-
-	public function getCharActive($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('online')->where('guid', $id)->get('characters')->row('online');
-	}
-
-	public function getCharRace($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('race')->where('guid', $id)->get('characters')->row('race');
-	}
-
-	public function getCharClass($id, $multirealm)
-	{
-		$this->multirealm = $multirealm;
-		return $this->multirealm->select('class')->where('guid', $id)->get('characters')->row('class');
-	}
-
-	public function getCharactersOnlineAlliance($multiRealm)
-	{
-		$this->multiRealm = $multiRealm;
-		$races = array('1','3','4','7','11','22','25');
-
-		$qq = $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters');
-
-		if($qq->num_rows())
-			return $qq->num_rows();
+			return $this->online;
+		}
 		else
-			return '0';
+		{
+			if (! empty($this->faction_online[$faction]))
+			{
+				return $this->faction_online[$faction];
+			}
+
+			// if the cache is enabled
+			if ($cache)
+			{
+				$get_data = $this->cache->file->get('online_' . $faction . '_' . $realm);
+
+				if ($get_data !== false)
+				{
+					return $get_data;
+				}
+			}
+
+			// Count characters of a faction online
+			$this->faction_online[$faction] = $this->_count_characters($realm, $faction);
+			$this->cache->file->save('online_' . $faction . '_' . $realm, $this->faction_online[$faction], 300);
+
+			return $this->faction_online[$faction];
+		}
 	}
 
-	public function getCharactersOnlineHorde($multiRealm)
+	/**
+	 * Count characters online
+	 *
+	 * @param int $realm
+	 * @param string|null $faction
+	 * @return int
+	 */
+	public function _count_characters($realm, $faction = null)
 	{
-		$this->multiRealm = $multiRealm;
-		$races = array('2','5','6','8','10','9','26');
+		$query = $this->char_connect($realm)->where('online', 1);
 
-		$qq = $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters');
+		switch ($faction)
+		{
+			case 'horde':
+				$query = $query->where_in('race', [2, 5, 6, 8, 10, 9, 26]);
+				break;
+			case 'alliance':
+				$query = $query->where_in('race', [1, 3, 4, 7, 11, 22, 25]);
+				break;
+		}
 
-		if($qq->num_rows())
-			return $qq->num_rows();
-		else
-			return '0';
+		return $query->from('characters')->count_all_results();
 	}
 
-	public function getAllCharactersOnline($multiRealm)
+	/**
+	 * Calculate the percentage of online characters
+	 *
+	 * @param int $realm
+	 * @param string|null $faction
+	 * @param bool $cache
+	 * @return mixed
+	 */
+	public function percentage_online($realm, $faction = null, $cache = true)
 	{
-		$this->multiRealm = $multiRealm;
+		$data    = $this->get_realm($realm);
+		$count   = empty($faction) ? $this->count_online($realm, null, $cache) : $this->count_online($realm, $faction, $cache);
+		$maximum = empty($faction) ? $data->max_cap : $this->count_online($realm, null, $cache);
 
-		$qq = $this->multiRealm->select('online')->where('online', '1')->get('characters');
+		// Prevent division
+		if ($count == 0 || $maximum == 0)
+		{
+			return 0;
+		}
 
-		if($qq->num_rows())
-			return $qq->num_rows();
-		else
-			return '0';
+		// if count exceeded the cap return 100 as maximum percentage
+		if ($count > $maximum)
+		{
+			return 100;
+		}
+
+		return round(($count / $maximum) * 100);
 	}
 
-	public function getPercentageOnlineAlliance($multirealm)
+	/**
+	 * Check if character exists
+	 *
+	 * @param int $realm
+	 * @param int $guid
+	 * @return boolean
+	 */
+	public function character_exists($realm, $guid)
 	{
-		$players = $this->getCharactersOnlineAlliance($multirealm);
-		$total = $this->getAllCharactersOnline($multirealm);
-		$percentage = ($players / $total) * 100;
-		return $percentage;
+		$query = $this->char_connect($realm)->where('guid', $guid)->get('characters')->num_rows();
+
+		return ($query == 1);
 	}
 
-	public function getPercentageOnlineHorde($multirealm)
+	/**
+	 * Check if the character is linked to the account
+	 *
+	 * @param int $realm
+	 * @param int $account
+	 * @param int $guid
+	 * @return boolean
+	 */
+	public function character_linked($realm, $account, $guid)
 	{
-		$players = $this->getCharactersOnlineHorde($multirealm);
-		$total = $this->getAllCharactersOnline($multirealm);
-		$percentage = ($players / $total) * 100;
-		return $percentage;
+		$query = $this->char_connect($realm)->where(['guid' => $guid, 'account' => $account])->get('characters')->num_rows();
+
+		return ($query == 1);
 	}
 
-	public function getInformationCharacter($MultiRealm, $id)
+	/**
+	 * Get character name
+	 *
+	 * @param int $realm
+	 * @param int $guid
+	 * @return string
+	 */
+	public function character_name($realm, $guid)
 	{
-		$this->multirealm = $MultiRealm;
-		
-		return $this->multirealm->select('*')->where('guid', $id)->get('characters');
+		return $this->char_connect($realm)->where('guid', $guid)->get('characters')->row('name');
 	}
 
-	public function connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
+	/**
+	 * Get character guid
+	 *
+	 * @param int $realm
+	 * @param string $name
+	 * @return string
+	 */
+	public function character_guid($realm, $name)
 	{
-		$this->client = new SoapClient(NULL, array(
-			"location"	  => "http://".$soapHost.":".$soapPort."/",
-			"uri"		   => "urn:". $soap_uri ."",
-			"style"		 => SOAP_RPC,
-			"login"		 => $soapUser,
-			"password"	  => $soapPass,
-			"trace"		 => 1,
-			"exceptions"	=> 0
-			)
-		);
+		return $this->char_connect($realm)->where('name', $name)->get('characters')->row('guid');
+	}
 
-		if (is_soap_fault($this->client))
+	/**
+	 * Get the account characters of a realm
+	 *
+	 * @param int $realm
+	 * @param int $account
+	 * @return array
+	 */
+	public function account_characters($realm, $account)
+	{
+		return $this->char_connect($realm)->where('account', $account)->get('characters')->result();
+	}
+
+	/**
+	 * Send command to realm
+	 *
+	 * @param int $realm
+	 * @param string $command
+	 * @return mixed
+	 */
+	public function send_command($realm, $command)
+	{
+		$data     = $this->get_realm($realm);
+		$emulator = config_item('emulator');
+		$urns     = config_item('emulator_urn');
+
+		$client = new SoapClient(NULL, [
+			'location'   => "http://" . $data->console_hostname . ":" . $data->console_port . "/",
+			'uri'        => 'urn:' . $urns[$emulator],
+			'style'      => SOAP_RPC,
+			'login'      => $data->console_username,
+			'password'   => $data->console_password,
+			'trace'      => 1,
+			'exceptions' => 0
+		]);
+
+		if (is_soap_fault($client))
 		{
 			return 'Soap not found';
 		}
-		return $this->client;
-	}
 
-	public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
-	{
-		$client = $this->connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
 		return $client->executeCommand(new SoapParam($command, "command"));
 	}
 }

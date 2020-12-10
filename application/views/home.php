@@ -58,35 +58,33 @@
           <div class="uk-width-1-3@s">
             <h4 class="uk-h4"><?= lang('home_server_status'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
-              <?php foreach ($realms as $charsMultiRealm): 
-                $multiRealm = $this->realm->getRealmConnectionData($charsMultiRealm->id);
-              ?>
+              <?php foreach ($realms as $realm): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body card-status">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-expand">
-                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= base_url('online'); ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= lang('table_header_realm'); ?> <?= $this->realm->getRealmName($charsMultiRealm->realmID); ?></a></h5>
+                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= base_url('online'); ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= lang('table_header_realm'); ?> <?= $realm->name; ?></a></h5>
                     </div>
                     <div class="uk-width-auto">
-                      <?php if ($this->realm->RealmStatus($charsMultiRealm->realmID, $this->realm->realmGetHostname($charsMultiRealm->realmID))): ?>
+                      <?php if ($this->realm->is_online($realm->id)): ?>
                         <div class="status-dot online" uk-tooltip="<?= lang('online'); ?>"><span><span></span></span></div>
                       <?php else: ?>
                         <div class="status-dot offline" uk-tooltip="<?= lang('offline'); ?>"><span><span></span></span></div>
                       <?php endif ?>
                     </div>
                   </div>
-                  <?php if ($this->realm->RealmStatus($charsMultiRealm->realmID, $this->realm->realmGetHostname($charsMultiRealm->realmID))): ?>
+                  <?php if ($this->realm->is_online($realm->id)): ?>
                   <div class="uk-grid uk-grid-collapse uk-margin-small" data-uk-grid>
                     <div class="uk-width-1-2">
                       <div class="uk-tile alliance-bar uk-text-center" uk-tooltip="<?= lang('faction_alliance'); ?>">
                         <i class="fas fa-users"></i>
-                        <?= $this->realm->getCharactersOnlineAlliance($multiRealm); ?>
+                        <?= $this->realm->count_online($realm->id, 'alliance'); ?>
                       </div>
                     </div>
                     <div class="uk-width-1-2">
                       <div class="uk-tile horde-bar uk-text-center" uk-tooltip="<?= lang('faction_horde'); ?>">
                         <i class="fas fa-users"></i>
-                        <?= $this->realm->getCharactersOnlineHorde($multiRealm); ?>
+                        <?= $this->realm->count_online($realm->id, 'horde'); ?>
                       </div>
                     </div>
                   </div>

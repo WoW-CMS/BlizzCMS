@@ -12,6 +12,7 @@
             <a href="<?= site_url('admin/menu/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('button_create'); ?></a>
           </div>
         </div>
+        <?= $template['partials']['alerts']; ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
             <h4 class="uk-h4"></h4>

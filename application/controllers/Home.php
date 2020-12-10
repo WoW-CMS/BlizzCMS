@@ -20,7 +20,7 @@ class Home extends CI_Controller
 	{
 		$data = [
 			'articles' => [], // $this->news_model->getNewsList()->result()
-			'realms'   => $this->realm->getRealms()->result()
+			'realms'   => $this->realm->get_realms()
 		];
 
 		$this->template->title(config_item('app_name'));

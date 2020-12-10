@@ -71,9 +71,7 @@
                 <?= form_close(); ?>
               </li>
               <li>
-                <?php foreach ($this->realm->getRealms()->result() as $charsMultiRealm):
-                    $multiRealm = $this->realm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
-                  ?>
+                <?php foreach ($this->realm->get_realms() as $realm): ?>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-body uk-padding-remove uk-overflow-auto">
                     <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
@@ -88,7 +86,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($this->realm->getGeneralCharactersSpecifyAcc($multiRealm, $user->id)->result() as $chars): ?>
+                        <?php foreach ($this->realm->account_characters($realm->id, $user->id) as $chars): ?>
                         <tr>
                           <td><?= $chars->guid; ?></td>
                           <td><?= $chars->name; ?></td>
