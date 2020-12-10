@@ -43,14 +43,14 @@ class Slides extends MX_Controller
 			'slides' => $this->slides_model->get_all()
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('slides/index', $data);
 	}
 
 	public function create()
 	{
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -93,7 +93,7 @@ class Slides extends MX_Controller
 			'slide' => $this->slides_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{

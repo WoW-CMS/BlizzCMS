@@ -60,14 +60,14 @@ class News extends MX_Controller
 			'news'  => $this->news_model->get_all($config['per_page'], $page)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('news/index', $data);
 	}
 
 	public function create()
 	{
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -125,7 +125,7 @@ class News extends MX_Controller
 			'news' => $this->news_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{

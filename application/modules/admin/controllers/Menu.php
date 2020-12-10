@@ -43,7 +43,7 @@ class Menu extends MX_Controller
 			'menu' => $this->base->get_menu()
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('menu/index', $data);
 	}
@@ -54,7 +54,7 @@ class Menu extends MX_Controller
 			'parents' => $this->menu_model->find_parents()
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -102,7 +102,7 @@ class Menu extends MX_Controller
 			'menu' => $this->menu_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{

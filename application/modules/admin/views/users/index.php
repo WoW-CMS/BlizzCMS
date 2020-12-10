@@ -18,7 +18,7 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= lang('username'); ?></th>
+                  <th class="uk-table-expand"><?= lang('username'); ?></th>
                   <th class="uk-width-medium"><?= lang('email'); ?></th>
                   <th class="uk-width-small"><?= lang('date'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>

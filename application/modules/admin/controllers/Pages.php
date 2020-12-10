@@ -56,14 +56,14 @@ class Pages extends MX_Controller
 			'pages' => $this->pages_model->get_all($config['per_page'], $page)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('pages/index', $data);
 	}
 
 	public function create()
 	{
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -105,7 +105,7 @@ class Pages extends MX_Controller
 			'page' => $this->pages_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{

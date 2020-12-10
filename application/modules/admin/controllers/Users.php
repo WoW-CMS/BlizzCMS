@@ -56,7 +56,7 @@ class Users extends MX_Controller
 			'users' => $this->users_model->get_all($config['per_page'], $page)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('users/index', $data);
 	}
@@ -72,7 +72,7 @@ class Users extends MX_Controller
 			'user' => $this->users_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('users/view', $data);
 	}
@@ -88,7 +88,7 @@ class Users extends MX_Controller
 			'user' => $this->users_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('users/logs', $data);
 	}

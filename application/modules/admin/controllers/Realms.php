@@ -43,14 +43,14 @@ class Realms extends MX_Controller
 			'realms' => $this->realms_model->get_all()
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('realms/index', $data);
 	}
 
 	public function create()
 	{
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -111,7 +111,7 @@ class Realms extends MX_Controller
 			'realm' => $this->realms_model->get($id)
 		];
 
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		if ($this->input->method() == 'post')
 		{

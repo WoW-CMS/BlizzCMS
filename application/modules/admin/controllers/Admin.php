@@ -39,7 +39,7 @@ class Admin extends MX_Controller
 
 	public function index()
 	{
-		$this->template->title(config_item('app_name'), lang('button_admin_panel'));
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('index');
 	}
