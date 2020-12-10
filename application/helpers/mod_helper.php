@@ -19,7 +19,7 @@ if (! function_exists('get_mods_list'))
 	 * @param bool $strip
 	 * @return array
 	 */
-	function get_mods_list($with_location = TRUE, $strip = FALSE)
+	function get_mods_list($with_location = true, $strip = false)
 	{
 		$modules = [];
 
@@ -40,7 +40,7 @@ if (! function_exists('get_mods_list'))
 	}
 }
 
-if (! function_exists('mod_exist'))
+if (! function_exists('mod_exists'))
 {
 	/**
 	 * Check if a module with the given name exists
@@ -48,9 +48,34 @@ if (! function_exists('mod_exist'))
 	 * @param string $name
 	 * @return boolean
 	 */
-	function mod_exist($name)
+	function mod_exists($name)
 	{
-		return in_array($name, get_mods_list(FALSE, TRUE));
+		return in_array($name, get_mods_list(false, true));
+	}
+}
+
+if (! function_exists('mod_located'))
+{
+	/**
+	 * Check if a module with the given name is installed
+	 *
+	 * @param string $name
+	 * @param bool $error
+	 * @return mixed
+	 */
+	function mod_located($name, $error = false)
+	{
+		$CI = &get_instance();
+		$CI->load->model('Base_model');
+
+		$row = $CI->Base_model->find_module($name);
+
+		if (! $row && $error)
+		{
+			show_404();
+		}
+
+		return $row;
 	}
 }
 

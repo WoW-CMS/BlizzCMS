@@ -1,0 +1,11 @@
+{
+	"name": "Forum",
+	"description": "Forum system for communities",
+	"author": "WoW-CMS",
+	"website": "https:\/\/wow-cms.com",
+	"version": "1.0",
+	"panel": {
+		"enabled": false,
+		"route": ""
+	}
+}

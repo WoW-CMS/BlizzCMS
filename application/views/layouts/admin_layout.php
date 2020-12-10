@@ -55,7 +55,7 @@
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= lang('admin_nav_system'); ?></a>
                 <ul class="uk-nav-sub">
                   <li><a href="<?= site_url('admin/settings'); ?>"><i class="fas fa-sliders-h"></i> <?= lang('admin_nav_manage_settings'); ?></a></li>
-                  <li><a href="<?= site_url('admin/modules'); ?>"><i class="fas fa-puzzle-piece"></i> <?= lang('admin_nav_manage_modules'); ?></a></li>
+                  <li><a href="<?= site_url('admin/mods'); ?>"><i class="fas fa-puzzle-piece"></i> <?= lang('admin_nav_manage_modules'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
@@ -105,7 +105,7 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('admin/settings'); ?>"><i class="fas fa-sliders-h"></i> <?= lang('admin_nav_manage_settings'); ?></a></li>
-                    <li><a href="<?= site_url('admin/modules'); ?>"><i class="fas fa-puzzle-piece"></i> <?= lang('admin_nav_manage_modules'); ?></a></li>
+                    <li><a href="<?= site_url('admin/mods'); ?>"><i class="fas fa-puzzle-piece"></i> <?= lang('admin_nav_manage_modules'); ?></a></li>
                   </ul>
                 </div>
               </li>

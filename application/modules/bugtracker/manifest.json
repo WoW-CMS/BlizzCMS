@@ -1,0 +1,11 @@
+{
+	"name": "Bugtracker",
+	"description": "General purpose issue tracking",
+	"author": "WoW-CMS",
+	"website": "https:\/\/wow-cms.com",
+	"version": "1.0",
+	"panel": {
+		"enabled": false,
+		"route": ""
+	}
+}

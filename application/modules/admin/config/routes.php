@@ -16,7 +16,9 @@ $route['admin/settings/security'] = 'settings/security';
 $route['admin/settings/email'] = 'settings/email';
 $route['admin/settings/meta'] = 'settings/meta';
 
-$route['admin/modules']['get'] = 'modules/index';
+$route['admin/mods']['get'] = 'mods/index';
+$route['admin/mods/install/(:any)']['get'] = 'mods/install/$1';
+$route['admin/mods/uninstall/(:any)']['get'] = 'mods/uninstall/$1';
 
 $route['admin/users']['get'] = 'users/index';
 $route['admin/users/view/(:num)']['get'] = 'users/view/$1';

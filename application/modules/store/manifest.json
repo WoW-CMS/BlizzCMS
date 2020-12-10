@@ -1,0 +1,11 @@
+{
+	"name": "Store",
+	"description": "Web store for purchase game items",
+	"author": "WoW-CMS",
+	"website": "https:\/\/wow-cms.com",
+	"version": "1.0",
+	"panel": {
+		"enabled": false,
+		"route": ""
+	}
+}

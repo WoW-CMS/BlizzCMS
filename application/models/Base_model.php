@@ -144,6 +144,19 @@ class Base_model extends CI_Model
 	}
 
 	/**
+	 * Find if the module exists
+	 *
+	 * @param string $name
+	 * @return boolean
+	 */
+	public function find_module($name)
+	{
+		$query = $this->db->where('name', $name)->get('modules')->num_rows();
+
+		return ($query == 1);
+	}
+
+	/**
 	 * Get specific name of a zone
 	 *
 	 * @param int $id
