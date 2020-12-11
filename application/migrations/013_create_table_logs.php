@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_create_table_pages extends CI_Migration
+class Migration_create_table_logs extends CI_Migration
 {
 	public function up()
 	{
@@ -12,19 +12,19 @@ class Migration_create_table_pages extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'title' => array(
+			'user_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
+			'type' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
 				'null' => FALSE
 			),
-			'description' => array(
+			'data' => array(
 				'type' => 'MEDIUMTEXT',
 				'null' => TRUE
-			),
-			'slug' => array(
-				'type' => 'VARCHAR',
-				'constraint' => '255',
-				'unique' => TRUE
 			),
 			'created_at' => array(
 				'type' => 'INT',
@@ -34,11 +34,11 @@ class Migration_create_table_pages extends CI_Migration
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('pages');
+		$this->dbforge->create_table('logs');
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('pages');
+		$this->dbforge->drop_table('logs');
 	}
 }

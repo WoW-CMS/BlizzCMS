@@ -10,11 +10,6 @@ class Mod_model extends CI_Model
 
 	public function getLogs()
 	{
-	  return $this->db->get('mod_logs');
-	}
-
-	public function getReports()
-	{
-	  return $this->db->get('mod_reports');
+		return $this->db->get('mod_logs')->result();
 	}
 }

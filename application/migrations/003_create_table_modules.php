@@ -15,7 +15,6 @@ class Migration_create_table_modules extends CI_Migration
 			'name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
-				'null' => FALSE,
 				'unique' => TRUE
 			)
 		));

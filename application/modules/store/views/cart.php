@@ -61,7 +61,7 @@
           <div class="uk-card-footer">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-expand@s">
-                <a href="<?= base_url('store'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('continue_buying'); ?></a>
+                <a href="<?= site_url('store'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('continue_buying'); ?></a>
               </div>
               <div class="uk-width-auto@s uk-flex uk-flex-middle">
                 <?php if($this->cart->total_items() > 0): ?>
@@ -89,7 +89,7 @@
       });
       function updateQuantity(obj, rowid) {
         $.ajax({
-          url:"<?= base_url('cart/updatequantity'); ?>",
+          url:"<?= site_url('cart/updatequantity'); ?>",
           type:"GET",
           data:{rowid:rowid, qty:obj.value},
           dataType:"text",
@@ -118,7 +118,7 @@
       }
       function updateCharacter(obj, rowid) {
         $.ajax({
-          url:"<?= base_url('cart/updatecharacter'); ?>",
+          url:"<?= site_url('cart/updatecharacter'); ?>",
           type:"GET",
           data:{rowid:rowid, char:obj.value},
           dataType:"text",
@@ -149,7 +149,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url('cart/delete'); ?>",
+          url:"<?= site_url('cart/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -195,7 +195,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url('cart/checkout'); ?>",
+          url:"<?= site_url('cart/checkout'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

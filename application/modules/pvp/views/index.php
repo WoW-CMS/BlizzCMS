@@ -3,7 +3,7 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-fist-raised"></i> <?=lang('tab_pvp_statistics');?></h4>
+        <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-fist-raised"></i> <?= lang('tab_pvp_statistics'); ?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .pvp-statistics">
           <?php foreach ($realms as $realm): ?>
           <li><a href="#"><i class="fas fa-server"></i> <?= $realm->name; ?></a></li>
@@ -14,14 +14,14 @@
           <li>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-3@m" data-uk-grid>
               <dir>
-                <span class="uk-label uk-label-success uk-text-bold"><?=lang('statistics_top_2v2');?></span>
+                <span class="uk-label uk-label-success uk-text-bold"><?= lang('statistics_top_2v2'); ?></span>
                 <div class="uk-overflow-auto uk-margin-small">
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=lang('team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?= lang('team_name'); ?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?= lang('members'); ?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?= lang('rating'); ?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                 </div>
               </dir>
               <div>
-                <span class="uk-label uk-label-warning uk-text-bold"><?=lang('statistics_top_3v3');?></span>
+                <span class="uk-label uk-label-warning uk-text-bold"><?= lang('statistics_top_3v3'); ?></span>
                 <div class="uk-overflow-auto uk-margin-small">
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=lang('team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?= lang('team_name'); ?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?= lang('members'); ?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?= lang('rating'); ?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -68,14 +68,14 @@
                 </div>
               </div>
               <dir>
-                <span class="uk-label uk-label-danger uk-text-bold"><?=lang('statistics_top_5v5');?></span>
+                <span class="uk-label uk-label-danger uk-text-bold"><?= lang('statistics_top_5v5'); ?></span>
                 <div class="uk-overflow-auto uk-margin-small">
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?=lang('team_name');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?=lang('members');?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?=lang('rating');?></th>
+                        <th class="uk-width-small uk-text-center"><?= lang('team_name'); ?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?= lang('members'); ?></th>
+                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?= lang('rating'); ?></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -96,18 +96,18 @@
               </dir>
             </div>
             <div class="uk-margin">
-              <span class="uk-label uk-text-bold"><?=lang('statistics_top_20');?></span>
+              <span class="uk-label uk-text-bold"><?= lang('statistics_top_20'); ?></span>
               <div class="uk-overflow-auto uk-margin-small">
                 <table class="uk-table dark-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?=lang('name');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('race');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?=lang('class');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?=lang('faction');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?=lang('total_kills');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=lang('today_kills');?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?=lang('yersterday_kills');?></th>
+                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('name'); ?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?= lang('race'); ?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?= lang('class'); ?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?= lang('faction'); ?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?= lang('total_kills'); ?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?= lang('today_kills'); ?></th>
+                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?= lang('yersterday_kills'); ?></th>
                     </tr>
                   </thead>
                   <tbody>

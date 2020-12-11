@@ -11,7 +11,7 @@
             <div class="uk-width-auto">
               <?php if($this->website->isLogged()): ?>
               <div class="uk-text-center uk-text-right@s">
-                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('new_topic'); ?></a>
+                <a href="<?= site_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('new_topic'); ?></a>
               </div>
               <?php endif; ?>
             </div>
@@ -24,12 +24,12 @@
               <?php foreach($this->forum_model->getSpecifyCategoryPostsPined($idlink)->result() as $lists): ?>
               <tr>
                 <td class="uk-table-shrink uk-table-link">
-                  <a href="<?= base_url('forum/topic/'.$lists->id); ?>" class="topic-forum-staff">
+                  <a href="<?= site_url('forum/topic/'.$lists->id); ?>" class="topic-forum-staff">
                     <span uk-icon="icon: bolt;ratio: 1.5"></span>
                   </a>
                 </td>
                 <td class="uk-table-expand uk-table-link uk-text-break">
-                  <a href="<?= base_url('forum/topic/'.$lists->id); ?>" class="uk-link-reset">
+                  <a href="<?= site_url('forum/topic/'.$lists->id); ?>" class="uk-link-reset">
                     <?= $lists->title; ?>
                   </a>
                 </td>
@@ -55,12 +55,12 @@
               <?php foreach($this->forum_model->getSpecifyCategoryPosts($idlink)->result() as $lists): ?>
               <tr>
                 <td class="uk-table-shrink uk-table-link">
-                  <a href="<?= base_url('forum/topic/'.$lists->id); ?>">
+                  <a href="<?= site_url('forum/topic/'.$lists->id); ?>">
                     <span uk-icon="icon: comments"></span>
                   </a>
                 </td>
                 <td class="uk-table-expand uk-table-link uk-text-break">
-                  <a href="<?= base_url('forum/topic/'.$lists->id); ?>" class="uk-link-reset">
+                  <a href="<?= site_url('forum/topic/'.$lists->id); ?>" class="uk-link-reset">
                     <?= $lists->title; ?>
                   </a>
                 </td>

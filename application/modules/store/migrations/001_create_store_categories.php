@@ -32,7 +32,6 @@ class Migration_create_store_categories extends CI_Migration
 			'route' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
-				'null' => FALSE,
 				'unique' => TRUE
 			),
 			'realmid' => array(

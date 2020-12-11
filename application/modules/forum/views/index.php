@@ -17,7 +17,7 @@
                       <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$sections->icon; ?>')"></i>
                     </td>
                     <td class="uk-table-expand uk-table-link uk-text-break">
-                      <a href="<?= base_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
+                      <a href="<?= site_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
                         <h4 class="uk-h4 uk-margin-remove"><?= $sections->name ?></h4>
                         <span class="uk-text-meta"><?= $sections->description ?></span>
                       </a>
@@ -28,7 +28,7 @@
                     </td>
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
-                        <a href="<?= base_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
+                        <a href="<?= site_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
                         by <span class="uk-text-primary"><?= $this->website->get_user($lastpost->author, 'nickname') ?></span>
                       <?php endforeach; ?>
@@ -42,7 +42,7 @@
                       <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$sections->icon; ?>')"></i>
                     </td>
                     <td class="uk-table-expand uk-table-link uk-text-break">
-                      <a href="<?= base_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
+                      <a href="<?= site_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
                         <h4 class="uk-h4 uk-margin-remove"><?= $sections->name; ?></h4>
                         <span class="uk-text-meta"><?= $sections->description; ?></span>
                       </a>
@@ -53,7 +53,7 @@
                     </td>
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
-                        <a href="<?= base_url('forum/topic/'.$lastpost->id); ?>" class="uk-display-block"><?= $lastpost->title; ?></a>
+                        <a href="<?= site_url('forum/topic/'.$lastpost->id); ?>" class="uk-display-block"><?= $lastpost->title; ?></a>
                         <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date); ?></span>
                         by <span class="uk-text-primary"><?= $this->website->get_user($lastpost->author, 'nickname'); ?></span>
                       <?php endforeach; ?>
@@ -77,7 +77,7 @@
                 <ul class="uk-list uk-list-divider">
                   <?php foreach ($this->forum_model->getLastPosts()->result() as $lastest): ?>
                   <li>
-                    <a href="<?= base_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
+                    <a href="<?= site_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
                     <?php if($this->forum_model->getLastRepliesCount($lastest->id) == 0): ?>
                     <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($lastest->author, 'nickname') ?></span></p>
                     <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastest->date) ?></p>

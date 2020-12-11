@@ -10,7 +10,7 @@
                 <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('store_categories'); ?></h5>
               </div>
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
-                <li><a href="<?= base_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></a></li>
+                <li><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></a></li>
                 <?php foreach ($this->realm->get_realms() as $realm): ?>
                 <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $realm->name; ?></a>
@@ -21,12 +21,12 @@
                       <a href="#"><?= $menulist->name ?></a>
                       <ul class="uk-nav-sub">
                         <?php foreach ($this->store_model->getChildStoreCategory($menulist->id)->result() as $menuchildlist): ?>
-                        <li><a href="<?= base_url('store/'.$menuchildlist->route) ?>"><?= $menuchildlist->name ?></a></li>
+                        <li><a href="<?= site_url('store/'.$menuchildlist->route) ?>"><?= $menuchildlist->name ?></a></li>
                         <?php endforeach; ?>
                       </ul>
                     </li>
                     <?php elseif($menulist->main == '1' && $menulist->father == '0'): ?>
-                    <li><a href="<?= base_url('store/'.$menulist->route) ?>"><?= $menulist->name ?></a></li>
+                    <li><a href="<?= site_url('store/'.$menulist->route) ?>"><?= $menulist->name ?></a></li>
                     <?php endif; ?>
                     <?php endforeach; ?>
                   </ul>
@@ -57,11 +57,11 @@
                       <div class="uk-grid uk-grid-small uk-flex uk-flex-center" data-uk-grid>
                         <div class="uk-width-auto">
                           <?php if($items->price_type == 1): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?></span>
                           <?php elseif($items->price_type == 2): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
                           <?php elseif($items->price_type == 3): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?=lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title:<?=lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title:<?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
                           <?php endif; ?>
                         </div>
                         <div class="uk-width-auto">
@@ -84,7 +84,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url('cart/add'); ?>",
+          url:"<?= site_url('cart/add'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",

@@ -20,13 +20,11 @@ class Migration_create_table_users extends CI_Migration
 			'username' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
-				'null' => FALSE,
 				'unique' => TRUE
 			),
 			'email' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
-				'null' => FALSE,
 				'unique' => TRUE
 			),
 			'dp' => array(
@@ -51,7 +49,7 @@ class Migration_create_table_users extends CI_Migration
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE
-			),
+			)
 		));
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('users');

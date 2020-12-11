@@ -38,7 +38,7 @@
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($articles as $article): ?>
               <div>
-                <a href="<?= base_url('news/'.$article->id) ;?>" title="<?= lang('read_more'); ?>">
+                <a href="<?= site_url('news/'.$article->id) ;?>" title="<?= lang('read_more'); ?>">
                   <div class="uk-card uk-card-default news-card uk-card-hover uk-grid-collapse uk-margin" uk-grid>
                     <div class="uk-width-1-3@s uk-card-media-left uk-cover-container">
                       <img src="<?= $template['uploads'].'news/'.$article->image; ?>" alt="<?= $article->title ?>" uk-cover>
@@ -63,7 +63,7 @@
                 <div class="uk-card uk-card-default uk-card-body card-status">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-expand">
-                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= base_url('online'); ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= lang('realm'); ?> <?= $realm->name; ?></a></h5>
+                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= site_url('online'); ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= lang('realm'); ?> <?= $realm->name; ?></a></h5>
                     </div>
                     <div class="uk-width-auto">
                       <?php if ($this->realm->is_online($realm->id)): ?>

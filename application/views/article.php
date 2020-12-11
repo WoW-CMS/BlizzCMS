@@ -114,7 +114,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url('news/reply'); ?>",
+          url:"<?= site_url('news/reply'); ?>",
           method:"POST",
           data:{news, reply},
           dataType:"text",
@@ -153,7 +153,7 @@
               });
             }
             $('#replyForm')[0].reset();
-            window.location.replace("<?= base_url('news/'.$news->id); ?>");
+            window.location.replace("<?= site_url('news/'.$news->id); ?>");
           }
         });
       }
@@ -161,7 +161,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url('news/reply/delete'); ?>",
+          url:"<?= site_url('news/reply/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -199,7 +199,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('news/'.$news->id); ?>");
+            window.location.replace("<?= site_url('news/'.$news->id); ?>");
           }
         });
       }

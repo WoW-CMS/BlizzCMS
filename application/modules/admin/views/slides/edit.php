@@ -38,7 +38,7 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-3@s">
-                  <label class="uk-form-label"><?=lang('type');?></label>
+                  <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="0"><?= lang('select_type'); ?></option>

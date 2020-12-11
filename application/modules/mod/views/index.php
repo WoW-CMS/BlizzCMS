@@ -2,47 +2,51 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-3-4@s">
-            <h3 class="uk-h3 uk-margin-small uk-heading-bullet">Latest Moderator Actions</h3>
-            <div class="uk-card uk-card-default uk-card-body uk-margin-small-top uk-margin-medium-bottom">
-              <div class="uk-overflow-auto">
+            <div class="uk-card uk-card-default uk-margin-small-top uk-margin-medium-bottom">
+              <div class="uk-card-header">
+                <h4 class="uk-h4">Latest Moderator Actions</h4>
+              </div>
+              <div class="uk-card-body uk-padding-remove">
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
                       <th class="uk-width-small"><?= lang('username'); ?></th>
                       <th class="uk-width-small uk-text-center"><?= lang('date'); ?></th>
                       <th class="uk-width-medium uk-text-center"><?= lang('actions'); ?></th>
-                      <th class="uk-width-medium uk-text-center">Information</th>
+                      <th class="uk-width-medium uk-text-center"><?= lang('information'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Username</td>
-                      <td class="uk-text-center">26/04/2019</td>
-                      <td class="uk-text-center">Threads Deleted Permanently</td>
-                      <td class="uk-text-center">Forum: General</td>
+                      <td>26/04/2019</td>
+                      <td>Threads Deleted Permanently</td>
+                      <td>Forum: General</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            <h3 class="uk-h3 uk-margin-small uk-heading-bullet">Latest Moderator Actions Bans Ending Soon</h3>
-            <div class="uk-card uk-card-default uk-card-body uk-margin-small">
-              <div class="uk-overflow-auto">
+            <div class="uk-card uk-card-default uk-margin-small">
+              <div class="uk-card-header">
+                <h4 class="uk-h4">Latest Moderator Actions Bans Ending Soon</h4>
+              </div>
+              <div class="uk-card-body uk-padding-remove">
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
                       <th class="uk-width-small"><?= lang('username'); ?></th>
-                      <th class="uk-width-medium uk-text-center">Reason</th>
-                      <th class="uk-width-small uk-text-center">Length</th>
-                      <th class="uk-width-small uk-text-center">Banned By</th>
+                      <th class="uk-width-medium"><?= lang('reason'); ?></th>
+                      <th class="uk-width-small">Length</th>
+                      <th class="uk-width-small">Banned By</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Username</td>
-                      <td class="uk-text-center">Disrespect to Moderators</td>
-                      <td class="uk-text-center">16 Hours</td>
-                      <td class="uk-text-center">Moderator</td>
+                      <td>Disrespect to Moderators</td>
+                      <td>16 Hours</td>
+                      <td>Moderator</td>
                     </tr>
                   </tbody>
                 </table>
