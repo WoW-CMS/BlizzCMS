@@ -38,7 +38,7 @@
                       <a href="<?= site_url('admin/users/view/'.$user->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-user-edit"></i> View</a>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
-                        <div uk-dropdown="mode: click; boundary: .uk-container;">
+                        <div uk-dropdown="mode: click;boundary: ! .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
                             <li><a href="<?= site_url('admin/users/logs/'.$user->id); ?>"><i class="fas fa-donate"></i> Logs</a></li>
                           </ul>

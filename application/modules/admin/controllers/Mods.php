@@ -43,6 +43,8 @@ class Mods extends MX_Controller
 			'mods' => $this->_get_modules()
 		];
 
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
+
 		$this->template->build('mods/index', $data);
 	}
 

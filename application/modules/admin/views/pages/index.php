@@ -38,7 +38,7 @@
                       <a href="<?= site_url('admin/pages/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
-                        <div uk-dropdown="mode: click; boundary: .uk-container;">
+                        <div uk-dropdown="mode: click;boundary: ! .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
                             <li><a href="<?= site_url('admin/pages/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
                           </ul>

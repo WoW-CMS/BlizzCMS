@@ -18,6 +18,8 @@ class Donate extends MX_Controller
 	{
 		parent::__construct();
 
+		mod_located('donate', true);
+
 		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));

@@ -21,7 +21,7 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= lang('name'); ?></th>
+                  <th class="uk-table-expand"><?= lang('name'); ?></th>
                   <th class="uk-width-medium"><?= lang('url'); ?></th>
                   <th class="uk-width-small"><?= lang('type'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>
@@ -38,7 +38,7 @@
                       <a href="<?= site_url('admin/menu/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
-                        <div uk-dropdown="mode: click; boundary: .uk-container;">
+                        <div uk-dropdown="mode: click;boundary: ! .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
                             <li><a href="<?= site_url('admin/menu/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
                           </ul>

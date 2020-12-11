@@ -15,6 +15,8 @@ class Changelogs extends MX_Controller
 	{
 		parent::__construct();
 
+		mod_located('changelogs', true);
+
 		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));

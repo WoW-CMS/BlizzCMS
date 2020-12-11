@@ -15,6 +15,8 @@ class Store extends MX_Controller
 	{
 		parent::__construct();
 
+		mod_located('store', true);
+
 		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));

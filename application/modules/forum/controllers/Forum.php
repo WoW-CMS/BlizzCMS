@@ -14,6 +14,9 @@ class Forum extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		mod_located('forum', true);
+
 		$this->load->model('forum_model');
 		$this->load->model('logs_model', 'logs');
 	}
