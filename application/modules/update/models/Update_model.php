@@ -8,11 +8,6 @@ use \VisualAppeal\AutoUpdate;
 
 class Update_model extends CI_Model
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function getCurrentVersion()
 	{
 		$version = '1.0.6.4.1';

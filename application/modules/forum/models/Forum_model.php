@@ -3,11 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Forum_model extends CI_Model
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function getCategory()
 	{
 		return $this->db->select('id, name')->get('forum_category')->result();

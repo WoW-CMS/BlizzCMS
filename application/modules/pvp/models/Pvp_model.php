@@ -3,11 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pvp_model extends CI_Model
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
-
 	public function getTop20PVP($realm)
 	{
 		return $this->realm->char_connect($realm)->select('name, race, class, totalKills, todayKills, yesterdayKills')->where('name !=', '')->order_by('totalKills', 'DESC')->limit('20')->get('characters')->result();

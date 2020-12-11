@@ -3,16 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Store_model extends CI_Model
 {
-	protected $top;
-	protected $item;
-	protected $categories;
-
-	public function __construct()
-	{
-		$this->top = 'store_top';
-		$this->item = 'store_items';
-		$this->categories = 'store_categories';
-	}
+	protected $top = 'store_top';
+	protected $item = 'store_items';
+	protected $categories = 'store_categories';
 
 	public function getStoreTop()
 	{

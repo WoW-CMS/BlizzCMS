@@ -25,20 +25,12 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($this->mod_model->getLogs() as $logs): ?>
                   <tr>
-                    <td><?= $this->website->get_user($logs->user_id, 'nickname'); ?></td>
-                    <td><?= date('d-m-Y', $logs->created_at) ?></td>
-                    <td>
-                      <?php if ($logs->type == 1): ?>
-                        Forums/Topic
-                      <?php else: ?>
-                        Forums/Comment
-                      <?php endif; ?>
-                    </td>
-                    <td><?= $logs->function; ?> <?= $logs->annotation; ?></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
-                <?php endforeach; ?>
               </tbody>
             </table>
           </div>
