@@ -45,7 +45,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="far fa-user"></i> </span>
-                      <input class="uk-input" type="text" name="nickname" placeholder="<?= lang('new_nickname'); ?>">
+                      <input class="uk-input" type="text" name="nickname" value="<?= set_value('nickname'); ?>" placeholder="<?= lang('new_nickname'); ?>">
                     </div>
                   </div>
                   <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -88,7 +88,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="new_email" placeholder="<?= lang('new_email'); ?>">
+                          <input class="uk-input" type="email" name="new_email" value="<?= set_value('new_email'); ?>" placeholder="<?= lang('new_email'); ?>">
                         </div>
                       </div>
                       <?= form_error('new_email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -98,7 +98,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="confirm_new_email" placeholder="<?= lang('confirm_email'); ?>">
+                          <input class="uk-input" type="email" name="confirm_new_email" value="<?= set_value('confirm_new_email'); ?>" placeholder="<?= lang('confirm_email'); ?>">
                         </div>
                       </div>
                       <?= form_error('confirm_new_email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

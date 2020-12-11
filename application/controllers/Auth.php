@@ -93,6 +93,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 			$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|min_length[8]|matches[password]');
+			$this->form_validation->set_rules('terms', 'Terms and conditions', 'trim|required');
 
 			if (config_item('captcha_register') == 'true')
 			{
@@ -111,9 +112,7 @@ class Auth extends CI_Controller
 				$email      = $this->input->post('email', TRUE);
 				$password   = $this->input->post('password');
 
-				$emulator       = config_item('emulator');
-				$validation     = (config_item('register_validation') == 'true');
-				$is_pending     = false;
+				$emulator   = config_item('emulator');
 
 				if (! $this->auth->account_unique($username, 'username'))
 				{
@@ -127,13 +126,13 @@ class Auth extends CI_Controller
 					redirect(site_url('register'));
 				}
 
-				if ($is_pending)
-				{
-					$this->session->set_flashdata('warning', 'account pending');
-					redirect(site_url('register'));
-				}
+				// if ($is_pending)
+				// {
+					// $this->session->set_flashdata('warning', 'account pending');
+					// redirect(site_url('register'));
+				// }
 
-				if ($validation)
+				if (config_item('register_validation') == 'true')
 				{
 					// $this->base->send_email($email, lang('email_subject_validation'), $message);
 

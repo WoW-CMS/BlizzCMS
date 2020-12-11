@@ -216,6 +216,9 @@ $lang['highmountain_tauren'] = 'Tauren monte alto';
 $lang['dark_iron_dwarf'] = 'Enano Hierro Negro';
 $lang['maghar_orc'] = 'Orco Maghar';
 
+$lang['read_and_agree'] = 'He leído y estoy de acuerdo con los';
+$lang['terms_and_conditions'] = 'Términos y Condiciones';
+
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
 $lang['alert_upload_error'] = 'Tu imagen debe estar en formato .jpg';

@@ -46,6 +46,7 @@ class Migration_create_table_users_tokens extends CI_Migration
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
+		$this->dbforge->add_key('user_id');
 		$this->dbforge->create_table('users_tokens');
 	}
 

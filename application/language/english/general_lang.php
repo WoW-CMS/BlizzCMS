@@ -216,6 +216,9 @@ $lang['highmountain_tauren'] = 'Highmountain Tauren';
 $lang['dark_iron_dwarf'] = 'Dark Iron Dwarf';
 $lang['maghar_orc'] = 'Maghar Orc';
 
+$lang['read_and_agree'] = 'I have read and agree to the';
+$lang['terms_and_conditions'] = 'Terms and Conditions';
+
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Item purchased successfully.';
 $lang['alert_upload_error'] = 'Your image must be in jpg or png format';

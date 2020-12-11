@@ -22,21 +22,21 @@
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="title" placeholder="<?= lang('title'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="title" value="<?= set_value('title'); ?>" placeholder="<?= lang('title'); ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('slug'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="slug" placeholder="<?= lang('slug'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="slug" value="<?= set_value('slug'); ?>" placeholder="<?= lang('slug'); ?>">
               </div>
               <?= form_error('slug', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea tinyeditor" name="description" rows="12"></textarea>
+                <textarea class="uk-textarea tinyeditor" name="description" rows="12"><?= set_value('description'); ?></textarea>
               </div>
               <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>

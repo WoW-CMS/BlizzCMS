@@ -13,7 +13,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user"></i></span>
-                      <input class="uk-input" type="text" name="nickname" placeholder="<?= lang('nickname'); ?>">
+                      <input class="uk-input" type="text" name="nickname" value="<?= set_value('nickname'); ?>" placeholder="<?= lang('nickname'); ?>">
                     </div>
                   </div>
                   <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -23,7 +23,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user"></i></span>
-                      <input class="uk-input" type="text" name="username" placeholder="<?= lang('username'); ?>">
+                      <input class="uk-input" type="text" name="username" value="<?= set_value('username'); ?>" placeholder="<?= lang('username'); ?>">
                     </div>
                   </div>
                   <?= form_error('username', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -35,7 +35,7 @@
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon"><i class="fas fa-envelope"></i></span>
-                  <input class="uk-input" type="email" name="email" placeholder="<?= lang('email'); ?>">
+                  <input class="uk-input" type="email" name="email" value="<?= set_value('email'); ?>" placeholder="<?= lang('email'); ?>">
                 </div>
               </div>
               <?= form_error('email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -63,6 +63,12 @@
                   <?= form_error('confirm_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
               </div>
+            </div>
+            <div class="uk-margin-top uk-margin-small-bottom">
+              <label class="uk-form-label uk-light">
+                <input class="uk-checkbox" name="terms" value="agree" type="checkbox" <?= set_checkbox('terms', 'agree'); ?>> <?= lang('read_and_agree'); ?> <a target="_blank" href="<?= site_url('page/tos'); ?>" class="uk-link"><?= lang('terms_and_conditions'); ?></a>.
+              </label>
+              <?= form_error('terms', '<span class="uk-display-block uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <?php if (config_item('captcha_register') == 'true'): ?>
             <div class="uk-margin-small">

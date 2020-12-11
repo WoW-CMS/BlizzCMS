@@ -23,7 +23,7 @@
               <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
-                  <input class="uk-input" type="text" name="title" placeholder="<?= lang('title'); ?>">
+                  <input class="uk-input" type="text" name="title" value="<?= set_value('title'); ?>" placeholder="<?= lang('title'); ?>">
                 </div>
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -31,7 +31,7 @@
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea" name="description" rows="3"></textarea>
+                <textarea class="uk-textarea" name="description" rows="3"><?= set_value('description'); ?></textarea>
               </div>
               <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
@@ -52,7 +52,7 @@
                 <div class="uk-inline uk-width-2-3@s">
                   <label class="uk-form-label"><?= lang('route'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" name="route" placeholder="URL or Image Name">
+                    <input class="uk-input" type="text" name="route" value="<?= set_value('route'); ?>" placeholder="URL or Image Name">
                   </div>
                   <?= form_error('route', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>

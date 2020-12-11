@@ -24,14 +24,14 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('name'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input uk-width-1-1" type="text" name="name" placeholder="<?= lang('name'); ?>">
+                    <input class="uk-input uk-width-1-1" type="text" name="name" value="<?= set_value('name'); ?>" placeholder="<?= lang('name'); ?>">
                   </div>
                   <?= form_error('name', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input uk-width-1-1" type="text" name="url" placeholder="<?= lang('url'); ?>">
+                    <input class="uk-input uk-width-1-1" type="text" name="url" value="<?= set_value('url'); ?>" placeholder="<?= lang('url'); ?>">
                   </div>
                   <?= form_error('url', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('icon'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input uk-width-1-1" type="text" name="icon" placeholder="<?= lang('icon'); ?>">
+                    <input class="uk-input uk-width-1-1" type="text" name="icon" value="<?= set_value('icon'); ?>" placeholder="<?= lang('icon'); ?>">
                   </div>
                   <?= form_error('icon', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>

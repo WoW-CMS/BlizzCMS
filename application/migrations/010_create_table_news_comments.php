@@ -34,6 +34,8 @@ class Migration_create_table_news_comments extends CI_Migration
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
+		$this->dbforge->add_key('news_id');
+		$this->dbforge->add_key('user_id');
 		$this->dbforge->create_table('news_comments');
 	}
 
