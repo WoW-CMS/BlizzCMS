@@ -77,12 +77,12 @@
                     <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                       <thead>
                         <tr>
-                          <th class="uk-table-shrink"><?= lang('guid'); ?></th>
+                          <th><?= lang('guid'); ?></th>
                           <th class="uk-width-small"><?= lang('name'); ?></th>
-                          <th class="uk-table-shrink"><?= lang('race'); ?></th>
-                          <th class="uk-table-shrink"><?= lang('class'); ?></th>
-                          <th class="uk-table-shrink"><?= lang('level'); ?></th>
-                          <th class="uk-width-small uk-text-center"><?= lang('money'); ?></th>
+                          <th class="uk-width-small"><?= lang('race'); ?></th>
+                          <th class="uk-width-small"><?= lang('class'); ?></th>
+                          <th class="uk-width-small"><?= lang('level'); ?></th>
+                          <th class="uk-width-small"><?= lang('money'); ?></th>
                         </tr>
                       </thead>
                       <tbody>

@@ -69,22 +69,22 @@
                       <table class="uk-table uk-table-divider uk-table-small">
                         <thead>
                           <tr>
-                            <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('name'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-info-circle"></i> <?= lang('race'); ?>/<?= lang('class'); ?></th>
-                            <th class="uk-width-small"><i class="fas fa-level-up-alt"></i> <?= lang('level'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-clock"></i> <?= lang('time_played'); ?></th>
-                            <th class="uk-table-expand"><i class="fas fa-coins"></i> <?= lang('money'); ?></th>
+                            <th class="uk-table-expand"><?= lang('name'); ?></th>
+                            <th class="uk-width-small"><?= lang('race'); ?>/<?= lang('class'); ?></th>
+                            <th class="uk-width-small"><?= lang('level'); ?></th>
+                            <th class="uk-width-small"><?= lang('time_played'); ?></th>
+                            <th class="uk-width-small"><?= lang('money'); ?></th>
                           </tr>
                         </thead>
                         <tbody>
                           <?php foreach($this->realm->account_characters($realm->id, $this->session->userdata('id')) as $chars): ?>
                           <tr>
-                            <td><?= $chars->name ?></td>
+                            <td><?= $chars->name; ?></td>
                             <td>
                               <img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($chars->race); ?>" width="20" height="20" alt="<?= race_name($chars->race); ?>">
                               <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($chars->class); ?>" width="20" height="20" alt="<?= class_name($chars->class); ?>">
                             </td>
-                            <td><?= $chars->level ?></td>
+                            <td><?= $chars->level; ?></td>
                             <td><?= time_converter($chars->totaltime); ?></td>
                             <td><?= money_converter($chars->money); ?></td>
                           </tr>

@@ -151,9 +151,19 @@ class Base_model extends CI_Model
 	 */
 	public function find_module($name)
 	{
-		$query = $this->db->where('name', $name)->get('modules')->num_rows();
+		$data = $this->cache->file->get('modules');
 
-		return ($query == 1);
+		if ($data !== false)
+		{
+			return in_array($name, $data, true);
+		}
+
+		$query = $this->db->get('modules')->result_array();
+		$list  = array_column($query, 'name');
+
+		$this->cache->file->save('modules', $list, 604800);
+
+		return in_array($name, $list, true);
 	}
 
 	/**

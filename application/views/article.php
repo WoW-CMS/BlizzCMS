@@ -17,36 +17,36 @@
                 </div>
               </div>
               <div class="uk-card-body">
-                <article class="uk-article">
-                  <?= $news->description; ?>
-                </article>
+                <?= $news->description; ?>
               </div>
             </div>
             <?php if (isset($comments) && ! empty($comments)): ?>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin" data-uk-grid>
               <?php foreach ($comments as $comment): ?>
               <div>
-                <div class="uk-card uk-card-default uk-card-body">
-                  <div class="uk-grid uk-grid-small" data-uk-grid>
-                    <div class="uk-width-1-6@s">
-                      <div class="Author <?php if($this->auth->get_gmlevel($comment->user_id) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
-                        <div class="topic-author-avatar profile">
-                          <img src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($comment->user_id); ?>" alt="Avatar">
-                        </div>
+                <div class="uk-card uk-card-default">
+                  <div class="uk-card-header">
+                    <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
+                      <div class="uk-width-auto">
+                        <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($comment->user_id); ?>" width="40" height="40" alt="Avatar">
                       </div>
-                      <p class="uk-margin-remove uk-text-bold uk-text-center"><?= $this->website->get_user($comment->user_id, 'nickname'); ?></p>
-                      <?php if ($this->auth->get_gmlevel($comment->user_id) > 0): ?>
-                      <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
-                      <?php endif; ?>
+                      <div class="uk-width-expand">
+                        <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname'); ?></h6>
+                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, h:i a', $comment->created_at); ?></p>
+                      </div>
                     </div>
-                    <div class="uk-width-expand@s">
-                      <p class="uk-text-small uk-text-meta uk-margin-small"><?= date('F d Y - H:i A', $comment->created_at); ?></p>
-                      <?= $comment->commentary ?>
-                      <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
-                      <div class="uk-margin-small-top">
+                  </div>
+                  <div class="uk-card-body">
+                    <?= $comment->commentary; ?>
+                  </div>
+                  <div class="uk-card-footer">
+                    <div class="uk-grid uk-grid-small" data-uk-grid>
+                      <div class="uk-width-expand"></div>
+                      <div class="uk-width-auto">
+                        <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
                         <button class="uk-button uk-button-danger uk-button-small" value="<?= $comment->id ?>" id="button_delete<?= $comment->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></button>
+                        <?php endif; ?>
                       </div>
-                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -56,15 +56,13 @@
             <?= $links; ?>
             <?php endif; ?>
             <?php if ($this->website->isLogged()): ?>
+            <h3 class="uk-h3"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
             <div class="uk-card uk-card-default uk-card-body uk-margin-small">
-              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
               <?= form_open('', 'id="replyForm" onsubmit="ReplyForm(event)"'); ?>
               <div class="uk-margin-small uk-light">
                 <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
               </div>
-              <div class="uk-margin-small">
-                <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
-              </div>
+              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
               <?= form_close(); ?>
             </div>
             <?php endif; ?>
