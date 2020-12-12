@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_votes extends CI_Migration
+class Migration_Create_table_topsites extends CI_Migration
 {
 	public function up()
 	{
@@ -14,31 +14,38 @@ class Migration_Create_votes extends CI_Migration
 			),
 			'name' => array(
 				'type' => 'VARCHAR',
-				'constraint' => '100'
+				'constraint' => '255',
+				'null' => FALSE
 			),
 			'url' => array(
-				'type' => 'TEXT'
+				'type' => 'VARCHAR',
+				'constraint' => '255',
+				'null' => FALSE
 			),
 			'time' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE
+				'type' => 'TINYINT',
+				'constraint' => '3',
+				'unsigned' => TRUE,
+				'default' => 1
 			),
 			'points' => array(
 				'type' => 'INT',
 				'constraint' => '10',
-				'unsigned' => TRUE
+				'unsigned' => TRUE,
+				'default' => 1
 			),
 			'image' => array(
-				'type' => 'TEXT'
+				'type' => 'VARCHAR',
+				'constraint' => '255',
+				'null' => TRUE
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('votes');
+		$this->dbforge->create_table('topsites');
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('votes');
+		$this->dbforge->drop_table('topsites');
 	}
 }

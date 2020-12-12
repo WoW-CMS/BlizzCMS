@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_votes_logs extends CI_Migration
+class Migration_Create_table_topsites_logs extends CI_Migration
 {
 	public function up()
 	{
@@ -12,38 +12,43 @@ class Migration_Create_votes_logs extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'idaccount' => array(
-				'type' => 'INT',
-				'constraint' => '10',
+			'topsite_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
 				'unsigned' => TRUE
 			),
-			'idvote' => array(
-				'type' => 'INT',
-				'constraint' => '10',
+			'user_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
 				'unsigned' => TRUE
 			),
 			'points' => array(
 				'type' => 'INT',
 				'constraint' => '10',
-				'unsigned' => TRUE
+				'unsigned' => TRUE,
+				'default' => 1
 			),
-			'lasttime' => array(
+			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
-				'unsigned' => TRUE
+				'unsigned' => TRUE,
+				'default' => 0
 			),
 			'expired_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
-				'unsigned' => TRUE
+				'unsigned' => TRUE,
+				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('votes_logs');
+		$this->dbforge->add_key('topsite_id');
+		$this->dbforge->add_key('user_id');
+		$this->dbforge->create_table('topsites_logs');
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('votes_logs');
+		$this->dbforge->drop_table('topsites_logs');
 	}
 }

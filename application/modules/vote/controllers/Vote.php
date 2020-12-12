@@ -28,7 +28,7 @@ class Vote extends MX_Controller
 	public function index()
 	{
 		$data = [
-			'voteList' => $this->vote_model->getVotes()
+			'topsites' => $this->vote_model->get_all()
 		];
 
 		$this->template->title(config_item('app_name'), lang('tab_vote'));
@@ -36,21 +36,36 @@ class Vote extends MX_Controller
 		$this->template->build('index', $data);
 	}
 
-	public function voteNow($id)
+	public function site($id = null)
 	{
-		echo $this->vote_model->voteNow($id);
-	}
+		if (empty($id) || ! $this->vote_model->find_topsite($id))
+		{
+			show_404();
+		}
 
-	public function voteNowCount()
-	{
-		$id = $this->input->post('value', TRUE);
-		$seconds = $this->vote_model->getVoteTime($id);
-		echo $this->vote_model->getCountDownHTML($id, $seconds);
-	}
+		if ($this->vote_model->get_expiration($id) >= now())
+		{
+			$this->session->set_flashdata('error', lang('alert_already_voted'));
+			redirect(site_url('vote'));
+		}
 
-	public function voteCallURL()
-	{
-		$id = $this->input->post('value', TRUE);
-		echo $this->vote_model->getVoteUrl($id);
+		$topsite = $this->vote_model->get_topsite($id);
+		$user    = $this->website->get_user();
+
+		// Calculate expired_at
+		$date     = new \DateTime();
+		$new_date = $date->add(new \DateInterval('PT' . $topsite->time . 'H'));
+
+		$this->db->where('id', $user->id)->update('users', ['vp' => ($topsite->points + $user->vp)]);
+
+		$this->db->insert('topsites_logs', [
+			'topsite_id' => $id,
+			'user_id'    => $user->id,
+			'points'     => $topsite->points,
+			'created_at' => now(),
+			'expired_at' => $new_date->getTimestamp()
+		]);
+
+		redirect($topsite->url);
 	}
 }

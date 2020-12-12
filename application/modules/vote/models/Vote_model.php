@@ -3,89 +3,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Vote_model extends CI_Model
 {
-	public function getVotes()
+	protected $topsites = 'topsites';
+	protected $topsites_logs = 'topsites_logs';
+
+	/**
+	 * Get all topsites
+	 *
+	 * @return array
+	 */
+	public function get_all()
 	{
-		return $this->db->get('votes')->result();
+		return $this->db->get($this->topsites)->result();
 	}
 
-	public function getVotePoints($id)
+	/**
+	 * Get topsite
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_topsite($id)
 	{
-		return $this->db->where('id', $id)->get('votes')->row('points');
+		return $this->db->where('id', $id)->get($this->topsites)->row();
 	}
 
-	public function getVoteTime($id)
+	/**
+	 * Find if the topsite exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_topsite($id)
 	{
-		return $this->db->where('id', $id)->get('votes')->row('time');
+		$query = $this->db->where('id', $id)->get($this->topsites)->num_rows();
+
+		return ($query == 1);
 	}
 
-	public function getVoteLog($id, $userid)
+	/**
+	 * Check if the time to vote again is over
+	 *
+	 * @param int $topsite
+	 * @param int|null $user
+	 * @return int
+	 */
+	public function get_expiration($topsite, $user = null)
 	{
-		return $this->db->where('idaccount', $userid)->where('idvote', $id)->limit('1')->order_by('id', 'DESC')->get('votes_logs');
-	}
+		$user  = $user ?? $this->session->userdata('id');
+		$query = $this->db->where(['topsite_id' => $topsite, 'user_id' => $user])->limit(1)->order_by('id', 'DESC')->get($this->topsites_logs)->row('expired_at');
 
-	public function getTimeLogExpired($id, $userid)
-	{
-		return $this->db->where('idaccount', $userid)->where('idvote', $id)->limit('1')->order_by('id', 'DESC')->get('votes_logs')->row('expired_at');
-	}
-
-	public function getCredits($userid)
-	{
-		return $this->db->where('id', $userid)->limit('1')->get('users')->row('vp');
-	}
-
-	public function getVoteUrl($id)
-	{
-		return $this->db->where('id', $id)->get('votes')->row('url');
-	}
-
-	public function voteNow($id)
-	{
-		$userid = $this->session->userdata('id');
-		$mytime = now();
-		$ppoints = $this->getVotePoints($id);
-		$votetime = $this->getVoteTime($id);
-
-		$qqcheck = $this->getVoteLog($id, $userid);
-
-		$url = $this->getVoteUrl($id);
-
-		$fecha = new DateTime();
-		$expired = $fecha->add(new DateInterval('PT'.$votetime.'H'));
-
-		$expired_at = $expired->getTimestamp();
-
-		if(!preg_match("~^(?:f|ht)tps?://~i", $url)) {
-			$url = "http://" . $url;
-		}
-
-		$comprobetime = $qqcheck->row('expired_at');
-
-		if(now() >= $comprobetime)
-		{
-			$vp2 = $this->db->where('id', $userid)->get('users')->row('vp');
-			$vp = ($vp2+$ppoints);
-
-			$data = array('vp' => $vp);
-
-			$logs = array(
-				'idaccount' => $userid,
-				'idvote' => $id,
-				'lasttime' => $mytime,
-				'expired_at' => $expired_at,
-				'points' => $ppoints
-			);
-
-			$this->db->where('id', $userid)->update('users', $data);
-			$this->db->insert('votes_logs', $logs);
-
-			echo '<script type="text/javascript">
-					window.open( "'.$url.'","_self")
-				</script>';
-
-			redirect(site_url('vote'),'refresh');
-		} else {
-			echo '<script type="text/javascript">alert("According to our records you have already voted in this top. Contact with Support Ingame for Resolving this problem")</script>';
-			redirect(site_url('vote'),'refresh');
-		}
+		return ! empty($query) ? $query : 0;
 	}
 }

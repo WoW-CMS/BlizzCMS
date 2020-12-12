@@ -10,4 +10,4 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['vote']['get'] = 'vote/index';
-$route['vote/votenow/(:num)'] = 'vote/votenow/$1';
+$route['vote/site/(:num)']['get'] = 'vote/site/$1';

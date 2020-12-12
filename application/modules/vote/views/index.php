@@ -25,19 +25,22 @@
           </div>
           <div class="uk-width-3-4@m">
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-4@s uk-child-width-1-4@m" data-uk-grid>
-              <?php foreach ($voteList as $key => $voteList): ?>
+              <?php foreach ($topsites as $topsite): ?>
               <div>
                 <div class="uk-card uk-card-vote">
                   <div class="uk-card-header">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><?= $voteList->name ?></h5>
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><?= $topsite->name; ?></h5>
                   </div>
                   <div class="uk-card-body">
                     <div class="uk-flex uk-flex-center">
-                      <img src="<?= $voteList->image ?>" alt="<?= $voteList->name ?>">
+                      <img src="<?= $topsite->image; ?>" alt="Image">
                     </div>
-                    <p class="uk-text-small uk-text-center uk-margin-small"><?= $voteList->points ?> <?= lang('panel_vp'); ?></p>
+                    <p class="uk-text-small uk-text-center uk-margin-small"><?= $topsite->points; ?> <?= lang('panel_vp'); ?></p>
+                    <?php if (now() >= $this->vote_model->get_expiration($topsite->id)): ?>
+                    <a href="<?= site_url('vote/site/'.$topsite->id); ?>" class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-vote-yea"></i> <?= lang('tab_vote'); ?></a>
+                    <?php else: ?>
                     <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-text-center uk-margin-remove-bottom uk-margin-small-top"><?= lang('vote_next_time'); ?></h5>
-                    <div class="uk-grid-collapse uk-child-width-auto uk-flex-center uk-margin-small-bottom" uk-grid uk-countdown="date: <?= date('c', $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('id'))); ?>">
+                    <div class="uk-grid-collapse uk-child-width-auto uk-flex-center uk-margin-small-bottom" uk-grid uk-countdown="date: <?= date('c', $this->vote_model->get_expiration($topsite->id)); ?>">
                       <div>
                         <div class="uk-countdown-number uk-countdown-days"></div>
                       </div>
@@ -54,14 +57,6 @@
                         <div class="uk-countdown-number uk-countdown-seconds"></div>
                       </div>
                     </div>
-                    <?php if(now() >= $this->vote_model->getTimeLogExpired($voteList->id, $this->session->userdata('id'))): ?>
-                      <?= form_open(site_url('vote/votenow/'.$voteList->id)); ?>
-                        <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-vote-yea"></i> <?= lang('tab_vote'); ?></button>
-                      <?= form_close(); ?>
-                    <?php else: ?>
-                      <?= form_open(); ?>
-                        <button class="uk-button uk-button-default uk-width-1-1" disabled><i class="fas fa-vote-yea"></i> <?= lang('tab_vote'); ?></button>
-                      <?= form_close(); ?>
                     <?php endif; ?>
                   </div>
                 </div>

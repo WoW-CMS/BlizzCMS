@@ -135,7 +135,7 @@ class Realms extends MX_Controller
 			}
 			else
 			{
-				$data = [
+				$realm = [
 					'name'             => $this->input->post('name', TRUE),
 					'max_cap'          => $this->input->post('max_cap'),
 					'char_hostname'    => $this->input->post('char_host'),
@@ -151,15 +151,15 @@ class Realms extends MX_Controller
 
 				if (! empty($this->input->post('char_pass')))
 				{
-					$data['char_password'] = encrypt($this->input->post('char_pass'));
+					$realm['char_password'] = encrypt($this->input->post('char_pass'));
 				}
 
 				if (! empty($this->input->post('console_pass')))
 				{
-					$data['console_password'] = encrypt($this->input->post('console_pass'));
+					$realm['console_password'] = encrypt($this->input->post('console_pass'));
 				}
 
-				$this->db->where('id', $id)->update('realms', $data);
+				$this->db->where('id', $id)->update('realms', $realm);
 
 				$this->session->set_flashdata('success', lang('alert_realm_updated'));
 				redirect(site_url('admin/realms/edit/' . $id));

@@ -9,7 +9,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (! function_exists('encrypt_value'))
+if (! function_exists('encrypt'))
 {
 	/**
 	 * Encrypt
@@ -34,7 +34,7 @@ if (! function_exists('encrypt_value'))
 	}
 }
 
-if (! function_exists('decrypt_value'))
+if (! function_exists('decrypt'))
 {
 	/**
 	 * Decrypt
