@@ -25,7 +25,7 @@
           </div>
           <div class="uk-width-3-4@m">
             <?= $template['partials']['alerts']; ?>
-            <div class="uk-card-default myaccount-card uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('panel_change_nickname'); ?></h5>
               </div>
@@ -66,7 +66,7 @@
                 <?= form_close(); ?>
               </div>
             </div>
-            <div class="uk-card-default myaccount-card uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= lang('panel_change_email'); ?></h5>
               </div>
@@ -121,7 +121,7 @@
                 <?= form_close(); ?>
               </div>
             </div>
-            <div class="uk-card-default myaccount-card uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= lang('panel_change_password'); ?></h5>
               </div>
@@ -167,7 +167,7 @@
                 <?= form_close(); ?>
               </div>
             </div>
-            <div class="uk-card-default myaccount-card uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= lang('change_avatar'); ?></h5>
               </div>

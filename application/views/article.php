@@ -9,7 +9,7 @@
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-expand@s">
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-newspaper"></i> <?= $news->title; ?></h5>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-newspaper"></i> <?= html_escape($news->title); ?></h5>
                   </div>
                   <div class="uk-width-auto@s">
                     <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $news->created_at); ?></p>

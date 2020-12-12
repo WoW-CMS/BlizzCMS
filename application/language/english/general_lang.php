@@ -61,6 +61,7 @@ $lang['checkout'] = 'Checkout';
 $lang['continue_buying'] = 'Continue buying';
 $lang['install'] = 'Install';
 $lang['uninstall'] = 'Uninstall';
+$lang['search'] = 'Search';
 $lang['select'] = 'Select';
 $lang['update'] = 'Update';
 $lang['grant'] = 'Grant';
@@ -155,6 +156,8 @@ $lang['select_item'] = 'Select a item';
 $lang['select_parent'] = 'Select a parent';
 $lang['select_target'] = 'Select a target';
 $lang['select_subcategory'] = 'Select a subcategory';
+$lang['select_language'] = 'Select a language';
+$lang['select_emulator'] = 'Select a emulator';
 
 /**
  * Status

@@ -3,7 +3,7 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-card-default myaccount-card uk-margin-small">
+        <div class="uk-card uk-card-default uk-margin-small">
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small">
               <div class="uk-width-expand@m">

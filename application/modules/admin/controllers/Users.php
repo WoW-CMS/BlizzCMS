@@ -39,6 +39,9 @@ class Users extends MX_Controller
 
 	public function index()
 	{
+		$get  = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
+
 		$config = [
 			'base_url'    => site_url('admin/users'),
 			'total_rows'  => $this->users_model->count_all(),
@@ -48,12 +51,12 @@ class Users extends MX_Controller
 
 		$this->pagination->initialize($config);
 
-		$get  = $this->input->get('page', TRUE);
-		$page = ctype_digit((string) $get) ? $get : 0;
+		// Calculate offset if use_page_numbers is TRUE on pagination
+		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
 		$data = [
-			'links' => $this->pagination->create_links(),
-			'users' => $this->users_model->get_all($config['per_page'], $page)
+			'users' => $this->users_model->get_all($config['per_page'], $offset),
+			'links' => $this->pagination->create_links()
 		];
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));

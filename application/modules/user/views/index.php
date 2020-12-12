@@ -24,7 +24,7 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <div class="uk-card-default myaccount-card uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
                   <div class="uk-width-expand@m">
@@ -56,11 +56,11 @@
                 </div>
               </div>
             </div>
-            <div class="uk-card-default myaccount-card uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('panel_chars_list'); ?></h5>
               </div>
-              <div class="uk-card-body">
+              <div class="uk-card-body uk-padding-remove">
                 <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
                   <?php foreach ($this->realm->get_realms() as $realm): ?>
                   <div>

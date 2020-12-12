@@ -279,17 +279,6 @@ h6,
   padding: 15px;
 }
 
-.uk-card-default.myaccount-card {
-  border-top: 1px solid rgba(255, 255, 255, .1);
-  background: rgba(9, 85, 135, .2);
-  color: rgba(255, 255, 255, .7);
-  box-shadow: none;
-}
-
-.uk-card-default.myaccount-card .uk-card-header {
-  background: rgba(9, 85, 135, .1);
-}
-
 .dotted-divider:after {
   content: "";
   display: inline-block;
@@ -573,11 +562,11 @@ h6,
   border-top: 1px solid rgba(255, 255, 255, .3);
 }
 
-.myaccount-card tbody tr:first-child {
+.uk-card-body tbody tr:first-child {
   border-top: none;
 }
 
-.myaccount-card tbody tr:last-child {
+.uk-card-body tbody tr:last-child {
   border-bottom: none;
 }
 

@@ -23,6 +23,9 @@ class News extends CI_Controller
 			show_404();
 		}
 
+		$get = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
+
 		$config = [
 			'base_url'    => site_url('news/' . $id),
 			'total_rows'  => $this->base->count_news_comments($id),
@@ -32,12 +35,12 @@ class News extends CI_Controller
 
 		$this->pagination->initialize($config);
 
-		$get = $this->input->get('page', TRUE);
-		$page = ctype_digit((string) $get) ? $get : 0;
+		// Calculate offset if use_page_numbers is TRUE on pagination
+		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
 		$data = [
 			'news'     => $this->base->get_news($id),
-			'comments' => $this->base->get_news_comments($id, $config['per_page'], $page),
+			'comments' => $this->base->get_news_comments($id, $config['per_page'], $offset),
 			'links'    => $this->pagination->create_links(),
 			'aside'    => $this->base->get_news_list(),
 			'tiny'     => $this->base->tinyEditor('User')

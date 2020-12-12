@@ -64,7 +64,7 @@ class Installer extends CI_Controller
 	{
 		if ($this->input->method() == 'post')
 		{
-			$this->form_validation->set_rules('language', 'Language', 'trim|required|in_list[english]');
+			$this->form_validation->set_rules('language', 'Language', 'trim|required|alpha_dash');
 			$this->form_validation->set_rules('website_hostname', 'Hostname', 'trim|required');
 			$this->form_validation->set_rules('website_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
 			$this->form_validation->set_rules('website_prefix', 'Prefix', 'trim|alpha_dash|max_length[6]');

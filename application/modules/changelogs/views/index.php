@@ -33,7 +33,7 @@
                   <div class="uk-card-header">
                     <div class="uk-grid uk-grid-small" data-uk-grid>
                       <div class="uk-width-expand@s">
-                        <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= $changelog->title; ?></h5>
+                        <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= html_escape($changelog->title); ?></h5>
                       </div>
                       <div class="uk-width-auto@s">
                         <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $changelog->created_at); ?></p>
