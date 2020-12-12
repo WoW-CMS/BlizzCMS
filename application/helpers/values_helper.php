@@ -9,7 +9,57 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!function_exists('game_hash'))
+if (! function_exists('encrypt_value'))
+{
+	/**
+	 * Encrypt
+	 *
+	 * @param mixed $string
+	 * @return mixed
+	 */
+	function encrypt($data)
+	{
+		$CI = &get_instance();
+
+		$CI->load->library('encryption');
+
+		$CI->encryption->initialize([
+			'driver' => 'openssl',
+			'cipher' => 'aes-192',
+			'mode'   => 'cbc',
+			'key'    => hex2bin(config_item('encryption_key'))
+		]);
+
+		return $CI->encryption->encrypt($data);
+	}
+}
+
+if (! function_exists('decrypt_value'))
+{
+	/**
+	 * Decrypt
+	 *
+	 * @param mixed $data
+	 * @return mixed
+	 */
+	function decrypt($data)
+	{
+		$CI = &get_instance();
+
+		$CI->load->library('encryption');
+
+		$CI->encryption->initialize([
+			'driver' => 'openssl',
+			'cipher' => 'aes-192',
+			'mode'   => 'cbc',
+			'key'    => hex2bin(config_item('encryption_key'))
+		]);
+
+		return $CI->encryption->decrypt($data);
+	}
+}
+
+if (! function_exists('game_hash'))
 {
 	/**
 	 * Generate hashed password for game account

@@ -24,7 +24,6 @@
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_changelogs'); ?></h4>
             <?php if (isset($changelogs) && ! empty($changelogs)): ?>
             <div class="uk-grid uk-grid-small uk-child-width-1-1" data-uk-grid>
               <?php foreach ($changelogs as $changelog): ?>

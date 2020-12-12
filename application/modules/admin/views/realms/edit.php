@@ -95,7 +95,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="char_pass" value="<?= $realm->char_password; ?>" placeholder="<?= lang('password'); ?>">
+                      <input class="uk-input" type="password" name="char_pass" placeholder="<?= lang('password'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_pass', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -144,7 +144,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="password" name="console_pass" value="<?= $realm->console_password; ?>" placeholder="<?= lang('password'); ?>">
+                      <input class="uk-input" type="password" name="console_pass" placeholder="<?= lang('password'); ?>">
                     </div>
                   </div>
                   <?= form_error('console_pass', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

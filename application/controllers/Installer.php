@@ -70,13 +70,13 @@ class Installer extends CI_Controller
 			$this->form_validation->set_rules('website_prefix', 'Prefix', 'trim|alpha_dash|max_length[6]');
 			$this->form_validation->set_rules('website_database', 'Database', 'trim|required|alpha_dash|max_length[64]');
 			$this->form_validation->set_rules('website_username', 'Username', 'trim|required|alpha_dash|max_length[32]');
-			$this->form_validation->set_rules('website_password', 'Password', 'trim|max_length[32]');
+			$this->form_validation->set_rules('website_password', 'Password', 'trim|required|max_length[32]');
 			$this->form_validation->set_rules('auth_hostname', 'Hostname', 'trim|required');
 			$this->form_validation->set_rules('auth_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
 			$this->form_validation->set_rules('auth_prefix', 'Prefix', 'trim|alpha_dash|max_length[6]');
 			$this->form_validation->set_rules('auth_database', 'Database', 'trim|required|alpha_dash|max_length[64]');
 			$this->form_validation->set_rules('auth_username', 'Username', 'trim|required|alpha_dash|max_length[32]');
-			$this->form_validation->set_rules('auth_password', 'Password', 'trim|max_length[32]');
+			$this->form_validation->set_rules('auth_password', 'Password', 'trim|required|max_length[32]');
 
 			if ($this->form_validation->run() == FALSE)
 			{

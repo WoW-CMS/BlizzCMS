@@ -59,7 +59,7 @@ class Realm_model extends CI_Model
 		$dsn = [
 			'hostname' => $data->char_hostname,
 			'username' => $data->char_username,
-			'password' => $data->char_password,
+			'password' => decrypt($data->char_password),
 			'database' => $data->char_database,
 			'port'     => $data->char_port,
 			'dbdriver' => 'mysqli',
@@ -304,7 +304,7 @@ class Realm_model extends CI_Model
 			'uri'        => 'urn:' . $urns[$emulator],
 			'style'      => SOAP_RPC,
 			'login'      => $data->console_username,
-			'password'   => $data->console_password,
+			'password'   => decrypt($data->console_password),
 			'trace'      => 1,
 			'exceptions' => 0
 		]);

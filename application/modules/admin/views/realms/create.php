@@ -26,7 +26,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-server"></i></span>
-                      <input class="uk-input" type="text" name="name" placeholder="<?= lang('name'); ?>">
+                      <input class="uk-input" type="text" name="name" value="<?= set_value('name'); ?>" placeholder="<?= lang('name'); ?>">
                     </div>
                   </div>
                   <?= form_error('name', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -36,7 +36,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-users"></i></span>
-                      <input class="uk-input" type="text" name="max_cap" placeholder="<?= lang('maximum_capacity'); ?>">
+                      <input class="uk-input" type="text" name="max_cap" value="<?= set_value('max_cap'); ?>" placeholder="<?= lang('maximum_capacity'); ?>">
                     </div>
                   </div>
                   <?= form_error('max_cap', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -51,7 +51,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-server"></i></span>
-                      <input class="uk-input" type="text" name="char_host" placeholder="<?= lang('hostname'); ?>">
+                      <input class="uk-input" type="text" name="char_host" value="<?= set_value('char_host'); ?>" placeholder="<?= lang('hostname'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_host', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -61,7 +61,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-ethernet"></i></span>
-                      <input class="uk-input" type="text" name="char_port" placeholder="<?= lang('port'); ?>">
+                      <input class="uk-input" type="text" name="char_port" value="<?= set_value('char_port'); ?>" placeholder="<?= lang('port'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_port', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -71,7 +71,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-database"></i></span>
-                      <input class="uk-input" type="text" name="char_db" placeholder="<?= lang('database'); ?>">
+                      <input class="uk-input" type="text" name="char_db" value="<?= set_value('char_db'); ?>" placeholder="<?= lang('database'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_db', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -85,7 +85,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user-circle"></i></span>
-                      <input class="uk-input" type="text" name="char_user" placeholder="<?= lang('username'); ?>">
+                      <input class="uk-input" type="text" name="char_user" value="<?= set_value('char_user'); ?>" placeholder="<?= lang('username'); ?>">
                     </div>
                   </div>
                   <?= form_error('char_user', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -110,7 +110,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-server"></i></span>
-                      <input class="uk-input" type="text" name="console_host" placeholder="<?= lang('hostname'); ?>">
+                      <input class="uk-input" type="text" name="console_host" value="<?= set_value('console_host'); ?>" placeholder="<?= lang('hostname'); ?>">
                     </div>
                   </div>
                   <?= form_error('console_host', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -120,7 +120,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-ethernet"></i></span>
-                      <input class="uk-input" type="text" name="console_port" placeholder="<?= lang('port'); ?>">
+                      <input class="uk-input" type="text" name="console_port" value="<?= set_value('console_port'); ?>" placeholder="<?= lang('port'); ?>">
                     </div>
                   </div>
                   <?= form_error('console_port', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -134,7 +134,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user-circle"></i></span>
-                      <input class="uk-input" type="text" name="console_user" placeholder="<?= lang('username'); ?>">
+                      <input class="uk-input" type="text" name="console_user" value="<?= set_value('console_user'); ?>" placeholder="<?= lang('username'); ?>">
                     </div>
                   </div>
                   <?= form_error('console_user', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -159,7 +159,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-server"></i></span>
-                      <input class="uk-input" type="text" name="realm_host" placeholder="<?= lang('hostname'); ?>">
+                      <input class="uk-input" type="text" name="realm_host" value="<?= set_value('realm_host'); ?>" placeholder="<?= lang('hostname'); ?>">
                     </div>
                   </div>
                   <?= form_error('realm_host', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -169,7 +169,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-ethernet"></i></span>
-                      <input class="uk-input" type="text" name="realm_port" placeholder="<?= lang('port'); ?>">
+                      <input class="uk-input" type="text" name="realm_port" value="<?= set_value('realm_port'); ?>" placeholder="<?= lang('port'); ?>">
                     </div>
                   </div>
                   <?= form_error('realm_port', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
