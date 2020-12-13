@@ -29,7 +29,7 @@
               <div>
                 <div class="uk-card uk-card-vote">
                   <div class="uk-card-header">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><?= $topsite->name; ?></h5>
+                    <h5 class="uk-h5 uk-text-bold"><?= $topsite->name; ?></h5>
                   </div>
                   <div class="uk-card-body">
                     <div class="uk-flex uk-flex-center">

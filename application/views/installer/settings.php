@@ -47,7 +47,7 @@
               <div class="uk-margin-small uk-light">
                 <label class="uk-form-label">Language:</label>
                 <div class="uk-form-controls">
-                  <select name="language" class="uk-select">
+                  <select class="uk-select" name="language">
                     <option value="" hidden selected><?= lang('select_language'); ?></option>
                     <?php foreach (config_item('supported_languages') as $value): ?>
                     <option value="<?= $value; ?>" <?= set_select('language', $value); ?>><?= ucfirst($value); ?></option>

@@ -1,9 +1,15 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_pvp_statistics'); ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-fist-raised"></i> <?= lang('tab_pvp_statistics'); ?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .pvp-statistics">
           <?php foreach ($realms as $realm): ?>
           <li><a href="#"><i class="fas fa-server"></i> <?= $realm->name; ?></a></li>
@@ -19,21 +25,21 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?= lang('team_name'); ?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?= lang('members'); ?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?= lang('rating'); ?></th>
+                        <th class="uk-width-small"><?= lang('team_name'); ?></th>
+                        <th class="uk-width-small"><?= lang('members'); ?></th>
+                        <th class="uk-width-small"><?= lang('rating'); ?></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach ($this->pvp_model->getTopArena2v2($realm->id) as $tops2v2): ?>
                         <tr>
-                          <td class="uk-text-center"><?=$tops2v2->name?></td>
-                          <td class="uk-text-center">
+                          <td><?= $tops2v2->name; ?></td>
+                          <td>
                             <?php foreach ($this->pvp_model->getMemberTeam($realm->id, $tops2v2->arenaTeamId) as $mmberteam): ?>
                             <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($realm->id, $mmberteam->guid); ?>">
                             <?php endforeach; ?>
                           </td>
-                          <td class="uk-text-center"><?=$tops2v2->rating?></td>
+                          <td><?= $tops2v2->rating; ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -46,21 +52,21 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?= lang('team_name'); ?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?= lang('members'); ?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?= lang('rating'); ?></th>
+                        <th class="uk-width-small"><?= lang('team_name'); ?></th>
+                        <th class="uk-width-small"><?= lang('members'); ?></th>
+                        <th class="uk-width-small"><?= lang('rating'); ?></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach ($this->pvp_model->getTopArena3v3($realm->id) as $tops3v3): ?>
                         <tr>
-                          <td class="uk-text-center"><?=$tops3v3->name?></td>
-                          <td class="uk-text-center">
+                          <td><?= $tops3v3->name; ?></td>
+                          <td>
                             <?php foreach ($this->pvp_model->getMemberTeam($realm->id, $tops3v3->arenaTeamId) as $mmberteam): ?>
                             <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($realm->id, $mmberteam->guid); ?>">
                             <?php endforeach; ?>
                           </td>
-                          <td class="uk-text-center"><?=$tops3v3->rating?></td>
+                          <td><?= $tops3v3->rating; ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -73,21 +79,21 @@
                   <table class="uk-table dark-table uk-table-divider uk-table-small">
                     <thead>
                       <tr>
-                        <th class="uk-width-small uk-text-center"><?= lang('team_name'); ?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-users"></i> <?= lang('members'); ?></th>
-                        <th class="uk-width-small uk-text-center"><i class="fas fa-chart-line"></i> <?= lang('rating'); ?></th>
+                        <th class="uk-width-small"><?= lang('team_name'); ?></th>
+                        <th class="uk-width-small"><?= lang('members'); ?></th>
+                        <th class="uk-width-small"><?= lang('rating'); ?></th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach ($this->pvp_model->getTopArena5v5($realm->id) as $tops5v5): ?>
                         <tr>
-                          <td class="uk-text-center"><?=$tops5v5->name?></td>
-                          <td class="uk-text-center">
+                          <td><?= $tops5v5->name; ?></td>
+                          <td>
                             <?php foreach ($this->pvp_model->getMemberTeam($realm->id, $tops5v5->arenaTeamId) as $mmberteam): ?>
                             <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($realm->id, $mmberteam->guid); ?>">
                             <?php endforeach; ?>
                           </td>
-                          <td class="uk-text-center"><?=$tops5v5->rating?></td>
+                          <td><?= $tops5v5->rating; ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -101,25 +107,25 @@
                 <table class="uk-table dark-table uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('name'); ?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?= lang('race'); ?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?= lang('class'); ?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-flag"></i> <?= lang('faction'); ?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?= lang('total_kills'); ?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?= lang('today_kills'); ?></th>
-                      <th class="uk-table-expand uk-text-center"><i class="fas fa-crosshairs"></i> <?= lang('yersterday_kills'); ?></th>
+                      <th class="uk-table-expand"><?= lang('name'); ?></th>
+                      <th class="uk-table-expand"><?= lang('race'); ?></th>
+                      <th class="uk-table-expand"><?= lang('class'); ?></th>
+                      <th class="uk-table-expand"><?= lang('faction'); ?></th>
+                      <th class="uk-table-expand"><?= lang('total_kills'); ?></th>
+                      <th class="uk-table-expand"><?= lang('today_kills'); ?></th>
+                      <th class="uk-table-expand"><?= lang('yersterday_kills'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach($this->pvp_model->getTop20PVP($realm->id) as $tops): ?>
+                    <?php foreach ($this->pvp_model->getTop20PVP($realm->id) as $tops): ?>
                       <tr>
-                        <td class="uk-text-capitalize"><?= $tops->name ?></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($tops->race); ?>" width="20" height="20" alt="Race"></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($tops->class); ?>" width="20" height="20" alt="Class"></td>
-                        <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/faction/'.faction_icon($tops->race); ?>" width="20" height="20" alt="Faction"></td>
-                        <td class="uk-text-center"><?= $tops->totalKills ?></td>
-                        <td class="uk-text-center"><?= $tops->todayKills ?></td>
-                        <td class="uk-text-center"><?= $tops->yesterdayKills ?></td>
+                        <td><?= $tops->name; ?></td>
+                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($tops->race); ?>" width="20" height="20" alt="Race"></td>
+                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($tops->class); ?>" width="20" height="20" alt="Class"></td>
+                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/faction/'.faction_icon($tops->race); ?>" width="20" height="20" alt="Faction"></td>
+                        <td><?= $tops->totalKills; ?></td>
+                        <td><?= $tops->todayKills; ?></td>
+                        <td><?= $tops->yesterdayKills; ?></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

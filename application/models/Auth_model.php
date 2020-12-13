@@ -3,13 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth_model extends CI_Model
 {
-	protected $auth_db;
-
-	public function __construct()
-	{
-		$this->auth_db = $this->load->database('auth', TRUE);
-	}
-
 	/**
 	 * Return connection to auth DB
 	 *
@@ -17,7 +10,14 @@ class Auth_model extends CI_Model
 	 */
 	public function connect()
 	{
-		return $this->auth_db;
+		$auth_db = $this->load->database('auth', TRUE);
+
+		if ($auth_db->conn_id === FALSE)
+		{
+			show_error(lang('error_auth_connection'));
+		}
+
+		return $auth_db;
 	}
 
 	/**
@@ -29,7 +29,7 @@ class Auth_model extends CI_Model
 	 */
 	public function valid_password($username, $password)
 	{
-		$account  = $this->auth_db->where('username', $username)->or_where('email', $username)->get('account')->row();
+		$account  = $this->connect()->where('username', $username)->or_where('email', $username)->get('account')->row();
 		$emulator = config_item('emulator');
 
 		if (empty($account))
@@ -62,7 +62,7 @@ class Auth_model extends CI_Model
 	 */
 	public function get_account($id)
 	{
-		return $this->auth_db->where('id', $id)->get('account')->row();
+		return $this->connect()->where('id', $id)->get('account')->row();
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Auth_model extends CI_Model
 	 */
 	public function account_unique($data, $column = 'username')
 	{
-		$query = $this->auth_db->where($column, $data)->get('account')->num_rows();
+		$query = $this->connect()->where($column, $data)->get('account')->num_rows();
 
 		return ($query == 0);
 	}
@@ -91,11 +91,11 @@ class Auth_model extends CI_Model
 
 		if (in_array($emulator, ['trinity'], true))
 		{
-			$query = $this->auth_db->where('AccountID', $id)->get('account_access')->row('SecurityLevel');		
+			$query = $this->connect()->where('AccountID', $id)->get('account_access')->row('SecurityLevel');		
 		}
 		elseif (in_array($emulator, ['azeroth', 'old_trinity'], true))
 		{
-			$query = $this->auth_db->where('id', $id)->get('account_access')->row('gmlevel');
+			$query = $this->connect()->where('id', $id)->get('account_access')->row('gmlevel');
 		}
 
 		return ! empty($query) ? $query : 0;
@@ -111,7 +111,7 @@ class Auth_model extends CI_Model
 	{
 		$id = $id ?? $this->session->userdata('id');
 
-		$query = $this->auth_db->where(['id' => $id, 'active' => 1])->get('account_banned')->num_rows();
+		$query = $this->connect()->where(['id' => $id, 'active' => 1])->get('account_banned')->num_rows();
 
 		return ($query >= 1);
 	}

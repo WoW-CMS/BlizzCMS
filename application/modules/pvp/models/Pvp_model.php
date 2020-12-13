@@ -35,11 +35,11 @@ class Pvp_model extends CI_Model
 
 	public function getClassGuid($realm, $guid)
 	{
-		return $this->realm->char_connect($realm)->where('guid', $id)->get('characters')->row('class');
+		return $this->realm->char_connect($realm)->where('guid', $guid)->get('characters')->row('class');
 	}
 
 	public function getNameGuid($realm, $guid)
 	{
-		return $this->realm->char_connect($realm)->where('guid', $id)->get('characters')->row('name');
+		return $this->realm->char_connect($realm)->where('guid', $guid)->get('characters')->row('name');
 	}
 }

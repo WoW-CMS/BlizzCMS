@@ -66,7 +66,14 @@ class Realm_model extends CI_Model
 			'pconnect' => FALSE
 		];
 
-		return $this->load->database($dsn, TRUE);
+		$char_db = $this->load->database($dsn, TRUE);
+
+		if ($char_db->conn_id === FALSE)
+		{
+			show_error(lang('error_char_connection'));
+		}
+
+		return $char_db;
 	}
 
 	/**

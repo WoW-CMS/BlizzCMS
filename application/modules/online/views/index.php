@@ -1,9 +1,15 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_online'); ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('tab_online'); ?></h4>
         <ul class="uk-subnav uk-subnav-pill" uk-switcher="connect: .onlineplayers">
           <?php foreach ($realms as $realm): ?>
           <li><a href="#"><i class="fas fa-server"></i> <?= $realm->name; ?></a></li>
@@ -16,21 +22,21 @@
               <table class="uk-table dark-table uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-table-expand"><i class="fas fa-user"></i> <?= lang('name'); ?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-info-circle"></i> <?= lang('level'); ?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?= lang('race'); ?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-user-tag"></i> <?= lang('class'); ?></th>
-                    <th class="uk-table-expand uk-text-center"><i class="fas fa-location-arrow"></i> <?= lang('zone'); ?></th>
+                    <th class="uk-table-expand"><?= lang('name'); ?></th>
+                    <th class="uk-table-expand"><?= lang('level'); ?></th>
+                    <th class="uk-table-expand"><?= lang('race'); ?></th>
+                    <th class="uk-table-expand"><?= lang('class'); ?></th>
+                    <th class="uk-table-expand"><?= lang('zone'); ?></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php foreach($this->online_model->getOnlinePlayers($realm->id) as $online): ?>
                   <tr>
-                    <td class="uk-text-capitalize"><?= $online->name ?></td>
-                    <td class="uk-text-center"><?= $online->level ?></td>
-                    <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($online->race); ?>" width="20" height="20" alt="<?= race_name($online->race); ?>"></td>
-                    <td class="uk-text-center"><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($online->class); ?>" width="20" height="20" alt="<?= class_name($online->class); ?>"></td>
-                    <td class="uk-text-center"><?= $this->base->zone_name($online->zone); ?></td>
+                    <td><?= $online->name; ?></td>
+                    <td><?= $online->level; ?></td>
+                    <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($online->race); ?>" width="20" height="20" alt="<?= race_name($online->race); ?>"></td>
+                    <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($online->class); ?>" width="20" height="20" alt="<?= class_name($online->class); ?>"></td>
+                    <td><?= $this->base->zone_name($online->zone); ?></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>

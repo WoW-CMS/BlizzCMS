@@ -307,3 +307,6 @@ $lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Recuperación de contraseña';
 $lang['email_account_activation'] = 'Activación de cuenta';
+
+$lang['error_auth_connection'] = 'The connection to the auth database could not be established';
+$lang['error_char_connection'] = 'The connection to the character db could not be established';

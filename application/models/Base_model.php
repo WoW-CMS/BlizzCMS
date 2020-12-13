@@ -8,6 +8,8 @@ class Base_model extends CI_Model
 	protected $news_comments = 'news_comments';
 	protected $pages = 'pages';
 	protected $slides = 'slides';
+	protected $modules = 'modules';
+	protected $avatars = 'avatars';
 
 	/**
 	 * Get all menu rows
@@ -140,7 +142,7 @@ class Base_model extends CI_Model
 	 */
 	public function get_avatars()
 	{
-		return $this->db->get('avatars')->result();
+		return $this->db->get($this->avatars)->result();
 	}
 
 	/**
@@ -158,7 +160,7 @@ class Base_model extends CI_Model
 			return in_array($name, $data, true);
 		}
 
-		$query = $this->db->get('modules')->result_array();
+		$query = $this->db->get($this->modules)->result_array();
 		$list  = array_column($query, 'name');
 
 		$this->cache->file->save('modules', $list, 604800);

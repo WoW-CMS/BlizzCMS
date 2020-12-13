@@ -36,7 +36,7 @@ class Installer extends CI_Controller
 		$mysql_ext    = (extension_loaded('mysql') || extension_loaded('mysqlnd'));
 		$openssl_ext  = extension_loaded('openssl');
 		$soap_ext     = extension_loaded('soap');
-		$cache        = (is_dir(APPPATH.'cache') && is_writable(APPPATH.'cache'));
+		$cache        = (is_dir(APPPATH . 'cache') && is_writable(APPPATH . 'cache'));
 		$button       = ($version && $gd_ext && $gmp_ext && $curl_ext && $mbstring_ext && $mysql_ext && $openssl_ext && $soap_ext && $cache);
 
 		$data = [
