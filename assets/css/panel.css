@@ -91,7 +91,6 @@ h6 {
 header .uk-navbar-nav > li > a {
   background: transparent;
   color: #fff;
-  margin: 0;
   text-transform: none;
   transition: all ease-in .2s;
 }
@@ -99,7 +98,6 @@ header .uk-navbar-nav > li > a {
 .uk-navbar-nav > li > a {
   background: transparent;
   color: #c4c4c4;
-  margin: 0 2px;
   text-transform: none;
   transition: all ease-in .2s;
 }

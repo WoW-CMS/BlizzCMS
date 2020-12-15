@@ -67,7 +67,7 @@ $route['recovery'] = 'auth/recovery';
 */
 $route['news/(:num)']['get'] = 'news/index/$1';
 $route['news/reply']['post'] = 'news/reply';
-$route['news/reply/delete']['post'] = 'news/deletereply';
+$route['news/reply/delete/(:num)']['get'] = 'news/delete_reply/$1';
 
 /**
  * Page Routes

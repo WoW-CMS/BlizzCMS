@@ -44,7 +44,7 @@
                       <div class="uk-width-expand"></div>
                       <div class="uk-width-auto">
                         <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
-                        <button class="uk-button uk-button-danger uk-button-small" value="<?= $comment->id ?>" id="button_delete<?= $comment->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></button>
+                        <a href="<?= site_url('news/reply/delete/'.$comment->id); ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -58,11 +58,15 @@
             <?php if ($this->website->isLogged()): ?>
             <h3 class="uk-h3"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
             <div class="uk-card uk-card-default uk-card-body uk-margin-small">
-              <?= form_open('', 'id="replyForm" onsubmit="ReplyForm(event)"'); ?>
+              <?= form_open(site_url('news/reply')); ?>
+              <?= form_hidden('id', $news->id); ?>
               <div class="uk-margin-small uk-light">
-                <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
+                <div class="uk-form-controls">
+                  <textarea class="uk-textarea tinyeditor" name="comment" rows="10"></textarea>
+                </div>
+                <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error'); ?></span>
               </div>
-              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
+              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
               <?= form_close(); ?>
             </div>
             <?php endif; ?>
@@ -86,120 +90,3 @@
         </div>
       </div>
     </section>
-    <?php if ($this->website->isLogged()): ?>
-    <?= $tiny ?>
-    <script>
-      function ReplyForm(e) {
-        e.preventDefault();
-
-        var news = "<?= $news->id; ?>";
-        var reply = tinymce.get('reply_comment').getContent();
-        var content = tinymce.get('reply_comment').getContent({format: 'text'}).replace('&nbsp;','').trim();
-        if(content == "" || content == null || content == '<p> </p>'){
-          $.amaran({
-            'theme': 'awesome error',
-            'content': {
-              title: '<?= lang('notification_title_error'); ?>',
-              message: '<?= lang('notification_reply_empty'); ?>',
-              info: '',
-              icon: 'fas fa-times-circle'
-            },
-            'delay': 5000,
-            'position': 'top right',
-            'inEffect': 'slideRight',
-            'outEffect': 'slideRight'
-          });
-          return false;
-        }
-        $.ajax({
-          url:"<?= site_url('news/reply'); ?>",
-          method:"POST",
-          data:{news, reply},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= lang('notification_title_info'); ?>',
-                message: '<?= lang('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-          },
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= lang('notification_title_success'); ?>',
-                  message: '<?= lang('notification_reply_created'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-            $('#replyForm')[0].reset();
-            window.location.replace("<?= site_url('news/'.$news->id); ?>");
-          }
-        });
-      }
-      function DeleteReply(e, value) {
-        e.preventDefault();
-
-        $.ajax({
-          url:"<?= site_url('news/reply/delete'); ?>",
-          method:"POST",
-          data:{value},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= lang('notification_title_info'); ?>',
-                message: '<?= lang('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-          },
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= lang('notification_title_success'); ?>',
-                  message: '<?= lang('notification_reply_deleted'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-            window.location.replace("<?= site_url('news/'.$news->id); ?>");
-          }
-        });
-      }
-    </script>
-    <?php endif; ?>

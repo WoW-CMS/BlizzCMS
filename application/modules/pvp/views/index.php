@@ -31,12 +31,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($this->pvp_model->getTopArena2v2($realm->id) as $tops2v2): ?>
+                      <?php foreach ($this->pvp_model->get_teams_2v2($realm->id) as $tops2v2): ?>
                         <tr>
                           <td><?= $tops2v2->name; ?></td>
                           <td>
-                            <?php foreach ($this->pvp_model->getMemberTeam($realm->id, $tops2v2->arenaTeamId) as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($realm->id, $mmberteam->guid); ?>">
+                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $tops2v2->arenaTeamId) as $mmberteam): ?>
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $mmberteam->guid); ?>">
                             <?php endforeach; ?>
                           </td>
                           <td><?= $tops2v2->rating; ?></td>
@@ -58,12 +58,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($this->pvp_model->getTopArena3v3($realm->id) as $tops3v3): ?>
+                      <?php foreach ($this->pvp_model->get_teams_3v3($realm->id) as $tops3v3): ?>
                         <tr>
                           <td><?= $tops3v3->name; ?></td>
                           <td>
-                            <?php foreach ($this->pvp_model->getMemberTeam($realm->id, $tops3v3->arenaTeamId) as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($realm->id, $mmberteam->guid); ?>">
+                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $tops3v3->arenaTeamId) as $mmberteam): ?>
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $mmberteam->guid); ?>">
                             <?php endforeach; ?>
                           </td>
                           <td><?= $tops3v3->rating; ?></td>
@@ -85,12 +85,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($this->pvp_model->getTopArena5v5($realm->id) as $tops5v5): ?>
+                      <?php foreach ($this->pvp_model->get_teams_5v5($realm->id) as $tops5v5): ?>
                         <tr>
                           <td><?= $tops5v5->name; ?></td>
                           <td>
-                            <?php foreach ($this->pvp_model->getMemberTeam($realm->id, $tops5v5->arenaTeamId) as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->getClassGuid($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->getNameGuid($realm->id, $mmberteam->guid); ?>">
+                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $tops5v5->arenaTeamId) as $mmberteam): ?>
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $mmberteam->guid); ?>">
                             <?php endforeach; ?>
                           </td>
                           <td><?= $tops5v5->rating; ?></td>
@@ -117,7 +117,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($this->pvp_model->getTop20PVP($realm->id) as $tops): ?>
+                    <?php foreach ($this->pvp_model->get_top_pvp($realm->id) as $tops): ?>
                       <tr>
                         <td><?= $tops->name; ?></td>
                         <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($tops->race); ?>" width="20" height="20" alt="Race"></td>

@@ -53,30 +53,52 @@ class News extends CI_Controller
 
 	public function reply()
 	{
+		if ($this->input->method() != 'post')
+		{
+			show_404();
+		}
+
 		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));
 		}
 
-		$this->db->insert('news_comments', [
-			'news_id'    => $this->input->post('news', TRUE),
-			'user_id'    => $this->session->userdata('id'),
-			'commentary' => $this->input->post('reply'),
-			'created_at' => now()
-		]);
+		$this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim|required');
 
-		echo true;
+		if ($this->form_validation->run() == FALSE)
+		{
+			$id = $this->input->post('id', TRUE);
+
+			$this->session->set_flashdata('form_error', form_error('comment', '', ''));
+			redirect(site_url('news/' . $id));
+		}
+		else
+		{
+			$id = $this->input->post('id', TRUE);
+
+			$this->db->insert('news_comments', [
+				'news_id'    => $id,
+				'user_id'    => $this->session->userdata('id'),
+				'commentary' => $this->input->post('comment'),
+				'created_at' => now()
+			]);
+
+			$this->session->set_flashdata('success', lang('alert_reply_created'));
+			redirect(site_url('news/' . $id));
+		}
 	}
 
-	public function deletereply()
+	public function delete_reply($id = null)
 	{
 		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));
 		}
 
-		$this->db->where('id', $this->input->post('value', TRUE))->delete('news_comments');
+		$this->db->where('id', $id)->delete('news_comments');
 
-		echo true;
+		$this->session->set_flashdata('success', lang('alert_reply_deleted'));
+		redirect(site_url('news/' . $id));
 	}
 }
