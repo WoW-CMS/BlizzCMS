@@ -80,7 +80,7 @@
                 <ul class="uk-list uk-list-divider uk-text-small">
                   <?php foreach ($aside as $item): ?>
                   <li>
-                    <a href="<?= site_url('news/'.$item->id); ?>"><i class="far fa-newspaper"></i> <?= $item->title; ?></a>
+                    <a href="<?= site_url('news/'.$item->id); ?>"><i class="far fa-newspaper"></i> <?= html_escape($item->title); ?></a>
                   </li>
                   <?php endforeach; ?>
                 </ul>
