@@ -10,6 +10,7 @@ class Home_model extends CI_Model {
     {
         parent::__construct();
         $this->auth = $this->load->database('auth', TRUE);
+        $this->load->config('home');
     }
 
     public function getSlides()
@@ -22,7 +23,7 @@ class Home_model extends CI_Model {
         $invitation = $this->config->item('discord_invitation');
         error_reporting(0);
 
-        if ($this->wowmodule->getDiscordStatus() && strlen($invitation) == 7)
+        if ($this->wowmodule->getDiscordStatus() && strlen($invitation) == $this->config->item('discord_invitation_length'))
         {
             $discordapi = $this->cache->file->get('discordapi');
 
@@ -31,7 +32,7 @@ class Home_model extends CI_Model {
                 return $api;
             }
             else {
-                $this->cache->file->save('discordapi', file_get_contents('https://discordapp.com/api/v6/invite/'.$invitation.'?with_counts=true'), 300);
+                $this->cache->file->save('discordapi', file_get_contents('https://discordapp.com/api/v8/invites/'.$invitation.'?with_counts=true'), 300);
                 $check = $this->cache->file->get('discordapi');
 
                 if ($check !== false)
