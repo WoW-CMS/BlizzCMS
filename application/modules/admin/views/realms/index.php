@@ -1,6 +1,6 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+        <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_realms'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
@@ -22,8 +22,8 @@
               <thead>
                 <tr>
                   <th class="uk-width-medium"><?= lang('name'); ?></th>
-                  <th class="uk-width-medium"><?= lang('database'); ?></th>
-                  <th class="uk-width-small">Soap Port</th>
+                  <th class="uk-width-medium uk-visible@s"><?= lang('database'); ?></th>
+                  <th class="uk-width-small uk-visible@s">Soap Port</th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
@@ -31,8 +31,8 @@
                 <?php foreach ($realms as $item): ?>
                 <tr>
                   <td><?= $item->name; ?></td>
-                  <td><?= $item->char_database; ?></td>
-                  <td><?= $item->console_port; ?></td>
+                  <td class="uk-visible@s"><?= $item->char_database; ?></td>
+                  <td class="uk-visible@s"><?= $item->console_port; ?></td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/realms/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>

@@ -2,7 +2,7 @@
       <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: fade;autoplay: true;autoplay-interval: 6000;min-height: 150;max-height: 300;">
         <ul class="uk-slideshow-items">
           <?php foreach ($this->base->get_slides() as $slide): ?>
-          <?php if ($slide->type == 1): ?>
+          <?php if ($slide->type === TYPE_IMAGE): ?>
           <li>
             <img src="<?= $template['uploads'].'slides/'.$slide->route; ?>" alt="<?= $slide->title ?>" uk-cover>
             <div class="uk-container uk-position-relative uk-margin-large-top">
@@ -10,7 +10,7 @@
               <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slide->description ?></p>
             </div>
           </li>
-          <?php elseif ($slide->type == 2): ?>
+          <?php elseif ($slide->type === TYPE_VIDEO): ?>
           <li>
             <video src="<?= $template['uploads'].'slides/'.$slide->route; ?>" autoplay loop playslinline uk-cover></video>
             <div class="uk-container uk-position-relative uk-margin-large-top">
@@ -18,7 +18,7 @@
               <p class="uk-position-medium uk-text-left uk-margin-remove"><?= $slide->description ?></p>
             </div>
           </li>
-          <?php elseif ($slide->type == 3): ?>
+          <?php elseif ($slide->type === TYPE_IFRAME): ?>
           <li>
             <iframe src="<?= $slide->route; ?>" frameborder="0" allowfullscreen uk-video="autoplay: false" data-uk-cover="automute: false"></iframe>
           </li>

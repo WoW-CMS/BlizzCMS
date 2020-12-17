@@ -87,7 +87,7 @@
                   </ul>
                 </div>
               </li>
-              <?php elseif ($item->type === TYPE_DEFAULT && $item->parent == 0): ?>
+              <?php elseif ($item->type === TYPE_DEFAULT): ?>
               <li class="uk-visible@m">
                 <a target="<?= $item->target; ?>" href="<?= $item->url; ?>">
                   <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>
@@ -147,7 +147,7 @@
                     <?php endforeach; ?>
                   </ul>
                 </li>
-                <?php elseif ($item->type === TYPE_DEFAULT && $item->parent == 0): ?>
+                <?php elseif ($item->type === TYPE_DEFAULT): ?>
                 <li>
                   <a target="<?= $item->target; ?>" href="<?= $item->url; ?>">
                     <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>

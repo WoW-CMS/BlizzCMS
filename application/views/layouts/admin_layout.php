@@ -6,13 +6,11 @@
     <title><?= $template['title']; ?></title>
     <link rel="icon" type="image/x-icon" href="<?= $template['assets'].'images/favicon.ico' ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'uikit/css/uikit.min.css' ?>">
-    <link rel="stylesheet" href="<?= $template['assets'].'amaranjs/css/amaran.min.css'; ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'css/panel.css' ?>">
     <script src="<?= $template['assets'].'uikit/js/uikit.min.js' ?>"></script>
     <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js' ?>"></script>
     <script src="<?= $template['assets'].'js/jquery.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'fontawesome/js/all.js'; ?>" defer></script>
-    <script src="<?= $template['assets'].'amaranjs/js/jquery.amaran.min.js'; ?>"></script>
   </head>
   <body>
     <header class="uk-background-primary">

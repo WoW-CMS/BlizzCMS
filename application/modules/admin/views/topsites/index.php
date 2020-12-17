@@ -1,6 +1,6 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+        <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_topsites'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
@@ -22,8 +22,8 @@
               <thead>
                 <tr>
                   <th class="uk-table-expand"><?= lang('name'); ?></th>
-                  <th class="uk-width-small"><?= lang('time'); ?></th>
-                  <th class="uk-width-small"><?= lang('points'); ?></th>
+                  <th class="uk-width-small uk-visible@s"><?= lang('time'); ?></th>
+                  <th class="uk-width-small uk-visible@s"><?= lang('points'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
@@ -31,8 +31,8 @@
                 <?php foreach ($topsites as $item): ?>
                 <tr>
                   <td><?= $item->name; ?></td>
-                  <td><?= $item->time; ?></td>
-                  <td><?= $item->points; ?></td>
+                  <td class="uk-visible@s"><?= $item->time; ?></td>
+                  <td class="uk-visible@s"><?= $item->points; ?></td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/topsites/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>

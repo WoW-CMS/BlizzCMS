@@ -41,10 +41,9 @@
                   <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="0"><?= lang('select_type'); ?></option>
-                      <option value="1" <?php if ($slide->type == 1) echo 'selected'; ?>><?= lang('option_image'); ?></option>
-                      <option value="2" <?php if ($slide->type == 2) echo 'selected'; ?>><?= lang('option_video'); ?></option>
-                      <option value="3" <?php if ($slide->type == 3) echo 'selected'; ?>><?= lang('option_iframe'); ?></option>
+                      <option value="<?= TYPE_IMAGE ?>" <?php if ($slide->type === TYPE_IMAGE) echo 'selected'; ?>><?= lang('option_image'); ?></option>
+                      <option value="<?= TYPE_VIDEO ?>" <?php if ($slide->type === TYPE_VIDEO) echo 'selected'; ?>><?= lang('option_video'); ?></option>
+                      <option value="<?= TYPE_IFRAME ?>" <?php if ($slide->type === TYPE_IFRAME) echo 'selected'; ?>><?= lang('option_iframe'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

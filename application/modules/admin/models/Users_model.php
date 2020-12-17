@@ -8,11 +8,17 @@ class Users_model extends CI_Model
 	/**
 	 * Count all users
 	 *
+	 * @param string $search
 	 * @return int
 	 */
-	public function count_all()
+	public function count_all($search = '')
 	{
-		return $this->db->count_all($this->users);
+		if ($search === '')
+		{
+			return $this->db->count_all($this->users);
+		}
+
+		return $this->db->from($this->users)->like('nickname', $search)->or_like('username', $search)->or_like('email', $search)->count_all_results();
 	}
 
 	/**
@@ -20,11 +26,17 @@ class Users_model extends CI_Model
 	 *
 	 * @param int $limit
 	 * @param int $start
+	 * @param string $search
 	 * @return array
 	 */
-	public function get_all($limit, $start)
+	public function get_all($limit, $start, $search = '')
 	{
-		return $this->db->limit($limit, $start)->order_by('id', 'DESC')->get($this->users)->result();
+		if ($search === '')
+		{
+			return $this->db->limit($limit, $start)->order_by('id', 'DESC')->get($this->users)->result();
+		}
+
+		return $this->db->group_start()->like('nickname', $search)->or_like('username', $search)->or_like('email', $search)->group_end()->limit($limit, $start)->order_by('id', 'DESC')->get($this->users)->result();
 	}
 
 	/**

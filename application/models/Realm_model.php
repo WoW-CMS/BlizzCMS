@@ -306,21 +306,23 @@ class Realm_model extends CI_Model
 		$emulator = config_item('emulator');
 		$urns     = config_item('emulator_urn');
 
-		$client = new SoapClient(NULL, [
+		$client = new \SoapClient(NULL, [
 			'location'   => "http://" . $data->console_hostname . ":" . $data->console_port . "/",
 			'uri'        => 'urn:' . $urns[$emulator],
 			'style'      => SOAP_RPC,
 			'login'      => $data->console_username,
-			'password'   => decrypt($data->console_password),
-			'trace'      => 1,
-			'exceptions' => 0
+			'password'   => decrypt($data->console_password)
 		]);
 
-		if (is_soap_fault($client))
+		try
 		{
-			return 'Soap not found';
+			$result = $client->executeCommand(new \SoapParam($command, 'command'));
+		}
+		catch (\SoapFault $e)
+		{
+			$result = $e->getMessage();
 		}
 
-		return $client->executeCommand(new SoapParam($command, "command"));
+		return $result;
 	}
 }

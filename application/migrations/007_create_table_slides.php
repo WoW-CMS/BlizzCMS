@@ -22,9 +22,9 @@ class Migration_Create_table_slides extends CI_Migration
 				'null' => TRUE
 			),
 			'type' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE
+				'type' => 'ENUM("image","video","iframe")',
+				'default' => 'image',
+				'null' => FALSE
 			),
 			'route' => array(
 				'type' => 'VARCHAR',
@@ -36,8 +36,8 @@ class Migration_Create_table_slides extends CI_Migration
 		$this->dbforge->create_table('slides');
 
 		$data = array(
-			array('title' => 'BlizzCMS', 'description' => 'Check our constant updates!', 'type' => '1', 'route' => 'slide1.jpg'),
-			array('title' => 'Vote Now', 'description' => 'Each vote will be rewarded!', 'type' => '1', 'route' => 'slide2.jpg')
+			array('title' => 'BlizzCMS', 'description' => 'Check our constant updates!', 'type' => 'image', 'route' => 'slide1.jpg'),
+			array('title' => 'Vote Now', 'description' => 'Each vote will be rewarded!', 'type' => 'image', 'route' => 'slide2.jpg')
 		);
 		$this->db->insert_batch('slides', $data);
 	}

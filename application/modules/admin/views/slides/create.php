@@ -41,10 +41,10 @@
                   <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="0"><?= lang('select_type'); ?></option>
-                      <option value="1"><?= lang('option_image'); ?></option>
-                      <option value="2"><?= lang('option_video'); ?></option>
-                      <option value="3"><?= lang('option_iframe'); ?></option>
+                      <option value="" hidden selected><?= lang('select_type'); ?></option>
+                      <option value="<?= TYPE_IMAGE ?>"><?= lang('option_image'); ?></option>
+                      <option value="<?= TYPE_VIDEO ?>"><?= lang('option_video'); ?></option>
+                      <option value="<?= TYPE_IFRAME ?>"><?= lang('option_iframe'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
