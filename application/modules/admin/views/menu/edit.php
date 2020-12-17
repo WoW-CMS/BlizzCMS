@@ -50,8 +50,8 @@
                   <label class="uk-form-label"><?= lang('target'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="target">
-                      <option value="1" <?php if ($menu->target == 1) echo 'selected'; ?>><?= lang('option_same_tab'); ?></option>
-                      <option value="2" <?php if ($menu->target == 2) echo 'selected'; ?>><?= lang('option_new_tab'); ?></option>
+                      <option value="<?= TYPE_SELF_TAB ?>" <?php if ($menu->target === TYPE_SELF_TAB) echo 'selected'; ?>><?= lang('option_same_tab'); ?></option>
+                      <option value="<?= TYPE_BLANK_TAB ?>" <?php if ($menu->target === TYPE_BLANK_TAB) echo 'selected'; ?>><?= lang('option_new_tab'); ?></option>
                     </select>
                   </div>
                   <?= form_error('target', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -64,8 +64,8 @@
                   <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="1" <?php if ($menu->type == 1) echo 'selected'; ?>><?= lang('option_normal'); ?></option>
-                      <option value="2" <?php if ($menu->type == 2) echo 'selected'; ?>><?= lang('option_dropdown'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>" <?php if ($menu->type === TYPE_DEFAULT) echo 'selected'; ?>><?= lang('option_normal'); ?></option>
+                      <option value="<?= TYPE_DROPDOWN ?>" <?php if ($menu->type === TYPE_DROPDOWN) echo 'selected'; ?>><?= lang('option_dropdown'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

@@ -70,40 +70,28 @@
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <?php foreach ($this->base->get_menu() as $item): ?>
-              <?php if ($item->type == 2): ?>
+              <?php if ($item->type === TYPE_DROPDOWN): ?>
               <li class="uk-visible@m">
                 <a href="#">
                   <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>&nbsp;<i class="fas fa-caret-down"></i>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php foreach ($this->base->get_parent_menu($item->id) as $subitem): ?>
+                    <?php foreach ($this->base->get_menu($item->id) as $subitem): ?>
                       <li>
-                        <?php if ($subitem->target == 1): ?>
-                        <a href="<?= site_url($subitem->url); ?>">
+                        <a target="<?= $subitem->target; ?>" href="<?= $subitem->url; ?>">
                           <i class="<?= $subitem->icon; ?>"></i>&nbsp;<?= $subitem->name; ?>
                         </a>
-                        <?php elseif ($subitem->target == 2): ?>
-                        <a target="_blank" href="<?= $subitem->url; ?>">
-                          <i class="<?= $subitem->icon; ?>"></i>&nbsp;<?= $subitem->name; ?>
-                        </a>
-                        <?php endif; ?>
                       </li>
                     <?php endforeach; ?>
                   </ul>
                 </div>
               </li>
-              <?php elseif ($item->type == 1 && $item->parent == 0): ?>
+              <?php elseif ($item->type === TYPE_DEFAULT && $item->parent == 0): ?>
               <li class="uk-visible@m">
-                <?php if ($item->target == 1): ?>
-                <a href="<?= site_url($item->url); ?>">
+                <a target="<?= $item->target; ?>" href="<?= $item->url; ?>">
                   <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>
                 </a>
-                <?php elseif ($item->target == 2): ?>
-                <a target="_blank" href="<?= $item->url; ?>">
-                  <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>
-                </a>
-                <?php endif; ?>
               </li>
               <?php endif; ?>
               <?php endforeach; ?>
@@ -144,38 +132,26 @@
                 <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout'); ?></a></li>
                 <?php endif; ?>
                 <?php foreach ($this->base->get_menu() as $item): ?>
-                <?php if ($item->type == 2): ?>
+                <?php if ($item->type === TYPE_DROPDOWN): ?>
                 <li class="uk-parent">
                   <a href="#">
                     <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>
                   </a>
                   <ul class="uk-nav-sub">
-                    <?php foreach ($this->base->get_parent_menu($item->id) as $subitem): ?>
+                    <?php foreach ($this->base->get_menu($item->id) as $subitem): ?>
                     <li>
-                      <?php if ($subitem->target == 1): ?>
-                      <a href="<?= site_url($subitem->url); ?>">
+                      <a target="<?= $subitem->target; ?>" href="<?= $subitem->url; ?>">
                         <i class="<?= $subitem->icon; ?>"></i>&nbsp;<?= $subitem->name; ?>
                       </a>
-                      <?php elseif ($subitem->target == 2): ?>
-                      <a target="_blank" href="<?= $subitem->url; ?>">
-                        <i class="<?= $subitem->icon; ?>"></i>&nbsp;<?= $subitem->name; ?>
-                      </a>
-                      <?php endif; ?>
                     </li>
                     <?php endforeach; ?>
                   </ul>
                 </li>
-                <?php elseif ($item->type == 1 && $item->parent == 0): ?>
+                <?php elseif ($item->type === TYPE_DEFAULT && $item->parent == 0): ?>
                 <li>
-                  <?php if ($item->target == 1): ?>
-                  <a href="<?= site_url($item->url); ?>">
+                  <a target="<?= $item->target; ?>" href="<?= $item->url; ?>">
                     <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>
                   </a>
-                  <?php elseif ($item->target == 2): ?>
-                  <a target="_blank" href="<?= $item->url; ?>">
-                    <i class="<?= $item->icon; ?>"></i>&nbsp;<?= $item->name; ?>
-                  </a>
-                  <?php endif; ?>
                 </li>
                 <?php endif; ?>
                 <?php endforeach; ?>

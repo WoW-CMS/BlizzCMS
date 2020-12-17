@@ -91,7 +91,7 @@ class News extends CI_Controller
 
 	public function delete_reply($id = null)
 	{
-		if (! $this->website->isLogged())
+		if (empty($id) || ! $this->website->isLogged())
 		{
 			redirect(site_url('login'));
 		}

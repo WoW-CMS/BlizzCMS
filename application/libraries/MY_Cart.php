@@ -74,13 +74,11 @@ class MY_Cart extends CI_Cart
 		if ($this->_cart_contents === NULL)
 		{
 			// No cart exists so we'll set some base values
-			$this->_cart_contents = array('cart_total' => 0, 'total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0);
+			$this->_cart_contents = array('total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0);
 		}
 
 		log_message('info', 'Cart Class Initialized');
 	}
-
-	// --------------------------------------------------------------------
 
 	/**
 	 * Insert
@@ -99,10 +97,10 @@ class MY_Cart extends CI_Cart
 
 		// --------------------------------------------------------------------
 
-		// Does the $items array contain an id, quantity, price, name, dp and vp?  These are required
-		if ( ! isset($items['id'], $items['qty'], $items['price'], $items['name'], $items['category'], $items['dp'], $items['vp'], $items['guid']))
+		// Does the $items array contain an id, quantity, name, dp, vp, realm and guid?  These are required
+		if ( ! isset($items['id'], $items['qty'], $items['name'], $items['dp'], $items['vp'], $items['realm'], $items['guid']))
 		{
-			log_message('error', 'The cart array must contain a product ID, quantity, price, name, category, dp, vp and guid.');
+			log_message('error', 'The cart array must contain a product ID, quantity, name, dp, vp, realm and guid.');
 			return FALSE;
 		}
 
@@ -140,12 +138,11 @@ class MY_Cart extends CI_Cart
 
 		// --------------------------------------------------------------------
 
-		// Prep the price, dp and vp. Remove leading zeros and anything that isn't a number or decimal point.
-		$items['price'] = (float) $items['price'];
+		// Prep the dp and vp. Remove leading zeros and anything that isn't a number or decimal point.
 		$items['dp'] = (float) $items['dp'];
 		$items['vp'] = (float) $items['vp'];
-		// Prep category and guid
-		$items['category'] = (int) $items['category'];
+		// Prep realm and guid
+		$items['realm'] = (int) $items['realm'];
 		$items['guid'] = (int) $items['guid'];
 
 		// We now need to create a unique identifier for the item being inserted into the cart.
@@ -184,8 +181,6 @@ class MY_Cart extends CI_Cart
 		return $rowid;
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Update the cart
 	 *
@@ -220,12 +215,7 @@ class MY_Cart extends CI_Cart
 
 		// find updatable keys
 		$keys = array_intersect(array_keys($this->_cart_contents[$items['rowid']]), array_keys($items));
-		// if a price was passed, make sure it contains valid data
-		if (isset($items['price']))
-		{
-			$items['price'] = (float) $items['price'];
-		}
-
+		// if a dp was passed, make sure it contains valid data
 		if (isset($items['dp']))
 		{
 			$items['dp'] = (float) $items['dp'];
@@ -236,9 +226,9 @@ class MY_Cart extends CI_Cart
 			$items['vp'] = (float) $items['vp'];
 		}
 
-		if (isset($items['category']))
+		if (isset($items['realm']))
 		{
-			$items['category'] = (int) $items['category'];
+			$items['realm'] = (int) $items['realm'];
 		}
 
 		if (isset($items['guid']))
@@ -255,8 +245,6 @@ class MY_Cart extends CI_Cart
 		return TRUE;
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Save the cart array to the session DB
 	 *
@@ -265,22 +253,20 @@ class MY_Cart extends CI_Cart
 	protected function _save_cart()
 	{
 		// Let's add up the individual prices and set the cart sub-total
-		$this->_cart_contents['total_items'] = $this->_cart_contents['cart_total'] = $this->_cart_contents['total_dp'] = $this->_cart_contents['total_vp'] = $this->_cart_contents['count_items'] = $this->_cart_contents['valid_items'] = 0;
+		$this->_cart_contents['total_items'] = $this->_cart_contents['total_dp'] = $this->_cart_contents['total_vp'] = $this->_cart_contents['count_items'] = $this->_cart_contents['valid_items'] = 0;
 		foreach ($this->_cart_contents as $key => $val)
 		{
 			// We make sure the array contains the proper indexes
-			if ( ! is_array($val) OR ! isset($val['price'], $val['qty']) OR ! isset($val['dp'], $val['qty']) OR ! isset($val['vp'], $val['qty']) OR ! isset($val['guid']) OR ! isset($val['category']))
+			if ( ! is_array($val) OR ! isset($val['dp'], $val['qty']) OR ! isset($val['vp'], $val['qty']) OR ! isset($val['guid']) OR ! isset($val['realm']))
 			{
 				continue;
 			}
 
-			$this->_cart_contents['cart_total'] += ($val['price'] * $val['qty']);
 			$this->_cart_contents['total_dp'] += ($val['dp'] * $val['qty']);
 			$this->_cart_contents['total_vp'] += ($val['vp'] * $val['qty']);
 			$this->_cart_contents['total_items'] += $val['qty'];
 			$this->_cart_contents['count_items'] += ($val['id'] != 0);
 			$this->_cart_contents['valid_items'] += ($val['guid'] != 0);
-			$this->_cart_contents[$key]['subtotal'] = ($this->_cart_contents[$key]['price'] * $this->_cart_contents[$key]['qty']);
 		}
 
 		// Is our cart empty? If so we delete it from the session
@@ -300,8 +286,6 @@ class MY_Cart extends CI_Cart
 		return TRUE;
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Total DP
 	 *
@@ -311,8 +295,6 @@ class MY_Cart extends CI_Cart
 	{
 		return $this->_cart_contents['total_dp'];
 	}
-
-	// --------------------------------------------------------------------
 
 	/**
 	 * Total VP
@@ -324,8 +306,6 @@ class MY_Cart extends CI_Cart
 		return $this->_cart_contents['total_vp'];
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Count Items on cart
 	 *
@@ -336,8 +316,6 @@ class MY_Cart extends CI_Cart
 		return $this->_cart_contents['count_items'];
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Valid guid on items
 	 *
@@ -347,8 +325,6 @@ class MY_Cart extends CI_Cart
 	{
 		return $this->_cart_contents['valid_items'];
 	}
-
-	// --------------------------------------------------------------------
 
 	/**
 	 * Cart Contents
@@ -365,7 +341,6 @@ class MY_Cart extends CI_Cart
 
 		// Remove these so they don't create a problem when showing the cart table
 		unset($cart['total_items']);
-		unset($cart['cart_total']);
 		unset($cart['total_dp']);
 		unset($cart['total_vp']);
 		unset($cart['count_items']);
@@ -373,8 +348,6 @@ class MY_Cart extends CI_Cart
 
 		return $cart;
 	}
-
-	// --------------------------------------------------------------------
 
 	/**
 	 * Get cart item
@@ -386,12 +359,10 @@ class MY_Cart extends CI_Cart
 	 */
 	public function get_item($row_id)
 	{
-		return (in_array($row_id, array('total_items', 'cart_total', 'total_dp', 'total_vp', 'count_items','valid_items'), TRUE) OR ! isset($this->_cart_contents[$row_id]))
+		return (in_array($row_id, array('total_items', 'total_dp', 'total_vp', 'count_items','valid_items'), TRUE) OR ! isset($this->_cart_contents[$row_id]))
 			? FALSE
 			: $this->_cart_contents[$row_id];
 	}
-
-	// --------------------------------------------------------------------
 
 	/**
 	 * Destroy the cart
@@ -402,7 +373,7 @@ class MY_Cart extends CI_Cart
 	 */
 	public function destroy()
 	{
-		$this->_cart_contents = array('cart_total' => 0, 'total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0);
+		$this->_cart_contents = array('total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0);
 		$this->CI->session->unset_userdata('cart_contents');
 	}
 }

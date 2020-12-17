@@ -40,7 +40,7 @@ class Menu extends MX_Controller
 	public function index()
 	{
 		$data = [
-			'menu' => $this->base->get_menu()
+			'menu' => $this->menu_model->get_all()
 		];
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));

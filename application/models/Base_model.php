@@ -14,27 +14,17 @@ class Base_model extends CI_Model
 	/**
 	 * Get all menu rows
 	 *
+	 * @param int $parent
 	 * @return array
 	 */
-	public function get_menu()
+	public function get_menu($parent = 0)
 	{
 		if (! $this->db->table_exists($this->menu))
 		{
 			return [];
 		}
 
-		return $this->db->get($this->menu)->result();
-	}
-
-	/**
-	 * Get all parent menu rows
-	 *
-	 * @param int $id
-	 * @return array
-	 */
-	public function get_parent_menu($id)
-	{
-		return $this->db->where('parent', $id)->get($this->menu)->result();
+		return $this->db->where('parent', $parent)->get($this->menu)->result();
 	}
 
 	/**

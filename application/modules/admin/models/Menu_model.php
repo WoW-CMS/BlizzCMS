@@ -16,6 +16,16 @@ class Menu_model extends CI_Model
 	}
 
 	/**
+	 * Get all menu rows
+	 *
+	 * @return array
+	 */
+	public function get_all()
+	{
+		return $this->db->get($this->menu)->result();
+	}
+
+	/**
 	 * Get menu
 	 *
 	 * @param int $id

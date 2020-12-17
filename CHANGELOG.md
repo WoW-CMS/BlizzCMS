@@ -131,3 +131,4 @@
 - Deprecated ``$this->realm->getRealms()`` in favor of ``$this->realm->get_realms()``
 - Deprecated ``$this->realm->getRealm()`` in favor of ``$this->realm->get_realm()``
 - Deprecated ``$this->realm->getRealmName()`` in favor of ``$this->realm->realm_name()``
+- Deprecated ``$this->base->get_parent_menu()`` in favor of ``$this->base->get_menu()``

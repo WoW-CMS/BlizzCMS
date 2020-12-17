@@ -82,11 +82,12 @@ class Auth_model extends CI_Model
 	/**
 	 * Get gmlevel of account
 	 *
-	 * @param int $id
+	 * @param int|null $id
 	 * @return int
 	 */
-	public function get_gmlevel($id)
+	public function get_gmlevel($id = null)
 	{
+		$id       = $id ?? $this->session->userdata('id');
 		$emulator = config_item('emulator');
 
 		if (in_array($emulator, ['trinity'], true))
@@ -119,12 +120,13 @@ class Auth_model extends CI_Model
 	/**
 	 * Check if account has admin access
 	 *
+	 * @param int|null $id
 	 * @return bool
 	 */
-	public function is_admin()
+	public function is_admin($id = null)
 	{
 		$config = config_item('admin_access_level');
-		$access = $this->get_gmlevel($this->session->userdata('id'));
+		$access = $this->get_gmlevel($id);
 
 		return ($access >= (int) $config);
 	}
@@ -132,12 +134,13 @@ class Auth_model extends CI_Model
 	/**
 	 * Check if account has moderator access
 	 *
+	 * @param int|null $id
 	 * @return bool
 	 */
-	public function is_moderator()
+	public function is_moderator($id = null)
 	{
 		$config = config_item('mod_access_level');
-		$access = $this->get_gmlevel($this->session->userdata('id'));
+		$access = $this->get_gmlevel($id);
 
 		return ($access >= (int) $config);
 	}

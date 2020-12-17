@@ -51,8 +51,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="target">
                       <option value="" hidden selected><?= lang('select_target'); ?></option>
-                      <option value="1"><?= lang('option_same_tab'); ?></option>
-                      <option value="2"><?= lang('option_new_tab'); ?></option>
+                      <option value="<?= TYPE_SELF_TAB ?>"><?= lang('option_same_tab'); ?></option>
+                      <option value="<?= TYPE_BLANK_TAB ?>"><?= lang('option_new_tab'); ?></option>
                     </select>
                   </div>
                   <?= form_error('target', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -66,8 +66,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="" hidden selected><?= lang('select_type'); ?></option>
-                      <option value="1"><?= lang('option_normal'); ?></option>
-                      <option value="2"><?= lang('option_dropdown'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>"><?= lang('option_normal'); ?></option>
+                      <option value="<?= TYPE_DROPDOWN ?>"><?= lang('option_dropdown'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

@@ -43,7 +43,7 @@
                     <div class="uk-grid uk-grid-small" data-uk-grid>
                       <div class="uk-width-expand"></div>
                       <div class="uk-width-auto">
-                        <?php if ($this->auth->get_gmlevel($this->session->userdata('id')) > 0 || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
+                        <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
                         <a href="<?= site_url('news/reply/delete/'.$comment->id); ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a>
                         <?php endif; ?>
                       </div>
