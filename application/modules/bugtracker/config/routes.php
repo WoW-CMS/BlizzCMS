@@ -10,10 +10,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['bugtracker']['get'] = 'bugtracker/index';
-$route['bugtracker/new']['get'] = 'bugtracker/newreport';
-$route['bugtracker/create']['post'] = 'bugtracker/create';
-$route['bugtracker/type']['post'] = 'bugtracker/update_type';
-$route['bugtracker/status']['post'] = 'bugtracker/update_status';
-$route['bugtracker/priority']['post'] = 'bugtracker/update_priority';
-$route['bugtracker/close']['post'] = 'bugtracker/close_report';
+$route['bugtracker/create'] = 'bugtracker/create';
+$route['bugtracker/edit/(:num)'] = 'bugtracker/edit/$1';
 $route['bugtracker/report/(:num)']['get'] = 'bugtracker/report/$1';
+$route['bugtracker/comment']['post'] = 'bugtracker/comment';
+$route['bugtracker/comment/delete/(:num)']['get'] = 'bugtracker/comment_delete/$1';

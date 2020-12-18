@@ -24,7 +24,23 @@ class Base_model extends CI_Model
 			return [];
 		}
 
-		return $this->db->where('parent', $parent)->get($this->menu)->result();
+		$query = $this->db->where('parent', $parent)->get($this->menu)->result();
+		$data  = [];
+
+		foreach ($query as $item)
+		{
+			$data[] = (object) [
+				'id'     => $item->id,
+				'name'   => html_escape($item->name),
+				'url'    => filter_var($item->url, FILTER_VALIDATE_URL) ? $item->url : site_url($item->url),
+				'icon'   => html_escape($item->icon),
+				'target' => $item->target,
+				'type'   => $item->type,
+				'parent' => $item->parent
+			];
+		}
+
+		return $data;
 	}
 
 	/**
@@ -88,6 +104,17 @@ class Base_model extends CI_Model
 	public function count_news_comments($id)
 	{
 		return $this->db->where('news_id', $id)->count_all_results($this->news_comments);
+	}
+
+	/**
+	 * Get news comment
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_comment($id)
+	{
+		return $this->db->where('id', $id)->get($this->news_comments)->row();
 	}
 
 	/**

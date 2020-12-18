@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Module migrations are disabled by default for security reasons.
 |
 */
-$config['migration_enabled'] = FALSE;
+$config['migration_enabled'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ $config['migration_enabled'] = FALSE;
 | This is used to set migration version that the file system should be on.
 |
 */
-$config['migration_version'] = 2;
+$config['migration_version'] = 3;
 
 /*
 |--------------------------------------------------------------------------

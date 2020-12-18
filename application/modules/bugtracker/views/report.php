@@ -1,113 +1,94 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom uk-flex-middle" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_bugtracker'); ?></h4>
+          </div>
+          <div class="uk-width-auto">
+            <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $report->user_id): ?>
+            <div class="uk-inline">
+              <button class="uk-icon-button" type="button"><i class="fas fa-ellipsis-v"></i></button>
+              <div uk-dropdown="mode: click">
+                <ul class="uk-nav uk-dropdown-nav">
+                  <li><a href="<?= site_url('bugtracker/edit/'.$report->id); ?>"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a></li>
+                </ul>
+              </div>
+            </div>
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-medium" data-uk-grid>
-          <div class="uk-width-1-4@m">
-            <ul class="uk-nav uk-nav-default myaccount-nav">
-              <li><a href="<?= base_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('tab_account'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=lang('navbar_donate_panel'); ?></a></li>
-              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=lang('navbar_vote_panel'); ?></a></li>
-              <li><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=lang('tab_store'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li class="uk-active"><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=lang('tab_bugtracker'); ?></a></li>
-              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=lang('tab_changelogs'); ?></a></li>
-            </ul>
-          </div>
+        <div class="uk-grid uk-grid-medium uk-flex" data-uk-grid>
           <div class="uk-width-3-4@m">
-            <div class="uk-card uk-card-default uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin">
               <div class="uk-card-header">
-                <div class="uk-grid uk-grid-small" data-uk-grid>
-                  <div class="uk-width-expand@s">
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= $report->title; ?></h5>
-                  </div>
-                  <div class="uk-width-auto@s">
-                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $report->date); ?></p>
-                  </div>
-                </div>
+                <h5 class="uk-h5 uk-text-bold uk-margin-remove"><i class="fas fa-user-edit"></i> <?= html_escape($report->title); ?></h5>
               </div>
               <div class="uk-card-body">
-                <div class="uk-grid uk-grid-small" data-uk-grid>
-                  <div class="uk-width-3-4@s">
-                    <?= $report->description; ?>
+                <?= $report->description; ?>
+              </div>
+            </div>
+            <?php if (isset($comments) && ! empty($comments)): ?>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('comments'); ?></h4>
+            <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
+              <?php foreach ($comments as $comment): ?>
+              <div>
+                <div class="uk-card uk-card-default">
+                  <div class="uk-card-header">
+                    <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
+                      <div class="uk-width-auto">
+                        <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($comment->user_id); ?>" width="40" height="40" alt="Avatar">
+                      </div>
+                      <div class="uk-width-expand">
+                        <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname'); ?></h6>
+                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, h:i a', $comment->created_at); ?></p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="uk-width-1-4@s">
-                    <ul class="uk-list uk-text-small">
-                      <li><i class="far fa-user-circle"></i> <?= lang('author'); ?>: <?= $this->auth->get_user($report->author, 'nickname'); ?></li>
-                      <li><i class="fas fa-list"></i> <?= lang('type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($report->type); ?></span></li>
-                      <li><i class="fas fa-exclamation-circle"></i> <?= lang('priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($report->priority); ?></span></li>
-                      <li><i class="fas fa-tags"></i> <?= lang('status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($report->status); ?></span></li>
-                    </ul>
+                  <div class="uk-card-body">
+                    <?= $comment->commentary; ?>
                   </div>
                 </div>
               </div>
+              <?php endforeach; ?>
             </div>
-            <hr>
-            <?php if ($this->auth->is_moderator()): ?>
-            <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
-              <div>
-                <?= form_open(site_url('bugtracker/priority')); ?>
-                  <?= form_hidden('id', $report->id); ?>
-                  <div class="uk-margin uk-light">
-                    <div class="uk-form-controls">
-                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="priority">
-                        <?php foreach($this->bugtracker_model->all_priorities() as $priory): ?>
-                        <option value="<?= $priory->id ?>"><?= $priory->title ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('save_changes'); ?></button>
-                  </div>
-                <?= form_close(); ?>
-              </div>
-              <div>
-                <?= form_open(site_url('bugtracker/status')); ?>
-                  <?= form_hidden('id', $report->id); ?>
-                  <div class="uk-margin uk-light">
-                    <div class="uk-form-controls">
-                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="status">
-                        <?php foreach($this->bugtracker_model->all_status() as $priory): ?>
-                        <option value="<?= $priory->id ?>"><?= $priory->title ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('save_changes'); ?></button>
-                  </div>
-                <?= form_close(); ?>
-              </div>
-              <div>
-                <?= form_open(site_url('bugtracker/type')); ?>
-                  <?= form_hidden('id', $report->id); ?>
-                  <div class="uk-margin uk-light">
-                    <div class="uk-form-controls">
-                      <select class="uk-select uk-width-1-1" id="form-stacked-select" name="type">
-                        <?php foreach($this->bugtracker_model->all_types() as $priory): ?>
-                        <option value="<?= $priory->id ?>"><?= $priory->title ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync-alt"></i> <?= lang('save_changes'); ?></button>
-                  </div>
-                <?= form_close(); ?>
-              </div>
-            </div>
-            <div>
-              <?= form_open(site_url('bugtracker/close')); ?>
-                <?= form_hidden('id', $report->id); ?>
-                <div class="uk-margin-small">
-                  <button class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle" type="submit"></i> <?= lang('close'); ?></button>
+            <?= $links; ?>
+            <?php endif; ?>
+            <?php if ($this->website->isLogged()): ?>
+            <h4 class="uk-h4 uk-margin-top uk-margin-remove-bottom"><i class="fas fa-comment-dots"></i> <?= lang('your_comment'); ?></h4>
+            <div class="uk-card uk-card-default uk-card-body uk-margin-small">
+              <?= form_open(site_url('bugtracker/comment')); ?>
+              <?= form_hidden('id', $report->id); ?>
+              <div class="uk-margin-small uk-light">
+                <div class="uk-form-controls">
+                  <textarea class="uk-textarea tinyeditor" name="comment" rows="10"></textarea>
                 </div>
+                <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error'); ?></span>
+              </div>
+              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send'); ?></button>
               <?= form_close(); ?>
             </div>
             <?php endif; ?>
+          </div>
+          <div class="uk-width-1-4@m uk-flex-first uk-flex-last@m">
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-list-alt"></i> <?= lang('information'); ?></h5>
+              </div>
+              <div class="uk-card-body">
+                <ul class="uk-list uk-list-divider uk-text-small">
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('author'); ?>:</span> <?= $this->website->get_user($report->user_id, 'nickname'); ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('date'); ?>:</span> <?= date('M j, Y, h:i a', $report->created_at); ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('realm'); ?>:</span> <?= $this->realm->realm_name($report->realm_id); ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('category'); ?>:</span> <?= $this->bugtracker_model->category_name($report->category_id); ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('priority'); ?>:</span> <?= $report->priority; ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('status'); ?>:</span> <?= $report->status; ?></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

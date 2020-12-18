@@ -177,3 +177,8 @@ $lang['cms_allow_fopen'] = 'allow_url_fopen';
 $lang['cms_allow_include'] = 'allow_url_include';
 $lang['cms_loaded_modules'] = 'Loaded Modules';
 $lang['cms_loaded_extensions'] = 'Loaded Extensions';
+
+
+$lang['characters_database'] = 'Characters Database';
+$lang['soap_configuration'] = 'SOAP Configuration';
+$lang['check_realm_status'] = 'Check Realm Status';

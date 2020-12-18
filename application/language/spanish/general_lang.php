@@ -46,7 +46,6 @@ $lang['save_changes'] = 'Guardar Cambios';
 $lang['cancel'] = 'Cancelar';
 $lang['send'] = 'Enviar';
 $lang['read_more'] = 'Leer más';
-$lang['add_reply'] = 'Crear respuesta';
 $lang['delete'] = 'Eliminar';
 $lang['create'] = 'Crear';
 $lang['edit'] = 'Editar';
@@ -65,6 +64,7 @@ $lang['search'] = 'Search';
 $lang['select'] = 'Seleccionar';
 $lang['update'] = 'Actualizar';
 $lang['grant'] = 'Conceder';
+$lang['back'] = 'Back';
 $lang['username'] = 'Nombre de usuario';
 $lang['email'] = 'Correo electrónico';
 $lang['password'] = 'Contraseña';
@@ -143,6 +143,9 @@ $lang['total'] = 'Total';
 $lang['guid'] = 'Guid';
 $lang['information'] = 'Información';
 $lang['value'] = 'Valor';
+$lang['protocol'] = 'Protocolo';
+$lang['encryption'] = 'Cifrado';
+$lang['expansion'] = 'Expansión';
 
 /**
  * Status
@@ -157,7 +160,9 @@ $lang['select_parent'] = 'Select a parent';
 $lang['select_target'] = 'Select a target';
 $lang['select_subcategory'] = 'Selecciona una subcategoría';
 $lang['select_language'] = 'Select a language';
+$lang['select_expansion'] = 'Select a expansion';
 $lang['select_emulator'] = 'Select a emulator';
+$lang['select_status'] = 'Select a status';
 
 /**
  * Status
@@ -222,6 +227,12 @@ $lang['maghar_orc'] = 'Orco Maghar';
 $lang['read_and_agree'] = 'He leído y estoy de acuerdo con los';
 $lang['terms_and_conditions'] = 'Términos y Condiciones';
 
+$lang['searcher'] = 'Searcher';
+$lang['reports_list'] = 'Reports list';
+$lang['comments'] = 'Comments';
+$lang['latest_comments'] = 'Latest comments';
+$lang['your_comment'] = 'Your Comment';
+
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
 $lang['alert_upload_error'] = 'Tu imagen debe estar en formato .jpg';
@@ -239,9 +250,7 @@ $lang['page_404_description'] = 'Parece que la página que estás buscando no se
 $lang['panel_acc_rank'] = 'Rango de cuenta';
 $lang['panel_dp'] = 'Puntos de Donación';
 $lang['panel_vp'] = 'Puntos de Votos';
-$lang['panel_expansion'] = 'Expansión';
 $lang['panel_member'] = 'Miembro desde';
-$lang['panel_chars_list'] = 'Lista de Personajes';
 $lang['panel_account_details'] = 'Detalles de la cuenta';
 $lang['panel_last_ip'] = 'Última IP';
 $lang['panel_change_email'] = 'Cambiar Correo electrónico';
@@ -266,7 +275,6 @@ $lang['statistics_top_5v5'] = 'TOP 5V5';
 
 /*News Lang*/
 $lang['news_recent_list'] = 'Lista de noticias recientes';
-$lang['news_comments'] = 'Comentarios';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Reportes no encontrados';

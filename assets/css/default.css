@@ -84,16 +84,20 @@ h6,
 }
 
 .uk-navbar-nav > li > a,
+.uk-dropdown-nav > li > a,
 .uk-navbar-dropdown-nav > li > a {
   color: rgba(255, 255, 255, .8);
 }
 
+.uk-dropdown-nav > li > a,
 .uk-navbar-dropdown-nav > li > a {
   font-size: 12px;
   padding: 4px 18px;
   transition: background-color .2s ease,color .2s ease;
 }
 
+.uk-dropdown-nav > li > a:focus,
+.uk-dropdown-nav > li > a:hover,
 .uk-navbar-dropdown-nav > li > a:focus,
 .uk-navbar-dropdown-nav > li > a:hover {
   background: rgba(255, 255, 255, .15);
@@ -125,6 +129,7 @@ h6,
   margin-top: 1px;
 }
 
+.uk-dropdown,
 .uk-navbar-dropdown {
   background: linear-gradient(#1c2534, #161a26);
   border-width: 0 1px 1px 1px;
@@ -559,11 +564,7 @@ h6,
 .uk-table-divider > :first-child > tr:not(:first-child),
 .uk-table-divider > :not(:first-child) > tr,
 .uk-table-divider > tr:not(:first-child) {
-  border-top: 1px solid rgba(255, 255, 255, .3);
-}
-
-.uk-card-body tbody tr:first-child {
-  border-top: none;
+  border-top: 1px solid rgba(255, 255, 255, .1);
 }
 
 .uk-card-body tbody tr:last-child {
@@ -627,14 +628,14 @@ h6,
 }
 
 .uk-nav-default.myaccount-nav > li.uk-active > a {
-  background: rgba(9, 85, 135, .55);
+  background: rgba(255, 255, 255, .1);
   border-left-color: #00aeff;
   color: #fff;
 }
 
 .uk-nav-default.myaccount-nav > li > a:focus,
 .uk-nav-default.myaccount-nav > li > a:hover {
-  background: rgba(9, 85, 135, .55);
+  background: rgba(255, 255, 255, .1);
   border-left-color: #00aeff;
   color: #fff;
 }
@@ -1060,11 +1061,11 @@ h6,
 }
 
 tbody tr:first-child {
-  border-top: 1px solid rgba(255, 255, 255, .25);
+  border-top: 1px solid rgba(255, 255, 255, .1);
 }
 
 tbody tr:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, .25);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .uk-table-hover tbody tr:hover,

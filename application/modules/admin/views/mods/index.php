@@ -27,7 +27,7 @@
                 <?php foreach($mods as $key => $mod): ?>
                 <tr>
                   <td>
-                    <?= html_escape($mod['name']); ?>
+                    <h5 class="uk-text-bold uk-margin-remove"><?= html_escape($mod['name']); ?></h5>
                     <p class="uk-text-small uk-text-muted uk-margin-remove"><?= html_escape($mod['description']); ?></p>
                     <p class="uk-text-small uk-text-muted uk-margin-remove"><?= lang('author'); ?> <a target="_blank" href="<?= $mod['website']; ?>"><?= html_escape($mod['author']); ?></a></p>
                   </td>

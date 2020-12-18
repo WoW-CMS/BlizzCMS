@@ -12,7 +12,7 @@
     <script src="<?= $template['assets'].'js/jquery.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'fontawesome/js/all.js'; ?>" defer></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script> const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false, dropchance: true}; </script> 
+    <script>const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false, dropchance: true};</script> 
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">

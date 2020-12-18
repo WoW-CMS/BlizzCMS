@@ -26,9 +26,9 @@
           <div class="uk-width-3-4@m">
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <div class="uk-grid uk-grid-small">
+                <div class="uk-grid uk-grid-small uk-flex uk-flex-middle">
                   <div class="uk-width-expand@m">
-                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-info-circle"></i> <?= lang('panel_account_details'); ?></h5>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-info-circle"></i> <?= lang('panel_account_details'); ?></h5>
                   </div>
                   <div class="uk-width-auto@m">
                     <a href="<?= site_url('user/settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= lang('account_settings'); ?></a>
@@ -36,65 +36,11 @@
                 </div>
               </div>
               <div class="uk-card-body">
-                <div class="uk-overflow-auto uk-margin-small">
-                  <table class="uk-table uk-table-small">
-                    <tbody>
-                      <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('nickname'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->session->userdata('nickname'); ?></td>
-                      </tr>
-                      <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('username'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->session->userdata('username'); ?></td>
-                      </tr>
-                      <tr>
-                        <td class="uk-width-small"><span class="uk-h5 uk-text-bold"><?= lang('email'); ?></span></td>
-                        <td class="uk-table-expand"><?= $this->session->userdata('email'); ?></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="uk-card uk-card-default uk-margin-small">
-              <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('panel_chars_list'); ?></h5>
-              </div>
-              <div class="uk-card-body uk-padding-remove">
-                <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
-                  <?php foreach ($this->realm->get_realms() as $realm): ?>
-                  <div>
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-server"></i> <?= $realm->name; ?></h5>
-                    <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
-                      <table class="uk-table uk-table-divider uk-table-small">
-                        <thead>
-                          <tr>
-                            <th class="uk-table-expand"><?= lang('name'); ?></th>
-                            <th class="uk-width-small"><?= lang('race'); ?>/<?= lang('class'); ?></th>
-                            <th class="uk-width-small"><?= lang('level'); ?></th>
-                            <th class="uk-width-small"><?= lang('time_played'); ?></th>
-                            <th class="uk-width-small"><?= lang('money'); ?></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php foreach($this->realm->account_characters($realm->id, $this->session->userdata('id')) as $chars): ?>
-                          <tr>
-                            <td><?= $chars->name; ?></td>
-                            <td>
-                              <img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($chars->race); ?>" width="20" height="20" alt="<?= race_name($chars->race); ?>">
-                              <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($chars->class); ?>" width="20" height="20" alt="<?= class_name($chars->class); ?>">
-                            </td>
-                            <td><?= $chars->level; ?></td>
-                            <td><?= time_converter($chars->totaltime); ?></td>
-                            <td><?= money_converter($chars->money); ?></td>
-                          </tr>
-                          <?php endforeach; ?>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <?php endforeach; ?>
-                </div>
+                <ul class="uk-list uk-list-divider uk-text-small">
+                  <li><span class="uk-h5 uk-text-bold uk-margin-small-right"><?= lang('nickname'); ?>:</span> <?= $this->session->userdata('nickname'); ?></li>
+                  <li><span class="uk-h5 uk-text-bold uk-margin-small-right"><?= lang('username'); ?>:</span> <?= $this->session->userdata('username'); ?></li>
+                  <li><span class="uk-h5 uk-text-bold uk-margin-small-right"><?= lang('email'); ?>:</span> <?= $this->session->userdata('email'); ?></li>
+                </ul>
               </div>
             </div>
           </div>

@@ -51,7 +51,7 @@ class News extends CI_Controller
 		$this->template->build('article', $data);
 	}
 
-	public function reply()
+	public function comment()
 	{
 		if ($this->input->method() != 'post')
 		{
@@ -84,21 +84,36 @@ class News extends CI_Controller
 				'created_at' => now()
 			]);
 
-			$this->session->set_flashdata('success', lang('alert_reply_created'));
+			$this->session->set_flashdata('success', lang('alert_comment_created'));
 			redirect(site_url('news/' . $id));
 		}
 	}
 
-	public function delete_reply($id = null)
+	public function delete_comment($id = null)
 	{
-		if (empty($id) || ! $this->website->isLogged())
+		if (empty($id) || $this->input->method() != 'get')
+		{
+			show_404();
+		}
+
+		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));
 		}
 
-		$this->db->where('id', $id)->delete('news_comments');
+		$comment = $this->base->get_comment($id);
 
-		$this->session->set_flashdata('success', lang('alert_reply_deleted'));
-		redirect(site_url('news/' . $id));
+		if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at))
+		{
+			$this->db->where('id', $id)->delete('news_comments');
+
+			$this->session->set_flashdata('success', lang('alert_comment_deleted'));
+			redirect(site_url('news/' . $comment->news_id));
+		}
+		else
+		{
+			$this->session->set_flashdata('error', lang('alert_without_permission'));
+			redirect(site_url('news/' . $comment->news_id));
+		}
 	}
 }

@@ -5,7 +5,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-3-4@m">
-            <div class="uk-card uk-card-default uk-margin-small">
+            <div class="uk-card uk-card-default uk-margin">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-expand@s">
@@ -21,7 +21,8 @@
               </div>
             </div>
             <?php if (isset($comments) && ! empty($comments)): ?>
-            <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin" data-uk-grid>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('comments'); ?></h4>
+            <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
               <?php foreach ($comments as $comment): ?>
               <div>
                 <div class="uk-card uk-card-default">
@@ -44,7 +45,7 @@
                       <div class="uk-width-expand"></div>
                       <div class="uk-width-auto">
                         <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
-                        <a href="<?= site_url('news/reply/delete/'.$comment->id); ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a>
+                        <a href="<?= site_url('news/comment/delete/'.$comment->id); ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a>
                         <?php endif; ?>
                       </div>
                     </div>
@@ -56,9 +57,9 @@
             <?= $links; ?>
             <?php endif; ?>
             <?php if ($this->website->isLogged()): ?>
-            <h3 class="uk-h3"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
+            <h4 class="uk-h4 uk-margin-top uk-margin-remove-bottom"><i class="fas fa-comment-dots"></i> <?= lang('your_comment'); ?></h4>
             <div class="uk-card uk-card-default uk-card-body uk-margin-small">
-              <?= form_open(site_url('news/reply')); ?>
+              <?= form_open(site_url('news/comment')); ?>
               <?= form_hidden('id', $news->id); ?>
               <div class="uk-margin-small uk-light">
                 <div class="uk-form-controls">
@@ -66,7 +67,7 @@
                 </div>
                 <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error'); ?></span>
               </div>
-              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('add_reply'); ?></button>
+              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send'); ?></button>
               <?= form_close(); ?>
             </div>
             <?php endif; ?>

@@ -21,7 +21,7 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= lang('title'); ?></th>
+                  <th class="uk-table-expand"><?= lang('title'); ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('slug'); ?></th>
                   <th class="uk-width-small uk-visible@s"><?= lang('date'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>

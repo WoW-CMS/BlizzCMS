@@ -15,32 +15,45 @@ class Bugtracker extends MX_Controller
 	{
 		parent::__construct();
 
+		mod_located('bugtracker', true);
+
 		if (! $this->website->isLogged())
 		{
 			redirect(site_url('login'));
 		}
 
 		$this->load->model('bugtracker_model');
-		$this->load->config('bugtracker');
+
+		$this->template->set_partial('alerts', 'static/alerts');
 	}
 
 	public function index()
 	{
+		$get  = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
+
+		$search         = $this->input->get('search');
+		$category       = $this->input->get('category');
+		$search_cleaned = $this->security->xss_clean($search);
+		$cat_cleaned    = $this->security->xss_clean($category);
+
 		$config = [
 			'base_url'    => site_url('bugtracker'),
-			'total_rows'  => $this->bugtracker_model->count_reports(),
+			'total_rows'  => $this->bugtracker_model->count_reports($search_cleaned, $cat_cleaned),
 			'per_page'    => 15,
 			'uri_segment' => 2
 		];
 
 		$this->pagination->initialize($config);
 
-		$get = $this->input->get('page', TRUE);
-		$page = ctype_digit((string) $get) ? $get : 0;
+		// Calculate offset if use_page_numbers is TRUE on pagination
+		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
 		$data = [
-			'reports' => $this->bugtracker_model->get_all($config['per_page'], $page),
-			'links'   => $this->pagination->create_links()
+			'reports'  => $this->bugtracker_model->get_all($config['per_page'], $offset, $search_cleaned, $cat_cleaned),
+			'links'    => $this->pagination->create_links(),
+			'search'   => $search,
+			'category' => $category
 		];
 
 		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
@@ -48,20 +61,104 @@ class Bugtracker extends MX_Controller
 		$this->template->build('index', $data);
 	}
 
-	public function newreport()
+	public function create()
 	{
-		if($this->auth->is_admin())
-			$tiny = $this->base->tinyEditor('Admin');
+		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
+
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('title', 'Title', 'trim|required');
+			$this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
+			$this->form_validation->set_rules('category', 'Category', 'trim|required|is_natural_no_zero');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template->build('create_report');
+			}
+			else
+			{
+				$this->db->insert('bugtracker', [
+					'user_id'     => $this->session->userdata('id'),
+					'realm_id'    => $this->input->post('realm', TRUE),
+					'title'       => $this->input->post('title', TRUE),
+					'description' => $this->input->post('description'),
+					'category_id' => $this->input->post('category', TRUE),
+					'created_at'  => now()
+				]);
+
+				$this->session->set_flashdata('success', lang('alert_report_created'));
+				redirect(site_url('bugtracker/create'));
+			}
+		}
 		else
-			$tiny = $this->base->tinyEditor('User');
+		{
+			$this->template->build('create_report');
+		}
+	}
+
+	public function edit($id = null)
+	{
+		if (empty($id) || ! $this->bugtracker_model->find_report($id))
+		{
+			show_404();
+		}
+
+		$report = $this->bugtracker_model->get_report($id);
+
+		if (! $this->auth->is_moderator() || $this->session->userdata('id') != $report->user_id)
+		{
+			show_404();
+		}
 
 		$data = [
-			'tiny' => $tiny
+			'report' => $report
 		];
 
 		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
 
-		$this->template->build('new_report', $data);
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('title', 'Title', 'trim|required');
+			$this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
+			$this->form_validation->set_rules('category', 'Category', 'trim|required|is_natural_no_zero');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+
+			if ($this->auth->is_moderator())
+			{
+				$this->form_validation->set_rules('priority', 'Priority', 'trim|required');
+				$this->form_validation->set_rules('status', 'Status', 'trim|required');
+			}
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template->build('edit_report', $data);
+			}
+			else
+			{
+				$data = [
+					'realm_id'    => $this->input->post('realm', TRUE),
+					'title'       => $this->input->post('title', TRUE),
+					'description' => $this->input->post('description'),
+					'category_id' => $this->input->post('category', TRUE)
+				];
+
+				if ($this->auth->is_moderator())
+				{
+					$data['priority'] = $this->input->post('priority', TRUE);
+					$data['status']   = $this->input->post('status', TRUE);
+				}
+
+				$this->db->where('id', $id)->update('bugtracker', $data);
+
+				$this->session->set_flashdata('success', lang('alert_report_edited'));
+				redirect(site_url('bugtracker/edit/'.$id));
+			}
+		}
+		else
+		{
+			$this->template->build('edit_report', $data);
+		}
 	}
 
 	public function report($id = null)
@@ -71,8 +168,25 @@ class Bugtracker extends MX_Controller
 			show_404();
 		}
 
+		$get = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
+
+		$config = [
+			'base_url'    => site_url('bugtracker/report/' . $id),
+			'total_rows'  => $this->bugtracker_model->count_comments($id),
+			'per_page'    => 15,
+			'uri_segment' => 4
+		];
+
+		$this->pagination->initialize($config);
+
+		// Calculate offset if use_page_numbers is TRUE on pagination
+		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+
 		$data = [
-			'report' => $this->bugtracker_model->get_report($id)
+			'report'   => $this->bugtracker_model->get_report($id),
+			'comments' => $this->bugtracker_model->get_all_comments($id, $config['per_page'], $offset),
+			'links'    => $this->pagination->create_links()
 		];
 
 		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
@@ -80,67 +194,69 @@ class Bugtracker extends MX_Controller
 		$this->template->build('report', $data);
 	}
 
-	public function create()
+	public function comment()
 	{
-		$title       = $this->input->post('title', TRUE);
-		$description = $this->input->post('description');
-		$type        = $this->input->post('type', TRUE);
-		$priority    = $this->input->post('priority', TRUE);
-		echo $this->bugtracker_model->insertIssue($title, $description, $type, $priority);
-	}
-
-	public function update_priority()
-	{
-		if (! $this->auth->is_moderator())
+		if ($this->input->method() != 'post')
 		{
-			redirect(site_url('bugtracker'));
+			show_404();
 		}
 
-		$id       = $this->input->post('id', TRUE);
-		$priority = $this->input->post('priority', TRUE);
-		$this->bugtracker_model->change_priority($id, $priority);
-
-		redirect(site_url('bugtracker/report/'.$id));
-	}
-
-	public function update_status()
-	{
-		if (! $this->auth->is_moderator())
+		if (! $this->website->isLogged())
 		{
-			redirect(site_url('bugtracker'));
+			redirect(site_url('login'));
 		}
 
-		$id     = $this->input->post('id', TRUE);
-		$status = $this->input->post('status', TRUE);
-		$this->bugtracker_model->change_status($id, $status);
+		$this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim|required');
 
-		redirect(site_url('bugtracker/report/'.$id));
+		if ($this->form_validation->run() == FALSE)
+		{
+			$id = $this->input->post('id', TRUE);
+
+			$this->session->set_flashdata('form_error', form_error('comment', '', ''));
+			redirect(site_url('bugtracker/report/' . $id));
+		}
+		else
+		{
+			$id = $this->input->post('id', TRUE);
+
+			$this->db->insert('bugtracker_comments', [
+				'bug_id'     => $id,
+				'user_id'    => $this->session->userdata('id'),
+				'commentary' => $this->input->post('comment'),
+				'created_at' => now()
+			]);
+
+			$this->session->set_flashdata('success', lang('alert_comment_created'));
+			redirect(site_url('bugtracker/report/' . $id));
+		}
 	}
 
-	public function update_type()
+	public function delete_comment($id = null)
 	{
-		if (! $this->auth->is_moderator())
+		if (empty($id) || $this->input->method() != 'get')
 		{
-			redirect(site_url('bugtracker'));
+			show_404();
 		}
 
-		$id   = $this->input->post('id', TRUE);
-		$type = $this->input->post('type', TRUE);
-		$this->bugtracker_model->change_type($id, $type);
-
-		redirect(site_url('bugtracker/report/'.$id));
-	}
-
-	public function close_report()
-	{
-		if (! $this->auth->is_moderator())
+		if (! $this->website->isLogged())
 		{
-			redirect(site_url('bugtracker'));
+			redirect(site_url('login'));
 		}
 
-		$id = $this->input->post('id', TRUE);
-		$this->bugtracker_model->close_report($id);
+		$comment = $this->bugtracker_model->get_comment($id);
 
-		redirect(site_url('bugtracker/report/'.$id));
+		if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at))
+		{
+			$this->db->where('id', $id)->delete('bugtracker_comments');
+
+			$this->session->set_flashdata('success', lang('alert_comment_deleted'));
+			redirect(site_url('bugtracker/report/' . $comment->news_id));
+		}
+		else
+		{
+			$this->session->set_flashdata('error', lang('alert_without_permission'));
+			redirect(site_url('bugtracker/report/' . $comment->news_id));
+		}
 	}
 }

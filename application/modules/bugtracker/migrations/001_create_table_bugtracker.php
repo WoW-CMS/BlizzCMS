@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_create_table_bugtracker extends CI_Migration
+class Migration_Create_table_bugtracker extends CI_Migration
 {
 	public function up()
 	{
@@ -12,6 +12,16 @@ class Migration_create_table_bugtracker extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
+			'user_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
+			'realm_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
 			'title' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
@@ -21,47 +31,32 @@ class Migration_create_table_bugtracker extends CI_Migration
 				'type' => 'MEDIUMTEXT',
 				'null' => TRUE
 			),
-			'url' => array(
-				'type' => 'VARCHAR',
-				'constraint' => '255',
-				'null' => TRUE
-			),
-			'status' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 1
-			),
-			'type' => array(
+			'category_id' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'default' => 1
 			),
 			'priority' => array(
+				'type' => 'ENUM("low","normal","medium","high","critical")',
+				'default' => 'normal',
+				'null' => FALSE
+			),
+			'status' => array(
+				'type' => 'ENUM("open","waiting information","confirmed","in progress","invalid","fixed")',
+				'default' => 'open',
+				'null' => FALSE
+			),
+			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 1
-			),
-			'date' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 0
-			),
-			'author' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE
-			),
-			'close' => array(
-				'type' => 'INT',
-				'constraint' => '1',
 				'unsigned' => TRUE,
 				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
+		$this->dbforge->add_key('user_id');
+		$this->dbforge->add_key('realm_id');
+		$this->dbforge->add_key('category_id');
 		$this->dbforge->create_table('bugtracker');
 	}
 

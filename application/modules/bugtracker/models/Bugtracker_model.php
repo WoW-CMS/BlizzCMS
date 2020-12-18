@@ -4,27 +4,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Bugtracker_model extends CI_Model
 {
 	protected $bugtracker = 'bugtracker';
+	protected $bugtracker_comments = 'bugtracker_comments';
+	protected $bugtracker_categories = 'bugtracker_categories';
 
 	/**
 	 * Get all reports
 	 *
 	 * @param int $limit
 	 * @param int $start
+	 * @param string $search
+	 * @param string $category
 	 * @return array
 	 */
-	public function get_all($limit, $start)
+	public function get_all($limit, $start, $search = '', $category = '')
 	{
-		return $this->db->where('close', 0)->order_by('id', 'DESC')->limit($limit, $start)->get($this->bugtracker)->result();
+		if ($search === '' && empty($category))
+		{
+			return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->bugtracker)->result();
+		}
+
+		$query = $this->db->group_start()->like('title', $search)->or_like('description', $search)->group_end();
+
+		if ($category !== '')
+		{
+			$query = $query->where('category_id', $category);
+		}
+
+		return $query->order_by('id', 'DESC')->limit($limit, $start)->get($this->bugtracker)->result();
 	}
 
 	/**
 	 * Count all reports
 	 *
+	 * @param string $search
+	 * @param string $category
 	 * @return int
 	 */
-	public function count_reports()
+	public function count_reports($search = '', $category = '')
 	{
-		return $this->db->count_all($this->bugtracker);
+		if ($search === '' && empty($category))
+		{
+			return $this->db->count_all($this->bugtracker);
+		}
+
+		$query = $this->db->from($this->bugtracker);
+
+		if ($category !== '')
+		{
+			$query = $query->where('category_id', $category);
+		}
+
+		return $query->like('title', $search)->or_like('description', $search)->count_all_results();
 	}
 
 	/**
@@ -51,69 +81,70 @@ class Bugtracker_model extends CI_Model
 		return ($query == 1);
 	}
 
-	public function change_priority($id, $priority)
+	/**
+	 * Get all comments of a report
+	 *
+	 * @param int $id
+	 * @param int $limit
+	 * @param int $start
+	 * @return array
+	 */
+	public function get_all_comments($id, $limit, $start)
 	{
-		return $this->db->set('priority', $priority)->where('id', $id)->update($this->bugtracker);
+		return $this->db->where('bug_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->bugtracker_comments)->result();
 	}
 
-	public function change_type($id, $type)
+	/**
+	 * Count all comments of a report
+	 *
+	 * @param int $id
+	 * @return int
+	 */
+	public function count_comments($id)
 	{
-		return $this->db->set('type', $type)->where('id', $id)->update($this->bugtracker);
+		return $this->db->where('bug_id', $id)->count_all_results($this->bugtracker_comments);
 	}
 
-	public function change_status($id, $status)
+	/**
+	 * Get report comment
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_comment($id)
 	{
-		return $this->db->set('status', $status)->where('id', $id)->update($this->bugtracker);
+		return $this->db->where('id', $id)->get($this->bugtracker_comments)->row();
 	}
 
-	public function close_report($id)
+	/**
+	 * Get latest comments
+	 *
+	 * @param int $limit
+	 * @return array
+	 */
+	public function latest_comments($limit = 5)
 	{
-		return $this->db->set('close', 1)->where('id', $id)->update($this->bugtracker);
+		return $this->db->order_by('created_at', 'ASC')->limit($limit)->get($this->bugtracker_comments)->result();
 	}
 
-	public function insertIssue($title, $description, $type, $priority)
+	/**
+	 * Get all categories
+	 *
+	 * @return array
+	 */
+	public function get_categories()
 	{
-		$this->db->insert($this->bugtracker, [
-			'title'       => $title,
-			'description' => $description,
-			'status'      => '1',
-			'type'        => $type,
-			'priority'    => $priority,
-			'date'        => now(),
-			'author'      => $this->session->userdata('id'),
-			'close'       => '0'
-		]);
-
-		return true;
+		return $this->db->get($this->bugtracker_categories)->result();
 	}
 
-	public function all_priorities()
+	/**
+	 * Get category name
+	 *
+	 * @param int $id
+	 * @return string
+	 */
+	public function category_name($id)
 	{
-		return $this->db->get('bugtracker_priority')->result();
-	}
-
-	public function all_status()
-	{
-		return $this->db->get('bugtracker_status')->result();
-	}
-
-	public function all_types()
-	{
-		return $this->db->get('bugtracker_type')->result();
-	}
-
-	public function getType($id)
-	{
-		return $this->db->select('title')->where('id', $id)->get('bugtracker_type')->row('title');
-	}
-
-	public function getStatus($id)
-	{
-		return $this->db->select('title')->where('id', $id)->get('bugtracker_status')->row('title');
-	}
-
-	public function getPriority($id)
-	{
-		return $this->db->select('title')->where('id', $id)->get('bugtracker_priority')->row('title');
+		return $this->db->where('id', $id)->get($this->bugtracker_categories)->row('name');
 	}
 }

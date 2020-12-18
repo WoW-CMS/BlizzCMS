@@ -46,7 +46,6 @@ $lang['save_changes'] = 'Save changes';
 $lang['cancel'] = 'Cancel';
 $lang['send'] = 'Send';
 $lang['read_more'] = 'Read more';
-$lang['add_reply'] = 'Add reply';
 $lang['delete'] = 'Delete';
 $lang['create'] = 'Create';
 $lang['edit'] = 'Edit';
@@ -65,6 +64,7 @@ $lang['search'] = 'Search';
 $lang['select'] = 'Select';
 $lang['update'] = 'Update';
 $lang['grant'] = 'Grant';
+$lang['back'] = 'Back';
 $lang['username'] = 'Username';
 $lang['email'] = 'Email address';
 $lang['password'] = 'Password';
@@ -143,6 +143,9 @@ $lang['total'] = 'Total';
 $lang['guid'] = 'Guid';
 $lang['information'] = 'Information';
 $lang['value'] = 'Value';
+$lang['protocol'] = 'Protocol';
+$lang['encryption'] = 'Encryption';
+$lang['expansion'] = 'Expansion';
 
 /**
  * Selects
@@ -157,7 +160,9 @@ $lang['select_parent'] = 'Select a parent';
 $lang['select_target'] = 'Select a target';
 $lang['select_subcategory'] = 'Select a subcategory';
 $lang['select_language'] = 'Select a language';
+$lang['select_expansion'] = 'Select a expansion';
 $lang['select_emulator'] = 'Select a emulator';
+$lang['select_status'] = 'Select a status';
 
 /**
  * Status
@@ -222,6 +227,12 @@ $lang['maghar_orc'] = 'Maghar Orc';
 $lang['read_and_agree'] = 'I have read and agree to the';
 $lang['terms_and_conditions'] = 'Terms and Conditions';
 
+$lang['searcher'] = 'Searcher';
+$lang['reports_list'] = 'Reports list';
+$lang['comments'] = 'Comments';
+$lang['latest_comments'] = 'Latest comments';
+$lang['your_comment'] = 'Your Comment';
+
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Item purchased successfully.';
 $lang['alert_upload_error'] = 'Your image must be in jpg or png format';
@@ -239,9 +250,7 @@ $lang['page_404_description'] = 'It looks like the page you are looking could no
 $lang['panel_acc_rank'] = 'Account Rank';
 $lang['panel_dp'] = 'Donor Points';
 $lang['panel_vp'] = 'Vote Points';
-$lang['panel_expansion'] = 'Expansion';
 $lang['panel_member'] = 'Member since';
-$lang['panel_chars_list'] = 'Characters List';
 $lang['panel_account_details'] = 'Account Details';
 $lang['panel_last_ip'] = 'Last IP';
 $lang['panel_change_email'] = 'Change Email Address';
@@ -266,7 +275,6 @@ $lang['statistics_top_5v5'] = 'TOP 5V5';
 
 /*News Lang*/
 $lang['news_recent_list'] = 'Recent news list';
-$lang['news_comments'] = 'Comments';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Reports not found';
