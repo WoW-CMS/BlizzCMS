@@ -2,10 +2,10 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_menu'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('menu'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
-              <li><span><?= lang('admin_nav_menu'); ?></span></li>
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><span><?= lang('menu'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -51,8 +51,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="target">
                       <option value="" hidden selected><?= lang('select_target'); ?></option>
-                      <option value="<?= TYPE_SELF_TAB ?>"><?= lang('option_same_tab'); ?></option>
-                      <option value="<?= TYPE_BLANK_TAB ?>"><?= lang('option_new_tab'); ?></option>
+                      <option value="<?= TYPE_SELF_TAB ?>"><?= lang('same_tab'); ?></option>
+                      <option value="<?= TYPE_BLANK_TAB ?>"><?= lang('new_tab'); ?></option>
                     </select>
                   </div>
                   <?= form_error('target', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -66,8 +66,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="" hidden selected><?= lang('select_type'); ?></option>
-                      <option value="<?= TYPE_DEFAULT ?>"><?= lang('option_normal'); ?></option>
-                      <option value="<?= TYPE_DROPDOWN ?>"><?= lang('option_dropdown'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>"><?= lang('normal'); ?></option>
+                      <option value="<?= TYPE_DROPDOWN ?>"><?= lang('dropdown'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -77,7 +77,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
                       <option value="" hidden selected><?= lang('select_parent'); ?></option>
-                      <option value="0"><?= lang('option_whithout_parent'); ?></option>
+                      <option value="0"><?= lang('whithout_parent'); ?></option>
                       <?php foreach ($parents as $item): ?>
                       <option value="<?= $item->id; ?>"><?= $item->name; ?></option>
                       <?php endforeach; ?>

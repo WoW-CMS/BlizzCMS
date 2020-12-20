@@ -60,7 +60,7 @@ $route['install/finish']['get'] = 'installer/finish';
 $route['login'] = 'auth/login';
 $route['logout']['get'] = 'auth/logout';
 $route['register'] = 'auth/register';
-$route['recovery'] = 'auth/recovery';
+$route['forgot'] = 'auth/forgot';
 
 /**
  * News Routes

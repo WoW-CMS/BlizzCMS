@@ -5,6 +5,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-3-4@m">
+            <?= $template['partials']['alerts']; ?>
             <div class="uk-card uk-card-default uk-margin">
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>

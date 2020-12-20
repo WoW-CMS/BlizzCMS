@@ -2,10 +2,10 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_manage_modules'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('manage_modules'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
-              <li><span><?= lang('admin_nav_manage_modules'); ?></span></li>
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><span><?= lang('manage_modules'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto"></div>

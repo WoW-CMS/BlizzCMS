@@ -3,7 +3,7 @@
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-5@s"></div>
           <div class="uk-width-3-5@s">
-            <h3 class="uk-h3 uk-text-uppercase uk-text-bold uk-margin-medium-top uk-margin-small-bottom"><?= lang('tab_reset'); ?></h3>
+            <h3 class="uk-h3 uk-text-uppercase uk-text-bold uk-margin-medium-top uk-margin-small-bottom"><?= lang('forgot_password'); ?></h3>
             <?= $template['partials']['alerts']; ?>
             <?= form_open(current_url()); ?>
             <div class="uk-margin uk-light">

@@ -4,7 +4,7 @@
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove">Moderation Queue</h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('mod'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
+              <li><a href="<?= site_url('mod'); ?>"><?= lang('dashboard'); ?></a></li>
               <li><span>Moderation Queue</span></li>
             </ul>
           </div>

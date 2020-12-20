@@ -70,7 +70,7 @@ class Realm_model extends CI_Model
 
 		if ($char_db->conn_id === FALSE)
 		{
-			show_error(lang('error_char_connection'));
+			show_error(lang('characters_connection_error'));
 		}
 
 		return $char_db;

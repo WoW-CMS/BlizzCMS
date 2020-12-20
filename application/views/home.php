@@ -89,7 +89,7 @@
                     </div>
                   </div>
                   <?php else: ?>
-                  <p class="uk-text-small uk-margin-small"><i class="fas fa-exclamation-circle"></i> <?= lang('home_realm_info'); ?> <span class="uk-text-danger uk-text-bold uk-text-uppercase"><?= lang('offline'); ?></span></p>
+                  <p class="uk-text-small uk-margin-small"><i class="fas fa-exclamation-circle"></i> <?= lang('realm_info'); ?> <span class="uk-text-danger uk-text-bold uk-text-uppercase"><?= lang('offline'); ?></span></p>
                   <?php endif ?>
                 </div>
               </div>
@@ -100,14 +100,13 @@
               <i class="fas fa-gamepad"></i> <?= config_item('realmlist'); ?>
             </h5>
             <?php endif; ?>
-            <h4 class="uk-h4"><?= lang('home_discord'); ?></h4>
             <div class="uk-margin">
               <a target="_blank" href="<?= config_item('facebook_url'); ?>" class="uk-icon-button"><i class="fab fa-facebook-f"></i></a>
               <a target="_blank" href="<?= config_item('twitter_url'); ?>" class="uk-icon-button uk-margin-small-left"><i class="fab fa-twitter"></i></a>
               <a target="_blank" href="<?= config_item('youtube_url'); ?>" class="uk-icon-button uk-margin-small-left"><i class="fab fa-youtube"></i></a>
             </div>
             <?php if (! empty(config_item('discord_server_id'))): ?>
-            <h4 class="uk-h4"><?= lang('home_discord'); ?></h4>
+            <h4 class="uk-h4"><?= lang('discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <iframe src="https://discordapp.com/widget?id=<?= config_item('discord_server_id'); ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>
             </div>

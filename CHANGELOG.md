@@ -88,6 +88,8 @@
 - Remove unused function ``$this->realm->getCharClass()``
 - Remove unused function ``$this->realm->getGeneralCharactersSpecifyGuid()``
 - Remove unused function ``$this->realm->getInformationCharacter()``
+- Remove unused lang lines
+- Add new function ``lang_vars()``
 
 ### Bugs Fixed
 

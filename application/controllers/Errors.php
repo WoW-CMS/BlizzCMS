@@ -18,7 +18,7 @@ class Errors extends MX_Controller
 
 	public function error_404()
 	{
-		$this->template->title(config_item('app_name'), lang('tab_error'));
+		$this->template->title(config_item('app_name'), lang('error_404'));
 
 		$this->template->build('404');
 	}

@@ -14,7 +14,7 @@ class Auth_model extends CI_Model
 
 		if ($auth_db->conn_id === FALSE)
 		{
-			show_error(lang('error_auth_connection'));
+			show_error(lang('auth_connection_error'));
 		}
 
 		return $auth_db;

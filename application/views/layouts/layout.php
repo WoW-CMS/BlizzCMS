@@ -45,19 +45,21 @@
                   </ul>
                 </div>
               </li>
+              <?php if (mod_located('store')): ?>
               <li>
                 <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;<span class="uk-badge"><?= $this->cart->total_items(); ?></span></a>
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
-                  <div class="blizzcms-cart-dropdown">
-                    <?php if ($this->cart->total_items() > 0): ?>
-                    <p class="uk-text-center uk-margin-small"><?= lang('store_cart_added'); ?> <span class="uk-text-bold"><?= $this->cart->total_items(); ?> <?= lang('cart_items'); ?></span> <?= lang('store_cart_in_your'); ?></p>
-                    <a href="<?= site_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-eye"></i> <?= lang('view_cart'); ?></a>
+                  <div class="cart-container">
+                    <?php if ($this->cart->total_items()): ?>
+                    <p class="uk-text-center uk-margin-small"><?= lang_vars('cart_items', [$this->cart->total_items()]); ?></p>
+                    <a href="<?= site_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-shopping-cart"></i> <?= lang('view_cart'); ?></a>
                     <?php else: ?>
-                    <p class="uk-text-center uk-margin-remove"><?= lang('store_cart_no_items'); ?></p>
+                    <p class="uk-text-center uk-margin-remove"><?= lang('cart_empty'); ?></p>
                     <?php endif; ?>
                   </div>
                 </div>
               </li>
+              <?php endif; ?>
               <?php endif; ?>
             </ul>
           </div>
@@ -102,8 +104,8 @@
             <?php if ($this->website->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title: <?= lang('panel_dp'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->website->get_user(null, 'dp'); ?></li>
-                <li><span uk-tooltip="title: <?= lang('panel_vp'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->website->get_user(null, 'vp'); ?></li>
+                <li><span uk-tooltip="title: <?= lang('donor_points'); ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->website->get_user(null, 'dp'); ?></li>
+                <li><span uk-tooltip="title: <?= lang('vote_points'); ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->website->get_user(null, 'vp'); ?></li>
               </ul>
             </div>
             <?php endif; ?>
@@ -171,7 +173,7 @@
             <p class="uk-text-small uk-text-bold uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com" class="uk-text-uppercase">BlizzCMS</a></p>
           </div>
           <div class="uk-width-expand@s">
-            <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('app_name'); ?></span>. <?= lang('footer_rights'); ?></p>
+            <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold"><?= config_item('app_name'); ?></span>. <?= lang('rights_reserved'); ?></p>
           </div>
         </div>
       </div>

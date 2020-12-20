@@ -23,6 +23,7 @@ class Vote extends MX_Controller
 		}
 
 		$this->load->model('vote_model');
+		$this->load->language('vote');
 	}
 
 	public function index()
@@ -31,7 +32,7 @@ class Vote extends MX_Controller
 			'topsites' => $this->vote_model->get_all()
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_vote'));
+		$this->template->title(config_item('app_name'), lang('vote'));
 
 		$this->template->build('index', $data);
 	}
@@ -45,7 +46,7 @@ class Vote extends MX_Controller
 
 		if ($this->vote_model->get_expiration($id) >= now())
 		{
-			$this->session->set_flashdata('error', lang('alert_already_voted'));
+			$this->session->set_flashdata('error', lang('already_voted'));
 			redirect(site_url('vote'));
 		}
 

@@ -4,8 +4,8 @@
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove"><?= lang('donation_logs'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
-              <li><span><?= lang('admin_nav_accounts'); ?></span></li>
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><span><?= lang('accounts'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto"></div>

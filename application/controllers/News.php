@@ -14,6 +14,8 @@ class News extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		$this->template->set_partial('alerts', 'static/alerts');
 	}
 
 	public function index($id = null)
@@ -84,7 +86,7 @@ class News extends CI_Controller
 				'created_at' => now()
 			]);
 
-			$this->session->set_flashdata('success', lang('alert_comment_created'));
+			$this->session->set_flashdata('success', lang('comment_sended'));
 			redirect(site_url('news/' . $id));
 		}
 	}
@@ -107,12 +109,12 @@ class News extends CI_Controller
 		{
 			$this->db->where('id', $id)->delete('news_comments');
 
-			$this->session->set_flashdata('success', lang('alert_comment_deleted'));
+			$this->session->set_flashdata('success', lang('comment_deleted'));
 			redirect(site_url('news/' . $comment->news_id));
 		}
 		else
 		{
-			$this->session->set_flashdata('error', lang('alert_without_permission'));
+			$this->session->set_flashdata('error', lang('permission_denied'));
 			redirect(site_url('news/' . $comment->news_id));
 		}
 	}

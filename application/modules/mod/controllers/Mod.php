@@ -26,6 +26,7 @@ class Mod extends MX_Controller
 		}
 
 		$this->load->model('mod_model');
+		$this->load->language('mod');
 
 		$this->template->set_theme();
 		$this->template->set_layout('mod_layout');

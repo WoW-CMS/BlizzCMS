@@ -88,7 +88,7 @@ class Bugtracker extends MX_Controller
 					'created_at'  => now()
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_report_created'));
+				$this->session->set_flashdata('success', lang('report_created'));
 				redirect(site_url('bugtracker/create'));
 			}
 		}
@@ -152,7 +152,7 @@ class Bugtracker extends MX_Controller
 
 				$this->db->where('id', $id)->update('bugtracker', $data);
 
-				$this->session->set_flashdata('success', lang('alert_report_edited'));
+				$this->session->set_flashdata('success', lang('report_edited'));
 				redirect(site_url('bugtracker/edit/'.$id));
 			}
 		}
@@ -228,7 +228,7 @@ class Bugtracker extends MX_Controller
 				'created_at' => now()
 			]);
 
-			$this->session->set_flashdata('success', lang('alert_comment_created'));
+			$this->session->set_flashdata('success', lang('comment_sended'));
 			redirect(site_url('bugtracker/report/' . $id));
 		}
 	}
@@ -251,12 +251,12 @@ class Bugtracker extends MX_Controller
 		{
 			$this->db->where('id', $id)->delete('bugtracker_comments');
 
-			$this->session->set_flashdata('success', lang('alert_comment_deleted'));
+			$this->session->set_flashdata('success', lang('comment_deleted'));
 			redirect(site_url('bugtracker/report/' . $comment->news_id));
 		}
 		else
 		{
-			$this->session->set_flashdata('error', lang('alert_without_permission'));
+			$this->session->set_flashdata('error', lang('permission_denied'));
 			redirect(site_url('bugtracker/report/' . $comment->news_id));
 		}
 	}

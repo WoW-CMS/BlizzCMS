@@ -26,6 +26,7 @@ class Donate extends MX_Controller
 		}
 
 		$this->load->model('donate_model');
+		$this->load->language('donate');
 		$this->load->config('donate');
 
 		$this->template->set_partial('alerts', 'static/alerts');
@@ -33,7 +34,7 @@ class Donate extends MX_Controller
 
 	public function index()
 	{
-		$this->template->title(config_item('app_name'), lang('tab_donate'));
+		$this->template->title(config_item('app_name'), lang('donate'));
 
 		$this->template->build('index');
 	}
@@ -62,7 +63,7 @@ class Donate extends MX_Controller
 
 	public function canceled()
 	{
-		$this->session->set_flashdata('warning', lang('notification_donation_canceled'));
+		$this->session->set_flashdata('warning', lang('donate_canceled'));
 		redirect(site_url('donate'));
 	}
 }

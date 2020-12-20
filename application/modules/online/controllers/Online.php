@@ -23,7 +23,7 @@ class Online extends MX_Controller
 			'realms' => $this->realm->get_realms()
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_online'));
+		$this->template->title(config_item('app_name'), lang('online_players'));
 
 		$this->template->build('index', $data);
 	}

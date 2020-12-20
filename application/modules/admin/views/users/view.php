@@ -4,8 +4,8 @@
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove"><?= lang('manage_account'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
-              <li><span><?= lang('admin_nav_accounts'); ?></span></li>
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><span><?= lang('accounts'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -52,16 +52,16 @@
                       <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
                     <div class="uk-margin">
-                      <label class="uk-form-label"><?= lang('panel_dp'); ?></label>
+                      <label class="uk-form-label"><?= lang('donor_points'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="dp" value="<?= $user->dp; ?>" placeholder="<?= lang('panel_dp'); ?>">
+                        <input class="uk-input" type="text" name="dp" value="<?= $user->dp; ?>" placeholder="<?= lang('donor_points'); ?>">
                       </div>
                       <?= form_error('dp', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
                     <div class="uk-margin">
-                      <label class="uk-form-label"><?= lang('panel_vp'); ?></label>
+                      <label class="uk-form-label"><?= lang('vote_points'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="text" name="vp" value="<?= $user->vp; ?>" placeholder="<?= lang('panel_vp'); ?>">
+                        <input class="uk-input" type="text" name="vp" value="<?= $user->vp; ?>" placeholder="<?= lang('vote_points'); ?>">
                       </div>
                       <?= form_error('vp', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>

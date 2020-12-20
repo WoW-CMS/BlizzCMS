@@ -31,6 +31,7 @@ class Users extends MX_Controller
 		}
 
 		$this->load->model('users_model');
+		$this->load->language('admin');
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');

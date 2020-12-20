@@ -123,7 +123,7 @@ class Donate_model extends CI_Model
 
 		if ($query == 1)
 		{
-			$this->session->set_flashdata('error', lang('notification_donation_error'));
+			$this->session->set_flashdata('error', lang('donate_error'));
 			redirect(site_url('donate'));
 		}
 		else
@@ -137,7 +137,7 @@ class Donate_model extends CI_Model
 
 			$this->db->set('dp', $total)->where('id', $this->session->userdata('id'))->update('users');
 
-			$this->session->set_flashdata('success', lang('notification_donation_successful'));
+			$this->session->set_flashdata('success', lang('donate_success'));
 			redirect(site_url('donate'));
 		}
 	}

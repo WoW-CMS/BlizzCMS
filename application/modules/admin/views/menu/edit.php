@@ -2,10 +2,10 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_menu'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('menu'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
-              <li><span><?= lang('admin_nav_menu'); ?></span></li>
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><span><?= lang('menu'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -50,8 +50,8 @@
                   <label class="uk-form-label"><?= lang('target'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="target">
-                      <option value="<?= TYPE_SELF_TAB ?>" <?php if ($menu->target === TYPE_SELF_TAB) echo 'selected'; ?>><?= lang('option_same_tab'); ?></option>
-                      <option value="<?= TYPE_BLANK_TAB ?>" <?php if ($menu->target === TYPE_BLANK_TAB) echo 'selected'; ?>><?= lang('option_new_tab'); ?></option>
+                      <option value="<?= TYPE_SELF_TAB ?>" <?php if ($menu->target === TYPE_SELF_TAB) echo 'selected'; ?>><?= lang('same_tab'); ?></option>
+                      <option value="<?= TYPE_BLANK_TAB ?>" <?php if ($menu->target === TYPE_BLANK_TAB) echo 'selected'; ?>><?= lang('new_tab'); ?></option>
                     </select>
                   </div>
                   <?= form_error('target', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -64,8 +64,8 @@
                   <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="<?= TYPE_DEFAULT ?>" <?php if ($menu->type === TYPE_DEFAULT) echo 'selected'; ?>><?= lang('option_normal'); ?></option>
-                      <option value="<?= TYPE_DROPDOWN ?>" <?php if ($menu->type === TYPE_DROPDOWN) echo 'selected'; ?>><?= lang('option_dropdown'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>" <?php if ($menu->type === TYPE_DEFAULT) echo 'selected'; ?>><?= lang('normal'); ?></option>
+                      <option value="<?= TYPE_DROPDOWN ?>" <?php if ($menu->type === TYPE_DROPDOWN) echo 'selected'; ?>><?= lang('dropdown'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -74,7 +74,7 @@
                   <label class="uk-form-label"><?= lang('parent'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
-                      <option value="0" <?php if ($menu->parent == 0) echo 'selected'; ?>><?= lang('option_whithout_parent'); ?></option>
+                      <option value="0" <?php if ($menu->parent == 0) echo 'selected'; ?>><?= lang('whithout_parent'); ?></option>
                       <?php foreach ($parents as $item): ?>
                       <option value="<?= $item->id; ?>" <?php if ($menu->parent == $item->id) echo 'selected'; ?>><?= $item->name; ?></option>
                       <?php endforeach; ?>

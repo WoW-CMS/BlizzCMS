@@ -51,7 +51,7 @@ class Auth extends CI_Controller
 
 				if (! $response)
 				{
-					$this->session->set_flashdata('error', lang('notification_user_error'));
+					$this->session->set_flashdata('error', lang('login_error'));
 					$this->template->build('auth/login');
 				}
 				else
@@ -116,19 +116,19 @@ class Auth extends CI_Controller
 
 				if (! $this->auth->account_unique($username, 'username'))
 				{
-					$this->session->set_flashdata('error', 'Username is already in use');
+					$this->session->set_flashdata('error', lang('username_already'));
 					redirect(site_url('register'));
 				}
 
 				if (! $this->auth->account_unique($email, 'email'))
 				{
-					$this->session->set_flashdata('error', 'Email is already in use');
+					$this->session->set_flashdata('error', lang('email_already'));
 					redirect(site_url('register'));
 				}
 
 				// if ($is_pending)
 				// {
-					// $this->session->set_flashdata('warning', 'account pending');
+					// $this->session->set_flashdata('warning', 'account_pending');
 					// redirect(site_url('register'));
 				// }
 
@@ -136,7 +136,7 @@ class Auth extends CI_Controller
 				{
 					// $this->base->send_email($email, lang('email_subject_validation'), $message);
 
-					$this->session->set_flashdata('warning', lang('alert_account_pending'));
+					$this->session->set_flashdata('warning', lang('register_pending'));
 					redirect(site_url('register'));
 				}
 				else
@@ -189,7 +189,7 @@ class Auth extends CI_Controller
 						'joined_at' => now()
 					]);
 
-					$this->session->set_flashdata('success', lang('alert_account_created'));
+					$this->session->set_flashdata('success', lang('register_success'));
 					redirect(site_url('login'));
 				}
 			}
@@ -200,14 +200,14 @@ class Auth extends CI_Controller
 		}
 	}
 
-	public function recovery()
+	public function forgot()
 	{
 		if ($this->website->isLogged())
 		{
 			redirect(site_url('user'));
 		}
 
-		$this->template->title(config_item('app_name'), lang('tab_reset'));
+		$this->template->title(config_item('app_name'), lang('forgot_password'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -221,7 +221,7 @@ class Auth extends CI_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('auth/recovery');
+				$this->template->build('auth/forgot');
 			}
 			else
 			{
@@ -229,13 +229,13 @@ class Auth extends CI_Controller
 
 				// $this->base->send_email($email, lang('email_subject_authorize'), $message);
 
-				$this->session->set_flashdata('success', lang('alert_forgot_success'));
-				redirect(site_url('recovery'));
+				$this->session->set_flashdata('success', lang('forgot_success'));
+				redirect(site_url('forgot'));
 			}
 		}
 		else
 		{
-			$this->template->build('auth/recovery');
+			$this->template->build('auth/forgot');
 		}
 	}
 }

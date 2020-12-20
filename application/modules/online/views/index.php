@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_online'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('online_players'); ?></h4>
           </div>
           <div class="uk-width-auto"></div>
         </div>

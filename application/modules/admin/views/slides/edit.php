@@ -2,10 +2,10 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('admin_nav_slides'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('slides'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('admin_nav_dashboard'); ?></a></li>
-              <li><span><?= lang('admin_nav_slides'); ?></span></li>
+              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><span><?= lang('slides'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -41,9 +41,9 @@
                   <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="<?= TYPE_IMAGE ?>" <?php if ($slide->type === TYPE_IMAGE) echo 'selected'; ?>><?= lang('option_image'); ?></option>
-                      <option value="<?= TYPE_VIDEO ?>" <?php if ($slide->type === TYPE_VIDEO) echo 'selected'; ?>><?= lang('option_video'); ?></option>
-                      <option value="<?= TYPE_IFRAME ?>" <?php if ($slide->type === TYPE_IFRAME) echo 'selected'; ?>><?= lang('option_iframe'); ?></option>
+                      <option value="<?= TYPE_IMAGE ?>" <?php if ($slide->type === TYPE_IMAGE) echo 'selected'; ?>><?= lang('image'); ?></option>
+                      <option value="<?= TYPE_VIDEO ?>" <?php if ($slide->type === TYPE_VIDEO) echo 'selected'; ?>><?= lang('video'); ?></option>
+                      <option value="<?= TYPE_IFRAME ?>" <?php if ($slide->type === TYPE_IFRAME) echo 'selected'; ?>><?= lang('iframe'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

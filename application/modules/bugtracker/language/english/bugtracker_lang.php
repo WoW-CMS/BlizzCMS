@@ -14,3 +14,9 @@ $lang['bugtracker'] = 'Bugtracker';
 $lang['reports_list'] = 'Reports list';
 $lang['create_report'] = 'Create report';
 $lang['edit_report'] = 'Edit report';
+
+/**
+ * Alerts
+*/
+$lang['report_created'] = 'The new report has been created';
+$lang['report_edited'] = 'Report information has been updated';

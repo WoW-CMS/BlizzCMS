@@ -32,6 +32,8 @@ class Mods extends MX_Controller
 			redirect(site_url('user'));
 		}
 
+		$this->load->language('admin');
+
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');
 		$this->template->set_partial('alerts', 'static/alerts');

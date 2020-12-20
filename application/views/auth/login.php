@@ -17,7 +17,7 @@
               <?= form_error('username', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label"><?= lang('password'); ?> <span class="uk-float-right"><a href="<?= site_url('recovery'); ?>" class="uk-button uk-button-text"><?= lang('forgot_password'); ?></a></span></label>
+              <label class="uk-form-label"><?= lang('password'); ?> <span class="uk-float-right"><a href="<?= site_url('forgot'); ?>" class="uk-button uk-button-text"><?= lang('forgot_your_password'); ?></a></span></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon"><i class="fas fa-unlock-alt"></i></span>

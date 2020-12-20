@@ -35,6 +35,7 @@ class News extends MX_Controller
 		$this->form_validation->CI =& $this;
 
 		$this->load->model('news_model');
+		$this->load->language('admin');
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');

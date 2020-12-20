@@ -9,27 +9,24 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*Browser Tab Menu*/
 $lang['home'] = 'Home';
 $lang['news'] = 'News';
-$lang['tab_forum'] = 'Forum';
-$lang['tab_store'] = 'Store';
-$lang['tab_donate'] = 'Donate';
-$lang['tab_vote'] = 'Vote';
-$lang['tab_cart'] = 'Cart';
-$lang['tab_account'] = 'My Account';
-$lang['tab_reset'] = 'Password Recovery';
-$lang['tab_error'] = 'Error 404';
-$lang['tab_online'] = 'Online Players';
+$lang['forum'] = 'Forum';
+$lang['store'] = 'Store';
+$lang['donate'] = 'Donate';
+$lang['cart'] = 'Cart';
+$lang['my_account'] = 'My Account';
+$lang['forgot_password'] = 'Forgot password';
+$lang['error_404'] = 'Error 404';
+$lang['online_players'] = 'Online Players';
 
-/*Panel Navbar*/
-$lang['navbar_vote_panel'] = 'Vote Panel';
-$lang['navbar_donate_panel'] = 'Donate Panel';
+$lang['vote_panel'] = 'Vote Panel';
+$lang['donate_panel'] = 'Donate Panel';
 
 $lang['register'] = 'Register';
 $lang['login'] = 'Login';
 $lang['logout'] = 'Logout';
-$lang['forgot_password'] = 'Forgot your password?';
+$lang['forgot_your_password'] = 'Forgot your password?';
 $lang['user_panel'] = 'User panel';
 $lang['admin_panel'] = 'Admin panel';
 $lang['mod_panel'] = 'Mod panel';
@@ -46,7 +43,6 @@ $lang['edit'] = 'Edit';
 $lang['save'] = 'Save';
 $lang['close'] = 'Close';
 $lang['reply'] = 'Reply';
-$lang['donate'] = 'Donate';
 $lang['account_settings'] = 'Account settings';
 $lang['cart'] = 'Add to cart';
 $lang['view_cart'] = 'View cart';
@@ -141,6 +137,19 @@ $lang['value'] = 'Value';
 $lang['protocol'] = 'Protocol';
 $lang['encryption'] = 'Encryption';
 $lang['expansion'] = 'Expansion';
+$lang['normal'] = 'Normal';
+$lang['dropdown'] = 'Dropdown';
+$lang['image'] = 'Image';
+$lang['video'] = 'Video';
+$lang['iframe'] = 'Iframe';
+$lang['ssl'] = 'SSL';
+$lang['tls'] = 'TLS';
+$lang['dp'] = 'DP';
+$lang['vp'] = 'VP';
+$lang['dp_vp'] = 'DP & VP';
+$lang['new_tab'] = 'New Tab/Window';
+$lang['same_tab'] = 'Same Tab/Window';
+$lang['whithout_parent'] = 'Whithout parent';
 
 /**
  * Selects
@@ -167,10 +176,10 @@ $lang['online'] = 'Online';
 $lang['unknown'] = 'Unknown';
 $lang['completed'] = 'Completed';
 $lang['canceled'] = 'Canceled';
-
-/*Label Lang*/
-$lang['label_open'] = 'Open';
-$lang['label_closed'] = 'Closed';
+$lang['enabled'] = 'Enabled';
+$lang['disabled'] = 'Disabled';
+$lang['open'] = 'Open';
+$lang['closed'] = 'Closed';
 
 /**
  * Classes
@@ -221,6 +230,7 @@ $lang['maghar_orc'] = 'Maghar Orc';
 
 $lang['read_and_agree'] = 'I have read and agree to the';
 $lang['terms_and_conditions'] = 'Terms and Conditions';
+$lang['rights_reserved'] = 'All rights reserved.';
 
 $lang['searcher'] = 'Searcher';
 $lang['comments'] = 'Comments';
@@ -233,62 +243,21 @@ $lang['change_email'] = 'Change email';
 $lang['change_nickname'] = 'Change nickname';
 $lang['change_password'] = 'Change password';
 $lang['account_details'] = 'Account details';
+$lang['donor_points'] = 'Donor Points';
+$lang['vote_points'] = 'Vote Points';
+$lang['discord'] = 'Discord';
+$lang['realm_info'] = 'Currently the realm is';
+$lang['cart_items'] = 'You have added <b>%1$d</b> Item(s) in your shopping cart';
+$lang['cart_empty'] = 'You do not have items in your cart';
 
-/*Alert Lang*/
-$lang['alert_successful_purchase'] = 'Item purchased successfully.';
-$lang['alert_points_insufficient'] = 'Insufficient points';
+/**
+ * Page 404
+*/
+$lang['page_not_found'] = '404 Page not found';
+$lang['page_not_found_description'] = 'It looks like the page you are looking could not be found';
 
-/*Footer Lang*/
-$lang['footer_rights'] = 'All rights reserved.';
-
-/*Page 404 Lang*/
-$lang['page_404_title'] = '404 Page not found';
-$lang['page_404_description'] = 'It looks like the page you are looking could not be found';
-
-/*Panel Lang*/
-$lang['panel_dp'] = 'Donor Points';
-$lang['panel_vp'] = 'Vote Points';
-
-/*Home Lang*/
-$lang['home_discord'] = 'Discord';
-$lang['home_realm_info'] = 'Currently the realm is';
-
-/*Donate Lang*/
-$lang['donate_get'] = 'Get';
-
-/*Vote Lang*/
-$lang['vote_next_time'] = 'Next vote in:';
-
-/*Forum Lang*/
-$lang['forum_posts_count'] = 'Posts';
-$lang['forum_topic_locked'] = 'This topic is locked.';
-$lang['forum_comment_locked'] = 'Have something to say? Login to join the conversation.';
-$lang['forum_comment_header'] = 'Join the Conversation';
-$lang['forum_not_authorized'] = 'Not Authorized';
-$lang['forum_post_history'] = 'View Post History';
-$lang['forum_topic_list'] = 'Topic List';
-$lang['forum_last_activity'] = 'Latest activity';
-$lang['forum_last_post_by'] = 'Last Post by';
-$lang['forum_whos_online'] = 'Whos Online';
-$lang['forum_replies_count'] = 'Replies';
-$lang['forum_topics_count'] = 'Topics';
-$lang['forum_users_count'] = 'Users';
-
-/*Store Lang*/
-$lang['store_categories'] = 'Store Categories';
-$lang['store_top_items'] = 'TOP Items';
-$lang['store_cart_added'] = 'You have added';
-$lang['store_cart_in_your'] = 'in your shopping cart';
-$lang['store_cart_no_items'] = 'You do not have items in your cart.';
-$lang['cart_items'] = 'Item(s)';
-
-/*Soap Lang*/
-$lang['soap_send_subject'] = 'Store Purchase';
-$lang['soap_send_body'] = 'Thank you for buying in our store!';
-
-/*Email Lang*/
-$lang['email_password_recovery'] = 'Password Recovery';
-$lang['email_account_activation'] = 'Account Activation';
-
-$lang['error_auth_connection'] = 'The connection to the auth db could not be established';
-$lang['error_char_connection'] = 'The connection to the character db could not be established';
+/**
+ * Errors
+*/
+$lang['auth_connection_error'] = 'The connection to the auth db could not be established';
+$lang['characters_connection_error'] = 'The connection to the characters db could not be established';
