@@ -21,7 +21,7 @@
               <div class="g-recaptcha" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
             </div>
             <?php endif; ?>
-            <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-paper-plane"></i> <?= lang('send'); ?></button>
+            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-paper-plane"></i> <?= lang('send'); ?></button>
             <?= form_close(); ?>
           </div>
           <div class="uk-width-1-5@s"></div>

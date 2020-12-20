@@ -23,6 +23,7 @@ class Bugtracker extends MX_Controller
 		}
 
 		$this->load->model('bugtracker_model');
+		$this->load->language('bugtracker');
 
 		$this->template->set_partial('alerts', 'static/alerts');
 	}
@@ -56,14 +57,14 @@ class Bugtracker extends MX_Controller
 			'category' => $category
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
+		$this->template->title(config_item('app_name'), lang('bugtracker'));
 
 		$this->template->build('index', $data);
 	}
 
 	public function create()
 	{
-		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
+		$this->template->title(config_item('app_name'), lang('bugtracker'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -115,7 +116,7 @@ class Bugtracker extends MX_Controller
 			'report' => $report
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
+		$this->template->title(config_item('app_name'), lang('bugtracker'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -189,7 +190,7 @@ class Bugtracker extends MX_Controller
 			'links'    => $this->pagination->create_links()
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_bugtracker'));
+		$this->template->title(config_item('app_name'), lang('bugtracker'));
 
 		$this->template->build('report', $data);
 	}
@@ -221,7 +222,7 @@ class Bugtracker extends MX_Controller
 			$id = $this->input->post('id', TRUE);
 
 			$this->db->insert('bugtracker_comments', [
-				'bug_id'     => $id,
+				'report_id'  => $id,
 				'user_id'    => $this->session->userdata('id'),
 				'commentary' => $this->input->post('comment'),
 				'created_at' => now()

@@ -20,7 +20,7 @@
               </div>
               <div class="uk-text-center uk-margin-small">
                 <h4 class="uk-h4 uk-margin-remove"><?= $user->username; ?></h4>
-                <p class="uk-text-small uk-margin-remove">Member Since: <?= date('j F Y', $user->joined_at); ?></p>
+                <p class="uk-text-small uk-margin-remove"><?= lang('member_since'); ?>: <?= date('j F Y', $user->joined_at); ?></p>
               </div>
             </div>
           </div>

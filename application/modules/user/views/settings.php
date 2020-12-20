@@ -18,21 +18,18 @@
               <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('navbar_donate_panel'); ?></a></li>
               <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('navbar_vote_panel'); ?></a></li>
               <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('tab_store'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?= lang('tab_bugtracker'); ?></a></li>
-              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('tab_changelogs'); ?></a></li>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
             <?= $template['partials']['alerts']; ?>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('panel_change_nickname'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('change_nickname'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/nickname')) ?>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label"><?= lang('panel_current_nickname'); ?>:</label>
+                  <label class="uk-form-label"><?= lang('current_nickname'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user"></i></span>
@@ -68,12 +65,12 @@
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= lang('panel_change_email'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= lang('change_email'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/email')); ?>
                 <div class="uk-margin uk-light">
-                  <label class="uk-form-label"><?= lang('panel_current_email'); ?>:</label>
+                  <label class="uk-form-label"><?= lang('current_email'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-envelope"></i></span>
@@ -84,7 +81,7 @@
                 <div class="uk-margin uk-light">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('panel_replace_email_by'); ?>:</label>
+                      <label class="uk-form-label"><?= lang('new_email'); ?>:</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope"></i></span>
@@ -94,11 +91,11 @@
                       <?= form_error('new_email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('confirm_email'); ?>:</label>
+                      <label class="uk-form-label"><?= lang('confirm_new_email'); ?>:</label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="far fa-envelope"></i></span>
-                          <input class="uk-input" type="email" name="confirm_new_email" value="<?= set_value('confirm_new_email'); ?>" placeholder="<?= lang('confirm_email'); ?>">
+                          <input class="uk-input" type="email" name="confirm_new_email" value="<?= set_value('confirm_new_email'); ?>" placeholder="<?= lang('confirm_new_email'); ?>">
                         </div>
                       </div>
                       <?= form_error('confirm_new_email', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -123,7 +120,7 @@
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= lang('panel_change_password'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= lang('change_password'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/password')); ?>
@@ -140,7 +137,7 @@
                 <div class="uk-margin uk-light">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('panel_replace_pass_by'); ?></label>
+                      <label class="uk-form-label"><?= lang('new_password'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-unlock"></i></span>
@@ -150,11 +147,11 @@
                       <?= form_error('new_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= lang('re_password'); ?></label>
+                      <label class="uk-form-label"><?= lang('confirm_password'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon"><i class="fas fa-lock"></i></span>
-                          <input class="uk-input" type="password" name="confirm_new_password" placeholder="<?= lang('re_password'); ?>">
+                          <input class="uk-input" type="password" name="confirm_new_password" placeholder="<?= lang('confirm_password'); ?>">
                         </div>
                       </div>
                       <?= form_error('confirm_new_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

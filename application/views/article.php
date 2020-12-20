@@ -75,7 +75,7 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-default">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-list-alt"></i> <?= lang('home_latest_news'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-list-alt"></i> <?= lang('latest_news'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">

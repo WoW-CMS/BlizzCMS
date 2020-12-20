@@ -34,7 +34,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
           <div class="uk-width-2-3@s">
-            <h4 class="uk-h4"><?= lang('home_latest_news'); ?></h4>
+            <h4 class="uk-h4"><?= lang('latest_news'); ?></h4>
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($articles as $article): ?>
               <div>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="uk-width-1-3@s">
-            <h4 class="uk-h4"><?= lang('home_server_status'); ?></h4>
+            <h4 class="uk-h4"><?= lang('server_status'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
               <?php foreach ($realms as $realm): ?>
               <div>

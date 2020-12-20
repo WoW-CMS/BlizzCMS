@@ -53,11 +53,11 @@
                   <?= form_error('password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('password'); ?></label>
+                  <label class="uk-form-label"><?= lang('confirm_password'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-lock"></i></span>
-                      <input class="uk-input" type="password" name="confirm_password" placeholder="<?= lang('re_password'); ?>">
+                      <input class="uk-input" type="password" name="confirm_password" placeholder="<?= lang('confirm_password'); ?>">
                     </div>
                   </div>
                   <?= form_error('confirm_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -75,7 +75,7 @@
               <div class="g-recaptcha" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
             </div>
             <?php endif; ?>
-            <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-user-plus"></i> <?= lang('register'); ?></button>
+            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-user-plus"></i> <?= lang('register'); ?></button>
             <?= form_close(); ?>
           </div>
           <div class="uk-width-1-5@s"></div>

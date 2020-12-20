@@ -91,7 +91,7 @@ class Bugtracker_model extends CI_Model
 	 */
 	public function get_all_comments($id, $limit, $start)
 	{
-		return $this->db->where('bug_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->bugtracker_comments)->result();
+		return $this->db->where('report_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->bugtracker_comments)->result();
 	}
 
 	/**
@@ -102,7 +102,7 @@ class Bugtracker_model extends CI_Model
 	 */
 	public function count_comments($id)
 	{
-		return $this->db->where('bug_id', $id)->count_all_results($this->bugtracker_comments);
+		return $this->db->where('report_id', $id)->count_all_results($this->bugtracker_comments);
 	}
 
 	/**

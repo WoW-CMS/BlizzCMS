@@ -31,7 +31,7 @@
               <div class="g-recaptcha" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
             </div>
             <?php endif; ?>
-            <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sign-in-alt"></i> <?= lang('login'); ?></button>
+            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-sign-in-alt"></i> <?= lang('login'); ?></button>
             <?= form_close(); ?>
           </div>
           <div class="uk-width-1-5@s"></div>

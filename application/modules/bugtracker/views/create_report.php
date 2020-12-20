@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_bugtracker'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker'); ?></h4>
           </div>
           <div class="uk-width-auto"></div>
         </div>
@@ -10,11 +10,12 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+        <?= $template['partials']['alerts']; ?>
         <div class="uk-card uk-card-default uk-margin-small">
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small uk-flex uk-flex-middle">
               <div class="uk-width-expand">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= lang('create_bug_report'); ?></h5>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= lang('create_report'); ?></h5>
               </div>
               <div class="uk-width-auto">
                 <a href="<?= site_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
@@ -22,7 +23,6 @@
             </div>
           </div>
           <div class="uk-card-body">
-            <?= $template['partials']['alerts']; ?>
             <?= form_open(current_url()); ?>
             <div class="uk-margin uk-light">
               <label class="uk-form-label"><?= lang('title'); ?></label>

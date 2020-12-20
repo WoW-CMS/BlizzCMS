@@ -10,15 +10,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*Browser Tab Menu*/
-$lang['tab_news'] = 'News';
+$lang['home'] = 'Home';
+$lang['news'] = 'News';
 $lang['tab_forum'] = 'Forum';
 $lang['tab_store'] = 'Store';
-$lang['tab_bugtracker'] = 'Bugtracker';
-$lang['tab_changelogs'] = 'Changelogs';
-$lang['tab_pvp_statistics'] = 'PvP Statistics';
-$lang['tab_login'] = 'Login';
-$lang['tab_register'] = 'Register';
-$lang['tab_home'] = 'Home';
 $lang['tab_donate'] = 'Donate';
 $lang['tab_vote'] = 'Vote';
 $lang['tab_cart'] = 'Cart';
@@ -39,7 +34,6 @@ $lang['user_panel'] = 'User panel';
 $lang['admin_panel'] = 'Admin panel';
 $lang['mod_panel'] = 'Mod panel';
 $lang['change_avatar'] = 'Change avatar';
-$lang['create_report'] = 'Create report';
 $lang['new_topic'] = 'New topic';
 $lang['edit_topic'] = 'Edit topic';
 $lang['save_changes'] = 'Save changes';
@@ -68,13 +62,14 @@ $lang['back'] = 'Back';
 $lang['username'] = 'Username';
 $lang['email'] = 'Email address';
 $lang['password'] = 'Password';
-$lang['re_password'] = 'Repeat password';
+$lang['confirm_password'] = 'Confirm password';
 $lang['current_password'] = 'Current password';
 $lang['new_password'] = 'New password';
 $lang['new_nickname'] = 'New nickname';
 $lang['new_email'] = 'New email';
-$lang['confirm_email'] = 'Confirm new email';
-$lang['create_bug_report'] = 'Create Bug Report';
+$lang['confirm_new_email'] = 'Confirm new email';
+$lang['current_nickname'] = 'Current nickname';
+$lang['current_email'] = 'Current email';
 $lang['title'] = 'Title';
 $lang['type'] = 'Type';
 $lang['description'] = 'Description';
@@ -228,15 +223,19 @@ $lang['read_and_agree'] = 'I have read and agree to the';
 $lang['terms_and_conditions'] = 'Terms and Conditions';
 
 $lang['searcher'] = 'Searcher';
-$lang['reports_list'] = 'Reports list';
 $lang['comments'] = 'Comments';
 $lang['latest_comments'] = 'Latest comments';
 $lang['your_comment'] = 'Your Comment';
+$lang['latest_news'] = 'Latest news';
+$lang['server_status'] = 'Server status';
+$lang['member_since'] = 'Member since';
+$lang['change_email'] = 'Change email';
+$lang['change_nickname'] = 'Change nickname';
+$lang['change_password'] = 'Change password';
+$lang['account_details'] = 'Account details';
 
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Item purchased successfully.';
-$lang['alert_upload_error'] = 'Your image must be in jpg or png format';
-$lang['alert_changelog_not_found'] = 'The server does not have changelogs to inform at this time';
 $lang['alert_points_insufficient'] = 'Insufficient points';
 
 /*Footer Lang*/
@@ -247,37 +246,12 @@ $lang['page_404_title'] = '404 Page not found';
 $lang['page_404_description'] = 'It looks like the page you are looking could not be found';
 
 /*Panel Lang*/
-$lang['panel_acc_rank'] = 'Account Rank';
 $lang['panel_dp'] = 'Donor Points';
 $lang['panel_vp'] = 'Vote Points';
-$lang['panel_member'] = 'Member since';
-$lang['panel_account_details'] = 'Account Details';
-$lang['panel_last_ip'] = 'Last IP';
-$lang['panel_change_email'] = 'Change Email Address';
-$lang['panel_change_nickname'] = 'Change Nickname';
-$lang['panel_change_password'] = 'Change Password';
-$lang['panel_replace_pass_by'] = 'Replace password by';
-$lang['panel_current_nickname'] = 'Current Nickname';
-$lang['panel_current_email'] = 'Current Email Address';
-$lang['panel_replace_email_by'] = 'Replace Email by';
 
 /*Home Lang*/
-$lang['home_latest_news'] = 'Latest News';
 $lang['home_discord'] = 'Discord';
-$lang['home_server_status'] = 'Server Status';
 $lang['home_realm_info'] = 'Currently the realm is';
-
-/*PvP Statistics Lang*/
-$lang['statistics_top_20'] = 'TOP 20';
-$lang['statistics_top_2v2'] = 'TOP 2V2';
-$lang['statistics_top_3v3'] = 'TOP 3V3';
-$lang['statistics_top_5v5'] = 'TOP 5V5';
-
-/*News Lang*/
-$lang['news_recent_list'] = 'Recent news list';
-
-/*Bugtracker Lang*/
-$lang['bugtracker_report_notfound'] = 'Reports not found';
 
 /*Donate Lang*/
 $lang['donate_get'] = 'Get';

@@ -49,6 +49,7 @@ class Migration_Create_table_menu extends CI_Migration
 
 		$data = array(
 			array('name' => 'More', 'url' => '#', 'icon' => 'fas fa-bars', 'target' => '_self', 'type' => 'dropdown', 'parent' => 0),
+			array('name' => 'Bugtracker', 'url' => 'bugtracker', 'icon' => 'fas fa-bug', 'target' => '_self', 'type' => 'default', 'parent' => 1),
 			array('name' => 'Changelogs', 'url' => 'changelogs', 'icon' => 'fas fa-scroll', 'target' => '_self', 'type' => 'default', 'parent' => 1),
 			array('name' => 'PvP', 'url' => 'pvp', 'icon' => 'fas fa-fist-raised', 'target' => '_self', 'type' => 'default', 'parent' => 1),
 			array('name' => 'Forums', 'url' => 'forum', 'icon' => 'fas fa-comments', 'target' => '_self', 'type' => 'default', 'parent' => 0),

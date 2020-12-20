@@ -12,7 +12,7 @@ class Migration_Create_table_bugtracker_comments extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'bug_id' => array(
+			'report_id' => array(
 				'type' => 'BIGINT',
 				'constraint' => '20',
 				'unsigned' => TRUE
@@ -34,7 +34,7 @@ class Migration_Create_table_bugtracker_comments extends CI_Migration
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->add_key('bug_id');
+		$this->dbforge->add_key('report_id');
 		$this->dbforge->add_key('user_id');
 		$this->dbforge->create_table('bugtracker_comments');
 	}

@@ -46,7 +46,7 @@ class News extends CI_Controller
 			'tiny'     => $this->base->tinyEditor('User')
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_news'));
+		$this->template->title(config_item('app_name'), lang('news'));
 
 		$this->template->build('article', $data);
 	}

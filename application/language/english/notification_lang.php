@@ -9,45 +9,19 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*Notification Title Lang*/
-$lang['notification_title_success'] = 'Success';
-$lang['notification_title_warning'] = 'Warning';
-$lang['notification_title_error'] = 'Error';
-$lang['notification_title_info'] = 'Information';
-
-/*Notification Message (Login/Register) Lang*/
 $lang['notification_user_error'] = 'The username or password is incorrect. please try again!';
 $lang['notification_email_error'] = 'The email or password is incorrect. please try again!';
 $lang['notification_check_email'] = 'The username or email is incorrect. please try again!';
-$lang['notification_checking'] = 'Checking...';
 $lang['notification_new_account'] = 'New account created. redirecting to login...';
 $lang['notification_email_sent'] = 'Email sent. please check your email...';
 $lang['notification_account_activation'] = 'Email sent. please check your email for activate your account.';
-$lang['notification_captcha_error'] = 'Please check the captcha';
-$lang['notification_password_lenght_error'] = 'Wrong password length. please use a password between 5 and 16 characters';
 $lang['notification_account_already_exist'] = 'This account already exists';
-$lang['notification_password_not_match'] = 'Passwords do not match';
-$lang['notification_same_password'] = 'The password is the same.';
-$lang['notification_currentpass_not_match'] = 'Old Password do not match';
-$lang['notification_usernamepass_not_match'] = 'The password do not match for this username';
 $lang['notification_used_email'] = 'Email in use';
-$lang['notification_email_not_match'] = 'Email do not match';
-$lang['notification_username_not_match'] = 'Username do not match';
-$lang['notification_expansion_not_found'] = 'Expansion not found';
-$lang['notification_valid_key'] = 'Account Activated';
-$lang['notification_valid_key_desc'] = 'Now you can sign in with your account.';
-$lang['notification_invalid_key'] = 'The activation key provided is not valid.';
 
-/*Notification Message (General) Lang*/
 $lang['notification_email_changed'] = 'The email has been changed.';
-$lang['notification_username_changed'] = 'The username has been changed.';
 $lang['notification_password_changed'] = 'The password has been changed.';
 $lang['notification_avatar_changed'] = 'The avatar has been changed.';
-$lang['notification_wrong_values'] = 'The values are wrong';
 $lang['notification_report_created'] = 'The report has been created.';
-$lang['notification_title_empty'] = 'Title is Empty';
-$lang['notification_description_empty'] = 'Description is empty';
-$lang['notification_reply_empty'] = 'Reply is empty';
 $lang['notification_reply_created'] = 'Reply has been sended.';
 $lang['notification_reply_deleted'] = 'Reply has been deleted.';
 $lang['notification_topic_created'] = 'The topic has been created.';
@@ -61,7 +35,6 @@ $lang['notification_store_item_added'] = 'The selected item has been added to yo
 $lang['notification_store_item_removed'] = 'The selected item has been removed from your cart.';
 $lang['notification_store_cart_error'] = 'The cart update failed, please try again.';
 
-/*Notification Message (Admin) Lang*/
 $lang['notification_changelog_created'] = 'The changelog has been created.';
 $lang['notification_changelog_edited'] = 'The changelog has been edited.';
 $lang['notification_changelog_deleted'] = 'The changelog has been deleted.';
@@ -93,9 +66,3 @@ $lang['notification_top_deleted'] = 'The top item has been deleted.';
 $lang['notification_topsite_created'] = 'The topsite has been created.';
 $lang['notification_topsite_edited'] = 'The topsite has been edited.';
 $lang['notification_topsite_deleted'] = 'The topsite has been deleted.';
-
-$lang['notification_settings_updated'] = 'The settings has been updated.';
-
-$lang['notification_cms_updated'] = 'The CMS has been updated';
-$lang['notification_cms_update_error'] = 'The CMS could not be updated';
-$lang['notification_cms_not_updated'] = 'A new version has not been found to update';

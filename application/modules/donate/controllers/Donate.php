@@ -27,6 +27,8 @@ class Donate extends MX_Controller
 
 		$this->load->model('donate_model');
 		$this->load->config('donate');
+
+		$this->template->set_partial('alerts', 'static/alerts');
 	}
 
 	public function index()
@@ -60,7 +62,7 @@ class Donate extends MX_Controller
 
 	public function canceled()
 	{
-		$this->session->set_flashdata('donation_status','canceled');
+		$this->session->set_flashdata('warning', lang('notification_donation_canceled'));
 		redirect(site_url('donate'));
 	}
 }

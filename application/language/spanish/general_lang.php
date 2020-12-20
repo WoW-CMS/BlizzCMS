@@ -10,15 +10,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*Browser Tab*/
-$lang['tab_news'] = 'Noticias';
+$lang['home'] = 'Inicio';
+$lang['news'] = 'Noticias';
 $lang['tab_forum'] = 'Foro';
 $lang['tab_store'] = 'Tienda';
-$lang['tab_bugtracker'] = 'Bugtracker';
-$lang['tab_changelogs'] = 'Changelogs';
-$lang['tab_pvp_statistics'] = 'Estadísticas PvP';
-$lang['tab_login'] = 'Iniciar sesión';
-$lang['tab_register'] = 'Registrar';
-$lang['tab_home'] = 'Inicio';
 $lang['tab_donate'] = 'Donar';
 $lang['tab_vote'] = 'Votar';
 $lang['tab_cart'] = 'Carrito';
@@ -39,7 +34,6 @@ $lang['user_panel'] = 'Panel de usuario';
 $lang['admin_panel'] = 'Panel de administración';
 $lang['mod_panel'] = 'Panel de moderación';
 $lang['change_avatar'] = 'Cambiar avatar';
-$lang['create_report'] = 'Crear informe';
 $lang['new_topic'] = 'Nuevo tema';
 $lang['edit_topic'] = 'Editar tema';
 $lang['save_changes'] = 'Guardar Cambios';
@@ -68,13 +62,14 @@ $lang['back'] = 'Back';
 $lang['username'] = 'Nombre de usuario';
 $lang['email'] = 'Correo electrónico';
 $lang['password'] = 'Contraseña';
-$lang['re_password'] = 'Repetir contraseña';
+$lang['confirm_password'] = 'Confirmar contraseña';
 $lang['current_password'] = 'Contraseña actual';
 $lang['new_password'] = 'Nueva contraseña';
 $lang['new_nickname'] = 'New nickname';
 $lang['new_email'] = 'Nuevo correo';
-$lang['confirm_email'] = 'Confirmar nuevo correo';
-$lang['create_bug_report'] = 'Crear informe de error';
+$lang['confirm_new_email'] = 'Confirmar nuevo correo';
+$lang['current_nickname'] = 'Current nickname';
+$lang['current_email'] = 'Correo electrónico actual';
 $lang['title'] = 'Título';
 $lang['type'] = 'Tipo';
 $lang['description'] = 'Descripción';
@@ -232,11 +227,16 @@ $lang['reports_list'] = 'Reports list';
 $lang['comments'] = 'Comments';
 $lang['latest_comments'] = 'Latest comments';
 $lang['your_comment'] = 'Your Comment';
+$lang['latest_news'] = 'Últimas noticias';
+$lang['server_status'] = 'Estado del servidor';
+$lang['member_since'] = 'Miembro desde';
+$lang['change_email'] = 'Cambiar correo electrónico';
+$lang['change_nickname'] = 'Change nickname';
+$lang['change_password'] = 'Cambiar contraseña';
+$lang['account_details'] = 'Detalles de la cuenta';
 
 /*Alert Lang*/
 $lang['alert_successful_purchase'] = 'Artículo comprado con éxito.';
-$lang['alert_upload_error'] = 'Tu imagen debe estar en formato .jpg';
-$lang['alert_changelog_not_found'] = 'El servidor no tiene registros de cambios para informar en este momento';
 $lang['alert_points_insufficient'] = 'Puntos insuficientes';
 
 /*Footer Lang*/
@@ -247,37 +247,12 @@ $lang['page_404_title'] = '404 Pagina no encontrada';
 $lang['page_404_description'] = 'Parece que la página que estás buscando no se pudo encontrar';
 
 /*User Panel Lang*/
-$lang['panel_acc_rank'] = 'Rango de cuenta';
 $lang['panel_dp'] = 'Puntos de Donación';
 $lang['panel_vp'] = 'Puntos de Votos';
-$lang['panel_member'] = 'Miembro desde';
-$lang['panel_account_details'] = 'Detalles de la cuenta';
-$lang['panel_last_ip'] = 'Última IP';
-$lang['panel_change_email'] = 'Cambiar Correo electrónico';
-$lang['panel_change_nickname'] = 'Change Nickname';
-$lang['panel_change_password'] = 'Cambiar Contraseña';
-$lang['panel_replace_pass_by'] = 'Reemplazar contraseña por';
-$lang['panel_current_nickname'] = 'Current Nickname';
-$lang['panel_current_email'] = 'Dirección de correo electrónico actual';
-$lang['panel_replace_email_by'] = 'Reemplazar correo electrónico por';
 
 /*Home Lang*/
-$lang['home_latest_news'] = 'Últimas Noticias';
 $lang['home_discord'] = 'Discord';
-$lang['home_server_status'] = 'Estado del Servidor';
 $lang['home_realm_info'] = 'Actualmente el reino esta';
-
-/*PvP Statistics Lang*/
-$lang['statistics_top_20'] = 'TOP 20';
-$lang['statistics_top_2v2'] = 'TOP 2V2';
-$lang['statistics_top_3v3'] = 'TOP 3V3';
-$lang['statistics_top_5v5'] = 'TOP 5V5';
-
-/*News Lang*/
-$lang['news_recent_list'] = 'Lista de noticias recientes';
-
-/*Bugtracker Lang*/
-$lang['bugtracker_report_notfound'] = 'Reportes no encontrados';
 
 /*Donate Lang*/
 $lang['donate_get'] = 'Obtenen';

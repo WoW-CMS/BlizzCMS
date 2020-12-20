@@ -101,15 +101,6 @@ $lang['conf_smtp_password'] = 'Contraseña del SMTP';
 $lang['conf_sender_email'] = 'Correo electrónico del remitente';
 $lang['conf_sender_name'] = 'Nombre del remitente';
 
-/*Logs */
-$lang['logs_dp'] = 'Donación';
-$lang['logs_quantity'] = 'Cantidad';
-$lang['logs_hash'] = 'Hash';
-$lang['logs_voteid'] = 'ID de la Votación';
-$lang['logs_points'] = 'Puntos';
-$lang['logs_lasttime'] = 'Última vez';
-$lang['logs_expiredtime'] = 'Tiempo para expirar';
-
 /*Options Lang*/
 $lang['option_normal'] = 'Normal';
 $lang['option_dropdown'] = 'Dropdown';
@@ -123,10 +114,6 @@ $lang['option_tls'] = 'TLS';
 $lang['option_everyone'] = 'Todos';
 $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Todos';
-$lang['option_rename'] = 'Renombrar';
-$lang['option_customize'] = 'Personalizar';
-$lang['option_change_faction'] = 'Cambiar Facción';
-$lang['option_change_race'] = 'Cambiar Raza';
 $lang['option_dp'] = 'DP';
 $lang['option_vp'] = 'VP';
 $lang['option_dp_vp'] = 'DP & VP';
@@ -154,29 +141,10 @@ $lang['info_players_playing'] = 'Jugadores jugando en el reino';
 
 /*Alert Lang*/
 $lang['alert_smtp_activation'] = 'Si habilita esta opción, debe configurar SMTP para enviar correos electrónicos.';
-$lang['alert_banned_reason'] = 'Está baneado, razón:';
-
-/*Logs Lang*/
-$lang['log_new_level'] = 'Recibe un nuevo nivel';
-$lang['log_old_level'] = 'Antes era';
-$lang['log_new_name'] = 'Tiene un nuevo nombre';
-$lang['log_old_name'] = 'Antes era';
-$lang['log_unbanned'] = 'Unbanned';
-$lang['log_customization'] = 'Obtener una personalización';
-$lang['log_change_race'] = 'Obtener cambio de Raza';
-$lang['log_change_faction'] = 'Obtener cambio de Facción';
-$lang['log_banned'] = 'Fué Baneado';
-$lang['log_gm_assigned'] = 'Recibido rango de GM';
-$lang['log_gm_removed'] = 'El rango de GM fué eliminado';
 
 /*CMS Lang*/
 $lang['cms_version_currently'] = 'Esta versión se está ejecutando actualmente';
 $lang['cms_warning_update'] = 'Cuando se actualice el cms, la configuración se puede restaurar a la predeterminada de acuerdo con los cambios realizados en cada versión.';
-$lang['cms_php_version'] = 'Versión PHP';
-$lang['cms_allow_fopen'] = 'allow_url_fopen';
-$lang['cms_allow_include'] = 'allow_url_include';
-$lang['cms_loaded_modules'] = 'Módulos cargados';
-$lang['cms_loaded_extensions'] = 'Extensiones cargadas';
 
 
 $lang['characters_database'] = 'Characters Database';

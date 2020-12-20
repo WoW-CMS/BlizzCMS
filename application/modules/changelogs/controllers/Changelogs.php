@@ -23,6 +23,7 @@ class Changelogs extends MX_Controller
 		}
 
 		$this->load->model('changelogs_model');
+		$this->load->language('changelogs');
 	}
 
 	public function index()
@@ -47,7 +48,7 @@ class Changelogs extends MX_Controller
 			'links'      => $this->pagination->create_links()
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_changelogs'));
+		$this->template->title(config_item('app_name'), lang('changelogs'));
 
 		$this->template->build('index', $data);
 	}

@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_bugtracker'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker'); ?></h4>
           </div>
           <div class="uk-width-auto">
             <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $report->user_id): ?>

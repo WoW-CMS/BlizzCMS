@@ -14,7 +14,9 @@ class Pvp extends MX_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
 		$this->load->model('pvp_model');
+		$this->load->language('pvp');
 	}
 
 	public function index()
@@ -23,7 +25,7 @@ class Pvp extends MX_Controller
 			'realms' => $this->realm->get_realms()
 		];
 
-		$this->template->title(config_item('app_name'), lang('tab_pvp_statistics'));
+		$this->template->title(config_item('app_name'), lang('pvp_statistics'));
 
 		$this->template->build('index', $data);
 	}

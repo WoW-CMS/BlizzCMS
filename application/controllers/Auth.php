@@ -25,7 +25,7 @@ class Auth extends CI_Controller
 			redirect(site_url('user'));
 		}
 
-		$this->template->title(config_item('app_name'), lang('tab_login'));
+		$this->template->title(config_item('app_name'), lang('login'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -84,7 +84,7 @@ class Auth extends CI_Controller
 			redirect(site_url('user'));
 		}
 
-		$this->template->title(config_item('app_name'), lang('tab_register'));
+		$this->template->title(config_item('app_name'), lang('register'));
 
 		if ($this->input->method() == 'post')
 		{
@@ -92,7 +92,7 @@ class Auth extends CI_Controller
 			$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-			$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|min_length[8]|matches[password]');
+			$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
 			$this->form_validation->set_rules('terms', 'Terms and conditions', 'trim|required');
 
 			if (config_item('captcha_register') == 'true')

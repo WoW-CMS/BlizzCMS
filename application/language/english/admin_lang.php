@@ -101,15 +101,6 @@ $lang['conf_smtp_password'] = 'SMTP Password';
 $lang['conf_sender_email'] = 'Sender Email';
 $lang['conf_sender_name'] = 'Sender Name';
 
-/*Logs */
-$lang['logs_dp'] = 'Donation';
-$lang['logs_quantity'] = 'Quantity';
-$lang['logs_hash'] = 'Hash';
-$lang['logs_voteid'] = 'Vote ID';
-$lang['logs_points'] = 'Points';
-$lang['logs_lasttime'] = 'Last time';
-$lang['logs_expiredtime'] = 'Expired time';
-
 /*Options Lang*/
 $lang['option_normal'] = 'Normal';
 $lang['option_dropdown'] = 'Dropdown';
@@ -123,10 +114,6 @@ $lang['option_tls'] = 'TLS';
 $lang['option_everyone'] = 'Everyone';
 $lang['option_staff'] = 'STAFF';
 $lang['option_all'] = 'STAFF - Everyone';
-$lang['option_rename'] = 'Rename';
-$lang['option_customize'] = 'Customize';
-$lang['option_change_faction'] = 'Change Faction';
-$lang['option_change_race'] = 'Change Race';
 $lang['option_dp'] = 'DP';
 $lang['option_vp'] = 'VP';
 $lang['option_dp_vp'] = 'DP & VP';
@@ -154,29 +141,10 @@ $lang['info_players_playing'] = 'Players playing on realm';
 
 /*Alert Lang*/
 $lang['alert_smtp_activation'] = 'If you enable this option, you must configure SMTP to send emails.';
-$lang['alert_banned_reason'] = 'Is banned, reason:';
-
-/*Logs Lang*/
-$lang['log_new_level'] = 'Receive a new level';
-$lang['log_old_level'] = 'Before it was';
-$lang['log_new_name'] = 'It has a new name';
-$lang['log_old_name'] = 'Before it was';
-$lang['log_unbanned'] = 'Unbanned';
-$lang['log_customization'] = 'Get a customization';
-$lang['log_change_race'] = 'Get a Race Change';
-$lang['log_change_faction'] = 'Get a Faction Change';
-$lang['log_banned'] = 'Was banned';
-$lang['log_gm_assigned'] = 'Received GM rank';
-$lang['log_gm_removed'] = 'The GM rank was removed';
 
 /*CMS Lang*/
 $lang['cms_version_currently'] = 'This version is currently running';
 $lang['cms_warning_update'] = 'When the cms is updated the configuration can be restored to the default depending on the changes made to each version.';
-$lang['cms_php_version'] = 'PHP Version';
-$lang['cms_allow_fopen'] = 'allow_url_fopen';
-$lang['cms_allow_include'] = 'allow_url_include';
-$lang['cms_loaded_modules'] = 'Loaded Modules';
-$lang['cms_loaded_extensions'] = 'Loaded Extensions';
 
 
 $lang['characters_database'] = 'Characters Database';

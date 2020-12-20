@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_bugtracker'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker'); ?></h4>
           </div>
           <div class="uk-width-auto">
             <?php if ($this->website->isLogged()): ?>
@@ -97,7 +97,7 @@
                 <ul class="uk-list uk-list-divider uk-text-small">
                   <?php foreach ($this->bugtracker_model->latest_comments() as $comment): ?>
                   <li>
-                    <a href="<?= site_url('bugtracker/report/'.$comment->bug_id); ?>"><?= character_limiter(strip_tags($comment->commentary), 60); ?></a>
+                    <a href="<?= site_url('bugtracker/report/'.$comment->report_id); ?>"><?= character_limiter(strip_tags($comment->commentary), 60); ?></a>
                     <p class="uk-text-meta uk-margin-remove">By <?= $this->website->get_user($comment->user_id, 'nickname'); ?></p>
                   </li>
                   <?php endforeach; ?>

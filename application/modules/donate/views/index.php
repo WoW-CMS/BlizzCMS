@@ -16,28 +16,10 @@ endif; ?>
               <li class="uk-active"><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('navbar_donate_panel'); ?></a></li>
               <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('navbar_vote_panel'); ?></a></li>
               <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('tab_store'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?= lang('tab_bugtracker'); ?></a></li>
-              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('tab_changelogs'); ?></a></li>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <?php if($this->session->flashdata('donation_status') == 'success'): ?>
-            <div class="uk-alert-success" uk-alert>
-              <a class="uk-alert-close" uk-close></a>
-              <p><span class="uk-text-bold"><i class="far fa-check-circle"></i> <span class="uk-text-bold"><?= lang('notification_title_success'); ?>:</span> <?= lang('notification_donation_successful'); ?></p>
-            </div>
-            <?php elseif($this->session->flashdata('donation_status') == 'canceled'): ?>
-            <div class="uk-alert-warning" uk-alert>
-              <a class="uk-alert-close" uk-close></a>
-              <p><span class="uk-text-bold"><i class="fas fa-exclamation-circle"></i> <?= lang('notification_title_warning'); ?>:</span> <?= lang('notification_donation_canceled'); ?></p>
-            </div>
-            <?php elseif($this->session->flashdata('donation_status') == 'error'): ?>
-            <div class="uk-alert-danger" uk-alert>
-              <a class="uk-alert-close" uk-close></a>
-              <p><span class="uk-text-bold"><i class="far fa-times-circle"></i> <?= lang('notification_title_error'); ?>:</span> <?= lang('notification_donation_error'); ?></p>
-            </div>
-            <?php endif; ?>
+            <?= $template['partials']['alerts']; ?>
             <div class="uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-3@s uk-flex-center" uk-grid>
               <?php foreach($this->donate_model->getDonations()->result() as $donateList): ?>
               <div>
