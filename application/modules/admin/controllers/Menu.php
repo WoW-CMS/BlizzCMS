@@ -81,7 +81,7 @@ class Menu extends MX_Controller
 					'parent' => $this->input->post('parent')
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_menu_created'));
+				$this->session->set_flashdata('success', lang('menu_created'));
 				redirect(site_url('admin/menu/create'));
 			}
 		}
@@ -129,7 +129,7 @@ class Menu extends MX_Controller
 					'parent' => $this->input->post('parent')
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_menu_updated'));
+				$this->session->set_flashdata('success', lang('menu_updated'));
 
 				redirect(site_url('admin/menu/edit/'.$id));
 			}
@@ -149,7 +149,7 @@ class Menu extends MX_Controller
 
 		$this->db->where('id', $id)->delete('menu');
 
-		$this->session->set_flashdata('success', lang('alert_menu_deleted'));
+		$this->session->set_flashdata('success', lang('menu_deleted'));
 		redirect(site_url('admin/menu'));
 	}
 }

@@ -21,9 +21,9 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-medium"><?= lang('name'); ?></th>
-                  <th class="uk-width-medium uk-visible@s"><?= lang('database'); ?></th>
-                  <th class="uk-width-small uk-visible@s">Soap Port</th>
+                  <th class="uk-table-expand"><?= lang('name'); ?></th>
+                  <th class="uk-table-expand uk-visible@s"><?= lang('database'); ?></th>
+                  <th class="uk-table-expand uk-visible@s"><?= lang('maximum_capacity'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
@@ -32,7 +32,7 @@
                 <tr>
                   <td><?= $item->name; ?></td>
                   <td class="uk-visible@s"><?= $item->char_database; ?></td>
-                  <td class="uk-visible@s"><?= $item->console_port; ?></td>
+                  <td class="uk-visible@s"><?= $item->max_cap; ?></td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/realms/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
@@ -40,8 +40,8 @@
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
                         <div uk-dropdown="mode: click;boundary: ! .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
+                            <li><a href="<?= site_url('admin/realms/check/'.$item->id); ?>"><i class="fas fa-terminal"></i> <?= lang('check'); ?></a></li>
                             <li><a href="<?= site_url('admin/realms/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
-                            <li><a href="<?= site_url('admin/realms/check/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> Check</a></li>
                           </ul>
                         </div>
                       </div>

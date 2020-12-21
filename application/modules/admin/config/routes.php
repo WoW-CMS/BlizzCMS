@@ -11,10 +11,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['admin'] = 'admin/index';
 
-$route['admin/settings'] = 'settings/index';
-$route['admin/settings/security'] = 'settings/security';
-$route['admin/settings/email'] = 'settings/email';
-$route['admin/settings/meta'] = 'settings/meta';
+$route['admin/system']['get'] = 'system/index';
+$route['admin/system/cache']['get'] = 'system/cache';
+$route['admin/system/sessions']['get'] = 'system/sessions';
+$route['admin/system/general'] = 'system/general';
+$route['admin/system/captcha'] = 'system/captcha';
+$route['admin/system/email'] = 'system/email';
 
 $route['admin/mods']['get'] = 'mods/index';
 $route['admin/mods/install/(:any)']['get'] = 'mods/install/$1';

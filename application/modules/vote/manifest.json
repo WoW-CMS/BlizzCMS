@@ -5,7 +5,7 @@
 	"website": "https:\/\/wow-cms.com",
 	"version": "1.0",
 	"panel": {
-		"enabled": false,
-		"route": ""
+		"enabled": true,
+		"route": "admin/topsites"
 	}
 }

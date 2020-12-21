@@ -5,7 +5,8 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('manage_account'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
-              <li><span><?= lang('accounts'); ?></span></li>
+              <li><a href="<?= site_url('admin/users'); ?>"><?= lang('all_users'); ?></a></li>
+              <li><span><?= lang('manage_account'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -28,8 +29,8 @@
             <?= $template['partials']['alerts']; ?>
             <div class="uk-card uk-card-default uk-card-body uk-padding-remove uk-margin-small">
               <ul class="uk-tab" uk-switcher="connect: #account-data;">
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Characters</a></li>
+                <li><a href="#"><?= lang('account'); ?></a></li>
+                <li><a href="#"><?= lang('characters'); ?></a></li>
               </ul>
             </div>
             <ul id="account-data" class="uk-switcher uk-margin">

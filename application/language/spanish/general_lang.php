@@ -47,9 +47,11 @@ $lang['account_settings'] = 'Configuraciones de la cuenta';
 $lang['cart'] = 'añadir al carrito';
 $lang['view_cart'] = 'Ver carrito';
 $lang['checkout'] = 'Checkout';
+$lang['check'] = 'Check';
 $lang['continue_buying'] = 'Seguir comprando';
 $lang['install'] = 'Install';
 $lang['uninstall'] = 'Uninstall';
+$lang['reload'] = 'Reload';
 $lang['search'] = 'Search';
 $lang['select'] = 'Seleccionar';
 $lang['update'] = 'Actualizar';
@@ -150,6 +152,8 @@ $lang['dp_vp'] = 'DP & VP';
 $lang['new_tab'] = 'New Tab/Window';
 $lang['same_tab'] = 'Same Tab/Window';
 $lang['whithout_parent'] = 'Whithout parent';
+$lang['characters'] = 'Characters';
+$lang['account'] = 'Account';
 
 /**
  * Status
@@ -167,6 +171,9 @@ $lang['select_language'] = 'Select a language';
 $lang['select_expansion'] = 'Select a expansion';
 $lang['select_emulator'] = 'Select a emulator';
 $lang['select_status'] = 'Select a status';
+$lang['select_protocol'] = 'Select a protocol';
+$lang['select_encryption'] = 'Select a encryption';
+$lang['select_option'] = 'Select a option';
 
 /**
  * Status
@@ -176,10 +183,8 @@ $lang['online'] = 'Online';
 $lang['unknown'] = 'Desconocido';
 $lang['completed'] = 'Terminado';
 $lang['canceled'] = 'Cancelado';
-$lang['enabled'] = 'Habilitado';
-$lang['disabled'] = 'Deshabilitado';
-$lang['open'] = 'Abierto';
-$lang['closed'] = 'Cerrado';
+$lang['enable'] = 'Habilitar';
+$lang['disable'] = 'Inhabilitar';
 
 /**
  * Classes

@@ -11,13 +11,12 @@
     <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'js/jquery.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'fontawesome/js/all.js'; ?>" defer></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script>const whTooltips = {colorLinks: false, iconizeLinks: false, renameLinks: false, dropchance: true};</script> 
+    <?= $template['metadata']; ?>
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">
       <div class="uk-container">
-        <nav class="uk-navbar" uk-navbar>
+        <nav class="uk-navbar" data-uk-navbar>
           <div class="uk-navbar-left">
             <a href="<?= site_url(); ?>" class="uk-navbar-item uk-logo uk-margin-small-right"><?= config_item('app_name'); ?></a>
           </div>
@@ -32,7 +31,7 @@
                   <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar(); ?>" width="30" height="30" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('nickname'); ?>&nbsp;<i class="fas fa-caret-down"></i></span>
                 </a>
-                <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
+                <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('user_panel'); ?></a></li>
                     <?php if ($this->auth->is_moderator()): ?>
@@ -48,7 +47,7 @@
               <?php if (mod_located('store')): ?>
               <li>
                 <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;<span class="uk-badge"><?= $this->cart->total_items(); ?></span></a>
-                <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
+                <div class="uk-navbar-dropdown">
                   <div class="cart-container">
                     <?php if ($this->cart->total_items()): ?>
                     <p class="uk-text-center uk-margin-small"><?= lang_vars('cart_items', [$this->cart->total_items()]); ?></p>

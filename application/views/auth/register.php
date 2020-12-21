@@ -72,7 +72,7 @@
             </div>
             <?php if (config_item('captcha_register') == 'true'): ?>
             <div class="uk-margin-small">
-              <div class="g-recaptcha" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
+              <div class="<?= (config_item('captcha_type') == 'hcaptcha') ? 'h-captcha' : 'g-recaptcha' ?>" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
             </div>
             <?php endif; ?>
             <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-user-plus"></i> <?= lang('register'); ?></button>

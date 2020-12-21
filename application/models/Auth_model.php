@@ -46,9 +46,11 @@ class Auth_model extends CI_Model
 			case 'old_trinity':
 				$validate = hash_equals(strtoupper($account->sha_pass_hash), game_hash($account->username, $password));
 				break;
-			default:
-				$validate = false;
-				break;
+		}
+
+		if (! isset($validate))
+		{
+			return false;
 		}
 
 		return $validate;

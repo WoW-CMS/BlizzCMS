@@ -29,12 +29,9 @@ class Website_model extends CI_Model
 			case 'old_trinity':
 				$validate = hash_equals(strtoupper($accgame->sha_pass_hash), game_hash($accgame->username, $password));
 				break;
-			default:
-				$validate = false;
-				break;
 		}
 
-		if (! $validate)
+		if (! isset($validate) || ! $validate)
 		{
 			return false;
 		}

@@ -88,7 +88,7 @@ class Pages extends MX_Controller
 					'created_at'  => now()
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_page_created'));
+				$this->session->set_flashdata('success', lang('page_created'));
 				redirect(site_url('admin/pages/create'));
 			}
 		}
@@ -129,7 +129,7 @@ class Pages extends MX_Controller
 					'slug'        => $this->input->post('slug'),
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_page_updated'));
+				$this->session->set_flashdata('success', lang('page_updated'));
 				redirect(site_url('admin/pages/edit/'.$id));
 			}
 		}
@@ -148,7 +148,7 @@ class Pages extends MX_Controller
 
 		$this->db->where('id', $id)->delete('pages');
 
-		$this->session->set_flashdata('success', lang('alert_page_deleted'));
+		$this->session->set_flashdata('success', lang('page_deleted'));
 		redirect(site_url('admin/pages'));
 	}
 }

@@ -108,7 +108,7 @@ class News extends MX_Controller
 					'created_at'  => now()
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_news_created'));
+				$this->session->set_flashdata('success', lang('news_created'));
 				redirect(site_url('admin/news/create'));
 			}
 		}
@@ -175,7 +175,7 @@ class News extends MX_Controller
 					'description' => $this->input->post('description')
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_news_updated'));
+				$this->session->set_flashdata('success', lang('news_updated'));
 				redirect(site_url('admin/news/edit/'.$id));
 			}
 		}
@@ -202,7 +202,7 @@ class News extends MX_Controller
 		$this->db->where('id', $id)->delete('news');
 		$this->db->where('news_id', $id)->delete('news_comments');
 
-		$this->session->set_flashdata('success', lang('alert_news_deleted'));
+		$this->session->set_flashdata('success', lang('news_deleted'));
 		redirect(site_url('admin/news'));
 	}
 

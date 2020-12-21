@@ -33,7 +33,6 @@
                     <?php if($this->auth->is_admin()): ?>
                     <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('admin_panel'); ?></a></li>
                     <?php endif; ?>
-                    <li class="uk-nav-divider"></li>
                     <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout'); ?></a></li>
                   </ul>
                 </div>
@@ -49,18 +48,18 @@
                   <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                     <li><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
                     <li class="uk-parent">
-                      <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comment-alt"></i></span>Forum and Post</a>
+                      <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span>Forum</a>
                       <ul class="uk-nav-sub">
-                        <li><a href="<?= site_url('mod/queue'); ?>"><i class="fas fa-list-alt"></i> Moderation Queue</a></li>
-                        <li><a href="<?= site_url('mod/reports'); ?>"><i class="fas fa-gavel"></i> Reports</a></li>
-                        <li><a href="<?= site_url('mod/logs'); ?>"><i class="fas fa-book"></i> Moderator Logs</a></li>
+                        <li><a href="<?= site_url('mod/queue'); ?>">Moderation Queue</a></li>
+                        <li><a href="<?= site_url('mod/reports'); ?>">Reports</a></li>
+                        <li><a href="<?= site_url('mod/logs'); ?>">Moderator Logs</a></li>
                       </ul>
                     </li>
                     <li class="uk-parent">
                       <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?></a>
                       <ul class="uk-nav-sub">
-                        <li><a href="<?= site_url('mod/bannings'); ?>"><i class="fas fa-ban"></i> Bannings</a></li>
-                        <li><a href="<?= site_url('mod/warnings'); ?>"><i class="fas fa-exclamation-triangle"></i> Warnings</a></li>
+                        <li><a href="<?= site_url('mod/bannings'); ?>">Bannings</a></li>
+                        <li><a href="<?= site_url('mod/warnings'); ?>">Warnings</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -73,17 +72,17 @@
     </header>
     <nav class="uk-navbar-container uk-visible@m">
       <div class="uk-container">
-        <div class="uk-navbar" uk-navbar="mode: click">
+        <div class="uk-navbar" data-uk-navbar>
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <li class="uk-active"><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
               <li>
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comment-alt"></i></span>Forum and Post<span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span>Forum<span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('mod/queue'); ?>"><i class="fas fa-list-alt"></i> Moderation Queue</a></li>
-                    <li><a href="<?= site_url('mod/reports'); ?>"><i class="fas fa-gavel"></i> Reports</a></li>
-                    <li><a href="<?= site_url('mod/logs'); ?>"><i class="fas fa-book"></i> Guardian Logs</a></li>
+                    <li><a href="<?= site_url('mod/queue'); ?>">Moderation Queue</a></li>
+                    <li><a href="<?= site_url('mod/reports'); ?>">Reports</a></li>
+                    <li><a href="<?= site_url('mod/logs'); ?>">Guardian Logs</a></li>
                   </ul>
                 </div>
               </li>
@@ -91,8 +90,8 @@
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('mod/bannings'); ?>"><i class="fas fa-ban"></i> Bannings</a></li>
-                    <li><a href="<?= site_url('mod/warnings'); ?>"><i class="fas fa-exclamation-triangle"></i> Warnings</a></li>
+                    <li><a href="<?= site_url('mod/bannings'); ?>">Bannings</a></li>
+                    <li><a href="<?= site_url('mod/warnings'); ?>">Warnings</a></li>
                   </ul>
                 </div>
               </li>

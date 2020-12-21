@@ -54,7 +54,7 @@ class MY_Exceptions extends CI_Exceptions
 			$CI->load->helper('url');
 			$CI->load->library('template');
 
-			$CI->template->title('Error');
+			$CI->template->title($CI->lang->line('error_404'));
 			$output = $CI->template->build('404', $data, TRUE);
 
 			set_status_header(404);

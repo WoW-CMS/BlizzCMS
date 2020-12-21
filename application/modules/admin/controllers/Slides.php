@@ -73,7 +73,7 @@ class Slides extends MX_Controller
 					'route'       => $this->input->post('route', TRUE)
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_slide_created'));
+				$this->session->set_flashdata('success', lang('slide_created'));
 				redirect(site_url('admin/slides/create'));
 			}
 		}
@@ -116,7 +116,7 @@ class Slides extends MX_Controller
 					'route'       => $this->input->post('route', TRUE)
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_slide_updated'));
+				$this->session->set_flashdata('success', lang('slide_updated'));
 				redirect(site_url('admin/slides/edit/'.$id));
 			}
 		}
@@ -135,7 +135,7 @@ class Slides extends MX_Controller
 
 		$this->db->where('id', $id)->delete('slides');
 
-		$this->session->set_flashdata('success', lang('alert_slide_deleted'));
+		$this->session->set_flashdata('success', lang('slide_deleted'));
 		redirect(site_url('admin/slides'));
 	}
 }

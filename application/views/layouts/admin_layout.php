@@ -33,7 +33,6 @@
                     <?php if ($this->auth->is_moderator()): ?>
                     <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <li class="uk-nav-divider"></li>
                     <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout'); ?></a></li>
                   </ul>
                 </div>
@@ -50,41 +49,26 @@
             <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
               <li><a href="<?= site_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
               <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= lang('system'); ?></a>
+                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= lang('settings'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/settings'); ?>"><i class="fas fa-sliders-h"></i> <?= lang('manage_settings'); ?></a></li>
-                  <li><a href="<?= site_url('admin/mods'); ?>"><i class="fas fa-puzzle-piece"></i> <?= lang('manage_modules'); ?></a></li>
+                  <li><a href="<?= site_url('admin/system'); ?>"><?= lang('system'); ?></a></li>
+                  <li><a href="<?= site_url('admin/mods'); ?>"><?= lang('modules'); ?></a></li>
+                  <li><a href="<?= site_url('admin/realms'); ?>"><?= lang('realms'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/users'); ?>"><i class="fas fa-users-cog"></i> <?= lang('accounts'); ?></a></li>
+                  <li><a href="<?= site_url('admin/users'); ?>"><?= lang('all_users'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-mouse-pointer"></i></span><?= lang('website'); ?></a>
+                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-th"></i></span><?= lang('sections'); ?></a>
                 <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/menu'); ?>"><i class="fas fa-link"></i> <?= lang('menu'); ?></a></li>
-                  <li><a href="<?= site_url('admin/realms'); ?>"><i class="fas fa-server"></i> <?= lang('realms'); ?></a></li>
-                  <li><a href="<?= site_url('admin/slides'); ?>"><i class="fas fa-images"></i> <?= lang('slides'); ?></a></li>
-                  <li><a href="<?= site_url('admin/news'); ?>"><i class="fas fa-newspaper"></i> <?= lang('news'); ?></a></li>
-                  <li><a href="<?= site_url('admin/changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('changelogs'); ?></a></li>
-                  <li><a href="<?= site_url('admin/pages'); ?>"><i class="fas fa-file-alt"></i> <?= lang('pages'); ?></a></li>
-                </ul>
-              </li>
-              <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-store"></i></span><?= lang('store'); ?></a>
-                <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/store'); ?>"><i class="fas fa-shopping-cart"></i> <?= lang('manage_store'); ?></a></li>
-                  <li><a href="<?= site_url('admin/donate'); ?>"><i class="fas fa-donate"></i> <?= lang('donate_methods'); ?></a></li>
-                  <li><a href="<?= site_url('admin/topsites'); ?>"><i class="fas fa-star"></i> <?= lang('topsites'); ?></a></li>
-                </ul>
-              </li>
-              <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= lang('forum'); ?></a>
-                <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/forum'); ?>"><i class="fas fa-bookmark"></i> <?= lang('manage_forum'); ?></a></li>
+                  <li><a href="<?= site_url('admin/menu'); ?>"><?= lang('menu'); ?></a></li>
+                  <li><a href="<?= site_url('admin/news'); ?>"><?= lang('news'); ?></a></li>
+                  <li><a href="<?= site_url('admin/pages'); ?>"><?= lang('pages'); ?></a></li>
+                  <li><a href="<?= site_url('admin/slides'); ?>"><?= lang('slides'); ?></a></li>
                 </ul>
               </li>
             </ul>
@@ -94,16 +78,17 @@
     </header>
     <nav class="uk-navbar-container uk-visible@m">
       <div class="uk-container">
-        <div class="uk-navbar" uk-navbar="mode: click">
+        <div class="uk-navbar" data-uk-navbar>
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
               <li class="uk-active"><a href="<?= site_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
               <li>
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-cogs"></i></span><?= lang('system'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= lang('settings'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('admin/settings'); ?>"><i class="fas fa-sliders-h"></i> <?= lang('manage_settings'); ?></a></li>
-                    <li><a href="<?= site_url('admin/mods'); ?>"><i class="fas fa-puzzle-piece"></i> <?= lang('manage_modules'); ?></a></li>
+                    <li><a href="<?= site_url('admin/system'); ?>"><?= lang('system'); ?></a></li>
+                    <li><a href="<?= site_url('admin/mods'); ?>"><?= lang('modules'); ?></a></li>
+                    <li><a href="<?= site_url('admin/realms'); ?>"><?= lang('realms'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -111,39 +96,18 @@
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('admin/users'); ?>"><i class="fas fa-users-cog"></i> <?= lang('accounts'); ?></a></li>
+                    <li><a href="<?= site_url('admin/users'); ?>"><?= lang('all_users'); ?></a></li>
                   </ul>
                 </div>
               </li>
               <li>
-                <a href="#"><span class="uk-margin-small-right" ><i class="fas fa-mouse-pointer"></i></span><?= lang('website'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="#"><span class="uk-margin-small-right" ><i class="fas fa-th"></i></span><?= lang('sections'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('admin/menu'); ?>"><i class="fas fa-link"></i> <?= lang('menu'); ?></a></li>
-                    <li><a href="<?= site_url('admin/realms'); ?>"> <i class="fas fa-server"></i> <?= lang('realms'); ?></a></li>
-                    <li><a href="<?= site_url('admin/slides'); ?>"><i class="fas fa-images"></i> <?= lang('slides'); ?></a></li>
-                    <li><a href="<?= site_url('admin/news'); ?>"><i class="fas fa-newspaper"></i> <?= lang('news'); ?></a></li>
-                    <li><a href="<?= site_url('admin/changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('changelogs'); ?></a></li>
-                    <li><a href="<?= site_url('admin/pages'); ?>"><i class="fas fa-file-alt"></i> <?= lang('pages'); ?></a></li>
-                  </ul>
-                </div>
-              </li>
-              <li>
-                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-store"></i></span><?= lang('store'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
-                <div class="uk-navbar-dropdown">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('admin/store'); ?>"><i class="fas fa-shopping-cart"></i> <?= lang('manage_store'); ?></a></li>
-                    <li><a href="<?= site_url('admin/donate'); ?>"><i class="fas fa-donate"></i> <?= lang('donate_methods'); ?></a></li>
-                    <li><a href="<?= site_url('admin/topsites'); ?>"><i class="fas fa-star"></i> <?= lang('topsites'); ?></a></li>
-                    <li><a href="<?= site_url('admin/logs'); ?>"><i class="fas fa-receipt"></i> <?= lang('donate_vote_logs'); ?></a></li>
-                  </ul>
-                </div>
-              </li>
-              <li>
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= lang('forum'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
-                <div class="uk-navbar-dropdown">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('admin/forum'); ?>"><i class="fas fa-bookmark"></i> <?= lang('manage_forum'); ?></a></li>
+                    <li><a href="<?= site_url('admin/menu'); ?>"><?= lang('menu'); ?></a></li>
+                    <li><a href="<?= site_url('admin/news'); ?>"><?= lang('news'); ?></a></li>
+                    <li><a href="<?= site_url('admin/pages'); ?>"><?= lang('pages'); ?></a></li>
+                    <li><a href="<?= site_url('admin/slides'); ?>"><?= lang('slides'); ?></a></li>
                   </ul>
                 </div>
               </li>

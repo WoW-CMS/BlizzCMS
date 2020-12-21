@@ -3,29 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model
 {
-	public function getUserHistoryDonate($id)
-	{
-		return $this->db->where('user_id', $id)->order_by('id', 'DESC')->get('donate_logs')->result();
-	}
-
-	public function getDonateStatus($id)
-	{
-		switch ($id) {
-			case 0: return lang('canceled'); break;
-			case 1: return lang('completed'); break;
-		}
-	}
-
-	public function updateAccountData($id, $dp, $vp)
-	{
-		$this->db->where('id', $id)->update('users', [
-			'dp' => $dp,
-			'vp' => $vp
-		]);
-
-		return true;
-	}
-
 	public function insertBanAccount($iduser, $reason)
 	{
 		$date = now();
@@ -80,45 +57,5 @@ class Admin_model extends CI_Model
 	{
 		$this->auth->connect()->where('id', $id)->delete('account_access');
 		return true;
-	}
-
-	public function getDropDownsSpecify()
-	{
-		return $this->db->where('main', '2')->where('father', '0')->get('store_categories');
-	}
-
-	public function getCategoryStore()
-	{
-		return $this->db->get('store_categories');
-	}
-
-	public function getStoreCategoryName($id)
-	{
-		return $this->db->select('name')->where('id', $id)->get('store_categories')->row('name');
-	}
-
-	public function getStoreCategoryRealm($id)
-	{
-		return $this->db->select('realmid')->where('id', $id)->get('store_categories')->row('realmid');
-	}
-
-	public function getStoreItems()
-	{
-		return $this->db->order_by('id', 'ASC')->get('store_items')->result();
-	}
-
-	public function getItemSpecifyName($id)
-	{
-		return $this->db->select('name')->where('id', $id)->get('store_items')->row('name');
-	}
-
-	public function getItemSpecifyCategory($id)
-	{
-		return $this->db->select('category')->where('id', $id)->get('store_items')->row('category');
-	}
-
-	public function getForumCategoryList()
-	{
-		return $this->db->order_by('id', 'ASC')->get('forum_category');
 	}
 }

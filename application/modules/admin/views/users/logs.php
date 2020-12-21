@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('donation_logs'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
-              <li><span><?= lang('accounts'); ?></span></li>
+              <li><span><?= lang('all_users'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto"></div>
@@ -27,16 +27,6 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($this->admin_model->getUserHistoryDonate($id) as $donateInfo): ?>
-                <tr>
-                  <td><?= $donateInfo->payment_id ?></td>
-                  <td><?= $donateInfo->hash ?></td>
-                  <td><?= $donateInfo->total ?></td>
-                  <td><?= $this->admin_model->getDonateStatus($donateInfo->status); ?></td>
-                  <td><?= $donateInfo->create_time ?></td>
-                  <td><?= $donateInfo->points ?></td>
-                </tr>
-                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

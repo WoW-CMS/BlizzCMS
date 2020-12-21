@@ -91,7 +91,7 @@ class Realms extends MX_Controller
 					'realm_port'       => $this->input->post('realm_port')
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_realm_created'));
+				$this->session->set_flashdata('success', lang('realm_created'));
 				redirect(site_url('admin/realms/create'));
 			}
 		}
@@ -162,7 +162,7 @@ class Realms extends MX_Controller
 
 				$this->db->where('id', $id)->update('realms', $realm);
 
-				$this->session->set_flashdata('success', lang('alert_realm_updated'));
+				$this->session->set_flashdata('success', lang('realm_updated'));
 				redirect(site_url('admin/realms/edit/' . $id));
 			}
 		}
@@ -181,7 +181,7 @@ class Realms extends MX_Controller
 
 		$this->db->where('id', $id)->delete('realms');
 
-		$this->session->set_flashdata('success', lang('alert_realm_deleted'));
+		$this->session->set_flashdata('success', lang('realm_deleted'));
 		redirect(site_url('admin/realms'));
 	}
 
@@ -192,6 +192,12 @@ class Realms extends MX_Controller
 			show_404();
 		}
 
-		// $this->realm->send_command($id, '.server info');
+		$data = [
+			'check' => $this->realm->send_command($id, '.server info')
+		];
+
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
+
+		$this->template->build('realms/check', $data);
 	}
 }

@@ -27,6 +27,12 @@ class Auth extends CI_Controller
 
 		$this->template->title(config_item('app_name'), lang('login'));
 
+		if (config_item('captcha_login') == 'true')
+		{
+			$captcha_link = (config_item('captcha_type') == 'hcaptcha') ? 'https://hcaptcha.com/1/api.js' : 'https://www.google.com/recaptcha/api.js';
+			$this->template->append_metadata('<script src="'. $captcha_link .'" async defer></script>');
+		}
+
 		if ($this->input->method() == 'post')
 		{
 			$this->form_validation->set_rules('username', 'Username/Email', 'trim|required');
@@ -85,6 +91,12 @@ class Auth extends CI_Controller
 		}
 
 		$this->template->title(config_item('app_name'), lang('register'));
+
+		if (config_item('captcha_register') == 'true')
+		{
+			$captcha_link = (config_item('captcha_type') == 'hcaptcha') ? 'https://hcaptcha.com/1/api.js' : 'https://www.google.com/recaptcha/api.js';
+			$this->template->append_metadata('<script src="'. $captcha_link .'" async defer></script>');
+		}
 
 		if ($this->input->method() == 'post')
 		{
@@ -208,6 +220,12 @@ class Auth extends CI_Controller
 		}
 
 		$this->template->title(config_item('app_name'), lang('forgot_password'));
+
+		if (config_item('captcha_forgot') == 'true')
+		{
+			$captcha_link = (config_item('captcha_type') == 'hcaptcha') ? 'https://hcaptcha.com/1/api.js' : 'https://www.google.com/recaptcha/api.js';
+			$this->template->append_metadata('<script src="'. $captcha_link .'" async defer></script>');
+		}
 
 		if ($this->input->method() == 'post')
 		{
