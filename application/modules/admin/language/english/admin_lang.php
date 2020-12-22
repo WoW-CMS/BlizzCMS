@@ -53,15 +53,11 @@ $lang['edit_slide'] = 'Edit Slide';
 $lang['create_item'] = 'Create item';
 $lang['edit_item'] = 'Edit Item';
 
-$lang['website_name'] = 'Website Name';
-$lang['realmlist'] = 'Realmlist';
 $lang['discord_server'] = 'Discord (Server ID)';
 $lang['theme_name'] = 'Theme Name';
 $lang['facebook_url'] = 'Facebook URL';
 $lang['twitter_url'] = 'Twitter URL';
 $lang['youtube_url'] = 'Youtube URL';
-$lang['currency'] = 'Currency';
-$lang['mode'] = 'Mode';
 $lang['client_id'] = 'Client ID';
 $lang['secret_password'] = 'Secret Password';
 $lang['admin_access_level'] = 'Required GMLevel for administrator rank';
@@ -70,7 +66,6 @@ $lang['sender_email'] = 'Sender Email';
 $lang['sender_name'] = 'Sender Name';
 $lang['public_key'] = 'Public key';
 $lang['private_key'] = 'Private key';
-$lang['bnet_account'] = 'Bnet Account';
 $lang['empty_now'] = 'Empty now';
 
 $lang['count_accounts_created'] = 'Accounts created';

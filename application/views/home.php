@@ -96,7 +96,7 @@
               <?php endforeach ?>
             </div>
             <?php if (! empty(config_item('realmlist'))): ?>
-            <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
+            <h5 class="uk-h5 uk-text-center uk-margin">
               <i class="fas fa-gamepad"></i> <?= config_item('realmlist'); ?>
             </h5>
             <?php endif; ?>

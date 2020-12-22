@@ -45,7 +45,7 @@
             <?= form_open(current_url()); ?>
               <h5 class="uk-h5 uk-heading-line uk-margin-small uk-text-uppercase uk-text-bold"><span><i class="fas fa-cog"></i> General</span></h5>
               <div class="uk-margin-small uk-light">
-                <label class="uk-form-label">Language:</label>
+                <label class="uk-form-label"><?= lang('language'); ?>:</label>
                 <div class="uk-form-controls">
                   <select class="uk-select" name="language">
                     <option value="" hidden selected><?= lang('select_language'); ?></option>
@@ -166,7 +166,7 @@
                   </div>
                 </div>
               </div>
-              <button class="uk-button uk-button-primary uk-width-1-1 uk-margin" type="submit"><i class="fas fa-cog fa-spin"></i> <?= lang('proceed_button') ?></button>
+              <button class="uk-button uk-button-primary uk-width-1-1 uk-margin" type="submit"><i class="fas fa-database"></i> <?= lang('proceed_button') ?></button>
             <?= form_close(); ?>
           </div>
           <div class="uk-width-1-4@s"></div>
@@ -175,7 +175,7 @@
     </section>
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container">
-        <h5 class="uk-h5 uk-text-center uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. All rights reserved</h5>
+        <h5 class="uk-h5 uk-text-center uk-margin-remove">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('rights_reserved'); ?></h5>
       </div>
     </section>
   </body>

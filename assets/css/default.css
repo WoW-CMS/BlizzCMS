@@ -285,15 +285,6 @@ h6,
   padding: 15px;
 }
 
-.dotted-divider:after {
-  content: "";
-  display: inline-block;
-  border-top: 2px dotted rgba(0, 174, 255, .8);
-  width: 200px;
-  max-width: 100%;
-  padding-bottom: 10px;
-}
-
 .card-status {
   border: 1px solid transparent;
   box-shadow: 0 15px 10px -15px rgba(0, 0, 0, .6), inset 0 0 5px rgba(0, 0, 0, .4);

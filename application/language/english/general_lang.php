@@ -154,6 +154,12 @@ $lang['same_tab'] = 'Same Tab/Window';
 $lang['whithout_parent'] = 'Whithout parent';
 $lang['characters'] = 'Characters';
 $lang['account'] = 'Account';
+$lang['bnet_account'] = 'Bnet Account';
+$lang['language'] = 'Language';
+$lang['website_name'] = 'Website Name';
+$lang['realmlist'] = 'Realmlist';
+$lang['currency'] = 'Currency';
+$lang['mode'] = 'Mode';
 
 /**
  * Selects

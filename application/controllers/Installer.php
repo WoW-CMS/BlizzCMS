@@ -37,7 +37,8 @@ class Installer extends CI_Controller
 		$openssl_ext  = extension_loaded('openssl');
 		$soap_ext     = extension_loaded('soap');
 		$cache        = (is_dir(APPPATH . 'cache') && is_writable(APPPATH . 'cache'));
-		$button       = ($version && $gd_ext && $gmp_ext && $curl_ext && $mbstring_ext && $mysql_ext && $openssl_ext && $soap_ext && $cache);
+		$uploads      = (is_dir(FCPATH . 'uploads') && is_writable(FCPATH . 'uploads'));
+		$button       = ($version && $gd_ext && $gmp_ext && $curl_ext && $mbstring_ext && $mysql_ext && $openssl_ext && $soap_ext && $cache && $uploads);
 
 		$data = [
 			'requirements' => [
@@ -49,7 +50,8 @@ class Installer extends CI_Controller
 				['requirement' => lang('mysql_extension'), 'enable' => $mysql_ext],
 				['requirement' => lang('openssl_extension'), 'enable' => $openssl_ext],
 				['requirement' => lang('soap_extension'), 'enable' => $soap_ext],
-				['requirement' => lang('cache_writable'), 'enable' => $cache]
+				['requirement' => lang('cache_writable'), 'enable' => $cache],
+				['requirement' => lang('uploads_writable'), 'enable' => $uploads]
 			],
 			'button' => $button
 		];
@@ -141,7 +143,7 @@ class Installer extends CI_Controller
 						$config->write('encryption_key', bin2hex($this->encryption->create_key(24)));
 					}
 
-					redirect(site_url('install/finish'));
+					redirect(site_url('install/database'));
 				}
 
 				$this->session->set_flashdata('error', lang('settings_db_error'));
@@ -154,7 +156,7 @@ class Installer extends CI_Controller
 		}
 	}
 
-	public function finish()
+	public function database()
 	{
 		$this->load->library('migration');
 
@@ -165,12 +167,6 @@ class Installer extends CI_Controller
 
 		$this->load->library('config_writer');
 
-		if (is_null(config_item('installer_blocked')))
-		{
-			$installer = $this->config_writer->get_instance(APPPATH.'config/installer.php');
-			$installer->write('installer_blocked', TRUE);
-		}
-
 		if (config_item('sess_driver') != 'database')
 		{
 			$config = $this->config_writer->get_instance();
@@ -178,7 +174,63 @@ class Installer extends CI_Controller
 			$config->write('sess_save_path', 'sessions');
 		}
 
-		redirect(site_url());
+		redirect(site_url('install/preferences'));
+	}
+
+	public function preferences()
+	{
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[3]');
+			$this->form_validation->set_rules('realmlist', 'Realmlist', 'trim');
+			$this->form_validation->set_rules('expansion', 'Expansion', 'trim|required|is_natural');
+			$this->form_validation->set_rules('emulator', 'Emulator', 'trim|required|alpha_dash');
+			$this->form_validation->set_rules('bnet', 'Bnet', 'trim|required|in_list[true,false]');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('installer/preferences');
+			}
+			else
+			{
+				$this->db->update_batch('settings', [
+					[
+						'key' => 'app_name',
+						'value' => $this->input->post('name', TRUE)
+					],
+					[
+						'key' => 'realmlist',
+						'value' => $this->input->post('realmlist', TRUE)
+					],
+					[
+						'key' => 'expansion',
+						'value' => $this->input->post('expansion')
+					],
+					[
+						'key' => 'emulator',
+						'value' => $this->input->post('emulator', TRUE)
+					],
+					[
+						'key' => 'emulator_bnet',
+						'value' => $this->input->post('bnet')
+					],
+				], 'key');
+
+				$this->load->library('config_writer');
+
+				if (is_null(config_item('installer_blocked')))
+				{
+					$installer = $this->config_writer->get_instance(APPPATH.'config/installer.php');
+					$installer->write('installer_blocked', TRUE);
+				}
+
+				redirect(site_url());
+			}
+		}
+		else
+		{
+			$this->load->view('installer/preferences');
+		}
 	}
 
 	/**
