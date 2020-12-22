@@ -11,3 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['vote']['get'] = 'vote/index';
 $route['vote/site/(:num)']['get'] = 'vote/site/$1';
+
+$route['vote/admin']['get'] = 'admin/index';
+$route['vote/admin/create'] = 'admin/create';
+$route['vote/admin/edit/(:num)'] = 'admin/edit/$1';
+$route['vote/admin/delete/(:num)']['get'] = 'admin/delete/$1';

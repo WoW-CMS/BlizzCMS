@@ -10,3 +10,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['changelogs']['get'] = 'changelogs/index';
+
+$route['changelogs/admin']['get'] = 'admin/index';
+$route['changelogs/admin/create'] = 'admin/create';
+$route['changelogs/admin/edit/(:num)'] = 'admin/edit/$1';
+$route['changelogs/admin/delete/(:num)']['get'] = 'admin/delete/$1';

@@ -9,11 +9,13 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Topsites extends MX_Controller
+class Admin extends MX_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
+
+		mod_located('vote', true);
 
 		if (! $this->website->isLogged())
 		{
@@ -30,8 +32,9 @@ class Topsites extends MX_Controller
 			redirect(site_url('user'));
 		}
 
-		$this->load->model('topsites_model');
-		$this->load->language('admin');
+		$this->load->model('vote_model');
+		$this->load->language('vote');
+		$this->load->language('admin/admin');
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');
@@ -44,8 +47,8 @@ class Topsites extends MX_Controller
 		$page = ctype_digit((string) $get) ? $get : 0;
 
 		$config = [
-			'base_url'    => site_url('admin/topsites'),
-			'total_rows'  => $this->topsites_model->count_all(),
+			'base_url'    => site_url('vote/admin'),
+			'total_rows'  => $this->vote_model->count_all(),
 			'per_page'    => 25,
 			'uri_segment' => 3
 		];
@@ -56,13 +59,13 @@ class Topsites extends MX_Controller
 		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
 		$data = [
-			'topsites' => $this->topsites_model->get_all($config['per_page'], $offset),
+			'topsites' => $this->vote_model->get_all($config['per_page'], $offset),
 			'links'    => $this->pagination->create_links()
 		];
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('topsites/index', $data);
+		$this->template->build('admin/index', $data);
 	}
 
 	public function create()
@@ -79,7 +82,7 @@ class Topsites extends MX_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('topsites/create');
+				$this->template->build('admin/create');
 			}
 			else
 			{
@@ -91,25 +94,25 @@ class Topsites extends MX_Controller
 					'image'  => $this->input->post('image', TRUE)
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_topsite_created'));
-				redirect(site_url('admin/topsites/create'));
+				$this->session->set_flashdata('success', lang('topsite_created'));
+				redirect(site_url('vote/admin/create'));
 			}
 		}
 		else
 		{
-			$this->template->build('topsites/create');
+			$this->template->build('admin/create');
 		}
 	}
 
 	public function edit($id = null)
 	{
-		if (empty($id) || ! $this->topsites_model->find_id($id))
+		if (empty($id) || ! $this->vote_model->find_id($id))
 		{
 			show_404();
 		}
 
 		$data = [
-			'topsite' => $this->topsites_model->get($id)
+			'topsite' => $this->vote_model->get($id)
 		];
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -124,7 +127,7 @@ class Topsites extends MX_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('topsites/edit', $data);
+				$this->template->build('admin/edit', $data);
 			}
 			else
 			{
@@ -136,26 +139,26 @@ class Topsites extends MX_Controller
 					'image'  => $this->input->post('image', TRUE)
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_topsite_updated'));
-				redirect(site_url('admin/topsites/edit/'.$id));
+				$this->session->set_flashdata('success', lang('topsite_updated'));
+				redirect(site_url('vote/admin/edit/'.$id));
 			}
 		}
 		else
 		{
-			$this->template->build('topsites/edit', $data);
+			$this->template->build('admin/edit', $data);
 		}
 	}
 
 	public function delete($id = null)
 	{
-		if (empty($id) || ! $this->topsites_model->find_id($id))
+		if (empty($id) || ! $this->vote_model->find_id($id))
 		{
 			show_404();
 		}
 
 		$this->db->where('id', $id)->delete('topsites');
 
-		$this->session->set_flashdata('success', lang('alert_topsite_deleted'));
-		redirect(site_url('admin/topsites'));
+		$this->session->set_flashdata('success', lang('topsite_deleted'));
+		redirect(site_url('vote/admin'));
 	}
 }

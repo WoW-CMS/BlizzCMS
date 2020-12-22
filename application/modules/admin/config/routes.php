@@ -47,11 +47,6 @@ $route['admin/news/create'] = 'news/create';
 $route['admin/news/edit/(:num)'] = 'news/edit/$1';
 $route['admin/news/delete/(:num)']['get'] = 'news/delete/$1';
 
-$route['admin/changelogs']['get'] = 'changelogs/index';
-$route['admin/changelogs/create'] = 'changelogs/create';
-$route['admin/changelogs/edit/(:num)'] = 'changelogs/edit/$1';
-$route['admin/changelogs/delete/(:num)']['get'] = 'changelogs/delete/$1';
-
 $route['admin/pages']['get'] = 'pages/index';
 $route['admin/pages/create'] = 'pages/create';
 $route['admin/pages/edit/(:num)'] = 'pages/edit/$1';
@@ -66,11 +61,6 @@ $route['admin/donate']['get'] = 'donate/index';
 $route['admin/donate/create'] = 'donate/create';
 $route['admin/donate/edit/(:num)'] = 'donate/edit/$1';
 $route['admin/donate/delete/(:num)']['get'] = 'donate/delete/$1';
-
-$route['admin/topsites']['get'] = 'topsites/index';
-$route['admin/topsites/create'] = 'topsites/create';
-$route['admin/topsites/edit/(:num)'] = 'topsites/edit/$1';
-$route['admin/topsites/delete/(:num)']['get'] = 'topsites/delete/$1';
 
 $route['admin/forum']['get'] = 'forum/index';
 $route['admin/forum/create'] = 'forum/create';

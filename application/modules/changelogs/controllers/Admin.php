@@ -9,11 +9,13 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Changelogs extends MX_Controller
+class Admin extends MX_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
+
+		mod_located('changelogs', true);
 
 		if (! $this->website->isLogged())
 		{
@@ -31,7 +33,8 @@ class Changelogs extends MX_Controller
 		}
 
 		$this->load->model('changelogs_model');
-		$this->load->language('admin');
+		$this->load->language('admin/admin');
+		$this->load->language('changelogs');
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');
@@ -44,7 +47,7 @@ class Changelogs extends MX_Controller
 		$page = ctype_digit((string) $get) ? $get : 0;
 
 		$config = [
-			'base_url'    => site_url('admin/changelogs'),
+			'base_url'    => site_url('changelogs/admin'),
 			'total_rows'  => $this->changelogs_model->count_all(),
 			'per_page'    => 25,
 			'uri_segment' => 3
@@ -62,7 +65,7 @@ class Changelogs extends MX_Controller
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('changelogs/index', $data);
+		$this->template->build('admin/index', $data);
 	}
 
 	public function create()
@@ -76,7 +79,7 @@ class Changelogs extends MX_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('changelogs/create');
+				$this->template->build('admin/create');
 			}
 			else
 			{
@@ -86,13 +89,13 @@ class Changelogs extends MX_Controller
 					'created_at'  => now()
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_changelog_created'));
-				redirect(site_url('admin/changelogs/create'));
+				$this->session->set_flashdata('success', lang('changelog_created'));
+				redirect(site_url('changelogs/admin/create'));
 			}
 		}
 		else
 		{
-			$this->template->build('changelogs/create');
+			$this->template->build('admin/create');
 		}
 	}
 
@@ -116,7 +119,7 @@ class Changelogs extends MX_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('changelogs/edit', $data);
+				$this->template->build('admin/edit', $data);
 			}
 			else
 			{
@@ -125,13 +128,13 @@ class Changelogs extends MX_Controller
 					'description' => $this->input->post('description')
 				]);
 
-				$this->session->set_flashdata('success', lang('alert_changelog_updated'));
-				redirect(site_url('admin/changelogs/edit/'.$id));
+				$this->session->set_flashdata('success', lang('changelog_updated'));
+				redirect(site_url('changelogs/admin/edit/'.$id));
 			}
 		}
 		else
 		{
-			$this->template->build('changelogs/edit', $data);
+			$this->template->build('admin/edit', $data);
 		}
 	}
 
@@ -144,7 +147,7 @@ class Changelogs extends MX_Controller
 
 		$this->db->where('id', $id)->delete('changelogs');
 
-		$this->session->set_flashdata('success', lang('alert_changelog_deleted'));
-		redirect(site_url('admin/changelogs'));
+		$this->session->set_flashdata('success', lang('changelog_deleted'));
+		redirect(site_url('changelogs/admin'));
 	}
 }

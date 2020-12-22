@@ -6,6 +6,16 @@ class Changelogs_model extends CI_Model
 	protected $changelogs = 'changelogs';
 
 	/**
+	 * Count all changelogs
+	 *
+	 * @return int
+	 */
+	public function count_all()
+	{
+		return $this->db->count_all($this->changelogs);
+	}
+
+	/**
 	 * Get all changelogs
 	 *
 	 * @param int $limit
@@ -18,12 +28,25 @@ class Changelogs_model extends CI_Model
 	}
 
 	/**
-	 * Count all changelogs
+	 * Get changelog
 	 *
-	 * @return int
+	 * @return array
 	 */
-	public function count_changelogs()
+	public function get($id)
 	{
-		return $this->db->count_all($this->changelogs);
+		return $this->db->where('id', $id)->get($this->changelogs)->row();
+	}
+
+	/**
+	 * Check if changelog exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_id($id)
+	{
+		$result = $this->db->where('id', $id)->get($this->changelogs)->num_rows();
+
+		return ($result == 1);
 	}
 }

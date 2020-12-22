@@ -7,37 +7,48 @@ class Vote_model extends CI_Model
 	protected $topsites_logs = 'topsites_logs';
 
 	/**
+	 * Count all topsites
+	 *
+	 * @return int
+	 */
+	public function count_all()
+	{
+		return $this->db->count_all($this->topsites);
+	}
+
+	/**
 	 * Get all topsites
 	 *
+	 * @param int $limit
+	 * @param int $start
 	 * @return array
 	 */
-	public function get_all()
+	public function get_all($limit, $start)
 	{
-		return $this->db->get($this->topsites)->result();
+		return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->topsites)->result();
 	}
 
 	/**
 	 * Get topsite
 	 *
-	 * @param int $id
-	 * @return object
+	 * @return array
 	 */
-	public function get_topsite($id)
+	public function get($id)
 	{
 		return $this->db->where('id', $id)->get($this->topsites)->row();
 	}
 
 	/**
-	 * Find if the topsite exists
+	 * Check if topsite exists
 	 *
 	 * @param int $id
 	 * @return boolean
 	 */
-	public function find_topsite($id)
+	public function find_id($id)
 	{
-		$query = $this->db->where('id', $id)->get($this->topsites)->num_rows();
+		$result = $this->db->where('id', $id)->get($this->topsites)->num_rows();
 
-		return ($query == 1);
+		return ($result == 1);
 	}
 
 	/**

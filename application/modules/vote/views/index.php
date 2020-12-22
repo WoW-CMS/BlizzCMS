@@ -61,6 +61,7 @@
               </div>
               <?php endforeach; ?>
             </div>
+            <?= $links; ?>
           </div>
         </div>
       </div>

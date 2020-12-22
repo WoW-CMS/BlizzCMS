@@ -163,12 +163,19 @@ class Installer extends CI_Controller
 			show_error($this->migration->error_string());
 		}
 
+		$this->load->library('config_writer');
+
 		if (is_null(config_item('installer_blocked')))
 		{
-			$this->load->library('config_writer');
-
 			$installer = $this->config_writer->get_instance(APPPATH.'config/installer.php');
 			$installer->write('installer_blocked', TRUE);
+		}
+
+		if (config_item('sess_driver') != 'database')
+		{
+			$config = $this->config_writer->get_instance();
+			$config->write('sess_driver', 'database');
+			$config->write('sess_save_path', 'sessions');
 		}
 
 		redirect(site_url());

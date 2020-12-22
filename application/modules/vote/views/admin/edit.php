@@ -9,7 +9,7 @@
             </ul>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= site_url('admin/topsites'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('vote/admin'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <?= $template['partials']['alerts']; ?>

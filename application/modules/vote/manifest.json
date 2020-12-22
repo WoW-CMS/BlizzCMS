@@ -6,6 +6,6 @@
 	"version": "1.0",
 	"panel": {
 		"enabled": true,
-		"route": "admin/topsites"
+		"route": "vote\/admin"
 	}
 }

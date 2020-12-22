@@ -9,7 +9,7 @@
             </ul>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= site_url('admin/changelogs/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('create'); ?></a>
+            <a href="<?= site_url('changelogs/admin/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('create'); ?></a>
           </div>
         </div>
         <?= $template['partials']['alerts']; ?>
@@ -33,12 +33,12 @@
                   <td class="uk-visible@s"><?= date('Y-m-d', $item->created_at); ?></td>
                   <td>
                     <div class="uk-button-group">
-                      <a href="<?= site_url('admin/changelogs/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
+                      <a href="<?= site_url('changelogs/admin/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
                         <div uk-dropdown="mode: click;boundary: ! .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
-                            <li><a href="<?= site_url('admin/changelogs/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
+                            <li><a href="<?= site_url('changelogs/admin/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
                           </ul>
                         </div>
                       </div>

@@ -33,7 +33,7 @@ class Changelogs extends MX_Controller
 
 		$config = [
 			'base_url'    => site_url('changelogs'),
-			'total_rows'  => $this->changelogs_model->count_changelogs(),
+			'total_rows'  => $this->changelogs_model->count_all(),
 			'per_page'    => 15,
 			'uri_segment' => 2
 		];

@@ -9,7 +9,7 @@
             </ul>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= site_url('admin/topsites/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('create'); ?></a>
+            <a href="<?= site_url('vote/admin/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('create'); ?></a>
           </div>
         </div>
         <?= $template['partials']['alerts']; ?>
@@ -35,12 +35,12 @@
                   <td class="uk-visible@s"><?= $item->points; ?></td>
                   <td>
                     <div class="uk-button-group">
-                      <a href="<?= site_url('admin/topsites/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
+                      <a href="<?= site_url('vote/admin/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
                         <div uk-dropdown="mode: click;boundary: ! .uk-container;">
                           <ul class="uk-nav uk-dropdown-nav">
-                            <li><a href="<?= site_url('admin/topsites/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
+                            <li><a href="<?= site_url('vote/admin/delete/'.$item->id); ?>"><i class="fas fa-trash-alt"></i> <?= lang('delete'); ?></a></li>
                           </ul>
                         </div>
                       </div>
