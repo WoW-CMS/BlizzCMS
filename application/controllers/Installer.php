@@ -28,7 +28,7 @@ class Installer extends CI_Controller
 	 */
 	public function index()
 	{
-		$version      = version_compare(phpversion(), '7.3', '>');
+		$version      = (version_compare(phpversion(), '7.3', '>=') && version_compare(phpversion(), '8.0', '<'));
 		$gd_ext       = extension_loaded('gd');
 		$gmp_ext      = extension_loaded('gmp');
 		$curl_ext     = function_exists('curl_version');
