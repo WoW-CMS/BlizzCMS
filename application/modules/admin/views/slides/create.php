@@ -42,9 +42,9 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="" hidden selected><?= lang('select_type'); ?></option>
-                      <option value="<?= TYPE_IMAGE ?>"><?= lang('image'); ?></option>
-                      <option value="<?= TYPE_VIDEO ?>"><?= lang('video'); ?></option>
-                      <option value="<?= TYPE_IFRAME ?>"><?= lang('iframe'); ?></option>
+                      <option value="<?= TYPE_IMAGE ?>" <?= set_select('type', TYPE_IMAGE); ?>><?= lang('image'); ?></option>
+                      <option value="<?= TYPE_VIDEO ?>" <?= set_select('type', TYPE_VIDEO); ?>><?= lang('video'); ?></option>
+                      <option value="<?= TYPE_IFRAME ?>" <?= set_select('type', TYPE_IFRAME); ?>><?= lang('iframe'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

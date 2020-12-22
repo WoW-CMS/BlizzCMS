@@ -143,7 +143,7 @@ class Installer extends CI_Controller
 						$config->write('encryption_key', bin2hex($this->encryption->create_key(24)));
 					}
 
-					redirect(site_url('install/database'));
+					redirect(site_url('install/preferences'));
 				}
 
 				$this->session->set_flashdata('error', lang('settings_db_error'));
@@ -154,27 +154,6 @@ class Installer extends CI_Controller
 		{
 			$this->load->view('installer/settings');
 		}
-	}
-
-	public function database()
-	{
-		$this->load->library('migration');
-
-		if ($this->migration->current() === FALSE)
-		{
-			show_error($this->migration->error_string());
-		}
-
-		$this->load->library('config_writer');
-
-		if (config_item('sess_driver') != 'database')
-		{
-			$config = $this->config_writer->get_instance();
-			$config->write('sess_driver', 'database');
-			$config->write('sess_save_path', 'sessions');
-		}
-
-		redirect(site_url('install/preferences'));
 	}
 
 	public function preferences()
@@ -193,7 +172,7 @@ class Installer extends CI_Controller
 			}
 			else
 			{
-				$this->db->update_batch('settings', [
+				$data = [
 					[
 						'key' => 'app_name',
 						'value' => $this->input->post('name', TRUE)
@@ -214,23 +193,52 @@ class Installer extends CI_Controller
 						'key' => 'emulator_bnet',
 						'value' => $this->input->post('bnet')
 					],
-				], 'key');
+				];
 
-				$this->load->library('config_writer');
+				$this->cache->file->save('preferences', $data, 1800);
 
-				if (is_null(config_item('installer_blocked')))
-				{
-					$installer = $this->config_writer->get_instance(APPPATH.'config/installer.php');
-					$installer->write('installer_blocked', TRUE);
-				}
-
-				redirect(site_url());
+				redirect(site_url('install/finish'), 'refresh');
 			}
 		}
 		else
 		{
 			$this->load->view('installer/preferences');
 		}
+	}
+
+	public function finish()
+	{
+		$this->load->library('migration');
+
+		if ($this->migration->current() === FALSE)
+		{
+			show_error($this->migration->error_string());
+		}
+
+		$data = $this->cache->file->get('preferences');
+
+		if ($data !== false)
+		{
+			$this->db->update_batch('settings', $data, 'key');
+			$this->cache->file->delete('preferences');
+		}
+
+		$this->load->library('config_writer');
+
+		if (config_item('sess_driver') != 'database')
+		{
+			$config = $this->config_writer->get_instance();
+			$config->write('sess_driver', 'database');
+			$config->write('sess_save_path', 'sessions');
+		}
+
+		if (is_null(config_item('installer_blocked')))
+		{
+			$installer = $this->config_writer->get_instance(APPPATH . 'config/installer.php');
+			$installer->write('installer_blocked', TRUE);
+		}
+
+		redirect(site_url(), 'refresh');
 	}
 
 	/**

@@ -51,8 +51,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="target">
                       <option value="" hidden selected><?= lang('select_target'); ?></option>
-                      <option value="<?= TYPE_SELF_TAB ?>"><?= lang('same_tab'); ?></option>
-                      <option value="<?= TYPE_BLANK_TAB ?>"><?= lang('new_tab'); ?></option>
+                      <option value="<?= TYPE_SELF_TAB ?>" <?= set_select('target', TYPE_SELF_TAB); ?>><?= lang('same_tab'); ?></option>
+                      <option value="<?= TYPE_BLANK_TAB ?>" <?= set_select('target', TYPE_BLANK_TAB); ?>><?= lang('new_tab'); ?></option>
                     </select>
                   </div>
                   <?= form_error('target', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -66,8 +66,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="" hidden selected><?= lang('select_type'); ?></option>
-                      <option value="<?= TYPE_DEFAULT ?>"><?= lang('normal'); ?></option>
-                      <option value="<?= TYPE_DROPDOWN ?>"><?= lang('dropdown'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>" <?= set_select('type', TYPE_DEFAULT); ?>><?= lang('normal'); ?></option>
+                      <option value="<?= TYPE_DROPDOWN ?>" <?= set_select('type', TYPE_DROPDOWN); ?>><?= lang('dropdown'); ?></option>
                     </select>
                   </div>
                   <?= form_error('type', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -77,9 +77,9 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
                       <option value="" hidden selected><?= lang('select_parent'); ?></option>
-                      <option value="0"><?= lang('whithout_parent'); ?></option>
+                      <option value="0" <?= set_select('parent', '0'); ?>><?= lang('whithout_parent'); ?></option>
                       <?php foreach ($parents as $item): ?>
-                      <option value="<?= $item->id; ?>"><?= $item->name; ?></option>
+                      <option value="<?= $item->id; ?>" <?= set_select('parent', $item->id); ?>><?= $item->name; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>

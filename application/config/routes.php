@@ -55,8 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['install']['get'] = 'installer/index';
 $route['install/settings'] = 'installer/settings';
-$route['install/database']['get'] = 'installer/database';
 $route['install/preferences'] = 'installer/preferences';
+$route['install/finish']['get'] = 'installer/finish';
 
 $route['login'] = 'auth/login';
 $route['logout']['get'] = 'auth/logout';
