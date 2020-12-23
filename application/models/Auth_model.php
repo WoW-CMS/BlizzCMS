@@ -44,6 +44,7 @@ class Auth_model extends CI_Model
 				break;
 			case 'azeroth':
 			case 'old_trinity':
+			case 'mangos':
 				$validate = hash_equals(strtoupper($account->sha_pass_hash), game_hash($account->username, $password));
 				break;
 		}
@@ -95,6 +96,10 @@ class Auth_model extends CI_Model
 		if (in_array($emulator, ['trinity'], true))
 		{
 			$query = $this->connect()->where('AccountID', $id)->get('account_access')->row('SecurityLevel');		
+		}
+		elseif (in_array($emulator, ['mangos'], true))
+		{
+			$query = $this->connect()->where('id', $id)->get('account')->row('gmlevel');		
 		}
 		elseif (in_array($emulator, ['azeroth', 'old_trinity'], true))
 		{

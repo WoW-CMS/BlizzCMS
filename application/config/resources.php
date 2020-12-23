@@ -68,5 +68,6 @@ $config['supported_expansions'] = [
 $config['emulator_urn'] = [
 	'old_trinity' => 'TC',
 	'trinity'     => 'TC',
-	'azeroth'     => 'AC'
+	'azeroth'     => 'AC',
+	'mangos'      => 'MaNGOS'
 ];

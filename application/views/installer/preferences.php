@@ -76,6 +76,7 @@
                       <select class="uk-select" name="emulator">
                         <option value="" hidden selected><?= lang('select_emulator'); ?></option>
                         <option value="azeroth" <?= set_select('emulator', 'azeroth'); ?>>AzerothCore</option>
+                        <option value="mangos" <?= set_select('emulator', 'mangos'); ?>>MaNGOS</option>
                         <option value="old_trinity" <?= set_select('emulator', 'old_trinity'); ?>>TrinityCore</option>
                         <option value="trinity" <?= set_select('emulator', 'trinity'); ?>>TrinityCore SRP6</option>
                       </select>

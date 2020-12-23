@@ -163,7 +163,7 @@ class User extends MX_Controller
 					'verifier' => game_hash($user->username, $new_password, 'srp6', $salt)
 				]);
 			}
-			elseif (in_array($emulator, ['azeroth', 'old_trinity'], true))
+			elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
 			{
 				$this->auth->connect()->where('id', $user->id)->update('account', [
 					'sha_pass_hash' => game_hash($user->username, $new_password),

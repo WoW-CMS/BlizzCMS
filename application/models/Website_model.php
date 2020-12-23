@@ -27,6 +27,7 @@ class Website_model extends CI_Model
 				break;
 			case 'azeroth':
 			case 'old_trinity':
+			case 'mangos':
 				$validate = hash_equals(strtoupper($accgame->sha_pass_hash), game_hash($accgame->username, $password));
 				break;
 		}
