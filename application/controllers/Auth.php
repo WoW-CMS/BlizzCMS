@@ -165,7 +165,7 @@ class Auth extends CI_Controller
 							'expansion' => config_item('expansion')
 						]);
 					}
-					elseif (in_array($emulator, ['azeroth', 'old_trinity'], true))
+					elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
 					{
 						$this->auth->connect()->insert('account', [
 							'username'        => $username,
