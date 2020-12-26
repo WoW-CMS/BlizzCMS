@@ -4,7 +4,9 @@
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker'); ?></h4>
           </div>
-          <div class="uk-width-auto"></div>
+          <div class="uk-width-auto">
+            <a href="<?= site_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
+          </div>
         </div>
       </div>
     </section>
@@ -17,9 +19,7 @@
               <div class="uk-width-expand">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= lang('create_report'); ?></h5>
               </div>
-              <div class="uk-width-auto">
-                <a href="<?= site_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
-              </div>
+              <div class="uk-width-auto"></div>
             </div>
           </div>
           <div class="uk-card-body">
@@ -38,7 +38,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="realm">
                       <option value="" hidden selected><?= lang('select_realm'); ?></option>
-                      <?php foreach ($this->realm->get_realms() as $realm): ?>
+                      <?php foreach ($realms as $realm): ?>
                       <option value="<?= $realm->id; ?>" <?= set_select('realm', $realm->id); ?>><?= $realm->name; ?></option>
                       <?php endforeach; ?>
                     </select>

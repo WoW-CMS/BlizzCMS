@@ -35,11 +35,6 @@ $lang['smtp'] = 'SMTP';
 $lang['manage_account'] = 'Manage Account';
 $lang['update_information'] = 'Update Account Information';
 $lang['donation_logs'] = 'Donation Logs';
-$lang['store_logs'] = 'Store Logs';
-$lang['create_category'] = 'Create Category';
-$lang['edit_category'] = 'Edit Category';
-$lang['create_forum'] = 'Create Forum';
-$lang['edit_forum'] = 'Edit Forum';
 $lang['create_menu'] = 'Create Menu';
 $lang['edit_menu'] = 'Edit Menu';
 $lang['create_news'] = 'Create News';
@@ -50,8 +45,6 @@ $lang['create_realm'] = 'Create Realm';
 $lang['edit_realm'] = 'Edit Realm';
 $lang['create_slide'] = 'Create Slide';
 $lang['edit_slide'] = 'Edit Slide';
-$lang['create_item'] = 'Create item';
-$lang['edit_item'] = 'Edit Item';
 
 $lang['discord_server'] = 'Discord (Server ID)';
 $lang['theme_name'] = 'Theme Name';
@@ -86,10 +79,10 @@ $lang['enable_captcha_register'] = 'Enable captcha on register page?';
 $lang['enable_captcha_forgot'] = 'Enable captcha on forgot password page?';
 $lang['register_validation'] = 'Register validation';
 $lang['enable_register_validation'] = 'Enable register validation?';
-$lang['cms_cache'] = 'CMS Cache';
-$lang['cms_cache_info'] = 'Clear all cache files related to this site.<br><span class="uk-text-bold">Warning:</span> <span class="uk-text-danger">First loading of the website can be slow!</span>';
-$lang['cms_sessions'] = 'CMS Sessions';
-$lang['cms_sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold">Warning:</span> <span class="uk-text-danger">You will be disconnected after performing this action!</span>';
+$lang['cache'] = 'Cache';
+$lang['cache_info'] = 'Clear all cache files related to this site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> First loading of the website can be slow!';
+$lang['sessions'] = 'Sessions';
+$lang['sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> You will be disconnected after performing this action!';
 
 /**
  * Alerts

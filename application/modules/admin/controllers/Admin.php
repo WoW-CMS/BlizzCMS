@@ -43,9 +43,4 @@ class Admin extends MX_Controller
 
 		$this->template->build('index');
 	}
-
-	public function updatecms()
-	{
-		echo $this->update_model->checkUpdates();
-	}
 }

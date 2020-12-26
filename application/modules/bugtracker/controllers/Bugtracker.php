@@ -66,6 +66,10 @@ class Bugtracker extends MX_Controller
 	{
 		$this->template->title(config_item('app_name'), lang('bugtracker'));
 
+		$data = [
+			'realms' => $this->realm->get_realms()
+		];
+
 		if ($this->input->method() == 'post')
 		{
 			$this->form_validation->set_rules('title', 'Title', 'trim|required');
@@ -75,7 +79,7 @@ class Bugtracker extends MX_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('create_report');
+				$this->template->build('create_report', $data);
 			}
 			else
 			{
@@ -94,7 +98,7 @@ class Bugtracker extends MX_Controller
 		}
 		else
 		{
-			$this->template->build('create_report');
+			$this->template->build('create_report', $data);
 		}
 	}
 
@@ -113,6 +117,7 @@ class Bugtracker extends MX_Controller
 		}
 
 		$data = [
+			'realms' => $this->realm->get_realms(),
 			'report' => $report
 		];
 

@@ -4,7 +4,9 @@
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker'); ?></h4>
           </div>
-          <div class="uk-width-auto"></div>
+          <div class="uk-width-auto">
+            <a href="<?= site_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
+          </div>
         </div>
       </div>
     </section>
@@ -17,9 +19,7 @@
               <div class="uk-width-expand">
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= lang('edit_report'); ?></h5>
               </div>
-              <div class="uk-width-auto">
-                <a href="<?= site_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
-              </div>
+              <div class="uk-width-auto"></div>
             </div>
           </div>
           <div class="uk-card-body">
@@ -38,7 +38,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="realm">
                       <option value="" hidden selected><?= lang('select_realm'); ?></option>
-                      <?php foreach ($this->realm->get_realms() as $realm): ?>
+                      <?php foreach ($realms as $realm): ?>
                       <option value="<?= $realm->id; ?>" <?php if ($realm->id == $report->realm_id) echo 'selected'; ?>><?= $realm->name; ?></option>
                       <?php endforeach; ?>
                     </select>
@@ -66,11 +66,11 @@
                   <label class="uk-form-label"><?= lang('priority'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="priority">
-                      <option value="low" <?php if ('low' == $report->priority) echo 'selected'; ?>>Low</option>
-                      <option value="normal" <?php if ('normal' == $report->priority) echo 'selected'; ?>>Normal</option>
-                      <option value="medium" <?php if ('medium' == $report->priority) echo 'selected'; ?>>Medium</option>
-                      <option value="high" <?php if ('high' == $report->priority) echo 'selected'; ?>>High</option>
-                      <option value="critical" <?php if ('critical' == $report->priority) echo 'selected'; ?>>Critical</option>
+                      <option value="low" <?php if ('low' === $report->priority) echo 'selected'; ?>>Low</option>
+                      <option value="normal" <?php if ('normal' === $report->priority) echo 'selected'; ?>>Normal</option>
+                      <option value="medium" <?php if ('medium' === $report->priority) echo 'selected'; ?>>Medium</option>
+                      <option value="high" <?php if ('high' === $report->priority) echo 'selected'; ?>>High</option>
+                      <option value="critical" <?php if ('critical' === $report->priority) echo 'selected'; ?>>Critical</option>
                     </select>
                   </div>
                   <?= form_error('priority', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -79,12 +79,12 @@
                   <label class="uk-form-label"><?= lang('status'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="status">
-                      <option value="open" <?php if ('open' == $report->status) echo 'selected'; ?>>Open</option>
-                      <option value="waiting information" <?php if ('waiting information' == $report->status) echo 'selected'; ?>>Waiting Information</option>
-                      <option value="confirmed" <?php if ('confirmed' == $report->status) echo 'selected'; ?>>Confirmed</option>
-                      <option value="in progress" <?php if ('in progress' == $report->status) echo 'selected'; ?>>In Progress</option>
-                      <option value="invalid" <?php if ('invalid' == $report->status) echo 'selected'; ?>>Invalid</option>
-                      <option value="fixed" <?php if ('fixed' == $report->status) echo 'selected'; ?>>Fixed</option>
+                      <option value="open" <?php if ('open' === $report->status) echo 'selected'; ?>>Open</option>
+                      <option value="waiting information" <?php if ('waiting information' === $report->status) echo 'selected'; ?>>Waiting Information</option>
+                      <option value="confirmed" <?php if ('confirmed' === $report->status) echo 'selected'; ?>>Confirmed</option>
+                      <option value="in progress" <?php if ('in progress' === $report->status) echo 'selected'; ?>>In Progress</option>
+                      <option value="invalid" <?php if ('invalid' === $report->status) echo 'selected'; ?>>Invalid</option>
+                      <option value="fixed" <?php if ('fixed' === $report->status) echo 'selected'; ?>>Fixed</option>
                     </select>
                   </div>
                   <?= form_error('status', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

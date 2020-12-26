@@ -33,8 +33,8 @@ class Admin extends MX_Controller
 		}
 
 		$this->load->model('vote_model');
-		$this->load->language('vote');
 		$this->load->language('admin/admin');
+		$this->load->language('vote');
 
 		$this->template->set_theme();
 		$this->template->set_layout('admin_layout');

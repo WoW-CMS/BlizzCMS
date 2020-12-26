@@ -51,18 +51,3 @@ $route['admin/pages']['get'] = 'pages/index';
 $route['admin/pages/create'] = 'pages/create';
 $route['admin/pages/edit/(:num)'] = 'pages/edit/$1';
 $route['admin/pages/delete/(:num)']['get'] = 'pages/delete/$1';
-
-$route['admin/store'] = 'store/index';
-$route['admin/store/create'] = 'store/create';
-$route['admin/store/edit/(:num)'] = 'store/edit/$1';
-$route['admin/store/delete/(:num)']['get'] = 'store/delete/$1';
-
-$route['admin/donate']['get'] = 'donate/index';
-$route['admin/donate/create'] = 'donate/create';
-$route['admin/donate/edit/(:num)'] = 'donate/edit/$1';
-$route['admin/donate/delete/(:num)']['get'] = 'donate/delete/$1';
-
-$route['admin/forum']['get'] = 'forum/index';
-$route['admin/forum/create'] = 'forum/create';
-$route['admin/forum/edit/(:num)'] = 'forum/edit/$1';
-$route['admin/forum/delete/(:num)']['get'] = 'forum/delete/$1';

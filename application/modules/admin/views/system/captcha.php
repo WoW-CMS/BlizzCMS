@@ -35,8 +35,8 @@
               <div class="uk-form-controls">
                 <select class="uk-select" name="captcha_type">
                   <option value="" hidden selected><?= lang('select_type'); ?></option>
-                  <option value="recaptcha" <?php if (config_item('captcha_type') == 'recaptcha') echo 'selected'; ?>><?= lang('recaptcha'); ?></option>
-                  <option value="hcaptcha" <?php if (config_item('captcha_type') == 'hcaptcha') echo 'selected'; ?>><?= lang('hcaptcha'); ?></option>
+                  <option value="recaptcha" <?php if ('recaptcha' === config_item('captcha_type')) echo 'selected'; ?>><?= lang('recaptcha'); ?></option>
+                  <option value="hcaptcha" <?php if ('hcaptcha' === config_item('captcha_type')) echo 'selected'; ?>><?= lang('hcaptcha'); ?></option>
                 </select>
               </div>
               <?= form_error('email_protocol', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -67,7 +67,7 @@
               </div>
               <div class="uk-width-auto">
                 <label class="uk-switch">
-                  <input type="checkbox" name="captcha_login" value="true" <?php if (config_item('captcha_login') == 'true') echo 'checked'; ?>>
+                  <input type="checkbox" name="captcha_login" value="true" <?php if ('true' == config_item('captcha_login')) echo 'checked'; ?>>
                   <div class="uk-switch-slider"></div>
                 </label>
               </div>
@@ -79,7 +79,7 @@
               </div>
               <div class="uk-width-auto">
                 <label class="uk-switch">
-                  <input type="checkbox" name="captcha_register" value="true" <?php if (config_item('captcha_register') == 'true') echo 'checked'; ?>>
+                  <input type="checkbox" name="captcha_register" value="true" <?php if ('true' == config_item('captcha_register')) echo 'checked'; ?>>
                   <div class="uk-switch-slider"></div>
                 </label>
               </div>
@@ -91,7 +91,7 @@
               </div>
               <div class="uk-width-auto">
                 <label class="uk-switch">
-                  <input type="checkbox" name="captcha_forgot" value="true" <?php if (config_item('captcha_forgot') == 'true') echo 'checked'; ?>>
+                  <input type="checkbox" name="captcha_forgot" value="true" <?php if ('true' == config_item('captcha_forgot')) echo 'checked'; ?>>
                   <div class="uk-switch-slider"></div>
                 </label>
               </div>

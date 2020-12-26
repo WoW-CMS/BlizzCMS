@@ -35,6 +35,40 @@ class MY_Form_validation extends CI_Form_validation
 	}
 
 	/**
+	 * Minimum Richtext Length
+	 *
+	 * @param string $str
+	 * @param string $val
+	 * @return bool
+	 */
+	public function richtext_min($str, $val)
+	{
+		if (! is_numeric($val))
+		{
+			return false;
+		}
+
+		return ($val <= mb_strlen(strip_tags($str)));
+	}
+
+	/**
+	 * Max Richtext Length
+	 *
+	 * @param string $str
+	 * @param string $val
+	 * @return bool
+	 */
+	public function richtext_max($str, $val)
+	{
+		if (! is_numeric($val))
+		{
+			return false;
+		}
+
+		return ($val >= mb_strlen(strip_tags($str)));
+	}
+
+	/**
 	 * Update Unique
 	 *
 	 * @param string $str
@@ -46,7 +80,7 @@ class MY_Form_validation extends CI_Form_validation
 		sscanf($field, '%[^.].%[^.].%[^.]', $table, $field, $id);
 		return is_object($this->CI->db)
 			? ($this->CI->db->limit(1)->get_where($table, array($field => $str, 'id !=' => $id))->num_rows() === 0)
-			: FALSE;
+			: false;
 	}
 
 	/**

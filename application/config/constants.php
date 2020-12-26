@@ -92,8 +92,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 */
 defined('TYPE_DEFAULT')   OR define('TYPE_DEFAULT', 'default');
 defined('TYPE_DROPDOWN')  OR define('TYPE_DROPDOWN', 'dropdown');
+defined('TYPE_ACCORDION') OR define('TYPE_ACCORDION', 'accordion');
 defined('TYPE_SELF_TAB')  OR define('TYPE_SELF_TAB', '_self');
 defined('TYPE_BLANK_TAB') OR define('TYPE_BLANK_TAB', '_blank');
 defined('TYPE_IMAGE')     OR define('TYPE_IMAGE', 'image');
 defined('TYPE_VIDEO')     OR define('TYPE_VIDEO', 'video');
 defined('TYPE_IFRAME')    OR define('TYPE_IFRAME', 'iframe');
+defined('TYPE_DP')        OR define('TYPE_DP', 'dp');
+defined('TYPE_VP')        OR define('TYPE_VP', 'vp');
+defined('TYPE_AND')       OR define('TYPE_AND', 'and');

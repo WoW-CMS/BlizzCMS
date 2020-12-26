@@ -47,8 +47,8 @@ class Migration_Create_table_settings extends CI_Migration
 			array('key' => 'emulator_bnet', 'value' => 'false'),
 			array('key' => 'realmlist', 'value' => NULL),
 			array('key' => 'expansion', 'value' => NULL),
-			array('key' => 'admin_access_level', 'value' => 3),
-			array('key' => 'mod_access_level', 'value' => 2),
+			array('key' => 'admin_access_level', 'value' => '3'),
+			array('key' => 'mod_access_level', 'value' => '2'),
 			array('key' => 'seo_meta', 'value' => 'false'),
 			array('key' => 'seo_meta_description', 'value' => NULL),
 			array('key' => 'seo_meta_keywords', 'value' => NULL)

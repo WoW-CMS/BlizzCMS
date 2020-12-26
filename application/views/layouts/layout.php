@@ -51,7 +51,7 @@
                   <div class="cart-container">
                     <?php if ($this->cart->total_items()): ?>
                     <p class="uk-text-center uk-margin-small"><?= lang_vars('cart_items', [$this->cart->total_items()]); ?></p>
-                    <a href="<?= site_url('cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-shopping-cart"></i> <?= lang('view_cart'); ?></a>
+                    <a href="<?= site_url('store/cart'); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1"><i class="fas fa-shopping-cart"></i> <?= lang('view_cart'); ?></a>
                     <?php else: ?>
                     <p class="uk-text-center uk-margin-remove"><?= lang('cart_empty'); ?></p>
                     <?php endif; ?>

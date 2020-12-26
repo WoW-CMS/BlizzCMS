@@ -34,8 +34,8 @@
                   <i class="fas fa-copy fa-3x"></i>
                 </div>
                 <div class="uk-width-expand">
-                  <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= lang('cms_cache'); ?></h5>
-                  <p class="uk-text-small uk-margin-remove"><?= lang('cms_cache_info'); ?></p>
+                  <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= lang('cache'); ?></h5>
+                  <p class="uk-text-small uk-margin-remove"><?= lang('cache_info'); ?></p>
                   <a href="<?= site_url('admin/system/cache'); ?>" class="uk-button uk-button-primary uk-margin-small"><i class="fas fa-eraser"></i> <?= lang('empty_now'); ?></a>
                 </div>
               </div>
@@ -48,8 +48,8 @@
                   <i class="fas fa-database fa-3x"></i>
                 </div>
                 <div class="uk-width-expand">
-                  <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= lang('cms_sessions'); ?></h5>
-                  <p class="uk-text-small uk-margin-remove"><?= lang('cms_sessions_info'); ?></p>
+                  <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= lang('sessions'); ?></h5>
+                  <p class="uk-text-small uk-margin-remove"><?= lang('sessions_info'); ?></p>
                   <a href="<?= site_url('admin/system/sessions'); ?>" class="uk-button uk-button-primary uk-margin-small"><i class="fas fa-eraser"></i> <?= lang('empty_now'); ?></a>
                 </div>
               </div>

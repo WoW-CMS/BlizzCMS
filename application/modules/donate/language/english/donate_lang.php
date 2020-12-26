@@ -9,6 +9,8 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$lang['donate'] = 'Donate';
+
 $lang['donate_get'] = 'Get';
 
 /**

@@ -63,7 +63,7 @@
                     <select class="uk-select" name="expansion">
                       <option value="" hidden selected><?= lang('select_expansion'); ?></option>
                       <?php foreach (config_item('supported_expansions') as $key => $expansion): ?>
-                      <option value="<?= $key; ?>" <?php if ($key == config_item('expansion')) echo 'selected'; ?>><?= $expansion; ?></option>
+                      <option value="<?= $key; ?>" <?php if ($key === (int) config_item('expansion')) echo 'selected'; ?>><?= $expansion; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>
@@ -78,9 +78,10 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="emulator">
                       <option value="" hidden selected><?= lang('select_emulator'); ?></option>
-                      <option value="azeroth" <?php if ('azeroth' == config_item('emulator')) echo 'selected'; ?>>AzerothCore</option>
-                      <option value="old_trinity" <?php if ('old_trinity' == config_item('emulator')) echo 'selected'; ?>>TrinityCore</option>
-                      <option value="trinity" <?php if ('trinity' == config_item('emulator')) echo 'selected'; ?>>TrinityCore SRP6</option>
+                      <option value="azeroth" <?php if ('azeroth' === config_item('emulator')) echo 'selected'; ?>>AzerothCore</option>
+                      <option value="mangos" <?php if ('mangos' === config_item('emulator')) echo 'selected'; ?>>MaNGOS</option>
+                      <option value="old_trinity" <?php if ('old_trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore</option>
+                      <option value="trinity" <?php if ('trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore SRP6</option>
                     </select>
                   </div>
                   <?= form_error('emulator', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -90,8 +91,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="bnet">
                       <option value="" hidden selected><?= lang('select_option'); ?></option>
-                      <option value="false" <?php if ('false' == config_item('emulator_bnet')) echo 'selected'; ?>><?= lang('enable'); ?></option>
-                      <option value="true" <?php if ('true' == config_item('emulator_bnet')) echo 'selected'; ?>><?= lang('disable'); ?></option>
+                      <option value="false" <?php if ('false' === config_item('emulator_bnet')) echo 'selected'; ?>><?= lang('enable'); ?></option>
+                      <option value="true" <?php if ('true' === config_item('emulator_bnet')) echo 'selected'; ?>><?= lang('disable'); ?></option>
                     </select>
                   </div>
                   <?= form_error('bnet', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

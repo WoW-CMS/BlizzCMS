@@ -35,11 +35,6 @@ $lang['smtp'] = 'SMTP';
 $lang['manage_account'] = 'Administrar Cuenta';
 $lang['update_information'] = 'Actualizar Información de la Cuenta';
 $lang['donation_logs'] = 'Registros de Donaciones';
-$lang['store_logs'] = 'Registros de la Tienda';
-$lang['create_category'] = 'Crear Categoría';
-$lang['edit_category'] = 'Editar Categoría';
-$lang['create_forum'] = 'Crear Foro';
-$lang['edit_forum'] = 'Editar Foro';
 $lang['create_menu'] = 'Crear Menú';
 $lang['edit_menu'] = 'Editar Menú';
 $lang['create_news'] = 'Crear Noticia';
@@ -50,8 +45,6 @@ $lang['create_realm'] = 'Crear Reino';
 $lang['edit_realm'] = 'Editar Reino';
 $lang['create_slide'] = 'Crear Slide';
 $lang['edit_slide'] = 'Editar Slide';
-$lang['create_item'] = 'Crear item';
-$lang['edit_item'] = 'Editar Item';
 
 $lang['discord_server'] = 'Discord (Server ID)';
 $lang['theme_name'] = 'Nombre del Tema';
@@ -86,10 +79,10 @@ $lang['enable_captcha_register'] = 'Enable captcha on register page?';
 $lang['enable_captcha_forgot'] = 'Enable captcha on forgot password page?';
 $lang['register_validation'] = 'Register validation';
 $lang['enable_register_validation'] = 'Enable register validation?';
-$lang['cms_cache'] = 'CMS Cache';
-$lang['cms_cache_info'] = 'Clear all cache files related to this site.<br><span class="uk-text-bold">Warning:</span> <span class="uk-text-danger">First loading of the website can be slow!</span>';
-$lang['cms_sessions'] = 'CMS Sessions';
-$lang['cms_sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold">Warning:</span> <span class="uk-text-danger">You will be disconnected after performing this action!</span>';
+$lang['cache'] = 'Cache';
+$lang['cache_info'] = 'Clear all cache files related to this site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> First loading of the website can be slow!';
+$lang['sessions'] = 'Sessions';
+$lang['sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> You will be disconnected after performing this action!';
 
 /**
  * Alerts

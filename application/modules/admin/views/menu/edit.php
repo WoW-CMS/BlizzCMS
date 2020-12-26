@@ -64,7 +64,7 @@
                   <label class="uk-form-label"><?= lang('type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
-                      <option value="<?= TYPE_DEFAULT ?>" <?php if ($menu->type === TYPE_DEFAULT) echo 'selected'; ?>><?= lang('normal'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>" <?php if ($menu->type === TYPE_DEFAULT) echo 'selected'; ?>><?= lang('default'); ?></option>
                       <option value="<?= TYPE_DROPDOWN ?>" <?php if ($menu->type === TYPE_DROPDOWN) echo 'selected'; ?>><?= lang('dropdown'); ?></option>
                     </select>
                   </div>
@@ -74,9 +74,9 @@
                   <label class="uk-form-label"><?= lang('parent'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
-                      <option value="0" <?php if ($menu->parent == 0) echo 'selected'; ?>><?= lang('whithout_parent'); ?></option>
+                      <option value="0" <?php if (0 == $menu->parent) echo 'selected'; ?>><?= lang('whithout_parent'); ?></option>
                       <?php foreach ($parents as $item): ?>
-                      <option value="<?= $item->id; ?>" <?php if ($menu->parent == $item->id) echo 'selected'; ?>><?= $item->name; ?></option>
+                      <option value="<?= $item->id; ?>" <?php if ($item->id == $menu->parent) echo 'selected'; ?>><?= $item->name; ?></option>
                       <?php endforeach; ?>
                     </select>
                   </div>

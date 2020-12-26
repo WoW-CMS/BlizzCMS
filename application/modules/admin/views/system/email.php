@@ -37,9 +37,9 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="email_protocol">
                       <option value="" hidden selected><?= lang('select_protocol'); ?></option>
-                      <option value="mail" <?php if (config_item('email_protocol') == 'mail') echo 'selected'; ?>><?= lang('mail'); ?></option>
-                      <option value="sendmail" <?php if (config_item('email_protocol') == 'sendmail') echo 'selected'; ?>><?= lang('sendmail'); ?></option>
-                      <option value="smtp" <?php if (config_item('email_protocol') == 'smtp') echo 'selected'; ?>><?= lang('smtp'); ?></option>
+                      <option value="mail" <?php if ('mail' === config_item('email_protocol')) echo 'selected'; ?>><?= lang('mail'); ?></option>
+                      <option value="sendmail" <?php if ('sendmail' === config_item('email_protocol')) echo 'selected'; ?>><?= lang('sendmail'); ?></option>
+                      <option value="smtp" <?php if ('smtp' === config_item('email_protocol')) echo 'selected'; ?>><?= lang('smtp'); ?></option>
                     </select>
                   </div>
                   <?= form_error('email_protocol', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -49,8 +49,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="email_crypto">
                       <option value="" hidden selected><?= lang('select_encryption'); ?></option>
-                      <option value="ssl" <?php if (config_item('email_crypto') == 'ssl') echo 'selected'; ?>><?= lang('ssl'); ?></option>
-                      <option value="tls" <?php if (config_item('email_crypto') == 'tls') echo 'selected'; ?>><?= lang('tls'); ?></option>
+                      <option value="ssl" <?php if ('ssl' === config_item('email_crypto')) echo 'selected'; ?>><?= lang('ssl'); ?></option>
+                      <option value="tls" <?php if ('tls' === config_item('email_crypto')) echo 'selected'; ?>><?= lang('tls'); ?></option>
                     </select>
                   </div>
                   <?= form_error('email_crypto', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -133,7 +133,7 @@
               </div>
               <div class="uk-width-auto">
                 <label class="uk-switch">
-                  <input type="checkbox" name="register" value="true" <?php if (config_item('register_validation') == 'true') echo 'checked'; ?>>
+                  <input type="checkbox" name="register" value="true" <?php if ('true' == config_item('register_validation')) echo 'checked'; ?>>
                   <div class="uk-switch-slider"></div>
                 </label>
               </div>

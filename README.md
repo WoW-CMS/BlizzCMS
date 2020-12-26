@@ -4,16 +4,16 @@
 * [Website](https://wow-cms.com)
 * [Discord Chat](https://discord.gg/vZG9vpS)
 
-> This CMS **will not support PHP 8** due to the old structure of its framework. Remember to use **PHP 7.3 or 7.4**
+> This CMS **will not support PHP 8** due to the old structure of its framework.
 
 [![Project Status](https://img.shields.io/badge/Status-Refactoring-red.svg?style=flat-square)](#)
 [![Project Version](https://img.shields.io/badge/Version-1.1.0-green.svg?style=flat-square)](#)
 
 | Requirements | Description |
 | :----------- | :---------- |
-| **PHP Version** | **7.3 or newer** is recommended |
+| **PHP Version** | **7.3 or 7.4** is recommended |
 | **Apache Modules** | mod_rewrite |
-| **PHP Extensions** | curl - gd2 - gmp - mbstring - mysqli - openssl - soap |
+| **PHP Extensions** | curl - gd - gmp - mbstring - mysqli - openssl - soap |
 
 ## In linux (Apache Modules)
 

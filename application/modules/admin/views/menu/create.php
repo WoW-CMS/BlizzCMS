@@ -66,7 +66,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="type">
                       <option value="" hidden selected><?= lang('select_type'); ?></option>
-                      <option value="<?= TYPE_DEFAULT ?>" <?= set_select('type', TYPE_DEFAULT); ?>><?= lang('normal'); ?></option>
+                      <option value="<?= TYPE_DEFAULT ?>" <?= set_select('type', TYPE_DEFAULT); ?>><?= lang('default'); ?></option>
                       <option value="<?= TYPE_DROPDOWN ?>" <?= set_select('type', TYPE_DROPDOWN); ?>><?= lang('dropdown'); ?></option>
                     </select>
                   </div>

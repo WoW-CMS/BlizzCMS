@@ -15,7 +15,6 @@ endif; ?>
               <li class="uk-nav-divider"></li>
               <li class="uk-active"><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel'); ?></a></li>
               <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel'); ?></a></li>
-              <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('store'); ?></a></li>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
