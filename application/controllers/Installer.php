@@ -86,15 +86,15 @@ class Installer extends CI_Controller
 			}
 			else
 			{
-				$hostname = $this->input->post('website_hostname', TRUE);
-				$port = $this->input->post('website_port', TRUE);
-				$prefix = $this->input->post('website_prefix', TRUE);
-				$database = $this->input->post('website_database', TRUE);
-				$username = $this->input->post('website_username', TRUE);
-				$password = $this->input->post('website_password');
-				$auth_hostname = $this->input->post('website_hostname', TRUE);
-				$auth_port = $this->input->post('auth_port', TRUE);
-				$auth_prefix = $this->input->post('auth_prefix', TRUE);
+				$hostname      = $this->input->post('website_hostname', TRUE);
+				$port          = $this->input->post('website_port', TRUE);
+				$prefix        = $this->input->post('website_prefix', TRUE);
+				$database      = $this->input->post('website_database', TRUE);
+				$username      = $this->input->post('website_username', TRUE);
+				$password      = $this->input->post('website_password');
+				$auth_hostname = $this->input->post('auth_hostname', TRUE);
+				$auth_port     = $this->input->post('auth_port', TRUE);
+				$auth_prefix   = $this->input->post('auth_prefix', TRUE);
 				$auth_database = $this->input->post('auth_database', TRUE);
 				$auth_username = $this->input->post('auth_username', TRUE);
 				$auth_password = $this->input->post('auth_password');
