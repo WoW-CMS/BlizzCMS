@@ -81,7 +81,7 @@
                       <option value="azeroth" <?php if ('azeroth' === config_item('emulator')) echo 'selected'; ?>>AzerothCore</option>
                       <option value="mangos" <?php if ('mangos' === config_item('emulator')) echo 'selected'; ?>>MaNGOS</option>
                       <option value="old_trinity" <?php if ('old_trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore</option>
-                      <option value="trinity" <?php if ('trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore SRP6</option>
+                      <option value="trinity" <?php if ('trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore (SRP6)</option>
                     </select>
                   </div>
                   <?= form_error('emulator', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -99,6 +99,7 @@
                 </div>
               </div>
             </div>
+            <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom uk-heading-line"><span><?= lang('social_configuration'); ?></span></h5>
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-2@s">
@@ -132,6 +133,26 @@
                     <input class="uk-input" type="url" name="youtube" value="<?= config_item('youtube_url'); ?>">
                   </div>
                   <?= form_error('youtube', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
+                </div>
+                <div class="uk-width-1-2@s"></div>
+              </div>
+            </div>
+            <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom uk-heading-line"><span><?= lang('main_ranks_configuration'); ?></span></h5>
+            <div class="uk-margin-small">
+              <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-width-1-2@s">
+                  <label class="uk-form-label"><?= lang('admin_access_level'); ?></label>
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="text" name="admin_access" value="<?= config_item('admin_access_level'); ?>">
+                  </div>
+                  <?= form_error('admin_access', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
+                </div>
+                <div class="uk-width-1-2@s">
+                  <label class="uk-form-label"><?= lang('mod_access_level'); ?></label>
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="text" name="mod_access" value="<?= config_item('mod_access_level'); ?>">
+                  </div>
+                  <?= form_error('mod_access', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-width-1-2@s"></div>
               </div>

@@ -219,7 +219,16 @@ class Base_model extends CI_Model
 		}
 	}
 
-	public function send_email($to, $subject, $message)
+	/**
+	 * Send email
+	 *
+	 * @param string $to
+	 * @param string $subject
+	 * @param string $message
+	 * @param bool $debug
+	 * @return boolean
+	 */
+	public function send_email($to, $subject, $message, $debug = false)
 	{
 		$this->load->library('email');
 
@@ -227,7 +236,7 @@ class Base_model extends CI_Model
 			'protocol'    => config_item('email_protocol'),
 			'smtp_host'   => config_item('email_hostname'),
 			'smtp_user'   => config_item('email_username'),
-			'smtp_pass'   => config_item('email_password'),
+			'smtp_pass'   => ! empty(config_item('email_password')) ? decrypt(config_item('email_password')) : '',
 			'smtp_port'   => config_item('email_port'),
 			'smtp_crypto' => config_item('email_crypto'),
 			'mailtype'    => 'html',
@@ -239,6 +248,12 @@ class Base_model extends CI_Model
 		$this->email->from(config_item('email_sender'), config_item('email_sender_name'));
 		$this->email->subject($subject);
 		$this->email->message($message);
+
+		if ($debug)
+		{
+			$this->email->send(false);
+			return $this->email->print_debugger();
+		}
 
 		return $this->email->send();
 	}

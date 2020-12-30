@@ -21,6 +21,7 @@ class User extends MX_Controller
 		}
 
 		$this->load->model('user_model');
+		$this->load->language('user');
 
 		$this->template->set_partial('alerts', 'static/alerts');
 	}
@@ -61,7 +62,7 @@ class User extends MX_Controller
 
 			if (! $this->auth->valid_password($user->username, $password))
 			{
-				$this->session->set_flashdata('error', '---');
+				$this->session->set_flashdata('error', lang('password_error'));
 				redirect(site_url('user/settings'));
 			}
 
@@ -96,13 +97,13 @@ class User extends MX_Controller
 
 			if (! $this->auth->account_unique($new_email, 'email'))
 			{
-				$this->session->set_flashdata('error', '---');
+				$this->session->set_flashdata('error', lang('email_already'));
 				redirect(site_url('user/settings'));
 			}
 
 			if (! $this->auth->valid_password($user->username, $password))
 			{
-				$this->session->set_flashdata('error', '---');
+				$this->session->set_flashdata('error', lang('password_error'));
 				redirect(site_url('user/settings'));
 			}
 
@@ -150,7 +151,7 @@ class User extends MX_Controller
 
 			if (! $this->auth->valid_password($user->username, $password))
 			{
-				$this->session->set_flashdata('error', '---');
+				$this->session->set_flashdata('error', lang('password_error'));
 				redirect(site_url('user/settings'));
 			}
 

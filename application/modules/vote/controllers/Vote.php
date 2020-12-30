@@ -69,10 +69,6 @@ class Vote extends MX_Controller
 		$topsite = $this->vote_model->get($id);
 		$user    = $this->website->get_user();
 
-		// Calculate expired_at
-		$date     = new \DateTime();
-		$new_date = $date->add(new \DateInterval('PT' . $topsite->time . 'H'));
-
 		$this->db->where('id', $user->id)->update('users', ['vp' => ($topsite->points + $user->vp)]);
 
 		$this->db->insert('topsites_logs', [
@@ -80,7 +76,7 @@ class Vote extends MX_Controller
 			'user_id'    => $user->id,
 			'points'     => $topsite->points,
 			'created_at' => now(),
-			'expired_at' => $new_date->getTimestamp()
+			'expired_at' => interval_time('PT' . $topsite->time . 'H')
 		]);
 
 		redirect($topsite->url);

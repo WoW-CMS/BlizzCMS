@@ -137,9 +137,32 @@ if (! function_exists('time_converter'))
 	 */
 	function time_converter($time)
 	{
-		$init    = new DateTime('@0');
-		$elapsed = new DateTime('@' . $time);
+		$init    = new \DateTime('@0');
+		$elapsed = new \DateTime('@' . $time);
+
 		return $init->diff($elapsed)->format('%aD %hH %iM %sS');
+	}
+}
+
+if (! function_exists('interval_time'))
+{
+	/**
+	 * Add interval to current time
+	 * 
+	 * @param string $string
+	 * @return int
+	 */
+	function interval_time($string)
+	{
+		if (! is_string($string))
+		{
+			return 0;
+		}
+
+		$date = new \DateTime();
+		$new  = $date->add(new \DateInterval($string));
+
+		return $new->getTimestamp();
 	}
 }
 

@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// API Container
 use VisualAppeal\AutoUpdate;
 use Monolog\Handler\StreamHandler;
 

@@ -69,6 +69,23 @@ class Auth_model extends CI_Model
 	}
 
 	/**
+	 * Get account id from a column value (username/email)
+	 *
+	 * @param mixed $value
+	 * @param string $column
+	 * @return int
+	 */
+	public function account_id($value, $column = 'username')
+	{
+		if (! in_array($column, ['username', 'email'], true))
+		{
+			return 0;
+		}
+
+		return $this->connect()->where($column, $value)->get('account')->row('id');
+	}
+
+	/**
 	 * Check if username and email is unique in auth
 	 *
 	 * @param string $data

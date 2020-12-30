@@ -35,7 +35,7 @@ $route['admin/realms']['get'] = 'realms/index';
 $route['admin/realms/create'] = 'realms/create';
 $route['admin/realms/edit/(:num)'] = 'realms/edit/$1';
 $route['admin/realms/delete/(:num)']['get'] = 'realms/delete/$1';
-$route['admin/realms/check/(:num)']['get'] = 'realms/check/$1';
+$route['admin/realms/soap/(:num)']['get'] = 'realms/check_soap/$1';
 
 $route['admin/slides']['get'] = 'slides/index';
 $route['admin/slides/create'] = 'slides/create';

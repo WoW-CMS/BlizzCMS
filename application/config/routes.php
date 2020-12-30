@@ -62,6 +62,8 @@ $route['login'] = 'auth/login';
 $route['logout']['get'] = 'auth/logout';
 $route['register'] = 'auth/register';
 $route['forgot'] = 'auth/forgot';
+$route['validate/(:any)'] = 'auth/register_validate/$1';
+$route['reset/(:any)'] = 'auth/reset_password/$1';
 
 /**
  * News Routes

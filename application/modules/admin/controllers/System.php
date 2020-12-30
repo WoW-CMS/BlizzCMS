@@ -61,6 +61,9 @@ class System extends MX_Controller
 			$this->form_validation->set_rules('twitter', 'Twitter URL', 'trim|valid_url');
 			$this->form_validation->set_rules('youtube', 'Youtube URL', 'trim|valid_url');
 
+			$this->form_validation->set_rules('admin_access', 'Admin access', 'trim|required|is_natural_no_zero');
+			$this->form_validation->set_rules('mod_access', 'Mod access', 'trim|required|is_natural_no_zero');
+
 			if ($this->form_validation->run() == FALSE)
 			{
 				$this->template->build('system/general');
@@ -107,11 +110,21 @@ class System extends MX_Controller
 					[
 						'key' => 'youtube_url',
 						'value' => $this->input->post('youtube', TRUE)
+					],
+					[
+						'key' => 'admin_access_level',
+						'value' => $this->input->post('admin_access', TRUE)
+					],
+					[
+						'key' => 'mod_access_level',
+						'value' => $this->input->post('mod_access', TRUE)
 					]
 				], 'key');
 
-				$this->session->set_flashdata('success', lang('settings_updated'));
+				// Clear cache
+				$this->cache->file->delete('settings');
 
+				$this->session->set_flashdata('success', lang('settings_updated'));
 				redirect(site_url('admin/system/general'));
 			}
 		}
@@ -167,8 +180,10 @@ class System extends MX_Controller
 					]
 				], 'key');
 
-				$this->session->set_flashdata('success', lang('settings_updated'));
+				// Clear cache
+				$this->cache->file->delete('settings');
 
+				$this->session->set_flashdata('success', lang('settings_updated'));
 				redirect(site_url('admin/system/captcha'));
 			}
 		}
@@ -218,10 +233,6 @@ class System extends MX_Controller
 						'value' => $this->input->post('email_user')
 					],
 					[
-						'key'   => 'email_password',
-						'value' => $this->input->post('email_pass')
-					],
-					[
 						'key'   => 'email_port',
 						'value' => $this->input->post('email_port')
 					],
@@ -239,8 +250,15 @@ class System extends MX_Controller
 					]
 				], 'key');
 
-				$this->session->set_flashdata('success', lang('settings_updated'));
+				if (! empty($this->input->post('email_pass')))
+				{
+					$this->db->set('value', encrypt($this->input->post('email_pass')))->where('key', 'email_password')->update('settings');
+				}
 
+				// Clear cache
+				$this->cache->file->delete('settings');
+
+				$this->session->set_flashdata('success', lang('settings_updated'));
 				redirect(site_url('admin/system/email'));
 			}
 		}

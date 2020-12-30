@@ -80,6 +80,7 @@ class Realm_model extends CI_Model
 	 * Check if a realm is online
 	 *
 	 * @param int $realm
+	 * @param bool $cache
 	 * @return boolean
 	 */
 	public function is_online($realm, $cache = true)

@@ -78,7 +78,7 @@
                         <option value="azeroth" <?= set_select('emulator', 'azeroth'); ?>>AzerothCore</option>
                         <option value="mangos" <?= set_select('emulator', 'mangos'); ?>>MaNGOS</option>
                         <option value="old_trinity" <?= set_select('emulator', 'old_trinity'); ?>>TrinityCore</option>
-                        <option value="trinity" <?= set_select('emulator', 'trinity'); ?>>TrinityCore SRP6</option>
+                        <option value="trinity" <?= set_select('emulator', 'trinity'); ?>>TrinityCore (SRP6)</option>
                       </select>
                     </div>
                     <?= form_error('emulator', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
@@ -88,8 +88,8 @@
                     <div class="uk-form-controls">
                       <select class="uk-select" name="bnet">
                         <option value="" hidden selected><?= lang('select_option'); ?></option>
-                        <option value="false"<?= set_select('bnet', 'false'); ?>><?= lang('enable'); ?></option>
-                        <option value="true"<?= set_select('bnet', 'true'); ?>><?= lang('disable'); ?></option>
+                        <option value="true" <?= set_select('bnet', 'true'); ?>><?= lang('enable'); ?></option>
+                        <option value="false" <?= set_select('bnet', 'false'); ?>><?= lang('disable'); ?></option>
                       </select>
                     </div>
                     <?= form_error('bnet', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

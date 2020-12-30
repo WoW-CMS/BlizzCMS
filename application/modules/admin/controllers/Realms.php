@@ -185,7 +185,7 @@ class Realms extends MX_Controller
 		redirect(site_url('admin/realms'));
 	}
 
-	public function check($id = null)
+	public function check_soap($id = null)
 	{
 		if (empty($id) || ! $this->realms_model->find_id($id))
 		{
@@ -198,6 +198,6 @@ class Realms extends MX_Controller
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('realms/check', $data);
+		$this->template->build('realms/check_soap', $data);
 	}
 }

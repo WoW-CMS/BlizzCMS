@@ -23,6 +23,8 @@ $lang['register'] = 'Registrar';
 $lang['login'] = 'Iniciar sesión';
 $lang['logout'] = 'Cerrar sesión';
 $lang['forgot_your_password'] = '¿Olvidaste tu contraseña?';
+$lang['reset_your_password'] = 'Reset your password';
+$lang['validate_your_registration'] = 'Validate your registration';
 $lang['user_panel'] = 'Panel de usuario';
 $lang['admin_panel'] = 'Panel de administración';
 $lang['mod_panel'] = 'Panel de moderación';
@@ -270,3 +272,13 @@ $lang['page_not_found_description'] = 'Parece que la página que estás buscando
 */
 $lang['auth_connection_error'] = 'The connection to the auth db could not be established';
 $lang['characters_connection_error'] = 'The connection to the characters db could not be established';
+
+/**
+ * Emails
+*/
+$lang['subject_validate'] = 'Account validation';
+$lang['message_validate'] = 'To confirm the creation of the account associated with this email address click on the following link:';
+
+$lang['subject_reset'] = 'Password reset';
+$lang['message_reset'] = 'A password reset for the account associated with this email address has been requested. To proceed click on the link:';
+$lang['note_time_limit'] = 'The link inside this email is valid for the next <b>12 Hours</b> from the date of the action. if you have problem with it please contact to site administration.';

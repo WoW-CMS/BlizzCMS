@@ -129,4 +129,78 @@ class Website_model extends CI_Model
 
 		return $query;
 	}
+
+	/**
+	 * Check if username/email exists on pending accounts
+	 *
+	 * @param string $username
+	 * @param string $email
+	 * @return boolean
+	 */
+	public function pending_unique($username, $email)
+	{
+		$query = $this->db->query("SELECT * FROM users_tokens WHERE (JSON_EXTRACT(data, '$.username') = ? OR JSON_EXTRACT(data, '$.email') = ?) AND type = 'validation' AND expired_at >= ?", [$username, $email, now()]);
+
+		return ($query->num_rows() >= 1);
+	}
+
+	/**
+	 * Generate user token
+	 *
+	 * @param int $id
+	 * @param string $type
+	 * @param int $expiration
+	 * @param string $data
+	 * @return string
+	 */
+	public function generate_token($id, $type, $expiration, $data = '')
+	{
+		$chooser = bin2hex(random_bytes(16));
+		$key     = bin2hex(random_bytes(16));
+		$token   = $chooser.'_'.$key;
+		$hash    = hash('sha512', $key);
+
+		$this->db->insert('users_tokens', [
+			'user_id'    => $id,
+			'chooser'    => $chooser,
+			'hash'       => $hash,
+			'type'       => $type,
+			'data'       => $data,
+			'created_at' => now(),
+			'expired_at' => $expiration
+		]);
+
+		return $token;
+	}
+
+	/**
+	 * Verify if token exist and is valid
+	 *
+	 * @param string $token
+	 * @param string $type
+	 * @return mixed
+	 */
+	public function verify_token($token, $type)
+	{
+		if (strpos($token, '_') === false)
+		{
+			return false;
+		}
+
+		list($chooser, $validation) = explode('_', $token);
+		$validation = hash('sha512', $validation);
+
+		$query = $this->db->where([
+			'chooser'       => $chooser,
+			'type'          => $type,
+			'expired_at >=' => now()
+		])->get('users_tokens')->row();
+
+		if (empty($query) || ! hash_equals($query->hash, $validation))
+		{
+			return false;
+		}
+
+		return $query;
+	}
 }

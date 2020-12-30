@@ -138,17 +138,29 @@ class Auth extends CI_Controller
 					redirect(site_url('register'));
 				}
 
-				// if ($is_pending)
-				// {
-					// $this->session->set_flashdata('warning', 'account_pending');
-					// redirect(site_url('register'));
-				// }
+				if ($this->website->pending_unique($username, $email))
+				{
+					$this->session->set_flashdata('warning', lang('account_pending'));
+					redirect(site_url('register'));
+				}
 
 				if (config_item('register_validation') == 'true')
 				{
-					// $this->base->send_email($email, lang('email_subject_validation'), $message);
+					$token = $this->website->generate_token(0, TOKEN_VALIDATION, interval_time('PT12H'), json_encode([
+						'nickname' => $nickname,
+						'username' => $username,
+						'email' => $email
+					]));
 
-					$this->session->set_flashdata('warning', lang('register_pending'));
+					$html  = $this->load->view('email/account', [
+						'message' => lang('message_validate'),
+						'link'    => site_url('validate/' . $token),
+						'note'    => lang('note_time_limit')
+					], TRUE);
+
+					$this->base->send_email($email, lang('subject_validate'), $html);
+
+					$this->session->set_flashdata('success', lang('register_pending'));
 					redirect(site_url('register'));
 				}
 				else
@@ -244,8 +256,20 @@ class Auth extends CI_Controller
 			else
 			{
 				$email = $this->input->post('email', TRUE);
+				$id    = $this->auth->account_id($email, 'email');
 
-				// $this->base->send_email($email, lang('email_subject_authorize'), $message);
+				if (! empty($id))
+				{
+					$token = $this->website->generate_token($id, TOKEN_PASSWORD, interval_time('PT12H'));
+
+					$html  = $this->load->view('email/account', [
+						'message' => lang('message_reset'),
+						'link'    => site_url('reset/' . $token),
+						'note'    => lang('note_time_limit')
+					], TRUE);
+
+					$this->base->send_email($email, lang('subject_reset'), $html);
+				}
 
 				$this->session->set_flashdata('success', lang('forgot_success'));
 				redirect(site_url('forgot'));
@@ -254,6 +278,178 @@ class Auth extends CI_Controller
 		else
 		{
 			$this->template->build('auth/forgot');
+		}
+	}
+
+	/**
+	 * Validate user registration
+	 *
+	 * @param string $token
+	 * @return void
+	 */
+	public function register_validate($token = null)
+	{
+		if (empty($token) || $this->website->isLogged())
+		{
+			show_404();
+		}
+
+		$result = $this->website->verify_token($token, TOKEN_VALIDATION);
+
+		if (! $result)
+		{
+			$this->session->set_flashdata('error', lang('invalid_token'));
+			redirect(site_url('login'));
+		}
+
+		$this->template->title(config_item('app_name'), lang('login'));
+
+		$data = [
+			'user' => json_decode($result->data)
+		];
+
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template->build('auth/validate', $data);
+			}
+			else
+			{
+				$password = $this->input->post('password');
+				$emulator = config_item('emulator');
+
+				if (in_array($emulator, ['trinity'], true))
+				{
+					$salt = random_bytes(32);
+
+					$this->auth->connect()->insert('account', [
+						'username'  => $data['user']->username,
+						'salt'      => $salt,
+						'verifier'  => game_hash($data['user']->username, $password, 'srp6', $salt),
+						'email'     => $data['user']->email,
+						'expansion' => config_item('expansion')
+					]);
+				}
+				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
+				{
+					$this->auth->connect()->insert('account', [
+						'username'        => $data['user']->username,
+						'sha_pass_hash'   => game_hash($data['user']->username, $password),
+						'email'           => $data['user']->email,
+						'expansion'       => config_item('expansion')
+					]);
+				}
+
+				$id = $this->auth->connect()->insert_id();
+
+				// Insert/update account if emulator support bnet
+				if (config_item('emulator_bnet') == 'true')
+				{
+					$this->auth->connect()->insert('battlenet_accounts', [
+						'id'            => $id,
+						'email'         => $data['user']->email,
+						'sha_pass_hash' => game_hash($data['user']->email, $password, 'bnet')
+					]);
+
+					$this->auth->connect()->where('id', $id)->update('account', [
+						'battlenet_account' => $id,
+						'battlenet_index'   => 1
+					]);
+				}
+
+				// Add user to website db
+				$this->db->insert('users', [
+					'id'        => $id,
+					'nickname'  => $data['user']->nickname,
+					'username'  => $data['user']->username,
+					'email'     => $data['user']->email,
+					'joined_at' => now()
+				]);
+
+				$this->db->where(['hash' => $result->hash, 'type' => TOKEN_VALIDATION])->delete('users_tokens');
+
+				$this->session->set_flashdata('success', lang('validate_success'));
+				redirect(site_url('login'));
+			}
+		}
+		else
+		{
+			$this->template->build('auth/validate', $data);
+		}
+	}
+
+	public function reset_password($token = null)
+	{
+		if (empty($token) || $this->website->isLogged())
+		{
+			show_404();
+		}
+
+		$result = $this->website->verify_token($token, TOKEN_PASSWORD);
+
+		if (! $result)
+		{
+			$this->session->set_flashdata('error', lang('invalid_token'));
+			redirect(site_url('login'));
+		}
+
+		$this->template->title(config_item('app_name'), lang('login'));
+
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('new_password', 'New password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('confirm_new_password', 'Confirm new password', 'trim|required|min_length[8]|matches[new_password]');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template->build('auth/reset');
+			}
+			else
+			{
+				$password = $this->input->post('new_password');
+				$account  = $this->auth->get_account($result->user_id);
+				$emulator = config_item('emulator');
+
+				if (in_array($emulator, ['trinity'], true))
+				{
+					$salt = random_bytes(32);
+
+					$this->auth->connect()->where('id', $result->user_id)->update('account', [
+						'salt'     => $salt,
+						'verifier' => game_hash($account->username, $password, 'srp6', $salt)
+					]);
+				}
+				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
+				{
+					$this->auth->connect()->where('id', $result->user_id)->update('account', [
+						'sha_pass_hash' => game_hash($account->username, $password),
+						'sessionkey'    => '',
+						'v'             => '',
+						's'             => ''
+					]);
+				}
+
+				// If emulator support bnet update password on table
+				if (config_item('emulator_bnet') == 'true')
+				{
+					$bnet = game_hash($account->email, $password, 'bnet');
+
+					$this->auth->connect()->set('sha_pass_hash', $bnet)->where('id', $result->user_id)->update('battlenet_accounts');
+				}
+
+				$this->db->where(['user_id' => $result->user_id, 'type' => TOKEN_PASSWORD])->delete('users_tokens');
+
+				$this->session->set_flashdata('success', lang('reset_success'));
+				redirect(site_url('login'));
+			}
+		}
+		else
+		{
+			$this->template->build('auth/reset');
 		}
 	}
 }

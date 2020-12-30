@@ -86,6 +86,15 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 /*
 |--------------------------------------------------------------------------
+| Token Constants
+|--------------------------------------------------------------------------
+|
+*/
+defined('TOKEN_VALIDATION') OR define('TOKEN_VALIDATION', 'validation');
+defined('TOKEN_PASSWORD')   OR define('TOKEN_PASSWORD', 'password');
+
+/*
+|--------------------------------------------------------------------------
 | CMS Constants
 |--------------------------------------------------------------------------
 |

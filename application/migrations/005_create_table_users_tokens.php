@@ -32,6 +32,10 @@ class Migration_Create_table_users_tokens extends CI_Migration
 				'default' => 'validation',
 				'null' => FALSE
 			),
+			'data' => array(
+				'type' => 'JSON',
+				'default' => '\'\''
+			),
 			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',

@@ -12,8 +12,7 @@ class Migration_Create_table_settings extends CI_Migration
 				'null' => FALSE
 			),
 			'value' => array(
-				'type' => 'VARCHAR',
-				'constraint' => '255',
+				'type' => 'TEXT',
 				'null' => TRUE
 			)
 		));

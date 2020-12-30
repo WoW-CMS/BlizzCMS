@@ -6,7 +6,7 @@
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
               <li><a href="<?= site_url('admin/realms'); ?>"><?= lang('realms'); ?></a></li>
-              <li><span><?= lang('check'); ?></span></li>
+              <li><span><?= lang('check_soap'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto"></div>

@@ -17,6 +17,17 @@ class Settings_model extends CI_Model
 			return false;
 		}
 
-		return $this->db->get($this->settings_table)->result();
+		$data = $this->cache->file->get('settings');
+
+		if ($data !== false)
+		{
+			return $data;
+		}
+
+		$result = $this->db->get($this->settings_table)->result();
+
+		$this->cache->file->save('settings', $result, 604800);
+
+		return $result;
 	}
 }
