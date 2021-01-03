@@ -28,7 +28,7 @@ class Migration_Create_store_categories extends CI_Migration
 				'constraint' => '10',
 				'unsigned' => TRUE,
 				'default' => 1
-			)
+			),
 			'route' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
