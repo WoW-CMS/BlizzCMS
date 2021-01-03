@@ -19,4 +19,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | 'installer_blocked' = installer status
 */
-$config['installer_blocked'] = true;
+$config['installer_blocked'] = NULL;
