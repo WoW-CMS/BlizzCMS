@@ -3,7 +3,7 @@
  * BlizzCMS
  *
  * @author  WoW-CMS
- * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2017 - 2021, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com
  */
@@ -27,5 +27,6 @@ $lang['mbstring_extension'] = 'Mbstring Extension';
 $lang['mysql_extension'] = 'MySQL Extension';
 $lang['openssl_extension'] = 'OpenSSL Extension';
 $lang['soap_extension'] = 'SOAP Extension';
+$lang['zip_extension'] = 'Zip Extension';
 $lang['cache_writable'] = 'Cache Folder Writable';
 $lang['uploads_writable'] = 'Uploads Folder Writable';

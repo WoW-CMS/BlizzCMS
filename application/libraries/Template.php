@@ -3,7 +3,7 @@
  * BlizzCMS
  *
  * @author  WoW-CMS
- * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2017 - 2021, WoW-CMS.
  * @copyright  Copyright (c) 2011 - 2019, Philip Sturgeon (https://phil.tech/)
  * @license https://opensource.org/licenses/MIT MIT License
  * @license http://dbad-license.org DBAD License

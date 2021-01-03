@@ -3,7 +3,7 @@
  * BlizzCMS
  *
  * @author  WoW-CMS
- * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2017 - 2021, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com
  */
@@ -36,9 +36,10 @@ class Installer extends CI_Controller
 		$mysql_ext    = (extension_loaded('mysql') || extension_loaded('mysqlnd'));
 		$openssl_ext  = extension_loaded('openssl');
 		$soap_ext     = extension_loaded('soap');
+		$zip_ext      = extension_loaded('zip');
 		$cache        = (is_dir(APPPATH . 'cache') && is_writable(APPPATH . 'cache'));
 		$uploads      = (is_dir(FCPATH . 'uploads') && is_writable(FCPATH . 'uploads'));
-		$button       = ($version && $gd_ext && $gmp_ext && $curl_ext && $mbstring_ext && $mysql_ext && $openssl_ext && $soap_ext && $cache && $uploads);
+		$button       = ($version && $gd_ext && $gmp_ext && $curl_ext && $mbstring_ext && $mysql_ext && $openssl_ext && $soap_ext && $zip_ext && $cache && $uploads);
 
 		$data = [
 			'requirements' => [
@@ -50,6 +51,7 @@ class Installer extends CI_Controller
 				['requirement' => lang('mysql_extension'), 'enable' => $mysql_ext],
 				['requirement' => lang('openssl_extension'), 'enable' => $openssl_ext],
 				['requirement' => lang('soap_extension'), 'enable' => $soap_ext],
+				['requirement' => lang('zip_extension'), 'enable' => $zip_ext],
 				['requirement' => lang('cache_writable'), 'enable' => $cache],
 				['requirement' => lang('uploads_writable'), 'enable' => $uploads]
 			],

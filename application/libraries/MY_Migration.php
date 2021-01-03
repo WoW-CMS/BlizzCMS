@@ -3,7 +3,7 @@
  * BlizzCMS
  *
  * @author  WoW-CMS
- * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2017 - 2021, WoW-CMS.
  * @copyright  Copyright (c) 2013 - 2015, Michel Roca (https://github.com/mRoca)
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com

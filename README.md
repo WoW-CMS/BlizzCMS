@@ -13,7 +13,7 @@
 | :----------- | :---------- |
 | **PHP Version** | **7.3 or 7.4** is recommended |
 | **Apache Modules** | mod_rewrite |
-| **PHP Extensions** | curl - gd - gmp - mbstring - mysqli - openssl - soap |
+| **PHP Extensions** | curl - gd - gmp - mbstring - mysqli - openssl - soap - zip |
 
 ## In linux (Apache Modules)
 
@@ -40,4 +40,4 @@ a2enmod expires
 
 ## Copyright
 
-Copyright © 2020 [WoW-CMS](https://wow-cms.com).
+Copyright © 2021 [WoW-CMS](https://wow-cms.com).
