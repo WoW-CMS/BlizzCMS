@@ -116,7 +116,7 @@
             <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= $this->lang->line('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <a target="_blank" class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_invitation'); ?>" title="Join us on Discord">
-                <img src="https://discordapp.com/api/guilds/<?= $discord_id ?>/embed.png?style=banner3">
+                <img src="https://discord.com/api/guilds/<?= $discord_id ?>/widget.png?style=<?= $this->config->item('discord_style'); ?>">
               </a>
             </div>
             <?php endif ?>
