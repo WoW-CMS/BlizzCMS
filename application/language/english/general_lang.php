@@ -41,7 +41,6 @@ $lang['edit'] = 'Edit';
 $lang['save'] = 'Save';
 $lang['close'] = 'Close';
 $lang['reply'] = 'Reply';
-$lang['account_settings'] = 'Account settings';
 $lang['cart'] = 'Add to cart';
 $lang['view_cart'] = 'View cart';
 $lang['checkout'] = 'Checkout';

@@ -41,7 +41,6 @@ $lang['edit'] = 'Editar';
 $lang['save'] = 'Guardar';
 $lang['close'] = 'Cerrar';
 $lang['reply'] = 'Responder';
-$lang['account_settings'] = 'Configuraciones de la cuenta';
 $lang['cart'] = 'añadir al carrito';
 $lang['view_cart'] = 'Ver carrito';
 $lang['checkout'] = 'Checkout';

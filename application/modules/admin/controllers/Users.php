@@ -3,7 +3,7 @@
  * BlizzCMS
  *
  * @author  WoW-CMS
- * @copyright  Copyright (c) 2017 - 2020, WoW-CMS.
+ * @copyright  Copyright (c) 2017 - 2021, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com
  */
@@ -83,21 +83,5 @@ class Users extends MX_Controller
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
 		$this->template->build('users/view', $data);
-	}
-
-	public function logs($id = null)
-	{
-		if (empty($id) || ! $this->users_model->find_id($id))
-		{
-			show_404();
-		}
-
-		$data = [
-			'user' => $this->users_model->get($id)
-		];
-
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
-
-		$this->template->build('users/logs', $data);
 	}
 }

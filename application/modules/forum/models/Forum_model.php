@@ -3,221 +3,173 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Forum_model extends CI_Model
 {
-	public function getCategory()
+	protected $forum = 'forum';
+	protected $forum_topics = 'forum_topics';
+	protected $forum_posts = 'forum_posts';
+
+	/**
+	 * Get all categories
+	 *
+	 * @param int $parent
+	 * @return array
+	 */
+	public function get_all_categories($parent = 0)
 	{
-		return $this->db->select('id, name')->get('forum_category')->result();
+		return $this->db->where(['type' => 'category', 'parent' => $parent])->get($this->forum)->result();
 	}
 
-	public function insertComment($reply, $topicid, $author)
+	/**
+	 * Get all forums of a category
+	 *
+	 * @param int $parent
+	 * @return array
+	 */
+	public function get_all_forums($parent = 0)
 	{
-		$function = '[Guardian/comment]';
-		$type = '2';
-		$log_enter = $this->logs->__setLogs($author, $type, $topicid, $function, $reply);
-
-		$date = now();
-
-		$data = array(
-			'topic' => $topicid,
-			'author' => $author,
-			'commentary' => $reply,
-			'date' => $date
-		);
-
-		$this->db->insert('forum_replies', $data);
-		return true;
+		return $this->db->where(['type' => 'forum', 'parent' => $parent])->get($this->forum)->result();
 	}
 
-	public function removeComment($id)
+	/**
+	 * Get forum
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_forum($id)
 	{
-		$this->db->where('id', $id)->delete('forum_replies');
-		return true;
+		return $this->db->where('id', $id)->get($this->forum)->row();
 	}
 
-	public function getComments($id)
+	/**
+	 * Find if the forum exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_forum($id)
 	{
-		return $this->db->where('topic', $id)->get('forum_replies');
+		$query = $this->db->where('id', $id)->get($this->forum)->num_rows();
+
+		return ($query == 1);
 	}
 
-	public function getCountPostAuthor($id)
+	/**
+	 * Get all topics of a forum
+	 *
+	 * @param int $id
+	 * @param int $limit
+	 * @param int $start
+	 * @return array
+	 */
+	public function get_all_topics($id, $limit, $start)
 	{
-		return $this->db->select('author')->where('author', $id)->get('forum_topics')->num_rows();
+		return $this->db->where('forum_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->forum_topics)->result();
 	}
 
-	public function getCountPostCategory($id)
+	/**
+	 * Count all topics of a forum
+	 *
+	 * @param int|null $id
+	 * @return int
+	 */
+	public function count_topics($id = null)
 	{
-		return $this->db->select('author')->where('forums', $id)->get('forum_topics')->num_rows();
+		if (is_null($id))
+		{
+			return $this->db->count_all($this->forum_topics);
+		}
+
+		return $this->db->where('forum_id', $id)->count_all_results($this->forum_topics);
 	}
 
-	public function getCountPostGeneral()
+	/**
+	 * Get topic
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_topic($id)
 	{
-		return $this->db->get('forum_topics')->num_rows();
+		return $this->db->where('id', $id)->get($this->forum_topics)->row();
 	}
 
-	public function getCountPostReplies()
+	/**
+	 * Find if the topic exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_topic($id)
 	{
-		return $this->db->get('forum_replies')->num_rows();
+		$query = $this->db->where('id', $id)->get($this->forum_topics)->num_rows();
+
+		return ($query == 1);
 	}
 
-	public function getCountUsers()
+	/**
+	 * Get the latest topics
+	 *
+	 * @param $limit
+	 * @return array
+	 */
+	public function latest_topics($limit = 5)
 	{
-		return $this->db->get('users')->num_rows();
+		return $this->db->limit($limit)->order_by('created_at', 'ASC')->get($this->forum_topics)->result();
 	}
 
-	public function getLastPostCategory($id)
+	/**
+	 * Get last topic of a forum
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	public function last_topic($id)
 	{
-		return $this->db->where('forums', $id)->limit('1')->order_by('date', 'DESC')->get('forum_topics');
+		return $this->db->where('forum_id', $id)->limit(1)->order_by('created_at', 'DESC')->get($this->forum_topics)->result();
 	}
 
-	public function getLastPosts()
+	/**
+	 * Get all posts of a topic
+	 *
+	 * @param int $id
+	 * @param int $limit
+	 * @param int $start
+	 * @return array
+	 */
+	public function get_all_posts($id, $limit, $start)
 	{
-		return $this->db->limit('5')->order_by('date', 'ASC')->get('forum_topics');
+		return $this->db->where('topic_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->forum_posts)->result();
 	}
 
-	public function getLastReplies($id)
+	/**
+	 * Count all posts of a topic
+	 *
+	 * @param int|null $id
+	 * @return int
+	 */
+	public function count_posts($id = null)
 	{
-		return $this->db->where('topic', $id)->limit('1')->order_by('date', 'DESC')->get('forum_replies');
+		if (is_null($id))
+		{
+			return $this->db->count_all($this->forum_posts);
+		}
+
+		return $this->db->where('topic_id', $id)->count_all_results($this->forum_posts);
 	}
 
-	public function getLastRepliesCount($id)
+	/**
+	 * Get post
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_post($id)
 	{
-		return $this->db->select('id')->where('topic', $id)->get('forum_replies')->num_rows();
+		return $this->db->where('id', $id)->get($this->forum_posts)->row();
 	}
 
-	public function getRowTopicExist($id)
+	public function count_users()
 	{
-		return $this->db->select('id')->where('id', $id)->get('forum_topics')->num_rows();
-	}
-
-	public function insertTopic($category, $title, $userid, $description, $locked, $pinned)
-	{
-		$function = '[Guardian/Topic]';
-		$type = '1';
-		$log_enter = $this->logs->__setLogs($userid, $category, $type, $function, $title);
-		$date = now();
-
-		$data = array(
-			'forums' => $category,
-			'title' => $title,
-			'author' => $userid,
-			'date' => $date,
-			'content' => $description,
-			'locked' => $locked,
-			'pinned' => $pinned
-		);
-
-		$this->db->insert('forum_topics', $data);
-		return true;
-	}
-
-	public function getIDPostPerDate($date)
-	{
-		return $this->db->select('id')->where('date', $date)->get('forum_topics')->row('id');
-	}
-
-	public function updateTopic($idlink, $title, $description, $locked, $pinned)
-	{
-		$date = now();
-
-		$data = array(
-			'title' => $title,
-			'content' => $description,
-			'locked' => $locked,
-			'pinned' => $pinned
-		);
-
-		$this->db->where('id', $idlink)->update('forum_topics', $data);
-
-		redirect(site_url('forum/topic/'.$idlink));
-	}
-
-	public function getType($id)
-	{
-		return $this->db->select('type')->where('id', $id)->get('forum')->row('type');
-	}
-
-	public function getTopicTitle($id)
-	{
-		return $this->db->select('title')->where('id', $id)->get('forum_topics')->row('title');
-	}
-
-	public function getTopicDescription($id)
-	{
-		return $this->db->select('content')->where('id', $id)->get('forum_topics')->row('content');
-	}
-
-	public function getCategoryForums($category)
-	{
-		return $this->db->select('id, name, category, description, icon, type')->where('category', $category)->get('forum')->result();
-	}
-
-	public function getCategoryName($id)
-	{
-		return $this->db->select('name')->where('id', $id)->get('forum')->row('name');
-	}
-
-	public function getCategoryRows($id)
-	{
-		return $this->db->select('category')->where('category', $id)->get('forum')->num_rows();
-	}
-
-	public function getForumName($id)
-	{
-		return $this->db->select('name')->where('id', $id)->get('forum')->row('name');
-	}
-
-	public function getSpecifyCategoryPosts($id)
-	{
-		return $this->db->where('forums', $id)->order_by('id', 'ASC')->get('forum_topics');
-	}
-
-	public function getSpecifyCategoryPostsPined($id)
-	{
-		return $this->db->where('forums', $id)->where('pinned', '1')->order_by('id', 'DESC')->get('forum_topics');
-	}
-
-	public function getSpecifyPostName($id)
-	{
-		return $this->db->select('title')->where('id', $id)->get('forum_topics')->row('title');
-	}
-
-	public function getSpecifyPostAuthor($id)
-	{
-		return $this->db->select('author')->where('id', $id)->get('forum_topics')->row('author');
-	}
-
-	public function getSpecifyPostDate($id)
-	{
-		return $this->db->select('date')->where('id', $id)->get('forum_topics')->row('date');
-	}
-
-	public function getSpecifyPostContent($id)
-	{
-		return $this->db->select('content')->where('id', $id)->get('forum_topics')->row('content');
-	}
-
-	public function getTopicLocked($id)
-	{
-		return $this->db->select('locked')->where('id', $id)->get('forum_topics')->row('locked');
-	}
-
-	public function getTopicPinned($id)
-	{
-		return $this->db->select('pinned')->where('id', $id)->get('forum_topics')->row('pinned');
-	}
-
-	public function getTopicForum($id)
-	{
-		return $this->db->select('forums')->where('id', $id)->get('forum_topics')->row('forums');
-	}
-
-	public function addReportByUserId($report, $reportuser, $idtopic)
-	{
-		$data = array(
-			'userid' => $report,
-			'userreported' => $reportuser,
-			'topic' => $idtopic
-		);
-
-		$this->db->insert('mod_report', $data);
+		return $this->db->count_all('users');
 	}
 }

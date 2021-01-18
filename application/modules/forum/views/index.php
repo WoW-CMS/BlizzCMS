@@ -1,67 +1,44 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('forum'); ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium uk-margin-small" data-uk-grid>
           <div class="uk-width-3-4@m">
-            <?php foreach($this->forum_model->getCategory() as $categorys): ?>
+            <?php foreach ($categories as $category): ?>
             <div class="uk-overflow-auto uk-margin-medium forum-table">
               <table class="uk-table uk-table-hover uk-table-middle">
-                <caption uk-toggle="target: #cat-<?= $categorys->id ?>;animation: uk-animation-fade"><i class="fas fa-bookmark"></i> <?= $categorys->name ?></caption>
-                <tbody id="cat-<?= $categorys->id ?>">
-                  <?php foreach($this->forum_model->getCategoryForums($categorys->id) as $sections): ?>
-                  <?php if ($sections->type == 1 || $sections->type == 3): ?>
+                <caption uk-toggle="target: #cat-<?= $category->id; ?>;animation: uk-animation-fade"><i class="fas fa-bookmark"></i> <?= $category->name; ?></caption>
+                <tbody id="cat-<?= $category->id; ?>">
+                  <?php foreach ($this->forum_model->get_all_forums($category->id) as $forum): ?>
                   <tr>
                     <td class="uk-table-shrink">
-                      <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$sections->icon; ?>')"></i>
+                      <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$forum->icon; ?>')"></i>
                     </td>
                     <td class="uk-table-expand uk-table-link uk-text-break">
-                      <a href="<?= site_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
-                        <h4 class="uk-h4 uk-margin-remove"><?= $sections->name ?></h4>
-                        <span class="uk-text-meta"><?= $sections->description ?></span>
+                      <a href="<?= site_url('forum/view/'.$forum->id); ?>" class="uk-link-reset">
+                        <h4 class="uk-h4 uk-margin-remove"><?= html_escape($forum->name); ?></h4>
+                        <span class="uk-text-meta"><?= html_escape($forum->description); ?></span>
                       </a>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->getCountPostCategory($sections->id) ?></span>
-                      <span class="uk-text-small"><?= lang('forum_posts_count'); ?></span>
+                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->count_topics($forum->id); ?></span>
+                      <span class="uk-text-small"><?= lang('topics'); ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
-                        <a href="<?= site_url('forum/topic/'.$lastpost->id) ?>" class="uk-display-block"><?= $lastpost->title ?></a>
-                        <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date) ?></span>
-                        by <span class="uk-text-primary"><?= $this->website->get_user($lastpost->author, 'nickname') ?></span>
+                      <?php foreach ($this->forum_model->last_topic($forum->id) as $last): ?>
+                      <a href="<?= site_url('forum/topic/'.$last->id) ?>" class="uk-display-block"><?= $last->title; ?></a>
+                      <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $last->created_at); ?></span> by <span class="uk-text-primary"><?= $this->website->get_user($last->user_id, 'nickname'); ?></span>
                       <?php endforeach; ?>
                     </td>
                   </tr>
-                  <?php elseif($sections->type == 2): ?>
-                  <?php if($this->website->isLogged()): ?>
-                  <?php if($this->auth->get_gmlevel($this->session->userdata('id')) > 0): ?>
-                  <tr>
-                    <td class="uk-table-shrink">
-                      <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$sections->icon; ?>')"></i>
-                    </td>
-                    <td class="uk-table-expand uk-table-link uk-text-break">
-                      <a href="<?= site_url('forum/category/'.$sections->id); ?>" class="uk-link-reset">
-                        <h4 class="uk-h4 uk-margin-remove"><?= $sections->name; ?></h4>
-                        <span class="uk-text-meta"><?= $sections->description; ?></span>
-                      </a>
-                    </td>
-                    <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold"><?= $this->forum_model->getCountPostCategory($sections->id); ?></span>
-                      <span class="uk-text-small"><?= lang('forum_posts_count'); ?></span>
-                    </td>
-                    <td class="uk-width-medium">
-                      <?php foreach ($this->forum_model->getLastPostCategory($sections->id)->result() as $lastpost): ?>
-                        <a href="<?= site_url('forum/topic/'.$lastpost->id); ?>" class="uk-display-block"><?= $lastpost->title; ?></a>
-                        <span class="uk-text-meta uk-display-block"><?= date('d-m-y h:i:s', $lastpost->date); ?></span>
-                        by <span class="uk-text-primary"><?= $this->website->get_user($lastpost->author, 'nickname'); ?></span>
-                      <?php endforeach; ?>
-                    </td>
-                  </tr>
-                  <?php endif; ?>
-                  <?php endif; ?>
-                  <?php endif; ?>
                   <?php endforeach; ?>
                 </tbody>
               </table>
@@ -71,22 +48,13 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-forum">
               <div class="uk-card-header">
-                <h3 class="uk-card-title"><i class="fas fa-book-open"></i> <?= lang('forum_last_activity'); ?></h3>
+                <h3 class="uk-card-title"><i class="fas fa-book-open"></i> <?= lang('latest_activity'); ?></h3>
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider">
-                  <?php foreach ($this->forum_model->getLastPosts()->result() as $lastest): ?>
+                  <?php foreach ($this->forum_model->latest_topics() as $topic): ?>
                   <li>
-                    <a href="<?= site_url('forum/topic/'.$lastest->id) ?>"><?= $lastest->title ?></a>
-                    <?php if($this->forum_model->getLastRepliesCount($lastest->id) == 0): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($lastest->author, 'nickname') ?></span></p>
-                    <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $lastest->date) ?></p>
-                    <?php else: ?>
-                    <?php foreach ($this->forum_model->getLastReplies($lastest->id)->result() as $replies): ?>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('forum_last_post_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($replies->author, 'nickname') ?></span></p>
-                    <p class="uk-text-small uk-margin-remove"><?= date('d-m-y h:i:s', $replies->date) ?></p>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
+                    <a href="<?= site_url('forum/topic/'.$topic->id) ?>"><?= $topic->title; ?></a>
                   </li>
                   <?php endforeach; ?>
                 </ul>
@@ -96,7 +64,7 @@
         </div>
         <div class="uk-card uk-card-forum uk-margin-small">
           <div class="uk-card-header">
-            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= lang('forum_whos_online'); ?></h3>
+            <h3 class="uk-card-title"><i class="fas fa-users"></i> <?= lang('whos_online'); ?></h3>
           </div>
           <div class="uk-card-body">
             <p class="uk-margin-remove">0 users active in the past 15 minutes (0 members, 0 of whom are invisible, and 0 guests).</p>
@@ -105,22 +73,22 @@
               <div>
                 <div class="forum-who-icon"><i class="far fa-comments fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostReplies() ?></span><br>
-                  <span><?= lang('forum_replies_count'); ?></span>
+                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->count_posts(); ?></span><br>
+                  <span><?= lang('posts'); ?></span>
                 </div>
               </div>
               <div>
               <div class="forum-who-icon"><i class="far fa-file-alt fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountPostGeneral() ?></span><br>
-                  <span><?= lang('forum_topics_count'); ?></span>
+                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->count_topics(); ?></span><br>
+                  <span><?= lang('topics'); ?></span>
                 </div>
               </div>
               <div>
                 <div class="forum-who-icon"><i class="far fa-user fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->getCountUsers() ?></span><br>
-                  <span><?= lang('forum_users_count'); ?></span>
+                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->count_users(); ?></span><br>
+                  <span><?= lang('users'); ?></span>
                 </div>
               </div>
             </div>

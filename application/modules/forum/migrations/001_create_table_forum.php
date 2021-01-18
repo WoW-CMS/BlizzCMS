@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_forum extends CI_Migration
+class Migration_Create_table_forum extends CI_Migration
 {
 	public function up()
 	{
@@ -17,28 +17,25 @@ class Migration_Create_forum extends CI_Migration
 				'constraint' => '255',
 				'null' => FALSE
 			),
-			'category' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'null' => FALSE
-			),
 			'description' => array(
 				'type' => 'TEXT',
-				'null' => FALSE
+				'null' => TRUE
 			),
 			'icon' => array(
 				'type' => 'VARCHAR',
-				'constraint' => '100',
+				'constraint' => '255',
 				'null' => FALSE
 			),
 			'type' => array(
-				'type' => 'INT',
-				'constraint' => '1',
+				'type' => 'ENUM("category","forum")',
+				'default' => 'category',
+				'null' => FALSE
+			),
+			'parent' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
 				'unsigned' => TRUE,
-				'comment' => '1 = everyone | 2 = staff | 3 = staff post + everyone see',
-				'null' => FALSE,
-				'default' => '1'
+				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);

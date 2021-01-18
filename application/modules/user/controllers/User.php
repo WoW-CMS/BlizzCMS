@@ -69,7 +69,7 @@ class User extends MX_Controller
 			$this->db->set('nickname', $nickname)->where('id', $user->id)->update('users');
 			$this->session->set_userdata('nickname', $nickname);
 
-			$this->session->set_flashdata('success', lang('alert_nickname_changed'));
+			$this->session->set_flashdata('success', lang('nickname_changed'));
 			redirect(site_url('user/settings'));
 		}
 	}
@@ -122,7 +122,7 @@ class User extends MX_Controller
 
 			$this->db->set('email', $new_email)->where('id', $user->id)->update('users');
 
-			$this->session->set_flashdata('success', lang('alert_email_changed'));
+			$this->session->set_flashdata('success', lang('email_changed'));
 			redirect(site_url('settings'));
 		}
 	}
@@ -182,7 +182,7 @@ class User extends MX_Controller
 				$this->auth->connect()->set('sha_pass_hash', $bnet)->where('id', $user->id)->update('battlenet_accounts');
 			}
 
-			$this->session->set_flashdata('success', lang('alert_password_changed'));
+			$this->session->set_flashdata('success', lang('password_changed'));
 			redirect(site_url('user/settings'));
 		}
 	}
@@ -207,7 +207,7 @@ class User extends MX_Controller
 
 			$this->db->set('avatar', $avatar)->where('id', $id)->update('users');
 
-			$this->session->set_flashdata('success', lang('alert_avatar_changed'));
+			$this->session->set_flashdata('success', lang('avatar_changed'));
 			redirect(site_url('user/settings'));
 		}
 	}
