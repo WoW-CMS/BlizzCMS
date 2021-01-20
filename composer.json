@@ -11,8 +11,9 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": "~7.2",
-		"paypal/rest-api-sdk-php": "^1.14"
+		"php": "~7.3",
+		"visualappeal/php-auto-update": "^0.13.1",
+		"laizerox/php-wowemu-auth": "^1.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

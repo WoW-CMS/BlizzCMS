@@ -79,6 +79,7 @@
                     <select class="uk-select" name="emulator">
                       <option value="" hidden selected><?= lang('select_emulator'); ?></option>
                       <option value="azeroth" <?php if ('azeroth' === config_item('emulator')) echo 'selected'; ?>>AzerothCore</option>
+                      <option value="cmangos" <?php if ('cmangos' === config_item('emulator')) echo 'selected'; ?>>CMaNGOS</option>
                       <option value="mangos" <?php if ('mangos' === config_item('emulator')) echo 'selected'; ?>>MaNGOS</option>
                       <option value="old_trinity" <?php if ('old_trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore</option>
                       <option value="trinity" <?php if ('trinity' === config_item('emulator')) echo 'selected'; ?>>TrinityCore (SRP6)</option>

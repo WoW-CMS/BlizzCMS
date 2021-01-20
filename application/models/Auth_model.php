@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Laizerox\Wowemu\SRP\UserClient;
+
 class Auth_model extends CI_Model
 {
 	/**
@@ -40,12 +42,15 @@ class Auth_model extends CI_Model
 		switch ($emulator)
 		{
 			case 'trinity':
-				$validate = ($account->verifier === game_hash($account->username, $password, 'srp6', $account->salt));
+				$validate = ($account->verifier === $this->game_hash($account->username, $password, 'srp6', $account->salt));
+				break;
+			case 'cmangos':
+				$validate = (strtoupper($account->v) === $this->game_hash($account->username, $password, 'hex', $account->s));
 				break;
 			case 'azeroth':
 			case 'old_trinity':
 			case 'mangos':
-				$validate = hash_equals(strtoupper($account->sha_pass_hash), game_hash($account->username, $password));
+				$validate = hash_equals(strtoupper($account->sha_pass_hash), $this->game_hash($account->username, $password));
 				break;
 		}
 
@@ -55,6 +60,49 @@ class Auth_model extends CI_Model
 		}
 
 		return $validate;
+	}
+
+	/**
+	 * Generate hashed password for game account
+	 *
+	 * @param string $username
+	 * @param string $password
+	 * @param string $type
+	 * @param mixed $salt
+	 * @return mixed
+	 */
+	public function game_hash($username, $password, $type = null, $salt = null)
+	{
+		switch ($type)
+		{
+			case 'bnet':
+				return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash('sha256', strtoupper(hash('sha256', strtoupper($username)) . ':' . strtoupper($password))))))));
+				break;
+			case 'hex':
+				$client = new UserClient($username, $salt);
+				return strtoupper($client->generateVerifier($password));
+			case 'srp6':
+				// Constants
+				$g = gmp_init(7);
+				$N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
+				// Calculate first hash
+				$h1 = sha1(strtoupper($username.':'.$password), TRUE);
+				// Calculate second hash
+				$h2 = sha1($salt.$h1, TRUE);
+				// Convert to integer (little-endian)
+				$h2 = gmp_import($h2, 1, GMP_LSW_FIRST);
+				// g^h2 mod N
+				$verifier = gmp_powm($g, $h2, $N);
+				// Convert back to a byte array (little-endian)
+				$verifier = gmp_export($verifier, 1, GMP_LSW_FIRST);
+				// Pad to 32 bytes, remember that zeros go on the end in little-endian!
+				$verifier = str_pad($verifier, 32, chr(0), STR_PAD_RIGHT);
+				return $verifier;
+				break;
+			default:
+				return strtoupper(sha1(strtoupper($username) . ':' . strtoupper($password)));
+				break;
+		}
 	}
 
 	/**
@@ -114,7 +162,7 @@ class Auth_model extends CI_Model
 		{
 			$query = $this->connect()->where('AccountID', $id)->get('account_access')->row('SecurityLevel');		
 		}
-		elseif (in_array($emulator, ['mangos'], true))
+		elseif (in_array($emulator, ['mangos', 'cmangos'], true))
 		{
 			$query = $this->connect()->where('id', $id)->get('account')->row('gmlevel');		
 		}

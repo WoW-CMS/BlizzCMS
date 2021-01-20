@@ -9,8 +9,10 @@ if (!(PHP_VERSION_ID >= 70200)) {
 }
 
 $missingExtensions = array();
+extension_loaded('bcmath') || $missingExtensions[] = 'bcmath';
 extension_loaded('curl') || $missingExtensions[] = 'curl';
 extension_loaded('json') || $missingExtensions[] = 'json';
+extension_loaded('zip') || $missingExtensions[] = 'zip';
 
 if ($missingExtensions) {
     $issues[] = 'Your Composer dependencies require the following PHP extensions to be installed: ' . implode(', ', $missingExtensions);

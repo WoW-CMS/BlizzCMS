@@ -172,7 +172,19 @@ class Auth extends CI_Controller
 						$this->auth->connect()->insert('account', [
 							'username'  => $username,
 							'salt'      => $salt,
-							'verifier'  => game_hash($username, $password, 'srp6', $salt),
+							'verifier'  => $this->auth->game_hash($username, $password, 'srp6', $salt),
+							'email'     => $email,
+							'expansion' => config_item('expansion')
+						]);
+					}
+					elseif (in_array($emulator, ['cmangos'], true))
+					{
+						$salt = strtoupper(bin2hex(random_bytes(32)));
+
+						$this->auth->connect()->insert('account', [
+							'username'  => $username,
+							'v'         => $this->auth->game_hash($username, $password, 'hex', $salt),
+							's'         => $salt,
 							'email'     => $email,
 							'expansion' => config_item('expansion')
 						]);
@@ -181,7 +193,7 @@ class Auth extends CI_Controller
 					{
 						$this->auth->connect()->insert('account', [
 							'username'        => $username,
-							'sha_pass_hash'   => game_hash($username, $password),
+							'sha_pass_hash'   => $this->auth->game_hash($username, $password),
 							'email'           => $email,
 							'expansion'       => config_item('expansion')
 						]);
@@ -195,7 +207,7 @@ class Auth extends CI_Controller
 						$this->auth->connect()->insert('battlenet_accounts', [
 							'id'            => $id,
 							'email'         => $email,
-							'sha_pass_hash' => game_hash($email, $password, 'bnet')
+							'sha_pass_hash' => $this->auth->game_hash($email, $password, 'bnet')
 						]);
 
 						$this->auth->connect()->where('id', $id)->update('account', [
@@ -329,7 +341,19 @@ class Auth extends CI_Controller
 					$this->auth->connect()->insert('account', [
 						'username'  => $data['user']->username,
 						'salt'      => $salt,
-						'verifier'  => game_hash($data['user']->username, $password, 'srp6', $salt),
+						'verifier'  => $this->auth->game_hash($data['user']->username, $password, 'srp6', $salt),
+						'email'     => $data['user']->email,
+						'expansion' => config_item('expansion')
+					]);
+				}
+				elseif (in_array($emulator, ['cmangos'], true))
+				{
+					$salt = strtoupper(bin2hex(random_bytes(32)));
+
+					$this->auth->connect()->insert('account', [
+						'username'  => $data['user']->username,
+						'v'         => $this->auth->game_hash($data['user']->username, $password, 'hex', $salt),
+						's'         => $salt,
 						'email'     => $data['user']->email,
 						'expansion' => config_item('expansion')
 					]);
@@ -338,7 +362,7 @@ class Auth extends CI_Controller
 				{
 					$this->auth->connect()->insert('account', [
 						'username'        => $data['user']->username,
-						'sha_pass_hash'   => game_hash($data['user']->username, $password),
+						'sha_pass_hash'   => $this->auth->game_hash($data['user']->username, $password),
 						'email'           => $data['user']->email,
 						'expansion'       => config_item('expansion')
 					]);
@@ -352,7 +376,7 @@ class Auth extends CI_Controller
 					$this->auth->connect()->insert('battlenet_accounts', [
 						'id'            => $id,
 						'email'         => $data['user']->email,
-						'sha_pass_hash' => game_hash($data['user']->email, $password, 'bnet')
+						'sha_pass_hash' => $this->auth->game_hash($data['user']->email, $password, 'bnet')
 					]);
 
 					$this->auth->connect()->where('id', $id)->update('account', [
@@ -420,13 +444,22 @@ class Auth extends CI_Controller
 
 					$this->auth->connect()->where('id', $result->user_id)->update('account', [
 						'salt'     => $salt,
-						'verifier' => game_hash($account->username, $password, 'srp6', $salt)
+						'verifier' => $this->auth->game_hash($account->username, $password, 'srp6', $salt)
+					]);
+				}
+				elseif (in_array($emulator, ['cmangos'], true))
+				{
+					$salt = strtoupper(bin2hex(random_bytes(32)));
+
+					$this->auth->connect()->where('id', $result->user_id)->update('account', [
+						'v' => $this->auth->game_hash($account->username, $password, 'hex', $salt),
+						's' => $salt
 					]);
 				}
 				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
 				{
 					$this->auth->connect()->where('id', $result->user_id)->update('account', [
-						'sha_pass_hash' => game_hash($account->username, $password),
+						'sha_pass_hash' => $this->auth->game_hash($account->username, $password),
 						'sessionkey'    => '',
 						'v'             => '',
 						's'             => ''
@@ -436,7 +469,7 @@ class Auth extends CI_Controller
 				// If emulator support bnet update password on table
 				if (config_item('emulator_bnet') == 'true')
 				{
-					$bnet = game_hash($account->email, $password, 'bnet');
+					$bnet = $this->auth->game_hash($account->email, $password, 'bnet');
 
 					$this->auth->connect()->set('sha_pass_hash', $bnet)->where('id', $result->user_id)->update('battlenet_accounts');
 				}

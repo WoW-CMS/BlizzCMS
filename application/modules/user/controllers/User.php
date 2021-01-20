@@ -112,7 +112,7 @@ class User extends MX_Controller
 			// If emulator support bnet update password on table
 			if (config_item('emulator_bnet') == 'true')
 			{
-				$bnet = game_hash($new_email, $password, 'bnet');
+				$bnet = $this->auth->game_hash($new_email, $password, 'bnet');
 
 				$this->auth->connect()->where('id', $user->id)->update('battlenet_accounts', [
 					'email'         => $new_email,
@@ -161,13 +161,22 @@ class User extends MX_Controller
 
 				$this->auth->connect()->where('id', $user->id)->update('account', [
 					'salt'     => $salt,
-					'verifier' => game_hash($user->username, $new_password, 'srp6', $salt)
+					'verifier' => $this->auth->game_hash($user->username, $new_password, 'srp6', $salt)
+				]);
+			}
+			elseif (in_array($emulator, ['cmangos'], true))
+			{
+				$salt = strtoupper(bin2hex(random_bytes(32)));
+
+				$this->auth->connect()->where('id', $user->id)->update('account', [
+					'v' => $this->auth->game_hash($user->username, $new_password, 'hex', $salt),
+					's' => $salt
 				]);
 			}
 			elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
 			{
 				$this->auth->connect()->where('id', $user->id)->update('account', [
-					'sha_pass_hash' => game_hash($user->username, $new_password),
+					'sha_pass_hash' => $this->auth->game_hash($user->username, $new_password),
 					'sessionkey'    => '',
 					'v'             => '',
 					's'             => ''
@@ -177,7 +186,7 @@ class User extends MX_Controller
 			// If emulator support bnet update password on table
 			if (config_item('emulator_bnet') == 'true')
 			{
-				$bnet = game_hash($user->email, $new_password, 'bnet');
+				$bnet = $this->auth->game_hash($user->email, $new_password, 'bnet');
 
 				$this->auth->connect()->set('sha_pass_hash', $bnet)->where('id', $user->id)->update('battlenet_accounts');
 			}

@@ -114,7 +114,7 @@
 - Deprecated ``$this->website->getIsAdmin()`` in favor of ``$this->auth->is_admin()``
 - Deprecated ``$this->website->getUsernameID()`` in favor of ``$this->website->get_user()``
 - Deprecated ``$this->base->smtpSendEmail()`` in favor of ``$this->base->send_email()``
-- Deprecated ``$this->website->Battlenet()`` and ``$this->website->Account()`` in favor of ``game_hash()``
+- Deprecated ``$this->website->Battlenet()`` and ``$this->website->Account()`` in favor of ``$this->auth->game_hash()``
 - Deprecated ``$this->user_model->checklogin()`` and ``$this->user_model->checkloginbattle()`` in favor of ``$this->website->authentication()``
 - Deprecated ``$this->user_model->getAllAvatars()`` in favor of ``$this->base->get_avatars()``
 - Deprecated ``$this->website->getImageProfile()`` and ``$this->website->getNameAvatar()`` in favor of ``$this->website->user_avatar()``

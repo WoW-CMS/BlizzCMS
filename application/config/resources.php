@@ -66,8 +66,9 @@ $config['supported_expansions'] = [
 | 'emulator_urn' = list of URNs
 */
 $config['emulator_urn'] = [
-	'old_trinity' => 'TC',
-	'trinity'     => 'TC',
 	'azeroth'     => 'AC',
-	'mangos'      => 'MaNGOS'
+	'cmangos'     => 'MaNGOS',
+	'mangos'      => 'MaNGOS',
+	'old_trinity' => 'TC',
+	'trinity'     => 'TC'
 ];
