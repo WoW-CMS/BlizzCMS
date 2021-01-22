@@ -169,8 +169,9 @@ class User extends MX_Controller
 				$salt = strtoupper(bin2hex(random_bytes(32)));
 
 				$this->auth->connect()->where('id', $user->id)->update('account', [
-					'v' => $this->auth->game_hash($user->username, $new_password, 'hex', $salt),
-					's' => $salt
+					'sessionkey' => '',
+					'v'          => $this->auth->game_hash($user->username, $new_password, 'hex', $salt),
+					's'          => $salt
 				]);
 			}
 			elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))

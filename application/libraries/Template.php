@@ -55,7 +55,7 @@ class Template
 	{
 		$this->_ci =& get_instance();
 
-		if ( ! empty($config))
+		if (! empty($config))
 		{
 			$this->initialize($config);
 		}
@@ -260,7 +260,7 @@ class Template
 		}
 
 		// Want it returned or output to browser?
-		if ( ! $return)
+		if (! $return)
 		{
 			$this->_ci->output->set_output($this->_body);
 		}
@@ -566,7 +566,7 @@ class Template
 	{
 		$layouts = array();
 
-		foreach(glob(self::_find_view_folder().'layouts/*.*') as $layout)
+		foreach (glob(self::_find_view_folder().'layouts/*.*') as $layout)
 		{
 			$layouts[] = pathinfo($layout, PATHINFO_BASENAME);
 		}
@@ -592,9 +592,9 @@ class Template
 		foreach ($this->_theme_locations as $location)
 		{
 			// Get special web layouts
-			if( is_dir($location.$theme.'/views/web/layouts/') )
+			if (is_dir($location.$theme.'/views/web/layouts/') )
 			{
-				foreach(glob($location.$theme . '/views/web/layouts/*.*') as $layout)
+				foreach (glob($location.$theme . '/views/web/layouts/*.*') as $layout)
 				{
 					$layouts[] = pathinfo($layout, PATHINFO_BASENAME);
 				}
@@ -602,9 +602,9 @@ class Template
 			}
 
 			// So there are no web layouts, assume all layouts are web layouts
-			if(is_dir($location.$theme.'/views/layouts/'))
+			if (is_dir($location.$theme.'/views/layouts/'))
 			{
-				foreach(glob($location.$theme . '/views/layouts/*.*') as $layout)
+				foreach (glob($location.$theme . '/views/layouts/*.*') as $layout)
 				{
 					$layouts[] = pathinfo($layout, PATHINFO_BASENAME);
 				}
@@ -626,7 +626,7 @@ class Template
 	public function layout_exists($layout)
 	{
 		// If there is a theme, check it exists in there
-		if ( ! empty($this->_theme) AND in_array($layout, self::get_theme_layouts()))
+		if (! empty($this->_theme) AND in_array($layout, self::get_theme_layouts()))
 		{
 			return TRUE;
 		}
@@ -661,7 +661,7 @@ class Template
 		$view_folder = APPPATH.'views/';
 
 		// Using a theme? Put the theme path in before the view folder
-		if ( ! empty($this->_theme))
+		if (! empty($this->_theme))
 		{
 			$view_folder = $this->_theme_path.'views/';
 		}
@@ -696,7 +696,7 @@ class Template
 	{
 		// Only bother looking in themes if there is a theme
 
-		if ( ! empty($this->_theme))
+		if (! empty($this->_theme))
 		{
 			foreach ($this->_theme_locations as $location)
 			{
@@ -775,13 +775,13 @@ class Template
 		}
 
 		// Make sure controller name is not the same as the method name
-		if ( ! in_array($this->_controller, $title_parts))
+		if (! in_array($this->_controller, $title_parts))
 		{
 			$title_parts[] = $this->_controller;
 		}
 
 		// Is there a module? Make sure it is not named the same as the method or controller
-		if ( ! empty($this->_module) AND ! in_array($this->_module, $title_parts))
+		if (! empty($this->_module) AND ! in_array($this->_module, $title_parts))
 		{
 			$title_parts[] = $this->_module;
 		}

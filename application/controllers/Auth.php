@@ -361,10 +361,10 @@ class Auth extends CI_Controller
 				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
 				{
 					$this->auth->connect()->insert('account', [
-						'username'        => $data['user']->username,
-						'sha_pass_hash'   => $this->auth->game_hash($data['user']->username, $password),
-						'email'           => $data['user']->email,
-						'expansion'       => config_item('expansion')
+						'username'      => $data['user']->username,
+						'sha_pass_hash' => $this->auth->game_hash($data['user']->username, $password),
+						'email'         => $data['user']->email,
+						'expansion'     => config_item('expansion')
 					]);
 				}
 
@@ -452,8 +452,9 @@ class Auth extends CI_Controller
 					$salt = strtoupper(bin2hex(random_bytes(32)));
 
 					$this->auth->connect()->where('id', $result->user_id)->update('account', [
-						'v' => $this->auth->game_hash($account->username, $password, 'hex', $salt),
-						's' => $salt
+						'sessionkey' => '',
+						'v'          => $this->auth->game_hash($account->username, $password, 'hex', $salt),
+						's'          => $salt
 					]);
 				}
 				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))

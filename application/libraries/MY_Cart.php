@@ -89,7 +89,7 @@ class MY_Cart extends CI_Cart
 	protected function _insert($items = array())
 	{
 		// Was any cart data passed? No? Bah...
-		if ( ! is_array($items) OR count($items) === 0)
+		if (! is_array($items) OR count($items) === 0)
 		{
 			log_message('error', 'The insert method must be passed an array containing data.');
 			return FALSE;
@@ -98,7 +98,7 @@ class MY_Cart extends CI_Cart
 		// --------------------------------------------------------------------
 
 		// Does the $items array contain an id, quantity, name, dp, vp, realm and guid?  These are required
-		if ( ! isset($items['id'], $items['qty'], $items['name'], $items['dp'], $items['vp'], $items['realm'], $items['guid']))
+		if (! isset($items['id'], $items['qty'], $items['name'], $items['dp'], $items['vp'], $items['realm'], $items['guid']))
 		{
 			log_message('error', 'The cart array must contain a product ID, quantity, name, dp, vp, realm and guid.');
 			return FALSE;
@@ -120,7 +120,7 @@ class MY_Cart extends CI_Cart
 		// Validate the product ID. It can only be alpha-numeric, dashes, underscores or periods
 		// Not totally sure we should impose this rule, but it seems prudent to standardize IDs.
 		// Note: These can be user-specified by setting the $this->product_id_rules variable.
-		if ( ! preg_match('/^['.$this->product_id_rules.']+$/i', $items['id']))
+		if (! preg_match('/^['.$this->product_id_rules.']+$/i', $items['id']))
 		{
 			log_message('error', 'Invalid product ID.  The product ID can only contain alpha-numeric characters, dashes, and underscores');
 			return FALSE;
@@ -195,7 +195,7 @@ class MY_Cart extends CI_Cart
 	protected function _update($items = array())
 	{
 		// Without these array indexes there is nothing we can do
-		if ( ! isset($items['rowid'], $this->_cart_contents[$items['rowid']]))
+		if (! isset($items['rowid'], $this->_cart_contents[$items['rowid']]))
 		{
 			return FALSE;
 		}
@@ -257,7 +257,7 @@ class MY_Cart extends CI_Cart
 		foreach ($this->_cart_contents as $key => $val)
 		{
 			// We make sure the array contains the proper indexes
-			if ( ! is_array($val) OR ! isset($val['dp'], $val['qty']) OR ! isset($val['vp'], $val['qty']) OR ! isset($val['guid']) OR ! isset($val['realm']))
+			if (! is_array($val) OR ! isset($val['dp'], $val['qty']) OR ! isset($val['vp'], $val['qty']) OR ! isset($val['guid']) OR ! isset($val['realm']))
 			{
 				continue;
 			}
