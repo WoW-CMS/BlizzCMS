@@ -93,6 +93,7 @@ class Template
 		$this->set_metadata('stylesheet', base_url($assets.'core/amaranjs/css/amaran.min.css'), 'link');
 		$this->set_metadata('script', base_url($assets.'core/amaranjs/js/jquery.amaran.min.js'), 'script');
 		$this->set_metadata('script', 'https://www.google.com/recaptcha/api.js', 'script');
+		$this->set_metadata('script', base_url($assets.'core/sweetalert2/js/sweetalert2@10.js'), 'script');
 
 		log_message('debug', 'Template Class Initialized');
 	}
