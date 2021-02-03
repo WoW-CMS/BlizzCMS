@@ -40,10 +40,10 @@
         </div>
         <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <?php if($this->wowmodule->getreCaptchaStatus() == '1'): ?>
-            <div class="uk-margin-small">
-              <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
-            </div>
+            <?php if ($this->wowmodule->getreCaptchaStatus() == '1') : ?>
+              <div class="uk-margin-small">
+                <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+              </div>
             <?php endif; ?>
           </div>
           <div class="uk-width-1-2@m"></div>
@@ -61,24 +61,17 @@
 
         var restatus = "<?= $this->wowmodule->getreCaptchaStatus(); ?>";
 
-        if(restatus){
+        if (restatus) {
           var ren = grecaptcha.getResponse();
 
-          if(ren.length == 0)
-          {
-            $.amaran({
-              'theme': 'awesome error',
-              'content': {
-                title: '<?= $this->lang->line('notification_title_error'); ?>',
-                message: '<?= $this->lang->line('notification_captcha_error'); ?>',
-                info: '',
-                icon: 'fas fa-shield-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
+          if (ren.length == 0) {
+            Swal.fire({
+              icon: 'error',
+              title: '<?= $this->lang->line('notification_title_error'); ?>',
+              text: '<?= $this->lang->line('notification_captcha_error'); ?>',
+              showConfirmButton: true,
             });
+            $('#registerForm')[0].reset();
             return false;
           }
         }
@@ -88,167 +81,114 @@
         var password = $('#register_password').val();
         var repassword = $('#register_repassword').val();
 
-        if(username == ''){
-          $.amaran({
-            'theme': 'awesome error',
-            'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_username_empty'); ?>',
-              info: '',
-              icon: 'fas fa-times-circle'
-            },
-            'delay': 5000,
-            'position': 'top right',
-            'inEffect': 'slideRight',
-            'outEffect': 'slideRight'
+        if (username == '') {
+          Swal.fire({
+            icon: 'error',
+            title: '<?= $this->lang->line('notification_title_error'); ?>',
+            text: '<?= $this->lang->line('notification_username_empty'); ?>',
+            showConfirmButton: true,
           });
           return false;
         }
 
-        if(password == '' || repassword == ''){
-          $.amaran({
-            'theme': 'awesome error',
-            'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_password_empty'); ?>',
-              info: '',
-              icon: 'fas fa-times-circle'
-            },
-            'delay': 5000,
-            'position': 'top right',
-            'inEffect': 'slideRight',
-            'outEffect': 'slideRight'
+        if (password == '' || repassword == '') {
+          Swal.fire({
+            icon: 'error',
+            title: '<?= $this->lang->line('notification_title_error'); ?>',
+            text: '<?= $this->lang->line('notification_password_empty'); ?>',
+            showConfirmButton: true,
           });
           return false;
         }
 
         $.ajax({
-          url:"<?= base_url($lang.'/newacc'); ?>",
-          method:"POST",
-          data:{username, email, password, repassword},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
+          url: "<?= base_url($lang . '/newacc'); ?>",
+          method: "POST",
+          data: {
+            username,
+            email,
+            password,
+            repassword
+          },
+          dataType: "text",
+
+          beforeSend: function() {
+            Swal.fire({
+              icon: 'info',
+              title: '<?= $this->lang->line('notification_title_info'); ?>',
+              text: '<?= $this->lang->line('notification_checking'); ?>',
+              showConfirmButton: false,
+              timer: 5000
             });
           },
-          success:function(response){
-            if(!response)
+
+          success: function(response) {
+            if (!response)
               alert(response);
 
             if (response == 'regUser') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_account_already_exist'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
+              Swal.fire({
+                icon: 'error',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                text: '<?= $this->lang->line('notification_account_already_exist'); ?>',
+                showConfirmButton: true,
               });
               $('#registerForm')[0].reset();
               return false;
             }
 
             if (response == 'regEmail') {
-                $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_used_email'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
+              Swal.fire({
+                icon: 'error',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                text: '<?= $this->lang->line('notification_used_email'); ?>',
+                showConfirmButton: true,
               });
               $('#registerForm')[0].reset();
               return false;
             }
 
             if (response == 'regLeng') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_password_lenght_error'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
+              Swal.fire({
+                icon: 'error',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                text: '<?= $this->lang->line('notification_password_lenght_error'); ?>',
+                showConfirmButton: true,
               });
               $('#registerForm')[0].reset();
               return false;
             }
 
             if (response == 'regPass') {
-                $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_password_not_match'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
+              Swal.fire({
+                icon: 'error',
+                title: '<?= $this->lang->line('notification_title_error'); ?>',
+                text: '<?= $this->lang->line('notification_password_not_match'); ?>',
+                showConfirmButton: true,
               });
               $('#registerForm')[0].reset();
               return false;
             }
 
             if (response == 'regAct') {
-              $.amaran({
-                'theme': 'awesome ok',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_account_activation'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 8000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
+              Swal.fire({
+                icon: 'success',
+                title: '<?= $this->lang->line('notification_title_success'); ?>',
+                text: '<?= $this->lang->line('notification_account_activation'); ?>',
+                showConfirmButton: true,
+                timer: 50000
               });
               $('#registerForm')[0].reset();
               return true;
             }
 
             if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_new_account'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
+              Swal.fire({
+                icon: 'success',
+                title: '<?= $this->lang->line('notification_title_success'); ?>',
+                text: '<?= $this->lang->line('notification_new_account'); ?>',
+                showConfirmButton: true,
+                timer: 50000
               });
             }
             $('#registerForm')[0].reset();
