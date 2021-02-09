@@ -35,9 +35,9 @@
                     <?php if (mod_located($key)): ?>
                     <div class="uk-button-group">
                       <?php if ($mod['panel']['enabled']): ?>
-                      <a href="<?= site_url($mod['panel']['route']); ?>" class="uk-button uk-button-secondary uk-button-small"><i class="fas fa-cogs"></i> Panel</a>
+                      <a href="<?= site_url($mod['panel']['route']); ?>" class="uk-button uk-button-secondary uk-button-small"><i class="fas fa-cog"></i> Panel</a>
                       <?php else: ?>
-                      <button class="uk-button uk-button-secondary uk-button-small" type="button"><i class="fas fa-cogs"></i> Panel</button>
+                      <button class="uk-button uk-button-secondary uk-button-small" type="button"><i class="fas fa-cog"></i> Panel</button>
                       <?php endif; ?>
                       <div class="uk-inline">
                         <button class="uk-button uk-button-secondary uk-button-small" type="button"><i class="fas fa-ellipsis-v"></i></button>
@@ -49,7 +49,7 @@
                       </div>
                     </div>
                     <?php else: ?>
-                    <a href="<?= site_url('admin/mods/install/'.$key); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-cog"></i> <?= lang('install'); ?></a>
+                    <a href="<?= site_url('admin/mods/install/'.$key); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-folder-plus"></i> <?= lang('install'); ?></a>
                     <?php endif; ?>
                   </td>
                 </tr>

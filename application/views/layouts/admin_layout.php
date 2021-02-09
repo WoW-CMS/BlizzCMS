@@ -17,7 +17,7 @@
       <div class="uk-container">
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="<?= site_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
+            <a class="uk-navbar-item uk-logo" href="<?= site_url('admin'); ?>">BlizzCMS</a>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
