@@ -26,9 +26,9 @@
               </div>
               <?= form_error('password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
-            <?php if (config_item('captcha_login') == 'true'): ?>
+            <?php if (config_item('captcha_login') === 'true'): ?>
             <div class="uk-margin-small">
-              <div class="<?= (config_item('captcha_type') == 'hcaptcha') ? 'h-captcha' : 'g-recaptcha' ?>" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
+              <div class="<?= (config_item('captcha_type') === 'hcaptcha') ? 'h-captcha' : 'g-recaptcha' ?>" data-sitekey="<?= config_item('captcha_public'); ?>"></div>
             </div>
             <?php endif; ?>
             <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-sign-in-alt"></i> <?= lang('login'); ?></button>

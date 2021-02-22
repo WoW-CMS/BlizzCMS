@@ -110,7 +110,7 @@ class User extends MX_Controller
 			$this->auth->connect()->set('email', $new_email)->where('id', $user->id)->update('account');
 
 			// If emulator support bnet update password on table
-			if (config_item('emulator_bnet') == 'true')
+			if (config_item('emulator_bnet') === 'true')
 			{
 				$bnet = $this->auth->game_hash($new_email, $password, 'bnet');
 
@@ -162,6 +162,8 @@ class User extends MX_Controller
 				$this->auth->connect()->where('id', $user->id)->update('account', [
 					'salt'     => $salt,
 					'verifier' => $this->auth->game_hash($user->username, $new_password, 'srp6', $salt)
+					'session_key_auth' => null,
+					'session_key_bnet' => null
 				]);
 			}
 			elseif (in_array($emulator, ['cmangos'], true))
@@ -185,7 +187,7 @@ class User extends MX_Controller
 			}
 
 			// If emulator support bnet update password on table
-			if (config_item('emulator_bnet') == 'true')
+			if (config_item('emulator_bnet') === 'true')
 			{
 				$bnet = $this->auth->game_hash($user->email, $new_password, 'bnet');
 

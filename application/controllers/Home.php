@@ -19,7 +19,7 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'articles' => [], // $this->news_model->getNewsList()->result()
+			'articles' => $this->base->get_news_list(),
 			'realms'   => $this->realm->get_realms()
 		];
 
