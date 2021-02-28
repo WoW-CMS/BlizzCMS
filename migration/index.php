@@ -75,6 +75,7 @@ endif; ?>
                   <select name="language" class="uk-select" id="language">
                     <option value="english">English</option>
                     <option value="spanish">Spanish</option>
+                    <option value="german">German</option>
                   </select>
                 </div>
               </div>

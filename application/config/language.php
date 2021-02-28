@@ -27,7 +27,13 @@ $config['supported_languages'] = array(
      'folder' => 'english',
      'direction' => 'ltr',
      'codes' => array('en', 'english', 'en_US'),
-  )
+  ),
+  'de' => array(
+    'name' => 'Deutsch',
+    'folder' => 'german',
+    'direction' => 'ltr',
+    'codes' => array('en', 'german', 'de_DE'),
+ )
 );
 
 /*
