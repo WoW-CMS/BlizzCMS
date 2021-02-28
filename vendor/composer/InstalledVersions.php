@@ -112,12 +112,12 @@ private static $installed = array (
     ),
     'visualappeal/php-auto-update' => 
     array (
-      'pretty_version' => '0.13.1',
-      'version' => '0.13.1.0',
+      'pretty_version' => '0.15.0',
+      'version' => '0.15.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '028aa19edc4d9d7dab48afbfaa49db680d45fe19',
+      'reference' => '06394df0bbd5fc7d398f591f4602e16c8239aaa0',
     ),
   ),
 );

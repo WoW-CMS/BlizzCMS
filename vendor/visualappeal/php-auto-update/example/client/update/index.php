@@ -7,7 +7,7 @@ use \VisualAppeal\AutoUpdate;
 $update = new AutoUpdate(__DIR__ . '/temp', __DIR__ . '/../', 60);
 $update->setCurrentVersion('0.1.0');
 // Replace with your server update directory
-$update->setUpdateUrl('http://127.0.0.1/example/server');
+$update->setUpdateUrl('http://127.0.0.1:8090/example/server');
 
 // Log handler and cache are optional
 $update->addLogHandler(new Monolog\Handler\StreamHandler(__DIR__ . '/update.log'));
@@ -31,7 +31,7 @@ if ($update->newVersionAvailable()) {
     echo '</pre>';
 
     // Optional - empty log file
-    $f = @fopen(__DIR__ . '/update.log', 'r+');
+    $f = @fopen(__DIR__ . '/update.log', 'rb+');
     if ($f !== false) {
         ftruncate($f, 0);
         fclose($f);

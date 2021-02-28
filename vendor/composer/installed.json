@@ -530,32 +530,33 @@
         },
         {
             "name": "visualappeal/php-auto-update",
-            "version": "0.13.1",
-            "version_normalized": "0.13.1.0",
+            "version": "0.15.0",
+            "version_normalized": "0.15.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VisualAppeal/PHP-Auto-Update.git",
-                "reference": "028aa19edc4d9d7dab48afbfaa49db680d45fe19"
+                "reference": "06394df0bbd5fc7d398f591f4602e16c8239aaa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VisualAppeal/PHP-Auto-Update/zipball/028aa19edc4d9d7dab48afbfaa49db680d45fe19",
-                "reference": "028aa19edc4d9d7dab48afbfaa49db680d45fe19",
+                "url": "https://api.github.com/repos/VisualAppeal/PHP-Auto-Update/zipball/06394df0bbd5fc7d398f591f4602e16c8239aaa0",
+                "reference": "06394df0bbd5fc7d398f591f4602e16c8239aaa0",
                 "shasum": ""
             },
             "require": {
-                "composer/semver": "^3.0.0",
-                "desarrolla2/cache": "^3.0.0",
+                "composer/semver": "^3.0",
+                "desarrolla2/cache": "^3.0",
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-zip": "*",
-                "monolog/monolog": "^2.1.0",
-                "php": "^7.2.0"
+                "monolog/monolog": "^2.1",
+                "php": ">=7.2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^8.5.5"
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-master"
             },
-            "time": "2020-06-15T10:11:30+00:00",
+            "time": "2021-01-21T15:26:39+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -576,7 +577,7 @@
             "description": "Autoupdater for PHP",
             "support": {
                 "issues": "https://github.com/VisualAppeal/PHP-Auto-Update/issues",
-                "source": "https://github.com/VisualAppeal/PHP-Auto-Update/tree/0.13.1"
+                "source": "https://github.com/VisualAppeal/PHP-Auto-Update/tree/0.15.0"
             },
             "install-path": "../visualappeal/php-auto-update"
         }
