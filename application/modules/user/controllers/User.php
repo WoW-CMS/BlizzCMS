@@ -161,7 +161,7 @@ class User extends MX_Controller
 
 				$this->auth->connect()->where('id', $user->id)->update('account', [
 					'salt'     => $salt,
-					'verifier' => $this->auth->game_hash($user->username, $new_password, 'srp6', $salt)
+					'verifier' => $this->auth->game_hash($user->username, $new_password, 'srp6', $salt),
 					'session_key_auth' => null,
 					'session_key_bnet' => null
 				]);
