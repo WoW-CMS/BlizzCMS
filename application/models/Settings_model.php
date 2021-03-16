@@ -30,4 +30,34 @@ class Settings_model extends CI_Model
 
 		return $result;
 	}
+
+	/**
+	 * Get value from a key
+	 *
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function get_value($key)
+	{
+		if (! $this->db->table_exists($this->settings_table))
+		{
+			return null;
+		}
+
+		$data = $this->cache->file->get('settings');
+
+		if ($data !== false)
+		{
+			$filtered = array_filter($data, function($item) use (&$key) {
+				return $item->key == $key;
+			});
+
+			if (! empty($filtered))
+			{
+				return $filtered[1]->value;
+			}
+		}
+
+		return null;
+	}
 }

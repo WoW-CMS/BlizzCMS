@@ -51,10 +51,16 @@ class MY_Exceptions extends CI_Exceptions
 			}
 
 			$CI =& get_instance();
+
 			$CI->load->helper('url');
 			$CI->load->library('template');
+			$CI->load->model('settings_model');
 
-			$CI->template->title($CI->lang->line('error_404'));
+			$name = $CI->settings_model->get_value('app_name');
+
+			$CI->config->set_item('app_name', $name);
+			$CI->template->title($name, $CI->lang->line('error_404'));
+
 			$output = $CI->template->build('404', $data, TRUE);
 
 			set_status_header(404);

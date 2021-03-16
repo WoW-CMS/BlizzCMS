@@ -159,6 +159,7 @@ $lang['website_name'] = 'Website Name';
 $lang['realmlist'] = 'Realmlist';
 $lang['currency'] = 'Currency';
 $lang['mode'] = 'Mode';
+$lang['list'] = 'List';
 
 /**
  * Selects
