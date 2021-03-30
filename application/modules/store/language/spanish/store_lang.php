@@ -14,6 +14,8 @@ $lang['cart'] = 'Carrito';
 
 $lang['categories'] = 'Categorías de la tienda';
 $lang['top_items'] = 'TOP Items';
+$lang['view_item'] = 'Ver ítem';
+$lang['add_cart'] = 'Añadir al carro';
 
 $lang['soap_send_subject'] = 'Compra en la Tienda';
 $lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';

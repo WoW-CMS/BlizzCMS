@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_store_categories extends CI_Migration
+class Migration_Create_table_store extends CI_Migration
 {
 	public function up()
 	{
@@ -17,36 +17,29 @@ class Migration_Create_store_categories extends CI_Migration
 				'constraint' => '255',
 				'null' => FALSE
 			),
-			'father' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 0
-			),
-			'main' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 1
-			),
-			'route' => array(
+			'slug' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
 				'unique' => TRUE
 			),
-			'realmid' => array(
-				'type' => 'INT',
-				'constraint' => '10',
+			'type' => array(
+				'type' => 'ENUM("default","accordion")',
+				'default' => 'default',
+				'null' => FALSE
+			),
+			'parent' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
 				'unsigned' => TRUE,
 				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('store_categories');
+		$this->dbforge->create_table('store');
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('store_categories');
+		$this->dbforge->drop_table('store');
 	}
 }

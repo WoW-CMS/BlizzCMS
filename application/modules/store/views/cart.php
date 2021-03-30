@@ -1,59 +1,65 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('cart'); ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h5 class="uk-h5 uk-text-bold"><i class="fas fa-shopping-cart"></i> <?= lang('tab_cart'); ?></h5>
+            <h5 class="uk-h5 uk-text-bold"><i class="fas fa-shopping-cart"></i> <?= lang('cart'); ?></h5>
           </div>
           <div class="uk-card-body">
             <div class="uk-overflow-auto uk-width-1-1 uk-margin-small">
               <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-width-medium"><i class="fas fa-info-circle"></i> <?= lang('item_name'); ?></th>
-                    <th class="uk-width-medium"><i class="fas fa-list-ul"></i> <?= lang('character'); ?></th>
-                    <th class="uk-width-small"><i class="fas fa-coins"></i> <?= lang('price'); ?></th>
-                    <th class="uk-table-shrink"><i class="fas fa-sort-numeric-up"></i> <?= lang('quantity'); ?></th>
-                    <th class="uk-table-shrink"></th>
+                    <th class="uk-width-medium"><?= lang('item_name'); ?></th>
+                    <th class="uk-width-medium"><?= lang('character'); ?></th>
+                    <th class="uk-width-small"><?= lang('price'); ?></th>
+                    <th><?= lang('quantity'); ?></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php if($this->cart->total_items() > 0): ?>
-                  <?php foreach($this->cart->contents() as $item): ?>
+                  <?php foreach($contents as $item): ?>
                   <tr>
-                    <td><?= $item["name"]; ?></td>
+                    <td><?= $item['name']; ?></td>
+                    <td><?= $this->realm->character_name($item['realm'], $item['guid']); ?></td>
                     <td>
-                      <div class="uk-form-controls uk-light">
-                        <select class="uk-select uk-width-1-1" onchange="updateCharacter(this, '<?php echo $item["rowid"]; ?>')">
-                          <option value="0"><?= lang('select_character'); ?></option>
-                          <?php foreach($this->realm->account_characters($this->store_model->getCategoryRealmId($item["category"]), $this->session->userdata('id')) as $listchar): ?>
-                          <option value="<?= $listchar->guid ?>" <?php if($listchar->guid == $item["guid"]) echo 'selected'; ?>><?= $listchar->name ?> - (<?= lang('realm'); ?>: <?= $this->realm->realm_name($this->store_model->getCategoryRealmId($item["category"])); ?>)</option>
-                          <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </td>
-                    <td>
-                      <?php if($this->store_model->getPriceType($item["id"]) == 1): ?>
-                      <span class="uk-text-small"><span uk-tooltip="title: <?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $item["dp"]; ?></span>
-                      <?php elseif($this->store_model->getPriceType($item["id"]) == 2): ?>
-                      <span class="uk-text-small"><span uk-tooltip="title: <?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
-                      <?php elseif($this->store_model->getPriceType($item["id"]) == 3): ?>
-                      <span class="uk-text-small"><span uk-tooltip="title: <?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $item["dp"]; ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $item["vp"]; ?></span>
+                      <?php if ($item['options']['price_type'] === TYPE_DP): ?>
+                      <span class="uk-text-small"><i class="dp-icon" uk-tooltip="title: <?= lang('donor_points'); ?>"></i><?= $item['dp']; ?></span>
+                      <?php elseif ($item['options']['price_type'] === TYPE_VP): ?>
+                      <span class="uk-text-small"><i class="vp-icon" uk-tooltip="title: <?= lang('vote_points'); ?>"></i><?= $item['vp']; ?></span>
+                      <?php elseif ($item['options']['price_type'] === TYPE_AND): ?>
+                      <span class="uk-text-small"><i class="dp-icon" uk-tooltip="title: <?= lang('donor_points'); ?>"></i><?= $item['dp']; ?> <span class="uk-badge">&amp;</span> <i class="vp-icon" uk-tooltip="title: <?= lang('vote_points'); ?>"></i><?= $item['vp']; ?></span>
                       <?php endif; ?>
                     </td>
                     <td>
-                      <div class="uk-form-controls uk-light">
-                        <input class="uk-input uk-width-1-1" type="number" min="1" value="<?= $item["qty"]; ?>" onchange="updateQuantity(this, '<?php echo $item["rowid"]; ?>')">
+                      <?= form_open(site_url('store/cart/quantity')); ?>
+                      <?= form_hidden('id', $item['rowid']); ?>
+                      <div class="uk-grid uk-grid-small" data-uk-grid>
+                        <div class="uk-width-expand">
+                          <div class="uk-form-controls uk-light">
+                            <input class="uk-input uk-width-1-1" type="number" name="qty" min="1" value="<?= $item['qty']; ?>">
+                          </div>
+                        </div>
+                        <div class="uk-width-auto">
+                          <button class="uk-button uk-button-default uk-margin-small" type="submit" id="button_update"><i class="fas fa-sync"></i></button>
+                        </div>
                       </div>
+                      <?= form_close(); ?>
                     </td>
                     <td>
-                      <button class="uk-button uk-button-danger" value="<?= $item["rowid"]; ?>" id="button_delete<?= $item["rowid"]; ?>" onclick="deleteItem(event, this.value)"><i class="fas fa-trash-alt"></i></button>
+                      <a href="<?= site_url('store/cart/delete/'.$item['rowid']); ?>" class="uk-button uk-button-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>
                   </tr>
                   <?php endforeach; ?>
-                  <?php endif; ?>
                 </tbody>
               </table>
             </div>
@@ -64,13 +70,13 @@
                 <a href="<?= site_url('store'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('continue_buying'); ?></a>
               </div>
               <div class="uk-width-auto@s uk-flex uk-flex-middle">
-                <?php if($this->cart->total_items() > 0): ?>
-                <p class="uk-margin-small uk-text-small"><span class="uk-text-uppercase uk-text-bold">Total:</span> <span uk-tooltip="title: <?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->cart->total_dp(); ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->cart->total_vp(); ?></p>
+                <?php if ($this->cart->total_items()): ?>
+                <p class="uk-margin-small uk-text-small"><span class="uk-text-uppercase uk-text-bold">Total:</span> <i class="dp-icon" uk-tooltip="title: <?= lang('donor_points'); ?>"></i><?= $this->cart->total_dp(); ?> <span class="uk-badge">&amp;</span> <i class="vp-icon" uk-tooltip="title: <?= lang('vote_points'); ?>"></i><?= $this->cart->total_vp(); ?></p>
                 <?php endif; ?>
               </div>
               <div class="uk-width-auto@s">
-                <?php if($this->cart->total_items() > 0): ?>
-                <button class="uk-button uk-button-default uk-button-small" value="1" id="button_checkout" onclick="Checkout(event, this.value)"><?= lang('checkout'); ?> <i class="fas fa-shopping-cart"></i></button>
+                <?php if ($this->cart->total_items()): ?>
+                <a href="<?= site_url('store/cart/checkout'); ?>" class="uk-button uk-button-default uk-button-small"><?= lang('checkout'); ?> <i class="fas fa-shopping-cart"></i></a>
                 <?php endif; ?>
               </div>
             </div>
@@ -78,197 +84,3 @@
         </div>
       </div>
     </section>
-
-    <script>
-      $('#button_checkout').click(function(){
-        var button = $(this);
-        button.attr('disabled', 'disabled');
-        setTimeout(function() {
-         button.removeAttr('disabled');
-        },8000);
-      });
-      function updateQuantity(obj, rowid) {
-        $.ajax({
-          url:"<?= site_url('cart/updatequantity'); ?>",
-          type:"GET",
-          data:{rowid:rowid, qty:obj.value},
-          dataType:"text",
-          success: function(response) {
-            if(!response){
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= lang('notification_title_error'); ?>',
-                  message: '<?= lang('notification_store_cart_error'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-
-            if(response){
-              location.reload();
-            }
-          }
-        });
-      }
-      function updateCharacter(obj, rowid) {
-        $.ajax({
-          url:"<?= site_url('cart/updatecharacter'); ?>",
-          type:"GET",
-          data:{rowid:rowid, char:obj.value},
-          dataType:"text",
-          success: function(response) {
-            if(!response){
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= lang('notification_title_error'); ?>',
-                  message: '<?= lang('notification_store_cart_error'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-
-            if(response){
-              location.reload();
-            }
-          }
-        });
-      }
-      function deleteItem(e, value) {
-        e.preventDefault();
-
-        $.ajax({
-          url:"<?= site_url('cart/delete'); ?>",
-          method:"POST",
-          data:{value},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= lang('notification_title_info'); ?>',
-                message: '<?= lang('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-          },
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= lang('notification_title_success'); ?>',
-                  message: '<?= lang('notification_store_item_removed'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 6000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-            location.reload();
-          }
-        });
-      }
-      function Checkout(e, value) {
-        e.preventDefault();
-
-        $.ajax({
-          url:"<?= site_url('cart/checkout'); ?>",
-          method:"POST",
-          data:{value},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= lang('notification_title_info'); ?>',
-                message: '<?= lang('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-          },
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response == 'Selchars') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= lang('notification_title_error'); ?>',
-                  message: '<?= lang('notification_store_chars_error'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 8000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-              return false;
-            }
-
-            if (response == 'insPoints') {
-              $.amaran({
-                'theme': 'awesome error',
-                'content': {
-                  title: '<?= lang('notification_title_error'); ?>',
-                  message: '<?= lang('notification_store_item_insufficient_points'); ?>',
-                  info: '',
-                  icon: 'fas fa-times-circle'
-                },
-                'delay': 8000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-              return false;
-            }
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= lang('notification_title_success'); ?>',
-                  message: '<?= lang('notification_store_item_purchased'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 8000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-            location.reload();
-          }
-        });
-      }
-    </script>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_store_logs extends CI_Migration
+class Migration_Create_table_store_logs extends CI_Migration
 {
 	public function up()
 	{
@@ -12,17 +12,27 @@ class Migration_Create_store_logs extends CI_Migration
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'accountid' => array(
-				'type' => 'INT',
-				'constraint' => '10',
+			'store_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
 				'unsigned' => TRUE
 			),
-			'charid' => array(
-				'type' => 'INT',
-				'constraint' => '10',
+			'item_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
 				'unsigned' => TRUE
 			),
-			'item_name' => array(
+			'user_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
+			'guid' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
+			'name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
 				'null' => FALSE
@@ -34,31 +44,37 @@ class Migration_Create_store_logs extends CI_Migration
 				'default' => '0'
 			),
 			'price_type' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => '0'
+				'type' => 'ENUM("vp","dp")',
+				'default' => 'vp',
+				'null' => FALSE
 			),
 			'dp' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE,
-				'default' => '0'
+				'default' => 0
 			),
 			'vp' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE,
-				'default' => '0'
+				'default' => 0
 			),
-			'date' => array(
+			'result' => array(
+				'type' => 'TEXT',
+				'null' => TRUE
+			),
+			'created_at' => array(
 				'type' => 'INT',
 				'constraint' => '10',
 				'unsigned' => TRUE,
-				'default' => '0'
+				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
+		$this->dbforge->add_key('store_id');
+		$this->dbforge->add_key('item_id');
+		$this->dbforge->add_key('user_id');
 		$this->dbforge->create_table('store_logs');
 	}
 

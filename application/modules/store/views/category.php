@@ -1,5 +1,12 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('store'); ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
@@ -7,108 +14,51 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-default">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('store_categories'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('categories'); ?></h5>
               </div>
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
-                <li><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></a></li>
-                <?php foreach ($this->realm->get_realms() as $realm): ?>
+                <li><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('top_items'); ?></a></li>
+                <?php foreach ($this->store_model->get_all_categories() as $cat): ?>
+                <?php if ($cat->type === TYPE_DEFAULT): ?>
+                <li><a href="<?= site_url('store/category/'.$cat->slug); ?>"><?= $cat->name; ?></a></li>
+                <?php else: ?>
                 <li class="uk-parent">
-                  <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $realm->name; ?></a>
+                  <a href="#"><?= $cat->name; ?></a>
                   <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav>
-                    <?php foreach($this->store_model->getCategories($realm->id)->result() as $menulist): ?>
-                    <?php if($menulist->main == '2' && $menulist->father == '0'): ?>
-                    <li class="uk-parent">
-                      <a href="#"><?= $menulist->name ?></a>
-                      <ul class="uk-nav-sub">
-                        <?php foreach ($this->store_model->getChildStoreCategory($menulist->id)->result() as $menuchildlist): ?>
-                        <li><a href="<?= site_url('store/'.$menuchildlist->route) ?>"><?= $menuchildlist->name ?></a></li>
-                        <?php endforeach; ?>
-                      </ul>
-                    </li>
-                    <?php elseif($menulist->main == '1' && $menulist->father == '0'): ?>
-                    <li><a href="<?= site_url('store/'.$menulist->route) ?>"><?= $menulist->name ?></a></li>
-                    <?php endif; ?>
+                    <?php foreach ($this->store_model->get_all_categories($cat->id) as $sub): ?>
+                    <li><a href="<?= site_url('store/category/'.$sub->slug) ?>"><?= $sub->name; ?></a></li>
                     <?php endforeach; ?>
                   </ul>
                 </li>
+                <?php endif; ?>
                 <?php endforeach; ?>
               </ul>
             </div>
           </div>
           <div class="uk-width-3-4@m">
-            <div class="uk-card uk-card-default uk-card-body">
-              <h5 class="uk-h5 uk-text-bold uk-margin-remove-bottom"><i class="fas fa-tag"></i> <?= $this->store_model->getCategoryName($route); ?></h5>
-              <hr class="uk-margin-small-top">
-              <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" data-uk-grid>
-                <?php foreach($this->store_model->getCategoryItems($route) as $items): ?>
-                <div>
-                  <div class="blizzcms-item-container">
-                    <div class="blizzcms-item-header uk-text-truncate" uk-tooltip="<?= $items->name ?>" uk-toggle="target: #item-<?= $items->id ?>;animation: uk-animation-slide-top-small">
-                      <div class="item-store-icon">
-                        <img src="https://wow.zamimg.com/images/wow/icons/large/<?= $items->icon ?>.jpg" alt="icon">
-                      </div>
-					  <!-- START CODE TO TOOLTIPS WOWHEAD -->
-                      <span class="uk-text-middle"><a href="#" data-wowhead="item=<?= $items->command ?>"><?= $items->name ?></a></span>
-					  <!-- END CODE TO TOOLTIPS WOWHEAD -->
-                    </div>
-                    <div id="item-<?= $items->id ?>" class="blizzcms-item-body" hidden>
-                      <p class="uk-text-break"><?= $items->description ?></p>
-                      <hr class="uk-margin-small">
-                      <div class="uk-grid uk-grid-small uk-flex uk-flex-center" data-uk-grid>
-                        <div class="uk-width-auto">
-                          <?php if($items->price_type == 1): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?></span>
-                          <?php elseif($items->price_type == 2): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
-                          <?php elseif($items->price_type == 3): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title:<?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $items->dp ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title:<?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $items->vp ?></span>
-                          <?php endif; ?>
-                        </div>
-                        <div class="uk-width-auto">
-                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $items->id ?>" value="<?= $items->id ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= lang('cart'); ?></button>
-                        </div>
-                      </div>
-                    </div>
+            <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" data-uk-grid>
+              <?php foreach($items as $item): ?>
+              <div>
+                <div class="uk-card uk-card-default">
+                  <div class="uk-card-header">
+                  </div>
+                  <div class="uk-card-body uk-text-break">
+                    <h5 class="uk-margin-remove"><?= html_escape($item->name); ?></h5>
+                    <p class="uk-text-small uk-margin-remove"><?= html_escape($item->description); ?></p>
+                    <?php if ($item->price_type === TYPE_DP): ?>
+                    <i class="dp-icon" uk-tooltip="title: <?= lang('donor_points'); ?>"></i><?= $item->dp; ?>
+                    <?php elseif ($item->price_type === TYPE_VP): ?>
+                    <i class="vp-icon" uk-tooltip="title: <?= lang('vote_points'); ?>"></i><?= $item->vp; ?>
+                    <?php elseif ($item->price_type === TYPE_AND): ?>
+                    <i class="dp-icon" uk-tooltip="title: <?= lang('donor_points'); ?>"></i><?= $item->dp; ?> <span class="uk-badge">&amp;</span> <i class="vp-icon" uk-tooltip="title: <?= lang('vote_points'); ?>"></i><?= $item->vp; ?>
+                    <?php endif; ?>
+                    <a href="<?= site_url('store/item/'.$item->id); ?>" class="uk-button uk-button-default uk-button-small uk-width-1-1 uk-margin-small-top"><i class="fas fa-cart-plus"></i> <?= lang('view_item'); ?></a>
                   </div>
                 </div>
-                <?php endforeach; ?>
               </div>
+              <?php endforeach; ?>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <script>
-      function AddItem(e, value) {
-        e.preventDefault();
-
-        $.ajax({
-          url:"<?= site_url('cart/add'); ?>",
-          method:"POST",
-          data:{value},
-          dataType:"text",
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= lang('notification_title_success'); ?>',
-                  message: '<?= lang('notification_store_item_added'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
-            }
-            location.reload();
-          }
-        });
-      }
-    </script>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_store_items extends CI_Migration {
+class Migration_Create_table_store_items extends CI_Migration {
 
 	public function up()
 	{
@@ -12,6 +12,16 @@ class Migration_Create_store_items extends CI_Migration {
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
+			'store_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
+			'realm_id' => array(
+				'type' => 'BIGINT',
+				'constraint' => '20',
+				'unsigned' => TRUE
+			),
 			'name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
@@ -21,23 +31,15 @@ class Migration_Create_store_items extends CI_Migration {
 				'type' => 'TEXT',
 				'null' => TRUE
 			),
-			'category' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'null' => FALSE
+			'image' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '255',
+				'null' => TRUE
 			),
 			'price_type' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 0
-			),
-			'type' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 1
+				'type' => 'ENUM("vp","dp")',
+				'default' => 'vp',
+				'null' => FALSE
 			),
 			'dp' => array(
 				'type' => 'INT',
@@ -51,10 +53,11 @@ class Migration_Create_store_items extends CI_Migration {
 				'unsigned' => TRUE,
 				'default' => 0
 			),
-			'icon' => array(
-				'type' => 'VARCHAR',
-				'constraint' => '255',
-				'null' => TRUE
+			'top' => array(
+				'type' => 'TINYINT',
+				'constraint' => '1',
+				'unsigned' => TRUE,
+				'default' => 0
 			),
 			'command' => array(
 				'type' => 'TEXT',
@@ -62,6 +65,8 @@ class Migration_Create_store_items extends CI_Migration {
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
+		$this->dbforge->add_key('store_id');
+		$this->dbforge->add_key('realm_id');
 		$this->dbforge->create_table('store_items');
 	}
 
