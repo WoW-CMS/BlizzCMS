@@ -199,7 +199,7 @@ class Auth extends CI_Controller
 						]);
 					}
 
-					$id = $this->auth->connect()->insert_id();
+					$id = $this->auth->account_id($username);
 
 					// Insert/update account if emulator support bnet
 					if (config_item('emulator_bnet') === 'true')
