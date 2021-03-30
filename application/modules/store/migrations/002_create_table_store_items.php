@@ -37,7 +37,7 @@ class Migration_Create_table_store_items extends CI_Migration {
 				'null' => TRUE
 			),
 			'price_type' => array(
-				'type' => 'ENUM("vp","dp")',
+				'type' => 'ENUM("vp","dp","and")',
 				'default' => 'vp',
 				'null' => FALSE
 			),

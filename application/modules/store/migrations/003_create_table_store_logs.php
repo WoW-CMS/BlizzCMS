@@ -37,14 +37,8 @@ class Migration_Create_table_store_logs extends CI_Migration
 				'constraint' => '255',
 				'null' => FALSE
 			),
-			'type' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => '0'
-			),
 			'price_type' => array(
-				'type' => 'ENUM("vp","dp")',
+				'type' => 'ENUM("vp","dp","and")',
 				'default' => 'vp',
 				'null' => FALSE
 			),

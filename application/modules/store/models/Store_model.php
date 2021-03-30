@@ -189,7 +189,6 @@ class Store_model extends CI_Model
 			'user_id'    => $user,
 			'guid'       => $guid,
 			'name'       => $name,
-			'type'       => $type,
 			'price_type' => $item->price_type,
 			'dp'         => $item->dp,
 			'vp'         => $item->vp,
