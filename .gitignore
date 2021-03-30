@@ -9,7 +9,7 @@ application/config/blizzcms.php
 application/config/database.php
 application/config/plus.php
 
-migrations/*
+migration/*
 
 application/logs/*
 !application/logs/index.html
