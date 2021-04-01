@@ -52,7 +52,7 @@ $config['realmlist'] = '';
  *
  */
 
-$config['bnet_enabled'] = false; // Default : false - True for Emulators BattleNet and false for not bnetserver
+$config['bnet_enabled'] = false; // Default: True for Emulators BattleNet and false for not bnetserver
 
  /**
  *  Emulator
@@ -64,7 +64,7 @@ $config['bnet_enabled'] = false; // Default : false - True for Emulators BattleN
  *  
  */
 
-$config['emulator'] = '';
+$config['emulator'] = 'srp6';
 
 /**
  *
