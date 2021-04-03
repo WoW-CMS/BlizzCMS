@@ -22,13 +22,13 @@ class Website_model extends CI_Model
 
 		switch ($emulator)
 		{
+			case 'azeroth':
 			case 'trinity':
 				$validate = ($accgame->verifier === $this->auth->game_hash($accgame->username, $password, 'srp6', $accgame->salt));
 				break;
 			case 'cmangos':
 				$validate = (strtoupper($accgame->v) === $this->auth->game_hash($accgame->username, $password, 'hex', $accgame->s));
 				break;
-			case 'azeroth':
 			case 'old_trinity':
 			case 'mangos':
 				$validate = hash_equals(strtoupper($accgame->sha_pass_hash), $this->auth->game_hash($accgame->username, $password));

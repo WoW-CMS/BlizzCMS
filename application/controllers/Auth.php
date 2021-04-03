@@ -165,7 +165,7 @@ class Auth extends CI_Controller
 				}
 				else
 				{
-					if (in_array($emulator, ['trinity'], true))
+					if (in_array($emulator, ['azeroth', 'trinity'], true))
 					{
 						$salt = random_bytes(32);
 
@@ -189,7 +189,7 @@ class Auth extends CI_Controller
 							'expansion' => config_item('expansion')
 						]);
 					}
-					elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
+					elseif (in_array($emulator, ['mangos', 'old_trinity'], true))
 					{
 						$this->auth->connect()->insert('account', [
 							'username'        => $username,
@@ -334,7 +334,7 @@ class Auth extends CI_Controller
 				$password = $this->input->post('password');
 				$emulator = config_item('emulator');
 
-				if (in_array($emulator, ['trinity'], true))
+				if (in_array($emulator, ['azeroth', 'trinity'], true))
 				{
 					$salt = random_bytes(32);
 
@@ -358,7 +358,7 @@ class Auth extends CI_Controller
 						'expansion' => config_item('expansion')
 					]);
 				}
-				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
+				elseif (in_array($emulator, ['mangos', 'old_trinity'], true))
 				{
 					$this->auth->connect()->insert('account', [
 						'username'      => $data['user']->username,
@@ -438,7 +438,7 @@ class Auth extends CI_Controller
 				$account  = $this->auth->get_account($result->user_id);
 				$emulator = config_item('emulator');
 
-				if (in_array($emulator, ['trinity'], true))
+				if (in_array($emulator, ['azeroth', 'trinity'], true))
 				{
 					$salt = random_bytes(32);
 
@@ -457,7 +457,7 @@ class Auth extends CI_Controller
 						's'          => $salt
 					]);
 				}
-				elseif (in_array($emulator, ['azeroth', 'old_trinity', 'mangos'], true))
+				elseif (in_array($emulator, ['mangos', 'old_trinity'], true))
 				{
 					$this->auth->connect()->where('id', $result->user_id)->update('account', [
 						'sha_pass_hash' => $this->auth->game_hash($account->username, $password),
