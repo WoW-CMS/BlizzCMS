@@ -185,7 +185,7 @@ class Admin_model extends CI_Model {
     {
         $this->load->library('config_writer');
 
-        $writer = $this->config_writer->get_instance(APPPATH.'config/plus.php', 'config');
+        $writer = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
         $writer->write('recaptcha_sitekey', $recaptcha);
         $writer->write('smtp_host', $smtphost);
         $writer->write('smtp_user', $smtpuser);
@@ -833,7 +833,7 @@ class Admin_model extends CI_Model {
 
     public function insertStoreCategory($name, $route, $realmid, $main, $father)
     {
-        if($this->StoreCategoryCheckRoute($route))
+        if(!$this->StoreCategoryCheckRoute($route))
         {
             $data = array(
                 'name' => $name,
@@ -852,7 +852,7 @@ class Admin_model extends CI_Model {
 
     public function updateSpecifyStoreCategory($idlink, $name, $route, $realmid)
     {
-        if($this->StoreCategoryCheckRoute($route))
+        if(!$this->StoreCategoryCheckRoute($route))
         {
             $update = array(
                 'name' => $name,
@@ -871,7 +871,7 @@ class Admin_model extends CI_Model {
     {
         $qq = $this->db->select('route')->where('route', $route)->get('store_categories')->row('route');
 
-        if($qq == $name)
+        if($qq == $route)
             return true;
         else
             return false;

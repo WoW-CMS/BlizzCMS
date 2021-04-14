@@ -56,7 +56,7 @@ class News extends MX_Controller {
     {
         $this->load->model('forum/forum_model');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');

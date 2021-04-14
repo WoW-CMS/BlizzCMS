@@ -41,18 +41,23 @@ class Home_model extends CI_Model {
         }
     }
 
-    public function updateconfigs($name, $discord, $realmlist, $expansion, $license)
+    public function updateconfigs($data)
     {
         $this->load->library('config_writer');
         $blizz = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
-        $plus = $this->config_writer->get_instance(APPPATH.'config/plus.php', 'config');
+       
+        if ($this->config_writer->isEnabled($data['bnet'])) 
+            $bnet_enable = true;
+        else
+            $bnet_enable = false;
 
-        $blizz->write('website_name', $name);
-        $blizz->write('discord_invitation', $discord);
-        $blizz->write('realmlist', $realmlist);
-        $blizz->write('expansion', $expansion);
+        $blizz->write('website_name', $data['name']);
+        $blizz->write('discord_invitation', $data['invitation']);
+        $blizz->write('realmlist', $data['realmlist']);
+        $blizz->write('expansion', $data['expansion']);
+        $blizz->write('bnet_enabled', $bnet_enable);
+        $blizz->write('emulator', $data['emulator']);
         $blizz->write('migrate_status', '0');
-        $plus->write('license_plus', $license);
-        return true;
+        
     }
 }

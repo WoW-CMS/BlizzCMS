@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = '';
+$config['website_name'] = 'Test';
 
 /**
  *
@@ -44,17 +44,27 @@ $config['discord_invitation'] = '';
  * Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = '';
+$config['realmlist'] = 'test.test';
 
 /**
- * Emulator Supported
+ *  Bnet enabled?
  * 
- * true = Legacy Emulator (https://github.com/The-Cataclysm-Preservation-Project/TrinityCore)
- * false = Disabled this feature (BlizzCMS - Old)
- * 
+ *
  */
 
- $config['emulator_legacy'] = false;
+$config['bnet_enabled'] = false; // Default: True for Emulators BattleNet and false for not bnetserver
+
+ /**
+ *  Emulator
+ * 
+ *
+ *  srp6 = For Emulators (SRP6 Compatibility)
+ *  old-trinity =  Trinity Core not SRP6  (Sha_pass_hash Compatibility)
+ *  hex = For emulators Mangos  (HEX6 Compatibility)
+ *  
+ */
+
+$config['emulator'] = 'srp6';
 
 /**
  *
@@ -70,9 +80,10 @@ $config['realmlist'] = '';
  * 6 = Warlords of Draenor
  * 7 = Legion
  * 8 = Battle for Azeroth
+ * 9 = Shadowlands
  *
 */
-$config['expansion'] = '';
+$config['expansion'] = '3';
 
 /**
  *
@@ -96,6 +107,71 @@ $config['theme_name'] = 'default';
 $config['social_facebook'] = '';
 $config['social_twitter'] = '';
 $config['social_youtube'] = '';
+
+/**
+ *
+ * Recaptcha (V2)
+ *
+ * Write the necessary keys to enable recaptcha in the register
+ * Use the following page to create the necessary keys.
+ * https://www.google.com/recaptcha/admin#list
+ *
+*/
+$config['recaptcha_sitekey'] = '';
+
+/**
+ *
+ * SMTP
+ *
+ * Write the necessary information for use SMTP to use in recovery password
+ * and account activation.
+ *
+*/
+$config['smtp_host'] = '';
+$config['smtp_user'] = '';
+$config['smtp_pass'] = '';
+$config['smtp_port'] = '465';
+$config['smtp_crypto'] = 'ssl';
+
+/**
+ *
+ * Email Settings
+ *
+ * Write the necessary information to use in sending emails.
+ *
+*/
+$config['email_settings_sender'] = '';
+$config['email_settings_sender_name'] = '';
+
+/**
+ *
+ * Account Activation
+ *
+ * Enable or Disable the option to activate accounts by email.
+ *
+ * TRUE  = Enable
+ * FALSE = Disable
+ *
+*/
+$config['account_activation_required'] = FALSE;
+
+/**
+ *
+ * Administrator Access Level
+ *
+ * Minimum gmlevel to access to admin sections.
+ *
+*/
+$config['admin_access_level'] = '3';
+
+/**
+ *
+ * Moderator Access Level
+ *
+ * Minimum gmlevel to access to mod sections.
+ *
+*/
+$config['mod_access_level'] = '2';
 
 /**
  *

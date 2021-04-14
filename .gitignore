@@ -42,3 +42,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /migration/*
 application/config/blizzcms.php
 application/config/routes.php
+migration
+migration/*

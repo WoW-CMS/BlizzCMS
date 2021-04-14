@@ -43,11 +43,11 @@
                     <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowauth->getIsModerator($this->session->userdata('wow_sess_gmlevel'))): ?>
+                    <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= $this->lang->line('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if($this->wowmodule->getACPStatus() == '1'): ?>
-                    <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
+                    <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
@@ -160,8 +160,11 @@
                 <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                 <?php endif; ?>
+                <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
+                <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i>s <?= $this->lang->line('button_mod_panel'); ?></a></li>
+                <?php endif; ?>
                 <?php if($this->wowmodule->getACPStatus() == '1'): ?>
-                <?php if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel'))): ?>
+                <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>

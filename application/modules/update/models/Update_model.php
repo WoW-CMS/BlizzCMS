@@ -1,10 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-require './vendor/autoload.php';
-
 //API Container
-use \VisualAppeal\AutoUpdate;
+use VisualAppeal\AutoUpdate;
 
 class Update_model extends CI_Model
 {
@@ -18,7 +16,7 @@ class Update_model extends CI_Model
 
     public function getCurrentVersion()
     {
-        $version = '1.0.6.4.1';
+        $version = '1.0.7';
         return $version;
     }
 
