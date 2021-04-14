@@ -58,7 +58,7 @@ $config['default_language'] = 'en';
   |    FALSE
   |
  */
-$config['detect_language'] = TRUE;
+$config['detect_language'] = FALSE;
 
 /*
   |--------------------------------------------------------------------------

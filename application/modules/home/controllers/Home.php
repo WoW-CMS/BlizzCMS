@@ -95,11 +95,24 @@ class Home extends MX_Controller {
 
     public function setconfig()
     {
-        $name = $this->input->post('name');
-        $invitation = $this->input->post('invitation');
-        $realmlist = $this->input->post('realmlist');
-        $expansion = $this->input->post('expansion');
-        $license = $this->input->post('license');
-        echo $this->home_model->updateconfigs($name, $invitation, $realmlist, $expansion, $license);
+        $this->load->library('migration');
+
+        $data = array(
+            'name' => $this->input->post('website_name'),
+            'invitation' => $this->input->post('website_invitation'),
+            'realmlist' => $this->input->post('website_realmlist'),
+            'expansion' => $this->input->post('website_expansion'),
+            'bnet' => $this->input->post('website_bnet'),
+            'emulator' => $this->input->post('website_emulator'),
+        );
+
+        $this->home_model->updateconfigs($data);
+
+        if ($this->migration->current() === FALSE)
+        {
+            show_error($this->migration->error_string());
+        } else {
+            redirect(base_url());
+        }
     }
 }

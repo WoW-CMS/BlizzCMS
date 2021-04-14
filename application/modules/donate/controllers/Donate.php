@@ -35,10 +35,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @filesource
  */
 
-require './vendor/autoload.php';
-
-use \PayPal\Api\Payment;
-use \PayPal\Api\PaymentExecution;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
 
 class Donate extends MX_Controller
 {

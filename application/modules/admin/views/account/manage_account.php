@@ -77,7 +77,7 @@
                 </div>
                 <?= form_close(); ?>
                 <?php endif; ?>
-                <?php if($this->wowauth->getGmSpecify($idlink)->num_rows()): ?>
+                <?php if($this->wowauth->getRank($idlink) <= '1'): ?>
                 <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-minus"></i> <?= $this->lang->line('placeholder_account_remove_rank'); ?></span></h5>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">

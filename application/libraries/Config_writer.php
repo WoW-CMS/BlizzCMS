@@ -18,4 +18,12 @@ class Config_Writer {
         }
         return new Array_Config_Writer($file , $variable_name);
     }
+
+    public function isEnabled($data)
+    {
+        if ($data == '1')
+            return true;
+        else 
+            return false;
+    }
 }

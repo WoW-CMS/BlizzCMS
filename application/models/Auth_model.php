@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use Laizerox\Wowemu\SRP\UserClient;
+
 class Auth_model extends CI_Model {
 
     /**
@@ -10,13 +12,13 @@ class Auth_model extends CI_Model {
     {
         parent::__construct();
         $this->auth = $this->load->database('auth', TRUE);
-
-        if ($this->isLogged() && $this->checkAccountExist() == 0)
-        {
-            $this->synchronizeAccount();
-        }
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function arraySession($id)
     {
         $data = array(
@@ -35,41 +37,88 @@ class Auth_model extends CI_Model {
         return $this->sessionConnect($data);
     }
 
-    public function getGmSpecify($id)
-    {
-        return $this->auth->select('id')->where('id', $id)->get('account_access');
-    }
-
+    /**
+     * @return [type]
+     */
     public function randomUTF()
     {
         return rand(0, 999999999);
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getUsernameID($id)
     {
         return $this->auth->select('username')->where('id', $id)->get('account')->row('username');
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getSiteUsernameID($id)
     {
         return $this->db->select('username')->where('id', $id)->get('users')->row('username');
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getEmailID($id)
     {
         return $this->auth->select('email')->where('id', $id)->get('account')->row('email');
     }
 
-    public function getPasswordAccountID($id)
-    {
-        return $this->auth->select('sha_pass_hash')->where('id', $id)->get('account')->row('sha_pass_hash');
-    }
+    /**
+	 * Validate password
+	 *
+	 * @param string $username
+	 * @param string $password
+	 * @return boolean
+	 */
+	public function valid_password($username, $password)
+	{
+		$account  = $this->auth->where('username', $username)->or_where('email', $username)->get('account')->row();
+		$emulator = config_item('emulator');
 
-    public function getPasswordBnetID($id)
-    {
-        return $this->auth->select('sha_pass_hash')->where('id', $id)->get('battlenet_accounts')->row('sha_pass_hash');
-    }
+		if (empty($account))
+		{
+			return false;
+		}
 
+		switch ($emulator)
+		{
+			case 'srp6':
+				$validate = ($account->verifier === $this->game_hash($account->username, $password, 'srp6', $account->salt));
+				break;
+			case 'hex':
+				$validate = (strtoupper($account->v) === $this->game_hash($account->username, $password, 'hex', $account->s));
+				break;
+			case 'old-trinity':
+				$validate = hash_equals(strtoupper($account->sha_pass_hash), $this->game_hash($account->username, $password));
+				break;
+		}
+
+		if (! isset($validate))
+		{
+			return false;
+		}
+
+		return $validate;
+	}
+
+
+    /**
+     * @param mixed $account
+     * 
+     * @return [type]
+     */
     public function getSpecifyAccount($account)
     {
         $account = strtoupper($account);
@@ -77,11 +126,21 @@ class Auth_model extends CI_Model {
         return $this->auth->select('id')->where('username', $account)->get('account');
     }
 
+    /**
+     * @param mixed $email
+     * 
+     * @return [type]
+     */
     public function getSpecifyEmail($email)
     {
         return $this->auth->select('id')->where('email', $email)->get('account');
     }
 
+    /**
+     * @param mixed $account
+     * 
+     * @return [type]
+     */
     public function getIDAccount($account)
     {
         $account = strtoupper($account);
@@ -94,16 +153,31 @@ class Auth_model extends CI_Model {
             return '0';
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getImageProfile($id)
     {
         return $this->db->select('profile')->where('id', $id)->get('users')->row('profile');
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getNameAvatar($id)
     {
         return $this->db->select('name')->where('id', $id)->get('avatars')->row('name');
     }
 
+    /**
+     * @param mixed $email
+     * 
+     * @return [type]
+     */
     public function getIDEmail($email)
     {
         $email = strtoupper($email);
@@ -116,36 +190,72 @@ class Auth_model extends CI_Model {
             return '0';
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getExpansionID($id)
     {
         return $this->auth->select('expansion')->where('id', $id)->get('account')->row('expansion');
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getLastIPID($id)
     {
         return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getLastLoginID($id)
     {
         return $this->auth->select('last_login')->where('id', $id)->get('account')->row('last_login');
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getJoinDateID($id)
     {
         return $this->auth->select('joindate')->where('id', $id)->get('account')->row('joindate');
     }
 
-    public function getRank($id)
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
+    public function getRank($id = null)
     {
-        $qq = $this->auth->select('gmlevel')->where('id', $id)->get('account_access');
+        $account = ($id) ?? $this->session->userdata('wow_sess_id');
 
-        if($qq->num_rows())
-            return $qq->row('gmlevel');
-        else
-            return '0';
+        $value = ($this->auth->field_exists('SecurityLevel', 'account_access')) ? $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel') : 
+            (($this->auth->field_exists('gmlevel', 'account'))  ? $this->auth->where('id', $account)->get('account')->row('gmlevel') : 
+            $this->auth->where('id', $account)->get('account_access')->row('gmlevel'));
+
+        if (! empty($value))
+        {
+            return $value;
+        }
+
+        return 0;
     }
 
+    /**
+     * @param mixed $id
+     * 
+     * @return [type]
+     */
     public function getBanStatus($id)
     {
         $qq = $this->auth->select('*')->where('id', $id)->where('active', '1')->get('account_banned');
@@ -156,6 +266,9 @@ class Auth_model extends CI_Model {
             return false;
     }
 
+    /**
+     * @return [type]
+     */
     public function isLogged()
     {
         if ($this->session->userdata('wow_sess_username'))
@@ -164,129 +277,80 @@ class Auth_model extends CI_Model {
             return false;
     }
 
+    /**
+     * @param mixed $data
+     * 
+     * @return [type]
+     */
     public function sessionConnect($data)
     {
         $this->session->set_userdata($data);
         return true;
     }
 
+    /**
+     * @return [type]
+     */
     public function logout()
     {
         $this->session->sess_destroy();
         redirect(base_url(),'refresh');
     }
 
-    public function Battlenet($email, $password)
+    /**
+     * @param mixed $username
+     * @param mixed $password
+     * @param null $type
+     * @param null $salt
+     * 
+     * @return [type]
+     */
+    public function game_hash($username, $password, $type = null, $salt = null)
     {
-        return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash("sha256",strtoupper(hash("sha256", strtoupper($email)).":".strtoupper($password))))))));
+        switch ($type)
+		{
+			case 'bnet':
+				return strtoupper(bin2hex(strrev(hex2bin(strtoupper(hash('sha256', strtoupper(hash('sha256', strtoupper($username)) . ':' . strtoupper($password))))))));
+				break;
+			case 'hex':
+				$client = new UserClient($username, $salt);
+				return strtoupper($client->generateVerifier($password));
+			case 'srp6':
+				// Constants
+				$g = gmp_init(7);
+				$N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
+				// Calculate first hash
+				$h1 = sha1(strtoupper($username.':'.$password), TRUE);
+				// Calculate second hash
+				$h2 = sha1($salt.$h1, TRUE);
+				// Convert to integer (little-endian)
+				$h2 = gmp_import($h2, 1, GMP_LSW_FIRST);
+				// g^h2 mod N
+				$verifier = gmp_powm($g, $h2, $N);
+				// Convert back to a byte array (little-endian)
+				$verifier = gmp_export($verifier, 1, GMP_LSW_FIRST);
+				// Pad to 32 bytes, remember that zeros go on the end in little-endian!
+				$verifier = str_pad($verifier, 32, chr(0), STR_PAD_RIGHT);
+				return $verifier;
+				break;
+			default:
+				return strtoupper(sha1(strtoupper($username) . ':' . strtoupper($password)));
+				break;
+		}
+
     }
 
-    public function Account($username, $password)
-    {
-        if (!is_string($username))
-            $username = "";
+    /**
+	 * Check if username and email is unique in auth
+	 *
+	 * @param string $data
+	 * @param string $column
+	 * @return bool
+	 */
+	public function account_unique($data, $column = 'username')
+	{
+		$query = $this->auth->where($column, $data)->get('account')->num_rows();
 
-        if (!is_string($password))
-            $password = "";
-
-        $sha_pass_hash = sha1(strtoupper($username).':'.strtoupper($password));
-
-        return strtoupper($sha_pass_hash);
-    }
-
-    public function checkAccountExist()
-    {
-        return $this->db->select('id')->where('id', $this->session->userdata('wow_sess_id'))->get('users')->num_rows();
-    }
-
-    public function synchronizeAccount()
-    {
-        if ($this->checkAccountExist() == 0)
-        {
-            $joindate = strtotime($this->getJoinDateID($this->session->userdata('wow_sess_id')));
-
-            $data = array(
-                'id' => $this->session->userdata('wow_sess_id'),
-                'username' => $this->session->userdata('wow_sess_username'),
-                'email' => $this->session->userdata('wow_sess_email'),
-                'joindate' => $joindate
-            );
-
-            $this->db->insert('users', $data);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public function getRankByLevel($gmlevel)
-    {
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        $gmlevel = $this->db->select('comment')->where('permission', $qq->row('gmlevel'))->get('ranks_default');
-
-        if($gmlevel->num_rows())
-            return $gmlevel->row('comment');
-        else
-        {
-            return 'Player';
-        }
-    }
-
-    public function getIsAdmin($id)
-    {
-        $config = $this->config->item('admin_access_level');
-
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        if(!$qq->row('gmlevel'))
-            return false;
-        else
-        {
-            if($qq->row('gmlevel') >= $config)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-    public function getIsModerator($id)
-    {
-        $config = $this->config->item('mod_access_level');
-
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        if(!$qq->row('gmlevel'))
-            return false;
-        else
-        {
-            if($qq->row('gmlevel') >= $config)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-    public function getMaintenancePermission()
-    {
-        $config = $this->config->item('mod_access_level');
-
-        $qq = $this->auth->select('gmlevel')->where('id', $this->session->userdata('wow_sess_id'))->get('account_access');
-
-        if(!$qq->row('gmlevel'))
-            return false;
-        else
-        {
-            if($qq->row('gmlevel') >= $config)
-                return false;
-            else
-            {
-                return true;
-            }
-        }
-    }
+		return ($query == 0);
+	}
 }

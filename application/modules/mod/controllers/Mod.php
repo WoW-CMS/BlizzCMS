@@ -52,7 +52,7 @@ class Mod extends MX_Controller {
         if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-        if(!$this->wowauth->getIsModerator($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) < config_item('mod_access_level'))
             redirect(base_url(),'refresh');
 
         $this->template->set_theme('mod');

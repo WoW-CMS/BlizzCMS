@@ -67,7 +67,7 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -96,7 +96,7 @@ class Forum extends MX_Controller {
         else
             redirect(base_url('forum'),'refresh');
 
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
@@ -113,7 +113,7 @@ class Forum extends MX_Controller {
 
     public function newtopic($idlink)
     {
-        if($this->wowauth->getIsAdmin($this->session->userdata('wow_sess_gmlevel')))
+        if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');

@@ -54,82 +54,116 @@ class User extends MX_Controller {
         if ($this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
-
-        if ($this->wowgeneral->getExpansionAction() == 1)
-        {
-            if($this->wowgeneral->getEmulatorAction() == 1){
-                $data = array(
-                    'pagetitle' => $this->lang->line('tab_login'),
-                    'recapKey' => $this->config->item('recaptcha_sitekey'),
-                    'lang' => $this->lang->lang(),
-                );
-    
-                $this->template->build('login2', $data);
-            }else{
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_login'),
+            'recapKey' => $this->config->item('recaptcha_sitekey'),
+            'lang' => $this->lang->lang(),
+        );
             
-                $data = array(
-                'pagetitle' => $this->lang->line('tab_login'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
-                'lang' => $this->lang->lang(),
-            );
-                $this->template->build('login1', $data);
-            }
-        }
-        else
+        if ($this->input->method() == 'post')
         {
-            $data = array(
-                'pagetitle' => $this->lang->line('tab_login'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
-                'lang' => $this->lang->lang(),
-            );
+			$this->form_validation->set_rules('username', 'Username/Email', 'trim|required');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-            $this->template->build('login2', $data);
+            
+            if ($this->form_validation->run() == FALSE)
+			{
+                redirect(base_url('register'), 'refresh');
+			}
+            else
+            {
+                $response = $this->user_model->authentication(
+					$this->input->post('username', TRUE),
+					$this->input->post('password')
+				);
+
+				if (! $response)
+				{
+					$this->session->set_flashdata('error', lang('login_error'));
+                    $this->template->build('login', $data);
+				}
+				else
+				{
+					redirect(site_url('panel'));
+				}
+
+            }
+        } 
+        else 
+        {
+            $this->template->build('login', $data);
         }
+       
     }
-
-    public function verify1()
-    {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        echo $this->user_model->checklogin($username, $password);
-    }
-
-    public function verify2()
-    {
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        echo $this->user_model->checkloginbattle($email, $password);
-    }
-
-
 
     public function register()
     {
         if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+        redirect(base_url('maintenance'),'refresh');
 
         if (!$this->wowmodule->getRegisterStatus())
             redirect(base_url(),'refresh');
 
         if ($this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(base_url(), 'refresh');
 
-        $data = array(
-            'pagetitle' => $this->lang->line('tab_register'),
-            'recapKey' => $this->config->item('recaptcha_sitekey'),
-            'lang' => $this->lang->lang(),
-        );
 
-        $this->template->build('register', $data);
-    }
+        if ($this->input->method() == 'post')
+        {
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
 
-    public function newaccount()
-    {
-        $username = $this->input->post('username');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $repassword = $this->input->post('repassword');
-        echo $this->user_model->insertRegister($username, $email, $password, $repassword);
+            if ($this->form_validation->run() == FALSE)
+			{
+                redirect(base_url('register'), 'refresh');
+			}
+            else
+            {
+				$username   = $this->input->post('username', TRUE);
+				$email      = $this->input->post('email', TRUE);
+				$password   = $this->input->post('password');
+
+                $emulator = $this->config->item('emulator');
+
+
+                if ( ! $this->wowauth->account_unique($username, 'username'))
+                {
+					redirect(site_url('register'));
+                }
+
+                if ( ! $this->wowauth->account_unique($email, 'email'))
+                {
+					redirect(site_url('register'));
+                }
+
+                
+
+                $register = $this->user_model->insertRegister($username, $email, $password, $emulator);
+
+                if ($register)
+                {
+                    $this->session->set_flashdata('success', lang('register_success'));
+					redirect(site_url('login'));
+                }
+                else
+                {
+					redirect(site_url('register'));
+                }
+                
+            }
+        }
+        else
+        {
+            $data = array(
+                'pagetitle' => $this->lang->line('tab_register'),
+                'recapKey' => $this->config->item('recaptcha_sitekey'),
+                'lang' => $this->lang->lang(),
+            );
+    
+            $this->template->build('register', $data);
+        }
     }
 
     public function logout()
@@ -209,32 +243,121 @@ class User extends MX_Controller {
 
     public function newusername()
     {
-        $username = $this->input->post('newusername');
-        $renewusername = $this->input->post('renewusername');
-        $password = $this->input->post('password');
+        if (!$this->wowgeneral->getMaintenance())
+            redirect(base_url('maintenance'),'refresh');
 
-        echo $this->user_model->changeUsername($username, $renewusername, $password);
+        if ($this->input->method() == 'post') {
+
+			$this->form_validation->set_rules('newusername', 'New username', 'trim|required');
+            $this->form_validation->set_rules('confirmusername', 'Confirm Username', 'trim|required|matches[newusername]');
+
+            if ($this->form_validation->run() == FALSE)
+			{
+                redirect(base_url('settings'), 'refresh');
+			}
+            else
+            {
+                $username   = $this->wowauth->getSiteUsernameID($this->session->userdata('wow_sess_id'));
+				$newusername = $this->input->post('newusername', TRUE);
+				$password   = $this->input->post('password');
+
+                $change = $this->user_model->changeUsername($username, $newusername, $password);
+
+                if ($change)
+					redirect(site_url('logout'), 'refresh');
+                else
+					redirect(site_url('settings'), 'refresh');
+            }
+        }
+        else
+        {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function newpass()
     {
-        $oldpass = $this->input->post('oldpass');
-        $newpass = $this->input->post('newpass');
-        $renewpass = $this->input->post('renewpass');
-        echo $this->user_model->changePassword($oldpass, $newpass, $renewpass);
+        if (!$this->wowgeneral->getMaintenance())
+        redirect(base_url('maintenance'),'refresh');
+
+        
+        if ($this->input->method() == 'post') {
+            $this->form_validation->set_rules('change_oldpass', 'Old password', 'trim|required');
+            $this->form_validation->set_rules('change_password', 'New password', 'trim|required');
+            $this->form_validation->set_rules('change_renewchange_password', 'Confirm password', 'trim|required|matches[change_password]');
+
+
+            if ($this->form_validation->run() == false) {
+                redirect(base_url('settings'), 'refresh');
+            } else {
+                $oldpass = $this->input->post('change_oldpass');
+                $newpass = $this->input->post('change_password');
+                $renewpass   = $this->input->post('change_renewchange_password');
+    
+                if (! $this->wowauth->valid_password($this->session->userdata('wow_sess_username'), $oldpass))
+                {
+                    redirect(site_url('settings'));
+			    }
+
+
+                $change = $this->user_model->changePassword($newpass);
+    
+                if ($change)
+                    redirect(site_url('logout'), 'refresh');
+                else
+                    redirect(site_url('settings'), 'refresh');
+            }
+        }
+        else
+        {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function newemail()
     {
-        $newemail = $this->input->post('newemail');
-        $renewemail = $this->input->post('renewemail');
-        $password = $this->input->post('password');
-        echo $this->user_model->changeEmail($newemail, $renewemail, $password);
+        if (!$this->wowgeneral->getMaintenance())
+        redirect(base_url('maintenance'),'refresh');
+
+        if ($this->input->method() == 'post') {
+
+            $this->form_validation->set_rules('change_newemail', 'New email', 'trim|required');
+            $this->form_validation->set_rules('change_renewemail', 'Confirm email', 'trim|required|matches[change_newemail]');
+            $this->form_validation->set_rules('change_password', 'Password',  'trim|required');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                redirect(base_url('settings'), 'refresh');
+            }
+            else
+            {
+                $email = $this->wowauth->getEmailID($this->session->userdata('wow_sess_id'));
+                $newemail = $this->input->post('change_newemail', TRUE);
+                $password   = $this->input->post('change_password');
+
+                $change = $this->user_model->changeEmail($email, $newemail, $password);
+
+                if ($change)
+                    redirect(site_url('logout'), 'refresh');
+                else
+                    redirect(site_url('settings'), 'refresh');
+            }
+        }
+        else
+        {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function newavatar()
     {
-        $avatar = $this->input->post('avatar');
-        echo $this->user_model->changeAvatar($avatar);
+        $avatar = $this->input->post('change_avatar');
+
+        $change = $this->user_model->changeAvatar($avatar);
+
+        if ($change)
+            redirect(site_url('panel'), 'refresh');
+        else
+            redirect(site_url('settings'), 'refresh');
     }
 }
