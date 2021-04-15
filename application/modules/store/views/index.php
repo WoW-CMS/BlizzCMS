@@ -47,12 +47,15 @@
                       <div class="item-store-icon">
                         <img src="https://wow.zamimg.com/images/wow/icons/large/<?= $this->store_model->getIcon($top->store_item); ?>.jpg" alt="">
                       </div>
-					  <!-- START CODE TO TOOLTIPS WOWHEAD -->
-                     <span class="uk-text-middle">
-						<a href="#" data-wowhead="item=<?= $this->store_model->getCommand($top->store_item); ?>"> <?= $this->store_model->getName($top->store_item); ?>
-						</a>
-					</span>
-					<!-- END CODE TO TOOLTIPS WOWHEAD -->
+                      <!-- START TOOLTIPS WOWHEAD -->
+                      <span class="uk-text-middle">
+                        <?php if($items->type == 1): ?>
+                        <!-- You can use 'es.wowhead' or any other as 'ru, fr, cn' -->
+                        <a href="https://wowhead.com/item=<?= $this->store_model->getCommand($top->store_item); ?>"><?= $this->store_model->getName($top->store_item); ?></a>
+                        <?php else: ?>
+                        <a href="#"><?= $this->store_model->getName($top->store_item); ?></a>
+                      </span>
+                      <!-- END TOOLTIPS WOWHEAD -->
                     </div>
                     <div id="top-<?= $top->id ?>" class="blizzcms-item-body" hidden>
                       <p class="uk-text-break"><?= $this->store_model->getDescription($top->store_item); ?></p>
@@ -115,3 +118,5 @@
         });
       }
     </script>
+<script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
+<script src="https://wow.zamimg.com/widgets/power.js"></script>

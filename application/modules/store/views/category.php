@@ -47,9 +47,18 @@
                       <div class="item-store-icon">
                         <img src="https://wow.zamimg.com/images/wow/icons/large/<?= $items->icon ?>.jpg" alt="icon">
                       </div>
-					  <!-- START CODE TO TOOLTIPS WOWHEAD -->
-                      <span class="uk-text-middle"><a href="#" data-wowhead="item=<?= $items->command ?>"><?= $items->name ?></a></span>
-					  <!-- END CODE TO TOOLTIPS WOWHEAD -->
+                      <!-- START CODE TO TOOLTIPS WOWHEAD -->
+                      <?php if($items->type == 1): ?>
+                      <span class="uk-text-middle">
+                        <!-- You can use 'es.wowhead' or any other as 'ru, fr, cn' -->
+                        <a href="https://wowhead.com/item=<?= $items->command ?>"><?= $items->name ?></a>
+                      </span>
+                      <?php else: ?>
+                      <span class="uk-text-middle">
+                        <a href="#"><?= $items->name ?></a>
+                      </span>
+                      <?php endif; ?>
+                      <!-- END CODE TO TOOLTIPS WOWHEAD -->
                     </div>
                     <div id="item-<?= $items->id ?>" class="blizzcms-item-body" hidden>
                       <p class="uk-text-break"><?= $items->description ?></p>
@@ -112,3 +121,5 @@
         });
       }
     </script>
+    <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
+    <script src="https://wow.zamimg.com/widgets/power.js"></script>
