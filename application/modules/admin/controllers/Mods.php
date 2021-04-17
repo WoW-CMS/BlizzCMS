@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mods extends MX_Controller
 {
-	const EXCLUDE_MODULES = ['admin', 'user'];
+	const EXCLUDE_MODULES = ['CI_Core', 'admin', 'user'];
 
 	public function __construct()
 	{
@@ -95,6 +95,7 @@ class Mods extends MX_Controller
 			}
 		}
 
+		$this->db->where('module', $module)->delete('migrations');
 		$this->db->where('name', $module)->delete('modules');
 
 		// Clear cache
