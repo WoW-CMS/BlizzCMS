@@ -31,15 +31,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($this->pvp_model->get_teams_2v2($realm->id) as $tops2v2): ?>
+                      <?php foreach ($this->pvp_model->get_top_teams($realm->id) as $team): ?>
                         <tr>
-                          <td><?= $tops2v2->name; ?></td>
+                          <td><?= $team->name; ?></td>
                           <td>
-                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $tops2v2->arenaTeamId) as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $mmberteam->guid); ?>">
+                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $team->arenateamid) as $member): ?>
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $member->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $member->guid); ?>">
                             <?php endforeach; ?>
                           </td>
-                          <td><?= $tops2v2->rating; ?></td>
+                          <td><?= $team->rating; ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -58,15 +58,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($this->pvp_model->get_teams_3v3($realm->id) as $tops3v3): ?>
+                      <?php foreach ($this->pvp_model->get_top_teams($realm->id, 3) as $team): ?>
                         <tr>
-                          <td><?= $tops3v3->name; ?></td>
+                          <td><?= $team->name; ?></td>
                           <td>
-                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $tops3v3->arenaTeamId) as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $mmberteam->guid); ?>">
+                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $team->arenateamid) as $member): ?>
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $member->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $member->guid); ?>">
                             <?php endforeach; ?>
                           </td>
-                          <td><?= $tops3v3->rating; ?></td>
+                          <td><?= $team->rating; ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -85,15 +85,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($this->pvp_model->get_teams_5v5($realm->id) as $tops5v5): ?>
+                      <?php foreach ($this->pvp_model->get_top_teams($realm->id, 5) as $team): ?>
                         <tr>
-                          <td><?= $tops5v5->name; ?></td>
+                          <td><?= $team->name; ?></td>
                           <td>
-                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $tops5v5->arenaTeamId) as $mmberteam): ?>
-                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $mmberteam->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $mmberteam->guid); ?>">
+                            <?php foreach ($this->pvp_model->get_team_members($realm->id, $team->arenateamid) as $member): ?>
+                            <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($this->pvp_model->get_char_class($realm->id, $member->guid)); ?>" width="20" height="20" alt="<?= $this->pvp_model->get_char_name($realm->id, $member->guid); ?>">
                             <?php endforeach; ?>
                           </td>
-                          <td><?= $tops5v5->rating; ?></td>
+                          <td><?= $team->rating; ?></td>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -117,15 +117,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($this->pvp_model->get_top_pvp($realm->id) as $tops): ?>
+                    <?php foreach ($this->pvp_model->get_top_pvp($realm->id) as $player): ?>
                       <tr>
-                        <td><?= $tops->name; ?></td>
-                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($tops->race); ?>" width="20" height="20" alt="Race"></td>
-                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($tops->class); ?>" width="20" height="20" alt="Class"></td>
-                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/faction/'.faction_icon($tops->race); ?>" width="20" height="20" alt="Faction"></td>
-                        <td><?= $tops->totalKills; ?></td>
-                        <td><?= $tops->todayKills; ?></td>
-                        <td><?= $tops->yesterdayKills; ?></td>
+                        <td><?= $player->name; ?></td>
+                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/race/'.race_icon($player->race); ?>" width="20" height="20" alt="Race"></td>
+                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.class_icon($player->class); ?>" width="20" height="20" alt="Class"></td>
+                        <td><img class="uk-border-circle" src="<?= $template['uploads'].'icons/faction/'.faction_icon($player->race); ?>" width="20" height="20" alt="Faction"></td>
+                        <td><?= $player->totalKills; ?></td>
+                        <td><?= $player->todayKills; ?></td>
+                        <td><?= $player->yesterdayKills; ?></td>
                       </tr>
                     <?php endforeach; ?>
                   </tbody>

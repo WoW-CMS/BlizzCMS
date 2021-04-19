@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use VisualAppeal\AutoUpdate;
+use Desarrolla2\Cache\Adapter\File;
 use Monolog\Handler\StreamHandler;
+use VisualAppeal\AutoUpdate;
 
 class Updater_model extends CI_Model
 {
@@ -24,12 +25,15 @@ class Updater_model extends CI_Model
 	public function find_updates()
 	{
 		$update = new AutoUpdate(FCPATH . 'temp', FCPATH . '', 60);
-		$update->setCurrentVersion($this->current_version()); // Current version of your application. This value should be from a database or another file which will be updated with the installation of a new version
-		$update->setUpdateUrl('https://wow-cms.com'); //Replace the url with your server update url
 
-		// The following two lines are optional
+		// Set current version of app
+		$update->setCurrentVersion($this->current_version());
+
+		// Set server update url
+		$update->setUpdateUrl('https://wow-cms.com');
+
 		$update->addLogHandler(new StreamHandler(APPPATH . 'logs/updater.log'));
-		// $update->setCache(new Desarrolla2\Cache\Adapter\File(APPPATH . '/cache'), 3600);
+		// $update->setCache(new File(APPPATH . 'cache'), 3600);
 
 		// Check for a new update
 		if ($update->checkUpdate() === false)

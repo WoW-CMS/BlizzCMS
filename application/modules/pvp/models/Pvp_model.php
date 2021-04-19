@@ -15,36 +15,22 @@ class Pvp_model extends CI_Model
 	}
 
 	/**
-	 * Get the top teams in arena 2v2 of a realm
+	 * Get the top teams in arena
 	 *
 	 * @param int $realm
+	 * @param int $type
 	 * @return array
 	 */
-	public function get_teams_2v2($realm)
+	public function get_top_teams($realm, $type = 2)
 	{
-		return $this->realm->char_connect($realm)->select('rating, seasonWins, arenaTeamId, name')->where('type', '2')->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
-	}
+		$emulator = config_item('emulator');
 
-	/**
-	 * Get the top teams in arena 3v3 of a realm
-	 *
-	 * @param int $realm
-	 * @return array
-	 */
-	public function get_teams_3v3($realm)
-	{
-		return $this->realm->char_connect($realm)->select('rating, seasonWins, arenaTeamId, name')->where('type', '3')->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
-	}
+		if (in_array($emulator, ['cmangos', 'mangos'], true))
+		{
+			return $this->realm->char_connect($realm)->select('arena_team.name, arena_team.arenateamid, arena_team_stats.rating, arena_team_stats.wins_season AS seasonwins')->from('arena_team')->join('arena_team_stats', 'arena_team.arenateamid = arena_team_stats.arenateamid')->where('arena_team.type', $type)->order_by('arena_team_stats.rating', 'DESC')->limit('10')->get()->result();
+		}
 
-	/**
-	 * Get the top teams in arena 5v5 of a realm
-	 *
-	 * @param int $realm
-	 * @return array
-	 */
-	public function get_teams_5v5($realm)
-	{
-		return $this->realm->char_connect($realm)->select('rating, seasonWins, arenaTeamId, name')->where('type', '5')->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
+		return $this->realm->char_connect($realm)->select('name, rating, seasonWins AS seasonwins, arenaTeamId AS arenateamid')->where('type', $type)->order_by('rating', 'DESC')->limit('10')->get('arena_team')->result();
 	}
 
 	/**
@@ -55,7 +41,14 @@ class Pvp_model extends CI_Model
 	 */
 	public function get_team_members($realm, $team)
 	{
-		return $this->realm->char_connect($realm)->where('arenaTeamId', $team)->get('arena_team_member')->result();
+		$emulator = config_item('emulator');
+
+		if (in_array($emulator, ['cmangos', 'mangos'], true))
+		{
+			return $this->realm->char_connect($realm)->select('guid, played_week AS weekgames, wons_week AS weekwins, played_season AS seasongames, wons_season AS seasonwins, personal_rating AS personalrating')->where('arenateamid', $team)->get('arena_team_member')->result();
+		}
+
+		return $this->realm->char_connect($realm)->select('guid, weekGames AS weekgames, weekWins AS weekwins, seasonGames AS seasongames, seasonWins AS seasonwins, personalRating AS personalrating')->where('arenaTeamId', $team)->get('arena_team_member')->result();
 	}
 
 	/**

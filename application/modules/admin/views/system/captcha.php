@@ -14,7 +14,7 @@
         <div class="uk-card uk-card-default">
           <ul class="uk-subnav" uk-margin>
             <li><a href="<?= site_url('admin/system'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span>Index</a></li>
-            <li>
+            <li class="uk-active">
               <a href="#"><span class="uk-margin-small-right"><i class="fas fa-tools"></i></span><?= lang('settings'); ?><span uk-icon="icon: triangle-down"></span></a>
               <div uk-dropdown="mode: click;">
                 <ul class="uk-nav uk-dropdown-nav">
@@ -46,14 +46,20 @@
                 <div class="uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('public_key'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" name="captcha_public" value="<?= config_item('captcha_public'); ?>" placeholder="<?= lang('public_key'); ?>">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fas fa-user"></i></span>
+                      <input class="uk-input" type="text" name="captcha_public" value="<?= config_item('captcha_public'); ?>" placeholder="<?= lang('public_key'); ?>">
+                    </div>
                   </div>
                   <?= form_error('captcha_public', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('private_key'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" name="captcha_private" value="<?= config_item('captcha_private'); ?>" placeholder="<?= lang('private_key'); ?>">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fas fa-lock"></i></span>
+                      <input class="uk-input" type="text" name="captcha_private" value="<?= config_item('captcha_private'); ?>" placeholder="••••••••••••••••••••">
+                    </div>
                   </div>
                   <?= form_error('captcha_private', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>

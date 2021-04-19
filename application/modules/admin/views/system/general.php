@@ -14,7 +14,7 @@
         <div class="uk-card uk-card-default">
           <ul class="uk-subnav" uk-margin>
             <li><a href="<?= site_url('admin/system'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span>Index</a></li>
-            <li>
+            <li class="uk-active">
               <a href="#"><span class="uk-margin-small-right"><i class="fas fa-tools"></i></span><?= lang('settings'); ?><span uk-icon="icon: triangle-down"></span></a>
               <div uk-dropdown="mode: click;">
                 <ul class="uk-nav uk-dropdown-nav">
@@ -106,14 +106,20 @@
                 <div class="uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('discord_server'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" name="discord" value="<?= config_item('discord_server_id'); ?>">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fab fa-discord"></i></span>
+                      <input class="uk-input" type="text" name="discord" value="<?= config_item('discord_server_id'); ?>">
+                    </div>
                   </div>
                   <?= form_error('discord', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('facebook_url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="url" name="facebook" value="<?= config_item('facebook_url'); ?>">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fab fa-facebook-f"></i></span>
+                      <input class="uk-input" type="url" name="facebook" value="<?= config_item('facebook_url'); ?>">
+                    </div>
                   </div>
                   <?= form_error('facebook', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
@@ -124,14 +130,20 @@
                 <div class="uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('twitter_url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="url" name="twitter" value="<?= config_item('twitter_url'); ?>">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fab fa-twitter"></i></span>
+                      <input class="uk-input" type="url" name="twitter" value="<?= config_item('twitter_url'); ?>">
+                    </div>
                   </div>
                   <?= form_error('twitter', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
                 <div class="uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('youtube_url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="url" name="youtube" value="<?= config_item('youtube_url'); ?>">
+                    <div class="uk-inline uk-width-1-1">
+                      <span class="uk-form-icon"><i class="fab fa-youtube"></i></span>
+                      <input class="uk-input" type="url" name="youtube" value="<?= config_item('youtube_url'); ?>">
+                    </div>
                   </div>
                   <?= form_error('youtube', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
