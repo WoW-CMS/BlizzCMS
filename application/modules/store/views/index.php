@@ -54,6 +54,7 @@
                         <a href="https://wowhead.com/item=<?= $this->store_model->getCommand($top->store_item); ?>"><?= $this->store_model->getName($top->store_item); ?></a>
                         <?php else: ?>
                         <a href="#"><?= $this->store_model->getName($top->store_item); ?></a>
+                        <?php endif; ?>
                       </span>
                       <!-- END TOOLTIPS WOWHEAD -->
                     </div>
