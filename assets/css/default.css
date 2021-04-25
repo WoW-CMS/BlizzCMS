@@ -41,7 +41,7 @@ a:hover {
 
 hr,
 .uk-hr {
-  border-top-color: rgba(255, 255, 255, .2);
+  border-top-color: rgba(255, 255, 255, .1);
 }
 
 h1,
@@ -885,37 +885,6 @@ h6,
 }
 
 /*
- * Donate
- */
-.uk-card-donate {
-  background: linear-gradient(to right bottom, #00aeff, #1959b0);
-  border-radius: 2px;
-  color: #fff;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, .15);
-}
-
-.uk-card-donate .fab {
-  color: #fff;
-  font-size: 60px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 100px;
-  -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
-  box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
-}
-
-.uk-card-donate .uk-card-title {
-  color: #fff;
-}
-
-.uk-card-donate.uk-card-hover:hover {
-  background-color: transparent;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, .15);
-}
-
-/*
  * Vote
  */
 .uk-card-vote {
@@ -939,28 +908,6 @@ h6,
 /*
  * Forum
  */
-.uk-card-forum {
-  background: rgba(9, 85, 135, .1);
-  border: 1px solid rgba(255, 255, 255, .05);
-  color: rgba(255, 255, 255, .7);
-}
-
-.uk-card-forum .uk-card-title {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.uk-card-forum .uk-card-header {
-  padding: 8px 16px;
-  background: rgba(19, 76, 114, .1);
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
-}
-
-.uk-card-forum .uk-card-body {
-  padding: 16px;
-}
-
 .uk-list-divider > li:nth-child(n+2) {
   border-top-color: rgba(255, 255, 255, .15);
 }
@@ -1004,6 +951,24 @@ h6,
   text-transform: uppercase;
 }
 
+.forum-table .uk-table th {
+  background: rgba(19, 76, 114, .1);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 6px;
+  text-transform: uppercase;
+}
+
+.forum-table .uk-table th:first-child {
+  border-left: 1px solid rgba(255, 255, 255, .1);
+}
+
+.forum-table .uk-table th:last-child {
+  border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
 .forum-table .uk-table tbody tr {
   background: rgba(9, 85, 135, .1);
   border: 1px solid rgba(255, 255, 255, .1);
@@ -1020,6 +985,10 @@ h6,
 .forum-table .uk-table-hover tbody tr:hover,
 .forum-table .uk-table-hover > tr:hover {
   background: rgba(9, 85, 135, .2);
+}
+
+.uk-table td svg {
+  max-width: none;
 }
 
 tbody tr:first-child {
@@ -1043,7 +1012,7 @@ tbody tr:last-child {
   border-top-color: rgba(255, 255, 255, .2);
 }
 
-.Author {
+.author {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -1051,7 +1020,6 @@ tbody tr:last-child {
 }
 
 .topic-author-avatar {
-  background-image: url('../../../includes/images/profiles/default.png');
   background-size: cover;
   border: 3px solid rgba(255, 255, 255, .2);
   height: 70px;

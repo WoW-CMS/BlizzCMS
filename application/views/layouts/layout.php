@@ -34,9 +34,6 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('user_panel'); ?></a></li>
-                    <?php if ($this->auth->is_moderator()): ?>
-                    <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('mod_panel'); ?></a></li>
-                    <?php endif; ?>
                     <?php if ($this->auth->is_admin()): ?>
                     <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('admin_panel'); ?></a></li>
                     <?php endif; ?>

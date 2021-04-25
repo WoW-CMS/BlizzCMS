@@ -15,29 +15,6 @@
 | **Apache Modules** | mod_rewrite |
 | **PHP Extensions** | curl - gd - gmp - mbstring - mysqli - openssl - soap - zip |
 
-## In linux (Apache Modules)
-
-```sh
-a2enmod headers
-a2enmod rewrite
-a2enmod expires
-```
-
-### Edit Sites Available
-/etc/apache2/sites-available/000-default.conf
-
-```
-<Directory "/var/www/html">
-	AllowOverride All
-</Directory>
-```
-
-### Restarting the service
-
-```sh
-/etc/init.d/apache2 restart or service apache2 restart
-```
-
 ## Copyright
 
-Copyright © 2021 [WoW-CMS](https://wow-cms.com).
+Copyright © 2017-2021 [WoW-CMS](https://wow-cms.com).

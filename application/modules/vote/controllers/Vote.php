@@ -24,6 +24,8 @@ class Vote extends MX_Controller
 
 		$this->load->model('vote_model');
 		$this->load->language('vote');
+
+		$this->template->set_partial('alerts', 'static/alerts');
 	}
 
 	public function index()

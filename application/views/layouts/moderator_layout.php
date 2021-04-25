@@ -17,7 +17,7 @@
       <div class="uk-container">
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="<?= site_url('mod'); ?>">BlizzCMS</a>
+            <a class="uk-navbar-item uk-logo" href="<?= site_url('forum/mod'); ?>">BlizzCMS</a>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
@@ -43,23 +43,23 @@
               <div id="mod-mobile" data-uk-offcanvas="overlay: true">
                 <div class="uk-offcanvas-bar">
                   <div class="sidebar-head uk-text-center">
-                    <a class="uk-logo" href="<?= site_url('mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
+                    <a class="uk-logo" href="<?= site_url('forum/mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
                   </div>
                   <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                    <li><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
+                    <li><a href="<?= site_url('forum/mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
                     <li class="uk-parent">
                       <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span>Forum</a>
                       <ul class="uk-nav-sub">
-                        <li><a href="<?= site_url('mod/queue'); ?>">Moderation Queue</a></li>
-                        <li><a href="<?= site_url('mod/reports'); ?>">Reports</a></li>
-                        <li><a href="<?= site_url('mod/logs'); ?>">Moderator Logs</a></li>
+                        <li><a href="<?= site_url('forum/mod/queue'); ?>">Moderation Queue</a></li>
+                        <li><a href="<?= site_url('forum/mod/reports'); ?>">Reports</a></li>
+                        <li><a href="<?= site_url('forum/mod/logs'); ?>">Moderator Logs</a></li>
                       </ul>
                     </li>
                     <li class="uk-parent">
                       <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?></a>
                       <ul class="uk-nav-sub">
-                        <li><a href="<?= site_url('mod/bannings'); ?>">Bannings</a></li>
-                        <li><a href="<?= site_url('mod/warnings'); ?>">Warnings</a></li>
+                        <li><a href="<?= site_url('forum/mod/bannings'); ?>">Bannings</a></li>
+                        <li><a href="<?= site_url('forum/mod/warnings'); ?>">Warnings</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -75,14 +75,14 @@
         <div class="uk-navbar" data-uk-navbar>
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <li class="uk-active"><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
+              <li class="uk-active"><a href="<?= site_url('forum/mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
               <li>
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span>Forum<span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('mod/queue'); ?>">Moderation Queue</a></li>
-                    <li><a href="<?= site_url('mod/reports'); ?>">Reports</a></li>
-                    <li><a href="<?= site_url('mod/logs'); ?>">Guardian Logs</a></li>
+                    <li><a href="<?= site_url('forum/mod/queue'); ?>">Moderation Queue</a></li>
+                    <li><a href="<?= site_url('forum/mod/reports'); ?>">Reports</a></li>
+                    <li><a href="<?= site_url('forum/mod/logs'); ?>">Guardian Logs</a></li>
                   </ul>
                 </div>
               </li>
@@ -90,8 +90,8 @@
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('mod/bannings'); ?>">Bannings</a></li>
-                    <li><a href="<?= site_url('mod/warnings'); ?>">Warnings</a></li>
+                    <li><a href="<?= site_url('forum/mod/bannings'); ?>">Bannings</a></li>
+                    <li><a href="<?= site_url('forum/mod/warnings'); ?>">Warnings</a></li>
                   </ul>
                 </div>
               </li>

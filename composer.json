@@ -1,6 +1,6 @@
 {
-	"description": "The CodeIgniter framework",
 	"name": "codeigniter/framework",
+	"description": "The CodeIgniter framework",
 	"type": "project",
 	"homepage": "https://codeigniter.com",
 	"license": "MIT",
@@ -14,12 +14,5 @@
 		"php": ">=7.3",
 		"visualappeal/php-auto-update": "^0.15.0",
 		"laizerox/php-wowemu-auth": "^1.0"
-	},
-	"suggest": {
-		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
-	},
-	"require-dev": {
-		"mikey179/vfsstream": "1.6.*",
-		"phpunit/phpunit": "9.*"
 	}
 }

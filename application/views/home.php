@@ -100,7 +100,7 @@
               <i class="fas fa-gamepad"></i> <?= config_item('realmlist'); ?>
             </h5>
             <?php endif; ?>
-            <div class="uk-margin">
+            <div class="uk-flex uk-flex-center uk-margin">
               <a target="_blank" href="<?= config_item('facebook_url'); ?>" class="uk-icon-button"><i class="fab fa-facebook-f"></i></a>
               <a target="_blank" href="<?= config_item('twitter_url'); ?>" class="uk-icon-button uk-margin-small-left"><i class="fab fa-twitter"></i></a>
               <a target="_blank" href="<?= config_item('youtube_url'); ?>" class="uk-icon-button uk-margin-small-left"><i class="fab fa-youtube"></i></a>

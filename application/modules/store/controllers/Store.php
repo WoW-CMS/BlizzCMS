@@ -132,9 +132,9 @@ class Store extends MX_Controller
 		$this->template->build('cart', $data);
 	}
  
-	public function remove_item($id)
+	public function remove_item($id = null)
 	{
-		if ($this->input->method() != 'get')
+		if (empty($id) || $this->input->method() != 'get')
 		{
 			show_404();
 		}
@@ -180,7 +180,7 @@ class Store extends MX_Controller
 
 	public function checkout()
 	{
-		if ($this->input->method() != 'post')
+		if ($this->input->method() != 'get')
 		{
 			show_404();
 		}
