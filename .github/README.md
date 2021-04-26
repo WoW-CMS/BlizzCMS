@@ -1,4 +1,5 @@
 # _BlizzCMS_
+
 **_BlizzCMS_** is a open-source CMS for **World of Warcraft** currently supporting most of the current emulators.
 
 [![Version](https://img.shields.io/badge/Version-1.1.0-green.svg?style=for-the-badge)](https://github.com/WoW-CMS/BlizzCMS/releases)
@@ -22,4 +23,4 @@
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE)
+This project is licensed under the [MIT License](../LICENSE).
