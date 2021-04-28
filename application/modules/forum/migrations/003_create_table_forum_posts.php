@@ -36,6 +36,12 @@ class Migration_Create_table_forum_posts extends CI_Migration
 				'constraint' => '10',
 				'unsigned' => TRUE,
 				'default' => 0
+			),
+			'updated_at' => array(
+				'type' => 'INT',
+				'constraint' => '10',
+				'unsigned' => TRUE,
+				'default' => 0
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);

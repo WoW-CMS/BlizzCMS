@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('forum'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= html_escape($forum->name); ?></h4>
           </div>
           <div class="uk-width-auto">
             <?php if ($this->website->isLogged()): ?>
@@ -15,45 +15,93 @@
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <?= $template['partials']['alerts']; ?>
-        <div class="uk-margin-remove-top uk-margin-small-bottom">
-          <div class="uk-grid uk-grid-small" data-uk-grid>
-            <div class="uk-width-expand">
-              <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-list"></i> <?= html_escape($forum->name); ?></h4>
+        <div class="uk-grid uk-grid-medium" data-uk-grid>
+          <div class="uk-width-3-4@m">
+            <?php if (isset($subforums) && ! empty($subforums)): ?>
+            <div class="uk-overflow-auto uk-margin-medium forum-table">
+              <table class="uk-table uk-table-hover uk-table-middle">
+                <caption><i class="fas fa-th-list"></i> <?= lang('subforums') ?></caption>
+                <tbody>
+                  <?php foreach ($subforums as $subforum): ?>
+                  <tr>
+                    <td class="uk-table-shrink">
+                      <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$subforum->icon; ?>')"></i>
+                    </td>
+                    <td class="uk-table-expand uk-text-break">
+                      <a href="<?= site_url('forum/view/'.$subforum->id); ?>" class="uk-link-reset">
+                        <h4 class="uk-h4 uk-margin-remove"><?= html_escape($subforum->name); ?></h4>
+                      </a>
+                      <p class="uk-text-meta uk-margin-remove"><?= html_escape($subforum->description); ?></p>
+                    </td>
+                    <td class="uk-width-small uk-text-center">
+                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->count_topics($subforum->id); ?></span>
+                      <span class="uk-text-small"><?= lang('topics'); ?></span>
+                    </td>
+                    <td class="uk-width-medium">
+                      <?php foreach ($this->forum_model->last_topic($subforum->id) as $last): ?>
+                      <a href="<?= site_url('forum/topic/'.$last->id) ?>" class="uk-display-block"><?= character_limiter(html_escape($last->title), 30); ?></a>
+                      <span class="uk-text-meta uk-display-block"><?= lang('created_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($last->user_id, 'nickname'); ?></span>
+                      <?php endforeach; ?>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
             </div>
-            <div class="uk-width-auto"></div>
+            <?php endif; ?>
+            <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-margin-small"><?= lang('topic_list'); ?></h6>
+            <div class="uk-overflow-auto uk-margin-small forum-table">
+              <table class="uk-table uk-table-hover uk-table-middle">
+                <thead>
+                  <tr>
+                    <th class="uk-table-shrink"></th>
+                    <th class="uk-table-expand"><?= lang('title'); ?></th>
+                    <th class="uk-width-small uk-text-center"><?= lang('posts'); ?></th>
+                    <th class="uk-width-medium"><?= lang('last_post_by'); ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($topics as $topic): ?>
+                  <tr>
+                    <td>
+                      <?php if ($topic->stick): ?>
+                      <i class="fas fa-thumbtack fa-lg"></i>
+                      <?php elseif ($topic->lock): ?>
+                      <i class="fas fa-lock fa-lg"></i>
+                      <?php else: ?>
+                      <i class="fas fa-comment fa-lg"></i>
+                      <?php endif; ?>
+                    </td>
+                    <td class="uk-text-break">
+                      <a href="<?= site_url('forum/topic/'.$topic->id); ?>" class="uk-link-reset">
+                        <h5 class="uk-h5 uk-margin-remove"><?= html_escape($topic->title); ?></h5>
+                      </a>
+                      <p class="uk-text-meta uk-margin-remove"><?= lang('created_by'); ?> <span class="uk-text-primary"><?= $this->website->get_user($topic->user_id, 'nickname'); ?></span> on <?= date('d-m-y h:i', $topic->created_at); ?></p>
+                    </td>
+                    <td class="uk-text-center">
+                      <i class="far fa-comment"></i> <?= $this->forum_model->count_posts($topic->id); ?>
+                    </td>
+                    <td class="uk-text-meta">
+                      <?php foreach ($this->forum_model->last_post($topic->id) as $post): ?>
+                      <span class="uk-text-primary"><?= $this->website->get_user($post->user_id, 'nickname'); ?></span> <?= date('d-m-y h:i', $post->created_at); ?>
+                      <?php endforeach; ?>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-        <p class="uk-text-uppercase uk-text-bold uk-margin-small"><?= lang('topic_list'); ?></p>
-        <div class="uk-overflow-auto uk-margin-small">
-          <table class="uk-table dark-table uk-table-divider uk-table-hover uk-table-middle">
-            <tbody>
-              <?php foreach($topics as $topic): ?>
-              <tr>
-                <td class="uk-table-shrink uk-table-link">
-                  <a href="<?= site_url('forum/topic/'.$topic->id); ?>">
-                    <span uk-icon="icon: comments"></span>
-                  </a>
-                </td>
-                <td class="uk-table-expand uk-table-link uk-text-break">
-                  <a href="<?= site_url('forum/topic/'.$topic->id); ?>" class="uk-link-reset">
-                    <?= html_escape($topic->title); ?>
-                  </a>
-                </td>
-                <td class="uk-width-small uk-text-center">
-                  <span uk-icon="icon: commenting; ratio: 0.9"></span>&nbsp;<?= $this->forum_model->count_posts($topic->id); ?>
-                </td>
-                <td class="uk-width-small uk-text-center">
-                  <?php if ($this->auth->get_gmlevel($topic->user_id) > 0): ?>
-                  <span class="topic-forum-staff"><?= $this->website->get_user($topic->user_id, 'nickname'); ?></span>
-                  <?php else: ?>
-                  <span class="topic-forum-member"><?= $this->website->get_user($topic->user_id, 'nickname'); ?></span>
-                  <?php endif; ?>
-                </td>
-                <td class="uk-width-small uk-text-center uk-text-meta"><?= date('d-m-Y', $topic->created_at); ?></td>
-              </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+          <div class="uk-width-1-4@m uk-visible@m">
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-book-open"></i> <?= lang('latest_activity'); ?></h5>
+              </div>
+              <div class="uk-card-body">
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

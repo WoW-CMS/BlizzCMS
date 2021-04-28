@@ -8,25 +8,27 @@ class Forum_model extends CI_Model
 	protected $forum_posts = 'forum_posts';
 
 	/**
-	 * Get all categories
+	 * Get all forums
 	 *
-	 * @param int $parent
+	 * @param int|null $parent
+	 * @param string|null $type
 	 * @return array
 	 */
-	public function get_all_categories($parent = 0)
+	public function get_all_forums($parent = 0, $type = null)
 	{
-		return $this->db->where(['type' => 'category', 'parent' => $parent])->get($this->forum)->result();
-	}
+		$query = $this->db;
 
-	/**
-	 * Get all forums of a category
-	 *
-	 * @param int $parent
-	 * @return array
-	 */
-	public function get_all_forums($parent = 0)
-	{
-		return $this->db->where(['type' => 'forum', 'parent' => $parent])->get($this->forum)->result();
+		if (! is_null($parent))
+		{
+			$query = $query->where('parent', $parent);
+		}
+
+		if (in_array($type, ['category', 'forum'], true))
+		{
+			$query = $query->where('type', $type);
+		}
+
+		return $query->get($this->forum)->result();
 	}
 
 	/**
@@ -44,13 +46,19 @@ class Forum_model extends CI_Model
 	 * Find if the forum exists
 	 *
 	 * @param int $id
+	 * @param string|null $type
 	 * @return boolean
 	 */
-	public function find_forum($id)
+	public function find_forum($id, $type = null)
 	{
-		$query = $this->db->where('id', $id)->get($this->forum)->num_rows();
+		$query = $this->db->where('id', $id);
 
-		return ($query == 1);
+		if (! is_null($type))
+		{
+			$query = $query->where('type', $type);
+		}
+
+		return ($query->get($this->forum)->num_rows() == 1);
 	}
 
 	/**
@@ -63,7 +71,7 @@ class Forum_model extends CI_Model
 	 */
 	public function get_all_topics($id, $limit, $start)
 	{
-		return $this->db->where('forum_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->forum_topics)->result();
+		return $this->db->where('forum_id', $id)->order_by('stick', 'DESC')->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->forum_topics)->result();
 	}
 
 	/**
@@ -74,12 +82,12 @@ class Forum_model extends CI_Model
 	 */
 	public function count_topics($id = null)
 	{
-		if (is_null($id))
+		if (! is_null($id))
 		{
-			return $this->db->count_all($this->forum_topics);
+			return $this->db->where('forum_id', $id)->count_all_results($this->forum_topics);
 		}
 
-		return $this->db->where('forum_id', $id)->count_all_results($this->forum_topics);
+		return $this->db->count_all($this->forum_topics);
 	}
 
 	/**
@@ -109,7 +117,7 @@ class Forum_model extends CI_Model
 	/**
 	 * Get the latest topics
 	 *
-	 * @param $limit
+	 * @param int $limit
 	 * @return array
 	 */
 	public function latest_topics($limit = 5)
@@ -149,12 +157,12 @@ class Forum_model extends CI_Model
 	 */
 	public function count_posts($id = null)
 	{
-		if (is_null($id))
+		if (! is_null($id))
 		{
-			return $this->db->count_all($this->forum_posts);
+			return $this->db->where('topic_id', $id)->count_all_results($this->forum_posts);
 		}
 
-		return $this->db->where('topic_id', $id)->count_all_results($this->forum_posts);
+		return $this->db->count_all($this->forum_posts);
 	}
 
 	/**
@@ -166,6 +174,17 @@ class Forum_model extends CI_Model
 	public function get_post($id)
 	{
 		return $this->db->where('id', $id)->get($this->forum_posts)->row();
+	}
+
+	/**
+	 * Get last post of a topic
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	public function last_post($id)
+	{
+		return $this->db->where('topic_id', $id)->limit(1)->order_by('created_at', 'DESC')->get($this->forum_posts)->result();
 	}
 
 	public function count_users()

@@ -2,10 +2,11 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('forum'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= $forum->name; ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
-              <li><span><?= lang('forum'); ?></span></li>
+              <li><a href="<?= site_url('forum/admin'); ?>"><?= lang('forum'); ?></a></li>
+              <li><span><?= $forum->name; ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">

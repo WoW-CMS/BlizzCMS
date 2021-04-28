@@ -24,7 +24,7 @@ class Migration_Create_table_forum extends CI_Migration
 			'icon' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
-				'null' => FALSE
+				'null' => TRUE
 			),
 			'type' => array(
 				'type' => 'ENUM("category","forum")',

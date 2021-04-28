@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('forum'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
-              <li><span><?= lang('forum'); ?></span></li>
+              <li><a href="<?= site_url('forum/admin'); ?>"><?= lang('forum'); ?></a></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -63,9 +63,16 @@
                     <select class="uk-select" name="parent">
                       <option value="" hidden selected><?= lang('select_parent'); ?></option>
                       <option value="0" <?= set_select('parent', '0'); ?>><?= lang('whithout_parent'); ?></option>
-                      <?php foreach ($parents as $item): ?>
-                      <option value="<?= $item->id; ?>" <?= set_select('parent', $item->id); ?>><?= $item->name; ?></option>
-                      <?php endforeach; ?>
+                      <optgroup label="<?= lang('category') ?>">
+                        <?php foreach ($categories as $item): ?>
+                        <option value="<?= $item->id; ?>" <?= set_select('parent', $item->id); ?>><?= $item->name; ?></option>
+                        <?php endforeach; ?>
+                      </optgroup>
+                      <optgroup label="<?= lang('forum') ?>">
+                        <?php foreach ($forums as $item): ?>
+                        <option value="<?= $item->id; ?>" <?= set_select('parent', $item->id); ?>><?= $item->name; ?></option>
+                        <?php endforeach; ?>
+                      </optgroup>
                     </select>
                   </div>
                   <?= form_error('parent', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>

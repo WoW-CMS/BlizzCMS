@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('forum'); ?></h4>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= site_url('forum/view/'.$id); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
+            <a href="<?= site_url('forum/topic/'.$topic->id); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i> <?= lang('back'); ?></a>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small">
               <div class="uk-width-expand">
-                <h4 class="uk-h4 uk-text-bold"><i class="fas fa-pen-square"></i> <?= lang('new_topic'); ?></h4>
+                <h4 class="uk-h4 uk-text-bold"><i class="fas fa-pen-square"></i> <?= lang('edit_topic'); ?></h4>
               </div>
               <div class="uk-width-auto"></div>
             </div>
@@ -27,14 +27,14 @@
             <div class="uk-margin uk-light">
               <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input" type="text" name="title" value="<?= set_value('title'); ?>" placeholder="<?= lang('title'); ?>">
+                <input class="uk-input" type="text" name="title" value="<?= $topic->title; ?>" placeholder="<?= lang('title'); ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
             <div class="uk-margin uk-light">
               <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea tinyeditor" name="description" rows="10"><?= set_value('description'); ?></textarea>
+                <textarea class="uk-textarea tinyeditor" name="description" rows="10"><?= $topic->description; ?></textarea>
               </div>
               <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>

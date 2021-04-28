@@ -26,7 +26,7 @@ class Forum extends MX_Controller
 	public function index()
 	{
 		$data = [
-			'categories' => $this->forum_model->get_all_categories()
+			'categories' => $this->forum_model->get_all_forums(0, 'category')
 		];
 
 		$this->template->title(config_item('app_name'), lang('forum'));
@@ -36,7 +36,7 @@ class Forum extends MX_Controller
 
 	public function forum($id = null)
 	{
-		if (empty($id) || ! $this->forum_model->find_forum($id))
+		if (empty($id) || ! $this->forum_model->find_forum($id, 'forum'))
 		{
 			show_404();
 		}
@@ -57,9 +57,10 @@ class Forum extends MX_Controller
 		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
 		$data = [
-			'forum'  => $this->forum_model->get_forum($id),
-			'topics' => $this->forum_model->get_all_topics($id, $config['per_page'], $offset),
-			'links'  => $this->pagination->create_links()
+			'forum'     => $this->forum_model->get_forum($id),
+			'subforums' => $this->forum_model->get_all_forums($id, 'forum'),
+			'topics'    => $this->forum_model->get_all_topics($id, $config['per_page'], $offset),
+			'links'     => $this->pagination->create_links()
 		];
 
 		$this->template->title(config_item('app_name'), lang('forum'));
@@ -107,6 +108,15 @@ class Forum extends MX_Controller
 			show_404();
 		}
 
+		if (! $this->website->isLogged())
+		{
+			redirect(site_url('login'));
+		}
+
+		$data = [
+			'id' => $forum
+		];
+
 		$this->template->title(config_item('app_name'), lang('forum'));
 
 		if ($this->input->method() == 'post')
@@ -116,7 +126,7 @@ class Forum extends MX_Controller
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->template->build('create_topic');
+				$this->template->build('create_topic', $data);
 			}
 			else
 			{
@@ -134,7 +144,7 @@ class Forum extends MX_Controller
 		}
 		else
 		{
-			$this->template->build('create_topic');
+			$this->template->build('create_topic', $data);
 		}
 	}
 
@@ -162,10 +172,12 @@ class Forum extends MX_Controller
 		}
 		else
 		{
-			$id = $this->input->post('id', TRUE);
+			$id    = $this->input->post('id', TRUE);
+			$topic = $this->forum_model->get_topic($id);
 
 			$this->db->insert('forum_posts', [
 				'topic_id'   => $id,
+				'forum_id'   => $topic->forum_id,
 				'user_id'    => $this->session->userdata('id'),
 				'commentary' => $this->input->post('comment'),
 				'created_at' => now()
@@ -173,6 +185,50 @@ class Forum extends MX_Controller
 
 			$this->session->set_flashdata('success', lang('post_sended'));
 			redirect(site_url('forum/topic/' . $id));
+		}
+	}
+
+	public function edit_topic($id = null)
+	{
+		if (empty($id) || ! $this->forum_model->find_topic($id))
+		{
+			show_404();
+		}
+
+		if (! $this->website->isLogged())
+		{
+			redirect(site_url('login'));
+		}
+
+		$data = [
+			'topic' => $this->forum_model->get_topic($id)
+		];
+
+		$this->template->title(config_item('app_name'), lang('forum'));
+
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('title', 'Title', 'trim|required');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template->build('edit_topic', $data);
+			}
+			else
+			{
+				$this->db->where('id', $id)->update('forum_topics', [
+					'title'       => $this->input->post('title', TRUE),
+					'description' => $this->input->post('description')
+				]);
+
+				$this->session->set_flashdata('success', lang('topic_updated'));
+				redirect(site_url('forum/topic/'.$id));
+			}
+		}
+		else
+		{
+			$this->template->build('edit_topic', $data);
 		}
 	}
 
@@ -192,7 +248,7 @@ class Forum extends MX_Controller
 
 		if ($this->auth->is_moderator() || $this->session->userdata('id') == $post->user_id && now() < strtotime('+30 minutes', $post->created_at))
 		{
-			$this->db->where('id', $id)->delete('news_comments');
+			$this->db->where('id', $id)->delete('forum_posts');
 
 			$this->session->set_flashdata('success', lang('post_deleted'));
 			redirect(site_url('forum/topic/' . $post->topic_id));
