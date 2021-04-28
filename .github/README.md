@@ -11,6 +11,7 @@
 | **PHP Version** | **7.3 or 7.4** |
 | **Apache Modules** | mod_rewrite |
 | **PHP Extensions** | curl - gd - gmp - mbstring - mysqli - openssl - soap - zip |
+| **Database Server** | MySQL version 5.6+ or MariaDB version 10.1+ |
 
 ## Authors & Contributors
 
@@ -19,7 +20,7 @@
 ## Important Links
 
 * [Website](https://wow-cms.com)
-* [Our Discord](https://discord.gg/vZG9vpS)
+* [Our Discord](https://discord.wow-cms.com)
 
 ## License
 
