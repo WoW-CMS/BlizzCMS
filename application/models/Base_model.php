@@ -118,6 +118,19 @@ class Base_model extends CI_Model
 	}
 
 	/**
+	 * Find if the comment exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_comment($id)
+	{
+		$query = $this->db->where('id', $id)->get($this->news_comments)->num_rows();
+
+		return ($query == 1);
+	}
+
+	/**
 	 * Get news list
 	 *
 	 * @param int $limit

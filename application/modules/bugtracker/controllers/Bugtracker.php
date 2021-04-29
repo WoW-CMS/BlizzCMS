@@ -240,7 +240,7 @@ class Bugtracker extends MX_Controller
 
 	public function delete_comment($id = null)
 	{
-		if (empty($id) || $this->input->method() != 'get')
+		if (empty($id) || $this->bugtracker_model->find_comment($id))
 		{
 			show_404();
 		}
@@ -257,12 +257,10 @@ class Bugtracker extends MX_Controller
 			$this->db->where('id', $id)->delete('bugtracker_comments');
 
 			$this->session->set_flashdata('success', lang('comment_deleted'));
-			redirect(site_url('bugtracker/report/' . $comment->news_id));
+			redirect(site_url('bugtracker/report/' . $comment->report_id));
 		}
-		else
-		{
-			$this->session->set_flashdata('error', lang('permission_denied'));
-			redirect(site_url('bugtracker/report/' . $comment->news_id));
-		}
+
+		$this->session->set_flashdata('error', lang('permission_denied'));
+		redirect(site_url('bugtracker/report/' . $comment->report_id));
 	}
 }

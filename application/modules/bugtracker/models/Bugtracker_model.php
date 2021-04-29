@@ -117,6 +117,19 @@ class Bugtracker_model extends CI_Model
 	}
 
 	/**
+	 * Find if the comment exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_comment($id)
+	{
+		$query = $this->db->where('id', $id)->get($this->bugtracker_comments)->num_rows();
+
+		return ($query == 1);
+	}
+
+	/**
 	 * Get latest comments
 	 *
 	 * @param int $limit

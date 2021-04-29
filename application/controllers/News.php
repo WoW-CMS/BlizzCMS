@@ -93,7 +93,7 @@ class News extends CI_Controller
 
 	public function delete_comment($id = null)
 	{
-		if (empty($id) || $this->input->method() != 'get')
+		if (empty($id) || $this->base->find_comment($id))
 		{
 			show_404();
 		}
@@ -112,10 +112,8 @@ class News extends CI_Controller
 			$this->session->set_flashdata('success', lang('comment_deleted'));
 			redirect(site_url('news/' . $comment->news_id));
 		}
-		else
-		{
-			$this->session->set_flashdata('error', lang('permission_denied'));
-			redirect(site_url('news/' . $comment->news_id));
-		}
+
+		$this->session->set_flashdata('error', lang('permission_denied'));
+		redirect(site_url('news/' . $comment->news_id));
 	}
 }

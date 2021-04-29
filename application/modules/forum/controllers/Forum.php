@@ -200,8 +200,16 @@ class Forum extends MX_Controller
 			redirect(site_url('login'));
 		}
 
+		$topic = $this->forum_model->get_topic($id);
+
+		if (! $this->auth->is_moderator() && $this->session->userdata('id') != $topic->user_id)
+		{
+			$this->session->set_flashdata('error', lang('permission_denied'));
+			redirect(site_url('forum/topic/' . $topic->id));
+		}
+
 		$data = [
-			'topic' => $this->forum_model->get_topic($id)
+			'topic' => $topic
 		];
 
 		$this->template->title(config_item('app_name'), lang('forum'));
@@ -219,7 +227,8 @@ class Forum extends MX_Controller
 			{
 				$this->db->where('id', $id)->update('forum_topics', [
 					'title'       => $this->input->post('title', TRUE),
-					'description' => $this->input->post('description')
+					'description' => $this->input->post('description'),
+					'updated_at'  => now()
 				]);
 
 				$this->session->set_flashdata('success', lang('topic_updated'));
@@ -234,7 +243,7 @@ class Forum extends MX_Controller
 
 	public function delete_post($id = null)
 	{
-		if (empty($id) || $this->input->method() != 'get')
+		if (empty($id) || $this->forum_model->find_post($id))
 		{
 			show_404();
 		}
@@ -253,10 +262,8 @@ class Forum extends MX_Controller
 			$this->session->set_flashdata('success', lang('post_deleted'));
 			redirect(site_url('forum/topic/' . $post->topic_id));
 		}
-		else
-		{
-			$this->session->set_flashdata('error', lang('permission_denied'));
-			redirect(site_url('forum/topic/' . $post->topic_id));
-		}
+
+		$this->session->set_flashdata('error', lang('permission_denied'));
+		redirect(site_url('forum/topic/' . $post->topic_id));
 	}
 }

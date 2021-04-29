@@ -177,6 +177,19 @@ class Forum_model extends CI_Model
 	}
 
 	/**
+	 * Find if the post exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_post($id)
+	{
+		$query = $this->db->where('id', $id)->get($this->forum_posts)->num_rows();
+
+		return ($query == 1);
+	}
+
+	/**
 	 * Get last post of a topic
 	 *
 	 * @param int $id
