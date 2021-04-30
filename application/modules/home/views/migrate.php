@@ -89,7 +89,7 @@
                     <label class="uk-form-label">Emulator:</label>
                     <div class="uk-form-controls">
                       <select class="uk-select" name="website_emulator">
-                        <option value="srp6">Trinity Core SRP6</option>
+                        <option value="srp6">SRP6</option>
                         <option value="old-trinity">Battle.Net (Sha_pass_hash)</option>
                         <option value="hex">cMangos (Mangos)</option>
                         <option value="default">Default</option>
