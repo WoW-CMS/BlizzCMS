@@ -88,10 +88,7 @@ $autoload['libraries'] = $libraries;
 |	$autoload['drivers'] = array('cache' => 'cch');
 |
 */
-$drivers = array(
-	'cache'
-);
-$autoload['drivers'] = $drivers;
+$autoload['drivers'] = array('cache');
 
 /*
 | -------------------------------------------------------------------
@@ -123,11 +120,7 @@ $autoload['helper'] = $helper;
 | config files.  Otherwise, leave it blank.
 |
 */
-$config = array(
-	'blizzcms',
-	'seo'
-);
-$autoload['config'] = $config;
+$autoload['config'] = array('blizzcms', 'seo');
 
 /*
 | -------------------------------------------------------------------
