@@ -6,9 +6,17 @@
 
 | Requirements | Description |
 | :----------- | :---------- |
-| **PHP Version** | **7.1 or newer** is recommended |
+| **PHP Version** | **7.1 or newer** is recommended (Version 8.x is currently not supported.) |
 | **Apache Modules** | mod_headers - mod_rewrite - mod_expires |
-| **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap - gmp|
+| **PHP Extensions** | curl - gd2 - mbstring - mysqli - openssl - soap - gmp |
+
+## Useful Links
+
+* [Website](https://wow-cms.com)
+* [Bugtracker](https://dev.wow-cms.com)
+* [Docs](https://docs.wow-cms.com)
+* [Discord](https://discord.com/invite/fXkHj6GcZm)
+* [donations](https://ko-fi.com/wowcms)
 
 ## In linux (Apache Modules)
 
@@ -33,12 +41,6 @@ a2enmod expires
 /etc/init.d/apache2 restart or service apache2 restart
 ```
 
-## Useful Links
-
-* [Website](https://wow-cms.com)
-* [Bugtracker](https://dev.wow-cms.com)
-* [Docs](https://docs.wow-cms.com)
-
 ## Active Developers
 
 * @perioner - *Back/Front-End Developer*
@@ -49,4 +51,4 @@ a2enmod expires
 
 ## Copyright
 
-Copyright © 2020 [WoW-CMS](https://wow-cms.com).
+Copyright © 2021 [WoW-CMS](https://wow-cms.com).
