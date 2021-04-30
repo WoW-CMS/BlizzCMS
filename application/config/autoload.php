@@ -58,7 +58,16 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'template', 'Wowcms', 'cart');
+$libraries = array(
+	'database',
+	'session',
+	'form_validation',
+	'parser',
+	'template',
+	'Wowcms',
+	'cart'
+);
+$autoload['libraries'] = $libraries;
 
 /*
 | -------------------------------------------------------------------
@@ -79,7 +88,10 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'parser
 |	$autoload['drivers'] = array('cache' => 'cch');
 |
 */
-$autoload['drivers'] = array('cache');
+$drivers = array(
+	'cache'
+);
+$autoload['drivers'] = $drivers;
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +101,15 @@ $autoload['drivers'] = array('cache');
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language');
+$helper = array(
+	'url',
+	'file',
+	'text',
+	'form',
+	'html',
+	'language'
+);
+$autoload['helper'] = $helper;
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +123,11 @@ $autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('blizzcms', 'seo');
+$config = array(
+	'blizzcms',
+	'seo'
+);
+$autoload['config'] = $config;
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +141,12 @@ $autoload['config'] = array('blizzcms', 'seo');
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array('general', 'notification', 'admin');
+$language = array(
+	'general',
+	'notification',
+	'admin'
+);
+$autoload['language'] = $language;
 
 /*
 | -------------------------------------------------------------------
@@ -132,9 +161,10 @@ $autoload['language'] = array('general', 'notification', 'admin');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array(
+$model = array(
 	'auth_model'    => 'wowauth',
 	'general_model' => 'wowgeneral',
 	'realm_model'   => 'wowrealm',
 	'module_model'  => 'wowmodule'
 );
+$autoload['model'] = $model;
