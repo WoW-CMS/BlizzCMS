@@ -13,9 +13,8 @@
 ## Useful Links
 
 * [Website](https://wow-cms.com)
-* [Bugtracker](https://dev.wow-cms.com)
 * [Docs](https://docs.wow-cms.com)
-* [Discord](https://discord.com/invite/fXkHj6GcZm)
+* [Discord](https://discord.wow-cms.com)
 * [donations](https://ko-fi.com/wowcms)
 
 ## In linux (Apache Modules)
