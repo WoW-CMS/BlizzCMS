@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * THE SOFTWARE.
  *
  * @author  WoW-CMS
- * @copyright  Copyright (c) 2017 - 2019, WoW-CMS.
+ * @copyright  Copyright (c) 2017+, WoW-CMS.
  * @license https://opensource.org/licenses/MIT MIT License
  * @link    https://wow-cms.com
  * @since   Version 1.0.1
@@ -43,16 +43,22 @@ class User extends MX_Controller {
         $this->load->model('user_model');
 
         if (!ini_get('date.timezone'))
+        {
             date_default_timezone_set($this->config->item('timezone'));
+        }
     }
 
     public function login()
     {
         if (!$this->wowmodule->getLoginStatus())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if ($this->wowauth->isLogged())
+        {
             redirect(base_url(),'refresh');
+        }
 
         $data = array(
             'pagetitle' => $this->lang->line('tab_login'),
@@ -62,7 +68,6 @@ class User extends MX_Controller {
 
         if ($this->input->method() == 'post')
         {
-
             $rules = array(
                 array(
                     'field' => 'username',
@@ -90,10 +95,9 @@ class User extends MX_Controller {
             }
             else
             {
-                $response = $this->user_model->authentication(
-                    $this->input->post('username', TRUE),
-                    $this->input->post('password')
-                );
+                $username = $this->input->post('username', TRUE);
+                $password = $this->input->post('password');
+                $response = $this->user_model->authentication($username, $password);
 
                 if (!$response)
                 {
