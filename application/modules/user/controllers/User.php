@@ -43,7 +43,7 @@ class User extends MX_Controller {
         $this->load->model('user_model');
 
         if (!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
+            date_default_timezone_set($this->config->item('timezone'));
     }
 
     public function login()
@@ -57,43 +57,59 @@ class User extends MX_Controller {
         $data = array(
             'pagetitle' => $this->lang->line('tab_login'),
             'recapKey' => $this->config->item('recaptcha_sitekey'),
-            'lang' => $this->lang->lang(),
+            'lang' => $this->lang->lang()
         );
-            
+
         if ($this->input->method() == 'post')
         {
-			$this->form_validation->set_rules('username', 'Username/Email', 'trim|required');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-            
+            $rules = array(
+                array(
+                    'field' => 'username',
+                    'label' => 'Username/Email',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'password',
+                    'label' => 'Password',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                )
+            );
+
+            $this->form_validation->set_rules($rules);
+
             if ($this->form_validation->run() == FALSE)
-			{
-                redirect(base_url('register'), 'refresh');
-			}
+            {
+                $this->template->build('login', $data);
+            }
             else
             {
                 $response = $this->user_model->authentication(
-					$this->input->post('username', TRUE),
-					$this->input->post('password')
-				);
+                    $this->input->post('username', TRUE),
+                    $this->input->post('password')
+                );
 
-				if (! $response)
-				{
-					$this->session->set_flashdata('error', lang('login_error'));
+                if (!$response)
+                {
+                    $data['msg_error_login'] = lang('notification_user_error');
                     $this->template->build('login', $data);
-				}
-				else
-				{
-					redirect(site_url('panel'));
-				}
-
+                }
+                else
+                {
+                    redirect(site_url('panel'));
+                }
             }
-        } 
-        else 
+        }
+        else
         {
             $this->template->build('login', $data);
         }
-       
     }
 
     public function register()
