@@ -119,59 +119,93 @@ class User extends MX_Controller {
     public function register()
     {
         if (!$this->wowgeneral->getMaintenance())
-        redirect(base_url('maintenance'),'refresh');
+        {
+            redirect(base_url('maintenance'),'refresh');
+        }
 
         if (!$this->wowmodule->getRegisterStatus())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if ($this->wowauth->isLogged())
+        {
             redirect(base_url(), 'refresh');
-
+        }
 
         if ($this->input->method() == 'post')
         {
-			$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-			$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
+            $rules = array(
+                array(
+                    'field' => 'username',
+                    'label' => 'Username',
+                    'rules' => 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'email',
+                    'label' => 'Email',
+                    'rules' => 'trim|required|valid_email',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'password',
+                    'label' => 'Password',
+                    'rules' => 'trim|required|min_length[8]',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'confirm_password',
+                    'label' => 'Confirm password',
+                    'rules' => 'trim|required|min_length[8]|matches[password]',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                )
+            );
+
+            $this->form_validation->set_rules($rules);
 
             if ($this->form_validation->run() == FALSE)
-			{
-                redirect(base_url('register'), 'refresh');
-			}
+            {
+                $this->template->build('register', $data);
+            }
             else
             {
-				$username   = $this->input->post('username', TRUE);
-				$email      = $this->input->post('email', TRUE);
-				$password   = $this->input->post('password');
-
+                $username   = $this->input->post('username', TRUE);
+                $email      = $this->input->post('email', TRUE);
+                $password   = $this->input->post('password');
                 $emulator = $this->config->item('emulator');
-
 
                 if ( ! $this->wowauth->account_unique($username, 'username'))
                 {
-					redirect(site_url('register'));
+                    $data['msg_notification_account_already_exist'] = lang('notification_account_already_exist');
+                    $this->template->build('register', $data);
                 }
 
                 if ( ! $this->wowauth->account_unique($email, 'email'))
                 {
-					redirect(site_url('register'));
+                    $data['msg_notification_used_email'] = lang('notification_used_email');
+                    $this->template->build('register', $data);
                 }
-
-                
 
                 $register = $this->user_model->insertRegister($username, $email, $password, $emulator);
 
                 if ($register)
                 {
-                    $this->session->set_flashdata('success', lang('register_success'));
-					redirect(site_url('login'));
+                    redirect(site_url('login'));
                 }
                 else
                 {
-					redirect(site_url('register'));
+                    $data['msg_notification_account_not_created'] = lang('notification_account_not_created');
+                    $this->template->build('register', $data);
                 }
-                
             }
         }
         else
@@ -181,7 +215,7 @@ class User extends MX_Controller {
                 'recapKey' => $this->config->item('recaptcha_sitekey'),
                 'lang' => $this->lang->lang(),
             );
-    
+
             $this->template->build('register', $data);
         }
     }
@@ -194,13 +228,19 @@ class User extends MX_Controller {
     public function recovery()
     {
         if (!$this->wowgeneral->getMaintenance())
+        {
             redirect(base_url('maintenance'),'refresh');
+        }
 
         if (!$this->wowmodule->getRecoveryStatus())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if ($this->wowauth->isLogged())
+        {
             redirect(base_url(),'refresh');
+        }
 
         $data = array(
             'pagetitle' => $this->lang->line('tab_reset'),
@@ -226,13 +266,19 @@ class User extends MX_Controller {
     public function panel()
     {
         if (!$this->wowgeneral->getMaintenance())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if (!$this->wowmodule->getUCPStatus())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if (!$this->wowauth->isLogged())
+        {
             redirect(base_url(),'refresh');
+        }
 
         $data = array(
             'pagetitle' => $this->lang->line('tab_account'),
@@ -245,13 +291,19 @@ class User extends MX_Controller {
     public function settings()
     {
         if (!$this->wowgeneral->getMaintenance())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if (!$this->wowmodule->getUCPStatus())
+        {
             redirect(base_url(),'refresh');
+        }
 
         if (!$this->wowauth->isLogged())
+        {
             redirect(base_url(),'refresh');
+        }
 
         $data = array(
             'pagetitle' => $this->lang->line('tab_account'),
@@ -264,29 +316,52 @@ class User extends MX_Controller {
     public function newusername()
     {
         if (!$this->wowgeneral->getMaintenance())
+        {
             redirect(base_url('maintenance'),'refresh');
+        }
 
-        if ($this->input->method() == 'post') {
+        if ($this->input->method() == 'post')
+        {
+            $rules = array(
+                array(
+                    'field' => 'newusername',
+                    'label' => 'New username',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'confirmusername',
+                    'label' => 'Confirm Username',
+                    'rules' => 'trim|required|matches[newusername]',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                )
+            );
 
-			$this->form_validation->set_rules('newusername', 'New username', 'trim|required');
-            $this->form_validation->set_rules('confirmusername', 'Confirm Username', 'trim|required|matches[newusername]');
+            $this->form_validation->set_rules($rules);
 
             if ($this->form_validation->run() == FALSE)
-			{
+            {
                 redirect(base_url('settings'), 'refresh');
-			}
+            }
             else
             {
                 $username   = $this->wowauth->getSiteUsernameID($this->session->userdata('wow_sess_id'));
-				$newusername = $this->input->post('newusername', TRUE);
-				$password   = $this->input->post('password');
-
+                $newusername = $this->input->post('newusername', TRUE);
+                $password   = $this->input->post('password');
                 $change = $this->user_model->changeUsername($username, $newusername, $password);
 
                 if ($change)
-					redirect(site_url('logout'), 'refresh');
+                {
+                    redirect(site_url('logout'), 'refresh');
+                }
                 else
-					redirect(site_url('settings'), 'refresh');
+                {
+                    redirect(site_url('settings'), 'refresh');
+                }
             }
         }
         else
@@ -298,34 +373,66 @@ class User extends MX_Controller {
     public function newpass()
     {
         if (!$this->wowgeneral->getMaintenance())
-        redirect(base_url('maintenance'),'refresh');
+        {
+            redirect(base_url('maintenance'),'refresh');
+        }
 
-        
-        if ($this->input->method() == 'post') {
-            $this->form_validation->set_rules('change_oldpass', 'Old password', 'trim|required');
-            $this->form_validation->set_rules('change_password', 'New password', 'trim|required');
-            $this->form_validation->set_rules('change_renewchange_password', 'Confirm password', 'trim|required|matches[change_password]');
+        if ($this->input->method() == 'post')
+        {
+            $rules = array(
+                array(
+                    'field' => 'change_oldpass',
+                    'label' => 'Old password',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'change_password',
+                    'label' => 'New password',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'change_renewchange_password',
+                    'label' => 'Confirm password',
+                    'rules' => 'trim|required|matches[change_password]',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                )
+            );
 
+            $this->form_validation->set_rules($rules);
 
-            if ($this->form_validation->run() == false) {
+            if ($this->form_validation->run() == false)
+            {
                 redirect(base_url('settings'), 'refresh');
-            } else {
+            }
+            else
+            {
                 $oldpass = $this->input->post('change_oldpass');
                 $newpass = $this->input->post('change_password');
                 $renewpass   = $this->input->post('change_renewchange_password');
-    
+
                 if (! $this->wowauth->valid_password($this->session->userdata('wow_sess_username'), $oldpass))
                 {
                     redirect(site_url('settings'));
-			    }
-
+                }
 
                 $change = $this->user_model->changePassword($newpass);
-    
+
                 if ($change)
+                {
                     redirect(site_url('logout'), 'refresh');
+                }
                 else
+                {
                     redirect(site_url('settings'), 'refresh');
+                }
             }
         }
         else
@@ -337,13 +444,40 @@ class User extends MX_Controller {
     public function newemail()
     {
         if (!$this->wowgeneral->getMaintenance())
-        redirect(base_url('maintenance'),'refresh');
+        {
+            redirect(base_url('maintenance'),'refresh');
+        }
 
-        if ($this->input->method() == 'post') {
+        if ($this->input->method() == 'post')
+        {
+            $rules = array(
+                array(
+                    'field' => 'change_newemail',
+                    'label' => 'New email',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'change_renewemail',
+                    'label' => 'Confirm email',
+                    'rules' => 'trim|required|matches[change_newemail]',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                ),
+                array(
+                    'field' => 'change_password',
+                    'label' => 'Password',
+                    'rules' => 'trim|required',
+                    'errors' => array(
+                        'required' => 'You must provide a %s.'
+                    )
+                )
+            );
 
-            $this->form_validation->set_rules('change_newemail', 'New email', 'trim|required');
-            $this->form_validation->set_rules('change_renewemail', 'Confirm email', 'trim|required|matches[change_newemail]');
-            $this->form_validation->set_rules('change_password', 'Password',  'trim|required');
+            $this->form_validation->set_rules($rules);
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -354,13 +488,16 @@ class User extends MX_Controller {
                 $email = $this->wowauth->getEmailID($this->session->userdata('wow_sess_id'));
                 $newemail = $this->input->post('change_newemail', TRUE);
                 $password   = $this->input->post('change_password');
-
                 $change = $this->user_model->changeEmail($email, $newemail, $password);
 
                 if ($change)
+                {
                     redirect(site_url('logout'), 'refresh');
+                }
                 else
+                {
                     redirect(site_url('settings'), 'refresh');
+                }
             }
         }
         else
@@ -372,12 +509,15 @@ class User extends MX_Controller {
     public function newavatar()
     {
         $avatar = $this->input->post('change_avatar');
-
         $change = $this->user_model->changeAvatar($avatar);
 
         if ($change)
+        {
             redirect(site_url('panel'), 'refresh');
+        }
         else
+        {
             redirect(site_url('settings'), 'refresh');
+        }
     }
 }
