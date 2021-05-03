@@ -15,6 +15,12 @@
             <p><i class="far fa-times-circle"></i> <?= lang('notification_invalid_key'); ?></p>
           </div>
         <?php endif; ?>
+        <?php if (isset($msg_error_login)) : ?>
+          <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><i class="far fa-times-circle"></i> <?= $msg_error_login; ?></p>
+          </div>
+        <?php endif; ?>
         <?= form_open(current_url()); ?>
         <div class="uk-margin" uk-scrollspy="cls: uk-animation-fade; target: > div > .uk-inline; delay: 300; repeat: true">
           <div class="uk-form-controls uk-light">
