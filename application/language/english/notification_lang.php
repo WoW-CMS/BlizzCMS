@@ -43,6 +43,7 @@ $lang['notification_title_info'] = 'Information';
 
 /*Notification Message (Login/Register) Lang*/
 $lang['notification_username_empty'] = 'Username is empty';
+$lang['notification_account_not_created'] = 'The account could not be created. Check the data and try again.';
 $lang['notification_email_empty'] = 'Email is empty';
 $lang['notification_password_empty'] = 'Password is empty';
 $lang['notification_user_error'] = 'The username or password is incorrect. please try again!';
