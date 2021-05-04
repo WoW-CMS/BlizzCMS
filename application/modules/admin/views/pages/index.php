@@ -23,7 +23,7 @@
                 <tr>
                   <th class="uk-table-expand"><?= lang('title'); ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('slug'); ?></th>
-                  <th class="uk-width-small uk-visible@s"><?= lang('date'); ?></th>
+                  <th class="uk-width-medium uk-visible@s"><?= lang('date'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
@@ -31,8 +31,10 @@
                 <?php foreach ($pages as $item): ?>
                 <tr>
                   <td><?= $item->title; ?></td>
-                  <td class="uk-visible@s"><?= site_url('page/'.$item->slug); ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d', $item->created_at); ?></td>
+                  <td class="uk-visible@s">
+                    <a target="_blank" href="<?= site_url('page/'.$item->slug); ?>"><?= $item->slug; ?></a>
+                  </td>
+                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->created_at); ?></td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/pages/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>

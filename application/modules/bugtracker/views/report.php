@@ -44,7 +44,7 @@
                       </div>
                       <div class="uk-width-expand">
                         <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname'); ?></h6>
-                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, h:i a', $comment->created_at); ?></p>
+                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', $comment->created_at); ?></p>
                       </div>
                     </div>
                   </div>
@@ -81,7 +81,7 @@
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('author'); ?>:</span> <?= $this->website->get_user($report->user_id, 'nickname'); ?></li>
-                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('date'); ?>:</span> <?= date('M j, Y, h:i a', $report->created_at); ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('date'); ?>:</span> <?= date('M j, Y, H:i', $report->created_at); ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('realm'); ?>:</span> <?= $this->realm->realm_name($report->realm_id); ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('category'); ?>:</span> <?= $this->bugtracker_model->category_name($report->category_id); ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('priority'); ?>:</span> <?= $report->priority; ?></li>

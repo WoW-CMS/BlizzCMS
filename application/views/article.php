@@ -13,7 +13,7 @@
                     <h5 class="uk-h5 uk-text-bold"><i class="fas fa-newspaper"></i> <?= html_escape($news->title); ?></h5>
                   </div>
                   <div class="uk-width-auto@s">
-                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, h:i a', $news->created_at); ?></p>
+                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', $news->created_at); ?></p>
                   </div>
                 </div>
               </div>
@@ -34,7 +34,7 @@
                       </div>
                       <div class="uk-width-expand">
                         <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname'); ?></h6>
-                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, h:i a', $comment->created_at); ?></p>
+                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', $comment->created_at); ?></p>
                       </div>
                     </div>
                   </div>

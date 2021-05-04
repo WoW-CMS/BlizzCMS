@@ -22,7 +22,7 @@
               <thead>
                 <tr>
                   <th class="uk-table-expand"><?= lang('title'); ?></th>
-                  <th class="uk-width-small uk-visible@s"><?= lang('date'); ?></th>
+                  <th class="uk-width-medium uk-visible@s"><?= lang('date'); ?></th>
                   <th class="uk-width-small"><?= lang('actions'); ?></th>
                 </tr>
               </thead>
@@ -30,7 +30,7 @@
                 <?php foreach ($news as $item): ?>
                 <tr>
                   <td><?= $item->title; ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d', $item->created_at); ?></td>
+                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->created_at); ?></td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/news/edit/'.$item->id); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-edit"></i> <?= lang('edit'); ?></a>

@@ -38,7 +38,7 @@
                 <?php endif; ?>
               </div>
               <div class="uk-width-expand@s">
-                <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $topic->created_at); ?></p>
+                <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F j, Y, H:i', $topic->created_at); ?></p>
                 <?= $topic->description; ?>
               </div>
             </div>
@@ -62,7 +62,7 @@
                     <?php endif; ?>
                   </div>
                   <div class="uk-width-expand@s">
-                    <p class="uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $post->created_at); ?></p>
+                    <p class="uk-text-meta uk-margin-remove"><?= date('F j, Y, H:i', $post->created_at); ?></p>
                     <?= $post->commentary; ?>
                   </div>
                 </div>
