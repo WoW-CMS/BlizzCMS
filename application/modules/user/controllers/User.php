@@ -145,19 +145,17 @@ class User extends MX_Controller {
                 array(
                     'field' => 'username',
                     'label' => 'Username',
-                    'rules' => 'trim|required|unique|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]',
+                    'rules' => 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]',
                     'errors' => array(
-                        'required' => 'You must provide a %s.',
-                        'unique' => lang('notification_account_already_exist')
+                        'required' => 'You must provide a %s.'
                     )
                 ),
                 array(
                     'field' => 'email',
                     'label' => 'Email',
-                    'rules' => 'trim|required|unique|valid_email',
+                    'rules' => 'trim|required|valid_email',
                     'errors' => array(
-                        'required' => 'You must provide a %s.',
-                        'unique' => lang('notification_used_email')
+                        'required' => 'You must provide a %s.'
                     )
                 ),
                 array(
@@ -197,12 +195,14 @@ class User extends MX_Controller {
                 {
                     $data['msg_notification_account_already_exist'] = lang('notification_account_already_exist');
                     $this->template->build('register', $data);
+                    return false;
                 }
 
                 if (!$this->wowauth->account_unique($email, 'email'))
                 {
                     $data['msg_notification_used_email'] = lang('notification_used_email');
                     $this->template->build('register', $data);
+                    return false;
                 }
 
                 $register = $this->user_model->insertRegister($username, $email, $password, $emulator);
