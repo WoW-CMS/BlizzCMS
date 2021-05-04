@@ -2,10 +2,10 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('donation_logs'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('logs'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
-              <li><span><?= lang('all_users'); ?></span></li>
+              <li><span><?= lang('logs'); ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto"></div>
@@ -18,12 +18,9 @@
             <table class="uk-table uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-small"><?= lang('payment_id'); ?></th>
-                  <th class="uk-width-medium"><?= lang('hash'); ?></th>
-                  <th class="uk-width-small"><?= lang('total'); ?></th>
-                  <th class="uk-width-small"><?= lang('status'); ?></th>
+                  <th class="uk-table-expand"><?= lang('username'); ?></th>
+                  <th class="uk-width-small"><?= lang('type'); ?></th>
                   <th class="uk-width-small"><?= lang('date'); ?></th>
-                  <th class="uk-width-small"><?= lang('points'); ?></th>
                 </tr>
               </thead>
               <tbody>

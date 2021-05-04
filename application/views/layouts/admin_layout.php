@@ -41,7 +41,7 @@
         <div id="admin-mobile" data-uk-offcanvas="overlay: true">
           <div class="uk-offcanvas-bar">
             <div class="sidebar-head uk-text-center">
-              <a class="uk-logo" href="<?= site_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
+              <a class="uk-logo" href="<?= site_url('admin'); ?>">BlizzCMS</a>
             </div>
             <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
               <li><a href="<?= site_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard'); ?></a></li>
@@ -57,6 +57,7 @@
                 <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users'); ?></a>
                 <ul class="uk-nav-sub">
                   <li><a href="<?= site_url('admin/users'); ?>"><?= lang('all_users'); ?></a></li>
+                  <li><a href="<?= site_url('admin/users/banned'); ?>"><?= lang('banned_users'); ?></a></li>
                 </ul>
               </li>
               <li class="uk-parent">
@@ -94,6 +95,7 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('admin/users'); ?>"><?= lang('all_users'); ?></a></li>
+                    <li><a href="<?= site_url('admin/users/banned'); ?>"><?= lang('banned_users'); ?></a></li>
                   </ul>
                 </div>
               </li>

@@ -35,6 +35,7 @@ $lang['send'] = 'Enviar';
 $lang['read_more'] = 'Leer más';
 $lang['delete'] = 'Eliminar';
 $lang['create'] = 'Crear';
+$lang['add'] = 'Agregar';
 $lang['edit'] = 'Editar';
 $lang['save'] = 'Guardar';
 $lang['close'] = 'Cerrar';

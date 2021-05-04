@@ -182,9 +182,10 @@ class Auth_model extends CI_Model
 	 */
 	public function is_banned($id = null)
 	{
-		$id = $id ?? $this->session->userdata('id');
+		$id     = $id ?? $this->session->userdata('id');
+		$column = $this->connect()->field_exists('account_id', 'account_banned') ? 'account_id' : 'id';
 
-		$query = $this->connect()->where(['id' => $id, 'active' => 1])->get('account_banned')->num_rows();
+		$query = $this->connect()->from('account_banned')->where([$column => $id, 'active' => 1])->count_all_results();
 
 		return ($query >= 1);
 	}

@@ -1,6 +1,6 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+        <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove"><?= lang('manage_account'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
@@ -35,7 +35,8 @@
             </div>
             <ul id="account-data" class="uk-switcher uk-margin">
               <li>
-                <?= form_open('', ['class' => 'uk-form-horizontal']); ?>
+                <?= form_open(site_url('admin/users/update'), ['class' => 'uk-form-horizontal']); ?>
+                <?= form_hidden('id', $user->id); ?>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-body">
                     <h5 class="uk-h5 uk-text-bold uk-margin-small"><?= lang('account_information'); ?></h5>

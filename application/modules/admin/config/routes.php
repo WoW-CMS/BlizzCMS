@@ -25,6 +25,11 @@ $route['admin/mods/uninstall/(:any)']['get'] = 'mods/uninstall/$1';
 $route['admin/users']['get'] = 'users/index';
 $route['admin/users/view/(:num)']['get'] = 'users/view/$1';
 $route['admin/users/logs/(:num)']['get'] = 'users/logs/$1';
+$route['admin/users/update']['post'] = 'users/update';
+$route['admin/users/banned']['get'] = 'users/users_banned';
+$route['admin/users/banned/(:num)']['get'] = 'users/view_ban/$1';
+$route['admin/users/ban'] = 'users/user_ban';
+$route['admin/users/unban/(:num)']['get'] = 'users/user_unban/$1';
 
 $route['admin/menu']['get'] = 'menu/index';
 $route['admin/menu/create'] = 'menu/create';

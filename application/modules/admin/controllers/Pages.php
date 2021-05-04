@@ -20,12 +20,7 @@ class Pages extends MX_Controller
 			redirect(site_url('login'));
 		}
 
-		if (! $this->auth->is_admin())
-		{
-			redirect(site_url('user'));
-		}
-
-		if ($this->auth->is_banned())
+		if (! $this->auth->is_admin() || $this->auth->is_banned())
 		{
 			redirect(site_url('user'));
 		}
