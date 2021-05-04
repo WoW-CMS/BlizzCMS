@@ -1,6 +1,6 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+        <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove"><?= lang('menu'); ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
