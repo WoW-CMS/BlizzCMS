@@ -133,31 +133,41 @@ class User extends MX_Controller {
             redirect(base_url(), 'refresh');
         }
 
+        $data = array(
+            'pagetitle' => $this->lang->line('tab_register'),
+            'recapKey' => $this->config->item('recaptcha_sitekey'),
+            'lang' => $this->lang->lang()
+        );
+
         if ($this->input->method() == 'post')
         {
             $rules = array(
                 array(
                     'field' => 'username',
                     'label' => 'Username',
-                    'rules' => 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]',
+                    'rules' => 'trim|required|unique|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]',
                     'errors' => array(
-                        'required' => 'You must provide a %s.'
+                        'required' => 'You must provide a %s.',
+                        'unique' => lang('notification_account_already_exist')
                     )
                 ),
                 array(
                     'field' => 'email',
                     'label' => 'Email',
-                    'rules' => 'trim|required|valid_email',
+                    'rules' => 'trim|required|unique|valid_email',
                     'errors' => array(
-                        'required' => 'You must provide a %s.'
+                        'required' => 'You must provide a %s.',
+                        'unique' => lang('notification_used_email')
                     )
                 ),
                 array(
                     'field' => 'password',
                     'label' => 'Password',
-                    'rules' => 'trim|required|min_length[8]',
+                    'rules' => 'trim|required|alpha_numeric|min_length[8]',
                     'errors' => array(
-                        'required' => 'You must provide a %s.'
+                        'required' => 'You must provide a %s.',
+                        'alpha_numeric' => 'The %s must be at least 8 alphanumeric characters long.',
+                        'min_length[8]' => 'The %s must contain numbers and letters.'
                     )
                 ),
                 array(
@@ -178,18 +188,18 @@ class User extends MX_Controller {
             }
             else
             {
-                $username   = $this->input->post('username', TRUE);
-                $email      = $this->input->post('email', TRUE);
-                $password   = $this->input->post('password');
+                $username = $this->input->post('username', TRUE);
+                $email = $this->input->post('email', TRUE);
+                $password = $this->input->post('password');
                 $emulator = $this->config->item('emulator');
 
-                if ( ! $this->wowauth->account_unique($username, 'username'))
+                if (!$this->wowauth->account_unique($username, 'username'))
                 {
                     $data['msg_notification_account_already_exist'] = lang('notification_account_already_exist');
                     $this->template->build('register', $data);
                 }
 
-                if ( ! $this->wowauth->account_unique($email, 'email'))
+                if (!$this->wowauth->account_unique($email, 'email'))
                 {
                     $data['msg_notification_used_email'] = lang('notification_used_email');
                     $this->template->build('register', $data);
@@ -210,12 +220,6 @@ class User extends MX_Controller {
         }
         else
         {
-            $data = array(
-                'pagetitle' => $this->lang->line('tab_register'),
-                'recapKey' => $this->config->item('recaptcha_sitekey'),
-                'lang' => $this->lang->lang(),
-            );
-
             $this->template->build('register', $data);
         }
     }
