@@ -41,13 +41,13 @@ class Auth_model extends CI_Model
 
 		switch ($emulator)
 		{
+			case 'azeroth':
 			case 'trinity':
 				$validate = ($account->verifier === $this->game_hash($account->username, $password, 'srp6', $account->salt));
 				break;
 			case 'cmangos':
 				$validate = (strtoupper($account->v) === $this->game_hash($account->username, $password, 'hex', $account->s));
 				break;
-			case 'azeroth':
 			case 'old_trinity':
 			case 'mangos':
 				$validate = hash_equals(strtoupper($account->sha_pass_hash), $this->game_hash($account->username, $password));
