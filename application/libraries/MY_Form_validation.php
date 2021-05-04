@@ -69,6 +69,20 @@ class MY_Form_validation extends CI_Form_validation
 	}
 
 	/**
+	 * Check if the string has a valid date/datetime format
+	 *
+	 * @param string $str
+	 * @param string $format
+	 * @return bool
+	 */
+	public function validate_date($str, $format)
+	{
+		$d = \DateTime::createFromFormat($format, $str);
+
+		return $d && $d->format($format) === $str;
+	}
+
+	/**
 	 * Update Unique
 	 *
 	 * @param string $str

@@ -12,3 +12,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['form_validation_alpha_numeric_special'] = "The {field} field may only contain alpha-numeric characters, spaces and ~ ! # $ % & [ ] * - _ + = | : . ' characters";
 $lang['form_validation_update_unique'] = 'This {field} already exists.';
 $lang['form_validation_validate_captcha'] = 'This {field} is not valid.';
+$lang['form_validation_validate_date'] = 'This {field} is not valid.';
