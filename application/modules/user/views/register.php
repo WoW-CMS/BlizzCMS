@@ -4,6 +4,19 @@
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <h4 class="uk-h4 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small-bottom"><span><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></span></h4>
+        <?php echo validation_errors('<div class="uk-alert-danger" uk-alert><a class="uk-alert-close" uk-close></a><p><i class="far fa-times-circle"></i> ', '</p></div>'); ?>
+        <?php if(isset($msg_notification_account_already_exist)): ?>
+          <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><i class="far fa-times-circle"></i> <?= $msg_notification_account_already_exist; ?></p>
+          </div>
+        <?php endif; ?>
+        <?php if(isset($msg_notification_used_email)): ?>
+          <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><i class="far fa-times-circle"></i> <?= $msg_notification_used_email; ?></p>
+          </div>
+        <?php endif; ?>
         <?= form_open(current_url()); ?>
         <div class="uk-margin uk-light">
           <label class="uk-form-label"><?= lang('label_login_info'); ?></label>
