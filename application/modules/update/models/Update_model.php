@@ -16,7 +16,7 @@ class Update_model extends CI_Model
 
     public function getCurrentVersion()
     {
-        $version = '1.0.7';
+        $version = '1.0.7.3';
         return $version;
     }
 
