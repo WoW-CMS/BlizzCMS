@@ -16,24 +16,24 @@
   |
  */
 $config['supported_languages'] = array(
-  'es' => array(
-     'name' => 'Español',
-     'folder' => 'spanish',
-     'direction' => 'ltr',
-     'codes' => array('es', 'spanish', 'es_ES'),
-  ),
-  'en' => array(
-     'name' => 'English',
-     'folder' => 'english',
-     'direction' => 'ltr',
-     'codes' => array('en', 'english', 'en_US'),
-  ),
-  'de' => array(
-    'name' => 'Deutsch',
-    'folder' => 'german',
-    'direction' => 'ltr',
-    'codes' => array('en', 'german', 'de_DE'),
- )
+    'es' => array(
+        'name' => 'Español',
+        'folder' => 'spanish',
+        'direction' => 'ltr',
+        'codes' => array('es', 'spanish', 'es_ES'),
+    ),
+    'en' => array(
+        'name' => 'English',
+        'folder' => 'english',
+        'direction' => 'ltr',
+        'codes' => array('en', 'english', 'en_US'),
+    ),
+    'de' => array(
+        'name' => 'Deutsch',
+        'folder' => 'german',
+        'direction' => 'ltr',
+        'codes' => array('de', 'german', 'de_DE'),
+    )
 );
 
 /*
