@@ -53,6 +53,7 @@ $lang['tab_reset'] = 'Password Recovery';
 $lang['tab_error'] = 'Error 404';
 $lang['tab_maintenance'] = 'Maintenance';
 $lang['tab_online'] = 'Online Players';
+$lang['tab_download'] = 'Download';
 
 /*Panel Navbar*/
 $lang['navbar_vote_panel'] = 'Vote Panel';

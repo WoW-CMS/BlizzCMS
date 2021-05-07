@@ -1284,4 +1284,85 @@ class Admin_model extends CI_Model {
     {
         return $this->db->select('name')->where('id', $id)->get('forum_category')->row('name');
     }
+
+    /**
+    * Download
+    **/
+    
+    public function getDownload()
+    {
+        return $this->db->select('*')->get('download')->result();
+    }
+    
+    public function getDownloadSpecifyRows($id)
+    {
+        return $this->db->select('*')->where('id', $id)->get('download')->num_rows();
+    }
+    
+    public function insertDownload($fileName, $url, $image, $category, $weight, $type)
+    {
+        $data = array(
+            'fileName' => $fileName,
+            'url' => $url,
+            'image' => $image,
+            'category' => $category,
+            'weight' => $weight,
+            'type' => $type
+        );
+
+        $this->db->insert('download', $data);
+        return true;
+    }
+
+    public function delSpecifyDownload($id)
+    {
+        $this->db->where('id', $id)->delete('download');
+        return true;
+    }
+    
+    public function updateSpecifyDownload($id, $fileName, $url, $image, $category, $weight, $type)
+    {
+        $update = array(
+            'id' => $id,
+            'fileName' => $fileName,
+            'url' => $url,
+            'image' => $image,
+            'category' => $category,
+            'weight' => $weight,
+            'type' => $type
+        );
+
+        $this->db->where('id', $id)->update('download', $update);
+        return true;
+    }
+
+    public function getDownloadSpecifyfileName($id)
+    {
+        return $this->db->select('fileName')->where('id', $id)->get('download')->row('fileName');
+    }
+
+    public function getDownloadSpecifyUrl($id)
+    {
+        return $this->db->select('url')->where('id', $id)->get('download')->row('url');
+    }
+
+    public function getDownloadSpecifyImage($id)
+    {
+        return $this->db->select('image')->where('id', $id)->get('download')->row('image');
+    }
+
+    public function getDownloadSpecifyCategory($id)
+    {
+        return $this->db->select('category')->where('id', $id)->get('download')->row('category');
+    }
+
+    public function getDownloadSpecifyWeight($id)
+    {
+        return $this->db->select('weight')->where('id', $id)->get('download')->row('weight');
+    }
+
+    public function getDownloadSpecifyType($id)
+    {
+        return $this->db->select('type')->where('id', $id)->get('download')->row('type');
+    }
 }

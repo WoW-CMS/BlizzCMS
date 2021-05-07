@@ -44,6 +44,7 @@ class Migration_create_modules extends CI_Migration {
         array('name' => 'PvP', 'status' => '1'),
         array('name' => 'Bugtracker', 'status' => '1'),
         array('name' => 'Changelogs', 'status' => '1'),
+        array('name' => 'Download', 'status' => '1'),
      );
      $this->db->insert_batch('modules', $data);
 

@@ -57,6 +57,7 @@ $lang['admin_nav_manage_store'] = 'Administrar Tienda';
 $lang['admin_nav_forum'] = 'Foro';
 $lang['admin_nav_manage_forum'] = 'Administrar Foro';
 $lang['admin_nav_logs'] = 'Sistema de Logs';
+$lang['admin_nav_download'] = 'Descargas';
 
 /*Sections Lang*/
 $lang['section_general_settings'] = 'Configuración General';
@@ -130,6 +131,9 @@ $lang['placeholder_create_topsite'] = 'Crear Topsite';
 $lang['placeholder_edit_topsite'] = 'Editar Topsite';
 $lang['placeholder_create_top'] = 'Crear TOP Item';
 $lang['placeholder_edit_top'] = 'Editar TOP Item';
+$lang['placeholder_select_category'] = 'Selecciona una Categoría';
+$lang['placeholder_create_download'] = 'Crear una Descarga';
+$lang['placeholder_edit_download'] = 'Editar Descarga';
 
 $lang['placeholder_upload_image'] = 'Cargar imagen';
 $lang['placeholder_icon_name'] = 'Nombre del icono';
@@ -160,6 +164,8 @@ $lang['placeholder_account_grant_rank'] = 'Otorgar Rango GM';
 $lang['placeholder_account_remove_rank'] = 'Remover Rango GM';
 $lang['placeholder_command'] = 'Comando';
 $lang['placeholder_emulator'] = 'Emulador';
+$lang['placeholder_size'] = 'Tamaño';
+$lang['placeholder_select_type'] = 'Selecciona un Tipo';
 
 /*Config Lang*/
 $lang['conf_website_name'] = 'Nombre del Sitio Web';

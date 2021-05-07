@@ -90,6 +90,15 @@ $route[$lang.'/donate'] = 'donate/index';
 $route[$lang.'/donate/check/(:any)'] = 'donate/check/$2';
 $route[$lang.'/donate/canceled'] = 'donate/canceled';
 
+/*Download*/
+$route[$lang.'/download'] = 'download/index';
+$route[$lang.'/admin/download'] = 'admin/managedownload';
+$route[$lang.'/admin/download/create'] = 'admin/createdownload';
+$route[$lang.'/admin/download/edit/(:num)'] = 'admin/editdownload/$2';
+$route[$lang.'/admin/download/add'] = 'admin/adddownload';
+$route[$lang.'/admin/download/update'] = 'admin/updatedownload';
+$route[$lang.'/admin/download/delete'] = 'admin/deletedownload';
+
 /*Changelog*/
 $route[$lang.'/changelogs'] = 'changelogs/index';
 

@@ -1362,4 +1362,74 @@ class Admin extends MX_Controller {
             echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
         }
     }
+	
+	/**
+	* Download
+	**/
+	
+	public function managedownload()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('download/managedownload', $data);
+    }
+	
+	public function createdownload()
+    {
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('download/create_download', $data);
+    }
+
+    public function editdownload($id)
+    {
+        if (is_null($id) || empty($id))
+            redirect(base_url(),'refresh');
+
+        if ($this->admin_model->getDownloadSpecifyRows($id) < 1)
+            redirect(base_url(),'refresh');
+
+        $data = array(
+            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'idlink' => $id,
+            'lang' => $this->lang->lang()
+        );
+
+        $this->template->build('download/edit_download', $data);
+    }
+
+    public function adddownload()
+    {
+        $fileName = $this->input->post('fileName');
+        $url = $this->input->post('url');
+        $image = $this->input->post('image');
+        $category = $this->input->post('category');
+        $weight = $this->input->post('weight');
+        $type = $this->input->post('type');
+        echo $this->admin_model->insertDownload($fileName, $url, $image, $category, $weight, $type);
+    }
+
+    public function updatedownload()
+    {
+        $id = $this->input->post('id');
+        $fileName = $this->input->post('fileName');
+        $url = $this->input->post('url');
+        $image = $this->input->post('image');
+        $category = $this->input->post('category');
+        $weight = $this->input->post('weight');
+        $type = $this->input->post('type');
+        echo $this->admin_model->updateSpecifyDownload($id, $fileName, $url, $image, $category, $weight, $type);
+    }
+
+    public function deletedownload()
+    {
+        $id = $this->input->post('value');
+        echo $this->admin_model->delSpecifyDownload($id);
+    }
 }

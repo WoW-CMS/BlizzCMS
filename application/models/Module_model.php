@@ -182,4 +182,14 @@ class Module_model extends CI_Model {
         else
             return false;
     }
+	
+	public function getDownloadStatus()
+    {
+        $qq = $this->db->select('status')->where('id', '18')->get($this->modules_table)->row('status');
+
+        if($qq == '1')
+            return true;
+        else
+            return false;
+    }
 }
