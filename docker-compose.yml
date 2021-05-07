@@ -1,0 +1,9 @@
+version: "2"
+services:
+  blizzcms:
+    build: .
+    volumes:
+      - ./:/var/www/app/
+    ports:
+      - 80:80
+      - 443:443

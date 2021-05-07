@@ -40,6 +40,14 @@ a2enmod expires
 /etc/init.d/apache2 restart or service apache2 restart
 ```
 
+### Docker Alternative
+```sh
+git clone https://github.com/WoW-CMS/BlizzCMS.git
+cd BlizzCMS
+docker-compose build
+docker-compose up -d
+```
+
 ## Active Developers
 
 * @perioner - *Back/Front-End Developer*
