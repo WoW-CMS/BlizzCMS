@@ -1302,6 +1302,54 @@
             "install-path": "../psr/log"
         },
         {
+            "name": "sayghteight/libcms",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sayghteight/libcms.git",
+                "reference": "4287fc60f48dfef7645427f1d74734b503377257"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sayghteight/libcms/zipball/4287fc60f48dfef7645427f1d74734b503377257",
+                "reference": "4287fc60f48dfef7645427f1d74734b503377257",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "time": "2021-05-08T17:15:52+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "ExampleComposer\\": "src/",
+                    "ExampleComposerTest\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Darthar",
+                    "email": "duelista16@gmail.com"
+                }
+            ],
+            "description": "LibCMS is a unique library for BlizzCMS.",
+            "support": {
+                "issues": "https://github.com/sayghteight/libcms/issues",
+                "source": "https://github.com/sayghteight/libcms/tree/main"
+            },
+            "install-path": "../sayghteight/libcms"
+        },
+        {
             "name": "sebastian/cli-parser",
             "version": "1.0.1",
             "version_normalized": "1.0.1.0",

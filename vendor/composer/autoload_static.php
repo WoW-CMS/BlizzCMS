@@ -7,10 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -37,6 +37,11 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             'Laizerox\\' => 9,
         ),
+        'E' => 
+        array (
+            'ExampleComposer\\' => 16,
+            'ExampleComposerTest\\Tests\\' => 26,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -52,8 +57,8 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -78,6 +83,14 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         'Laizerox\\' => 
         array (
             0 => __DIR__ . '/..' . '/laizerox/php-wowemu-auth/src',
+        ),
+        'ExampleComposer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sayghteight/libcms/src',
+        ),
+        'ExampleComposerTest\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sayghteight/libcms/tests',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
