@@ -13,8 +13,7 @@
 	"require": {
 		"php": "~7.2",
 		"paypal/rest-api-sdk-php": "^1.14",
-		"laizerox/php-wowemu-auth": "^1.0",
-		"sayghteight/libcms": "dev-main"
+		"laizerox/php-wowemu-auth": "^1.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
