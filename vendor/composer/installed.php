@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9d85c43ed5a24273cd32a65f1390d92cf5030e5d',
+    'reference' => '4f71d50537090c7a9e19eefa51e51a3dfdc141d2',
     'name' => 'codeigniter/framework',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9d85c43ed5a24273cd32a65f1390d92cf5030e5d',
+      'reference' => '4f71d50537090c7a9e19eefa51e51a3dfdc141d2',
     ),
     'doctrine/instantiator' => 
     array (
@@ -203,6 +203,16 @@
       array (
       ),
       'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+    ),
+    'sayghteight/libcms' => 
+    array (
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+        0 => '9999999-dev',
+      ),
+      'reference' => '4287fc60f48dfef7645427f1d74734b503377257',
     ),
     'sebastian/cli-parser' => 
     array (
