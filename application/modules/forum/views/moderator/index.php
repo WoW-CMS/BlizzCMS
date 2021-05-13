@@ -1,8 +1,17 @@
     <section class="uk-section uk-section-xsmall" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('dashboard'); ?></h4>
+            <ul class="uk-breadcrumb uk-margin-remove">
+              <li><span><?= lang('dashboard'); ?></span></li>
+            </ul>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-3-4@s">
-            <div class="uk-card uk-card-default uk-margin-small-top uk-margin-medium-bottom">
+            <div class="uk-card uk-card-default">
               <div class="uk-card-header">
                 <h4 class="uk-h4">Latest Moderator Actions</h4>
               </div>
@@ -54,19 +63,19 @@
             </div>
           </div>
           <div class="uk-width-1-4@s">
-            <div class="uk-card uk-card-secondary uk-card-body uk-margin-small">
+            <div class="uk-card uk-card-secondary uk-card-body">
               <div class="uk-grid uk-grid-small uk-grid-divider uk-grid-match uk-child-width-1-1" data-uk-grid>
                 <div>
                   <div class="uk-text-center">
                     <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Forum Threads</h5>
-                    <h1 class="uk-h1 uk-margin-small"><span class="blizzcms-count uk-text-primary" data-from="0" data-to="" data-speed="2000" data-refresh-interval="50"></span><span class="uk-margin-small-left"><i class="fas fa-file-alt"></i></span></h1>
+                    <h1 class="uk-h1 uk-margin-small"><span class="number-counter uk-text-primary" data-from="0" data-to="" data-speed="2000" data-refresh-interval="50"></span><span class="uk-margin-small-left"><i class="fas fa-file-alt"></i></span></h1>
                     <p class="uk-text-small uk-margin-remove">Total threads awaiting moderation</p>
                   </div>
                 </div>
                 <div>
                   <div class="uk-text-center">
                     <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Forum Post</h5>
-                    <h1 class="uk-h1 uk-margin-small"><span class="blizzcms-count uk-text-primary" data-from="0" data-to="" data-speed="2000" data-refresh-interval="50"></span><span class="uk-margin-small-left"><i class="fas fa-comment-dots"></i></span></h1>
+                    <h1 class="uk-h1 uk-margin-small"><span class="number-counter uk-text-primary" data-from="0" data-to="" data-speed="2000" data-refresh-interval="50"></span><span class="uk-margin-small-left"><i class="fas fa-comment-dots"></i></span></h1>
                     <p class="uk-text-small uk-margin-remove">Total post awaiting moderation</p>
                   </div>
                 </div>

@@ -126,6 +126,6 @@
       </div>
     </section>
     <script src="<?= $template['assets'].'js/jquery.countTo.js'; ?>"></script>
-    <script type="text/javascript">$('.blizzcms-count').countTo();</script>
+    <script type="text/javascript">$('.number-counter').countTo();</script>
   </body>
 </html>

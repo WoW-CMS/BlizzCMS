@@ -28,14 +28,14 @@ class User extends MX_Controller
 
 	public function index()
 	{
-		$this->template->title(config_item('app_name'), lang('my_account'));
+		$this->template->title(config_item('app_name'), lang('user_panel'));
 
 		$this->template->build('index');
 	}
 
 	public function settings()
 	{
-		$this->template->title(config_item('app_name'), lang('my_account'));
+		$this->template->title(config_item('app_name'), lang('user_panel'));
 
 		$this->template->build('settings');
 	}

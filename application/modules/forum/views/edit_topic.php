@@ -13,34 +13,29 @@
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <?= $template['partials']['alerts']; ?>
+        <?= form_open(current_url()); ?>
         <div class="uk-card uk-card-default uk-margin-small">
           <div class="uk-card-header">
-            <div class="uk-grid uk-grid-small">
-              <div class="uk-width-expand">
-                <h4 class="uk-h4 uk-text-bold"><i class="fas fa-pen-square"></i> <?= lang('edit_topic'); ?></h4>
-              </div>
-              <div class="uk-width-auto"></div>
-            </div>
+            <h4 class="uk-h4 uk-text-bold uk-margin-remove"><i class="fas fa-pen-square"></i> <?= lang('edit_topic'); ?></h4>
           </div>
           <div class="uk-card-body">
-            <?= form_open(current_url()); ?>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin-small uk-light">
               <label class="uk-form-label"><?= lang('title'); ?></label>
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" name="title" value="<?= $topic->title; ?>" placeholder="<?= lang('title'); ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin-small-top uk-light">
               <label class="uk-form-label"><?= lang('description'); ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea tinyeditor" name="description" rows="10"><?= $topic->description; ?></textarea>
               </div>
               <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
-            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-plus-circle"></i> <?= lang('create'); ?></button>
-            <?= form_close(); ?>
           </div>
         </div>
+        <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><i class="fas fa-save"></i> <?= lang('save'); ?></button>
+        <?= form_close(); ?>
       </div>
     </section>

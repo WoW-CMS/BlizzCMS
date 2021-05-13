@@ -12,24 +12,22 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <ul class="uk-nav uk-nav-default myaccount-nav">
-              <li class="uk-active"><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('my_account'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel'); ?></a></li>
-              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel'); ?></a></li>
-            </ul>
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('menu'); ?></h5>
+              </div>
+              <ul class="uk-nav-default aside-nav uk-nav-parent-icon" uk-nav>
+                <li class="uk-active"><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('my_account'); ?></a></li>
+                <li><a href="<?= site_url('user/settings') ?>"><i class="fas fa-tools"></i> <?= lang('account_settings'); ?></a></li>
+                <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel'); ?></a></li>
+                <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel'); ?></a></li>
+              </ul>
+            </div>
           </div>
           <div class="uk-width-3-4@m">
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <div class="uk-grid uk-grid-small uk-flex uk-flex-middle">
-                  <div class="uk-width-expand@m">
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-info-circle"></i> <?= lang('account_details'); ?></h5>
-                  </div>
-                  <div class="uk-width-auto@m">
-                    <a href="<?= site_url('user/settings'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-user-edit"></i> <?= lang('account_settings'); ?></a>
-                  </div>
-                </div>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-info-circle"></i> <?= lang('account_details'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">

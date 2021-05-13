@@ -12,22 +12,27 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <ul class="uk-nav uk-nav-default myaccount-nav">
-              <li class="uk-active"><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('my_account'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel'); ?></a></li>
-              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel'); ?></a></li>
-            </ul>
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('menu'); ?></h5>
+              </div>
+              <ul class="uk-nav-default aside-nav uk-nav-parent-icon" uk-nav>
+                <li><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('my_account'); ?></a></li>
+                <li class="uk-active"><a href="<?= site_url('user/settings') ?>"><i class="fas fa-tools"></i> <?= lang('account_settings'); ?></a></li>
+                <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel'); ?></a></li>
+                <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel'); ?></a></li>
+              </ul>
+            </div>
           </div>
           <div class="uk-width-3-4@m">
             <?= $template['partials']['alerts']; ?>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-users"></i> <?= lang('change_nickname'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-users"></i> <?= lang('change_nickname'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/nickname')) ?>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <label class="uk-form-label"><?= lang('current_nickname'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -36,7 +41,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <label class="uk-form-label"><?= lang('new_nickname'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -46,7 +51,7 @@
                   </div>
                   <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <div class="uk-form-controls">
                     <label class="uk-form-label"><?= lang('password'); ?>:</label>
                     <div class="uk-inline uk-width-1-1">
@@ -64,11 +69,11 @@
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= lang('change_email'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-envelope"></i> <?= lang('change_email'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/email')); ?>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <label class="uk-form-label"><?= lang('current_email'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -77,7 +82,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('new_email'); ?>:</label>
@@ -101,7 +106,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <div class="uk-form-controls">
                     <label class="uk-form-label"><?= lang('password'); ?>:</label>
                     <div class="uk-inline uk-width-1-1">
@@ -119,11 +124,11 @@
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= lang('change_password'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-key"></i> <?= lang('change_password'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/password')); ?>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <label class="uk-form-label"><?= lang('current_password'); ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -133,7 +138,7 @@
                   </div>
                   <?= form_error('current_password', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
                 </div>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('new_password'); ?></label>
@@ -165,11 +170,11 @@
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= lang('change_avatar'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-id-badge"></i> <?= lang('change_avatar'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <?= form_open(site_url('user/settings/avatar')); ?>
-                <div class="uk-margin uk-light">
+                <div class="uk-margin-small uk-light">
                   <div class="uk-form-controls">
                     <div class="uk-grid uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>
                       <?php foreach ($this->base->get_avatars() as $avatar): ?>

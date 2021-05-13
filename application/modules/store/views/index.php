@@ -16,7 +16,7 @@
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('categories'); ?></h5>
               </div>
-              <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
+              <ul class="uk-nav-default aside-nav uk-nav-parent-icon" uk-nav>
                 <li class="uk-active"><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('top_items'); ?></a></li>
                 <?php foreach ($this->store_model->get_all_categories() as $cat): ?>
                 <?php if ($cat->type === TYPE_DEFAULT): ?>
