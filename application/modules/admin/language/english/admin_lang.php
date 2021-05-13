@@ -18,8 +18,6 @@ $lang['users'] = 'Users';
 $lang['all_users'] = 'All Users';
 $lang['banned_users'] = 'Banned Users';
 $lang['sections'] = 'Sections';
-$lang['menu'] = 'Menu';
-$lang['news'] = 'News';
 $lang['pages'] = 'Pages';
 $lang['slides'] = 'Slides';
 
@@ -73,13 +71,10 @@ $lang['unban_user'] = 'Unban User';
 
 $lang['count_accounts_created'] = 'Accounts created';
 $lang['count_accounts_banned'] = 'Banned accounts';
-$lang['count_news_created'] = 'News Created';
-$lang['count_changelogs_created'] = 'Changelogs Created';
 $lang['total_accounts_registered'] = 'Total accounts registered.';
 $lang['total_accounts_banned'] = 'Total accounts banned.';
-$lang['total_news_writed'] = 'Total news writed.';
-$lang['total_changelogs_writed'] = 'Total changelogs writed.';
 
+$lang['optional_settings'] = 'Optional settings';
 $lang['social_configuration'] = 'Social networks configuration';
 $lang['main_ranks_configuration'] = 'Main ranks configuration';
 $lang['characters_database'] = 'Characters database';
@@ -95,6 +90,7 @@ $lang['cache'] = 'Cache';
 $lang['cache_info'] = 'Clear all cache files related to this site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> First loading of the website can be slow!';
 $lang['sessions'] = 'Sessions';
 $lang['sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> You will be disconnected after performing this action!';
+$lang['enable_news_comments'] = 'Allow comments on the news?';
 
 /**
  * Alerts

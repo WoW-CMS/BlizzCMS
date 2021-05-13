@@ -46,6 +46,19 @@
               </div>
               <?= form_error('image', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
             </div>
+            <h5 class="uk-h5 uk-heading-bullet uk-text-uppercase uk-text-bold uk-margin-top uk-margin-small-bottom uk-heading-line"><span><?= lang('optional_settings'); ?></span></h5>
+            <div class="uk-grid uk-grid-small uk-flex uk-flex-middle uk-margin-small" data-uk-grid>
+              <div class="uk-width-expand">
+                <label class="uk-form-label"><i class="fas fa-toggle-off"></i> <?= lang('enable_news_comments'); ?></label>
+                <?= form_error('comments', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
+              </div>
+              <div class="uk-width-auto">
+                <label class="uk-switch">
+                  <input type="checkbox" name="comments" value="1" <?= set_checkbox('comments', '1'); ?>>
+                  <div class="uk-switch-slider"></div>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('create'); ?></button>

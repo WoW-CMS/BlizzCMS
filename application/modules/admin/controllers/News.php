@@ -73,6 +73,7 @@ class News extends MX_Controller
 			$this->form_validation->set_rules('title', 'Title', 'trim|required');
 			$this->form_validation->set_rules('description', 'Description', 'trim|required');
 			$this->form_validation->set_rules('image', 'Image', 'callback__image_required');
+			$this->form_validation->set_rules('comments', 'Comments', 'trim');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -100,6 +101,7 @@ class News extends MX_Controller
 					'title'       => $this->input->post('title'),
 					'description' => $this->input->post('description'),
 					'image'       => $img,
+					'comments'    => empty($this->input->post('comments', TRUE)) ? 0 : 1,
 					'created_at'  => now()
 				]);
 
@@ -130,6 +132,7 @@ class News extends MX_Controller
 		{
 			$this->form_validation->set_rules('title', 'Title', 'trim|required');
 			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+			$this->form_validation->set_rules('comments', 'Comments', 'trim');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -167,7 +170,8 @@ class News extends MX_Controller
 
 				$this->db->where('id', $id)->update('news', [
 					'title'       => $this->input->post('title'),
-					'description' => $this->input->post('description')
+					'description' => $this->input->post('description'),
+					'comments'    => empty($this->input->post('comments', TRUE)) ? 0 : 1
 				]);
 
 				$this->session->set_flashdata('success', lang('news_updated'));

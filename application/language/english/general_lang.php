@@ -11,7 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['home'] = 'Home';
 $lang['news'] = 'News';
-$lang['my_account'] = 'My Account';
+$lang['menu'] = 'Menu';
+$lang['my_account'] = 'My account';
+$lang['account_settings'] = 'Account settings';
 $lang['forgot_password'] = 'Forgot password';
 $lang['error_404'] = 'Error 404';
 $lang['online_players'] = 'Online Players';

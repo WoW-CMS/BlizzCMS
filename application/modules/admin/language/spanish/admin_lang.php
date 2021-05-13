@@ -18,8 +18,6 @@ $lang['users'] = 'Usuarios';
 $lang['all_users'] = 'Todos los usuarios';
 $lang['banned_users'] = 'Banned Users';
 $lang['sections'] = 'Sections';
-$lang['menu'] = 'Menú';
-$lang['news'] = 'Noticias';
 $lang['pages'] = 'Páginas';
 $lang['slides'] = 'Slides';
 
@@ -73,13 +71,10 @@ $lang['unban_user'] = 'Unban User';
 
 $lang['count_accounts_created'] = 'Cuentas Creadas';
 $lang['count_accounts_banned'] = 'Cuentas Baneadas';
-$lang['count_news_created'] = 'Noticias Creadas';
-$lang['count_changelogs_created'] = 'Changelogs Creados';
 $lang['total_accounts_registered'] = 'Total cuentas registradas.';
 $lang['total_accounts_banned'] = 'Total cuentas baneadas.';
-$lang['total_news_writed'] = 'Total de noticias escritas.';
-$lang['total_changelogs_writed'] = 'Total changelogs escritos.';
 
+$lang['optional_settings'] = 'Optional settings';
 $lang['social_configuration'] = 'Social networks configuration';
 $lang['main_ranks_configuration'] = 'Main ranks configuration';
 $lang['characters_database'] = 'Characters database';

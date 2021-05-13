@@ -21,6 +21,7 @@
                 <?= $news->description; ?>
               </div>
             </div>
+            <?php if ($news->comments): ?>
             <?php if (isset($comments) && ! empty($comments)): ?>
             <h4 class="uk-h4 uk-margin-remove"><?= lang('comments'); ?></h4>
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-margin-small" data-uk-grid>
@@ -59,18 +60,17 @@
             <?php endif; ?>
             <?php if ($this->website->isLogged()): ?>
             <h4 class="uk-h4 uk-margin-top uk-margin-remove-bottom"><i class="fas fa-comment-dots"></i> <?= lang('your_comment'); ?></h4>
-            <div class="uk-card uk-card-default uk-card-body uk-margin-small">
-              <?= form_open(site_url('news/comment')); ?>
-              <?= form_hidden('id', $news->id); ?>
-              <div class="uk-margin-small uk-light">
-                <div class="uk-form-controls">
-                  <textarea class="uk-textarea tinyeditor" name="comment" rows="10"></textarea>
-                </div>
-                <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error'); ?></span>
+            <?= form_open(site_url('news/comment')); ?>
+            <?= form_hidden('id', $news->id); ?>
+            <div class="uk-margin-small uk-light">
+              <div class="uk-form-controls">
+                <textarea class="uk-textarea tinyeditor" name="comment" rows="10"></textarea>
               </div>
-              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send'); ?></button>
-              <?= form_close(); ?>
+              <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error'); ?></span>
             </div>
+            <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send'); ?></button>
+            <?= form_close(); ?>
+            <?php endif; ?>
             <?php endif; ?>
           </div>
           <div class="uk-width-1-4@m">
