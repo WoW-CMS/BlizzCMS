@@ -24,7 +24,6 @@ $lang['create_category'] = 'Crear Categoría';
 $lang['edit_category'] = 'Editar Categoría';
 $lang['create_item'] = 'Crear item';
 $lang['edit_item'] = 'Editar Item';
-$lang['optional_settings'] = 'Optional settings';
 $lang['enable_top_item'] = 'Display in main page (Top Items)?';
 
 /**

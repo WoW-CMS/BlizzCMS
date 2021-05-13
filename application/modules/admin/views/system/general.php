@@ -13,7 +13,7 @@
         </div>
         <div class="uk-card uk-card-default">
           <ul class="uk-subnav" uk-margin>
-            <li><a href="<?= site_url('admin/system'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span>Index</a></li>
+            <li><a href="<?= site_url('admin/system'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= lang('home'); ?></a></li>
             <li class="uk-active">
               <a href="#"><span class="uk-margin-small-right"><i class="fas fa-tools"></i></span><?= lang('settings'); ?><span uk-icon="icon: triangle-down"></span></a>
               <div uk-dropdown="mode: click;">

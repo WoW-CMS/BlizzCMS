@@ -9,8 +9,6 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['account_settings'] = 'Account settings';
-
 /**
  * Alerts
 */

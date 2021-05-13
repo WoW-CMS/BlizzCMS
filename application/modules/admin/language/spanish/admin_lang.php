@@ -90,6 +90,7 @@ $lang['cache'] = 'Cache';
 $lang['cache_info'] = 'Clear all cache files related to this site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> First loading of the website can be slow!';
 $lang['sessions'] = 'Sessions';
 $lang['sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> You will be disconnected after performing this action!';
+$lang['enable_news_comments'] = 'Allow comments on the news?';
 
 /**
  * Alerts
