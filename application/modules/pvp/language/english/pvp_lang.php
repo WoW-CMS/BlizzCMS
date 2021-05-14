@@ -11,7 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['pvp_statistics'] = 'PvP Statistics';
 
-$lang['top_20'] = 'TOP 20';
-$lang['top_2v2'] = 'TOP 2V2';
-$lang['top_3v3'] = 'TOP 3V3';
-$lang['top_5v5'] = 'TOP 5V5';
+$lang['rank'] = 'Rank';
+$lang['top_honorable_kills'] = 'Top Honorable Kills';
+$lang['top_arena_teams'] = 'Top Arena Teams';
+$lang['teams_2v2'] = 'Teams 2v2';
+$lang['teams_3v3'] = 'Teams 3v3';
+$lang['teams_5v5'] = 'Teams 5v5';

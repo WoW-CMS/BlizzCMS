@@ -194,51 +194,10 @@ $lang['enable'] = 'Habilitar';
 $lang['disable'] = 'Inhabilitar';
 
 /**
- * Classes
-*/
-$lang['warrior'] = 'Guerrero';
-$lang['paladin'] = 'Paladín';
-$lang['hunter'] = 'Cazador';
-$lang['rogue'] = 'Pícaro';
-$lang['priest'] = 'Sacerdote';
-$lang['death_knight'] = 'Caballero de la muerte';
-$lang['shamman'] = 'Chamán';
-$lang['mage'] = 'Mago';
-$lang['warlock'] = 'Brujo';
-$lang['monk'] = 'Monje';
-$lang['druid'] = 'Druida';
-$lang['demon_hunter'] = 'Cazador de Demonios';
-
-/**
  * Factions
 */
 $lang['alliance'] = 'Alianza';
 $lang['horde'] = 'Horda';
-
-/**
- * Races
-*/
-$lang['human'] = 'Humano';
-$lang['orc'] = 'Orco';
-$lang['dwarf'] = 'Enano';
-$lang['night_elf'] = 'Elfo Nocturno';
-$lang['undead'] = 'No-muerto';
-$lang['tauren'] = 'Tauren';
-$lang['gnome'] = 'Gnomo';
-$lang['troll'] = 'Trol';
-$lang['goblin'] = 'Goblin';
-$lang['blood_elf'] = 'Elfo de Sangre';
-$lang['draenei'] = 'Draenei';
-$lang['worgen'] = 'Huargen';
-$lang['panda_neutral'] = 'Pandaren Neutral';
-$lang['panda_alliance'] = 'Pandaren Alianza';
-$lang['panda_horde'] = 'Pandaren Horda';
-$lang['nightborde'] = 'Nocheterna';
-$lang['void_elf'] = 'Elfo del Vacío';
-$lang['lightforged_draenei'] = 'Draenei forjado por la Luz';
-$lang['highmountain_tauren'] = 'Tauren monte alto';
-$lang['dark_iron_dwarf'] = 'Enano Hierro Negro';
-$lang['maghar_orc'] = 'Orco Maghar';
 
 $lang['read_and_agree'] = 'He leído y estoy de acuerdo con los';
 $lang['terms_and_conditions'] = 'Términos y Condiciones';

@@ -198,20 +198,6 @@ class Base_model extends CI_Model
 		return in_array($name, $list, true);
 	}
 
-	/**
-	 * Get specific name of a zone
-	 *
-	 * @param int $id
-	 * @return string
-	 */
-	public function zone_name($id)
-	{
-		$data  = $this->lang->load('zones', '', TRUE);
-		$zones = $data['zones'];
-
-		return array_key_exists($id, $zones) ? $zones[$id] : lang('unknown');
-	}
-
 	public function tinyEditor($rank)
 	{
 		switch ($rank) {

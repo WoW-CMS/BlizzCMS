@@ -11,7 +11,7 @@ class Pvp_model extends CI_Model
 	 */
 	public function get_top_pvp($realm)
 	{
-		return $this->realm->char_connect($realm)->select('name, race, class, totalKills, todayKills, yesterdayKills')->where('name !=', '')->order_by('totalKills', 'DESC')->limit('20')->get('characters')->result();
+		return $this->realm->char_connect($realm)->select('name, race, class, gender, level, totalKills, todayKills, yesterdayKills')->where('name !=', '')->order_by('totalKills', 'DESC')->limit('20')->get('characters')->result();
 	}
 
 	/**

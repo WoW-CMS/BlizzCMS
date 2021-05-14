@@ -90,6 +90,10 @@
 - Remove unused function ``$this->realm->getInformationCharacter()``
 - Remove unused lang lines
 - Add new function ``lang_vars()``
+- Remove unused function ``$this->base->getRaceIcon()``
+- Remove unused function ``$this->base->getClassIcon()``
+- Remove unused function ``$this->base->getFaction()``
+- Add new function ``faction_name()``
 
 ### Bugs Fixed
 
@@ -99,10 +103,8 @@
 
 - Deprecated ``$this->base->getTimestamp()`` in favor of ``now()``
 - Deprecated ``$this->base->getRaceName()`` in favor of ``race_name()``
-- Deprecated ``$this->base->getRaceIcon()`` in favor of ``race_icon()``
 - Deprecated ``$this->base->getClassName()`` in favor of ``class_name()``
-- Deprecated ``$this->base->getClassIcon()`` in favor of ``class_icon()``
-- Deprecated ``$this->base->getFaction()`` in favor of ``faction_icon()``
+- Deprecated ``$this->base->getSpecifyZone()`` in favor of ``zone_name()``
 - Deprecated ``$this->base->moneyConversor()`` in favor of ``money_converter()``
 - Deprecated ``$this->base->moneyConversor()`` in favor of ``time_converter()``
 - Deprecated ``$this->base->getMenu()`` in favor of ``$this->base->get_menu()``
@@ -118,7 +120,6 @@
 - Deprecated ``$this->user_model->checklogin()`` and ``$this->user_model->checkloginbattle()`` in favor of ``$this->website->authentication()``
 - Deprecated ``$this->user_model->getAllAvatars()`` in favor of ``$this->base->get_avatars()``
 - Deprecated ``$this->website->getImageProfile()`` and ``$this->website->getNameAvatar()`` in favor of ``$this->website->user_avatar()``
-- Deprecated ``$this->base->getSpecifyZone()`` in favor of ``$this->base->zone_name()``
 - Deprecated ``$this->realm->RealmStatus()`` in favor of ``$this->realm->is_online()``
 - Deprecated ``$this->realm->commandSoap()`` in favor of ``$this->realm->send_command()``
 - Deprecated ``$this->realm->getRealmConnectionData()`` and ``$this->realm->realmConnection()`` in favor of ``$this->realm->char_connect()``
