@@ -243,7 +243,7 @@ class Forum extends MX_Controller
 
 	public function delete_post($id = null)
 	{
-		if (empty($id) || $this->forum_model->find_post($id))
+		if (empty($id) || ! $this->forum_model->find_post($id))
 		{
 			show_404();
 		}

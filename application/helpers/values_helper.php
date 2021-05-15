@@ -200,12 +200,12 @@ if (! function_exists('faction_name'))
 		$alliance = [1, 3, 4, 7, 11, 22, 25, 29, 30, 32, 34, 37];
 		$horde    = [2, 5, 6, 8, 9, 10, 26, 27, 28, 31, 35, 36];
 
-		if (array_key_exists($id, $alliance))
+		if (in_array($id, $alliance))
 		{
 			return lang('alliance');
 		}
 
-		if (array_key_exists($id, $horde))
+		if (in_array($id, $horde))
 		{
 			return lang('horde');
 		}

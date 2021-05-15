@@ -240,7 +240,7 @@ class Bugtracker extends MX_Controller
 
 	public function delete_comment($id = null)
 	{
-		if (empty($id) || $this->bugtracker_model->find_comment($id))
+		if (empty($id) || ! $this->bugtracker_model->find_comment($id))
 		{
 			show_404();
 		}

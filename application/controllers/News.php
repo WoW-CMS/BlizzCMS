@@ -93,7 +93,7 @@ class News extends CI_Controller
 
 	public function delete_comment($id = null)
 	{
-		if (empty($id) || $this->base->find_comment($id))
+		if (empty($id) || ! $this->base->find_comment($id))
 		{
 			show_404();
 		}
