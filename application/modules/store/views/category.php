@@ -53,6 +53,11 @@
                         <!-- You can use 'es.wowhead' or any other as 'ru, fr, cn' -->
                         <a href="https://wowhead.com/item=<?= $items->command ?>"><?= $items->name ?></a>
                       </span>
+					   <?php elseif($items->type == 8): ?>
+                      <span class="uk-text-middle">
+                        <!-- You can use 'es.wowhead' or any other as 'ru, fr, cn' -->
+                        <a href="https://es.wowhead.com/item-set=-<?= $items->item_set ?>"><?= $items->name ?></a>
+                      </span>
                       <?php else: ?>
                       <span class="uk-text-middle">
                         <a href="#"><?= $items->name ?></a>
@@ -121,5 +126,5 @@
         });
       }
     </script>
-    <script>const whTooltips = {colorLinks: true, iconizeLinks: true, renameLinks: true};</script>
+    <script>const whTooltips = {colorLinks: true, iconizeLinks: false, renameLinks: false};</script>
     <script src="https://wow.zamimg.com/widgets/power.js"></script>

@@ -919,7 +919,7 @@ class Admin_model extends CI_Model {
         return $this->db->select('realmid')->where('id', $id)->get('store_categories')->row('realmid');
     }
 
-    public function insertItem($name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command)
+    public function insertItem($name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command, $iset)
     {
         if ($price_type == 1) {
             $setdp = $pricedp;
@@ -943,14 +943,15 @@ class Admin_model extends CI_Model {
             'dp' => $setdp,
             'vp' => $setvp,
             'icon' => $icon,
-            'command' => $command
+            'command' => $command,
+			'item_set' => $iset
         );
 
         $this->db->insert('store_items', $data);
         return true;
     }
 
-    public function updateSpecifyItem($id, $name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command)
+    public function updateSpecifyItem($id, $name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command, $iset)
     {
         if ($price_type == 1) {
             $setdp = $pricedp;
@@ -974,7 +975,8 @@ class Admin_model extends CI_Model {
             'dp' => $setdp,
             'vp' => $setvp,
             'icon' => $icon,
-            'command' => $command
+            'command' => $command,
+			'item_set' => $iset
         );
 
         $this->db->where('id', $id)->update('store_items', $update);
@@ -1052,6 +1054,11 @@ class Admin_model extends CI_Model {
     public function getItemSpecifyCommand($id)
     {
         return $this->db->select('command')->where('id', $id)->get('store_items')->row('command');
+    }
+	
+	public function getItemSpecifyItemSet($id)
+    {
+        return $this->db->select('item_set')->where('id', $id)->get('store_items')->row('item_set');
     }
 
     public function insertStoreTop($item)

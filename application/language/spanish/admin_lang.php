@@ -231,6 +231,7 @@ $lang['option_internal_url'] = 'URL Interna';
 $lang['option_external_url'] = 'URL Externa';
 $lang['option_on'] = 'On';
 $lang['option_off'] = 'Off';
+$lang['option_item_set'] = 'Conjunto de Item';
 
 /*Count Lang*/
 $lang['count_accounts_created'] = 'Cuentas Creadas';

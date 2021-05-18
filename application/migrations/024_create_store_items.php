@@ -56,6 +56,12 @@ class Migration_create_store_items extends CI_Migration {
               'qquery' => array(
                       'type' => 'TEXT',
                       'null' => TRUE
+              ),
+			  'item_set' => array(
+					  'constraint' => '10',
+                      'type' => 'INT',
+					  'default' => '0',
+                      'null' => TRUE
               )
 
       ));

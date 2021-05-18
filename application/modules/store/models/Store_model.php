@@ -157,7 +157,7 @@ class Store_model extends CI_Model {
         {
             if($item['price_type'] == 1)
             {
-                if ($item['type'] == 1)
+                if ($item['type'] == 1 || $item['type'] == 8)
                 {
                     $this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
                 }
@@ -192,7 +192,7 @@ class Store_model extends CI_Model {
             }
             else if ($item['price_type'] == 2)
             {
-                if ($item['type'] == 1)
+                if ($item['type'] == 1 || $item['type'] == 8)
                 {
                     $this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
                 }
@@ -227,7 +227,7 @@ class Store_model extends CI_Model {
             }
             else if ($item['price_type'] == 3)
             {
-                if ($item['type'] == 1)
+                if ($item['type'] == 1 || $item['type'] == 8)
                 {
                     $this->wowrealm->commandSoap('.send items '.$charname.' "'.$subject.'" "'.$message.'" '.$item['command'], $info['console_username'], $info['console_password'], $info['console_hostname'], $info['console_port'], $info['emulator']);
                 }
