@@ -26,7 +26,6 @@
               <?php if($this->wowmodule->getChangelogsStatus() == '1'): ?>
               <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
               <?php endif; ?>
-              <?php endif; ?>
               <?php if($this->wowmodule->getDownloadStatus() == '1'): ?>
               <li><a href="<?= base_url('download'); ?>"><i class="fas fa-download"></i> <?=$this->lang->line('tab_download'); ?></a></li>
               <?php endif; ?>
