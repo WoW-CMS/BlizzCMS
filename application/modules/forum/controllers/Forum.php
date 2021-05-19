@@ -55,9 +55,9 @@ class Forum extends MX_Controller {
 
     public function index()
     {
-        $data = array(
+        $data = [
             'pagetitle' => $this->lang->line('tab_forum'),
-        );
+        ];
 
         $this->template->build('index', $data);
     }
@@ -72,11 +72,11 @@ class Forum extends MX_Controller {
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
 
-        $data = array(
+        $data = [
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_forum'),
             'tiny' => $tiny
-        );
+        ];
 
         if ($this->forum_model->getType($id) == 2 && $this->wowauth->isLogged())
             if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
@@ -101,12 +101,12 @@ class Forum extends MX_Controller {
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
 
-        $data = array(
+        $data = [
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_forum'),
             'lang' => $this->lang->lang(),
             'tiny' => $tiny
-        );
+        ];
 
         $this->template->build('topic', $data);
     }
@@ -118,12 +118,12 @@ class Forum extends MX_Controller {
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
 
-        $data = array(
+        $data = [
             'idlink' => $idlink,
             'pagetitle' => $this->lang->line('tab_forum'),
             'lang' => $this->lang->lang(),
             'tiny' => $tiny,
-        );
+        ];
 
         $this->template->build('new_topic', $data);
     }
