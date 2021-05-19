@@ -126,7 +126,7 @@ class User_model extends CI_Model
             case 'hex':
                 $validate = (strtoupper($accgame->v) === $this->wowauth->game_hash($accgame->username, $password, 'hex', $accgame->s));
                 break;
-            case 'old_trinity':
+            case 'old-trinity':
                 $validate = hash_equals(strtoupper($accgame->sha_pass_hash), $this->wowauth->game_hash($accgame->username, $password));
                 break;
         }
