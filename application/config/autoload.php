@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'template', 'Wowcms', 'cart');
+$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'template', 'cart');
 
 /*
 | -------------------------------------------------------------------
