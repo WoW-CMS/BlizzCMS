@@ -63,14 +63,11 @@ class Template
 		log_message('debug', 'Template Class Initialized');
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Initialize preferences
 	 *
-	 * @access	public
-	 * @param	array
-	 * @return	void
+	 * @param array $config
+	 * @return void
 	 */
 	function initialize($config = array())
 	{
@@ -105,7 +102,7 @@ class Template
 		}
 
 		// Modular Separation / Modular Extensions has been detected
-		if (method_exists( $this->_ci->router, 'fetch_module' ))
+		if (method_exists($this->_ci->router, 'fetch_module'))
 		{
 			$this->_module 	= $this->_ci->router->fetch_module();
 		}
@@ -121,42 +118,35 @@ class Template
 		$this->_is_mobile	= $this->_ci->agent->is_mobile();
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Magic Get function to get data
 	 *
-	 * @access	public
-	 * @param	  string
-	 * @return	mixed
+	 * @param string $name
+	 * @return mixed
 	 */
 	public function __get($name)
 	{
 		return isset($this->_data[$name]) ? $this->_data[$name] : NULL;
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Magic Set function to set data
 	 *
-	 * @access	public
-	 * @param	  string
-	 * @return	mixed
+	 * @param string $name
+	 * @param string $value
+	 * @return mixed
 	 */
 	public function __set($name, $value)
 	{
 		$this->_data[$name] = $value;
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Set data using a chainable metod. Provide two strings or an array of data.
 	 *
-	 * @access	public
-	 * @param	  string
-	 * @return	mixed
+	 * @param string $name
+	 * @param string $value
+	 * @return mixed
 	 */
 	public function set($name, $value = NULL)
 	{
@@ -168,7 +158,6 @@ class Template
 				$this->_data[$item] = $value;
 			}
 		}
-
 		// Just one thing, set that
 		else
 		{
@@ -178,14 +167,13 @@ class Template
 		return $this;
 	}
 
-	// --------------------------------------------------------------------
-
 	/**
 	 * Build the entire HTML output combining partials, layouts and views.
 	 *
-	 * @access	public
-	 * @param	string
-	 * @return	void
+	 * @param string $view
+	 * @param array $data
+	 * @param bool $return
+	 * @return void
 	 */
 	public function build($view, $data = array(), $return = FALSE)
 	{
@@ -225,7 +213,6 @@ class Template
 			{
 				$template['partials'][$name] = $this->_find_view($partial['view'], $partial['data']);
 			}
-
 			// Otherwise the partial must be a string
 			else
 			{
@@ -256,7 +243,7 @@ class Template
 			$template['body'] = $this->_body;
 
 			// Find the main body and 3rd param means parse if its a theme view (only if parser is enabled)
-			$this->_body =  self::_load_view('layouts/'.$this->_layout, $this->_data, TRUE, self::_find_view_folder());
+			$this->_body = self::_load_view('layouts/'.$this->_layout, $this->_data, TRUE, self::_find_view_folder());
 		}
 
 		// Want it returned or output to browser?
@@ -271,9 +258,8 @@ class Template
 	/**
 	 * Set the title of the page
 	 *
-	 * @access	public
-	 * @param	string
-	 * @return	void
+	 * @param string
+	 * @return void
 	 */
 	public function title()
 	{
@@ -287,13 +273,11 @@ class Template
 		return $this;
 	}
 
-
 	/**
 	 * Put extra javascipt, css, meta tags, etc before all other head data
 	 *
-	 * @access	public
-	 * @param	 string	$line	The line being added to head
-	 * @return	void
+	 * @param string $line
+	 * @return void
 	 */
 	public function prepend_metadata($line)
 	{
@@ -301,13 +285,11 @@ class Template
 		return $this;
 	}
 
-
 	/**
 	 * Put extra javascipt, css, meta tags, etc after other head data
 	 *
-	 * @access	public
-	 * @param	 string	$line	The line being added to head
-	 * @return	void
+	 * @param string $line
+	 * @return void
 	 */
 	public function append_metadata($line)
 	{
@@ -315,15 +297,13 @@ class Template
 		return $this;
 	}
 
-
 	/**
 	 * Set metadata for output later
 	 *
-	 * @access	public
-	 * @param	  string	$name		keywords, description, etc
-	 * @param	  string	$content	The content of meta data
-	 * @param	  string	$type		Meta-data comes in a few types, links for example
-	 * @return	void
+	 * @param string $name
+	 * @param string $content
+	 * @param string $type
+	 * @return void
 	 */
 	public function set_metadata($name, $content, $type = 'meta')
 	{
@@ -341,11 +321,9 @@ class Template
 			case 'meta':
 				$this->_metadata[$name] = '<meta name="'.$name.'" content="'.$content.'" />';
 			break;
-
 			case 'property':
 				$this->_metadata[$name] = '<meta property="'.$name.'" content="'.$content.'" />';
 			break;
-
 			case 'link':
 				$this->_metadata[$content] = '<link rel="'.$name.'" href="'.$content.'" />';
 			break;
@@ -354,13 +332,11 @@ class Template
 		return $this;
 	}
 
-
 	/**
-	 * Which theme are we using here?
+	 * Set a theme for the template library to use
 	 *
-	 * @access	public
-	 * @param	string	$theme	Set a theme for the template library to use
-	 * @return	void
+	 * @param string $theme
+	 * @return void
 	 */
 	public function set_theme($theme = NULL)
 	{
@@ -380,8 +356,7 @@ class Template
 	/**
 	 * Get the current theme
 	 *
-	 * @access public
-	 * @return string	The current theme
+	 * @return string
 	 */
 	 public function get_theme()
 	 {
@@ -391,8 +366,7 @@ class Template
 	/**
 	 * Get the current theme path
 	 *
-	 * @access	public
-	 * @return	string The current theme path
+	 * @return string
 	 */
 	public function get_theme_path()
 	{
@@ -401,11 +375,11 @@ class Template
 
 
 	/**
-	 * Which theme layout should we using here?
+	 * Set a theme layout for the template library to use
 	 *
-	 * @access	public
-	 * @param	string	$view
-	 * @return	void
+	 * @param string $view
+	 * @param string $_layout_subdir
+	 * @return void
 	 */
 	public function set_layout($view, $_layout_subdir = '')
 	{
@@ -419,11 +393,10 @@ class Template
 	/**
 	 * Set a view partial
 	 *
-	 * @access	public
-	 * @param	string
-	 * @param	string
-	 * @param	boolean
-	 * @return	void
+	 * @param string $name
+	 * @param string $view
+	 * @param array $data
+	 * @return void
 	 */
 	public function set_partial($name, $view, $data = array())
 	{
@@ -434,11 +407,10 @@ class Template
 	/**
 	 * Set a view partial
 	 *
-	 * @access	public
-	 * @param	string
-	 * @param	string
-	 * @param	boolean
-	 * @return	void
+	 * @param string $name
+	 * @param string $string
+	 * @param array $data
+	 * @return void
 	 */
 	public function inject_partial($name, $string, $data = array())
 	{
@@ -450,25 +422,21 @@ class Template
 	/**
 	 * Helps build custom breadcrumb trails
 	 *
-	 * @access	public
-	 * @param	string	$name		What will appear as the link text
-	 * @param	string	$url_ref	The URL segment
-	 * @return	void
+	 * @param string $name What will appear as the link text
+	 * @param string $uri The URL segment
+	 * @return void
 	 */
 	public function set_breadcrumb($name, $uri = '')
 	{
-		$this->_breadcrumbs[] = array('name' => $name, 'uri' => $uri );
+		$this->_breadcrumbs[] = array('name' => $name, 'uri' => $uri);
 		return $this;
 	}
 
 	/**
 	 * Set a the cache lifetime
 	 *
-	 * @access	public
-	 * @param	string
-	 * @param	string
-	 * @param	boolean
-	 * @return	void
+	 * @param int $minutes
+	 * @return void
 	 */
 	public function set_cache($minutes = 0)
 	{
@@ -478,12 +446,10 @@ class Template
 
 
 	/**
-	 * enable_parser
 	 * Should be parser be used or the view files just loaded normally?
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	void
+	 * @param bool $bool
+	 * @return void
 	 */
 	public function enable_parser($bool)
 	{
@@ -492,12 +458,10 @@ class Template
 	}
 
 	/**
-	 * enable_parser_body
 	 * Should be parser be used or the body view files just loaded normally?
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	void
+	 * @param string $view
+	 * @return void
 	 */
 	public function enable_parser_body($bool)
 	{
@@ -506,12 +470,10 @@ class Template
 	}
 
 	/**
-	 * theme_locations
 	 * List the locations where themes may be stored
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	array
+	 * @param string $view
+	 * @return array
 	 */
 	public function theme_locations()
 	{
@@ -519,12 +481,10 @@ class Template
 	}
 
 	/**
-	 * add_theme_location
 	 * Set another location for themes to be looked in
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	array
+	 * @param string $view
+	 * @return array
 	 */
 	public function add_theme_location($location)
 	{
@@ -535,9 +495,8 @@ class Template
 	 * theme_exists
 	 * Check if a theme exists
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	array
+	 * @param string $view
+	 * @return array
 	 */
 	public function theme_exists($theme = NULL)
 	{
@@ -558,9 +517,8 @@ class Template
 	 * get_layouts
 	 * Get all current layouts (if using a theme you'll get a list of theme layouts)
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	array
+	 * @param string $view
+	 * @return array
 	 */
 	public function get_layouts()
 	{
@@ -579,9 +537,8 @@ class Template
 	 * get_layouts
 	 * Get all current layouts (if using a theme you'll get a list of theme layouts)
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	array
+	 * @param string $view
+	 * @return array
 	 */
 	public function get_theme_layouts($theme = NULL)
 	{
@@ -592,7 +549,7 @@ class Template
 		foreach ($this->_theme_locations as $location)
 		{
 			// Get special web layouts
-			if (is_dir($location.$theme.'/views/web/layouts/') )
+			if (is_dir($location.$theme.'/views/web/layouts/'))
 			{
 				foreach (glob($location.$theme . '/views/web/layouts/*.*') as $layout)
 				{
@@ -619,9 +576,8 @@ class Template
 	 * layout_exists
 	 * Check if a theme layout exists
 	 *
-	 * @access	public
-	 * @param	 string	$view
-	 * @return	array
+	 * @param string $view
+	 * @return array
 	 */
 	public function layout_exists($layout)
 	{
@@ -639,10 +595,9 @@ class Template
 	 * load_view
 	 * Load views from theme paths if they exist.
 	 *
-	 * @access	public
-	 * @param	string	$view
-	 * @param	mixed	$data
-	 * @return	array
+	 * @param string $view
+	 * @param mixed $data
+	 * @return array
 	 */
 	public function load_view($view, $data = array())
 	{
@@ -732,7 +687,6 @@ class Template
 					TRUE
 				), $data, TRUE);
 			}
-
 			else
 			{
 				$this->_ci->load->vars($data);
@@ -744,7 +698,6 @@ class Template
 				);
 			}
 		}
-
 		// Can just run as usual
 		else
 		{

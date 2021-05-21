@@ -251,7 +251,7 @@ class Installer extends CI_Controller
 	 */
 	private function _rewrite_database($settings = [])
 	{
-		if (!is_array($settings) || empty($settings))
+		if (! is_array($settings) || empty($settings))
 		{
 			return false;
 		}
