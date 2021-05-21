@@ -428,6 +428,10 @@ ul.uk-nav-sub {
   border-radius: 2px;
 }
 
+.uk-form-small:not(textarea):not([multiple]):not([size]) {
+  height: 32px;
+}
+
 .uk-button {
   border-radius: 2px;
   font-weight: 700;
