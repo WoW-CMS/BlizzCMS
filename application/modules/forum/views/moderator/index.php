@@ -2,9 +2,9 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('dashboard'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('dashboard') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><span><?= lang('dashboard'); ?></span></li>
+              <li><span><?= lang('dashboard') ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto"></div>
@@ -19,10 +19,10 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-small"><?= lang('username'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= lang('date'); ?></th>
-                      <th class="uk-width-medium uk-text-center"><?= lang('actions'); ?></th>
-                      <th class="uk-width-medium uk-text-center"><?= lang('information'); ?></th>
+                      <th class="uk-width-small"><?= lang('username') ?></th>
+                      <th class="uk-width-small uk-text-center"><?= lang('date') ?></th>
+                      <th class="uk-width-medium uk-text-center"><?= lang('actions') ?></th>
+                      <th class="uk-width-medium uk-text-center"><?= lang('information') ?></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -44,8 +44,8 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-width-small"><?= lang('username'); ?></th>
-                      <th class="uk-width-medium"><?= lang('reason'); ?></th>
+                      <th class="uk-width-small"><?= lang('username') ?></th>
+                      <th class="uk-width-medium"><?= lang('reason') ?></th>
                       <th class="uk-width-small">Length</th>
                       <th class="uk-width-small">Banned By</th>
                     </tr>

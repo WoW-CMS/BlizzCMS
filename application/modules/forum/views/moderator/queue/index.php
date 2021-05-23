@@ -4,7 +4,7 @@
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-margin-remove">Moderation Queue</h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('forum/mod'); ?>"><?= lang('dashboard'); ?></a></li>
+              <li><a href="<?= site_url('forum/mod') ?>"><?= lang('dashboard') ?></a></li>
               <li><span>Moderation Queue</span></li>
             </ul>
           </div>
@@ -18,9 +18,9 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
-                  <th class="uk-width-medium"><?= lang('title'); ?></th>
-                  <th class="uk-width-small"><?= lang('date'); ?></th>
-                  <th class="uk-width-small"><?= lang('actions'); ?></th>
+                  <th class="uk-width-medium"><?= lang('title') ?></th>
+                  <th class="uk-width-small"><?= lang('date') ?></th>
+                  <th class="uk-width-small"><?= lang('actions') ?></th>
                 </tr>
               </thead>
               <tbody>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
-  <title><?= config_item('app_name'); ?></title>
+  <title><?= config_item('app_name') ?></title>
   <!--[if !mso]><!-- -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!--<![endif]-->
@@ -114,7 +114,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:middle;" width="100%">
                           <tr>
                             <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
-                              <div style="font-family:Lobster, cursive;font-size:28px;line-height:1;text-align:left;color:#ffffff;"><?= config_item('app_name'); ?></div>
+                              <div style="font-family:Lobster, cursive;font-size:28px;line-height:1;text-align:left;color:#ffffff;"><?= config_item('app_name') ?></div>
                             </td>
                           </tr>
                         </table>
@@ -268,7 +268,7 @@
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:middle;" width="100%">
                           <tr>
                             <td align="center" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
-                              <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#ffffff;">© Copyright <?= date('Y'); ?> <?= config_item('app_name'); ?>.</div>
+                              <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#ffffff;">© Copyright <?= date('Y') ?> <?= config_item('app_name') ?>.</div>
                             </td>
                           </tr>
                         </table>

@@ -2,47 +2,47 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('pages'); ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('pages') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
-              <li><a href="<?= site_url('admin'); ?>"><?= lang('dashboard'); ?></a></li>
-              <li><span><?= lang('pages'); ?></span></li>
+              <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
+              <li><span><?= lang('pages') ?></span></li>
             </ul>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= site_url('admin/pages'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/pages') ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
-        <?= $template['partials']['alerts']; ?>
-        <?= form_open(current_url()); ?>
+        <?= $template['partials']['alerts'] ?>
+        <?= form_open(current_url()) ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-pen"></i> <?= lang('create_page'); ?></h5>
+            <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-pen"></i> <?= lang('create_page') ?></h5>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('title'); ?></label>
+              <label class="uk-form-label"><?= lang('title') ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="title" value="<?= set_value('title'); ?>" placeholder="<?= lang('title'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="title" value="<?= set_value('title') ?>" placeholder="<?= lang('title') ?>">
               </div>
-              <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
+              <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('slug'); ?></label>
+              <label class="uk-form-label"><?= lang('slug') ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input uk-width-1-1" type="text" name="slug" value="<?= set_value('slug'); ?>" placeholder="<?= lang('slug'); ?>">
+                <input class="uk-input uk-width-1-1" type="text" name="slug" value="<?= set_value('slug') ?>" placeholder="<?= lang('slug') ?>">
               </div>
-              <?= form_error('slug', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
+              <?= form_error('slug', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('description'); ?></label>
+              <label class="uk-form-label"><?= lang('description') ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea tinyeditor" name="description" rows="12"><?= set_value('description'); ?></textarea>
+                <textarea class="uk-textarea tinyeditor" name="description" rows="12"><?= set_value('description') ?></textarea>
               </div>
-              <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>'); ?>
+              <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
           </div>
         </div>
-        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('create'); ?></button>
-        <?= form_close(); ?>
+        <button class="uk-button uk-button-primary uk-margin-small" type="submit"><i class="fas fa-plus"></i> <?= lang('create') ?></button>
+        <?= form_close() ?>
       </div>
     </section>
