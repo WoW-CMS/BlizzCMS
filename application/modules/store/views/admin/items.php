@@ -13,10 +13,16 @@
             <a href="<?= site_url('store/admin/'.$id.'/create'); ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-pen"></i> <?= lang('create'); ?></a>
           </div>
         </div>
+        <div class="uk-card uk-card-default">
+          <ul class="uk-subnav" uk-margin>
+            <li class="uk-active"><a href="<?= site_url('store/admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= lang('home'); ?></a></li>
+            <li><a href="<?= site_url('store/admin/logs'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list"></i></span><?= lang('logs'); ?></a></li>
+          </ul>
+        </div>
         <?= $template['partials']['alerts']; ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"></h4>
+            <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-list-ul"></i> <?= lang('items'); ?></h5>
           </div>
           <div class="uk-card-body uk-padding-remove">
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">

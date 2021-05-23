@@ -16,7 +16,7 @@
         <?= $template['partials']['alerts']; ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"></h4>
+            <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-list-ul"></i> <?= lang('forums'); ?></h5>
           </div>
           <div class="uk-card-body uk-padding-remove">
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">

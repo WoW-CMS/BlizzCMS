@@ -25,6 +25,7 @@ class System extends MX_Controller
 			redirect(site_url('user'));
 		}
 
+		$this->load->model('system_model');
 		$this->load->language('admin');
 
 		$this->template->set_theme();
@@ -292,5 +293,36 @@ class System extends MX_Controller
 		$this->db->truncate('sessions');
 
 		redirect(site_url('admin/system'));
+	}
+
+	public function logs()
+	{
+		$get  = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
+
+		$search       = $this->input->get('search');
+		$search_clean = $this->security->xss_clean($search);
+
+		$config = [
+			'base_url'    => site_url('admin/system/logs'),
+			'total_rows'  => $this->system_model->count_all($search_clean),
+			'per_page'    => 25,
+			'uri_segment' => 4
+		];
+
+		$this->pagination->initialize($config);
+
+		// Calculate offset if use_page_numbers is TRUE on pagination
+		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+
+		$data = [
+			'logs'  => $this->system_model->get_all($config['per_page'], $offset, $search_clean),
+			'links'  => $this->pagination->create_links(),
+			'search' => $search
+		];
+
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
+
+		$this->template->build('system/logs', $data);
 	}
 }

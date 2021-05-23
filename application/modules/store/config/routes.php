@@ -25,3 +25,4 @@ $route['store/admin/(:num)']['get'] = 'admin/category/$1';
 $route['store/admin/(:num)/create'] = 'admin/create_item/$1';
 $route['store/admin/(:num)/edit/(:num)'] = 'admin/edit_item/$1/$2';
 $route['store/admin/(:num)/delete/(:num)']['get'] = 'admin/delete_item/$1/$2';
+$route['store/admin/logs']['get'] = 'admin/logs';

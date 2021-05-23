@@ -24,6 +24,8 @@ $lang['last_post_by'] = 'Last post by';
 $lang['whos_online'] = 'Whos online';
 $lang['join_conversation'] = 'Join the Conversation';
 $lang['have_something_say'] = 'Have something to say? Login to join the conversation.';
+$lang['categories'] = 'Categories';
+$lang['forums'] = 'Forums';
 $lang['new_topic'] = 'New topic';
 $lang['edit_topic'] = 'Edit topic';
 

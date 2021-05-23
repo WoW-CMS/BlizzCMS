@@ -17,6 +17,7 @@ $route['admin/system/sessions']['get'] = 'system/sessions';
 $route['admin/system/general'] = 'system/general';
 $route['admin/system/captcha'] = 'system/captcha';
 $route['admin/system/email'] = 'system/email';
+$route['admin/system/logs']['get'] = 'system/logs';
 
 $route['admin/mods']['get'] = 'mods/index';
 $route['admin/mods/install/(:any)']['get'] = 'mods/install/$1';

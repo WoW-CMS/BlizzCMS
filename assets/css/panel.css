@@ -303,15 +303,24 @@ ul.uk-nav-sub {
   color: #666;
   padding: 15px;
   text-transform: none;
+  transition: all ease-in-out .15s;
 }
 
 .uk-subnav > * > a:focus,
 .uk-subnav > * > a:hover {
   color: #000849;
+  box-shadow: 0 2px 0 #000849;
 }
 
 .uk-subnav > .uk-active > a {
   color: #000849;
+  box-shadow: 0 2px 0 #000849;
+}
+
+.uk-subnav > *:first-child > a:focus,
+.uk-subnav > *:first-child > a:hover,
+.uk-subnav > :first-child.uk-active > a {
+  border-radius: 0 0 0 4px;
 }
 
 .profile-img {
@@ -494,10 +503,9 @@ ul.uk-nav-sub {
   color: #fff;
   font-size: .9375rem;
   font-weight: 700;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
+  min-width: 16px;
+  min-height: 16px;
+  text-align: center;
   transition: all ease-in-out .15s;
 }
 

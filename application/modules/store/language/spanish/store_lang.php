@@ -12,10 +12,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['store'] = 'Tienda';
 $lang['cart'] = 'Carrito';
 
-$lang['categories'] = 'Categorías de la tienda';
+$lang['categories'] = 'Categorías';
 $lang['top_items'] = 'TOP Items';
 $lang['view_item'] = 'Ver ítem';
 $lang['add_cart'] = 'Añadir al carro';
+$lang['items'] = 'Items';
 
 $lang['soap_send_subject'] = 'Compra en la Tienda';
 $lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';

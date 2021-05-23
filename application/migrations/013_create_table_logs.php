@@ -22,7 +22,7 @@ class Migration_Create_table_logs extends CI_Migration
 				'constraint' => '255',
 				'null' => FALSE
 			),
-			'data' => array(
+			'message' => array(
 				'type' => 'MEDIUMTEXT',
 				'null' => TRUE
 			),

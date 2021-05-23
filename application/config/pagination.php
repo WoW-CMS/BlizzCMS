@@ -27,11 +27,11 @@ $config['last_link'] = 'Last &raquo;';
 $config['last_tag_open'] = '<li class="next page">';
 $config['last_tag_close'] = '</li>';
 
-$config['next_link'] = '<span uk-pagination-next></span>';
+$config['next_link'] = '<i class="fas fa-angle-right"></i>';
 $config['next_tag_open'] = '<li class="next page">';
 $config['next_tag_close'] = '</li>';
 
-$config['prev_link'] = '<span uk-pagination-previous></span>';
+$config['prev_link'] = '<i class="fas fa-angle-left"></i>';
 $config['prev_tag_open'] = '<li class="prev page">';
 $config['prev_tag_close'] = '</li>';
 

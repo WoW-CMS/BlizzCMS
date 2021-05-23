@@ -111,6 +111,9 @@ $lang['id'] = 'ID';
 $lang['status'] = 'Status';
 $lang['priority'] = 'Priority';
 $lang['date'] = 'Date';
+$lang['expiration_date'] = 'Expiration date';
+$lang['creation_date'] = 'Creation date';
+$lang['update_date'] = 'Update date';
 $lang['author'] = 'Author';
 $lang['time'] = 'Time';
 $lang['realm'] = 'Realm';
@@ -161,6 +164,7 @@ $lang['realmlist'] = 'Realmlist';
 $lang['currency'] = 'Currency';
 $lang['mode'] = 'Mode';
 $lang['list'] = 'List';
+$lang['message'] = 'Message';
 
 /**
  * Selects

@@ -188,7 +188,7 @@ class Store_model extends CI_Model
 			'item_id'    => $item->id,
 			'user_id'    => $user,
 			'guid'       => $guid,
-			'name'       => $name,
+			'character'  => $name,
 			'price_type' => $item->price_type,
 			'dp'         => $item->dp,
 			'vp'         => $item->vp,
@@ -197,5 +197,62 @@ class Store_model extends CI_Model
 		]);
 
 		return true;
+	}
+
+	/**
+	 * Count all logs
+	 *
+	 * @return int
+	 */
+	public function count_logs($search = '')
+	{
+		if ($search === '')
+		{
+			return $this->db->count_all($this->store_logs);
+		}
+
+		return $this->db->select('store_logs.*, users.username')->from($this->store_logs)->join('users', 'store_logs.user_id = users.id')->like('store_logs.price_type', $search)->or_like('store_logs.character', $search)->or_like('users.username', $search)->count_all_results();
+	}
+
+	/**
+	 * Get all logs
+	 *
+	 * @param int $limit
+	 * @param int $start
+	 * @param string $search
+	 * @return array
+	 */
+	public function get_all_logs($limit, $start, $search = '')
+	{
+		if ($search === '')
+		{
+			return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->store_logs)->result();
+		}
+
+		return $this->db->select('store_logs.*, users.username')->from($this->store_logs)->join('users', 'store_logs.user_id = users.id')->like('store_logs.price_type', $search)->or_like('store_logs.character', $search)->or_like('users.username', $search)->order_by('store_logs.id', 'DESC')->limit($limit, $start)->get()->result();
+	}
+
+	/**
+	 * Get log
+	 *
+	 * @param int $id
+	 * @return object
+	 */
+	public function get_log($id)
+	{
+		return $this->db->where('id', $id)->get($this->store_logs)->row();
+	}
+
+	/**
+	 * Find if the log exists
+	 *
+	 * @param int $id
+	 * @return boolean
+	 */
+	public function find_log($id)
+	{
+		$query = $this->db->where('id', $id)->get($this->store_logs)->num_rows();
+
+		return $query == 1;
 	}
 }

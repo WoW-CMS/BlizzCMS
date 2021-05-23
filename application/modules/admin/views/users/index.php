@@ -8,21 +8,33 @@
               <li><span><?= lang('all_users'); ?></span></li>
             </ul>
           </div>
-          <div class="uk-width-auto@s">
-            <?= form_open(site_url('admin/users'), ['method' => 'get']); ?>
-            <div class="uk-inline uk-width-1-1 uk-width-medium@s">
-              <div class="uk-form-controls">
-                <span class="uk-form-icon"><i class="fas fa-search"></i></span>
-                <input class="uk-input" type="text" name="search" value="<?= $search; ?>" placeholder="<?= lang('search'); ?>">
-              </div>
-            </div>
-            <?= form_close(); ?>
-          </div>
+          <div class="uk-width-auto@s"></div>
         </div>
         <?= $template['partials']['alerts']; ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"></h4>
+            <div class="uk-grid uk-grid-small uk-margin-small uk-flex uk-flex-middle" data-uk-grid>
+              <div class="uk-width-expand@s uk-visible@s">
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-list-ul"></i> <?= lang('all_users'); ?></h5>
+              </div>
+              <div class="uk-width-auto@s">
+                <?= form_open(site_url('admin/users'), ['method' => 'get']); ?>
+                <div class="uk-grid-small" data-uk-grid>
+                  <div class="uk-width-expand">
+                    <div class="uk-inline uk-width-1-1">
+                      <div class="uk-form-controls">
+                        <span class="uk-form-icon"><i class="fas fa-search"></i></span>
+                        <input class="uk-input uk-form-small" type="text" name="search" value="<?= $search; ?>" placeholder="<?= lang('search'); ?>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="uk-width-auto">
+                    <button class="uk-button uk-button-primary uk-button-small" type="submit"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+                <?= form_close(); ?>
+              </div>
+            </div>
           </div>
           <div class="uk-card-body uk-padding-remove">
             <table class="uk-table uk-table-middle uk-table-divider uk-table-small">

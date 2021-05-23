@@ -14,7 +14,7 @@
           <ul class="uk-subnav" uk-margin>
             <li class="uk-active"><a href="<?= site_url('admin/system'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list-alt"></i></span><?= lang('home'); ?></a></li>
             <li>
-              <a href="#"><span class="uk-margin-small-right"><i class="fas fa-tools"></i></span><?= lang('settings'); ?><span uk-icon="icon: triangle-down"></span></a>
+              <a href="#"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= lang('settings'); ?><span uk-icon="icon: triangle-down"></span></a>
               <div uk-dropdown="mode: click;">
                 <ul class="uk-nav uk-dropdown-nav">
                   <li><a href="<?= site_url('admin/system/general'); ?>"><?= lang('general'); ?></a></li>
@@ -23,6 +23,7 @@
                 </ul>
               </div>
             </li>
+            <li><a href="<?= site_url('admin/system/logs'); ?>"><span class="uk-margin-small-right"><i class="fas fa-list"></i></span><?= lang('logs'); ?></a></li>
           </ul>
         </div>
         <?= $template['partials']['alerts']; ?>

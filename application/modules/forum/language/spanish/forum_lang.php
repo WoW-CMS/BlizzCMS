@@ -24,6 +24,8 @@ $lang['last_post_by'] = 'Último mensaje por';
 $lang['whos_online'] = 'Quién está en línea';
 $lang['join_conversation'] = 'Unirse a la conversación';
 $lang['have_something_say'] = '¿Tienes algo que decir? Inicie sesión para unirse a la conversación.';
+$lang['categories'] = 'Categorías';
+$lang['forums'] = 'Foros';
 $lang['new_topic'] = 'Nuevo tema';
 $lang['edit_topic'] = 'Editar tema';
 

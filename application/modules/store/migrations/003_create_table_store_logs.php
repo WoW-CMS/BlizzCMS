@@ -32,7 +32,7 @@ class Migration_Create_table_store_logs extends CI_Migration
 				'constraint' => '20',
 				'unsigned' => TRUE
 			),
-			'name' => array(
+			'character' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '255',
 				'null' => FALSE

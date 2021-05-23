@@ -16,7 +16,7 @@
         <?= form_open_multipart(current_url()); ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
-            <h4 class="uk-h4"><i class="fas fa-pen"></i> <?= lang('edit_news'); ?></h4>
+            <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-pen"></i> <?= lang('edit_news'); ?></h5>
           </div>
           <div class="uk-card-body">
             <div class="uk-margin-small">

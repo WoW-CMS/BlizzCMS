@@ -675,8 +675,7 @@ h6,
   font-weight: 700;
   line-height: 26px;
   padding: 0 10px;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   transition: all ease-in-out .15s;
 }
 

@@ -139,7 +139,7 @@ class Users extends MX_Controller
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('users/index_bans', $data);
+		$this->template->build('users/bans', $data);
 	}
 
 	public function view_ban($id = null)

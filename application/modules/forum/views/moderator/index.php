@@ -13,7 +13,7 @@
           <div class="uk-width-3-4@s">
             <div class="uk-card uk-card-default">
               <div class="uk-card-header">
-                <h4 class="uk-h4">Latest Moderator Actions</h4>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold">Latest Moderator Actions</h5>
               </div>
               <div class="uk-card-body uk-padding-remove">
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
@@ -38,7 +38,7 @@
             </div>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
-                <h4 class="uk-h4">Latest Moderator Actions Bans Ending Soon</h4>
+                <h5 class="uk-h5 uk-text-uppercase uk-text-bold">Latest Moderator Actions Bans Ending Soon</h5>
               </div>
               <div class="uk-card-body uk-padding-remove">
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">

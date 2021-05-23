@@ -33,10 +33,10 @@ class Users_model extends CI_Model
 	{
 		if ($search === '')
 		{
-			return $this->db->limit($limit, $start)->order_by('id', 'DESC')->get($this->users)->result();
+			return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->users)->result();
 		}
 
-		return $this->db->group_start()->like('nickname', $search)->or_like('username', $search)->or_like('email', $search)->group_end()->limit($limit, $start)->order_by('id', 'DESC')->get($this->users)->result();
+		return $this->db->like('nickname', $search)->or_like('username', $search)->or_like('email', $search)->order_by('id', 'DESC')->limit($limit, $start)->get($this->users)->result();
 	}
 
 	/**
@@ -60,7 +60,7 @@ class Users_model extends CI_Model
 	{
 		$result = $this->db->where('id', $id)->get($this->users)->num_rows();
 
-		return ($result == 1);
+		return $result == 1;
 	}
 
 	/**
@@ -152,6 +152,6 @@ class Users_model extends CI_Model
 	{
 		$result = $this->auth->connect()->where(['id' => $id, 'active' => 1])->get('account_banned')->num_rows();
 
-		return ($result == 1);
+		return $result == 1;
 	}
 }

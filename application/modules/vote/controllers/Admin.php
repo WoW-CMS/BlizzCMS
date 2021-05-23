@@ -156,4 +156,35 @@ class Admin extends MX_Controller
 		$this->session->set_flashdata('success', lang('topsite_deleted'));
 		redirect(site_url('vote/admin'));
 	}
+
+	public function logs()
+	{
+		$get  = $this->input->get('page', TRUE);
+		$page = ctype_digit((string) $get) ? $get : 0;
+
+		$search       = $this->input->get('search');
+		$search_clean = $this->security->xss_clean($search);
+
+		$config = [
+			'base_url'    => site_url('store/admin/logs'),
+			'total_rows'  => $this->vote_model->count_logs($search_clean),
+			'per_page'    => 25,
+			'uri_segment' => 4
+		];
+
+		$this->pagination->initialize($config);
+
+		// Calculate offset if use_page_numbers is TRUE on pagination
+		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+
+		$data = [
+			'logs'  => $this->vote_model->get_all_logs($config['per_page'], $offset, $search_clean),
+			'links'  => $this->pagination->create_links(),
+			'search' => $search
+		];
+
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
+
+		$this->template->build('admin/logs', $data);
+	}
 }
