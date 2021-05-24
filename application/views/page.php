@@ -9,7 +9,7 @@
               <h4 class="uk-h4 uk-text-bold"><i class="far fa-file-alt"></i> <?= html_escape($page->title) ?></h4>
             </div>
             <div class="uk-width-auto">
-              <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', $page->created_at) ?></p>
+              <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', strtotime($page->created_at)) ?></p>
             </div>
           </div>
         </div>

@@ -38,7 +38,7 @@
                 <?php endif ?>
               </div>
               <div class="uk-width-expand@s">
-                <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F j, Y, H:i', $topic->created_at) ?></p>
+                <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F j, Y, H:i', strtotime($topic->created_at)) ?></p>
                 <?= $topic->description ?>
               </div>
             </div>
@@ -62,7 +62,7 @@
                     <?php endif ?>
                   </div>
                   <div class="uk-width-expand@s">
-                    <p class="uk-text-meta uk-margin-remove"><?= date('F j, Y, H:i', $post->created_at) ?></p>
+                    <p class="uk-text-meta uk-margin-remove"><?= date('F j, Y, H:i', strtotime($post->created_at)) ?></p>
                     <?= $post->commentary ?>
                   </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-expand"></div>
                   <div class="uk-width-auto">
-                    <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $post->user_id && now() < strtotime('+30 minutes', $post->created_at)): ?>
+                    <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $post->user_id): ?>
                     <a href="<?= site_url('forum/post/delete/'.$post->id) ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-trash-alt"></i> <?= lang('delete') ?></a>
                     <?php endif ?>
                   </div>

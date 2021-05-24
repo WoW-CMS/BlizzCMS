@@ -13,7 +13,7 @@
                     <h5 class="uk-h5 uk-text-bold"><i class="fas fa-newspaper"></i> <?= html_escape($news->title) ?></h5>
                   </div>
                   <div class="uk-width-auto@s">
-                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', $news->created_at) ?></p>
+                    <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', strtotime($news->created_at)) ?></p>
                   </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                       </div>
                       <div class="uk-width-expand">
                         <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname') ?></h6>
-                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', $comment->created_at) ?></p>
+                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', strtotime($comment->created_at)) ?></p>
                       </div>
                     </div>
                   </div>
@@ -46,7 +46,7 @@
                     <div class="uk-grid uk-grid-small" data-uk-grid>
                       <div class="uk-width-expand"></div>
                       <div class="uk-width-auto">
-                        <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at)): ?>
+                        <?php if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id): ?>
                         <a href="<?= site_url('news/comment/delete/'.$comment->id) ?>" class="uk-button uk-button-danger uk-button-small"><i class="fas fa-trash-alt"></i> <?= lang('delete') ?></a>
                         <?php endif ?>
                       </div>

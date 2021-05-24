@@ -80,7 +80,7 @@ class Pages extends MX_Controller
 					'title'       => $this->input->post('title'),
 					'description' => $this->input->post('description'),
 					'slug'        => $this->input->post('slug'),
-					'created_at'  => now()
+					'created_at'  => current_date()
 				]);
 
 				$this->session->set_flashdata('success', lang('page_created'));

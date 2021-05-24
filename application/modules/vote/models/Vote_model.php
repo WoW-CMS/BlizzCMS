@@ -56,14 +56,14 @@ class Vote_model extends CI_Model
 	 *
 	 * @param int $topsite
 	 * @param int|null $user
-	 * @return int
+	 * @return string
 	 */
 	public function get_expiration($topsite, $user = null)
 	{
 		$user  = $user ?? $this->session->userdata('id');
 		$query = $this->db->where(['topsite_id' => $topsite, 'user_id' => $user])->order_by('id', 'DESC')->limit(1)->get($this->topsites_logs)->row('expired_at');
 
-		return ! empty($query) ? $query : 0;
+		return ! empty($query) ? $query : '2021-01-01 12:00:00';
 	}
 
 	/**

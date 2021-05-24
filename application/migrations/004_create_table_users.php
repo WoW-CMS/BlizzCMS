@@ -46,9 +46,8 @@ class Migration_Create_table_users extends CI_Migration
 				'default' => 1
 			),
 			'joined_at' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE
+				'type' => 'DATETIME',
+				'null' => TRUE
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);

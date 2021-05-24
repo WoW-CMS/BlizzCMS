@@ -48,7 +48,7 @@ class Website_model extends CI_Model
 				'nickname'  => $accgame->username,
 				'username'  => $accgame->username,
 				'email'     => $accgame->email,
-				'joined_at' => strtotime($accgame->joindate)
+				'joined_at' => date('Y-m-d H:i:s', $accgame->joindate)
 			]);
 		}
 
@@ -142,7 +142,7 @@ class Website_model extends CI_Model
 	 */
 	public function pending_unique($username, $email)
 	{
-		$query = $this->db->query("SELECT * FROM users_tokens WHERE (JSON_EXTRACT(data, '$.username') = ? OR JSON_EXTRACT(data, '$.email') = ?) AND type = 'validation' AND expired_at >= ?", [$username, $email, now()]);
+		$query = $this->db->query("SELECT * FROM users_tokens WHERE (JSON_EXTRACT(data, '$.username') = ? OR JSON_EXTRACT(data, '$.email') = ?) AND type = 'validation' AND expired_at >= ?", [$username, $email, current_date()]);
 
 		return ($query->num_rows() >= 1);
 	}
@@ -152,7 +152,7 @@ class Website_model extends CI_Model
 	 *
 	 * @param int $id
 	 * @param string $type
-	 * @param int $expiration
+	 * @param string $expiration
 	 * @param string $data
 	 * @return string
 	 */
@@ -169,7 +169,7 @@ class Website_model extends CI_Model
 			'hash'       => $hash,
 			'type'       => $type,
 			'data'       => $data,
-			'created_at' => now(),
+			'created_at' => current_date(),
 			'expired_at' => $expiration
 		]);
 
@@ -196,7 +196,7 @@ class Website_model extends CI_Model
 		$query = $this->db->where([
 			'chooser'       => $chooser,
 			'type'          => $type,
-			'expired_at >=' => now()
+			'expired_at >=' => current_date()
 		])->get('users_tokens')->row();
 
 		if (empty($query) || ! hash_equals($query->hash, $validation))

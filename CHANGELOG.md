@@ -106,7 +106,7 @@
 - Deprecated ``$this->base->getClassName()`` in favor of ``class_name()``
 - Deprecated ``$this->base->getSpecifyZone()`` in favor of ``zone_name()``
 - Deprecated ``$this->base->moneyConversor()`` in favor of ``money_converter()``
-- Deprecated ``$this->base->moneyConversor()`` in favor of ``time_converter()``
+- Deprecated ``$this->base->timeConversor()`` in favor of ``elapsed_time()``
 - Deprecated ``$this->base->getMenu()`` in favor of ``$this->base->get_menu()``
 - Deprecated ``$this->base->getMenuChild()`` in favor of ``$this->base->get_parent_menu()``
 - Deprecated ``$this->home_model->getSlides()`` in favor of ``$this->base->get_slides()``

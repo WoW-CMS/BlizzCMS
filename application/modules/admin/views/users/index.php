@@ -54,7 +54,7 @@
                     <span class="uk-text-middle"><?= $user->username ?></span>
                   </td>
                   <td class="uk-visible@s"><?= $user->email ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $user->joined_at) ?></td>
+                  <td class="uk-visible@s"><?= $user->joined_at ?></td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/users/view/'.$user->id) ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-eye"></i> <?= lang('view') ?></a>

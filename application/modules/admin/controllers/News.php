@@ -102,7 +102,7 @@ class News extends MX_Controller
 					'description' => $this->input->post('description'),
 					'image'       => $img,
 					'comments'    => empty($this->input->post('comments', TRUE)) ? 0 : 1,
-					'created_at'  => now()
+					'created_at'  => current_date()
 				]);
 
 				$this->session->set_flashdata('success', lang('news_created'));

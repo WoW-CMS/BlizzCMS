@@ -62,7 +62,7 @@ class Vote extends MX_Controller
 			show_404();
 		}
 
-		if ($this->vote_model->get_expiration($id) >= now())
+		if (strtotime($this->vote_model->get_expiration($id)) >= now())
 		{
 			$this->session->set_flashdata('error', lang('already_voted'));
 			redirect(site_url('vote'));
@@ -77,7 +77,7 @@ class Vote extends MX_Controller
 			'topsite_id' => $id,
 			'user_id'    => $user->id,
 			'points'     => $topsite->points,
-			'created_at' => now(),
+			'created_at' => current_date(),
 			'expired_at' => interval_time('PT' . $topsite->time . 'H')
 		]);
 

@@ -22,10 +22,8 @@ class Migration_Create_table_changelogs extends CI_Migration
 				'null' => TRUE
 			),
 			'created_at' => array(
-				'type' => 'INT',
-				'constraint' => '10',
-				'unsigned' => TRUE,
-				'default' => 0
+				'type' => 'DATETIME',
+				'null' => TRUE
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);

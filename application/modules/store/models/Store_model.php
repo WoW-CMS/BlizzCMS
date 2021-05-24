@@ -193,7 +193,7 @@ class Store_model extends CI_Model
 			'dp'         => $item->dp,
 			'vp'         => $item->vp,
 			'result'     => $result,
-			'created_at' => now()
+			'created_at' => current_date()
 		]);
 
 		return true;

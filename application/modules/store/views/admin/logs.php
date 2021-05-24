@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="uk-card-body uk-padding-remove uk-overflow-auto">
-            <table class="uk-table uk-table-divider uk-table-small">
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
                   <th class="uk-table-expand"><?= lang('username') ?></th>
@@ -66,7 +66,7 @@
                   <td><?= $item->item_id ?></td>
                   <td><?= $item->character ?></td>
                   <td><?= $item->result ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->created_at) ?></td>
+                  <td class="uk-visible@s"><?= $item->created_at ?></td>
                   <td>
                     <a href="<?= site_url('store/admin/logs/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-eye"></i> <?= lang('view') ?></a>
                   </td>

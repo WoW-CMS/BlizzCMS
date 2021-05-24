@@ -56,8 +56,8 @@
                     <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($item->account) ?>" width="36" height="36" alt="Avatar">
                     <span class="uk-text-middle"><?= $item->username ?></span>
                   </td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->bandate) ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->unbandate) ?></td>
+                  <td class="uk-visible@s"><?= date('Y-m-d H:i:s', $item->bandate) ?></td>
+                  <td class="uk-visible@s"><?= date('Y-m-d H:i:s', $item->unbandate) ?></td>
                   <td><?= html_escape($item->bannedby) ?></td>
                   <td>
                     <a href="<?= site_url('admin/users/banned/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><i class="fas fa-eye"></i> <?= lang('view') ?></a>

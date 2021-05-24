@@ -89,7 +89,7 @@ class Bugtracker extends MX_Controller
 					'title'       => $this->input->post('title', TRUE),
 					'description' => $this->input->post('description'),
 					'category_id' => $this->input->post('category', TRUE),
-					'created_at'  => now()
+					'created_at'  => current_date()
 				]);
 
 				$this->session->set_flashdata('success', lang('report_created'));
@@ -230,7 +230,7 @@ class Bugtracker extends MX_Controller
 				'report_id'  => $id,
 				'user_id'    => $this->session->userdata('id'),
 				'commentary' => $this->input->post('comment'),
-				'created_at' => now()
+				'created_at' => current_date()
 			]);
 
 			$this->session->set_flashdata('success', lang('comment_sended'));
@@ -252,7 +252,7 @@ class Bugtracker extends MX_Controller
 
 		$comment = $this->bugtracker_model->get_comment($id);
 
-		if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at))
+		if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id)
 		{
 			$this->db->where('id', $id)->delete('bugtracker_comments');
 

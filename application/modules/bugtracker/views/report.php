@@ -44,7 +44,7 @@
                       </div>
                       <div class="uk-width-expand">
                         <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname') ?></h6>
-                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', $comment->created_at) ?></p>
+                        <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', strtotime($comment->created_at)) ?></p>
                       </div>
                     </div>
                   </div>

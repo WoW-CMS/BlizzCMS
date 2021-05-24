@@ -36,7 +36,7 @@
                         <h5 class="uk-h5 uk-text-bold"><i class="fas fa-file-alt"></i> <?= html_escape($changelog->title) ?></h5>
                       </div>
                       <div class="uk-width-auto@s">
-                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', $changelog->created_at) ?></p>
+                        <p class="uk-text-small"><i class="far fa-clock"></i> <?= date('F j, Y, H:i', strtotime($changelog->created_at)) ?></p>
                       </div>
                     </div>
                   </div>

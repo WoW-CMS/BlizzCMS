@@ -70,7 +70,7 @@
                     <span class="uk-text-middle"><?= $this->website->get_user($item->user_id, 'username') ?></span>
                   </td>
                   <td class="uk-visible@s"><?= $item->type ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->created_at) ?></td>
+                  <td class="uk-visible@s"><?= $item->created_at ?></td>
                   <td><?= $item->message ?></td>
                 </tr>
                 <?php endforeach ?>

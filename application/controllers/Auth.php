@@ -222,7 +222,7 @@ class Auth extends CI_Controller
 						'nickname'  => $nickname,
 						'username'  => $username,
 						'email'     => $email,
-						'joined_at' => now()
+						'joined_at' => current_date()
 					]);
 
 					$this->session->set_flashdata('success', lang('register_success'));
@@ -391,7 +391,7 @@ class Auth extends CI_Controller
 					'nickname'  => $data['user']->nickname,
 					'username'  => $data['user']->username,
 					'email'     => $data['user']->email,
-					'joined_at' => now()
+					'joined_at' => current_date()
 				]);
 
 				$this->db->where(['hash' => $result->hash, 'type' => TOKEN_VALIDATION])->delete('users_tokens');

@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="uk-card-body uk-padding-remove uk-overflow-auto">
-            <table class="uk-table uk-table-divider uk-table-small">
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
                   <th class="uk-table-expand"><?= lang('username') ?></th>
@@ -63,8 +63,8 @@
                   </td>
                   <td class="uk-visible@s"><?= $item->topsite_id ?></td>
                   <td><?= $item->points ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->created_at) ?></td>
-                  <td class="uk-visible@s"><?= date('Y-m-d H:i', $item->expired_at) ?></td>
+                  <td class="uk-visible@s"><?= $item->created_at ?></td>
+                  <td class="uk-visible@s"><?= $item->expired_at ?></td>
                 </tr>
                 <?php endforeach ?>
               </tbody>

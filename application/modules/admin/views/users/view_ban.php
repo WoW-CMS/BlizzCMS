@@ -21,7 +21,7 @@
               </div>
               <div class="uk-text-center uk-margin-small">
                 <h4 class="uk-h4 uk-margin-remove"><?= $this->website->get_user($ban->account, 'username') ?></h4>
-                <p class="uk-text-small uk-margin-remove"><?= lang('member_since') ?>: <?= date('j F Y', $this->website->get_user($ban->account, 'joined_at')) ?></p>
+                <p class="uk-text-small uk-margin-remove"><?= lang('member_since') ?>: <?= date('j F Y', strtotime($this->website->get_user($ban->account, 'joined_at'))) ?></p>
               </div>
             </div>
             <a href="<?= site_url('admin/users/unban/'.$ban->id) ?>" class="uk-button uk-button-danger uk-width-1-1 uk-margin-small"><i class="fas fa-user"></i> <?= lang('unban_user') ?></a>

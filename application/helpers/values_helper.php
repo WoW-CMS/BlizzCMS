@@ -81,45 +81,6 @@ if (! function_exists('money_converter'))
 	}
 }
 
-if (! function_exists('time_converter'))
-{
-	/**
-	 * Convert timestamp to elapsed time
-	 *
-	 * @param int $time
-	 * @return string
-	 */
-	function time_converter($time)
-	{
-		$init    = new \DateTime('@0');
-		$elapsed = new \DateTime('@' . $time);
-
-		return $init->diff($elapsed)->format('%aD %hH %iM %sS');
-	}
-}
-
-if (! function_exists('interval_time'))
-{
-	/**
-	 * Add interval to current time
-	 * 
-	 * @param string $string
-	 * @return int
-	 */
-	function interval_time($string)
-	{
-		if (! is_string($string))
-		{
-			return 0;
-		}
-
-		$date = new \DateTime();
-		$new  = $date->add(new \DateInterval($string));
-
-		return $new->getTimestamp();
-	}
-}
-
 if (! function_exists('ordinal'))
 {
 	/**

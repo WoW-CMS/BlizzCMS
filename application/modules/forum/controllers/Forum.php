@@ -135,7 +135,7 @@ class Forum extends MX_Controller
 					'user_id'     => $this->session->userdata('id'),
 					'title'       => $this->input->post('title', TRUE),
 					'description' => $this->input->post('description'),
-					'created_at'  => now()
+					'created_at'  => current_date()
 				]);
 
 				$this->session->set_flashdata('success', lang('topic_created'));
@@ -180,7 +180,7 @@ class Forum extends MX_Controller
 				'forum_id'   => $topic->forum_id,
 				'user_id'    => $this->session->userdata('id'),
 				'commentary' => $this->input->post('comment'),
-				'created_at' => now()
+				'created_at' => current_date()
 			]);
 
 			$this->session->set_flashdata('success', lang('post_sended'));
@@ -228,7 +228,7 @@ class Forum extends MX_Controller
 				$this->db->where('id', $id)->update('forum_topics', [
 					'title'       => $this->input->post('title', TRUE),
 					'description' => $this->input->post('description'),
-					'updated_at'  => now()
+					'updated_at'  => current_date()
 				]);
 
 				$this->session->set_flashdata('success', lang('topic_updated'));
@@ -255,7 +255,7 @@ class Forum extends MX_Controller
 
 		$post = $this->forum_model->get_post($id);
 
-		if ($this->auth->is_moderator() || $this->session->userdata('id') == $post->user_id && now() < strtotime('+30 minutes', $post->created_at))
+		if ($this->auth->is_moderator() || $this->session->userdata('id') == $post->user_id)
 		{
 			$this->db->where('id', $id)->delete('forum_posts');
 

@@ -83,7 +83,7 @@ class News extends CI_Controller
 				'news_id'    => $id,
 				'user_id'    => $this->session->userdata('id'),
 				'commentary' => $this->input->post('comment'),
-				'created_at' => now()
+				'created_at' => current_date()
 			]);
 
 			$this->session->set_flashdata('success', lang('comment_sended'));
@@ -105,7 +105,7 @@ class News extends CI_Controller
 
 		$comment = $this->base->get_comment($id);
 
-		if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id && now() < strtotime('+30 minutes', $comment->created_at))
+		if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id)
 		{
 			$this->db->where('id', $id)->delete('news_comments');
 

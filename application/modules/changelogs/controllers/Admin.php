@@ -81,7 +81,7 @@ class Admin extends MX_Controller
 				$this->db->insert('changelogs', [
 					'title'       => $this->input->post('title'),
 					'description' => $this->input->post('description'),
-					'created_at'  => now()
+					'created_at'  => current_date()
 				]);
 
 				$this->session->set_flashdata('success', lang('changelog_created'));
