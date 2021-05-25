@@ -24,18 +24,19 @@ class Template
 	// but can be set to views/foo/layouts with a subdirectory
 
 	private $_title = '';
-	private $_metadata = array();
+	private $_head_data = [];
+	private $_body_data = [];
 
-	private $_partials = array();
+	private $_partials = [];
 
-	private $_breadcrumbs = array();
+	private $_breadcrumbs = [];
 
 	private $_title_separator = ' | ';
 
 	private $_parser_enabled = TRUE;
 	private $_parser_body_enabled = TRUE;
 
-	private $_theme_locations = array();
+	private $_theme_locations = [];
 
 	private $_is_mobile = FALSE;
 
@@ -44,14 +45,14 @@ class Template
 
 	private $_ci;
 
-	private $_data = array();
+	private $_data = [];
 
 	/**
 	 * Constructor - Sets Preferences
 	 *
 	 * The constructor can be passed an array of config values
 	 */
-	function __construct($config = array())
+	function __construct($config = [])
 	{
 		$this->_ci =& get_instance();
 
@@ -69,11 +70,11 @@ class Template
 	 * @param array $config
 	 * @return void
 	 */
-	function initialize($config = array())
+	function initialize($config = [])
 	{
 		foreach ($config as $key => $val)
 		{
-			if ($key == 'theme' AND $val != '')
+			if ($key == 'theme' && $val != '')
 			{
 				$this->set_theme($val);
 				continue;
@@ -83,10 +84,10 @@ class Template
 		}
 
 		// No locations set in config?
-		if ($this->_theme_locations === array())
+		if ($this->_theme_locations === [])
 		{
 			// Let's use this obvious default
-			$this->_theme_locations = array(APPPATH . 'themes/');
+			$this->_theme_locations = [APPPATH . 'themes/'];
 		}
 		
 		// Theme was set
@@ -151,7 +152,7 @@ class Template
 	public function set($name, $value = NULL)
 	{
 		// Lots of things! Set them all
-		if (is_array($name) OR is_object($name))
+		if (is_array($name) || is_object($name))
 		{
 			foreach ($name as $item => $value)
 			{
@@ -175,10 +176,10 @@ class Template
 	 * @param bool $return
 	 * @return void
 	 */
-	public function build($view, $data = array(), $return = FALSE)
+	public function build($view, $data = [], $return = FALSE)
 	{
 		// Set whatever values are given. These will be available to all view files
-		is_array($data) OR $data = (array) $data;
+		is_array($data) || $data = (array) $data;
 
 		// Merge in what we already have with the specific data
 		$this->_data = array_merge($this->_data, $data);
@@ -194,8 +195,9 @@ class Template
 		// Output template variables to the template
 		$template['title']       = $this->_title;
 		$template['breadcrumbs'] = $this->_breadcrumbs;
-		$template['metadata']    = implode("\n\t\t", $this->_metadata);
-		$template['partials']    = array();
+		$template['head_data']   = implode("\n\040\040\040\040", $this->_head_data);
+		$template['body_data']   = implode("\n\040\040\040\040", $this->_body_data);
+		$template['partials']    = [];
 		$template['location']    = base_url('application/themes/'.$this->get_theme().'/');
 		$template['assets']      = base_url('assets/');
 		$template['uploads']     = base_url('uploads/');
@@ -206,7 +208,7 @@ class Template
 		foreach ($this->_partials as $name => $partial)
 		{
 			// We can only work with data arrays
-			is_array($partial['data']) OR $partial['data'] = (array) $partial['data'];
+			is_array($partial['data']) || $partial['data'] = (array) $partial['data'];
 
 			// If it uses a view, load it
 			if (isset($partial['view']))
@@ -234,7 +236,7 @@ class Template
 		$this->_ci->output->cache($this->cache_lifetime);
 
 		// Test to see if this file
-		$this->_body = $this->_find_view($view, array(), $this->_parser_body_enabled);
+		$this->_body = $this->_find_view($view, [], $this->_parser_body_enabled);
 
 		// Want this file wrapped with a layout file?
 		if ($this->_layout)
@@ -274,58 +276,83 @@ class Template
 	}
 
 	/**
-	 * Put extra javascipt, css, meta tags, etc before all other head data
+	 * Add head tags before all head data
 	 *
 	 * @param string $line
 	 * @return void
 	 */
 	public function prepend_metadata($line)
 	{
-		array_unshift($this->_metadata, $line);
+		array_unshift($this->_head_data, $line);
 		return $this;
 	}
 
 	/**
-	 * Put extra javascipt, css, meta tags, etc after other head data
+	 * Add head tags after all head data
 	 *
 	 * @param string $line
 	 * @return void
 	 */
 	public function append_metadata($line)
 	{
-		$this->_metadata[] = $line;
+		$this->_head_data[] = $line;
 		return $this;
 	}
 
 	/**
-	 * Set metadata for output later
+	 * Add metadata tags to load in template header
 	 *
 	 * @param string $name
 	 * @param string $content
 	 * @param string $type
 	 * @return void
 	 */
-	public function set_metadata($name, $content, $type = 'meta')
+	public function add_metadata($name, $content, $type = 'meta')
 	{
-		$name = htmlspecialchars(strip_tags($name));
+		$name    = htmlspecialchars(strip_tags($name));
 		$content = htmlspecialchars(strip_tags($content));
 
-		// Keywords with no comments? ARG! comment them
-		if ($name == 'keywords' AND ! strpos($content, ','))
+		if ($name == 'keywords' && ! strpos($content, ','))
 		{
 			$content = preg_replace('/[\s]+/', ', ', trim($content));
 		}
 
-		switch($type)
+		switch ($type)
 		{
 			case 'meta':
-				$this->_metadata[$name] = '<meta name="'.$name.'" content="'.$content.'" />';
+				$this->_head_data[] = '<meta name="'.$name.'" content="'.$content.'">';
 			break;
 			case 'property':
-				$this->_metadata[$name] = '<meta property="'.$name.'" content="'.$content.'" />';
+				$this->_head_data[] = '<meta property="'.$name.'" content="'.$content.'">';
 			break;
 			case 'link':
-				$this->_metadata[$content] = '<link rel="'.$name.'" href="'.$content.'" />';
+				$this->_head_data[] = '<link rel="'.$name.'" href="'.$content.'">';
+			break;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Add js files to load in template
+	 *
+	 * @param string $src
+	 * @param string|null $attribute
+	 * @param string $position
+	 * @return void
+	 */
+	public function add_js($src, $attribute = null, $position = 'body')
+	{
+		$src      = trim($src);
+		$attribute = ! empty($attribute) ? ' ' . preg_replace("/[^0-9a-zA-Z ]/", "", trim($attribute)) : '';
+
+		switch ($position)
+		{
+			case 'body':
+				$this->_body_data[] = '<script src="'.$src.'"'.$attribute.'></script>';
+			break;
+			case 'head':
+				$this->_head_data[] = '<script src="'.$src.'"'.$attribute.'></script>';
 			break;
 		}
 
@@ -341,9 +368,10 @@ class Template
 	public function set_theme($theme = NULL)
 	{
 		$this->_theme = $theme;
+
 		foreach ($this->_theme_locations as $location)
 		{
-			if ($this->_theme AND file_exists($location.$this->_theme))
+			if ($this->_theme && file_exists($location.$this->_theme))
 			{
 				$this->_theme_path = rtrim($location.$this->_theme.'/');
 				break;
@@ -385,7 +413,7 @@ class Template
 	{
 		$this->_layout = $view;
 
-		$_layout_subdir AND $this->_layout_subdir = $_layout_subdir;
+		$_layout_subdir && $this->_layout_subdir = $_layout_subdir;
 
 		return $this;
 	}
@@ -398,9 +426,9 @@ class Template
 	 * @param array $data
 	 * @return void
 	 */
-	public function set_partial($name, $view, $data = array())
+	public function set_partial($name, $view, $data = [])
 	{
-		$this->_partials[$name] = array('view' => $view, 'data' => $data);
+		$this->_partials[$name] = ['view' => $view, 'data' => $data];
 		return $this;
 	}
 
@@ -412,9 +440,9 @@ class Template
 	 * @param array $data
 	 * @return void
 	 */
-	public function inject_partial($name, $string, $data = array())
+	public function inject_partial($name, $string, $data = [])
 	{
-		$this->_partials[$name] = array('string' => $string, 'data' => $data);
+		$this->_partials[$name] = ['string' => $string, 'data' => $data];
 		return $this;
 	}
 
@@ -422,13 +450,13 @@ class Template
 	/**
 	 * Helps build custom breadcrumb trails
 	 *
-	 * @param string $name What will appear as the link text
-	 * @param string $uri The URL segment
+	 * @param string $name
+	 * @param string $uri
 	 * @return void
 	 */
 	public function set_breadcrumb($name, $uri = '')
 	{
-		$this->_breadcrumbs[] = array('name' => $name, 'uri' => $uri);
+		$this->_breadcrumbs[] = ['name' => $name, 'uri' => $uri];
 		return $this;
 	}
 
@@ -446,7 +474,7 @@ class Template
 
 
 	/**
-	 * Should be parser be used or the view files just loaded normally?
+	 * Enabled parser
 	 *
 	 * @param bool $bool
 	 * @return void
@@ -458,7 +486,7 @@ class Template
 	}
 
 	/**
-	 * Should be parser be used or the body view files just loaded normally?
+	 * Enabled parser for body
 	 *
 	 * @param string $view
 	 * @return void
@@ -492,7 +520,6 @@ class Template
 	}
 
 	/**
-	 * theme_exists
 	 * Check if a theme exists
 	 *
 	 * @param string $view
@@ -500,7 +527,7 @@ class Template
 	 */
 	public function theme_exists($theme = NULL)
 	{
-		$theme OR $theme = $this->_theme;
+		$theme || $theme = $this->_theme;
 
 		foreach ($this->_theme_locations as $location)
 		{
@@ -514,15 +541,14 @@ class Template
 	}
 
 	/**
-	 * get_layouts
-	 * Get all current layouts (if using a theme you'll get a list of theme layouts)
+	 * Get all current layouts
 	 *
 	 * @param string $view
 	 * @return array
 	 */
 	public function get_layouts()
 	{
-		$layouts = array();
+		$layouts = [];
 
 		foreach (glob(self::_find_view_folder().'layouts/*.*') as $layout)
 		{
@@ -532,19 +558,17 @@ class Template
 		return $layouts;
 	}
 
-
 	/**
-	 * get_layouts
-	 * Get all current layouts (if using a theme you'll get a list of theme layouts)
+	 * Get all layouts of theme
 	 *
 	 * @param string $view
 	 * @return array
 	 */
 	public function get_theme_layouts($theme = NULL)
 	{
-		$theme OR $theme = $this->_theme;
+		$theme || $theme = $this->_theme;
 
-		$layouts = array();
+		$layouts = [];
 
 		foreach ($this->_theme_locations as $location)
 		{
@@ -573,7 +597,6 @@ class Template
 	}
 
 	/**
-	 * layout_exists
 	 * Check if a theme layout exists
 	 *
 	 * @param string $view
@@ -582,7 +605,7 @@ class Template
 	public function layout_exists($layout)
 	{
 		// If there is a theme, check it exists in there
-		if (! empty($this->_theme) AND in_array($layout, self::get_theme_layouts()))
+		if (! empty($this->_theme) && in_array($layout, self::get_theme_layouts()))
 		{
 			return TRUE;
 		}
@@ -592,16 +615,15 @@ class Template
 	}
 
 	/**
-	 * load_view
 	 * Load views from theme paths if they exist.
 	 *
 	 * @param string $view
 	 * @param mixed $data
 	 * @return array
 	 */
-	public function load_view($view, $data = array())
+	public function load_view($view, $data = [])
 	{
-		return $this->_find_view($view, (array)$data);
+		return $this->_find_view($view, (array) $data);
 	}
 
 	// find layout files, they could be mobile or web
@@ -622,7 +644,7 @@ class Template
 		}
 
 		// Would they like the mobile version?
-		if ($this->_is_mobile === TRUE AND is_dir($view_folder.'mobile/'))
+		if ($this->_is_mobile === TRUE && is_dir($view_folder.'mobile/'))
 		{
 			// Use mobile as the base location for views
 			$view_folder .= 'mobile/';
@@ -650,15 +672,14 @@ class Template
 	private function _find_view($view, array $data, $parse_view = TRUE)
 	{
 		// Only bother looking in themes if there is a theme
-
 		if (! empty($this->_theme))
 		{
 			foreach ($this->_theme_locations as $location)
 			{
-				$theme_views = array(
+				$theme_views = [
 					$this->_theme . '/modules/' . $this->_module . '/' . $view,
 					$this->_theme . '/views/' . $view
-				);
+				];
 
 				foreach ($theme_views as $theme_view)
 				{
@@ -679,7 +700,7 @@ class Template
 		// Sevear hackery to load views from custom places AND maintain compatibility with Modular Extensions
 		if ($override_view_path !== NULL)
 		{
-			if ($this->_parser_enabled === TRUE AND $parse_view === TRUE)
+			if ($this->_parser_enabled === TRUE && $parse_view === TRUE)
 			{
 				// Load content and pass through the parser
 				$content = $this->_ci->parser->parse_string($this->_ci->load->file(
@@ -702,7 +723,7 @@ class Template
 		else
 		{
 			// Grab the content of the view (parsed or loaded)
-			$content = ($this->_parser_enabled === TRUE AND $parse_view === TRUE)
+			$content = ($this->_parser_enabled === TRUE && $parse_view === TRUE)
 
 				// Parse that bad boy
 				? $this->_ci->parser->parse($view, $data, TRUE)
@@ -719,7 +740,7 @@ class Template
 		$this->_ci->load->helper('inflector');
 
 		// Obviously no title, lets get making one
-		$title_parts = array();
+		$title_parts = [];
 
 		// If the method is something other than index, use that
 		if ($this->_method != 'index')
@@ -734,7 +755,7 @@ class Template
 		}
 
 		// Is there a module? Make sure it is not named the same as the method or controller
-		if (! empty($this->_module) AND ! in_array($this->_module, $title_parts))
+		if (! empty($this->_module) && ! in_array($this->_module, $title_parts))
 		{
 			$title_parts[] = $this->_module;
 		}

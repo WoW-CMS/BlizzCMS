@@ -11,6 +11,7 @@
     <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js' ?>"></script>
     <script src="<?= $template['assets'].'js/jquery.min.js' ?>"></script>
     <script src="<?= $template['assets'].'fontawesome/js/all.js' ?>" defer></script>
+    <?= $template['head_data'] ?>
   </head>
   <body>
     <header class="uk-background-primary">
@@ -110,7 +111,6 @@
         <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('rights_reserved') ?></p>
       </div>
     </section>
-    <script src="<?= $template['assets'].'js/jquery.countTo.js' ?>"></script>
-    <script type="text/javascript">$('.number-counter').countTo();</script>
+    <?= $template['body_data'] ?>
   </body>
 </html>

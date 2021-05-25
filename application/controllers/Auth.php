@@ -30,7 +30,7 @@ class Auth extends CI_Controller
 		if (config_item('captcha_login') === 'true')
 		{
 			$captcha_link = (config_item('captcha_type') === 'hcaptcha') ? 'https://hcaptcha.com/1/api.js' : 'https://www.google.com/recaptcha/api.js';
-			$this->template->append_metadata('<script src="'. $captcha_link .'" async defer></script>');
+			$this->template->add_js($captcha_link, 'async defer', 'head');
 		}
 
 		if ($this->input->method() == 'post')
@@ -95,7 +95,7 @@ class Auth extends CI_Controller
 		if (config_item('captcha_register') === 'true')
 		{
 			$captcha_link = (config_item('captcha_type') === 'hcaptcha') ? 'https://hcaptcha.com/1/api.js' : 'https://www.google.com/recaptcha/api.js';
-			$this->template->append_metadata('<script src="'. $captcha_link .'" async defer></script>');
+			$this->template->add_js($captcha_link, 'async defer', 'head');
 		}
 
 		if ($this->input->method() == 'post')
@@ -248,7 +248,7 @@ class Auth extends CI_Controller
 		if (config_item('captcha_forgot') === 'true')
 		{
 			$captcha_link = (config_item('captcha_type') === 'hcaptcha') ? 'https://hcaptcha.com/1/api.js' : 'https://www.google.com/recaptcha/api.js';
-			$this->template->append_metadata('<script src="'. $captcha_link .'" async defer></script>');
+			$this->template->add_js($captcha_link, 'async defer', 'head');
 		}
 
 		if ($this->input->method() == 'post')

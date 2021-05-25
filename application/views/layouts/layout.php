@@ -11,7 +11,7 @@
     <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js' ?>"></script>
     <script src="<?= $template['assets'].'js/jquery.min.js' ?>"></script>
     <script src="<?= $template['assets'].'fontawesome/js/all.js' ?>" defer></script>
-    <?= $template['metadata'] ?>
+    <?= $template['head_data'] ?>
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">
@@ -174,5 +174,6 @@
         </div>
       </div>
     </section>
+    <?= $template['body_data'] ?>
   </body>
 </html>
