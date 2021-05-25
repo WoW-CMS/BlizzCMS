@@ -63,7 +63,7 @@
                       </div>
                       <div class="uk-card-body uk-padding-remove">
                         <div class="uk-overflow-auto">
-                          <table class="uk-table uk-table-divider uk-table-small">
+                          <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                             <tbody>
                               <?php foreach ($this->pvp_model->get_top_teams($realm->id, 3) as $t => $team): ?>
                               <tr>

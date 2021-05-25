@@ -59,6 +59,7 @@ h6,
 .uk-navbar-nav > li > a,
 .uk-navbar-toggle {
   min-height: 60px;
+  padding: 0 5px;
 }
 
 .step-title {
@@ -93,43 +94,43 @@ h6,
   font-size: 1.2rem;
 }
 
-.uk-icon-button.gitlab {
-  background: #fc6d26;
+.uk-icon-button.github {
+  background: #403a3a;
   width: 40px;
   height: 40px;
-  font-size: 1.2rem;
+  font-size: 1.063rem;
   color: #fff;
 }
 
-.uk-icon-button:hover.gitlab,
-.uk-icon-button:focus.gitlab {
-  background-color: #ff8245;
+.uk-icon-button:hover.github,
+.uk-icon-button:focus.github {
+  background-color: #4d4646;
   color: #fff;
 }
 
-.uk-icon-button:active.gitlab,
-.uk-active > .uk-icon-button.gitlab {
-  background-color: #ff8245;
+.uk-icon-button:active.github,
+.uk-active > .uk-icon-button.github {
+  background-color: #4d4646;
   color: #fff;
 }
 
 .uk-icon-button.discord {
-  background: #7289DA;
+  background: #7289da;
   width: 40px;
   height: 40px;
-  font-size: 1.2rem;
+  font-size: 1.063rem;
   color: #fff;
 }
 
 .uk-icon-button:hover.discord,
 .uk-icon-button:focus.discord {
-  background-color: #8598DA;
+  background-color: #7791e6;
   color: #fff;
 }
 
 .uk-icon-button:active.discord,
 .uk-active > .uk-icon-button.discord {
-  background-color: #8598DA;
+  background-color: #7791e6;
   color: #fff;
 }
 

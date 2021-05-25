@@ -122,7 +122,7 @@ class Forum_model extends CI_Model
 	 */
 	public function latest_topics($limit = 5)
 	{
-		return $this->db->limit($limit)->order_by('created_at', 'ASC')->get($this->forum_topics)->result();
+		return $this->db->order_by('created_at', 'ASC')->limit($limit)->get($this->forum_topics)->result();
 	}
 
 	/**
@@ -133,7 +133,7 @@ class Forum_model extends CI_Model
 	 */
 	public function last_topic($id)
 	{
-		return $this->db->where('forum_id', $id)->limit(1)->order_by('created_at', 'DESC')->get($this->forum_topics)->result();
+		return $this->db->where('forum_id', $id)->order_by('created_at', 'DESC')->limit(1)->get($this->forum_topics)->result();
 	}
 
 	/**
@@ -197,7 +197,7 @@ class Forum_model extends CI_Model
 	 */
 	public function last_post($id)
 	{
-		return $this->db->where('topic_id', $id)->limit(1)->order_by('created_at', 'DESC')->get($this->forum_posts)->result();
+		return $this->db->where('topic_id', $id)->order_by('created_at', 'DESC')->limit(1)->get($this->forum_posts)->result();
 	}
 
 	public function count_users()

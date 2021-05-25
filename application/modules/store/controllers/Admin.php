@@ -303,7 +303,6 @@ class Admin extends MX_Controller
 
 	public function logs()
 	{
-
 		$get  = $this->input->get('page', TRUE);
 		$page = ctype_digit((string) $get) ? $get : 0;
 

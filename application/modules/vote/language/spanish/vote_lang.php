@@ -13,6 +13,7 @@ $lang['vote'] = 'Votar';
 $lang['next_vote'] = 'Siguiente voto en:';
 
 $lang['topsites'] = 'Topsites';
+$lang['topsite'] = 'Topsite';
 $lang['create_topsite'] = 'Crear Topsite';
 $lang['edit_topsite'] = 'Editar Topsite';
 

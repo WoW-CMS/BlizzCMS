@@ -193,6 +193,6 @@ class Admin extends MX_Controller
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('admin/index_items', $data);
+		$this->template->build('admin/items', $data);
 	}
 }

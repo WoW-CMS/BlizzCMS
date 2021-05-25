@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="uk-card-body uk-padding-remove uk-overflow-auto">
-            <table class="uk-table uk-table-divider uk-table-small">
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
               <thead>
                 <tr>
                   <th class="uk-table-expand"><?= lang('username') ?></th>
