@@ -68,6 +68,7 @@ class Mods extends MX_Controller
 
 		// Clear cache
 		$this->cache->file->delete('modules');
+		$this->cache->file->delete('settings');
 
 		$this->session->set_flashdata('success', lang_vars('module_installed', [$module]));
 		redirect(site_url('admin/mods'));
@@ -95,6 +96,7 @@ class Mods extends MX_Controller
 
 		// Clear cache
 		$this->cache->file->delete('modules');
+		$this->cache->file->delete('settings');
 
 		$this->session->set_flashdata('success', lang_vars('module_uninstalled', [$module]));
 		redirect(site_url('admin/mods'));
