@@ -48,13 +48,13 @@ class Settings_model extends CI_Model
 
 		if ($data !== false)
 		{
-			$filtered = array_filter($data, function($item) use (&$key) {
+			$filtered = current(array_filter($data, function($item) use ($key) {
 				return $item->key == $key;
-			});
+			}));
 
-			if (! empty($filtered))
+			if ($filtered !== false)
 			{
-				return $filtered[1]->value;
+				return $filtered->value;
 			}
 		}
 

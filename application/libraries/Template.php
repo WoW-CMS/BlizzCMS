@@ -47,11 +47,6 @@ class Template
 
 	private $_data = [];
 
-	/**
-	 * Constructor - Sets Preferences
-	 *
-	 * The constructor can be passed an array of config values
-	 */
 	function __construct($config = [])
 	{
 		$this->_ci =& get_instance();
@@ -74,12 +69,6 @@ class Template
 	{
 		foreach ($config as $key => $val)
 		{
-			if ($key == 'theme' && $val != '')
-			{
-				$this->set_theme($val);
-				continue;
-			}
-
 			$this->{'_'.$key} = $val;
 		}
 
@@ -89,7 +78,11 @@ class Template
 			// Let's use this obvious default
 			$this->_theme_locations = [APPPATH . 'themes/'];
 		}
-		
+
+		$this->_ci->load->model('settings_model');
+
+		$this->_theme = $this->_ci->settings_model->get_value('app_theme') ?? '';
+
 		// Theme was set
 		if ($this->_theme)
 		{
