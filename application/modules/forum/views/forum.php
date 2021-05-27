@@ -76,14 +76,14 @@
                       <a href="<?= site_url('forum/topic/'.$topic->id) ?>" class="uk-link-reset">
                         <h5 class="uk-h5 uk-margin-remove"><?= html_escape($topic->title) ?></h5>
                       </a>
-                      <p class="uk-text-meta uk-margin-remove"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($topic->user_id, 'nickname') ?></span> on <?= date('d-m-y h:i', $topic->created_at) ?></p>
+                      <p class="uk-text-meta uk-margin-remove"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($topic->user_id, 'nickname') ?></span> on <?= date('d-m-y h:i', strtotime($topic->created_at)) ?></p>
                     </td>
                     <td class="uk-text-center">
                       <i class="far fa-comment"></i> <?= $this->forum_model->count_posts($topic->id) ?>
                     </td>
                     <td class="uk-text-meta">
                       <?php foreach ($this->forum_model->last_post($topic->id) as $post): ?>
-                      <span class="uk-text-primary"><?= $this->website->get_user($post->user_id, 'nickname') ?></span> <?= date('d-m-y h:i', $post->created_at) ?>
+                      <span class="uk-text-primary"><?= $this->website->get_user($post->user_id, 'nickname') ?></span> <?= date('d-m-y h:i', strtotime($post->created_at)) ?>
                       <?php endforeach ?>
                     </td>
                   </tr>

@@ -31,6 +31,7 @@ class Migration_Create_table_settings extends CI_Migration
 			array('key' => 'captcha_register', 'value' => 'false'),
 			array('key' => 'captcha_forgot', 'value' => 'false'),
 			array('key' => 'captcha_type', 'value' => NULL),
+			array('key' => 'captcha_theme', 'value' => NULL),
 			array('key' => 'captcha_public', 'value' => NULL),
 			array('key' => 'captcha_private', 'value' => NULL),
 			array('key' => 'register_validation', 'value' => 'false'),

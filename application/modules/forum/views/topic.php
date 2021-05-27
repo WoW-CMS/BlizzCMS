@@ -6,8 +6,14 @@
           </div>
           <div class="uk-width-auto">
             <?php if ($this->website->isLogged() && $topic->user_id == $this->session->userdata('id')): ?>
-            <a href="<?= site_url('forum/topic/'.$topic->id.'/edit') ?>" class="uk-button uk-button-default uk-button-small"><i class="far fa-edit"></i> <?= lang('edit_topic') ?></a>
-            <?php endif ?>
+            <div class="uk-inline">
+              <button class="uk-icon-button" type="button"><i class="fas fa-ellipsis-v"></i></button>
+              <div uk-dropdown="mode: click">
+                <ul class="uk-nav uk-dropdown-nav">
+                  <li><a href="<?= site_url('forum/topic/'.$topic->id.'/edit') ?>"><i class="fas fa-edit"></i> <?= lang('edit_topic') ?></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@
             </div>
             <?php if (config_item('captcha_forgot') === 'true'): ?>
             <div class="uk-margin-small">
-              <div class="<?= (config_item('captcha_type') === 'hcaptcha') ? 'h-captcha' : 'g-recaptcha' ?>" data-sitekey="<?= config_item('captcha_public') ?>"></div>
+              <div class="<?= (config_item('captcha_type') === 'hcaptcha') ? 'h-captcha' : 'g-recaptcha' ?>" data-sitekey="<?= config_item('captcha_public') ?>" data-theme="<?= config_item('captcha_theme') ?>"></div>
             </div>
             <?php endif ?>
             <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-paper-plane"></i> <?= lang('send') ?></button>

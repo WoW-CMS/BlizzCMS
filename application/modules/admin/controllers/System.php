@@ -76,7 +76,7 @@ class System extends MX_Controller
 						'value' => $this->input->post('realmlist', TRUE)
 					],
 					[
-						'key' => 'theme',
+						'key' => 'app_theme',
 						'value' => $this->input->post('theme', TRUE)
 					],
 					[
@@ -140,6 +140,7 @@ class System extends MX_Controller
 			$this->form_validation->set_rules('captcha_login', 'Captcha Login', 'trim');
 			$this->form_validation->set_rules('captcha_forgot', 'Captcha Forgot', 'trim');
 			$this->form_validation->set_rules('captcha_type', 'Captcha Type', 'trim|in_list[hcaptcha,recaptcha]');
+			$this->form_validation->set_rules('captcha_theme', 'Captcha Theme', 'trim|in_list[light,dark]');
 			$this->form_validation->set_rules('captcha_public', 'Captcha Public', 'trim|alpha_dash');
 			$this->form_validation->set_rules('captcha_private', 'Captcha Private', 'trim|alpha_dash');
 
@@ -165,6 +166,10 @@ class System extends MX_Controller
 					[
 						'key'   => 'captcha_type',
 						'value' => $this->input->post('captcha_type')
+					],
+					[
+						'key'   => 'captcha_theme',
+						'value' => $this->input->post('captcha_theme')
 					],
 					[
 						'key'   => 'captcha_public',

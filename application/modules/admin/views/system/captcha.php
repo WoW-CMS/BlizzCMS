@@ -32,15 +32,30 @@
         <div class="uk-card uk-card-default uk-margin-small">
           <div class="uk-card-body">
             <div class="uk-margin-small-bottom">
-              <label class="uk-form-label"><?= lang('type') ?></label>
-              <div class="uk-form-controls">
-                <select class="uk-select" name="captcha_type">
-                  <option value="" hidden selected><?= lang('select_type') ?></option>
-                  <option value="recaptcha" <?php if ('recaptcha' === config_item('captcha_type')) echo 'selected' ?>><?= lang('recaptcha') ?></option>
-                  <option value="hcaptcha" <?php if ('hcaptcha' === config_item('captcha_type')) echo 'selected' ?>><?= lang('hcaptcha') ?></option>
-                </select>
+              <div class="uk-grid uk-grid-small" data-uk-grid>
+                <div class="uk-width-1-2@s">
+                  <label class="uk-form-label"><?= lang('type') ?></label>
+                  <div class="uk-form-controls">
+                    <select class="uk-select" name="captcha_type">
+                      <option value="" hidden selected><?= lang('select_type') ?></option>
+                      <option value="recaptcha" <?php if ('recaptcha' === config_item('captcha_type')) echo 'selected' ?>><?= lang('recaptcha') ?></option>
+                      <option value="hcaptcha" <?php if ('hcaptcha' === config_item('captcha_type')) echo 'selected' ?>><?= lang('hcaptcha') ?></option>
+                    </select>
+                  </div>
+                  <?= form_error('captcha_type', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                </div>
+                <div class="uk-width-1-2@s">
+                  <label class="uk-form-label"><?= lang('theme') ?></label>
+                  <div class="uk-form-controls">
+                    <select class="uk-select" name="captcha_theme">
+                      <option value="" hidden selected><?= lang('select_theme') ?></option>
+                      <option value="light" <?php if ('light' === config_item('captcha_theme')) echo 'selected' ?>><?= lang('light') ?></option>
+                      <option value="dark" <?php if ('dark' === config_item('captcha_theme')) echo 'selected' ?>><?= lang('dark') ?></option>
+                    </select>
+                  </div>
+                  <?= form_error('captcha_theme', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                </div>
               </div>
-              <?= form_error('email_protocol', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>

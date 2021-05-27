@@ -55,7 +55,7 @@
                   <?php foreach ($this->forum_model->latest_topics() as $topic): ?>
                   <li>
                     <i class="fas fa-file-alt"></i> <a href="<?= site_url('forum/topic/'.$topic->id) ?>"><?= character_limiter(html_escape($topic->title), 25) ?></a>
-                    <span class="uk-text-muted uk-display-block"><?= date('d-m-y h:i', $topic->created_at) ?></span>
+                    <span class="uk-text-muted uk-display-block"><?= date('d-m-y h:i', strtotime($topic->created_at)) ?></span>
                   </li>
                   <?php endforeach ?>
                 </ul>

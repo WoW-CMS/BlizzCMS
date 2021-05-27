@@ -27,9 +27,13 @@ $lang['email_preferences'] = 'Email Preferences';
 
 $lang['recaptcha'] = 'reCaptcha';
 $lang['hcaptcha'] = 'hCaptcha';
+$lang['light'] = 'Light';
+$lang['dark'] = 'Dark';
 $lang['mail'] = 'Mail';
 $lang['sendmail'] = 'Sendmail';
 $lang['smtp'] = 'SMTP';
+
+$lang['select_theme'] = 'Select a theme';
 
 $lang['manage_account'] = 'Administrar Cuenta';
 $lang['update_information'] = 'Actualizar Información de la Cuenta';
@@ -47,7 +51,7 @@ $lang['create_slide'] = 'Crear Slide';
 $lang['edit_slide'] = 'Editar Slide';
 
 $lang['discord_server'] = 'Discord (Server ID)';
-$lang['theme_name'] = 'Nombre del Tema';
+$lang['theme'] = 'Tema';
 $lang['facebook_url'] = 'Facebook URL';
 $lang['twitter_url'] = 'Twitter URL';
 $lang['youtube_url'] = 'Youtube URL';

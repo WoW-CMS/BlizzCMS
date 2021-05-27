@@ -52,9 +52,9 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-2@s">
-                  <label class="uk-form-label"><?= lang('theme_name') ?></label>
+                  <label class="uk-form-label"><?= lang('theme') ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" name="theme" value="<?= config_item('theme_name') ?>">
+                    <input class="uk-input" type="text" name="theme" value="<?= config_item('app_theme') ?>">
                   </div>
                   <?= form_error('theme', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
