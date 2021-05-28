@@ -18,19 +18,30 @@ class Bugtracker_model extends CI_Model
 	 */
 	public function get_all($limit, $start, $search = '', $category = '')
 	{
-		if ($search === '' && empty($category))
+		if ($search === '' && $category === '')
 		{
-			return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->bugtracker)->result();
+			return $this->db->order_by('id', 'DESC')
+						->limit($limit, $start)
+						->get($this->bugtracker)
+						->result();
 		}
 
-		$query = $this->db->group_start()->like('title', $search)->or_like('description', $search)->group_end();
+		$query = $this->db->from($this->bugtracker);
 
 		if ($category !== '')
 		{
 			$query = $query->where('category_id', $category);
 		}
 
-		return $query->order_by('id', 'DESC')->limit($limit, $start)->get($this->bugtracker)->result();
+		if ($search !== '')
+		{
+			$query = $query->like('title', $search)->or_like('description', $search);
+		}
+
+		return $query->order_by('id', 'DESC')
+					->limit($limit, $start)
+					->get()
+					->result();
 	}
 
 	/**
@@ -42,7 +53,7 @@ class Bugtracker_model extends CI_Model
 	 */
 	public function count_reports($search = '', $category = '')
 	{
-		if ($search === '' && empty($category))
+		if ($search === '' && $category === '')
 		{
 			return $this->db->count_all($this->bugtracker);
 		}
@@ -54,7 +65,12 @@ class Bugtracker_model extends CI_Model
 			$query = $query->where('category_id', $category);
 		}
 
-		return $query->like('title', $search)->or_like('description', $search)->count_all_results();
+		if ($search !== '')
+		{
+			$query = $query->like('title', $search)->or_like('description', $search);
+		}
+
+		return $query->count_all_results();
 	}
 
 	/**
@@ -78,7 +94,7 @@ class Bugtracker_model extends CI_Model
 	{
 		$query = $this->db->where('id', $id)->get($this->bugtracker)->num_rows();
 
-		return ($query == 1);
+		return $query == 1;
 	}
 
 	/**
@@ -91,7 +107,11 @@ class Bugtracker_model extends CI_Model
 	 */
 	public function get_all_comments($id, $limit, $start)
 	{
-		return $this->db->where('report_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->bugtracker_comments)->result();
+		return $this->db->where('report_id', $id)
+					->order_by('created_at', 'ASC')
+					->limit($limit, $start)
+					->get($this->bugtracker_comments)
+					->result();
 	}
 
 	/**
@@ -126,7 +146,7 @@ class Bugtracker_model extends CI_Model
 	{
 		$query = $this->db->where('id', $id)->get($this->bugtracker_comments)->num_rows();
 
-		return ($query == 1);
+		return $query == 1;
 	}
 
 	/**
