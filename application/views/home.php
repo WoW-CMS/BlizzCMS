@@ -38,7 +38,7 @@
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($articles as $article): ?>
               <div>
-                <a href="<?= site_url('news/'.$article->id) ;?>" title="<?= lang('read_more') ?>">
+                <a href="<?= site_url('news/'.$article->id) ?>" title="<?= lang('read_more') ?>">
                   <div class="uk-card uk-card-default news-card uk-card-hover uk-grid-collapse uk-margin" uk-grid>
                     <div class="uk-width-1-3@s uk-card-media-left uk-cover-container">
                       <img src="<?= $template['uploads'].'news/'.$article->image ?>" alt="<?= $article->title ?>" uk-cover>

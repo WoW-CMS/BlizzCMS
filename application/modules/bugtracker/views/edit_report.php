@@ -27,7 +27,7 @@
             <div class="uk-margin-small uk-light">
               <label class="uk-form-label"><?= lang('title') ?></label>
               <div class="uk-form-controls">
-                <input class="uk-input" type="text" name="title" value="<?= $report->title; ?>" placeholder="<?= lang('title') ?>">
+                <input class="uk-input" type="text" name="title" value="<?= $report->title ?>" placeholder="<?= lang('title') ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>

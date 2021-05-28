@@ -1,6 +1,6 @@
     <section class="uk-section uk-section-small header-section">
       <div class="uk-container">
-        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom uk-flex-middle" data-uk-grid>
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-expand">
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker') ?></h4>
           </div>

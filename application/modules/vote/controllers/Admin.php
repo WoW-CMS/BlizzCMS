@@ -152,6 +152,7 @@ class Admin extends MX_Controller
 		}
 
 		$this->db->where('id', $id)->delete('topsites');
+		$this->db->where('topsite_id', $id)->delete('topsites_logs');
 
 		$this->session->set_flashdata('success', lang('topsite_deleted'));
 		redirect(site_url('vote/admin'));
