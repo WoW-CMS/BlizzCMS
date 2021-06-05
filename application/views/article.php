@@ -1,5 +1,12 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('news') ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">

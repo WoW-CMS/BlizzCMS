@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$autoload['packages'] = array();
+$autoload['packages'] = [];
 
 /*
 | -------------------------------------------------------------------
@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'pagination', 'template', 'encryption', 'cart');
+$autoload['libraries'] = ['database', 'session', 'form_validation', 'parser', 'pagination', 'template', 'encryption', 'cart'];
 
 /*
 | -------------------------------------------------------------------
@@ -79,7 +79,7 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'parser
 |	$autoload['drivers'] = array('cache' => 'cch');
 |
 */
-$autoload['drivers'] = array('cache');
+$autoload['drivers'] = ['cache'];
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array('cache');
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language', 'directory', 'string', 'date', 'values', 'mod');
+$autoload['helper'] = ['directory', 'date', 'file', 'form', 'html', 'language', 'mod', 'number', 'string', 'text', 'url', 'values'];
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language', '
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('installer', 'resources');
+$autoload['config'] = ['installer', 'resources'];
 
 /*
 | -------------------------------------------------------------------
@@ -117,7 +117,7 @@ $autoload['config'] = array('installer', 'resources');
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array('general', 'alerts');
+$autoload['language'] = ['general', 'alerts'];
 
 /*
 | -------------------------------------------------------------------
@@ -132,10 +132,10 @@ $autoload['language'] = array('general', 'alerts');
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array(
+$autoload['model'] = [
 	'Settings_model',
 	'Auth_model'    => 'auth',
 	'Base_model'    => 'base',
 	'Website_model' => 'website',
 	'Realm_model'   => 'realm'
-);
+];

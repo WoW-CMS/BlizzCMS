@@ -260,7 +260,7 @@ class Installer extends CI_Controller
 		$data .= "defined('BASEPATH') OR exit('No direct script access allowed');".PHP_EOL.PHP_EOL;
 		$data .= "\$active_group"." = 'website';".PHP_EOL;
 		$data .= "\$query_builder"." = TRUE;".PHP_EOL.PHP_EOL;
-		$data .= "\$db['website']"." = array(".PHP_EOL;
+		$data .= "\$db['website']"." = [".PHP_EOL;
 		$data .= "\t'dsn'	=> '',".PHP_EOL;
 		$data .= "\t'hostname' => '".$settings['website_hostname']."',".PHP_EOL;
 		$data .= "\t'username' => '".$settings['website_username']."',".PHP_EOL;
@@ -279,10 +279,10 @@ class Installer extends CI_Controller
 		$data .= "\t'encrypt' => FALSE,".PHP_EOL;
 		$data .= "\t'compress' => FALSE,".PHP_EOL;
 		$data .= "\t'stricton' => FALSE,".PHP_EOL;
-		$data .= "\t'failover' => array(),".PHP_EOL;
+		$data .= "\t'failover' => [],".PHP_EOL;
 		$data .= "\t'save_queries' => TRUE,".PHP_EOL;
-		$data .= ");".PHP_EOL.PHP_EOL;
-		$data .= "\$db['auth']"." = array(".PHP_EOL;
+		$data .= "];".PHP_EOL.PHP_EOL;
+		$data .= "\$db['auth']"." = [".PHP_EOL;
 		$data .= "\t'dsn'	=> '',".PHP_EOL;
 		$data .= "\t'hostname' => '".$settings['auth_hostname']."',".PHP_EOL;
 		$data .= "\t'username' => '".$settings['auth_username']."',".PHP_EOL;
@@ -301,9 +301,9 @@ class Installer extends CI_Controller
 		$data .= "\t'encrypt' => FALSE,".PHP_EOL;
 		$data .= "\t'compress' => FALSE,".PHP_EOL;
 		$data .= "\t'stricton' => FALSE,".PHP_EOL;
-		$data .= "\t'failover' => array(),".PHP_EOL;
+		$data .= "\t'failover' => [],".PHP_EOL;
 		$data .= "\t'save_queries' => TRUE,".PHP_EOL;
-		$data .= ");";
+		$data .= "];";
 
 		$this->load->helper('file');
 

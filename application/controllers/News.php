@@ -44,8 +44,7 @@ class News extends CI_Controller
 			'news'     => $this->base->get_news($id),
 			'comments' => $this->base->get_news_comments($id, $config['per_page'], $offset),
 			'links'    => $this->pagination->create_links(),
-			'aside'    => $this->base->get_news_list(),
-			'tiny'     => $this->base->tinyEditor('User')
+			'aside'    => $this->base->get_news_list()
 		];
 
 		$this->template->title(config_item('app_name'), lang('news'));

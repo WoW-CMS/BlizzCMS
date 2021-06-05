@@ -79,9 +79,12 @@ class Template
 			$this->_theme_locations = [APPPATH . 'themes/'];
 		}
 
-		$this->_ci->load->model('settings_model');
+		if ($this->_ci->load->database() === FALSE)
+		{
+			$this->_ci->load->model('settings_model');
 
-		$this->_theme = $this->_ci->settings_model->get_value('app_theme') ?? '';
+			$this->_theme = $this->_ci->settings_model->get_value('app_theme') ?? '';
+		}
 
 		// Theme was set
 		if ($this->_theme)

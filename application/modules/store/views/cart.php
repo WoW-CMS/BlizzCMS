@@ -19,7 +19,7 @@
               <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                 <thead>
                   <tr>
-                    <th class="uk-width-medium"><?= lang('item_name') ?></th>
+                    <th class="uk-width-medium"><?= lang('item') ?></th>
                     <th class="uk-width-medium"><?= lang('character') ?></th>
                     <th class="uk-width-small"><?= lang('price') ?></th>
                     <th><?= lang('quantity') ?></th>

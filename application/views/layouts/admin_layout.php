@@ -123,7 +123,14 @@
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container uk-container-expand">
         <hr class="uk-hr">
-        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('rights_reserved') ?></p>
+        <div class="uk-grid uk-grid-small" data-uk-grid>
+          <div class="uk-width-expand@s">
+            <p class="uk-text-small uk-text-center uk-text-left@s">{elapsed_time}</p>
+          </div>
+          <div class="uk-width-auto@s">
+            <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('rights_reserved') ?></p>
+          </div>
+        </div>
       </div>
     </section>
     <?= $template['body_data'] ?>

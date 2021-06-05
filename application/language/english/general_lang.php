@@ -76,12 +76,9 @@ $lang['lock'] = 'Lock';
 $lang['subject'] = 'Subject';
 $lang['nickname'] = 'Nickname';
 $lang['icon'] = 'Icon';
-$lang['upload_image'] = 'Upload image';
-$lang['icon_name'] = 'Icon name';
 $lang['category'] = 'Category';
 $lang['name'] = 'Name';
 $lang['item'] = 'Item';
-$lang['image_name'] = 'Image Name';
 $lang['reason'] = 'Reason';
 $lang['gm_level'] = 'GM level';
 $lang['url'] = 'URL';
@@ -103,7 +100,6 @@ $lang['faction'] = 'Faction';
 $lang['total_kills'] = 'Total kills';
 $lang['today_kills'] = 'Today kills';
 $lang['yersterday_kills'] = 'Yesterday kills';
-$lang['team_name'] = 'Team name';
 $lang['members'] = 'Members';
 $lang['rating'] = 'Rating';
 $lang['games'] = 'Games';
@@ -120,7 +116,6 @@ $lang['realm'] = 'Realm';
 $lang['zone'] = 'Zone';
 $lang['character'] = 'Character';
 $lang['price'] = 'Price';
-$lang['item_name'] = 'Item name';
 $lang['quantity'] = 'Quantity';
 $lang['race'] = 'Race';
 $lang['class'] = 'Class';
@@ -128,7 +123,6 @@ $lang['level'] = 'Level';
 $lang['money'] = 'Money';
 $lang['time_played'] = 'Time played';
 $lang['actions'] = 'Actions';
-$lang['taxes'] = 'Tax';
 $lang['points'] = 'Points';
 $lang['module'] = 'Module';
 $lang['payment_id'] = 'Payment ID';
@@ -165,6 +159,9 @@ $lang['currency'] = 'Currency';
 $lang['mode'] = 'Mode';
 $lang['list'] = 'List';
 $lang['message'] = 'Message';
+$lang['ip'] = 'IP';
+$lang['upload'] = 'Upload';
+$lang['version'] = 'Version';
 
 /**
  * Selects
@@ -246,3 +243,15 @@ $lang['message_validate'] = 'To confirm the creation of the account associated w
 $lang['subject_reset'] = 'Password reset';
 $lang['message_reset'] = 'A password reset for the account associated with this email address has been requested. To proceed click on the link:';
 $lang['note_time_limit'] = 'The link inside this email is valid for the next <b>12 Hours</b> from the date of the action. if you have problem with it please contact to site administration.';
+
+/**
+ * Zip
+*/
+$lang['zip_already_exists'] = 'Zip file already exists';
+$lang['zip_inconsistent'] = 'Zip file is inconsistent';
+$lang['zip_memory_error'] = 'Malloc failure';
+$lang['zip_not_exist'] = 'Zip file does not exist';
+$lang['zip_not_format'] = 'File not have zip format';
+$lang['zip_cant_open'] = 'Zip file could not be opened';
+$lang['zip_read_error'] = 'Zip file could not be read';
+$lang['zip_seek_error'] = 'Zip file seek error';

@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('realms') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
-              <li><span><?= lang('realms') ?></span></li>
+              <li><a href="<?= site_url('admin/realms') ?>"><?= lang('realms') ?></a></li>
             </ul>
           </div>
           <div class="uk-width-auto">

@@ -61,7 +61,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-mail-bulk"></i></span>
-                      <input class="uk-input" type="text" name="email_host" value="<?= config_item('email_hostname') ?>" placeholder="<?= lang('hostname') ?>">
+                      <input class="uk-input" type="text" name="email_host" value="<?= config_item('email_hostname') ?>">
                     </div>
                   </div>
                   <?= form_error('email_host', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
@@ -71,7 +71,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-ethernet"></i></span>
-                      <input class="uk-input" type="text" name="email_port" value="<?= config_item('email_port') ?>" placeholder="<?= lang('port') ?>">
+                      <input class="uk-input" type="text" name="email_port" value="<?= config_item('email_port') ?>">
                     </div>
                   </div>
                   <?= form_error('email_port', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
@@ -85,7 +85,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user"></i></span>
-                      <input class="uk-input" type="text" name="email_user" value="<?= config_item('email_username') ?>" placeholder="<?= lang('username') ?>">
+                      <input class="uk-input" type="text" name="email_user" value="<?= config_item('email_username') ?>">
                     </div>
                   </div>
                   <?= form_error('email_user', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
@@ -109,7 +109,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-envelope"></i></span>
-                      <input class="uk-input" type="email" name="email_sender" value="<?= config_item('email_sender') ?>" placeholder="<?= lang('email') ?>">
+                      <input class="uk-input" type="email" name="email_sender" value="<?= config_item('email_sender') ?>">
                     </div>
                   </div>
                   <?= form_error('email_sender', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
@@ -119,7 +119,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user-circle"></i></span>
-                      <input class="uk-input" type="text" name="email_sender_name" value="<?= config_item('email_sender_name') ?>" placeholder="<?= lang('name') ?>">
+                      <input class="uk-input" type="text" name="email_sender_name" value="<?= config_item('email_sender_name') ?>">
                     </div>
                   </div>
                   <?= form_error('email_sender_name', '<span class="uk-text-small uk-text-danger">', '</span>') ?>

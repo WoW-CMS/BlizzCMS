@@ -58,6 +58,7 @@
                 <tr>
                   <th class="uk-table-expand"><?= lang('username') ?></th>
                   <th class="uk-width-small uk-visible@s"><?= lang('type') ?></th>
+                  <th class="uk-width-small uk-visible@s"><?= lang('ip') ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('date') ?></th>
                   <th class="uk-table-expand uk-visible@s"><?= lang('message') ?></th>
                 </tr>
@@ -70,6 +71,7 @@
                     <span class="uk-text-middle"><?= $this->website->get_user($item->user_id, 'username') ?></span>
                   </td>
                   <td class="uk-visible@s"><?= $item->type ?></td>
+                  <td class="uk-visible@s"><?= $item->ip ?></td>
                   <td class="uk-visible@s"><?= $item->created_at ?></td>
                   <td><?= $item->message ?></td>
                 </tr>

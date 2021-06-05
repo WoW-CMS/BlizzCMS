@@ -95,6 +95,8 @@ $lang['cache_info'] = 'Clear all cache files related to this site.<br><span clas
 $lang['sessions'] = 'Sessions';
 $lang['sessions_info'] = 'Clear sessions data stored on the site.<br><span class="uk-text-bold uk-text-danger">Warning:</span> You will be disconnected after performing this action!';
 $lang['enable_news_comments'] = 'Allow comments on the news?';
+$lang['attach_zip_file'] = 'Attach a zip file by dropping them here or';
+$lang['selecting_one'] = 'selecting one';
 
 /**
  * Alerts
@@ -104,6 +106,10 @@ $lang['cache_error'] = 'Unable to delete cache files, please check that you have
 $lang['cache_deleted'] = 'All cache files have been removed';
 $lang['module_installed'] = 'The module <b>%1$s</b> has been installed';
 $lang['module_uninstalled'] = 'The module <b>%1$s</b> has been uninstalled and its data deleted';
+$lang['module_updated'] = 'The module <b>%1$s</b> has been updated';
+$lang['module_deleted'] = 'The module folder <b>%1$s</b> has been deleted';
+$lang['file_uploaded'] = 'The file has been uploaded and extracted';
+$lang['file_name_match'] = 'The file extraction could not be completed because the file name matches the name of a folder in the directory';
 $lang['user_updated'] = 'The user has been updated';
 $lang['user_banned'] = 'The user has been banned';
 $lang['user_unbanned'] = 'The user has been unbanned';

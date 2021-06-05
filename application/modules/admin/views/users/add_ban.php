@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('banned_users') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
-              <li><span><?= lang('banned_users') ?></span></li>
+              <li><a href="<?= site_url('admin/users/banned') ?>"><?= lang('banned_users') ?></a>
             </ul>
           </div>
           <div class="uk-width-auto">

@@ -64,7 +64,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon"><i class="fas fa-user"></i></span>
-                      <input class="uk-input" type="text" name="captcha_public" value="<?= config_item('captcha_public') ?>" placeholder="<?= lang('public_key') ?>">
+                      <input class="uk-input" type="text" name="captcha_public" value="<?= config_item('captcha_public') ?>">
                     </div>
                   </div>
                   <?= form_error('captcha_public', '<span class="uk-text-small uk-text-danger">', '</span>') ?>

@@ -22,6 +22,9 @@ $route['admin/system/logs']['get'] = 'system/logs';
 $route['admin/mods']['get'] = 'mods/index';
 $route['admin/mods/install/(:any)']['get'] = 'mods/install/$1';
 $route['admin/mods/uninstall/(:any)']['get'] = 'mods/uninstall/$1';
+$route['admin/mods/delete/(:any)']['get'] = 'mods/delete/$1';
+$route['admin/mods/update/(:any)']['get'] = 'mods/update/$1';
+$route['admin/mods/upload'] = 'mods/upload';
 
 $route['admin/users']['get'] = 'users/index';
 $route['admin/users/view/(:num)']['get'] = 'users/view/$1';

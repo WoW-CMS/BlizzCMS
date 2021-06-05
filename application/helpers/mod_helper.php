@@ -26,12 +26,15 @@ if (! function_exists('get_mods_list'))
 		foreach (Modules::$locations as $location => $offset)
 		{
 			$files = directory_map($location, 1);
+
 			if (is_array($files))
 			{
 				foreach ($files as $name)
 				{
 					if (is_dir($location.$name))
-						$modules[] = $with_location ? array($location, $name) : ($strip ? stripslashes(trim($name, " /\t\n\r\0\x0B")) : $name);
+					{
+						$modules[] = $with_location ? [$location, $name] : ($strip ? stripslashes(trim($name, " /\t\n\r\0\x0B")) : $name);
+					}
 				}
 			}
 		}

@@ -58,6 +58,11 @@ class Migration_Create_table_store_logs extends CI_Migration
 				'type' => 'TEXT',
 				'null' => TRUE
 			),
+			'ip' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '255',
+				'null' => TRUE
+			),
 			'created_at' => array(
 				'type' => 'DATETIME',
 				'null' => TRUE

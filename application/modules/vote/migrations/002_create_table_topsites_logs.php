@@ -28,6 +28,11 @@ class Migration_Create_table_topsites_logs extends CI_Migration
 				'unsigned' => TRUE,
 				'default' => 1
 			),
+			'ip' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '255',
+				'null' => TRUE
+			),
 			'created_at' => array(
 				'type' => 'DATETIME',
 				'null' => TRUE

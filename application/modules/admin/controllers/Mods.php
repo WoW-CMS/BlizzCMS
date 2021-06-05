@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mods extends MX_Controller
 {
-	const EXCLUDE_MODULES = ['CI_Core', 'admin', 'user'];
+	const EXCLUDE_NAMES = ['CI_Core', 'admin'];
 
 	public function __construct()
 	{
@@ -27,6 +27,10 @@ class Mods extends MX_Controller
 			redirect(site_url('user'));
 		}
 
+		// Load callback
+		$this->load->library('form_validation');
+		$this->form_validation->CI =& $this;
+
 		$this->load->language('admin');
 
 		$this->template->set_theme();
@@ -37,7 +41,7 @@ class Mods extends MX_Controller
 	public function index()
 	{
 		$data = [
-			'mods' => $this->_get_modules()
+			'mods' => $this->_get_mods()
 		];
 
 		$this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -45,16 +49,16 @@ class Mods extends MX_Controller
 		$this->template->build('mods/index', $data);
 	}
 
-	public function install($module = null)
+	public function install($name = null)
 	{
-		if (empty($module) || in_array($module, self::EXCLUDE_MODULES, true) || ! mod_exists($module) || mod_located($module))
+		if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || mod_located($name))
 		{
 			show_404();
 		}
 
 		$this->load->library('migration');
 
-		if ($this->migration->init_module($module))
+		if ($this->migration->init_module($name))
 		{
 			if ($this->migration->current() === FALSE)
 			{
@@ -63,27 +67,26 @@ class Mods extends MX_Controller
 		}
 
 		$this->db->insert('modules', [
-			'name' => $module
+			'module' => $name
 		]);
 
 		// Clear cache
-		$this->cache->file->delete('modules');
-		$this->cache->file->delete('settings');
+		$this->cache->file->clean();
 
-		$this->session->set_flashdata('success', lang_vars('module_installed', [$module]));
+		$this->session->set_flashdata('success', lang_vars('module_installed', [$name]));
 		redirect(site_url('admin/mods'));
 	}
 
-	public function uninstall($module = null)
+	public function uninstall($name = null)
 	{
-		if (empty($module) || in_array($module, self::EXCLUDE_MODULES, true) || ! mod_exists($module) || ! mod_located($module))
+		if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || ! mod_located($name))
 		{
 			show_404();
 		}
 
 		$this->load->library('migration');
 
-		if ($this->migration->init_module($module))
+		if ($this->migration->init_module($name))
 		{
 			if ($this->migration->version(0) === FALSE)
 			{
@@ -91,72 +94,173 @@ class Mods extends MX_Controller
 			}
 		}
 
-		$this->db->where('module', $module)->delete('migrations');
-		$this->db->where('name', $module)->delete('modules');
+		$this->db->where('module', $name)->delete('migrations');
+		$this->db->where('module', $name)->delete('modules');
 
 		// Clear cache
-		$this->cache->file->delete('modules');
-		$this->cache->file->delete('settings');
+		$this->cache->file->clean();
 
-		$this->session->set_flashdata('success', lang_vars('module_uninstalled', [$module]));
+		$this->session->set_flashdata('success', lang_vars('module_uninstalled', [$name]));
 		redirect(site_url('admin/mods'));
 	}
 
-	private function _get_modules()
+	public function delete($name = null)
+	{
+		if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || mod_located($name))
+		{
+			show_404();
+		}
+
+		$path = APPPATH . "modules/{$name}/";
+
+		$files  = new \RecursiveIteratorIterator(
+			new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS),
+			\RecursiveIteratorIterator::CHILD_FIRST
+		);
+
+		foreach ($files as $file)
+		{ 
+			$file->isDir() ? rmdir($file) : unlink($file);
+		}
+
+		rmdir($path);
+
+		$this->session->set_flashdata('success', lang_vars('module_deleted', [$name]));
+		redirect(site_url('admin/mods'));
+	}
+
+	public function update($name = null)
+	{
+		if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || ! mod_located($name))
+		{
+			show_404();
+		}
+
+		$this->load->library('migration');
+
+		if ($this->migration->init_module($name))
+		{
+			if ($this->migration->current() === FALSE)
+			{
+				show_error($this->migration->error_string());
+			}
+		}
+
+		// Clear cache
+		$this->cache->file->clean();
+
+		$this->session->set_flashdata('success', lang_vars('module_updated', [$name]));
+		redirect(site_url('admin/mods'));
+	}
+
+	public function upload()
+	{
+		$this->template->title(config_item('app_name'), lang('admin_panel'));
+
+		if ($this->input->method() == 'post')
+		{
+			$this->form_validation->set_rules('file', 'File', 'callback__file_required');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->template->build('mods/upload');
+			}
+			else
+			{
+				$this->load->library('upload', [
+					'upload_path'   => APPPATH . 'modules/',
+					'allowed_types' => 'zip'
+				]);
+
+				if (! $this->upload->do_upload('file'))
+				{
+					$this->session->set_flashdata('upload', $this->upload->display_errors('<li><i class="fas fa-times-circle"></i> ', '</li>'));
+					redirect(site_url('admin/mods/upload'));
+				}
+
+				$uploaded  = $this->upload->data();
+				$directory = APPPATH . "modules/{$uploaded['raw_name']}";
+				$file      = APPPATH . "modules/{$uploaded['file_name']}";
+
+				if (is_dir($directory))
+				{
+					unlink($file);
+
+					$this->session->set_flashdata('error', lang('file_name_match'));
+					redirect(site_url('admin/mods/upload'));
+				}
+
+				$zip    = new \ZipArchive();
+				$opened = $zip->open($file);
+
+				if ($opened === TRUE)
+				{
+					$zip->extractTo(APPPATH . 'modules/');
+					$zip->close();
+
+					$this->session->set_flashdata('success', lang('file_uploaded'));
+				}
+				else
+				{
+					$this->session->set_flashdata('error', zip_status($opened));
+				}
+
+				unlink($file);
+
+				redirect(site_url('admin/mods/upload'));
+			}
+		}
+		else
+		{
+			$this->template->build('mods/upload');
+		}
+	}
+
+	/**
+	 * Validate upload file
+	 *
+	 * @return bool
+	 */
+	public function _file_required()
+	{
+		if (isset($_FILES['file']['name']) && ! empty($_FILES['file']['name']))
+		{
+			return true;
+		}
+
+		$this->form_validation->set_message('_file_required', 'The {field} is required.');
+		return false;
+	}
+
+	/**
+	 * Get modules information
+	 *
+	 * @param string|null $name
+	 * @return array
+	 */
+	private function _get_mods($name = null)
 	{
 		$folders = directory_map(APPPATH.'modules', 1, false);
 		$modules = [];
 
-		foreach ($folders as $value)
+		foreach ($folders as $folder)
 		{
-			$file = @file_get_contents(APPPATH . 'modules/' . $value . 'manifest.json');
-			$name = stripslashes(trim($value, " /\t\n\r\0\x0B"));
+			$config = APPPATH . "modules/{$folder}/config/module.php";
+			$module = stripslashes(trim($folder, " /\t\n\r\0\x0B"));
 
-			// If the json file does not exist in the module folder
-			// or if the module name is inside the array (exclude names)
-			// the module will not show in the list
-			if (! $file || in_array($name, self::EXCLUDE_MODULES, true))
+			// If the file does not exist in the config folder of a module
+			// or if the module is in the exclude names will not show in the list
+			if (! file_exists($config) || in_array($module, self::EXCLUDE_NAMES, true))
 			{
 				continue;
 			}
 
-			$json = json_decode($file, true);
+			$modules[$module] = require $config;
+		}
 
-			// Set keys if they don't exist in the array
-			if (! array_key_exists('name', $json))
-			{
-				$json['name'] = ucfirst($name);
-			}
-
-			if (! array_key_exists('description', $json))
-			{
-				$json['description'] = '';
-			}
-
-			if (! array_key_exists('author', $json))
-			{
-				$json['author'] = lang('unknown');
-			}
-
-			if (! array_key_exists('website', $json))
-			{
-				$json['website'] = '';
-			}
-
-			if (! array_key_exists('version', $json))
-			{
-				$json['version'] = '0.1';
-			}
-
-			if (! array_key_exists('panel', $json))
-			{
-				$json['panel'] = [
-					'enabled' => false,
-					'route' => ''
-				];
-			}
-
-			$modules[$name] = $json;
+		if (! is_null($name) && array_key_exists($name, $modules))
+		{
+			return $modules[$name];
 		}
 
 		return $modules;

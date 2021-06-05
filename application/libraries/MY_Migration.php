@@ -85,13 +85,13 @@ class MY_Migration extends CI_Migration
 	/**
 	 * Initialize Migration Class
 	 *
-	 * @param	array	$config
-	 * @return	void
+	 * @param array $config
+	 * @return void
 	 */
-	public function __construct($config = array())
+	public function __construct($config = [])
 	{
 		// Only run this constructor on main library load
-		if (! in_array(get_class($this), array('CI_Migration', config_item('subclass_prefix').'Migration'), TRUE))
+		if (! in_array(get_class($this), ['CI_Migration', config_item('subclass_prefix').'Migration'], true))
 		{
 			return;
 		}
@@ -113,7 +113,7 @@ class MY_Migration extends CI_Migration
 		}
 
 		// If not set, set it
-		$this->_migration_path !== '' OR $this->_migration_path = APPPATH.'migrations/';
+		$this->_migration_path !== '' || $this->_migration_path = APPPATH.'migrations/';
 
 		// Add trailing slash if not set
 		$this->_migration_path = rtrim($this->_migration_path, '/').'/';
@@ -136,7 +136,7 @@ class MY_Migration extends CI_Migration
 			: '/^\d{3}_(\w+)$/';
 
 		// Make sure a valid migration numbering type was set.
-		if (! in_array($this->_migration_type, array('sequential', 'timestamp')))
+		if (! in_array($this->_migration_type, ['sequential', 'timestamp'], true))
 		{
 			show_error('An invalid migration numbering type was specified: '.$this->_migration_type);
 		}
@@ -160,7 +160,7 @@ class MY_Migration extends CI_Migration
 
 			$this->dbforge->create_table($this->_migration_table, TRUE);
 
-			$this->db->insert($this->_migration_table, array('module' => 'CI_Core', 'version' => 0));
+			$this->db->insert($this->_migration_table, ['module' => 'CI_Core', 'version' => 0]);
 		}
 
 		// Do we auto migrate to the latest migration?
@@ -175,15 +175,15 @@ class MY_Migration extends CI_Migration
 	/**
 	 * Retrieves current schema version
 	 *
-	 * @param	string	$module
-	 * @return	string	Current migration version
+	 * @param string $module
+	 * @return string
 	 */
 	protected function _get_version($module = '')
 	{
-		!$module AND $module = $this->_current_module;
+		! $module && $module = $this->_current_module;
 
-		$row = $this->db->where(array('module' => $module))->get($this->_migration_table)->row();
-		return $row ? $row->version : '0';
+		$row = $this->db->where('module', $module)->get($this->_migration_table)->row();
+		return $row ? $row->version : 0;
 	}
 
 	// --------------------------------------------------------------------
@@ -191,23 +191,23 @@ class MY_Migration extends CI_Migration
 	/**
 	 * Stores the current schema version
 	 *
-	 * @param	string	$migration	Migration reached
-	 * @param	string	$module
-	 * @return	void
+	 * @param string $migration
+	 * @param string $module
+	 * @return void
 	 */
 	protected function _update_version($migration, $module = '')
 	{
-		!$module AND $module = $this->_current_module;
+		! $module && $module = $this->_current_module;
 
-		$row = $this->db->where(array('module' => $module))->get($this->_migration_table)->row();
+		$row = $this->db->where('module', $module)->get($this->_migration_table)->num_rows();
 
 		if ($row)
 		{
-			$this->db->update($this->_migration_table, array('version' => $migration), array('module' => $module));
+			$this->db->update($this->_migration_table, ['version' => $migration], ['module' => $module]);
 		}
 		else
 		{
-			$this->db->insert($this->_migration_table, array('module' => $module, 'version' => $migration));
+			$this->db->insert($this->_migration_table, ['module' => $module, 'version' => $migration]);
 		}
 	}
 
@@ -217,7 +217,8 @@ class MY_Migration extends CI_Migration
 	{
 		$modules = $this->list_all_modules_with_migrations();
 
-		$migrations = array();
+		$migrations = [];
+
 		foreach ($modules as $module)
 		{
 			$this->init_module($module[1]);
@@ -231,7 +232,8 @@ class MY_Migration extends CI_Migration
 	{
 		$modules = $this->list_all_modules_with_migrations();
 
-		$migrations = array();
+		$migrations = [];
+
 		foreach ($modules as $module)
 		{
 			$this->init_module($module[1]);
@@ -244,6 +246,7 @@ class MY_Migration extends CI_Migration
 	public function migrate_all_modules()
 	{
 		$modules = $this->list_all_modules_with_migrations();
+
 		foreach ($modules as $module)
 		{
 			$this->init_module($module[1]);
@@ -262,10 +265,12 @@ class MY_Migration extends CI_Migration
 			list($location, $name) = $module;
 
 			if ($this->init_module($name) !== TRUE)
+			{
 				unset($modules[$i]);
+			}
 		}
 
-		return array_merge(array(array('', 'CI_Core')), $modules);
+		return array_merge([['', 'CI_Core']], $modules);
 	}
 
 	public function list_all_modules()
@@ -278,26 +283,33 @@ class MY_Migration extends CI_Migration
 		if ($module === 'CI_Core')
 		{
 			$config = $this->_core_config;
-			$config['migration_path'] == '' AND $config['migration_path'] = APPPATH . 'migrations/';
+			$config['migration_path'] == '' && $config['migration_path'] = APPPATH . 'migrations/';
 		}
 		else
 		{
 			// Backward function
 			// Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
-			if (version_compare(phpversion(), '7.1', '<')) {
+			if (version_compare(phpversion(), '7.1', '<'))
+			{
 				// php version isn't high enough
 				list($path, $file) = Modules::find('migration', $module, 'config/');
-			} else {
+			}
+			else
+			{
 				[$path, $file] = Modules::find('migration', $module, 'config/');
 			}
 
 			if ($path === FALSE)
+			{
 				return FALSE;
+			}
 
-			if (!$config = Modules::load_file($file, $path, 'config'))
+			if (! $config = Modules::load_file($file, $path, 'config'))
+			{
 				return FALSE;
+			}
 
-			!$config['migration_path'] AND $config['migration_path'] = '../migrations';
+			! $config['migration_path'] && $config['migration_path'] = '../migrations';
 
 			$config['migration_path'] = normalize_path($path . $config['migration_path']);
 		}
@@ -308,12 +320,16 @@ class MY_Migration extends CI_Migration
 		}
 
 		if ($this->_migration_enabled !== TRUE)
+		{
 			return FALSE;
+		}
 
 		$this->_migration_path = rtrim($this->_migration_path, '/').'/';
 
 		if (! file_exists($this->_migration_path))
+		{
 			return FALSE;
+		}
 
 		$this->_current_module = $module;
 

@@ -72,6 +72,6 @@ $config['theme'] = '';
  * Default: array(APPPATH.'themes/' => '../themes/')
  *
 */
-$config['theme_locations'] = array(
+$config['theme_locations'] = [
 	APPPATH.'themes/'
-);
+];

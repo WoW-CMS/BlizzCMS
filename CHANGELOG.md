@@ -94,6 +94,7 @@
 - Remove unused function ``$this->base->getClassIcon()``
 - Remove unused function ``$this->base->getFaction()``
 - Add new function ``faction_name()``
+- Remove unused function ``$this->base->tinyEditor()``
 
 ### Bugs Fixed
 

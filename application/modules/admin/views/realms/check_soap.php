@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand">
-            <h4 class="uk-h4 uk-margin-remove"><?= lang('check') ?></h4>
+            <h4 class="uk-h4 uk-margin-remove"><?= lang('check_soap') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
               <li><a href="<?= site_url('admin/realms') ?>"><?= lang('realms') ?></a></li>

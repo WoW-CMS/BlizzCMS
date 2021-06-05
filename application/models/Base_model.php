@@ -79,7 +79,7 @@ class Base_model extends CI_Model
 	{
 		$query = $this->db->where('id', $id)->get($this->news)->num_rows();
 
-		return ($query == 1);
+		return $query == 1;
 	}
 
 	/**
@@ -127,7 +127,7 @@ class Base_model extends CI_Model
 	{
 		$query = $this->db->where('id', $id)->get($this->news_comments)->num_rows();
 
-		return ($query == 1);
+		return $query == 1;
 	}
 
 	/**
@@ -162,7 +162,7 @@ class Base_model extends CI_Model
 	{
 		$query = $this->db->where('slug', $slug)->get($this->pages)->num_rows();
 
-		return ($query == 1);
+		return $query == 1;
 	}
 
 	/**
@@ -191,31 +191,11 @@ class Base_model extends CI_Model
 		}
 
 		$query = $this->db->get($this->modules)->result_array();
-		$list  = array_column($query, 'name');
+		$list  = array_column($query, 'module');
 
 		$this->cache->file->save('modules', $list, 604800);
 
 		return in_array($name, $list, true);
-	}
-
-	public function tinyEditor($rank)
-	{
-		switch ($rank) {
-			case 'Admin':
-				return "<script src=".base_url('assets/tinymce/tinymce.min.js')."></script>
-						<script>tinymce.init({selector: '.tinyeditor',element_format : 'html',menubar: true,
-							plugins: ['preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media codesample table charmap hr insertdatetime advlist lists wordcount imagetools textpattern help'],
-							toolbar: 'undo redo | fontsizeselect | bold italic strikethrough | forecolor backcolor | link emoticons image media | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat'});
-						</script>";
-				break;
-			case 'User':
-				return "<script src=".base_url('assets/tinymce/tinymce.min.js')."></script>
-						<script>tinymce.init({selector: '.tinyeditor',element_format : 'html',menubar: false,
-							plugins: ['advlist autolink lists link image charmap textcolor searchreplace fullscreen media paste wordcount emoticons'],
-							toolbar: 'undo redo | fontsizeselect | bold italic strikethrough | forecolor | link emoticons image | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat'});
-						</script>";
-				break;
-		}
 	}
 
 	/**

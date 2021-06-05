@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('news') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
-              <li><span><?= lang('news') ?></span></li>
+              <li><a href="<?= site_url('admin/news') ?>"><?= lang('news') ?></a></li>
             </ul>
           </div>
           <div class="uk-width-auto">
@@ -34,7 +34,7 @@
               <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
             <div class="uk-margin-small">
-              <label class="uk-form-label"><?= lang('upload_image') ?></label>
+              <label class="uk-form-label"><?= lang('image') ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <div uk-form-custom="target: true">
