@@ -133,9 +133,9 @@ $autoload['language'] = ['general', 'alerts'];
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = [
-	'Settings_model',
-	'Auth_model'    => 'auth',
-	'Base_model'    => 'base',
-	'Website_model' => 'website',
-	'Realm_model'   => 'realm'
+    'Settings_model',
+    'Auth_model'    => 'auth',
+    'Base_model'    => 'base',
+    'Website_model' => 'website',
+    'Realm_model'   => 'realm'
 ];

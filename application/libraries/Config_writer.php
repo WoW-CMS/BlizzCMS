@@ -12,13 +12,13 @@ require_once APPPATH . 'libraries/configwriter/class-array-config-writer.php';
 
 class Config_Writer
 {
-	public function get_instance($file = null, $variable_name = 'config')
-	{
-		if (! $file)
-		{
-			$file = APPPATH . 'config/config.php';
-		}
+    public function get_instance($file = null, $variable_name = 'config')
+    {
+        if (! $file)
+        {
+            $file = APPPATH . 'config/config.php';
+        }
 
-		return new Array_Config_Writer($file , $variable_name);
-	}
+        return new Array_Config_Writer($file , $variable_name);
+    }
 }

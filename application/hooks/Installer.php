@@ -11,13 +11,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Installer
 {
-	public function initialize()
-	{
-		$CI =& get_instance();
+    public function initialize()
+    {
+        $CI =& get_instance();
 
-		if (is_null($CI->config->item('installer_blocked')) && ! in_array($CI->uri->segment(1), ['install'], true))
-		{
-			redirect(site_url('install'));
-		}
-	}
+        if (is_null($CI->config->item('installer_blocked')) && ! in_array($CI->uri->segment(1), ['install'], true))
+        {
+            redirect(site_url('install'));
+        }
+    }
 }

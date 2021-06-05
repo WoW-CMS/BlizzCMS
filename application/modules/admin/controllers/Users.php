@@ -11,243 +11,243 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends MX_Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		if (! $this->website->isLogged())
-		{
-			redirect(site_url('login'));
-		}
+        if (! $this->website->isLogged())
+        {
+            redirect(site_url('login'));
+        }
 
-		if (! $this->auth->is_admin() || $this->auth->is_banned())
-		{
-			redirect(site_url('user'));
-		}
+        if (! $this->auth->is_admin() || $this->auth->is_banned())
+        {
+            redirect(site_url('user'));
+        }
 
-		$this->load->model('users_model');
-		$this->load->language('admin');
+        $this->load->model('users_model');
+        $this->load->language('admin');
 
-		$this->template->set_theme();
-		$this->template->set_layout('admin_layout');
-		$this->template->set_partial('alerts', 'static/alerts');
-	}
+        $this->template->set_theme();
+        $this->template->set_layout('admin_layout');
+        $this->template->set_partial('alerts', 'static/alerts');
+    }
 
-	public function index()
-	{
-		$get  = $this->input->get('page', TRUE);
-		$page = ctype_digit((string) $get) ? $get : 0;
+    public function index()
+    {
+        $get  = $this->input->get('page', TRUE);
+        $page = ctype_digit((string) $get) ? $get : 0;
 
-		$search       = $this->input->get('search');
-		$search_clean = $this->security->xss_clean($search);
+        $search       = $this->input->get('search');
+        $search_clean = $this->security->xss_clean($search);
 
-		$config = [
-			'base_url'    => site_url('admin/users'),
-			'total_rows'  => $this->users_model->count_all($search_clean),
-			'per_page'    => 25,
-			'uri_segment' => 3
-		];
+        $config = [
+            'base_url'    => site_url('admin/users'),
+            'total_rows'  => $this->users_model->count_all($search_clean),
+            'per_page'    => 25,
+            'uri_segment' => 3
+        ];
 
-		$this->pagination->initialize($config);
+        $this->pagination->initialize($config);
 
-		// Calculate offset if use_page_numbers is TRUE on pagination
-		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        // Calculate offset if use_page_numbers is TRUE on pagination
+        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
-		$data = [
-			'users'  => $this->users_model->get_all($config['per_page'], $offset, $search_clean),
-			'links'  => $this->pagination->create_links(),
-			'search' => $search
-		];
+        $data = [
+            'users'  => $this->users_model->get_all($config['per_page'], $offset, $search_clean),
+            'links'  => $this->pagination->create_links(),
+            'search' => $search
+        ];
 
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
+        $this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('users/index', $data);
-	}
+        $this->template->build('users/index', $data);
+    }
 
-	public function view($id = null)
-	{
-		if (empty($id) || ! $this->users_model->find_id($id))
-		{
-			show_404();
-		}
+    public function view($id = null)
+    {
+        if (empty($id) || ! $this->users_model->find_id($id))
+        {
+            show_404();
+        }
 
-		$data = [
-			'user' => $this->users_model->get($id)
-		];
+        $data = [
+            'user' => $this->users_model->get($id)
+        ];
 
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
+        $this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('users/view', $data);
-	}
+        $this->template->build('users/view', $data);
+    }
 
-	public function update()
-	{
-		if ($this->input->method() != 'post')
-		{
-			show_404();
-		}
+    public function update()
+    {
+        if ($this->input->method() != 'post')
+        {
+            show_404();
+        }
 
-		$this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-		$this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
-		$this->form_validation->set_rules('dp', 'Donor points', 'trim|required|is_natural');
-		$this->form_validation->set_rules('vp', 'Voter points', 'trim|required|is_natural');
+        $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
+        $this->form_validation->set_rules('dp', 'Donor points', 'trim|required|is_natural');
+        $this->form_validation->set_rules('vp', 'Voter points', 'trim|required|is_natural');
 
-		if ($this->form_validation->run() == FALSE)
-		{
-			return $this->view($this->input->post('id', TRUE));
-		}
-		else
-		{
-			$id = $this->input->post('id', TRUE);
+        if ($this->form_validation->run() == FALSE)
+        {
+            return $this->view($this->input->post('id', TRUE));
+        }
+        else
+        {
+            $id = $this->input->post('id', TRUE);
 
-			$this->db->where('id', $id)->update('users', [
-				'nickname' => $this->input->post('nickname', TRUE),
-				'dp'       => $this->input->post('dp'),
-				'vp'       => $this->input->post('vp')
-			]);
+            $this->db->where('id', $id)->update('users', [
+                'nickname' => $this->input->post('nickname', TRUE),
+                'dp'       => $this->input->post('dp'),
+                'vp'       => $this->input->post('vp')
+            ]);
 
-			$this->session->set_flashdata('success', lang('user_updated'));
-			redirect(site_url('admin/users/view/' . $id));
-		}
-	}
+            $this->session->set_flashdata('success', lang('user_updated'));
+            redirect(site_url('admin/users/view/' . $id));
+        }
+    }
 
-	public function users_banned()
-	{
-		$get  = $this->input->get('page', TRUE);
-		$page = ctype_digit((string) $get) ? $get : 0;
+    public function users_banned()
+    {
+        $get  = $this->input->get('page', TRUE);
+        $page = ctype_digit((string) $get) ? $get : 0;
 
-		$search       = $this->input->get('search');
-		$search_clean = $this->security->xss_clean($search);
+        $search       = $this->input->get('search');
+        $search_clean = $this->security->xss_clean($search);
 
-		$config = [
-			'base_url'    => site_url('admin/users/banned'),
-			'total_rows'  => $this->users_model->count_all_bans($search_clean),
-			'per_page'    => 25,
-			'uri_segment' => 4
-		];
+        $config = [
+            'base_url'    => site_url('admin/users/banned'),
+            'total_rows'  => $this->users_model->count_all_bans($search_clean),
+            'per_page'    => 25,
+            'uri_segment' => 4
+        ];
 
-		$this->pagination->initialize($config);
+        $this->pagination->initialize($config);
 
-		// Calculate offset if use_page_numbers is TRUE on pagination
-		$offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        // Calculate offset if use_page_numbers is TRUE on pagination
+        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
-		$data = [
-			'bans'   => $this->users_model->get_all_bans($config['per_page'], $offset, $search_clean),
-			'links'  => $this->pagination->create_links(),
-			'search' => $search
-		];
+        $data = [
+            'bans'   => $this->users_model->get_all_bans($config['per_page'], $offset, $search_clean),
+            'links'  => $this->pagination->create_links(),
+            'search' => $search
+        ];
 
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
+        $this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('users/bans', $data);
-	}
+        $this->template->build('users/bans', $data);
+    }
 
-	public function view_ban($id = null)
-	{
-		if (empty($id) || ! $this->users_model->find_ban($id))
-		{
-			show_404();
-		}
+    public function view_ban($id = null)
+    {
+        if (empty($id) || ! $this->users_model->find_ban($id))
+        {
+            show_404();
+        }
 
-		$data = [
-			'ban' => $this->users_model->get_ban($id)
-		];
+        $data = [
+            'ban' => $this->users_model->get_ban($id)
+        ];
 
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
+        $this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('users/view_ban', $data);
-	}
+        $this->template->build('users/view_ban', $data);
+    }
 
-	public function user_ban()
-	{
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
+    public function user_ban()
+    {
+        $this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		if ($this->input->method() == 'post')
-		{
-			$this->form_validation->set_rules('username', 'Username', 'trim|required');
-			$this->form_validation->set_rules('date', 'Date', 'trim|required|validate_date[Y-m-d]');
-			$this->form_validation->set_rules('reason', 'Reason', 'trim|required');
+        if ($this->input->method() == 'post')
+        {
+            $this->form_validation->set_rules('username', 'Username', 'trim|required');
+            $this->form_validation->set_rules('date', 'Date', 'trim|required|validate_date[Y-m-d]');
+            $this->form_validation->set_rules('reason', 'Reason', 'trim|required');
 
-			if ($this->form_validation->run() == FALSE)
-			{
-				$this->template->build('users/add_ban');
-			}
-			else
-			{
-				$emulator = config_item('emulator');
-				$user   = $this->auth->account_id($this->input->post('username', TRUE));
-				$date   = $this->input->post('date');
-				$reason = $this->input->post('reason', TRUE);
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->template->build('users/add_ban');
+            }
+            else
+            {
+                $emulator = config_item('emulator');
+                $user   = $this->auth->account_id($this->input->post('username', TRUE));
+                $date   = $this->input->post('date');
+                $reason = $this->input->post('reason', TRUE);
 
-				if (empty($user))
-				{
-					$this->session->set_flashdata('error', lang('user_not_found'));
-					redirect(site_url('admin/users/ban'));
-				}
+                if (empty($user))
+                {
+                    $this->session->set_flashdata('error', lang('user_not_found'));
+                    redirect(site_url('admin/users/ban'));
+                }
 
-				if ($this->auth->is_banned($user))
-				{
-					$this->session->set_flashdata('error', lang('user_already_banned'));
-					redirect(site_url('admin/users/ban'));
-				}
+                if ($this->auth->is_banned($user))
+                {
+                    $this->session->set_flashdata('error', lang('user_already_banned'));
+                    redirect(site_url('admin/users/ban'));
+                }
 
-				if (in_array($emulator, ['cmangos'], true))
-				{
-					$this->auth->connect()->insert('account_banned', [
-						'account_id' => $user,
-						'banned_at'  => now(),
-						'expires_at' => strtotime($date),
-						'banned_by'  => 'Website',
-						'reason'     => $reason
-					]);
-				}
-				else
-				{
-					$this->auth->connect()->insert('account_banned', [
-						'id'        => $user,
-						'bandate'   => now(),
-						'unbandate' => strtotime($date),
-						'bannedby'  => 'Website',
-						'banreason' => $reason
-					]);
-				}
+                if (in_array($emulator, ['cmangos'], true))
+                {
+                    $this->auth->connect()->insert('account_banned', [
+                        'account_id' => $user,
+                        'banned_at'  => now(),
+                        'expires_at' => strtotime($date),
+                        'banned_by'  => 'Website',
+                        'reason'     => $reason
+                    ]);
+                }
+                else
+                {
+                    $this->auth->connect()->insert('account_banned', [
+                        'id'        => $user,
+                        'bandate'   => now(),
+                        'unbandate' => strtotime($date),
+                        'bannedby'  => 'Website',
+                        'banreason' => $reason
+                    ]);
+                }
 
-				if (config_item('emulator_bnet') === 'true')
-				{
-					$this->auth->connect()->insert('battlenet_account_bans', [
-						'id'        => $user,
-						'bandate'   => now(),
-						'unbandate' => strtotime($date),
-						'bannedby'  => 'Website',
-						'banreason' => $reason
-					]);
-				}
+                if (config_item('emulator_bnet') === 'true')
+                {
+                    $this->auth->connect()->insert('battlenet_account_bans', [
+                        'id'        => $user,
+                        'bandate'   => now(),
+                        'unbandate' => strtotime($date),
+                        'bannedby'  => 'Website',
+                        'banreason' => $reason
+                    ]);
+                }
 
-				$this->session->set_flashdata('success', lang('user_banned'));
-				redirect(site_url('admin/users/ban'));
-			}
-		}
-		else
-		{
-			$this->template->build('users/add_ban');
-		}
-	}
+                $this->session->set_flashdata('success', lang('user_banned'));
+                redirect(site_url('admin/users/ban'));
+            }
+        }
+        else
+        {
+            $this->template->build('users/add_ban');
+        }
+    }
 
-	public function user_unban($id = null)
-	{
-		if (empty($id) || ! $this->users_model->find_ban($id))
-		{
-			show_404();
-		}
+    public function user_unban($id = null)
+    {
+        if (empty($id) || ! $this->users_model->find_ban($id))
+        {
+            show_404();
+        }
 
-		$this->auth->connect()->where('id', $id)->delete('account_banned');
+        $this->auth->connect()->where('id', $id)->delete('account_banned');
 
-		if (config_item('emulator_bnet') === 'true')
-		{
-			$this->auth->connect()->where('id', $id)->delete('battlenet_account_bans');
-		}
+        if (config_item('emulator_bnet') === 'true')
+        {
+            $this->auth->connect()->where('id', $id)->delete('battlenet_account_bans');
+        }
 
-		$this->session->set_flashdata('success', lang('user_unbanned'));
-		redirect(site_url('admin/users/banned'));
-	}
+        $this->session->set_flashdata('success', lang('user_unbanned'));
+        redirect(site_url('admin/users/banned'));
+    }
 }

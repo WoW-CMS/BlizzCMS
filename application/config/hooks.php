@@ -11,16 +11,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/hooks.html
 |
 */
-$hook['post_controller_constructor'][] = array(
-	'class' => 'Settings',
-	'function' => 'initialize',
-	'filename' => 'Settings.php',
-	'filepath' => 'hooks'
-);
+$hook['post_controller_constructor'][] = [
+    'class' => 'Settings',
+    'function' => 'initialize',
+    'filename' => 'Settings.php',
+    'filepath' => 'hooks'
+];
 
-$hook['post_controller_constructor'][] = array(
-	'class' => 'Installer',
-	'function' => 'initialize',
-	'filename' => 'Installer.php',
-	'filepath' => 'hooks'
-);
+$hook['post_controller_constructor'][] = [
+    'class' => 'Installer',
+    'function' => 'initialize',
+    'filename' => 'Installer.php',
+    'filepath' => 'hooks'
+];

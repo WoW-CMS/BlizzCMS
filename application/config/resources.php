@@ -20,17 +20,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | 'supported_languages' = list of supported languages
 */
 $config['supported_languages'] = [
-	//'bulgarian',
-	//'dutch',
-	'english',
-	//'french',
-	//'german',
-	//'norwegian',
-	//'portuguese',
-	//'portuguese-brazilian',
-	//'russian',
-	'spanish',
-	//'swedish'
+    //'bulgarian',
+    //'dutch',
+    'english',
+    //'french',
+    //'german',
+    //'norwegian',
+    //'portuguese',
+    //'portuguese-brazilian',
+    //'russian',
+    'spanish',
+    //'swedish'
 ];
 
 /*
@@ -44,15 +44,15 @@ $config['supported_languages'] = [
 | 'supported_expansions' = list of supported expansions
 */
 $config['supported_expansions'] = [
-	0 => 'Vanilla Classic',
-	1 => 'The Burning Crusade',
-	2 => 'Wrath of the Lich King',
-	3 => 'Cataclysm',
-	4 => 'Mist of Pandaria',
-	5 => 'Warlords of Draenor',
-	6 => 'Legion',
-	7 => 'Battle for Azeroth',
-	8 => 'Shadowlands'
+    0 => 'Vanilla Classic',
+    1 => 'The Burning Crusade',
+    2 => 'Wrath of the Lich King',
+    3 => 'Cataclysm',
+    4 => 'Mist of Pandaria',
+    5 => 'Warlords of Draenor',
+    6 => 'Legion',
+    7 => 'Battle for Azeroth',
+    8 => 'Shadowlands'
 ];
 
 /*
@@ -66,9 +66,9 @@ $config['supported_expansions'] = [
 | 'emulator_urn' = list of URNs
 */
 $config['emulator_urn'] = [
-	'azeroth'     => 'AC',
-	'cmangos'     => 'MaNGOS',
-	'mangos'      => 'MaNGOS',
-	'old_trinity' => 'TC',
-	'trinity'     => 'TC'
+    'azeroth'     => 'AC',
+    'cmangos'     => 'MaNGOS',
+    'mangos'      => 'MaNGOS',
+    'old_trinity' => 'TC',
+    'trinity'     => 'TC'
 ];

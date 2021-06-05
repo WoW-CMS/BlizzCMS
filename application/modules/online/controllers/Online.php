@@ -11,21 +11,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Online extends MX_Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		$this->load->model('online_model');
-	}
+        $this->load->model('online_model');
+    }
 
-	public function index()
-	{
-		$data = [
-			'realms' => $this->realm->get_realms()
-		];
+    public function index()
+    {
+        $data = [
+            'realms' => $this->realm->get_realms()
+        ];
 
-		$this->template->title(config_item('app_name'), lang('online_players'));
+        $this->template->title(config_item('app_name'), lang('online_players'));
 
-		$this->template->build('index', $data);
-	}
+        $this->template->build('index', $data);
+    }
 }

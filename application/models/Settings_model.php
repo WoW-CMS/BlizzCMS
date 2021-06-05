@@ -3,61 +3,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Settings_model extends CI_Model
 {
-	protected $settings_table = 'settings';
+    protected $settings_table = 'settings';
 
-	/**
-	 * Get all rows of settings
-	 *
-	 * @return mixed
-	 */
-	public function get_all()
-	{
-		if (! $this->db->table_exists($this->settings_table))
-		{
-			return false;
-		}
+    /**
+     * Get all rows of settings
+     *
+     * @return mixed
+     */
+    public function get_all()
+    {
+        if (! $this->db->table_exists($this->settings_table))
+        {
+            return false;
+        }
 
-		$data = $this->cache->file->get('settings');
+        $data = $this->cache->file->get('settings');
 
-		if ($data !== false)
-		{
-			return $data;
-		}
+        if ($data !== false)
+        {
+            return $data;
+        }
 
-		$result = $this->db->get($this->settings_table)->result();
+        $result = $this->db->get($this->settings_table)->result();
 
-		$this->cache->file->save('settings', $result, 604800);
+        $this->cache->file->save('settings', $result, 604800);
 
-		return $result;
-	}
+        return $result;
+    }
 
-	/**
-	 * Get value from a key
-	 *
-	 * @param string $key
-	 * @return mixed
-	 */
-	public function get_value($key)
-	{
-		if (! $this->db->table_exists($this->settings_table))
-		{
-			return null;
-		}
+    /**
+     * Get value from a key
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function get_value($key)
+    {
+        if (! $this->db->table_exists($this->settings_table))
+        {
+            return null;
+        }
 
-		$data = $this->cache->file->get('settings');
+        $data = $this->cache->file->get('settings');
 
-		if ($data !== false)
-		{
-			$filtered = current(array_filter($data, function($item) use ($key) {
-				return $item->key == $key;
-			}));
+        if ($data !== false)
+        {
+            $filtered = current(array_filter($data, function($item) use ($key) {
+                return $item->key == $key;
+            }));
 
-			if ($filtered !== false)
-			{
-				return $filtered->value;
-			}
-		}
+            if ($filtered !== false)
+            {
+                return $filtered->value;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 }

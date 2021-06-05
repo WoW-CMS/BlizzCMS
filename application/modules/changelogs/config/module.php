@@ -10,11 +10,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 return [
-	'name' => 'Changelogs',
-	'description' => 'Informative list of the changes made',
-	'author' => 'WoW-CMS',
-	'author_uri' => 'https://wow-cms.com',
-	'version' => '1.0.0',
-	'license' => 'MIT',
-	'panel' => true
+    'name' => 'Changelogs',
+    'description' => 'Informative list of the changes made',
+    'author' => 'WoW-CMS',
+    'author_uri' => 'https://wow-cms.com',
+    'version' => '1.0.0',
+    'license' => 'MIT',
+    'panel' => true
 ];

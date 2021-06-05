@@ -11,31 +11,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends MX_Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		if (! $this->website->isLogged())
-		{
-			redirect(site_url('login'));
-		}
+        if (! $this->website->isLogged())
+        {
+            redirect(site_url('login'));
+        }
 
-		if (! $this->auth->is_admin() || $this->auth->is_banned())
-		{
-			redirect(site_url('user'));
-		}
+        if (! $this->auth->is_admin() || $this->auth->is_banned())
+        {
+            redirect(site_url('user'));
+        }
 
-		$this->load->model('admin_model');
-		$this->load->language('admin');
+        $this->load->model('admin_model');
+        $this->load->language('admin');
 
-		$this->template->set_theme();
-		$this->template->set_layout('admin_layout');
-	}
+        $this->template->set_theme();
+        $this->template->set_layout('admin_layout');
+    }
 
-	public function index()
-	{
-		$this->template->title(config_item('app_name'), lang('admin_panel'));
+    public function index()
+    {
+        $this->template->title(config_item('app_name'), lang('admin_panel'));
 
-		$this->template->build('index');
-	}
+        $this->template->build('index');
+    }
 }

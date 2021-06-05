@@ -73,5 +73,5 @@ $config['theme'] = '';
  *
 */
 $config['theme_locations'] = [
-	APPPATH.'themes/'
+    APPPATH.'themes/'
 ];

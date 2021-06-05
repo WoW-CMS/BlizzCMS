@@ -1,11 +1,11 @@
 {
-	"name": "Donate",
-	"description": "Donation system for buy points",
-	"author": "WoW-CMS",
-	"website": "https:\/\/wow-cms.com",
-	"version": "1.0",
-	"panel": {
-		"enabled": false,
-		"route": ""
-	}
+    "name": "Donate",
+    "description": "Donation system for buy points",
+    "author": "WoW-CMS",
+    "website": "https:\/\/wow-cms.com",
+    "version": "1.0",
+    "panel": {
+        "enabled": false,
+        "route": ""
+    }
 }
