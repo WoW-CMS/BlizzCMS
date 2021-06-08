@@ -63,19 +63,27 @@
             </div>
           </div>
           <div class="uk-width-1-4@s">
-            <div class="uk-card uk-card-secondary uk-card-body">
-              <div class="uk-grid uk-grid-small uk-grid-divider uk-grid-match uk-child-width-1-1" data-uk-grid>
-                <div>
+            <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
+              <div>
+                <div class="uk-card uk-card-secondary uk-card-body">
                   <div class="uk-text-center">
                     <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Forum Threads</h5>
-                    <h1 class="uk-h1 uk-margin-small"><span class="number-counter uk-text-primary" data-from="0" data-to="" data-speed="2000" data-refresh-interval="50"></span><span class="uk-margin-small-left"><i class="fas fa-file-alt"></i></span></h1>
+                    <h1 class="uk-h1 uk-margin-small">
+                      <span class="purecounter" data-purecounter-start="0" data-purecounter-end="1000"></span>
+                      <span class="uk-margin-small-left"><i class="fas fa-file-alt"></i></span>
+                    </h1>
                     <p class="uk-text-small uk-margin-remove">Total threads awaiting moderation</p>
                   </div>
                 </div>
-                <div>
+              </div>
+              <div>
+                <div class="uk-card uk-card-secondary uk-card-body">
                   <div class="uk-text-center">
                     <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-margin-remove">Forum Post</h5>
-                    <h1 class="uk-h1 uk-margin-small"><span class="number-counter uk-text-primary" data-from="0" data-to="" data-speed="2000" data-refresh-interval="50"></span><span class="uk-margin-small-left"><i class="fas fa-comment-dots"></i></span></h1>
+                    <h1 class="uk-h1 uk-margin-small">
+                      <span class="purecounter" data-purecounter-start="0" data-purecounter-end="1000"></span>
+                      <span class="uk-margin-small-left"><i class="fas fa-comment-dots"></i></span>
+                    </h1>
                     <p class="uk-text-small uk-margin-remove">Total post awaiting moderation</p>
                   </div>
                 </div>

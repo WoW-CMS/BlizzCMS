@@ -34,11 +34,11 @@
                       <p class="uk-text-meta uk-margin-remove"><?= html_escape($subforum->description) ?></p>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->count_topics($subforum->id) ?></span>
+                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_topics->count_all($subforum->id) ?></span>
                       <span class="uk-text-small"><?= lang('topics') ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <?php foreach ($this->forum_model->last_topic($subforum->id) as $last): ?>
+                      <?php foreach ($this->forum_topics->last($subforum->id) as $last): ?>
                       <a href="<?= site_url('forum/topic/'.$last->id) ?>" class="uk-display-block"><?= character_limiter(html_escape($last->title), 30) ?></a>
                       <span class="uk-text-meta uk-display-block"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($last->user_id, 'nickname') ?></span>
                       <?php endforeach ?>
@@ -79,10 +79,10 @@
                       <p class="uk-text-meta uk-margin-remove"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($topic->user_id, 'nickname') ?></span> on <?= date('d-m-y h:i', strtotime($topic->created_at)) ?></p>
                     </td>
                     <td class="uk-text-center">
-                      <i class="far fa-comment"></i> <?= $this->forum_model->count_posts($topic->id) ?>
+                      <i class="far fa-comment"></i> <?= $this->forum_posts->count_all($topic->id) ?>
                     </td>
                     <td class="uk-text-meta">
-                      <?php foreach ($this->forum_model->last_post($topic->id) as $post): ?>
+                      <?php foreach ($this->forum_posts->last($topic->id) as $post): ?>
                       <span class="uk-text-primary"><?= $this->website->get_user($post->user_id, 'nickname') ?></span> <?= date('d-m-y h:i', strtotime($post->created_at)) ?>
                       <?php endforeach ?>
                     </td>

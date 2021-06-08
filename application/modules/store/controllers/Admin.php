@@ -27,7 +27,12 @@ class Admin extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('store_model');
+        $this->load->model([
+            'store_model'       => 'store',
+            'store_items_model' => 'store_items',
+            'store_logs_model'  => 'store_logs'
+        ]);
+
         $this->load->language('admin/admin');
         $this->load->language('store');
 
@@ -39,7 +44,7 @@ class Admin extends MX_Controller
     public function index()
     {
         $data = [
-            'categories' => $this->store_model->get_all_categories()
+            'categories' => $this->store->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -50,7 +55,7 @@ class Admin extends MX_Controller
     public function create()
     {
         $data = [
-            'parents' => $this->store_model->get_all_categories()
+            'parents' => $this->store->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -68,7 +73,7 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->insert('store', [
+                $this->store->create([
                     'name'   => $this->input->post('name'),
                     'slug'   => $this->input->post('slug'),
                     'type'   => $this->input->post('type'),
@@ -85,16 +90,24 @@ class Admin extends MX_Controller
         }
     }
 
-    public function edit($id = null)
+    /**
+     * Edit store
+     *
+     * @param int $store_id
+     * @return mixed
+     */
+    public function edit($store_id = null)
     {
-        if (empty($id) || ! $this->store_model->find_category($id, 'id'))
+        $store = $this->store->find(['id' => $store_id]);
+
+        if (empty($store))
         {
             show_404();
         }
 
         $data = [
-            'parents'  => $this->store_model->get_all_categories(),
-            'category' => $this->store_model->get_category($id, 'id')
+            'parents'  => $this->store->find_all(),
+            'category' => $store
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -102,7 +115,7 @@ class Admin extends MX_Controller
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('slug', 'Slug', 'trim|required|update_unique[store.slug.'.$id.']');
+            $this->form_validation->set_rules('slug', 'Slug', 'trim|required|update_unique[store.slug.'.$store_id.']');
             $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[default,accordion]');
             $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
 
@@ -112,15 +125,15 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('store', [
+                $this->store->update([
                     'name'   => $this->input->post('name'),
                     'slug'   => $this->input->post('slug'),
                     'type'   => $this->input->post('type'),
                     'parent' => $this->input->post('parent')
-                ]);
+                ], ['id' => $store_id]);
 
                 $this->session->set_flashdata('success', lang('category_updated'));
-                redirect(site_url('store/admin/edit/'.$id));
+                redirect(site_url('store/admin/edit/'.$store_id));
             }
         }
         else
@@ -129,22 +142,39 @@ class Admin extends MX_Controller
         }
     }
 
-    public function delete($id = null)
+    /**
+     * Delete store
+     *
+     * @param int $store_id
+     * @return void
+     */
+    public function delete($store_id = null)
     {
-        if (empty($id) || ! $this->store_model->find_category($id, 'id'))
+        $store = $this->store->find(['id' => $store_id]);
+
+        if (empty($store))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('store');
+        $this->store->delete(['id' => $store_id]);
+        $this->store_items->delete(['store_id' => $store_id]);
 
         $this->session->set_flashdata('success', lang('category_deleted'));
         redirect(site_url('store/admin'));
     }
 
-    public function category($category = null)
+    /**
+     * View category
+     *
+     * @param int $store_id
+     * @return string
+     */
+    public function category($store_id = null)
     {
-        if (empty($category) || ! $this->store_model->find_category($category, 'id'))
+        $store = $this->store->find(['id' => $store_id]);
+
+        if (empty($store))
         {
             show_404();
         }
@@ -154,7 +184,7 @@ class Admin extends MX_Controller
 
         $config = [
             'base_url'    => site_url('store/admin'),
-            'total_rows'  => $this->store_model->count_items($category),
+            'total_rows'  => $this->store_items->count_all($store_id),
             'per_page'    => 25,
             'uri_segment' => 3
         ];
@@ -165,9 +195,9 @@ class Admin extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'id'       => $category,
-            'category' => $this->store_model->get_category($category, 'id'),
-            'items'    => $this->store_model->get_all_items($category, $config['per_page'], $offset),
+            'id'       => $store_id,
+            'category' => $store,
+            'items'    => $this->store_items->find_all($store_id, $config['per_page'], $offset),
             'links'    => $this->pagination->create_links()
         ];
 
@@ -176,17 +206,25 @@ class Admin extends MX_Controller
         $this->template->build('admin/items', $data);
     }
 
-    public function create_item($category = null)
+    /**
+     * Create item
+     *
+     * @param int $store_id
+     * @return mixed
+     */
+    public function create_item($store_id = null)
     {
-        if (empty($category) || ! $this->store_model->find_category($category, 'id'))
+        $store = $this->store->find(['id' => $store_id]);
+
+        if (empty($store))
         {
             show_404();
         }
 
         $data = [
-            'id'       => $category,
-            'category' => $this->store_model->get_category($category, 'id'),
-            'realms'   => $this->realm->get_realms()
+            'id'       => $store_id,
+            'category' => $store,
+            'realms'   => $this->realms->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -209,8 +247,8 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->insert('store_items', [
-                    'store_id'    => $category,
+                $this->store_items->create([
+                    'store_id'    => $store_id,
                     'realm_id'    => $this->input->post('realm'),
                     'name'        => $this->input->post('name'),
                     'description' => $this->input->post('description'),
@@ -223,7 +261,7 @@ class Admin extends MX_Controller
                 ]);
 
                 $this->session->set_flashdata('success', lang('item_created'));
-                redirect(site_url('store/admin/'. $category));
+                redirect(site_url('store/admin/'. $store_id));
             }
         }
         else
@@ -232,18 +270,28 @@ class Admin extends MX_Controller
         }
     }
 
-    public function edit_item($category = null, $item = null)
+    /**
+     * Edit item
+     *
+     * @param int $store_id
+     * @param int $item_id
+     * @return mixed
+     */
+    public function edit_item($store_id = null, $item_id = null)
     {
-        if (empty($category) || empty($item) || ! $this->store_model->find_item($item))
+        $store = $this->store->find(['id' => $store_id]);
+        $item  = $this->store_items->find(['id' => $item_id]);
+
+        if (empty($store) || empty($item))
         {
             show_404();
         }
 
         $data = [
-            'id'       => $category,
-            'category' => $this->store_model->get_category($category, 'id'),
-            'realms'   => $this->realm->get_realms(),
-            'item'     => $this->store_model->get_item($item)
+            'id'       => $store_id,
+            'category' => $store,
+            'realms'   => $this->realms->find_all(),
+            'item'     => $item
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -266,7 +314,7 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $item)->update('store_items', [
+                $this->store_items->update([
                     'realm_id'    => $this->input->post('realm'),
                     'name'        => $this->input->post('name'),
                     'description' => $this->input->post('description'),
@@ -276,10 +324,10 @@ class Admin extends MX_Controller
                     'vp'          => $this->input->post('vp'),
                     'top'         => empty($this->input->post('top', TRUE)) ? 0 : 1,
                     'command'     => $this->input->post('command')
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('item_updated'));
-                redirect(site_url('store/admin/'.$category.'/edit/'.$item));
+                redirect(site_url('store/admin/'.$store_id.'/edit/'.$item_id));
             }
         }
         else
@@ -288,17 +336,26 @@ class Admin extends MX_Controller
         }
     }
 
-    public function delete_item($category = null, $item = null)
+    /**
+     * Delete item
+     *
+     * @param int $store_id
+     * @param int $item_id
+     * @return void
+     */
+    public function delete_item($store_id = null, $item_id = null)
     {
-        if (empty($category) || empty($item) || ! $this->store_model->find_item($item))
+        $item = $this->store_items->find(['id' => $item_id]);
+
+        if (empty($item))
         {
             show_404();
         }
 
-        $this->db->where('id', $item)->delete('store_items');
+        $this->store_items->delete(['id' => $item_id]);
 
         $this->session->set_flashdata('success', lang('item_deleted'));
-        redirect(site_url('store/admin/'.$category));
+        redirect(site_url('store/admin/'.$store_id));
     }
 
     public function logs()
@@ -311,7 +368,7 @@ class Admin extends MX_Controller
 
         $config = [
             'base_url'    => site_url('store/admin/logs'),
-            'total_rows'  => $this->store_model->count_logs($search_clean),
+            'total_rows'  => $this->store_logs->count_all($search_clean),
             'per_page'    => 25,
             'uri_segment' => 4
         ];
@@ -322,7 +379,7 @@ class Admin extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'logs'  => $this->store_model->get_all_logs($config['per_page'], $offset, $search_clean),
+            'logs'  => $this->store_logs->find_all($config['per_page'], $offset, $search_clean),
             'links'  => $this->pagination->create_links(),
             'search' => $search
         ];

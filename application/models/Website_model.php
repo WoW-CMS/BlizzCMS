@@ -8,73 +8,78 @@ class Website_model extends CI_Model
      *
      * @param string $username
      * @param string $password
-     * @return boolean
+     * @return bool
      */
     public function authentication($username, $password)
     {
-        $accgame  = $this->auth->connect()->where('username', $username)->or_where('email', $username)->get('account')->row();
+        $account  = $this->auth->connect()->where('username', $username)->or_where('email', $username)->get('account')->row();
         $emulator = config_item('emulator');
 
-        if (empty($accgame))
-        {
+        if (empty($account)) {
             return false;
         }
 
-        switch ($emulator)
-        {
+        switch ($emulator) {
             case 'azeroth':
             case 'trinity':
-                $validate = ($accgame->verifier === $this->auth->game_hash($accgame->username, $password, 'srp6', $accgame->salt));
+                $validate = ($account->verifier === $this->auth->game_hash($account->username, $password, 'srp6', $account->salt));
                 break;
             case 'cmangos':
-                $validate = (strtoupper($accgame->v) === $this->auth->game_hash($accgame->username, $password, 'hex', $accgame->s));
+                $validate = (strtoupper($account->v) === $this->auth->game_hash($account->username, $password, 'hex', $account->s));
                 break;
             case 'old_trinity':
             case 'mangos':
-                $validate = hash_equals(strtoupper($accgame->sha_pass_hash), $this->auth->game_hash($accgame->username, $password));
+                $validate = hash_equals(strtoupper($account->sha_pass_hash), $this->auth->game_hash($account->username, $password));
                 break;
         }
 
-        if (! isset($validate) || ! $validate)
-        {
+        if (! isset($validate) || ! $validate) {
             return false;
         }
 
+        $user = $this->users->find(['id' => $account->id]);
         // if account on website don't exist sync values from game account
-        if (! $this->find_user($accgame->id))
-        {
-            $this->db->insert('users', [
-                'id'        => $accgame->id,
-                'nickname'  => $accgame->username,
-                'username'  => $accgame->username,
-                'email'     => $accgame->email,
-                'joined_at' => date('Y-m-d H:i:s', $accgame->joindate)
+        if (empty($user)) {
+            $this->users->create([
+                'id'        => $account->id,
+                'nickname'  => $account->username,
+                'username'  => $account->username,
+                'email'     => $account->email,
+                'joined_at' => date('Y-m-d H:i:s', $account->joindate)
             ]);
+
+            $userdata = [
+                'id'        => $account->id,
+                'nickname'  => $account->username,
+                'username'  => $account->username,
+                'email'     => $account->email,
+                'gmlevel'   => $this->auth->get_gmlevel($account->id),
+                'logged_in' => TRUE
+            ];
+        }
+        else {
+            $userdata = [
+                'id'        => $user->id,
+                'nickname'  => $user->nickname,
+                'username'  => $user->username,
+                'email'     => $user->email,
+                'gmlevel'   => $this->auth->get_gmlevel($user->id),
+                'logged_in' => TRUE
+            ];
         }
 
-        $data = $this->get_user($accgame->id);
-        // Set session
-        $this->session->set_userdata([
-            'id'        => $data->id,
-            'nickname'  => $data->nickname,
-            'username'  => $data->username,
-            'email'     => $data->email,
-            'gmlevel'   => $this->auth->get_gmlevel($data->id),
-            'logged_in' => TRUE
-        ]);
-
+        $this->session->set_userdata($userdata);
         return true;    
     }
 
     /**
      * Check if user is logged
      *
-     * @return boolean
+     * @return bool
      */
     public function isLogged()
     {
-        if ($this->session->userdata('id') && $this->session->logged_in)
-        {
+        if ($this->session->userdata('id') && $this->session->logged_in) {
             return true;
         }
 
@@ -85,26 +90,14 @@ class Website_model extends CI_Model
      * Get avatar image of specific user
      *
      * @param int|null $id
-     * @return boolean
+     * @return bool
      */
     public function user_avatar($id = null)
     {
         $avatar = $this->get_user($id, 'avatar');
+        $query  = $this->avatars->find(['id' => $avatar]);
 
-        return $this->db->where('id', $avatar)->get('avatars')->row('image');
-    }
-
-    /**
-     * Check if user exists
-     *
-     * @param int $id
-     * @return boolean
-     */
-    public function find_user($id)
-    {
-        $query = $this->db->where('id', $id)->get('users')->num_rows();
-
-        return ($query == 1);
+        return $query->image;
     }
 
     /**
@@ -116,94 +109,57 @@ class Website_model extends CI_Model
      */
     public function get_user($id = null, $column = null)
     {
-        $id = $id ?? $this->session->userdata('id');
+        $id  = $id ?? $this->session->userdata('id');
+        $row = $this->users->find(['id' => $id]);
 
-        $query = $this->db->where('id', $id)->get('users')->row();
-
-        if (empty($query))
-        {
+        if (empty($row)) {
             return null;
         }
 
-        if (property_exists($query, $column))
+        if (property_exists($row, $column))
         {
-            return $query->$column;
+            return $row->$column;
         }
 
-        return $query;
+        return $row;
     }
 
     /**
-     * Check if username/email exists on pending accounts
+     * Send email
      *
-     * @param string $username
-     * @param string $email
-     * @return boolean
+     * @param string $to
+     * @param string $subject
+     * @param string $message
+     * @param bool $debug
+     * @return bool
      */
-    public function pending_unique($username, $email)
+    public function send_email($to, $subject, $message, $debug = false)
     {
-        $query = $this->db->query("SELECT * FROM users_tokens WHERE (JSON_EXTRACT(data, '$.username') = ? OR JSON_EXTRACT(data, '$.email') = ?) AND type = 'validation' AND expired_at >= ?", [$username, $email, current_date()]);
+        $this->load->library('email');
 
-        return ($query->num_rows() >= 1);
-    }
-
-    /**
-     * Generate user token
-     *
-     * @param int $id
-     * @param string $type
-     * @param string $expiration
-     * @param string $data
-     * @return string
-     */
-    public function generate_token($id, $type, $expiration, $data = '')
-    {
-        $chooser = bin2hex(random_bytes(16));
-        $key     = bin2hex(random_bytes(16));
-        $token   = $chooser.'_'.$key;
-        $hash    = hash('sha512', $key);
-
-        $this->db->insert('users_tokens', [
-            'user_id'    => $id,
-            'chooser'    => $chooser,
-            'hash'       => $hash,
-            'type'       => $type,
-            'data'       => $data,
-            'created_at' => current_date(),
-            'expired_at' => $expiration
+        $this->email->initialize([
+            'protocol'    => config_item('email_protocol'),
+            'smtp_host'   => config_item('email_hostname'),
+            'smtp_user'   => config_item('email_username'),
+            'smtp_pass'   => ! empty(config_item('email_password')) ? decrypt(config_item('email_password')) : '',
+            'smtp_port'   => config_item('email_port'),
+            'smtp_crypto' => config_item('email_crypto'),
+            'mailtype'    => 'html',
+            'charset'     => 'utf-8',
+            'newline'     => "\r\n"
         ]);
 
-        return $token;
-    }
+        $this->email->to($to);
+        $this->email->from(config_item('email_sender'), config_item('email_sender_name'));
+        $this->email->subject($subject);
+        $this->email->message($message);
 
-    /**
-     * Verify if token exist and is valid
-     *
-     * @param string $token
-     * @param string $type
-     * @return mixed
-     */
-    public function verify_token($token, $type)
-    {
-        if (strpos($token, '_') === false)
+        if ($debug)
         {
-            return false;
+            $this->email->send(false);
+            return $this->email->print_debugger();
         }
 
-        list($chooser, $validation) = explode('_', $token);
-        $validation = hash('sha512', $validation);
-
-        $query = $this->db->where([
-            'chooser'       => $chooser,
-            'type'          => $type,
-            'expired_at >=' => current_date()
-        ])->get('users_tokens')->row();
-
-        if (empty($query) || ! hash_equals($query->hash, $validation))
-        {
-            return false;
-        }
-
-        return $query;
+        return $this->email->send();
     }
 }

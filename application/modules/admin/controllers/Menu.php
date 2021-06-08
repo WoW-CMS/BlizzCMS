@@ -25,7 +25,6 @@ class Menu extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('menu_model');
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -36,7 +35,7 @@ class Menu extends MX_Controller
     public function index()
     {
         $data = [
-            'menu' => $this->menu_model->get_all()
+            'menu' => $this->menu->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -47,7 +46,7 @@ class Menu extends MX_Controller
     public function create()
     {
         $data = [
-            'parents' => $this->menu_model->find_parents()
+            'parents' => $this->menu->parents()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -67,7 +66,7 @@ class Menu extends MX_Controller
             }
             else
             {
-                $this->db->insert('menu', [
+                $this->menu->create([
                     'name'   => $this->input->post('name'),
                     'url'    => $this->input->post('url'),
                     'icon'   => $this->input->post('icon'),
@@ -86,16 +85,24 @@ class Menu extends MX_Controller
         }
     }
 
+    /**
+     * Edit menu
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->menu_model->find_id($id))
+        $menu = $this->menu->find(['id' => $id]);
+
+        if (empty($menu))
         {
             show_404();
         }
 
         $data = [
-            'parents' => $this->menu_model->find_parents(),
-            'menu' => $this->menu_model->get($id)
+            'parents' => $this->menu->parents(),
+            'menu'    => $menu
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -115,14 +122,14 @@ class Menu extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('menu', [
+                $this->menu->update([
                     'name'   => $this->input->post('name'),
                     'url'    => $this->input->post('url'),
                     'icon'   => $this->input->post('icon'),
                     'target' => $this->input->post('target'),
                     'type'   => $this->input->post('type'),
                     'parent' => $this->input->post('parent')
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('menu_updated'));
 
@@ -135,14 +142,22 @@ class Menu extends MX_Controller
         }
     }
 
+    /**
+     * Delete menu
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->menu_model->find_id($id))
+        $menu = $this->menu->find(['id' => $id]);
+
+        if (empty($menu))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('menu');
+        $this->menu->delete(['id' => $id]);
 
         $this->session->set_flashdata('success', lang('menu_deleted'));
         redirect(site_url('admin/menu'));

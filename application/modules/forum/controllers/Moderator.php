@@ -27,7 +27,6 @@ class Moderator extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('forum_model');
         $this->load->language('admin/admin');
         $this->load->language('forum');
 

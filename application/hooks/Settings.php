@@ -15,13 +15,11 @@ class Settings
     {
         $CI =& get_instance();
 
-        $options = ($CI->load->database() === FALSE) ? $CI->Settings_model->get_all() : FALSE;
+        $data = ($CI->load->database() === FALSE) ? $CI->settings_model->saved() : FALSE;
 
-        if ($options)
-        {
-            foreach ($options as $option)
-            {
-                $CI->config->set_item($option->key, $option->value);
+        if ($data) {
+            foreach ($data as $row) {
+                $CI->config->set_item($row->key, $row->value);
             }
         }
     }

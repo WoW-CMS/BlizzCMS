@@ -3,50 +3,80 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Changelogs_model extends CI_Model
 {
-    protected $changelogs = 'changelogs';
+    /**
+     * Specific table used in the model
+     *
+     * @var string
+     */
+    protected $table = 'changelogs';
 
     /**
-     * Count all changelogs
+     * Insert new record
      *
-     * @return int
+     * @param array $set
+     * @return bool
      */
-    public function count_all()
+    public function create(array $set)
     {
-        return $this->db->count_all($this->changelogs);
+        return $this->db->insert($this->table, $set);
     }
 
     /**
-     * Get all changelogs
+     * Update record
+     *
+     * @param array $set
+     * @param array $where
+     * @return bool
+     */
+    public function update(array $set, array $where)
+    {
+        return $this->db->update($this->table, $set, $where);
+    }
+
+    /**
+     * Delete record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function delete(array $where)
+    {
+        return $this->db->delete($this->table, $where);
+    }
+
+    /**
+     * Find record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function find(array $where)
+    {
+        return $this->db->where($where)->get($this->table)->row();
+    }
+
+    /**
+     * Find all records
      *
      * @param int $limit
      * @param int $start
      * @return array
      */
-    public function get_all($limit, $start)
+    public function find_all($limit, $start)
     {
-        return $this->db->order_by('id', 'DESC')->limit($limit, $start)->get($this->changelogs)->result();
+        return $this->db->order_by('id', 'DESC')
+                    ->limit($limit, $start)
+                    ->get($this->table)
+                    ->result();
     }
 
     /**
-     * Get changelog
+     * Count all records
      *
-     * @return array
+     * @return int
      */
-    public function get($id)
+    public function count_all()
     {
-        return $this->db->where('id', $id)->get($this->changelogs)->row();
-    }
-
-    /**
-     * Check if changelog exists
-     *
-     * @param int $id
-     * @return boolean
-     */
-    public function find_id($id)
-    {
-        $result = $this->db->where('id', $id)->get($this->changelogs)->num_rows();
-
-        return ($result == 1);
+        return $this->db->count_all($this->table);
     }
 }

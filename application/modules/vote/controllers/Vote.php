@@ -22,7 +22,11 @@ class Vote extends MX_Controller
             redirect(site_url('login'));
         }
 
-        $this->load->model('vote_model');
+        $this->load->model([
+            'topsites_model'      => 'topsites',
+            'topsites_logs_model' => 'topsites_logs'
+        ]);
+
         $this->load->language('vote');
 
         $this->template->set_partial('alerts', 'static/alerts');
@@ -35,7 +39,7 @@ class Vote extends MX_Controller
 
         $config = [
             'base_url'    => site_url('vote'),
-            'total_rows'  => $this->vote_model->count_all(),
+            'total_rows'  => $this->topsites->count_all(),
             'per_page'    => 15,
             'uri_segment' => 2
         ];
@@ -46,7 +50,7 @@ class Vote extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'topsites' => $this->vote_model->get_all($config['per_page'], $offset),
+            'topsites' => $this->topsites->find_all($config['per_page'], $offset),
             'links'    => $this->pagination->create_links()
         ];
 
@@ -55,28 +59,37 @@ class Vote extends MX_Controller
         $this->template->build('index', $data);
     }
 
+    /**
+     * Redirect to topsite for vote
+     *
+     * @param int $id
+     * @return void
+     */
     public function site($id = null)
     {
-        if (empty($id) || ! $this->vote_model->find_id($id))
+        $topsite = $this->topsites->find(['id' => $id]);
+        $ip      = $this->input->ip_address();
+
+        if (empty($topsite))
         {
             show_404();
         }
 
-        if (strtotime($this->vote_model->get_expiration($id)) >= now())
+        if ($this->topsites_logs->expiration($id) >= now())
         {
             $this->session->set_flashdata('error', lang('already_voted'));
             redirect(site_url('vote'));
         }
 
-        $topsite = $this->vote_model->get($id);
-        $user    = $this->website->get_user();
+        $user = $this->website->get_user();
 
-        $this->db->where('id', $user->id)->update('users', ['vp' => ($topsite->points + $user->vp)]);
+        $this->users->update(['vp' => ($topsite->points + $user->vp)], ['id' => $user->id]);
 
-        $this->db->insert('topsites_logs', [
+        $this->topsites_logs->create([
             'topsite_id' => $id,
             'user_id'    => $user->id,
             'points'     => $topsite->points,
+            'ip'         => $ip,
             'created_at' => current_date(),
             'expired_at' => interval_time('PT' . $topsite->time . 'H')
         ]);

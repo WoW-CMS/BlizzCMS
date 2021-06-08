@@ -73,7 +73,7 @@
                 <?= form_close() ?>
               </li>
               <li>
-                <?php foreach ($this->realm->get_realms() as $realm): ?>
+                <?php foreach ($this->realms->find_all() as $realm): ?>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-body uk-padding-remove uk-overflow-auto">
                     <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
@@ -88,7 +88,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($this->realm->account_characters($realm->id, $user->id) as $chars): ?>
+                        <?php foreach ($this->characters->account_characters($realm->id, $user->id) as $chars): ?>
                         <tr>
                           <td><?= $chars->guid ?></td>
                           <td><?= $chars->name ?></td>

@@ -27,7 +27,10 @@ class Admin extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('changelogs_model');
+        $this->load->model([
+            'changelogs_model' => 'changelogs'
+        ]);
+
         $this->load->language('admin/admin');
         $this->load->language('changelogs');
 
@@ -43,7 +46,7 @@ class Admin extends MX_Controller
 
         $config = [
             'base_url'    => site_url('changelogs/admin'),
-            'total_rows'  => $this->changelogs_model->count_all(),
+            'total_rows'  => $this->changelogs->count_all(),
             'per_page'    => 25,
             'uri_segment' => 3
         ];
@@ -54,7 +57,7 @@ class Admin extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'changelogs' => $this->changelogs_model->get_all($config['per_page'], $offset),
+            'changelogs' => $this->changelogs->find_all($config['per_page'], $offset),
             'links'      => $this->pagination->create_links()
         ];
 
@@ -78,7 +81,7 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->insert('changelogs', [
+                $this->changelogs->create([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'created_at'  => current_date()
@@ -94,15 +97,23 @@ class Admin extends MX_Controller
         }
     }
 
+    /**
+     * Edit changelog
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->changelogs_model->find_id($id))
+        $changelog = $this->changelogs->find(['id' => $id]);
+
+        if (empty($changelog))
         {
             show_404();
         }
 
         $data = [
-            'changelog' => $this->changelogs_model->get($id)
+            'changelog' => $changelog
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -118,10 +129,10 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('changelogs', [
+                $this->changelogs->update([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description')
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('changelog_updated'));
                 redirect(site_url('changelogs/admin/edit/'.$id));
@@ -133,14 +144,22 @@ class Admin extends MX_Controller
         }
     }
 
+    /**
+     * Delete changelog
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->changelogs_model->find_id($id))
+        $changelog = $this->changelogs->find(['id' => $id]);
+
+        if (empty($changelog))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('changelogs');
+        $this->changelogs->delete(['id' => $id]);
 
         $this->session->set_flashdata('success', lang('changelog_deleted'));
         redirect(site_url('changelogs/admin'));

@@ -18,14 +18,14 @@
               </div>
               <ul class="uk-nav-default aside-nav uk-nav-parent-icon" uk-nav>
                 <li><a href="<?= site_url('store') ?>"><i class="fas fa-star"></i> <?= lang('top_items') ?></a></li>
-                <?php foreach ($this->store_model->get_all_categories() as $cat): ?>
+                <?php foreach ($this->store->find_all() as $cat): ?>
                 <?php if ($cat->type === TYPE_DEFAULT): ?>
                 <li><a href="<?= site_url('store/category/'.$cat->slug) ?>"><?= $cat->name ?></a></li>
                 <?php else: ?>
                 <li class="uk-parent">
                   <a href="#"><?= $cat->name ?></a>
                   <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav>
-                    <?php foreach ($this->store_model->get_all_categories($cat->id) as $sub): ?>
+                    <?php foreach ($this->store->find_all($cat->id) as $sub): ?>
                     <li><a href="<?= site_url('store/category/'.$sub->slug) ?>"><?= $sub->name ?></a></li>
                     <?php endforeach ?>
                   </ul>

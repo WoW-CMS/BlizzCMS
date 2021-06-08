@@ -22,7 +22,12 @@ class Bugtracker extends MX_Controller
             redirect(site_url('login'));
         }
 
-        $this->load->model('bugtracker_model');
+        $this->load->model([
+            'bugtracker_model'            => 'bugtracker',
+            'bugtracker_comments_model'   => 'bugtracker_comments',
+            'bugtracker_categories_model' => 'bugtracker_categories'
+        ]);
+
         $this->load->language('bugtracker');
 
         $this->template->set_partial('alerts', 'static/alerts');
@@ -40,7 +45,7 @@ class Bugtracker extends MX_Controller
 
         $config = [
             'base_url'    => site_url('bugtracker'),
-            'total_rows'  => $this->bugtracker_model->count_reports($search_cleaned, $cat_cleaned),
+            'total_rows'  => $this->bugtracker->count_all($search_cleaned, $cat_cleaned),
             'per_page'    => 15,
             'uri_segment' => 2
         ];
@@ -51,10 +56,12 @@ class Bugtracker extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'reports'  => $this->bugtracker_model->get_all($config['per_page'], $offset, $search_cleaned, $cat_cleaned),
-            'links'    => $this->pagination->create_links(),
-            'search'   => $search,
-            'category' => $category
+            'reports'    => $this->bugtracker->find_all($config['per_page'], $offset, $search_cleaned, $cat_cleaned),
+            'links'      => $this->pagination->create_links(),
+            'categories' => $this->bugtracker_categories->get_categories(),
+            'latest'     => $this->bugtracker_comments->latest(),
+            'search'     => $search,
+            'category'   => $category
         ];
 
         $this->template->title(config_item('app_name'), lang('bugtracker'));
@@ -67,7 +74,8 @@ class Bugtracker extends MX_Controller
         $this->template->title(config_item('app_name'), lang('bugtracker'));
 
         $data = [
-            'realms' => $this->realm->get_realms()
+            'realms'     => $this->realms->find_all(),
+            'categories' => $this->bugtracker_categories->get_categories()
         ];
 
         if ($this->input->method() == 'post')
@@ -83,7 +91,7 @@ class Bugtracker extends MX_Controller
             }
             else
             {
-                $this->db->insert('bugtracker', [
+                $this->bugtracker->create([
                     'user_id'     => $this->session->userdata('id'),
                     'realm_id'    => $this->input->post('realm', TRUE),
                     'title'       => $this->input->post('title', TRUE),
@@ -102,23 +110,25 @@ class Bugtracker extends MX_Controller
         }
     }
 
+    /**
+     * Edit report
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->bugtracker_model->find_report($id))
-        {
-            show_404();
-        }
+        $report = $this->bugtracker->find(['id' => $id]);
 
-        $report = $this->bugtracker_model->get_report($id);
-
-        if (! $this->auth->is_moderator() || $this->session->userdata('id') != $report->user_id)
+        if (empty($report) || ! $this->auth->is_moderator() || $this->session->userdata('id') != $report->user_id)
         {
             show_404();
         }
 
         $data = [
-            'realms' => $this->realm->get_realms(),
-            'report' => $report
+            'realms'     => $this->realms->find_all(),
+            'categories' => $this->bugtracker_categories->get_categories(),
+            'report'     => $report
         ];
 
         $this->template->title(config_item('app_name'), lang('bugtracker'));
@@ -155,7 +165,7 @@ class Bugtracker extends MX_Controller
                     $data['status']   = $this->input->post('status', TRUE);
                 }
 
-                $this->db->where('id', $id)->update('bugtracker', $data);
+                $this->bugtracker->update($data, ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('report_edited'));
                 redirect(site_url('bugtracker/edit/'.$id));
@@ -167,9 +177,17 @@ class Bugtracker extends MX_Controller
         }
     }
 
+    /**
+     * View report
+     *
+     * @param int $id
+     * @return string
+     */
     public function report($id = null)
     {
-        if (empty($id) || ! $this->bugtracker_model->find_report($id))
+        $report = $this->bugtracker->find(['id' => $id]);
+
+        if (empty($report))
         {
             show_404();
         }
@@ -179,7 +197,7 @@ class Bugtracker extends MX_Controller
 
         $config = [
             'base_url'    => site_url('bugtracker/report/' . $id),
-            'total_rows'  => $this->bugtracker_model->count_comments($id),
+            'total_rows'  => $this->bugtracker_comments->count_all($id),
             'per_page'    => 15,
             'uri_segment' => 4
         ];
@@ -190,8 +208,8 @@ class Bugtracker extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'report'   => $this->bugtracker_model->get_report($id),
-            'comments' => $this->bugtracker_model->get_all_comments($id, $config['per_page'], $offset),
+            'report'   => $report,
+            'comments' => $this->bugtracker_comments->find_all($id, $config['per_page'], $offset),
             'links'    => $this->pagination->create_links()
         ];
 
@@ -202,16 +220,6 @@ class Bugtracker extends MX_Controller
 
     public function comment()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
-        if (! $this->website->isLogged())
-        {
-            redirect(site_url('login'));
-        }
-
         $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
         $this->form_validation->set_rules('comment', 'Comment', 'trim|required');
 
@@ -226,7 +234,7 @@ class Bugtracker extends MX_Controller
         {
             $id = $this->input->post('id', TRUE);
 
-            $this->db->insert('bugtracker_comments', [
+            $this->bugtracker_comments->create([
                 'report_id'  => $id,
                 'user_id'    => $this->session->userdata('id'),
                 'commentary' => $this->input->post('comment'),
@@ -238,23 +246,24 @@ class Bugtracker extends MX_Controller
         }
     }
 
+    /**
+     * Delete comment
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete_comment($id = null)
     {
-        if (empty($id) || ! $this->bugtracker_model->find_comment($id))
+        $comment = $this->bugtracker_comments->find(['id' => $id]);
+
+        if (empty($comment))
         {
             show_404();
         }
 
-        if (! $this->website->isLogged())
-        {
-            redirect(site_url('login'));
-        }
-
-        $comment = $this->bugtracker_model->get_comment($id);
-
         if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id)
         {
-            $this->db->where('id', $id)->delete('bugtracker_comments');
+            $this->bugtracker_comments->delete(['id' => $id]);
 
             $this->session->set_flashdata('success', lang('comment_deleted'));
             redirect(site_url('bugtracker/report/' . $comment->report_id));

@@ -80,8 +80,8 @@
                 <ul class="uk-list uk-list-divider uk-text-small">
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('author') ?>:</span> <?= $this->website->get_user($report->user_id, 'nickname') ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('date') ?>:</span> <?= date('F j, Y, H:i', strtotime($report->created_at)) ?></li>
-                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('realm') ?>:</span> <?= $this->realm->realm_name($report->realm_id) ?></li>
-                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('category') ?>:</span> <?= $this->bugtracker_model->category_name($report->category_id) ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('realm') ?>:</span> <?= $this->realms->name($report->realm_id) ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('category') ?>:</span> <?= $this->bugtracker_categories->name($report->category_id) ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('priority') ?>:</span> <?= $report->priority ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('status') ?>:</span> <?= $report->status ?></li>
                 </ul>

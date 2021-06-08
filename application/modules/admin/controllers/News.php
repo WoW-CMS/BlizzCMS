@@ -29,7 +29,6 @@ class News extends MX_Controller
         $this->load->library('form_validation');
         $this->form_validation->CI =& $this;
 
-        $this->load->model('news_model');
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -44,7 +43,7 @@ class News extends MX_Controller
 
         $config = [
             'base_url'    => site_url('admin/news'),
-            'total_rows'  => $this->news_model->count_all(),
+            'total_rows'  => $this->news->count_all(),
             'per_page'    => 25,
             'uri_segment' => 3
         ];
@@ -55,7 +54,7 @@ class News extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'news'  => $this->news_model->get_all($config['per_page'], $offset),
+            'news'  => $this->news->find_all($config['per_page'], $offset),
             'links' => $this->pagination->create_links()
         ];
 
@@ -97,7 +96,7 @@ class News extends MX_Controller
                 $uploaded = $this->upload->data();
                 $img = $uploaded['file_name'];
 
-                $this->db->insert('news', [
+                $this->news->create([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'image'       => $img,
@@ -115,15 +114,23 @@ class News extends MX_Controller
         }
     }
 
+    /**
+     * Edit news
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->news_model->find_id($id))
+        $news = $this->news->find(['id' => $id]);
+
+        if (empty($news))
         {
             show_404();
         }
 
         $data = [
-            'news' => $this->news_model->get($id)
+            'news' => $news
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -151,15 +158,15 @@ class News extends MX_Controller
 
                     if ($this->upload->do_upload('image'))
                     {
-                        if (is_readable(FCPATH . 'uploads/news/' . $data['news']->image))
+                        if (is_readable(FCPATH . 'uploads/news/' . $news->image))
                         {
-                            @unlink(FCPATH . 'uploads/news/' . $data['news']->image);
+                            @unlink(FCPATH . 'uploads/news/' . $news->image);
                         }
 
                         $uploaded = $this->upload->data();
-                        $img = $uploaded['file_name'];
+                        $image    = $uploaded['file_name'];
 
-                        $this->db->where('id', $id)->update('news', ['image' => $img]);
+                        $this->news->update(['image' => $image], ['id' => $id]);
                     }
                     else
                     {
@@ -168,11 +175,11 @@ class News extends MX_Controller
                     }
                 }
 
-                $this->db->where('id', $id)->update('news', [
+                $this->news->update([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'comments'    => empty($this->input->post('comments', TRUE)) ? 0 : 1
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('news_updated'));
                 redirect(site_url('admin/news/edit/'.$id));
@@ -184,21 +191,27 @@ class News extends MX_Controller
         }
     }
 
+    /**
+     * Delete news
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->news_model->find_id($id))
+        $news = $this->news->find(['id' => $id]);
+
+        if (empty($news))
         {
             show_404();
         }
-
-        $news = $this->news_model->get($id);
 
         if (is_readable(FCPATH . 'uploads/news/' . $news->image))
         {
             @unlink(FCPATH . 'uploads/news/' . $news->image);
         }
 
-        $this->db->where('id', $id)->delete('news');
+        $this->news->delete(['id' => $id]);
         $this->db->where('news_id', $id)->delete('news_comments');
 
         $this->session->set_flashdata('success', lang('news_deleted'));

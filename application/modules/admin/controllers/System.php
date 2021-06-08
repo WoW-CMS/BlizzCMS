@@ -25,7 +25,10 @@ class System extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('system_model');
+        $this->load->model([
+            'system_model' => 'system'
+        ]);
+
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -66,7 +69,7 @@ class System extends MX_Controller
             }
             else
             {
-                $this->db->update_batch('settings', [
+                $this->settings->update_batch([
                     [
                         'key' => 'app_name',
                         'value' => $this->input->post('name', TRUE)
@@ -150,7 +153,7 @@ class System extends MX_Controller
             }
             else
             {
-                $this->db->update_batch('settings', [
+                $this->settings->update_batch([
                     [
                         'key'   => 'captcha_register',
                         'value' => ($this->input->post('captcha_register', TRUE) != 'true') ? 'false' : 'true'
@@ -216,7 +219,7 @@ class System extends MX_Controller
             }
             else
             {
-                $this->db->update_batch('settings', [
+                $this->settings->update_batch([
                     [
                         'key'   => 'register_validation',
                         'value' => ($this->input->post('register', TRUE) != 'true') ? 'false' : 'true'
@@ -251,9 +254,13 @@ class System extends MX_Controller
                     ]
                 ], 'key');
 
-                if (! empty($this->input->post('email_pass')))
+                $email_password = $this->input->post('email_pass');
+
+                if (! empty($email_password))
                 {
-                    $this->db->set('value', encrypt($this->input->post('email_pass')))->where('key', 'email_password')->update('settings');
+                    $this->settings->update([
+                        'value' => encrypt($email_password)
+                    ], ['key' => 'email_password']);
                 }
 
                 // Clear cache
@@ -271,11 +278,6 @@ class System extends MX_Controller
 
     public function cache()
     {
-        if ($this->input->method() != 'get')
-        {
-            show_404();
-        }
-
         if (! $this->cache->file->clean())
         {
             $this->session->set_flashdata('error', lang('cache_error'));
@@ -290,11 +292,6 @@ class System extends MX_Controller
 
     public function sessions()
     {
-        if ($this->input->method() != 'get')
-        {
-            show_404();
-        }
-
         $this->db->truncate('sessions');
 
         redirect(site_url('admin/system'));
@@ -310,7 +307,7 @@ class System extends MX_Controller
 
         $config = [
             'base_url'    => site_url('admin/system/logs'),
-            'total_rows'  => $this->system_model->count_all($search_clean),
+            'total_rows'  => $this->system->count_all($search_clean),
             'per_page'    => 25,
             'uri_segment' => 4
         ];
@@ -321,7 +318,7 @@ class System extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'logs'  => $this->system_model->get_all($config['per_page'], $offset, $search_clean),
+            'logs'  => $this->system->get_all($config['per_page'], $offset, $search_clean),
             'links'  => $this->pagination->create_links(),
             'search' => $search
         ];

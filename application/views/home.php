@@ -1,7 +1,7 @@
     <section class="uk-section uk-padding-remove slider-section">
       <div class="uk-position-relative uk-visible-toggle" uk-slideshow="animation: fade;autoplay: true;autoplay-interval: 6000;min-height: 150;max-height: 300;">
         <ul class="uk-slideshow-items">
-          <?php foreach ($this->base->get_slides() as $slide): ?>
+          <?php foreach ($this->slides->find_all() as $slide): ?>
           <?php if ($slide->type === TYPE_IMAGE): ?>
           <li>
             <img src="<?= $template['uploads'].'slides/'.$slide->route ?>" alt="<?= $slide->title ?>" uk-cover>
@@ -47,7 +47,7 @@
                     <div class="uk-width-2-3@s uk-card-body">
                       <h5 class="uk-h5 uk-text-bold uk-margin-small"><?= $article->title ?></h5>
                       <p class="uk-text-small uk-margin-small"><?= character_limiter(strip_tags($article->description), 160) ?></p>
-                      <p class="uk-text-small uk-margin-remove uk-text-right"><i class="far fa-comment-alt"></i> <?= $this->base->count_news_comments($article->id) ?> <?= lang('news_comments') ?></p>
+                      <p class="uk-text-small uk-margin-remove uk-text-right"><i class="far fa-comment-alt"></i> <?= $this->news_comments->count_all($article->id) ?> <?= lang('news_comments') ?></p>
                     </div>
                   </div>
                 </a>
@@ -66,25 +66,25 @@
                       <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= site_url('online') ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= lang('realm') ?> <?= $realm->name ?></a></h5>
                     </div>
                     <div class="uk-width-auto">
-                      <?php if ($this->realm->is_online($realm->id)): ?>
+                      <?php if ($this->realms->is_online($realm->id)): ?>
                         <div class="status-dot online" uk-tooltip="<?= lang('online') ?>"><span><span></span></span></div>
                       <?php else: ?>
                         <div class="status-dot offline" uk-tooltip="<?= lang('offline') ?>"><span><span></span></span></div>
                       <?php endif ?>
                     </div>
                   </div>
-                  <?php if ($this->realm->is_online($realm->id)): ?>
+                  <?php if ($this->realms->is_online($realm->id)): ?>
                   <div class="uk-grid uk-grid-collapse uk-margin-small" data-uk-grid>
                     <div class="uk-width-1-2">
                       <div class="uk-tile alliance-bar uk-text-center" uk-tooltip="<?= lang('alliance') ?>">
                         <i class="fas fa-users"></i>
-                        <?= $this->realm->count_online($realm->id, 'alliance') ?>
+                        <?= $this->realms->count_online($realm->id, 'alliance') ?>
                       </div>
                     </div>
                     <div class="uk-width-1-2">
                       <div class="uk-tile horde-bar uk-text-center" uk-tooltip="<?= lang('horde') ?>">
                         <i class="fas fa-users"></i>
-                        <?= $this->realm->count_online($realm->id, 'horde') ?>
+                        <?= $this->realms->count_online($realm->id, 'horde') ?>
                       </div>
                     </div>
                   </div>

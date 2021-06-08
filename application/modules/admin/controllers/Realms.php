@@ -25,7 +25,6 @@ class Realms extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('realms_model');
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -36,7 +35,7 @@ class Realms extends MX_Controller
     public function index()
     {
         $data = [
-            'realms' => $this->realms_model->get_all()
+            'realms' => $this->realms->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -70,7 +69,7 @@ class Realms extends MX_Controller
             }
             else
             {
-                $this->db->insert('realms', [
+                $this->realms->create([
                     'name'             => $this->input->post('name', TRUE),
                     'max_cap'          => $this->input->post('max_cap'),
                     'char_hostname'    => $this->input->post('char_host'),
@@ -96,15 +95,23 @@ class Realms extends MX_Controller
         }
     }
 
+    /**
+     * Edit realm
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->realms_model->find_id($id))
+        $realm = $this->realms->find(['id' => $id]);
+
+        if (empty($realm))
         {
             show_404();
         }
 
         $data = [
-            'realm' => $this->realms_model->get($id)
+            'realm' => $realm
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -155,7 +162,7 @@ class Realms extends MX_Controller
                     $realm['console_password'] = encrypt($this->input->post('console_pass'));
                 }
 
-                $this->db->where('id', $id)->update('realms', $realm);
+                $this->realms->update($realm, ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('realm_updated'));
                 redirect(site_url('admin/realms/edit/' . $id));
@@ -167,14 +174,22 @@ class Realms extends MX_Controller
         }
     }
 
+    /**
+     * Delete realm
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->realms_model->find_id($id))
+        $realm = $this->realms->find(['id' => $id]);
+
+        if (empty($realm))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('realms');
+        $this->realms->delete(['id' => $id]);
 
         $this->session->set_flashdata('success', lang('realm_deleted'));
         redirect(site_url('admin/realms'));
@@ -182,13 +197,15 @@ class Realms extends MX_Controller
 
     public function check_soap($id = null)
     {
-        if (empty($id) || ! $this->realms_model->find_id($id))
+        $realm = $this->realms->find(['id' => $id]);
+
+        if (empty($realm))
         {
             show_404();
         }
 
         $data = [
-            'check' => $this->realm->send_command($id, '.server info')
+            'check' => $this->realms->send_command($id, '.server info')
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));

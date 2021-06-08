@@ -25,7 +25,6 @@ class Slides extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('slides_model');
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -36,7 +35,7 @@ class Slides extends MX_Controller
     public function index()
     {
         $data = [
-            'slides' => $this->slides_model->get_all()
+            'slides' => $this->slides->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -61,7 +60,7 @@ class Slides extends MX_Controller
             }
             else
             {
-                $this->db->insert('slides', [
+                $this->slides->create([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'type'        => $this->input->post('type'),
@@ -78,15 +77,23 @@ class Slides extends MX_Controller
         }
     }
 
+    /**
+     * Edit slide
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->slides_model->find_id($id))
+        $slide = $this->slides->find(['id' => $id]);
+
+        if (empty($slide))
         {
             show_404();
         }
 
         $data = [
-            'slide' => $this->slides_model->get($id)
+            'slide' => $slide
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -104,12 +111,12 @@ class Slides extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('slides', [
+                $this->slides->update([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'type'        => $this->input->post('type'),
                     'route'       => $this->input->post('route', TRUE)
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('slide_updated'));
                 redirect(site_url('admin/slides/edit/'.$id));
@@ -121,14 +128,22 @@ class Slides extends MX_Controller
         }
     }
 
+    /**
+     * Delete slide
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->slides_model->find_id($id))
+        $slide = $this->slides->find(['id' => $id]);
+
+        if (empty($slide))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('slides');
+        $this->slides->delete(['id' => $id]);
 
         $this->session->set_flashdata('success', lang('slide_deleted'));
         redirect(site_url('admin/slides'));

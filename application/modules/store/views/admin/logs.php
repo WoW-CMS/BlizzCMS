@@ -49,6 +49,7 @@
                 <tr>
                   <th class="uk-table-expand"><?= lang('username') ?></th>
                   <th class="uk-width-small uk-visible@s"><?= lang('category') ?></th>
+                  <th class="uk-width-small"><?= lang('item') ?></th>
                   <th class="uk-width-small"><?= lang('character') ?></th>
                   <th class="uk-width-small"><?= lang('status') ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('date') ?></th>
@@ -62,7 +63,7 @@
                     <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($item->user_id) ?>" width="36" height="36" alt="Avatar">
                     <span class="uk-text-middle"><?= $this->website->get_user($item->user_id, 'username') ?></span>
                   </td>
-                  <td class="uk-visible@s"><?= $item->store_id ?></td>
+                  <td class="uk-visible@s"><?= $item->category ?></td>
                   <td><?= $item->item_id ?></td>
                   <td><?= $item->character ?></td>
                   <td><?= $item->result ?></td>

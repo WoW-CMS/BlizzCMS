@@ -25,28 +25,24 @@ class MY_Exceptions extends CI_Exceptions
      */
     public function show_404($page = '', $log_error = TRUE)
     {
-        if (is_cli())
-        {
+        if (is_cli()) {
             $heading = 'Not Found';
             $message = 'The controller/method pair you requested was not found.';
 
             // By default we log this, but allow a dev to skip it
-            if ($log_error)
-            {
+            if ($log_error) {
                 log_message('error', $heading.': '.$page);
             }
 
             echo parent::show_error($heading, $message, 'error_404', 404);
             exit(4); // EXIT_UNKNOWN_FILE
         }
-        else
-        {
+        else {
             $data['heading'] = '404 Page Not Found';
             $data['message'] = 'The page you requested was not found.';
 
             // By default we log this, but allow a dev to skip it
-            if ($log_error)
-            {
+            if ($log_error) {
                 log_message('error', $data['heading'].': '.$page);
             }
 
@@ -56,7 +52,7 @@ class MY_Exceptions extends CI_Exceptions
             $CI->load->library('template');
             $CI->load->model('settings_model');
 
-            $name = $CI->settings_model->get_value('app_name');
+            $name = $CI->settings_model->saved_value('app_name');
 
             $CI->config->set_item('app_name', $name);
             $CI->template->title($name, $CI->lang->line('error_404'));

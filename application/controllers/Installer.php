@@ -221,7 +221,7 @@ class Installer extends CI_Controller
 
         if ($data !== false)
         {
-            $this->db->update_batch('settings', $data, 'key');
+            $this->settings->update_batch($data, 'key');
             $this->cache->file->delete('preferences');
         }
 
@@ -247,7 +247,7 @@ class Installer extends CI_Controller
      * Rewrite config database file
      *
      * @param array $settings
-     * @return boolean
+     * @return bool
      */
     private function _rewrite_database($settings = [])
     {

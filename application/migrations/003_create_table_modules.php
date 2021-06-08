@@ -10,6 +10,11 @@ class Migration_Create_table_modules extends CI_Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
+            ),
+            'version' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => FALSE
             )
         ));
         $this->dbforge->add_key('module', TRUE);

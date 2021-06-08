@@ -50,8 +50,8 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="category">
                       <option value="" hidden selected><?= lang('select_category') ?></option>
-                      <?php foreach ($this->bugtracker_model->get_categories() as $category): ?>
-                      <option value="<?= $category->id ?>" <?php if ($category->id == $report->category_id) echo 'selected' ?>><?= $category->name ?></option>
+                      <?php foreach ($categories as $cat): ?>
+                      <option value="<?= $cat->id ?>" <?php if ($cat->id == $report->category_id) echo 'selected' ?>><?= $cat->name ?></option>
                       <?php endforeach ?>
                     </select>
                   </div>

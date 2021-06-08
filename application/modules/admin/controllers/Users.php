@@ -25,7 +25,6 @@ class Users extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('users_model');
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -43,7 +42,7 @@ class Users extends MX_Controller
 
         $config = [
             'base_url'    => site_url('admin/users'),
-            'total_rows'  => $this->users_model->count_all($search_clean),
+            'total_rows'  => $this->users->count_all($search_clean),
             'per_page'    => 25,
             'uri_segment' => 3
         ];
@@ -54,7 +53,7 @@ class Users extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'users'  => $this->users_model->get_all($config['per_page'], $offset, $search_clean),
+            'users'  => $this->users->find_all($config['per_page'], $offset, $search_clean),
             'links'  => $this->pagination->create_links(),
             'search' => $search
         ];
@@ -64,15 +63,23 @@ class Users extends MX_Controller
         $this->template->build('users/index', $data);
     }
 
+    /**
+     * View user
+     *
+     * @param int $id
+     * @return string
+     */
     public function view($id = null)
     {
-        if (empty($id) || ! $this->users_model->find_id($id))
+        $user = $this->users->find(['id' => $id]);
+
+        if (empty($user))
         {
             show_404();
         }
 
         $data = [
-            'user' => $this->users_model->get($id)
+            'user' => $user
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -82,11 +89,6 @@ class Users extends MX_Controller
 
     public function update()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
         $this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
         $this->form_validation->set_rules('dp', 'Donor points', 'trim|required|is_natural');
@@ -100,11 +102,11 @@ class Users extends MX_Controller
         {
             $id = $this->input->post('id', TRUE);
 
-            $this->db->where('id', $id)->update('users', [
+            $this->users->update([
                 'nickname' => $this->input->post('nickname', TRUE),
                 'dp'       => $this->input->post('dp'),
                 'vp'       => $this->input->post('vp')
-            ]);
+            ], ['id' => $id]);
 
             $this->session->set_flashdata('success', lang('user_updated'));
             redirect(site_url('admin/users/view/' . $id));
@@ -121,7 +123,7 @@ class Users extends MX_Controller
 
         $config = [
             'base_url'    => site_url('admin/users/banned'),
-            'total_rows'  => $this->users_model->count_all_bans($search_clean),
+            'total_rows'  => $this->auth->count_all_bans($search_clean),
             'per_page'    => 25,
             'uri_segment' => 4
         ];
@@ -132,7 +134,7 @@ class Users extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'bans'   => $this->users_model->get_all_bans($config['per_page'], $offset, $search_clean),
+            'bans'   => $this->auth->get_all_bans($config['per_page'], $offset, $search_clean),
             'links'  => $this->pagination->create_links(),
             'search' => $search
         ];
@@ -142,15 +144,23 @@ class Users extends MX_Controller
         $this->template->build('users/bans', $data);
     }
 
+    /**
+     * View ban details
+     *
+     * @param int $id
+     * @return string
+     */
     public function view_ban($id = null)
     {
-        if (empty($id) || ! $this->users_model->find_ban($id))
+        $ban = $this->auth->get_ban($id);
+
+        if (empty($ban))
         {
             show_404();
         }
 
         $data = [
-            'ban' => $this->users_model->get_ban($id)
+            'ban' => $ban
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -233,9 +243,17 @@ class Users extends MX_Controller
         }
     }
 
+    /**
+     * Unban user
+     *
+     * @param int $id
+     * @return void
+     */
     public function user_unban($id = null)
     {
-        if (empty($id) || ! $this->users_model->find_ban($id))
+        $ban = $this->auth->get_ban($id);
+
+        if (empty($ban))
         {
             show_404();
         }

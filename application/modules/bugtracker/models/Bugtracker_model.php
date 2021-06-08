@@ -3,38 +3,83 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Bugtracker_model extends CI_Model
 {
-    protected $bugtracker = 'bugtracker';
-    protected $bugtracker_comments = 'bugtracker_comments';
-    protected $bugtracker_categories = 'bugtracker_categories';
+    /**
+     * Specific table used in the model
+     *
+     * @var string
+     */
+    protected $table = 'bugtracker';
 
     /**
-     * Get all reports
+     * Insert new record
+     *
+     * @param array $set
+     * @return bool
+     */
+    public function create(array $set)
+    {
+        return $this->db->insert($this->table, $set);
+    }
+
+    /**
+     * Update record
+     *
+     * @param array $set
+     * @param array $where
+     * @return bool
+     */
+    public function update(array $set, array $where)
+    {
+        return $this->db->update($this->table, $set, $where);
+    }
+
+    /**
+     * Delete record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function delete(array $where)
+    {
+        return $this->db->delete($this->table, $where);
+    }
+
+    /**
+     * Find record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function find(array $where)
+    {
+        return $this->db->where($where)->get($this->table)->row();
+    }
+
+    /**
+     * Find all records
      *
      * @param int $limit
      * @param int $start
      * @param string $search
-     * @param string $category
+     * @param int $category
      * @return array
      */
-    public function get_all($limit, $start, $search = '', $category = '')
+    public function find_all($limit, $start, $search = '', $category = '')
     {
-        if ($search === '' && $category === '')
-        {
+        if ($search === '' && $category === '') {
             return $this->db->order_by('id', 'DESC')
                         ->limit($limit, $start)
-                        ->get($this->bugtracker)
+                        ->get($this->table)
                         ->result();
         }
 
-        $query = $this->db->from($this->bugtracker);
+        $query = $this->db->from($this->table);
 
-        if ($category !== '')
-        {
+        if ($category !== '') {
             $query = $query->where('category_id', $category);
         }
 
-        if ($search !== '')
-        {
+        if ($search !== '') {
             $query = $query->like('title', $search)->or_like('description', $search);
         }
 
@@ -45,139 +90,28 @@ class Bugtracker_model extends CI_Model
     }
 
     /**
-     * Count all reports
+     * Count all records
      *
      * @param string $search
-     * @param string $category
+     * @param int $category
      * @return int
      */
-    public function count_reports($search = '', $category = '')
+    public function count_all($search = '', $category = '')
     {
-        if ($search === '' && $category === '')
-        {
-            return $this->db->count_all($this->bugtracker);
+        if ($search === '' && $category === '') {
+            return $this->db->count_all($this->table);
         }
 
-        $query = $this->db->from($this->bugtracker);
+        $query = $this->db->from($this->table);
 
-        if ($category !== '')
-        {
+        if ($category !== '') {
             $query = $query->where('category_id', $category);
         }
 
-        if ($search !== '')
-        {
+        if ($search !== '') {
             $query = $query->like('title', $search)->or_like('description', $search);
         }
 
         return $query->count_all_results();
-    }
-
-    /**
-     * Get report
-     *
-     * @param int $id
-     * @return object
-     */
-    public function get_report($id)
-    {
-        return $this->db->where('id', $id)->get($this->bugtracker)->row();
-    }
-
-    /**
-     * Find if the report exists
-     *
-     * @param int $id
-     * @return boolean
-     */
-    public function find_report($id)
-    {
-        $query = $this->db->where('id', $id)->get($this->bugtracker)->num_rows();
-
-        return $query == 1;
-    }
-
-    /**
-     * Get all comments of a report
-     *
-     * @param int $id
-     * @param int $limit
-     * @param int $start
-     * @return array
-     */
-    public function get_all_comments($id, $limit, $start)
-    {
-        return $this->db->where('report_id', $id)
-                    ->order_by('created_at', 'ASC')
-                    ->limit($limit, $start)
-                    ->get($this->bugtracker_comments)
-                    ->result();
-    }
-
-    /**
-     * Count all comments of a report
-     *
-     * @param int $id
-     * @return int
-     */
-    public function count_comments($id)
-    {
-        return $this->db->where('report_id', $id)->count_all_results($this->bugtracker_comments);
-    }
-
-    /**
-     * Get report comment
-     *
-     * @param int $id
-     * @return object
-     */
-    public function get_comment($id)
-    {
-        return $this->db->where('id', $id)->get($this->bugtracker_comments)->row();
-    }
-
-    /**
-     * Find if the comment exists
-     *
-     * @param int $id
-     * @return boolean
-     */
-    public function find_comment($id)
-    {
-        $query = $this->db->where('id', $id)->get($this->bugtracker_comments)->num_rows();
-
-        return $query == 1;
-    }
-
-    /**
-     * Get latest comments
-     *
-     * @param int $limit
-     * @return array
-     */
-    public function latest_comments($limit = 5)
-    {
-        return $this->db->order_by('created_at', 'ASC')->limit($limit)->get($this->bugtracker_comments)->result();
-    }
-
-    /**
-     * Get all categories
-     *
-     * @return array
-     */
-    public function get_categories()
-    {
-        return $this->db->get($this->bugtracker_categories)->result();
-    }
-
-    /**
-     * Get category name
-     *
-     * @param int $id
-     * @return string
-     */
-    public function category_name($id)
-    {
-        return $this->db->where('id', $id)->get($this->bugtracker_categories)->row('name');
     }
 }

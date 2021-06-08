@@ -42,11 +42,6 @@ class User extends MX_Controller
 
     public function change_nickname()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         $this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
@@ -66,7 +61,8 @@ class User extends MX_Controller
                 redirect(site_url('user/settings'));
             }
 
-            $this->db->set('nickname', $nickname)->where('id', $user->id)->update('users');
+            $this->users->update(['nickname' => $nickname], ['id' => $user->id]);
+
             $this->session->set_userdata('nickname', $nickname);
 
             $this->session->set_flashdata('success', lang('nickname_changed'));
@@ -76,11 +72,6 @@ class User extends MX_Controller
 
     public function change_email()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         $this->form_validation->set_rules('new_email', 'New Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('confirm_new_email', 'New Email Confirmation', 'trim|required|matches[new_email]');
         $this->form_validation->set_rules('cu_password', 'Password', 'trim|required');
@@ -118,7 +109,7 @@ class User extends MX_Controller
                 ]);
             }
 
-            $this->db->set('email', $new_email)->where('id', $user->id)->update('users');
+            $this->users->update(['email' => $new_email], ['id' => $user->id]);
 
             $this->session->set_flashdata('success', lang('email_changed'));
             redirect(site_url('settings'));
@@ -127,11 +118,6 @@ class User extends MX_Controller
 
     public function change_password()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         $this->form_validation->set_rules('current_password', 'Password', 'trim|required');
         $this->form_validation->set_rules('new_password', 'New Password', 'trim|required|min_length[8]|max_length[32]|differs[password]');
         $this->form_validation->set_rules('confirm_new_password', 'New Password Confirmation', 'trim|required|min_length[8]|max_length[32]|matches[new_password]');
@@ -208,11 +194,6 @@ class User extends MX_Controller
 
     public function change_avatar()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         $this->form_validation->set_rules('avatar', 'Avatar', 'trim|required|is_natural_no_zero');
 
         if ($this->form_validation->run() == FALSE)
@@ -224,7 +205,7 @@ class User extends MX_Controller
             $avatar = $this->input->post('avatar', TRUE);
             $id     = $this->session->userdata('id');
 
-            $this->db->set('avatar', $avatar)->where('id', $id)->update('users');
+            $this->users->update(['avatar' => $avatar], ['id' => $id]);
 
             $this->session->set_flashdata('success', lang('avatar_changed'));
             redirect(site_url('user/settings'));

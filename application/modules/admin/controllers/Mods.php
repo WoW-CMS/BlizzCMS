@@ -49,6 +49,12 @@ class Mods extends MX_Controller
         $this->template->build('mods/index', $data);
     }
 
+    /**
+     * Install module
+     *
+     * @param string $name
+     * @return void
+     */
     public function install($name = null)
     {
         if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || mod_located($name))
@@ -66,8 +72,11 @@ class Mods extends MX_Controller
             }
         }
 
-        $this->db->insert('modules', [
-            'module' => $name
+        $module = $this->_get_mods($name);
+
+        $this->modules->create([
+            'module'  => $name,
+            'version' => $module['version']
         ]);
 
         // Clear cache
@@ -77,6 +86,12 @@ class Mods extends MX_Controller
         redirect(site_url('admin/mods'));
     }
 
+    /**
+     * Uninstall module
+     *
+     * @param string $name
+     * @return void
+     */
     public function uninstall($name = null)
     {
         if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || ! mod_located($name))
@@ -95,7 +110,7 @@ class Mods extends MX_Controller
         }
 
         $this->db->where('module', $name)->delete('migrations');
-        $this->db->where('module', $name)->delete('modules');
+        $this->modules->delete(['module' => $name]);
 
         // Clear cache
         $this->cache->file->clean();
@@ -104,6 +119,12 @@ class Mods extends MX_Controller
         redirect(site_url('admin/mods'));
     }
 
+    /**
+     * Delete module
+     *
+     * @param string $name
+     * @return void
+     */
     public function delete($name = null)
     {
         if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || mod_located($name))
@@ -129,6 +150,12 @@ class Mods extends MX_Controller
         redirect(site_url('admin/mods'));
     }
 
+    /**
+     * Update module
+     *
+     * @param string $name
+     * @return void
+     */
     public function update($name = null)
     {
         if (empty($name) || in_array($name, self::EXCLUDE_NAMES, true) || ! mod_exists($name) || ! mod_located($name))

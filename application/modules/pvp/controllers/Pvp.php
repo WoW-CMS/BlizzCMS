@@ -15,14 +15,17 @@ class Pvp extends MX_Controller
     {
         parent::__construct();
 
-        $this->load->model('pvp_model');
+        $this->load->model([
+            'pvp_model' => 'pvp'
+        ]);
+
         $this->load->language('pvp');
     }
 
     public function index()
     {
         $data = [
-            'realms' => $this->realm->get_realms()
+            'realms' => $this->realms->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('pvp_statistics'));

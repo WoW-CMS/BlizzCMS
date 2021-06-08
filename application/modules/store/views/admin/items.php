@@ -40,7 +40,7 @@
                 <?php foreach ($items as $item): ?>
                 <tr>
                   <td><?= $item->name ?></td>
-                  <td><?= $this->realm->realm_name($item->realm_id) ?></td>
+                  <td><?= $this->realms->name($item->realm_id) ?></td>
                   <td><?= $item->price_type ?></td>
                   <td><?= $item->dp ?></td>
                   <td><?= $item->vp ?></td>

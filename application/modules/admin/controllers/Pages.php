@@ -25,7 +25,10 @@ class Pages extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('pages_model');
+        $this->load->model([
+            'pages_model' => 'pages'
+        ]);
+
         $this->load->language('admin');
 
         $this->template->set_theme();
@@ -40,7 +43,7 @@ class Pages extends MX_Controller
 
         $config = [
             'base_url'    => site_url('admin/pages'),
-            'total_rows'  => $this->pages_model->count_all(),
+            'total_rows'  => $this->pages->count_all(),
             'per_page'    => 25,
             'uri_segment' => 3
         ];
@@ -51,7 +54,7 @@ class Pages extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'pages' => $this->pages_model->get_all($config['per_page'], $offset),
+            'pages' => $this->pages->find_all($config['per_page'], $offset),
             'links' => $this->pagination->create_links()
         ];
 
@@ -76,7 +79,7 @@ class Pages extends MX_Controller
             }
             else
             {
-                $this->db->insert('pages', [
+                $this->pages->create([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'slug'        => $this->input->post('slug'),
@@ -93,15 +96,23 @@ class Pages extends MX_Controller
         }
     }
 
+    /**
+     * Edit page
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->pages_model->find_id($id))
+        $page = $this->pages->find(['id' => $id]);
+
+        if (empty($page))
         {
             show_404();
         }
 
         $data = [
-            'page' => $this->pages_model->get($id)
+            'page' => $page
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -118,11 +129,11 @@ class Pages extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('pages', [
+                $this->pages->update([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'slug'        => $this->input->post('slug'),
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('page_updated'));
                 redirect(site_url('admin/pages/edit/'.$id));
@@ -134,14 +145,22 @@ class Pages extends MX_Controller
         }
     }
 
+    /**
+     * Delete page
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->pages_model->find_id($id))
+        $page = $this->pages->find(['id' => $id]);
+
+        if (empty($page))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('pages');
+        $this->pages->delete(['id' => $id]);
 
         $this->session->set_flashdata('success', lang('page_deleted'));
         redirect(site_url('admin/pages'));

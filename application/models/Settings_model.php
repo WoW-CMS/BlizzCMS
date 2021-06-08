@@ -3,57 +3,134 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Settings_model extends CI_Model
 {
-    protected $settings_table = 'settings';
+    /**
+     * Specific table used in the model
+     *
+     * @var string
+     */
+    protected $table = 'settings';
 
     /**
-     * Get all rows of settings
+     * Insert new record
      *
-     * @return mixed
+     * @param array $set
+     * @return bool
      */
-    public function get_all()
+    public function create(array $set)
     {
-        if (! $this->db->table_exists($this->settings_table))
-        {
-            return false;
-        }
-
-        $data = $this->cache->file->get('settings');
-
-        if ($data !== false)
-        {
-            return $data;
-        }
-
-        $result = $this->db->get($this->settings_table)->result();
-
-        $this->cache->file->save('settings', $result, 604800);
-
-        return $result;
+        return $this->db->insert($this->table, $set);
     }
 
     /**
-     * Get value from a key
+     * Update record
+     *
+     * @param array $set
+     * @param array $where
+     * @return bool
+     */
+    public function update(array $set, array $where)
+    {
+        return $this->db->update($this->table, $set, $where);
+    }
+
+    /**
+     * Update multiple records
+     *
+     * @param array $set
+     * @param string $where
+     * @return bool
+     */
+    public function update_batch(array $set, $where)
+    {
+        return $this->db->update_batch($this->table, $set, $where);
+    }
+
+    /**
+     * Delete record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function delete(array $where)
+    {
+        return $this->db->delete($this->table, $where);
+    }
+
+    /**
+     * Find record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function find(array $where)
+    {
+        return $this->db->where($where)->get($this->table)->row();
+    }
+
+    /**
+     * Find all records
+     *
+     * @return array
+     */
+    public function find_all()
+    {
+        return $this->db->get($this->table)->result();
+    }
+
+    /**
+     * Count all records
+     *
+     * @return int
+     */
+    public function count_all()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    /**
+     * Get all records saved on cache
+     *
+     * @return mixed
+     */
+    public function saved()
+    {
+        if (! $this->db->table_exists($this->table)) {
+            return false;
+        }
+
+        $cache = $this->cache->file->get('settings');
+
+        if ($cache !== false) {
+            return $cache;
+        }
+
+        $rows = $this->find_all();
+
+        $this->cache->file->save('settings', $rows, 604800);
+
+        return $rows;
+    }
+
+    /**
+     * Get the saved value from a cached record of settings
      *
      * @param string $key
      * @return mixed
      */
-    public function get_value($key)
+    public function saved_value($key)
     {
-        if (! $this->db->table_exists($this->settings_table))
-        {
+        if (! $this->db->table_exists($this->table)) {
             return null;
         }
 
-        $data = $this->cache->file->get('settings');
+        $cache = $this->cache->file->get('settings');
 
-        if ($data !== false)
-        {
-            $filtered = current(array_filter($data, function($item) use ($key) {
+        if ($cache !== false) {
+            $filtered = current(array_filter($cache, static function($item) use ($key) {
                 return $item->key == $key;
             }));
 
-            if ($filtered !== false)
-            {
+            if ($filtered !== false) {
                 return $filtered->value;
             }
         }

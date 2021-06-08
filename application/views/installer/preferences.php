@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BlizzCMS – Installer</title>
-    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('assets/fontawesome/js/all.min.js') ?>"></script>
-    <link rel="stylesheet" href="<?= base_url('assets/uikit/css/uikit.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/uikit.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/install.css') ?>">
-    <script src="<?= base_url('assets/uikit/js/uikit.min.js') ?>"></script>
-    <script src="<?= base_url('assets/uikit/js/uikit-icons.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/uikit.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/uikit-icons.min.js') ?>"></script>
+    <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('assets/fontawesome/js/all.min.js') ?>" defer></script>
   </head>
   <body>
     <header>

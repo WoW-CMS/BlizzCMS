@@ -18,14 +18,14 @@
               </div>
               <ul class="uk-nav-default aside-nav uk-nav-parent-icon" uk-nav>
                 <li class="uk-active"><a href="<?= site_url('store') ?>"><i class="fas fa-star"></i> <?= lang('top_items') ?></a></li>
-                <?php foreach ($this->store_model->get_all_categories() as $cat): ?>
+                <?php foreach ($this->store->find_all() as $cat): ?>
                 <?php if ($cat->type === TYPE_DEFAULT): ?>
                 <li><a href="<?= site_url('store/category/'.$cat->slug) ?>"><?= $cat->name ?></a></li>
                 <?php else: ?>
                 <li class="uk-parent">
                   <a href="#"><?= $cat->name ?></a>
                   <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav>
-                    <?php foreach ($this->store_model->get_all_categories($cat->id) as $sub): ?>
+                    <?php foreach ($this->store->find_all($cat->id) as $sub): ?>
                     <li><a href="<?= site_url('store/category/'.$sub->slug) ?>"><?= $sub->name ?></a></li>
                     <?php endforeach ?>
                   </ul>
@@ -37,7 +37,7 @@
           </div>
           <div class="uk-width-3-4@m">
             <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" data-uk-grid>
-             <?php foreach($this->store_model->get_top_items() as $item): ?>
+             <?php foreach($this->store_items->top() as $item): ?>
               <div>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-header">

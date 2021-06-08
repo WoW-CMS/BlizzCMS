@@ -10,11 +10,11 @@ class Updater_model extends CI_Model
     /**
      * Returns the current version of CMS
      *
-     * @return string
+     * @return mixed
      */
     public function current_version()
     {
-        return config_item('app_version');
+        return $this->settings->saved_value('app_version');
     }
 
     /**
@@ -46,7 +46,9 @@ class Updater_model extends CI_Model
         {
             if ($update->update(false) === true)
             {
-                $this->db->set('value', end($update->getVersionsToUpdate()))->where('key', 'app_version')->update('settings');
+                $this->settings->update([
+                    'value' => end($update->getVersionsToUpdate())
+                ], ['key' => 'app_version']);
 
                 return true;
             }

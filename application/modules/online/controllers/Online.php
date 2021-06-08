@@ -15,13 +15,15 @@ class Online extends MX_Controller
     {
         parent::__construct();
 
-        $this->load->model('online_model');
+        $this->load->model([
+            'online_model' => 'online'
+        ]);
     }
 
     public function index()
     {
         $data = [
-            'realms' => $this->realm->get_realms()
+            'realms' => $this->realms->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('online_players'));

@@ -19,8 +19,8 @@ class Home extends CI_Controller
     public function index()
     {
         $data = [
-            'articles' => $this->base->get_news_list(),
-            'realms'   => $this->realm->get_realms()
+            'articles' => $this->news->latest(),
+            'realms'   => $this->realms->find_all()
         ];
 
         $this->template->title(config_item('app_name'));

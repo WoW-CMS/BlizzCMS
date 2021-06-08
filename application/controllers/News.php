@@ -18,19 +18,27 @@ class News extends CI_Controller
         $this->template->set_partial('alerts', 'static/alerts');
     }
 
+    /**
+     * Show news article
+     *
+     * @param int $id
+     * @return string
+     */
     public function index($id = null)
     {
-        if (empty($id) || ! $this->base->find_news($id))
+        $news = $this->news->find(['id' => $id]);
+
+        if (empty($news))
         {
             show_404();
         }
 
-        $get = $this->input->get('page', TRUE);
+        $get  = $this->input->get('page', TRUE);
         $page = ctype_digit((string) $get) ? $get : 0;
 
         $config = [
             'base_url'    => site_url('news/' . $id),
-            'total_rows'  => $this->base->count_news_comments($id),
+            'total_rows'  => $this->news_comments->count_all($id),
             'per_page'    => 15,
             'uri_segment' => 3
         ];
@@ -41,10 +49,10 @@ class News extends CI_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'news'     => $this->base->get_news($id),
-            'comments' => $this->base->get_news_comments($id, $config['per_page'], $offset),
+            'news'     => $news,
+            'comments' => $this->news_comments->find_all($id, $config['per_page'], $offset),
             'links'    => $this->pagination->create_links(),
-            'aside'    => $this->base->get_news_list()
+            'aside'    => $this->news->latest()
         ];
 
         $this->template->title(config_item('app_name'), lang('news'));
@@ -54,11 +62,6 @@ class News extends CI_Controller
 
     public function comment()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         if (! $this->website->isLogged())
         {
             redirect(site_url('login'));
@@ -78,7 +81,7 @@ class News extends CI_Controller
         {
             $id = $this->input->post('id', TRUE);
 
-            $this->db->insert('news_comments', [
+            $this->news_comments->create([
                 'news_id'    => $id,
                 'user_id'    => $this->session->userdata('id'),
                 'commentary' => $this->input->post('comment'),
@@ -90,9 +93,17 @@ class News extends CI_Controller
         }
     }
 
+    /**
+     * Delete comment
+     *
+     * @param int|null $id
+     * @return void
+     */
     public function delete_comment($id = null)
     {
-        if (empty($id) || ! $this->base->find_comment($id))
+        $comment = $this->news_comments->find(['id' => $id]);
+
+        if (empty($comment))
         {
             show_404();
         }
@@ -102,11 +113,9 @@ class News extends CI_Controller
             redirect(site_url('login'));
         }
 
-        $comment = $this->base->get_comment($id);
-
         if ($this->auth->is_moderator() || $this->session->userdata('id') == $comment->user_id)
         {
-            $this->db->where('id', $id)->delete('news_comments');
+            $this->news_comments->delete(['id' => $id]);
 
             $this->session->set_flashdata('success', lang('comment_deleted'));
             redirect(site_url('news/' . $comment->news_id));

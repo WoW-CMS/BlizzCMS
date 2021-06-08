@@ -22,18 +22,21 @@ class Changelogs extends MX_Controller
             redirect(site_url('login'));
         }
 
-        $this->load->model('changelogs_model');
+        $this->load->model([
+            'changelogs_model' => 'changelogs'
+        ]);
+
         $this->load->language('changelogs');
     }
 
     public function index()
     {
-        $get = $this->input->get('page', TRUE);
+        $get  = $this->input->get('page', TRUE);
         $page = ctype_digit((string) $get) ? $get : 0;
 
         $config = [
             'base_url'    => site_url('changelogs'),
-            'total_rows'  => $this->changelogs_model->count_all(),
+            'total_rows'  => $this->changelogs->count_all(),
             'per_page'    => 15,
             'uri_segment' => 2
         ];
@@ -44,7 +47,7 @@ class Changelogs extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'changelogs' => $this->changelogs_model->get_all($config['per_page'], $offset),
+            'changelogs' => $this->changelogs->find_all($config['per_page'], $offset),
             'links'      => $this->pagination->create_links()
         ];
 

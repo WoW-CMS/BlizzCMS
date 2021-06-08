@@ -17,7 +17,7 @@
               <table class="uk-table uk-table-hover uk-table-middle">
                 <caption uk-toggle="target: #cat-<?= $category->id ?>;animation: uk-animation-fade"><i class="fas fa-bookmark"></i> <?= $category->name ?></caption>
                 <tbody id="cat-<?= $category->id ?>">
-                  <?php foreach ($this->forum_model->get_all_forums($category->id, 'forum') as $forum): ?>
+                  <?php foreach ($this->forum->find_all($category->id, 'forum') as $forum): ?>
                   <tr>
                     <td class="uk-table-shrink">
                       <i class="forum-icon" style="background-image: url('<?= $template['uploads'].'icons/forum/'.$forum->icon ?>')"></i>
@@ -29,11 +29,11 @@
                       <p class="uk-text-meta uk-margin-remove"><?= html_escape($forum->description) ?></p>
                     </td>
                     <td class="uk-width-small uk-text-center">
-                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_model->count_topics($forum->id) ?></span>
+                      <span class="uk-display-block uk-text-bold"><i class="far fa-file-alt"></i> <?= $this->forum_topics->count_all($forum->id) ?></span>
                       <span class="uk-text-small"><?= lang('topics') ?></span>
                     </td>
                     <td class="uk-width-medium">
-                      <?php foreach ($this->forum_model->last_topic($forum->id) as $last): ?>
+                      <?php foreach ($this->forum_topics->last($forum->id) as $last): ?>
                       <a href="<?= site_url('forum/topic/'.$last->id) ?>" class="uk-display-block"><?= character_limiter(html_escape($last->title), 30) ?></a>
                       <span class="uk-text-meta uk-display-block"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($last->user_id, 'nickname') ?></span>
                       <?php endforeach ?>
@@ -52,7 +52,7 @@
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">
-                  <?php foreach ($this->forum_model->latest_topics() as $topic): ?>
+                  <?php foreach ($this->forum_topics->latest() as $topic): ?>
                   <li>
                     <i class="fas fa-file-alt"></i> <a href="<?= site_url('forum/topic/'.$topic->id) ?>"><?= character_limiter(html_escape($topic->title), 25) ?></a>
                     <span class="uk-text-muted uk-display-block"><?= date('d-m-y h:i', strtotime($topic->created_at)) ?></span>
@@ -74,21 +74,21 @@
               <div>
                 <div class="forum-who-icon"><i class="far fa-comments fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->count_posts() ?></span><br>
+                  <span class="uk-text-bold uk-text-primary"><?= $total_posts ?></span><br>
                   <span><?= lang('posts') ?></span>
                 </div>
               </div>
               <div>
               <div class="forum-who-icon"><i class="far fa-file-alt fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->count_topics() ?></span><br>
+                  <span class="uk-text-bold uk-text-primary"><?= $total_topics ?></span><br>
                   <span><?= lang('topics') ?></span>
                 </div>
               </div>
               <div>
                 <div class="forum-who-icon"><i class="far fa-user fa-lg"></i></div>
                 <div class="forum-who-text">
-                  <span class="uk-text-bold uk-text-primary"><?= $this->forum_model->count_users() ?></span><br>
+                  <span class="uk-text-bold uk-text-primary"><?= $total_users ?></span><br>
                   <span><?= lang('users') ?></span>
                 </div>
               </div>

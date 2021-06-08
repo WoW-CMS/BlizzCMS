@@ -41,7 +41,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach($this->online_model->get_players($realm->id) as $online): ?>
+                          <?php foreach($this->online->players($realm->id) as $online): ?>
                           <tr>
                             <td><?= $online->name ?></td>
                             <td><?= $online->level ?></td>

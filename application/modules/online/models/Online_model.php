@@ -9,19 +9,23 @@ class Online_model extends CI_Model
      * @param int $realm
      * @return array
      */
-    public function get_players($realm)
+    public function players($realm)
     {
-        $data = $this->cache->file->get('online_players_' . $realm);
+        $cache = $this->cache->file->get('online_players_' . $realm);
 
-        if ($data !== false)
-        {
-            return $data;
+        if ($cache !== false) {
+            return $cache;
         }
 
-        $query = $this->realm->char_connect($realm)->select('name, race, class, level, zone')->where('online', '1')->order_by('name', 'DESC')->get('characters')->result();
+        $rows = $this->characters->connect($realm)
+                    ->select('name, race, class, level, zone')
+                    ->where('online', '1')
+                    ->order_by('name', 'DESC')
+                    ->get('characters')
+                    ->result();
 
-        $this->cache->file->save('online_players_' . $realm, $query, 300);
+        $this->cache->file->save('online_players_' . $realm, $rows, 300);
 
-        return $query;
+        return $rows;
     }
 }

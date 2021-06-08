@@ -49,7 +49,7 @@ if (! function_exists('mod_exists'))
      * Check if a module with the given name exists
      *
      * @param string $name
-     * @return boolean
+     * @return bool
      */
     function mod_exists($name)
     {
@@ -60,18 +60,18 @@ if (! function_exists('mod_exists'))
 if (! function_exists('mod_located'))
 {
     /**
-     * Check if a module with the given name is installed
+     * Check if a module is installed
      *
-     * @param string $name
+     * @param string $module
      * @param bool $error
      * @return mixed
      */
-    function mod_located($name, $error = false)
+    function mod_located($module, $error = false)
     {
         $CI = &get_instance();
-        $CI->load->model('Base_model');
+        $CI->load->model('modules_model');
 
-        $row = $CI->Base_model->find_module($name);
+        $row = $CI->modules_model->mod_saved($module);
 
         if (! $row && $error)
         {

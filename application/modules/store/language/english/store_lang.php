@@ -30,8 +30,16 @@ $lang['enable_top_item'] = 'Display in main page (Top Items)?';
 /**
  * Alerts
 */
-$lang['alert_successful_purchase'] = 'Item purchased successfully.';
-$lang['alert_points_insufficient'] = 'Insufficient points';
+$lang['character_not_exist'] = 'Selected character does not exist';
+$lang['character_not_related'] = 'Character not related to your account';
+$lang['item_added_cart'] = 'Item has been added to your cart';
+$lang['item_deleted_cart'] = 'Item has been removed from your cart';
+$lang['item_error_cart'] = 'Item remove request from cart could not be processed';
+$lang['item_quantity_update'] = 'Quantity of items has been updated';
+$lang['item_quantity_invalid'] = 'Quantity is not valid';
+$lang['cart_empty'] = 'Your cart is empty';
+$lang['user_not_points'] = 'You do not have the necessary points for the purchase';
+$lang['checkout_success'] = 'The purchase has been made! please check your email in the game. If you still do not receive your purchase please contact an administrator';
 
 $lang['category_created'] = 'The new category has been created';
 $lang['category_updated'] = 'The category data has been updated';

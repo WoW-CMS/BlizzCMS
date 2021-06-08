@@ -27,7 +27,11 @@ class Admin extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('vote_model');
+        $this->load->model([
+            'topsites_model'      => 'topsites',
+            'topsites_logs_model' => 'topsites_logs'
+        ]);
+
         $this->load->language('admin/admin');
         $this->load->language('vote');
 
@@ -43,7 +47,7 @@ class Admin extends MX_Controller
 
         $config = [
             'base_url'    => site_url('vote/admin'),
-            'total_rows'  => $this->vote_model->count_all(),
+            'total_rows'  => $this->topsites->count_all(),
             'per_page'    => 25,
             'uri_segment' => 3
         ];
@@ -54,7 +58,7 @@ class Admin extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'topsites' => $this->vote_model->get_all($config['per_page'], $offset),
+            'topsites' => $this->topsites->find_all($config['per_page'], $offset),
             'links'    => $this->pagination->create_links()
         ];
 
@@ -81,7 +85,7 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->insert('topsites', [
+                $this->topsites->create([
                     'name'   => $this->input->post('name'),
                     'url'    => $this->input->post('url', TRUE),
                     'time'   => $this->input->post('time'),
@@ -99,15 +103,23 @@ class Admin extends MX_Controller
         }
     }
 
+    /**
+     * Edit topsite
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit($id = null)
     {
-        if (empty($id) || ! $this->vote_model->find_id($id))
+        $topsite = $this->topsites->find(['id' => $id]);
+
+        if (empty($topsite))
         {
             show_404();
         }
 
         $data = [
-            'topsite' => $this->vote_model->get($id)
+            'topsite' => $topsite
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -126,13 +138,13 @@ class Admin extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('topsites', [
+                $this->topsites->update([
                     'name'   => $this->input->post('name'),
                     'url'    => $this->input->post('url', TRUE),
                     'time'   => $this->input->post('time'),
                     'points' => $this->input->post('points'),
                     'image'  => $this->input->post('image', TRUE)
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('topsite_updated'));
                 redirect(site_url('vote/admin/edit/'.$id));
@@ -144,15 +156,23 @@ class Admin extends MX_Controller
         }
     }
 
+    /**
+     * Delete topsite
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete($id = null)
     {
-        if (empty($id) || ! $this->vote_model->find_id($id))
+        $topsite = $this->topsites->find(['id' => $id]);
+
+        if (empty($topsite))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('topsites');
-        $this->db->where('topsite_id', $id)->delete('topsites_logs');
+        $this->topsites->delete(['id' => $id]);
+        $this->topsites_logs->delete(['topsite_id' => $id]);
 
         $this->session->set_flashdata('success', lang('topsite_deleted'));
         redirect(site_url('vote/admin'));
@@ -168,7 +188,7 @@ class Admin extends MX_Controller
 
         $config = [
             'base_url'    => site_url('store/admin/logs'),
-            'total_rows'  => $this->vote_model->count_logs($search_clean),
+            'total_rows'  => $this->topsites_logs->count_all($search_clean),
             'per_page'    => 25,
             'uri_segment' => 4
         ];
@@ -179,7 +199,7 @@ class Admin extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'logs'  => $this->vote_model->get_all_logs($config['per_page'], $offset, $search_clean),
+            'logs'  => $this->topsites_logs->find_all($config['per_page'], $offset, $search_clean),
             'links'  => $this->pagination->create_links(),
             'search' => $search
         ];

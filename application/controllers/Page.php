@@ -14,20 +14,32 @@ class Page extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->model([
+            'pages_model' => 'pages'
+        ]);
     }
 
+    /**
+     * Show page
+     *
+     * @param string $slug
+     * @return string
+     */
     public function index($slug = null)
     {
-        if (empty($slug) || ! $this->base->find_page($slug))
+        $page = $this->pages->find(['slug' => $slug]);
+
+        if (empty($page))
         {
             show_404();
         }
 
         $data = [
-            'page' => $this->base->get_page($slug)
+            'page' => $page
         ];
 
-        $this->template->title(config_item('app_name'), $data['page']->title);
+        $this->template->title(config_item('app_name'), $page->title);
 
         $this->template->build('page', $data);
     }

@@ -30,7 +30,7 @@
                   <?php foreach($contents as $item): ?>
                   <tr>
                     <td><?= $item['name'] ?></td>
-                    <td><?= $this->realm->character_name($item['realm'], $item['guid']) ?></td>
+                    <td><?= $this->characters->character_name($item['realm'], $item['guid']) ?></td>
                     <td>
                       <?php if ($item['options']['price_type'] === TYPE_DP): ?>
                       <span class="uk-text-small"><i class="dp-icon" uk-tooltip="title: <?= lang('donor_points') ?>"></i><?= $item['dp'] ?></span>

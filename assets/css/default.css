@@ -206,6 +206,7 @@ h6,
 
 .slider-section {
   background: linear-gradient(0deg, rgba(0, 0, 0, .15) 0, transparent);
+  min-height: 300px;
 }
 
 .main-section {
@@ -219,6 +220,7 @@ h6,
   background-image: url('../images/bg-header.png');
   background-repeat: no-repeat;
   background-position: top center;
+  min-height: 150px;
 }
 
 .footer-section {

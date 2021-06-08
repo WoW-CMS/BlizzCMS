@@ -3,20 +3,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Forum_model extends CI_Model
 {
-    protected $forum = 'forum';
-    protected $forum_topics = 'forum_topics';
-    protected $forum_posts = 'forum_posts';
+    /**
+     * Specific table used in the model
+     *
+     * @var string
+     */
+    protected $table = 'forum';
 
     /**
-     * Get all forums
+     * Insert new record
+     *
+     * @param array $set
+     * @return bool
+     */
+    public function create(array $set)
+    {
+        return $this->db->insert($this->table, $set);
+    }
+
+    /**
+     * Update record
+     *
+     * @param array $set
+     * @param array $where
+     * @return bool
+     */
+    public function update(array $set, array $where)
+    {
+        return $this->db->update($this->table, $set, $where);
+    }
+
+    /**
+     * Delete record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function delete(array $where)
+    {
+        return $this->db->delete($this->table, $where);
+    }
+
+    /**
+     * Find record
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function find(array $where)
+    {
+        return $this->db->where($where)->get($this->table)->row();
+    }
+
+    /**
+     * Find all records
      *
      * @param int|null $parent
      * @param string|null $type
      * @return array
      */
-    public function get_all_forums($parent = 0, $type = null)
+    public function find_all($parent = 0, $type = null)
     {
-        $query = $this->db;
+        $query = $this->db->from($this->table);
 
         if (! is_null($parent))
         {
@@ -28,180 +76,6 @@ class Forum_model extends CI_Model
             $query = $query->where('type', $type);
         }
 
-        return $query->get($this->forum)->result();
-    }
-
-    /**
-     * Get forum
-     *
-     * @param int $id
-     * @return object
-     */
-    public function get_forum($id)
-    {
-        return $this->db->where('id', $id)->get($this->forum)->row();
-    }
-
-    /**
-     * Find if the forum exists
-     *
-     * @param int $id
-     * @param string|null $type
-     * @return boolean
-     */
-    public function find_forum($id, $type = null)
-    {
-        $query = $this->db->where('id', $id);
-
-        if (! is_null($type))
-        {
-            $query = $query->where('type', $type);
-        }
-
-        return ($query->get($this->forum)->num_rows() == 1);
-    }
-
-    /**
-     * Get all topics of a forum
-     *
-     * @param int $id
-     * @param int $limit
-     * @param int $start
-     * @return array
-     */
-    public function get_all_topics($id, $limit, $start)
-    {
-        return $this->db->where('forum_id', $id)->order_by('stick', 'DESC')->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->forum_topics)->result();
-    }
-
-    /**
-     * Count all topics of a forum
-     *
-     * @param int|null $id
-     * @return int
-     */
-    public function count_topics($id = null)
-    {
-        if (! is_null($id))
-        {
-            return $this->db->where('forum_id', $id)->count_all_results($this->forum_topics);
-        }
-
-        return $this->db->count_all($this->forum_topics);
-    }
-
-    /**
-     * Get topic
-     *
-     * @param int $id
-     * @return object
-     */
-    public function get_topic($id)
-    {
-        return $this->db->where('id', $id)->get($this->forum_topics)->row();
-    }
-
-    /**
-     * Find if the topic exists
-     *
-     * @param int $id
-     * @return boolean
-     */
-    public function find_topic($id)
-    {
-        $query = $this->db->where('id', $id)->get($this->forum_topics)->num_rows();
-
-        return ($query == 1);
-    }
-
-    /**
-     * Get the latest topics
-     *
-     * @param int $limit
-     * @return array
-     */
-    public function latest_topics($limit = 5)
-    {
-        return $this->db->order_by('created_at', 'ASC')->limit($limit)->get($this->forum_topics)->result();
-    }
-
-    /**
-     * Get last topic of a forum
-     *
-     * @param int $id
-     * @return array
-     */
-    public function last_topic($id)
-    {
-        return $this->db->where('forum_id', $id)->order_by('created_at', 'DESC')->limit(1)->get($this->forum_topics)->result();
-    }
-
-    /**
-     * Get all posts of a topic
-     *
-     * @param int $id
-     * @param int $limit
-     * @param int $start
-     * @return array
-     */
-    public function get_all_posts($id, $limit, $start)
-    {
-        return $this->db->where('topic_id', $id)->order_by('created_at', 'ASC')->limit($limit, $start)->get($this->forum_posts)->result();
-    }
-
-    /**
-     * Count all posts of a topic
-     *
-     * @param int|null $id
-     * @return int
-     */
-    public function count_posts($id = null)
-    {
-        if (! is_null($id))
-        {
-            return $this->db->where('topic_id', $id)->count_all_results($this->forum_posts);
-        }
-
-        return $this->db->count_all($this->forum_posts);
-    }
-
-    /**
-     * Get post
-     *
-     * @param int $id
-     * @return object
-     */
-    public function get_post($id)
-    {
-        return $this->db->where('id', $id)->get($this->forum_posts)->row();
-    }
-
-    /**
-     * Find if the post exists
-     *
-     * @param int $id
-     * @return boolean
-     */
-    public function find_post($id)
-    {
-        $query = $this->db->where('id', $id)->get($this->forum_posts)->num_rows();
-
-        return ($query == 1);
-    }
-
-    /**
-     * Get last post of a topic
-     *
-     * @param int $id
-     * @return array
-     */
-    public function last_post($id)
-    {
-        return $this->db->where('topic_id', $id)->order_by('created_at', 'DESC')->limit(1)->get($this->forum_posts)->result();
-    }
-
-    public function count_users()
-    {
-        return $this->db->count_all('users');
+        return $query->get()->result();
     }
 }

@@ -233,6 +233,7 @@ $lang['page_not_found_description'] = 'It looks like the page you are looking co
 */
 $lang['auth_connection_error'] = 'The connection to the auth db could not be established';
 $lang['characters_connection_error'] = 'The connection to the characters db could not be established';
+$lang['characters_db_notfound'] = 'Data not found to connect to characters db';
 
 /**
  * Emails

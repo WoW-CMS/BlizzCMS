@@ -17,7 +17,12 @@ class Forum extends MX_Controller
 
         mod_located('forum', true);
 
-        $this->load->model('forum_model');
+        $this->load->model([
+            'forum_model'        => 'forum',
+            'forum_topics_model' => 'forum_topics',
+            'forum_posts_model'  => 'forum_posts'
+        ]);
+
         $this->load->language('forum');
 
         $this->template->set_partial('alerts', 'static/alerts');
@@ -26,7 +31,7 @@ class Forum extends MX_Controller
     public function index()
     {
         $data = [
-            'categories' => $this->forum_model->get_all_forums(0, 'category')
+            'categories' => $this->forum->find_all(0, 'category')
         ];
 
         $this->template->title(config_item('app_name'), lang('forum'));
@@ -34,19 +39,27 @@ class Forum extends MX_Controller
         $this->template->build('index', $data);
     }
 
+    /**
+     * View forum
+     *
+     * @param int $id
+     * @return string
+     */
     public function forum($id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_forum($id, 'forum'))
+        $forum = $this->forum->find(['id' => $id, 'type' => 'forum']);
+
+        if (empty($forum))
         {
             show_404();
         }
 
-        $get = $this->input->get('page', TRUE);
+        $get  = $this->input->get('page', TRUE);
         $page = ctype_digit((string) $get) ? $get : 0;
 
         $config = [
             'base_url'    => site_url('forum/view/' . $id),
-            'total_rows'  => $this->forum_model->count_topics($id),
+            'total_rows'  => $this->forum_topics->count_all($id),
             'per_page'    => 15,
             'uri_segment' => 4
         ];
@@ -57,10 +70,13 @@ class Forum extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'forum'     => $this->forum_model->get_forum($id),
-            'subforums' => $this->forum_model->get_all_forums($id, 'forum'),
-            'topics'    => $this->forum_model->get_all_topics($id, $config['per_page'], $offset),
-            'links'     => $this->pagination->create_links()
+            'forum'        => $forum,
+            'subforums'    => $this->forum->find_all($id, 'forum'),
+            'topics'       => $this->forum_topics->find_all($id, $config['per_page'], $offset),
+            'links'        => $this->pagination->create_links(),
+            'total_users'  => $this->users->count_all(),
+            'total_topics' => $this->forum_topics->count_all(),
+            'total_posts'  => $this->forum_posts->count_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('forum'));
@@ -68,19 +84,27 @@ class Forum extends MX_Controller
         $this->template->build('forum', $data);
     }
 
+    /**
+     * View topic
+     *
+     * @param int $id
+     * @return string
+     */
     public function topic($id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_topic($id))
+        $topic = $this->forum_topics->find(['id' => $id]);
+
+        if (empty($topic))
         {
             show_404();
         }
 
-        $get = $this->input->get('page', TRUE);
+        $get  = $this->input->get('page', TRUE);
         $page = ctype_digit((string) $get) ? $get : 0;
 
         $config = [
             'base_url'    => site_url('forum/topic/' . $id),
-            'total_rows'  => $this->forum_model->count_posts($id),
+            'total_rows'  => $this->forum_posts->count_all($id),
             'per_page'    => 15,
             'uri_segment' => 4
         ];
@@ -91,8 +115,8 @@ class Forum extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'topic' => $this->forum_model->get_topic($id),
-            'posts' => $this->forum_model->get_all_posts($id, $config['per_page'], $offset),
+            'topic' => $topic,
+            'posts' => $this->forum_posts->find_all($id, $config['per_page'], $offset),
             'links' => $this->pagination->create_links()
         ];
 
@@ -101,9 +125,15 @@ class Forum extends MX_Controller
         $this->template->build('topic', $data);
     }
 
-    public function create_topic($forum = null)
+    /**
+     * Create topic
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function create_topic($id = null)
     {
-        if (empty($forum))
+        if (empty($id))
         {
             show_404();
         }
@@ -114,7 +144,7 @@ class Forum extends MX_Controller
         }
 
         $data = [
-            'id' => $forum
+            'id' => $id
         ];
 
         $this->template->title(config_item('app_name'), lang('forum'));
@@ -130,8 +160,8 @@ class Forum extends MX_Controller
             }
             else
             {
-                $this->db->insert('forum_topics', [
-                    'forum_id'    => $forum,
+                $this->forum_topics->create([
+                    'forum_id'    => $id,
                     'user_id'     => $this->session->userdata('id'),
                     'title'       => $this->input->post('title', TRUE),
                     'description' => $this->input->post('description'),
@@ -139,7 +169,7 @@ class Forum extends MX_Controller
                 ]);
 
                 $this->session->set_flashdata('success', lang('topic_created'));
-                redirect(site_url('forum/view/'.$forum));
+                redirect(site_url('forum/view/'.$id));
             }
         }
         else
@@ -150,11 +180,6 @@ class Forum extends MX_Controller
 
     public function create_post()
     {
-        if ($this->input->method() != 'post')
-        {
-            show_404();
-        }
-
         if (! $this->website->isLogged())
         {
             redirect(site_url('login'));
@@ -173,9 +198,9 @@ class Forum extends MX_Controller
         else
         {
             $id    = $this->input->post('id', TRUE);
-            $topic = $this->forum_model->get_topic($id);
+            $topic = $this->forum_topics->find(['id' => $id]);
 
-            $this->db->insert('forum_posts', [
+            $this->forum_posts->create([
                 'topic_id'   => $id,
                 'forum_id'   => $topic->forum_id,
                 'user_id'    => $this->session->userdata('id'),
@@ -188,9 +213,17 @@ class Forum extends MX_Controller
         }
     }
 
+    /**
+     * Edit topic
+     *
+     * @param int $id
+     * @return mixed
+     */
     public function edit_topic($id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_topic($id))
+        $topic = $this->forum_topics->find(['id' => $id]);
+
+        if (empty($topic))
         {
             show_404();
         }
@@ -199,8 +232,6 @@ class Forum extends MX_Controller
         {
             redirect(site_url('login'));
         }
-
-        $topic = $this->forum_model->get_topic($id);
 
         if (! $this->auth->is_moderator() && $this->session->userdata('id') != $topic->user_id)
         {
@@ -225,11 +256,11 @@ class Forum extends MX_Controller
             }
             else
             {
-                $this->db->where('id', $id)->update('forum_topics', [
+                $this->forum_topics->update([
                     'title'       => $this->input->post('title', TRUE),
                     'description' => $this->input->post('description'),
                     'updated_at'  => current_date()
-                ]);
+                ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('topic_updated'));
                 redirect(site_url('forum/topic/'.$id));
@@ -241,9 +272,17 @@ class Forum extends MX_Controller
         }
     }
 
+    /**
+     * Delete post
+     *
+     * @param int $id
+     * @return void
+     */
     public function delete_post($id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_post($id))
+        $post = $this->forum_posts->find(['id' => $id]);
+
+        if (empty($post))
         {
             show_404();
         }
@@ -253,11 +292,9 @@ class Forum extends MX_Controller
             redirect(site_url('login'));
         }
 
-        $post = $this->forum_model->get_post($id);
-
         if ($this->auth->is_moderator() || $this->session->userdata('id') == $post->user_id)
         {
-            $this->db->where('id', $id)->delete('forum_posts');
+            $this->forum_posts->delete(['id' => $id]);
 
             $this->session->set_flashdata('success', lang('post_deleted'));
             redirect(site_url('forum/topic/' . $post->topic_id));

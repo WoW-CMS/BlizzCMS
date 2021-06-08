@@ -83,7 +83,7 @@ class Template
         {
             $this->_ci->load->model('settings_model');
 
-            $this->_theme = $this->_ci->settings_model->get_value('app_theme') ?? '';
+            $this->_theme = $this->_ci->settings_model->saved_value('app_theme') ?? '';
         }
 
         // Theme was set

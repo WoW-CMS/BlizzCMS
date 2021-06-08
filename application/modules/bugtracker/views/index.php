@@ -32,7 +32,7 @@
                       <div class="uk-form-controls">
                         <select class="uk-select" name="category">
                           <option value="" hidden selected><?= lang('select_category') ?></option>
-                          <?php foreach ($this->bugtracker_model->get_categories() as $cat): ?>
+                          <?php foreach ($categories as $cat): ?>
                           <option value="<?= $cat->id ?>" <?php if ($cat->id == $category) echo 'selected' ?>><?= $cat->name ?></option>
                           <?php endforeach ?>
                         </select>
@@ -74,7 +74,7 @@
                             <?= html_escape($report->title) ?>
                           </a>
                         </td>
-                        <td><?= $this->bugtracker_model->category_name($report->category_id) ?></td>
+                        <td><?= $this->bugtracker_categories->name($report->category_id) ?></td>
                         <td><?= $report->priority ?></td>
                         <td><?= $report->status ?></td>
                       </tr>
@@ -95,7 +95,7 @@
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">
-                  <?php foreach ($this->bugtracker_model->latest_comments() as $comment): ?>
+                  <?php foreach ($latest as $comment): ?>
                   <li>
                     <a href="<?= site_url('bugtracker/report/'.$comment->report_id) ?>"><?= character_limiter(strip_tags($comment->commentary), 60) ?></a>
                     <p class="uk-text-meta uk-margin-remove">By <?= $this->website->get_user($comment->user_id, 'nickname') ?></p>

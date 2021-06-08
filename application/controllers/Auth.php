@@ -15,6 +15,10 @@ class Auth extends CI_Controller
     {
         parent::__construct();
 
+        $this->load->model([
+            'users_tokens_model' => 'users_tokens'
+        ]);
+
         $this->template->set_partial('alerts', 'static/alerts');
     }
 
@@ -138,7 +142,7 @@ class Auth extends CI_Controller
                     redirect(site_url('register'));
                 }
 
-                if ($this->website->pending_unique($username, $email))
+                if ($this->users_tokens->pending_account($username, $email))
                 {
                     $this->session->set_flashdata('warning', lang('account_pending'));
                     redirect(site_url('register'));
@@ -146,7 +150,7 @@ class Auth extends CI_Controller
 
                 if (config_item('register_validation') === 'true')
                 {
-                    $token = $this->website->generate_token(0, TOKEN_VALIDATION, interval_time('PT12H'), json_encode([
+                    $token = $this->users_tokens->create(0, TOKEN_VALIDATION, 'PT12H', json_encode([
                         'nickname' => $nickname,
                         'username' => $username,
                         'email' => $email
@@ -158,7 +162,7 @@ class Auth extends CI_Controller
                         'note'    => lang('note_time_limit')
                     ], TRUE);
 
-                    $this->base->send_email($email, lang('subject_validate'), $html);
+                    $this->website->send_email($email, lang('subject_validate'), $html);
 
                     $this->session->set_flashdata('success', lang('register_pending'));
                     redirect(site_url('register'));
@@ -217,7 +221,7 @@ class Auth extends CI_Controller
                     }
 
                     // Add user to website db
-                    $this->db->insert('users', [
+                    $this->users->create([
                         'id'        => $id,
                         'nickname'  => $nickname,
                         'username'  => $username,
@@ -272,7 +276,7 @@ class Auth extends CI_Controller
 
                 if (! empty($id))
                 {
-                    $token = $this->website->generate_token($id, TOKEN_PASSWORD, interval_time('PT12H'));
+                    $token = $this->users_tokens->create($id, TOKEN_PASSWORD, 'PT12H');
 
                     $html  = $this->load->view('email/account', [
                         'message' => lang('message_reset'),
@@ -280,7 +284,7 @@ class Auth extends CI_Controller
                         'note'    => lang('note_time_limit')
                     ], TRUE);
 
-                    $this->base->send_email($email, lang('subject_reset'), $html);
+                    $this->website->send_email($email, lang('subject_reset'), $html);
                 }
 
                 $this->session->set_flashdata('success', lang('forgot_success'));
@@ -294,7 +298,7 @@ class Auth extends CI_Controller
     }
 
     /**
-     * Validate user registration
+     * Validate registration
      *
      * @param string $token
      * @return void
@@ -306,7 +310,7 @@ class Auth extends CI_Controller
             show_404();
         }
 
-        $result = $this->website->verify_token($token, TOKEN_VALIDATION);
+        $result = $this->users_tokens->validate($token, TOKEN_VALIDATION);
 
         if (! $result)
         {
@@ -386,7 +390,7 @@ class Auth extends CI_Controller
                 }
 
                 // Add user to website db
-                $this->db->insert('users', [
+                $this->users->create([
                     'id'        => $id,
                     'nickname'  => $data['user']->nickname,
                     'username'  => $data['user']->username,
@@ -406,6 +410,12 @@ class Auth extends CI_Controller
         }
     }
 
+    /**
+     * Reset password
+     *
+     * @param string $token
+     * @return void
+     */
     public function reset_password($token = null)
     {
         if (empty($token) || $this->website->isLogged())
@@ -413,7 +423,7 @@ class Auth extends CI_Controller
             show_404();
         }
 
-        $result = $this->website->verify_token($token, TOKEN_PASSWORD);
+        $result = $this->users_tokens->validate($token, TOKEN_PASSWORD);
 
         if (! $result)
         {

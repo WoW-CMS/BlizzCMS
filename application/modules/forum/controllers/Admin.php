@@ -27,7 +27,12 @@ class Admin extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->model('forum_model');
+        $this->load->model([
+            'forum_model'        => 'forum',
+            'forum_topics_model' => 'forum_topics',
+            'forum_posts_model'  => 'forum_posts'
+        ]);
+
         $this->load->language('admin/admin');
         $this->load->language('forum');
 
@@ -39,7 +44,7 @@ class Admin extends MX_Controller
     public function index()
     {
         $data = [
-            'items' => $this->forum_model->get_all_forums()
+            'items' => $this->forum->find_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -50,8 +55,8 @@ class Admin extends MX_Controller
     public function create()
     {
         $data = [
-            'categories' => $this->forum_model->get_all_forums(0, 'category'),
-            'forums'     => $this->forum_model->get_all_forums(null, 'forum')
+            'categories' => $this->forum->find_all(0, 'category'),
+            'forums'     => $this->forum->find_all(null, 'forum')
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -79,13 +84,15 @@ class Admin extends MX_Controller
                     redirect(site_url('forum/admin/create'));
                 }
 
-                if ($type === 'category' && $this->forum_model->find_forum($parent, 'forum') || $type === 'category' && $this->forum_model->find_forum($parent, 'category'))
+                $forum_parent = $this->forum->find(['id' => $parent]);
+
+                if ($type === 'category' && $forum_parent->type === 'forum' || $type === 'category' && $forum_parent->type === 'category')
                 {
                     $this->session->set_flashdata('error', lang('category_not_relate'));
                     redirect(site_url('forum/admin/create'));
                 }
 
-                $this->db->insert('forum', [
+                $this->forum->create([
                     'name'        => $this->input->post('name'),
                     'description' => $this->input->post('description'),
                     'icon'        => $this->input->post('icon'),
@@ -103,17 +110,25 @@ class Admin extends MX_Controller
         }
     }
 
-    public function edit($id = null)
+    /**
+     * Edit forum
+     *
+     * @param int $forum_id
+     * @return mixed
+     */
+    public function edit($forum_id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_forum($id))
+        $forum = $this->forum->find(['id' => $forum_id]);
+
+        if (empty($forum))
         {
             show_404();
         }
 
         $data = [
-            'categories' => $this->forum_model->get_all_forums(0, 'category'),
-            'forums'     => $this->forum_model->get_all_forums(null, 'forum'),
-            'forum'      => $this->forum_model->get_forum($id)
+            'categories' => $this->forum->find_all(0, 'category'),
+            'forums'     => $this->forum->find_all(null, 'forum'),
+            'forum'      => $forum
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -138,25 +153,27 @@ class Admin extends MX_Controller
                 if ($type === 'forum' && $parent == 0)
                 {
                     $this->session->set_flashdata('error', lang('forum_need_related'));
-                    redirect(site_url('forum/admin/edit/'.$id));
+                    redirect(site_url('forum/admin/edit/'.$forum_id));
                 }
 
-                if ($type === 'category' && $this->forum_model->find_forum($parent, 'forum') || $type === 'category' && $this->forum_model->find_forum($parent, 'category'))
+                $forum_parent = $this->forum->find(['id' => $parent]);
+
+                if ($type === 'category' && $forum_parent->type === 'forum' || $type === 'category' && $forum_parent->type === 'category')
                 {
                     $this->session->set_flashdata('error', lang('category_not_relate'));
-                    redirect(site_url('forum/admin/edit/'.$id));
+                    redirect(site_url('forum/admin/edit/'.$forum_id));
                 }
 
-                $this->db->where('id', $id)->update('forum', [
+                $this->forum->update([
                     'name'        => $this->input->post('name'),
                     'description' => $this->input->post('description'),
                     'icon'        => $this->input->post('icon'),
                     'type'        => $type,
                     'parent'      => $parent
-                ]);
+                ], ['id' => $forum_id]);
 
                 $this->session->set_flashdata('success', lang('forum_updated'));
-                redirect(site_url('forum/admin/edit/'.$id));
+                redirect(site_url('forum/admin/edit/'.$forum_id));
             }
         }
         else
@@ -165,30 +182,46 @@ class Admin extends MX_Controller
         }
     }
 
-    public function delete($id = null)
+    /**
+     * Delete forum
+     *
+     * @param int $forum_id
+     * @return void
+     */
+    public function delete($forum_id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_forum($id))
+        $forum = $this->forum->find(['id' => $forum_id]);
+
+        if (empty($forum))
         {
             show_404();
         }
 
-        $this->db->where('id', $id)->delete('forum');
+        $this->forum->delete(['id' => $forum_id]);
 
         $this->session->set_flashdata('success', lang('forum_deleted'));
         redirect(site_url('forum/admin'));
     }
 
-    public function forum($id = null)
+    /**
+     * View subforums
+     *
+     * @param int $forum_id
+     * @return string
+     */
+    public function forum($forum_id = null)
     {
-        if (empty($id) || ! $this->forum_model->find_forum($id))
+        $forum = $this->forum->find(['id' => $forum_id]);
+
+        if (empty($forum))
         {
             show_404();
         }
 
         $data = [
-            'id'    => $id,
-            'forum' => $this->forum_model->get_forum($id),
-            'items' => $this->forum_model->get_all_forums($id)
+            'id'    => $forum_id,
+            'forum' => $forum,
+            'items' => $this->forum->find_all($forum_id)
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));

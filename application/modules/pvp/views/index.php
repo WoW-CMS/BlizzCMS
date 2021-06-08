@@ -38,14 +38,14 @@
                         <div class="uk-overflow-auto">
                           <table class="uk-table uk-table-small uk-table-divider">
                             <tbody>
-                              <?php foreach ($this->pvp_model->get_top_teams($realm->id) as $t => $team): ?>
+                              <?php foreach ($this->pvp->top_teams($realm->id) as $t => $team): ?>
                               <tr>
                                 <td><?= ordinal($t+1) ?></td>
                                 <td>
                                   <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= $team->name ?></h5>
                                   <p class="uk-text-small uk-margin-remove-top uk-margin-small-bottom"><?= $team->rating ?> <?= lang('rating') ?></p>
-                                  <?php foreach ($this->pvp_model->get_team_members($realm->id, $team->arenateamid) as $member): ?>
-                                  <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.$this->pvp_model->get_char_class($realm->id, $member->guid).'.png' ?>" width="20" height="20" alt="Class" uk-tooltip="<?= $this->pvp_model->get_char_name($realm->id, $member->guid) ?>">
+                                  <?php foreach ($this->pvp->team_members($realm->id, $team->arenateamid) as $member): ?>
+                                  <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.$this->characters->character_class($realm->id, $member->guid).'.png' ?>" width="20" height="20" alt="Class" uk-tooltip="<?= $this->characters->character_name($realm->id, $member->guid) ?>">
                                   <?php endforeach ?>
                                 </td>
                               </tr>
@@ -65,14 +65,14 @@
                         <div class="uk-overflow-auto">
                           <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                             <tbody>
-                              <?php foreach ($this->pvp_model->get_top_teams($realm->id, 3) as $t => $team): ?>
+                              <?php foreach ($this->pvp->top_teams($realm->id, 3) as $t => $team): ?>
                               <tr>
                                 <td><?= ordinal($t+1) ?></td>
                                 <td>
                                   <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= $team->name ?></h5>
                                   <p class="uk-text-small uk-margin-remove-top uk-margin-small-bottom"><?= $team->rating ?> <?= lang('rating') ?></p>
-                                  <?php foreach ($this->pvp_model->get_team_members($realm->id, $team->arenateamid) as $member): ?>
-                                  <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.$this->pvp_model->get_char_class($realm->id, $member->guid).'.png' ?>" width="20" height="20" alt="Class" uk-tooltip="<?= $this->pvp_model->get_char_name($realm->id, $member->guid) ?>">
+                                  <?php foreach ($this->pvp->team_members($realm->id, $team->arenateamid) as $member): ?>
+                                  <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.$this->characters->character_class($realm->id, $member->guid).'.png' ?>" width="20" height="20" alt="Class" uk-tooltip="<?= $this->characters->character_name($realm->id, $member->guid) ?>">
                                   <?php endforeach ?>
                                 </td>
                               </tr>
@@ -92,14 +92,14 @@
                         <div class="uk-overflow-auto">
                           <table class="uk-table uk-table-small uk-table-divider">
                             <tbody>
-                              <?php foreach ($this->pvp_model->get_top_teams($realm->id, 5) as $t => $team): ?>
+                              <?php foreach ($this->pvp->top_teams($realm->id, 5) as $t => $team): ?>
                               <tr>
                                 <td><?= ordinal($t+1) ?></td>
                                 <td>
                                   <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= $team->name ?></h5>
                                   <p class="uk-text-small uk-margin-remove-top uk-margin-small-bottom"><?= $team->rating ?> <?= lang('rating') ?></p>
-                                  <?php foreach ($this->pvp_model->get_team_members($realm->id, $team->arenateamid) as $member): ?>
-                                  <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.$this->pvp_model->get_char_class($realm->id, $member->guid).'.png' ?>" width="20" height="20" alt="Class" uk-tooltip="<?= $this->pvp_model->get_char_name($realm->id, $member->guid) ?>">
+                                  <?php foreach ($this->pvp->team_members($realm->id, $team->arenateamid) as $member): ?>
+                                  <img class="uk-border-circle" src="<?= $template['uploads'].'icons/class/'.$this->characters->character_class($realm->id, $member->guid).'.png' ?>" width="20" height="20" alt="Class" uk-tooltip="<?= $this->characters->character_name($realm->id, $member->guid) ?>">
                                   <?php endforeach ?>
                                 </td>
                               </tr>
@@ -127,7 +127,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach ($this->pvp_model->get_top_pvp($realm->id) as $p => $player): ?>
+                          <?php foreach ($this->pvp->top_pvp($realm->id) as $p => $player): ?>
                           <tr>
                             <td><?= ordinal($p+1) ?></td>
                             <td><?= $player->name ?></td>

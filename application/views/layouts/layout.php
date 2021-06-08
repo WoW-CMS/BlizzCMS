@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $template['title'] ?></title>
     <link rel="icon" type="image/x-icon" href="<?= $template['assets'].'images/favicon.ico' ?>">
-    <link rel="stylesheet" href="<?= $template['assets'].'uikit/css/uikit.min.css' ?>">
+    <link rel="stylesheet" href="<?= $template['assets'].'css/uikit.min.css' ?>">
     <link rel="stylesheet" href="<?= $template['assets'].'css/default.css' ?>">
-    <script src="<?= $template['assets'].'uikit/js/uikit.min.js' ?>"></script>
-    <script src="<?= $template['assets'].'uikit/js/uikit-icons.min.js' ?>"></script>
+    <script src="<?= $template['assets'].'js/uikit.min.js' ?>"></script>
+    <script src="<?= $template['assets'].'js/uikit-icons.min.js' ?>"></script>
     <script src="<?= $template['assets'].'js/jquery.min.js' ?>"></script>
     <script src="<?= $template['assets'].'fontawesome/js/all.js' ?>" defer></script>
     <?= $template['head_data'] ?>
@@ -67,7 +67,7 @@
         <nav class="uk-navbar" uk-navbar="mode: click">
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <?php foreach ($this->base->get_menu() as $item): ?>
+              <?php foreach ($this->menu->menu_saved() as $item): ?>
               <?php if ($item->type === TYPE_DROPDOWN): ?>
               <li class="uk-visible@m">
                 <a href="#">
@@ -75,7 +75,7 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php foreach ($this->base->get_menu($item->id) as $subitem): ?>
+                    <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
                       <li>
                         <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
                           <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
@@ -129,14 +129,14 @@
                 <?php endif ?>
                 <li><a href="<?= site_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout') ?></a></li>
                 <?php endif ?>
-                <?php foreach ($this->base->get_menu() as $item): ?>
+                <?php foreach ($this->menu->menu_saved() as $item): ?>
                 <?php if ($item->type === TYPE_DROPDOWN): ?>
                 <li class="uk-parent">
                   <a href="#">
                     <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
                   </a>
                   <ul class="uk-nav-sub">
-                    <?php foreach ($this->base->get_menu($item->id) as $subitem): ?>
+                    <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
                     <li>
                       <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
                         <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
