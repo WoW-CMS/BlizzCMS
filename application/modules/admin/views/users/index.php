@@ -50,7 +50,7 @@
                 <?php foreach ($users as $user): ?>
                 <tr>
                   <td>
-                    <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($user->id) ?>" width="36" height="36" alt="Avatar">
+                    <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($user->id) ?>" width="36" height="36" alt="Avatar">
                     <span class="uk-text-middle"><?= $user->username ?></span>
                   </td>
                   <td class="uk-visible@s"><?= $user->email ?></td>

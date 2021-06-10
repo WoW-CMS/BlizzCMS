@@ -17,11 +17,11 @@
           <div class="uk-width-1-3@s">
             <div class="uk-card uk-card-default uk-card-body">
               <div class="uk-flex uk-flex-center uk-margin-small">
-                <img class="uk-border-circle uk-box-shadow-medium" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($ban->account) ?>" width="100" height="100" alt="Avatar">
+                <img class="uk-border-circle uk-box-shadow-medium" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($ban->account) ?>" width="100" height="100" alt="Avatar">
               </div>
               <div class="uk-text-center uk-margin-small">
-                <h4 class="uk-h4 uk-margin-remove"><?= $this->website->get_user($ban->account, 'username') ?></h4>
-                <p class="uk-text-small uk-margin-remove"><?= lang('member_since') ?>: <?= date('j F Y', strtotime($this->website->get_user($ban->account, 'joined_at'))) ?></p>
+                <h4 class="uk-h4 uk-margin-remove"><?= $this->cms->user($ban->account, 'username') ?></h4>
+                <p class="uk-text-small uk-margin-remove"><?= lang('member_since') ?>: <?= date('j F Y', strtotime($this->cms->user($ban->account, 'joined_at'))) ?></p>
               </div>
             </div>
             <a href="<?= site_url('admin/users/unban/'.$ban->id) ?>" class="uk-button uk-button-danger uk-width-1-1 uk-margin-small"><i class="fas fa-user"></i> <?= lang('unban_user') ?></a>

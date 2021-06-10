@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-margin-remove"><?= lang('store') ?></h4>
             <ul class="uk-breadcrumb uk-margin-remove">
               <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
-              <li><span><?= lang('store') ?></span></li>
+              <li><a href="<?= site_url('store/admin') ?>"><?= lang('store') ?></a></li>
             </ul>
           </div>
           <div class="uk-width-auto">

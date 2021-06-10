@@ -22,13 +22,13 @@
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              <?php if (! $this->website->isLogged()): ?>
+              <?php if (! $this->cms->isLogged()): ?>
               <li class="uk-visible@m"><a href="<?= site_url('register') ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('register') ?></a></li>
               <li class="uk-visible@m"><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('login') ?></a></li>
               <?php else: ?>
               <li class="uk-visible@m">
                 <a href="#">
-                  <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar() ?>" width="30" height="30" alt="Avatar">
+                  <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" width="30" height="30" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('nickname') ?>&nbsp;<i class="fas fa-caret-down"></i></span>
                 </a>
                 <div class="uk-navbar-dropdown">
@@ -97,11 +97,11 @@
             <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#mobile" uk-toggle></a>
           </div>
           <div class="uk-navbar-right">
-            <?php if ($this->website->isLogged()): ?>
+            <?php if ($this->cms->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title: <?= lang('donor_points') ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->website->get_user(null, 'dp') ?></li>
-                <li><span uk-tooltip="title: <?= lang('vote_points') ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->website->get_user(null, 'vp') ?></li>
+                <li><span uk-tooltip="title: <?= lang('donor_points') ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->cms->user(null, 'dp') ?></li>
+                <li><span uk-tooltip="title: <?= lang('vote_points') ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->cms->user(null, 'vp') ?></li>
               </ul>
             </div>
             <?php endif ?>
@@ -112,14 +112,14 @@
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <div class="uk-panel">
               <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('app_name') ?></p>
-              <?php if ($this->website->isLogged()): ?>
+              <?php if ($this->cms->isLogged()): ?>
               <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar() ?>" width="36" height="36" alt="Avatar">
+                <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" width="36" height="36" alt="Avatar">
                 <span class="uk-label"><?= $this->session->userdata('nickname') ?></span>
               </div>
               <?php endif ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                <?php if (! $this->website->isLogged()): ?>
+                <?php if (! $this->cms->isLogged()): ?>
                 <li><a href="<?= site_url('register') ?>"><i class="fas fa-user-plus"></i> <?= lang('register') ?></a></li>
                 <li><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('login') ?></a></li>
                 <?php else: ?>

@@ -17,7 +17,7 @@ class Admin extends MX_Controller
 
         mod_located('vote', true);
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }

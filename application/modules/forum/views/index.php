@@ -35,7 +35,7 @@
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_topics->last($forum->id) as $last): ?>
                       <a href="<?= site_url('forum/topic/'.$last->id) ?>" class="uk-display-block"><?= character_limiter(html_escape($last->title), 30) ?></a>
-                      <span class="uk-text-meta uk-display-block"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($last->user_id, 'nickname') ?></span>
+                      <span class="uk-text-meta uk-display-block"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->cms->user($last->user_id, 'nickname') ?></span>
                       <?php endforeach ?>
                     </td>
                   </tr>

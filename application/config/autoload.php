@@ -134,16 +134,16 @@ $autoload['language'] = ['general', 'alerts'];
 */
 $autoload['model'] = [
     'settings_model'      => 'settings',
-    'slides_model'        => 'slides',
-    'news_model'          => 'news',
-    'news_comments_model' => 'news_comments',
-    'menu_model'          => 'menu',
-    'logs_model'          => 'logs',
     'auth_model'          => 'auth',
-    'website_model'       => 'website',
     'avatars_model'       => 'avatars',
-    'users_model'         => 'users',
-    'modules_model'       => 'modules',
     'characters_model'    => 'characters',
-    'realms_model'        => 'realms'
+    'cms_model'           => 'cms',
+    'logs_model'          => 'logs',
+    'menu_model'          => 'menu',
+    'modules_model'       => 'modules',
+    'news_comments_model' => 'news_comments',
+    'news_model'          => 'news',
+    'realms_model'        => 'realms',
+    'slides_model'        => 'slides',
+    'users_model'         => 'users'
 ];

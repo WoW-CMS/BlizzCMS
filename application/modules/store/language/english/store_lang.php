@@ -39,7 +39,7 @@ $lang['item_quantity_update'] = 'Quantity of items has been updated';
 $lang['item_quantity_invalid'] = 'Quantity is not valid';
 $lang['cart_empty'] = 'Your cart is empty';
 $lang['user_not_points'] = 'You do not have the necessary points for the purchase';
-$lang['checkout_success'] = 'The purchase has been made! please check your email in the game. If you still do not receive your purchase please contact an administrator';
+$lang['checkout_success'] = 'The purchase has been made! please check your in-game email. If you still do not receive your purchase please contact our support team';
 
 $lang['category_created'] = 'The new category has been created';
 $lang['category_updated'] = 'The category data has been updated';

@@ -138,7 +138,7 @@ class Forum extends MX_Controller
             show_404();
         }
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -180,7 +180,7 @@ class Forum extends MX_Controller
 
     public function create_post()
     {
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -228,7 +228,7 @@ class Forum extends MX_Controller
             show_404();
         }
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -287,7 +287,7 @@ class Forum extends MX_Controller
             show_404();
         }
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }

@@ -79,6 +79,7 @@ $lang['total_accounts_registered'] = 'Total accounts registered.';
 $lang['total_accounts_banned'] = 'Total accounts banned.';
 
 $lang['optional_settings'] = 'Optional settings';
+$lang['option_status'] = 'Option status';
 $lang['social_configuration'] = 'Social networks configuration';
 $lang['main_ranks_configuration'] = 'Main ranks configuration';
 $lang['characters_database'] = 'Characters database';
@@ -101,7 +102,7 @@ $lang['selecting_one'] = 'selecting one';
 /**
  * Alerts
 */
-$lang['settings_updated'] = 'The system settings data has been updated';
+$lang['settings_updated'] = 'Settings data has been updated';
 $lang['cache_error'] = 'Unable to delete cache files, please check that you have the necessary permissions on the folder.';
 $lang['cache_deleted'] = 'All cache files have been removed';
 $lang['module_installed'] = 'The module <b>%1$s</b> has been installed';

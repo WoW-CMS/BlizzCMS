@@ -162,6 +162,7 @@ $lang['message'] = 'Message';
 $lang['ip'] = 'IP';
 $lang['upload'] = 'Upload';
 $lang['version'] = 'Version';
+$lang['position'] = 'Position';
 
 /**
  * Status
@@ -243,7 +244,7 @@ $lang['message_validate'] = 'To confirm the creation of the account associated w
 
 $lang['subject_reset'] = 'Password reset';
 $lang['message_reset'] = 'A password reset for the account associated with this email address has been requested. To proceed click on the link:';
-$lang['note_time_limit'] = 'The link inside this email is valid for the next <b>12 Hours</b> from the date of the action. if you have problem with it please contact to site administration.';
+$lang['note_time_limit'] = 'The link inside this email is valid for the next <b>12 Hours</b> from the date of the action. if you have problem with it please contact our support team.';
 
 /**
  * Zip

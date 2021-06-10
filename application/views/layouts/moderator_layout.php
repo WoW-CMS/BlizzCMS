@@ -25,7 +25,7 @@
               <li><a href="<?= site_url() ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="#">
-                  <img class="uk-border-circle profile-img" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar() ?>" alt="Avatar">
+                  <img class="uk-border-circle profile-img" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname') ?><span uk-icon="icon: triangle-down"></span></span>
                 </a>
                 <div class="uk-navbar-dropdown">

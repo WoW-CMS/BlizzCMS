@@ -15,7 +15,7 @@ class Users extends MX_Controller
     {
         parent::__construct();
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }

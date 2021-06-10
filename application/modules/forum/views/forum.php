@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= html_escape($forum->name) ?></h4>
           </div>
           <div class="uk-width-auto">
-            <?php if ($this->website->isLogged()): ?>
+            <?php if ($this->cms->isLogged()): ?>
             <a href="<?= site_url('forum/view/'.$forum->id.'/create') ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('new_topic') ?></a>
             <?php endif ?>
           </div>
@@ -40,7 +40,7 @@
                     <td class="uk-width-medium">
                       <?php foreach ($this->forum_topics->last($subforum->id) as $last): ?>
                       <a href="<?= site_url('forum/topic/'.$last->id) ?>" class="uk-display-block"><?= character_limiter(html_escape($last->title), 30) ?></a>
-                      <span class="uk-text-meta uk-display-block"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($last->user_id, 'nickname') ?></span>
+                      <span class="uk-text-meta uk-display-block"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->cms->user($last->user_id, 'nickname') ?></span>
                       <?php endforeach ?>
                     </td>
                   </tr>
@@ -76,14 +76,14 @@
                       <a href="<?= site_url('forum/topic/'.$topic->id) ?>" class="uk-link-reset">
                         <h5 class="uk-h5 uk-margin-remove"><?= html_escape($topic->title) ?></h5>
                       </a>
-                      <p class="uk-text-meta uk-margin-remove"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->website->get_user($topic->user_id, 'nickname') ?></span> on <?= date('d-m-y h:i', strtotime($topic->created_at)) ?></p>
+                      <p class="uk-text-meta uk-margin-remove"><?= lang('created_by') ?> <span class="uk-text-primary"><?= $this->cms->user($topic->user_id, 'nickname') ?></span> on <?= date('d-m-y h:i', strtotime($topic->created_at)) ?></p>
                     </td>
                     <td class="uk-text-center">
                       <i class="far fa-comment"></i> <?= $this->forum_posts->count_all($topic->id) ?>
                     </td>
                     <td class="uk-text-meta">
                       <?php foreach ($this->forum_posts->last($topic->id) as $post): ?>
-                      <span class="uk-text-primary"><?= $this->website->get_user($post->user_id, 'nickname') ?></span> <?= date('d-m-y h:i', strtotime($post->created_at)) ?>
+                      <span class="uk-text-primary"><?= $this->cms->user($post->user_id, 'nickname') ?></span> <?= date('d-m-y h:i', strtotime($post->created_at)) ?>
                       <?php endforeach ?>
                     </td>
                   </tr>

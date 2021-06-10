@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Website_model extends CI_Model
+class Cms_model extends CI_Model
 {
     /**
      * Authentication
@@ -94,7 +94,7 @@ class Website_model extends CI_Model
      */
     public function user_avatar($id = null)
     {
-        $avatar = $this->get_user($id, 'avatar');
+        $avatar = $this->user($id, 'avatar');
         $query  = $this->avatars->find(['id' => $avatar]);
 
         return $query->image;
@@ -107,7 +107,7 @@ class Website_model extends CI_Model
      * @param string|null $column
      * @return mixed
      */
-    public function get_user($id = null, $column = null)
+    public function user($id = null, $column = null)
     {
         $id  = $id ?? $this->session->userdata('id');
         $row = $this->users->find(['id' => $id]);
@@ -116,12 +116,33 @@ class Website_model extends CI_Model
             return null;
         }
 
-        if (property_exists($row, $column))
-        {
+        if (property_exists($row, $column)) {
             return $row->$column;
         }
 
         return $row;
+    }
+
+    /**
+     * Get user id
+     *
+     * @param string $value
+     * @param string $column
+     * @return mixed
+     */
+    public function user_id($value, $column = 'username')
+    {
+        if (! in_array($column, ['username', 'email', 'nickname'], true)) {
+            return null;
+        }
+
+        $row = $this->users->find([$column => $value]);
+
+        if (empty($row)) {
+            return null;
+        }
+
+        return $row->id;
     }
 
     /**
@@ -154,8 +175,7 @@ class Website_model extends CI_Model
         $this->email->subject($subject);
         $this->email->message($message);
 
-        if ($debug)
-        {
+        if ($debug) {
             $this->email->send(false);
             return $this->email->print_debugger();
         }

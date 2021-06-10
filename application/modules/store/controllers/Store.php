@@ -17,7 +17,7 @@ class Store extends MX_Controller
 
         mod_located('store', true);
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -219,7 +219,7 @@ class Store extends MX_Controller
         }
 
         $ip   = $this->input->ip_address();
-        $user = $this->website->get_user();
+        $user = $this->cms->user();
 
         if ($user->vp < $this->cart->total_vp() && $user->dp < $this->cart->total_dp())
         {
@@ -249,7 +249,7 @@ class Store extends MX_Controller
     private function _send_item($user, $ip, array $item)
     {
         $row  = $this->store_items->find(['id' => $item['id']]);
-        $name = $this->characters->character_name($find->realm_id, $item['guid']);
+        $name = $this->characters->character_name($item['realm'], $item['guid']);
 
         $placeholders = [
             '{character}' => $name,
@@ -258,11 +258,11 @@ class Store extends MX_Controller
         ];
 
         $command  = strtr(trim($row->command), $placeholders);
-        $total_dp = $row->dp * $item['qty'];
-        $total_vp = $row->vp * $item['qty'];
+        $total_dp = $item['dp'] * $item['qty'];
+        $total_vp = $item['vp'] * $item['qty'];
 
         for ($i = 1; $i <= $item['qty']; $i++) {
-            $result  = $this->realms->send_command($row->realm_id, $command);
+            $result  = $this->realms->send_command($item['realm'], $command);
 
             $this->store_logs->create([
                 'store_id'   => $row->store_id,

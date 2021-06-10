@@ -37,7 +37,18 @@ class Migration_Create_table_menu extends CI_Migration
                 'default' => 'default',
                 'null' => FALSE
             ),
+            'position' => array(
+                'type' => 'ENUM("main","aside")',
+                'default' => 'main',
+                'null' => FALSE
+            ),
             'parent' => array(
+                'type' => 'BIGINT',
+                'constraint' => '20',
+                'unsigned' => TRUE,
+                'default' => 0
+            ),
+            'order' => array(
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
@@ -48,12 +59,7 @@ class Migration_Create_table_menu extends CI_Migration
         $this->dbforge->create_table('menu');
 
         $data = array(
-            array('name' => 'More', 'url' => '#', 'icon' => 'fas fa-bars', 'target' => '_self', 'type' => 'dropdown', 'parent' => 0),
-            array('name' => 'Bugtracker', 'url' => 'bugtracker', 'icon' => 'fas fa-bug', 'target' => '_self', 'type' => 'default', 'parent' => 1),
-            array('name' => 'Changelogs', 'url' => 'changelogs', 'icon' => 'fas fa-scroll', 'target' => '_self', 'type' => 'default', 'parent' => 1),
-            array('name' => 'PvP', 'url' => 'pvp', 'icon' => 'fas fa-fist-raised', 'target' => '_self', 'type' => 'default', 'parent' => 1),
-            array('name' => 'Forums', 'url' => 'forum', 'icon' => 'fas fa-comments', 'target' => '_self', 'type' => 'default', 'parent' => 0),
-            array('name' => 'Store', 'url' => 'store', 'icon' => 'fas fa-store', 'target' => '_self', 'type' => 'default', 'parent' => 0)
+            array('name' => 'Home', 'url' => '/', 'icon' => 'fas fa-home', 'target' => '_self', 'type' => 'default', 'position' => 'main', 'parent' => 0, 'order' => 1)
         );
         $this->db->insert_batch('menu', $data);
     }

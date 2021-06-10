@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('bugtracker') ?></h4>
           </div>
           <div class="uk-width-auto">
-            <?php if ($this->website->isLogged()): ?>
+            <?php if ($this->cms->isLogged()): ?>
             <a href="<?= site_url('bugtracker/create') ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= lang('create_report') ?></a>
             <?php endif ?>
           </div>
@@ -98,7 +98,7 @@
                   <?php foreach ($latest as $comment): ?>
                   <li>
                     <a href="<?= site_url('bugtracker/report/'.$comment->report_id) ?>"><?= character_limiter(strip_tags($comment->commentary), 60) ?></a>
-                    <p class="uk-text-meta uk-margin-remove">By <?= $this->website->get_user($comment->user_id, 'nickname') ?></p>
+                    <p class="uk-text-meta uk-margin-remove">By <?= $this->cms->user($comment->user_id, 'nickname') ?></p>
                   </li>
                   <?php endforeach ?>
                 </ul>

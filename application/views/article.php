@@ -38,10 +38,10 @@
                   <div class="uk-card-header">
                     <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
                       <div class="uk-width-auto">
-                        <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($comment->user_id) ?>" width="40" height="40" alt="Avatar">
+                        <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($comment->user_id) ?>" width="40" height="40" alt="Avatar">
                       </div>
                       <div class="uk-width-expand">
-                        <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname') ?></h6>
+                        <h6 class="uk-h6 uk-margin-remove"><?= $this->cms->user($comment->user_id, 'nickname') ?></h6>
                         <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', strtotime($comment->created_at)) ?></p>
                       </div>
                     </div>
@@ -65,7 +65,7 @@
             </div>
             <?= $links ?>
             <?php endif ?>
-            <?php if ($this->website->isLogged()): ?>
+            <?php if ($this->cms->isLogged()): ?>
             <h4 class="uk-h4 uk-margin-top uk-margin-remove-bottom"><i class="fas fa-comment-dots"></i> <?= lang('your_comment') ?></h4>
             <?= form_open(site_url('news/comment')) ?>
             <?= form_hidden('id', $news->id) ?>

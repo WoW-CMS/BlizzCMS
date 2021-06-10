@@ -53,7 +53,7 @@
                 <?php foreach ($bans as $item): ?>
                 <tr>
                   <td>
-                    <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($item->account) ?>" width="36" height="36" alt="Avatar">
+                    <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($item->account) ?>" width="36" height="36" alt="Avatar">
                     <span class="uk-text-middle"><?= $item->username ?></span>
                   </td>
                   <td class="uk-visible@s"><?= date('Y-m-d H:i:s', $item->bandate) ?></td>

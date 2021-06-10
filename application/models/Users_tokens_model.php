@@ -117,8 +117,7 @@ class Users_tokens_model extends CI_Model
             'expired_at >=' => current_date()
         ]);
 
-        if (empty($row) || ! hash_equals($row->hash, $validation))
-        {
+        if (empty($row) || ! hash_equals($row->hash, $validation)) {
             return false;
         }
 

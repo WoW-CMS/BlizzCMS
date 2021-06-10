@@ -17,7 +17,7 @@ class Moderator extends MX_Controller
 
         mod_located('forum', true);
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }

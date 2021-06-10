@@ -60,23 +60,48 @@ class Logs_model extends CI_Model
      *
      * @param int $limit
      * @param int $start
+     * @param string $search
      * @return array
      */
-    public function find_all($limit, $start)
+    public function find_all($limit, $start, $search = '')
     {
-        return $this->db->order_by('id', 'DESC')
+        if ($search === '') {
+            return $this->db->order_by('id', 'DESC')
+                        ->limit($limit, $start)
+                        ->get($this->table)
+                        ->result();
+        }
+
+        return $this->db->select('logs.*, users.username')
+                    ->from($this->table)
+                    ->join('users', 'logs.user_id = users.id')
+                    ->like('logs.type', $search)
+                    ->or_like('logs.message', $search)
+                    ->or_like('users.username', $search)
+                    ->order_by('logs.id', 'DESC')
                     ->limit($limit, $start)
-                    ->get($this->table)
+                    ->get()
                     ->result();
     }
 
     /**
      * Count all records
      *
+     * @param string $search
      * @return int
      */
-    public function count_all()
+    public function count_all($search = '')
     {
-        return $this->db->count_all($this->table);
+        if ($search === '') {
+            return $this->db->count_all($this->table);
+        }
+
+        return $this->db->select('logs.*, users.username')
+                    ->from($this->table)
+                    ->join('users', 'logs.user_id = users.id')
+                    ->like('logs.type', $search)
+                    ->or_like('logs.message', $search)
+                    ->or_like('users.username', $search)
+                    ->count_all_results();
     }
 }

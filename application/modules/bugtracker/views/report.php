@@ -40,10 +40,10 @@
                   <div class="uk-card-header">
                     <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
                       <div class="uk-width-auto">
-                        <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($comment->user_id) ?>" width="40" height="40" alt="Avatar">
+                        <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($comment->user_id) ?>" width="40" height="40" alt="Avatar">
                       </div>
                       <div class="uk-width-expand">
-                        <h6 class="uk-h6 uk-margin-remove"><?= $this->website->get_user($comment->user_id, 'nickname') ?></h6>
+                        <h6 class="uk-h6 uk-margin-remove"><?= $this->cms->user($comment->user_id, 'nickname') ?></h6>
                         <p class="uk-text-meta uk-margin-remove-top"><?= date('F j, Y, H:i', strtotime($comment->created_at)) ?></p>
                       </div>
                     </div>
@@ -57,7 +57,7 @@
             </div>
             <?= $links ?>
             <?php endif ?>
-            <?php if ($this->website->isLogged()): ?>
+            <?php if ($this->cms->isLogged()): ?>
             <h4 class="uk-h4 uk-margin-top uk-margin-remove-bottom"><i class="fas fa-comment-dots"></i> <?= lang('your_comment') ?></h4>
             <?= form_open(site_url('bugtracker/comment')) ?>
             <?= form_hidden('id', $report->id) ?>
@@ -78,7 +78,7 @@
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">
-                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('author') ?>:</span> <?= $this->website->get_user($report->user_id, 'nickname') ?></li>
+                  <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('author') ?>:</span> <?= $this->cms->user($report->user_id, 'nickname') ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('date') ?>:</span> <?= date('F j, Y, H:i', strtotime($report->created_at)) ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('realm') ?>:</span> <?= $this->realms->name($report->realm_id) ?></li>
                   <li><span class="uk-h6 uk-text-bold uk-margin-small-right"><?= lang('category') ?>:</span> <?= $this->bugtracker_categories->name($report->category_id) ?></li>

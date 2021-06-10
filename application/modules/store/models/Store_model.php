@@ -64,7 +64,7 @@ class Store_model extends CI_Model
     public function find_all($parent = 0)
     {
         return $this->db->where('parent', $parent)
-                    ->get($this->store)
+                    ->get($this->table)
                     ->result();
     }
 }

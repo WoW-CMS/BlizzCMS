@@ -14,8 +14,7 @@ class Auth_model extends CI_Model
     {
         $db = $this->load->database('auth', TRUE);
 
-        if ($db->conn_id === FALSE)
-        {
+        if ($db->conn_id === FALSE) {
             show_error(lang('auth_connection_error'));
         }
 

@@ -20,7 +20,7 @@ $lang['password_error'] = 'The password is incorrect. please try again!';
 
 $lang['username_already'] = 'Username is already in use';
 $lang['email_already'] = 'Email is already in use';
-$lang['account_pending'] = 'This account is not validated yet, check your email and follow the instructions or contact the website administration if you have problems';
+$lang['account_pending'] = 'This account is not validated yet, check your email and follow the instructions or contact our support team if you have problems';
 
 $lang['invalid_token'] = 'The token utilized has expired or is invalid';
 $lang['validate_success'] = 'The account has been validated and now you can login';

@@ -23,6 +23,7 @@
                 <tr>
                   <th class="uk-table-expand"><?= lang('name') ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('url') ?></th>
+                  <th class="uk-width-small uk-visible@s"><?= lang('position') ?></th>
                   <th class="uk-width-small uk-visible@s"><?= lang('type') ?></th>
                   <th class="uk-width-small"><?= lang('actions') ?></th>
                 </tr>
@@ -32,6 +33,7 @@
                 <tr>
                   <td><?= $item->name ?></td>
                   <td class="uk-visible@s"><?= $item->url ?></td>
+                  <td class="uk-visible@s"><?= $item->position ?></td>
                   <td class="uk-visible@s"><?= $item->type ?></td>
                   <td>
                     <div class="uk-button-group">

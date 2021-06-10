@@ -31,11 +31,11 @@
               <div>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-header">
-                    <h5 class="uk-h5 uk-text-bold"><?= $topsite->name ?></h5>
+                    <h5 class="uk-h5 uk-text-bold uk-text-uppercase uk-text-center"><?= $topsite->name ?></h5>
                   </div>
                   <div class="uk-card-body">
                     <div class="uk-flex uk-flex-center">
-                      <img src="<?= $topsite->image ?>" alt="Image">
+                      <img src="<?= $topsite->image ?>" alt="<?= $topsite->name ?>">
                     </div>
                     <p class="uk-text-small uk-text-center uk-margin-small"><?= $topsite->points ?> <?= lang('vote_points') ?></p>
                     <?php if (now() >= $this->topsites_logs->expiration($topsite->id)): ?>

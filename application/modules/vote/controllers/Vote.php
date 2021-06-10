@@ -17,7 +17,7 @@ class Vote extends MX_Controller
 
         mod_located('vote', true);
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -81,7 +81,7 @@ class Vote extends MX_Controller
             redirect(site_url('vote'));
         }
 
-        $user = $this->website->get_user();
+        $user = $this->cms->user();
 
         $this->users->update(['vp' => ($topsite->points + $user->vp)], ['id' => $user->id]);
 

@@ -24,7 +24,7 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        if ($this->website->isLogged())
+        if ($this->cms->isLogged())
         {
             redirect(site_url('user'));
         }
@@ -54,7 +54,7 @@ class Auth extends CI_Controller
             }
             else
             {
-                $response = $this->website->authentication(
+                $response = $this->cms->authentication(
                     $this->input->post('username', TRUE),
                     $this->input->post('password')
                 );
@@ -78,7 +78,7 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             show_404();
         }
@@ -89,7 +89,7 @@ class Auth extends CI_Controller
 
     public function register()
     {
-        if ($this->website->isLogged())
+        if ($this->cms->isLogged())
         {
             redirect(site_url('user'));
         }
@@ -162,7 +162,7 @@ class Auth extends CI_Controller
                         'note'    => lang('note_time_limit')
                     ], TRUE);
 
-                    $this->website->send_email($email, lang('subject_validate'), $html);
+                    $this->cms->send_email($email, lang('subject_validate'), $html);
 
                     $this->session->set_flashdata('success', lang('register_pending'));
                     redirect(site_url('register'));
@@ -242,7 +242,7 @@ class Auth extends CI_Controller
 
     public function forgot()
     {
-        if ($this->website->isLogged())
+        if ($this->cms->isLogged())
         {
             redirect(site_url('user'));
         }
@@ -284,7 +284,7 @@ class Auth extends CI_Controller
                         'note'    => lang('note_time_limit')
                     ], TRUE);
 
-                    $this->website->send_email($email, lang('subject_reset'), $html);
+                    $this->cms->send_email($email, lang('subject_reset'), $html);
                 }
 
                 $this->session->set_flashdata('success', lang('forgot_success'));
@@ -305,7 +305,7 @@ class Auth extends CI_Controller
      */
     public function register_validate($token = null)
     {
-        if (empty($token) || $this->website->isLogged())
+        if (empty($token) || $this->cms->isLogged())
         {
             show_404();
         }
@@ -418,7 +418,7 @@ class Auth extends CI_Controller
      */
     public function reset_password($token = null)
     {
-        if (empty($token) || $this->website->isLogged())
+        if (empty($token) || $this->cms->isLogged())
         {
             show_404();
         }

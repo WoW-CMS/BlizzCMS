@@ -58,8 +58,8 @@
                 <?php foreach ($logs as $item): ?>
                 <tr>
                   <td>
-                    <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($item->user_id) ?>" width="36" height="36" alt="Avatar">
-                    <span class="uk-text-middle"><?= $this->website->get_user($item->user_id, 'username') ?></span>
+                    <img class="uk-preserve-width uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($item->user_id) ?>" width="36" height="36" alt="Avatar">
+                    <span class="uk-text-middle"><?= $this->cms->user($item->user_id, 'username') ?></span>
                   </td>
                   <td class="uk-visible@s"><?= $item->topsite ?></td>
                   <td><?= $item->points ?></td>

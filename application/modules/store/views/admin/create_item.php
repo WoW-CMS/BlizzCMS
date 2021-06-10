@@ -20,7 +20,7 @@
             <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-pen"></i> <?= lang('create_item') ?></h5>
           </div>
           <div class="uk-card-body">
-            <div class="uk-margin-small">
+            <div class="uk-margin-small-bottom">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('name') ?></label>

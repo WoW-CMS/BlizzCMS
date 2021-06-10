@@ -15,7 +15,7 @@ class User extends MX_Controller
     {
         parent::__construct();
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -53,7 +53,7 @@ class User extends MX_Controller
         {
             $nickname = $this->input->post('nickname', TRUE);
             $password = $this->input->post('password');
-            $user     = $this->website->get_user();
+            $user     = $this->cms->user();
 
             if (! $this->auth->valid_password($user->username, $password))
             {
@@ -84,7 +84,7 @@ class User extends MX_Controller
         {
             $new_email  = $this->input->post('new_email', TRUE);
             $password   = $this->input->post('cu_password');
-            $user       = $this->website->get_user();
+            $user       = $this->cms->user();
 
             if (! $this->auth->account_unique($new_email, 'email'))
             {
@@ -130,7 +130,7 @@ class User extends MX_Controller
         {
             $password     = $this->input->post('current_password');
             $new_password = $this->input->post('new_password');
-            $user         = $this->website->get_user();
+            $user         = $this->cms->user();
             $emulator     = config_item('emulator');
 
             if (! $this->auth->valid_password($user->username, $password))

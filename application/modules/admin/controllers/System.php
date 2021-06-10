@@ -15,7 +15,7 @@ class System extends MX_Controller
     {
         parent::__construct();
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -24,10 +24,6 @@ class System extends MX_Controller
         {
             redirect(site_url('user'));
         }
-
-        $this->load->model([
-            'system_model' => 'system'
-        ]);
 
         $this->load->language('admin');
 
@@ -307,7 +303,7 @@ class System extends MX_Controller
 
         $config = [
             'base_url'    => site_url('admin/system/logs'),
-            'total_rows'  => $this->system->count_all($search_clean),
+            'total_rows'  => $this->logs->count_all($search_clean),
             'per_page'    => 25,
             'uri_segment' => 4
         ];
@@ -318,7 +314,7 @@ class System extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
 
         $data = [
-            'logs'  => $this->system->get_all($config['per_page'], $offset, $search_clean),
+            'logs'   => $this->logs->find_all($config['per_page'], $offset, $search_clean),
             'links'  => $this->pagination->create_links(),
             'search' => $search
         ];

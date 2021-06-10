@@ -62,7 +62,7 @@ class News extends CI_Controller
 
     public function comment()
     {
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }
@@ -108,7 +108,7 @@ class News extends CI_Controller
             show_404();
         }
 
-        if (! $this->website->isLogged())
+        if (! $this->cms->isLogged())
         {
             redirect(site_url('login'));
         }

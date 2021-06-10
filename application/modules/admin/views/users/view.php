@@ -17,7 +17,7 @@
           <div class="uk-width-1-3@s">
             <div class="uk-card uk-card-default uk-card-body">
               <div class="uk-flex uk-flex-center uk-margin-small">
-                <img class="uk-border-circle uk-box-shadow-medium" src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($user->id) ?>" width="100" height="100" alt="Avatar">
+                <img class="uk-border-circle uk-box-shadow-medium" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($user->id) ?>" width="100" height="100" alt="Avatar">
               </div>
               <div class="uk-text-center uk-margin-small">
                 <h4 class="uk-h4 uk-margin-remove"><?= $user->username ?></h4>

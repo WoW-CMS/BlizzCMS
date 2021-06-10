@@ -5,7 +5,7 @@
             <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('forum') ?></h4>
           </div>
           <div class="uk-width-auto">
-            <?php if ($this->website->isLogged() && $topic->user_id == $this->session->userdata('id')): ?>
+            <?php if ($this->cms->isLogged() && $topic->user_id == $this->session->userdata('id')): ?>
             <div class="uk-inline">
               <button class="uk-icon-button" type="button"><i class="fas fa-ellipsis-v"></i></button>
               <div uk-dropdown="mode: click">
@@ -36,10 +36,10 @@
               <div class="uk-width-1-6@s">
                 <div class="author <?php if ($this->auth->get_gmlevel($topic->user_id) > 0) echo 'topic-author-staff' ?> uk-flex uk-flex-center">
                   <div class="topic-author-avatar profile">
-                    <img src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($topic->user_id) ?>" alt="Avatar">
+                    <img src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($topic->user_id) ?>" alt="Avatar">
                   </div>
                 </div>
-                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->get_user($topic->user_id, 'nickname') ?></p>
+                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->cms->user($topic->user_id, 'nickname') ?></p>
                 <?php if ($this->auth->get_gmlevel($topic->user_id) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif ?>
@@ -60,10 +60,10 @@
                   <div class="uk-width-1-6@s">
                     <div class="author <?php if ($this->auth->get_gmlevel($post->user_id) > 0) echo 'topic-author-staff' ?> uk-flex uk-flex-center">
                       <div class="topic-author-avatar profile">
-                        <img src="<?= $template['uploads'].'avatars/'.$this->website->user_avatar($post->user_id) ?>" alt="Avatar">
+                        <img src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar($post->user_id) ?>" alt="Avatar">
                       </div>
                     </div>
-                    <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->website->get_user($post->user_id, 'nickname') ?></p>
+                    <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->cms->user($post->user_id, 'nickname') ?></p>
                     <?php if ($this->auth->get_gmlevel($post->user_id) > 0): ?>
                     <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                     <?php endif ?>
@@ -96,7 +96,7 @@
               </div>
             </div>
           </div>
-          <?php elseif ($this->website->isLogged() && ! $topic->lock): ?>
+          <?php elseif ($this->cms->isLogged() && ! $topic->lock): ?>
           <div>
             <h3 class="uk-h3 uk-text-center uk-margin-small"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('join_conversation') ?></h3>
             <div class="uk-card uk-card-default uk-card-body">
