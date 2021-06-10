@@ -94,12 +94,9 @@ class Donate extends MX_Controller
 
             $client = $this->_paypal_client();
 
-            try
-            {
+            try {
                 $response = $client->execute($request);
-            }
-            catch (HttpException $ex)
-            {
+            } catch (HttpException $ex) {
                 $error = json_decode($ex->getMessage());
 
                 show_error($error->message, 500, 'Error: ' . $error->details[0]->issue);
@@ -137,12 +134,9 @@ class Donate extends MX_Controller
 
         $client = $this->_paypal_client();
 
-        try
-        {
+        try {
             $response = $client->execute($request);
-        }
-        catch (HttpException $ex)
-        {
+        } catch (HttpException $ex) {
             $error = json_decode($ex->getMessage());
 
             show_error($error->message, 500, 'Error: ' . $error->details[0]->issue);
@@ -201,10 +195,6 @@ class Donate extends MX_Controller
         $this->donation_logs->update([
             'payment_status' => 'DECLINED'
         ], ['order_id' => $token]);
-
-        $data = [
-            'message' => lang_vars('donation_order_canceled', [$token])
-        ];
 
         $this->session->set_flashdata('warning', lang_vars('donation_order_canceled', [$token]));
         redirect(site_url('donate'));

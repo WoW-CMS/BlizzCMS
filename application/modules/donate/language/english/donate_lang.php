@@ -30,6 +30,9 @@ $lang['manual_payment'] = 'Manual payment';
 
 $lang['sandbox'] = 'Sandbox';
 $lang['production'] = 'Production';
+$lang['declined'] = 'Declined';
+$lang['completed'] = 'Completed';
+$lang['pending'] = 'Pending';
 
 $lang['select_mode'] = 'Select a mode';
 $lang['select_currency'] = 'Select a currency';

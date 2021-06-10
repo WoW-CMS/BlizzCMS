@@ -249,7 +249,7 @@ class Admin extends MX_Controller
             show_404();
         }
 
-        if (in_array($log->payment_status, ['COMPLETED', 'CANCELED'], true))
+        if (in_array($log->payment_status, ['COMPLETED', 'DECLINED'], true))
         {
             $this->session->set_flashdata('error', lang('update_payment_error'));
             redirect(site_url('donate/admin/logs'));
@@ -266,7 +266,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('order', 'Order', 'trim');
             $this->form_validation->set_rules('reference', 'Reference', 'trim');
             $this->form_validation->set_rules('payment', 'Payment', 'trim');
-            $this->form_validation->set_rules('status', 'Status', 'trim|required|in_list[COMPLETED,PENDING,CANCELED]');
+            $this->form_validation->set_rules('status', 'Status', 'trim|required|in_list[COMPLETED,PENDING,DECLINED]');
 
             if ($this->form_validation->run() == FALSE)
             {

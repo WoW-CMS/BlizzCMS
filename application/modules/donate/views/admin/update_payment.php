@@ -63,9 +63,9 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="status">
                       <option value="" hidden selected><?= lang('select_status') ?></option>
-                      <option value="COMPLETED" <?php if ($log->payment_status === 'COMPLETED') echo 'selected' ?>>Completed</option>
-                      <option value="PENDING" <?php if ($log->payment_status === 'PENDING') echo 'selected' ?>>Pending</option>
-                      <option value="CANCELED" <?php if ($log->payment_status === 'CANCELED') echo 'selected' ?>>Canceled</option>
+                      <option value="COMPLETED" <?php if ($log->payment_status === 'COMPLETED') echo 'selected' ?>><?= lang('completed') ?></option>
+                      <option value="PENDING" <?php if ($log->payment_status === 'PENDING') echo 'selected' ?>><?= lang('pending') ?></option>
+                      <option value="DECLINED" <?php if ($log->payment_status === 'DECLINED') echo 'selected' ?>><?= lang('declined') ?></option>
                     </select>
                   </div>
                   <?= form_error('status', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
