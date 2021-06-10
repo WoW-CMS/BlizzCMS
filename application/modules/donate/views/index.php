@@ -1,45 +1,56 @@
-<?php
-if (isset($_POST['button_donate'])):
-  $this->donate_model->getDonate($_POST['button_donate']);
-endif; ?>
-
-    <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
-      <div class="uk-background-cover uk-height-small header-section"></div>
+    <section class="uk-section uk-section-small header-section">
+      <div class="uk-container">
+        <div class="uk-grid uk-grid-small uk-margin-top uk-margin-bottom" data-uk-grid>
+          <div class="uk-width-expand">
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('donate_panel') ?></h4>
+          </div>
+          <div class="uk-width-auto"></div>
+        </div>
+      </div>
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <ul class="uk-nav uk-nav-default myaccount-nav">
-              <li><a href="<?= site_url('user'); ?>"><i class="fas fa-user-circle"></i> <?= lang('my_account'); ?></a></li>
-              <li class="uk-nav-divider"></li>
-              <li class="uk-active"><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel'); ?></a></li>
-              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel'); ?></a></li>
-            </ul>
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('menu') ?></h5>
+              </div>
+              <ul class="uk-nav-default aside-nav uk-nav-parent-icon" uk-nav>
+                <li><a href="<?= site_url('user') ?>"><i class="fas fa-user-circle"></i> <?= lang('my_account') ?></a></li>
+                <li><a href="<?= site_url('user/settings') ?>"><i class="fas fa-tools"></i> <?= lang('account_settings') ?></a></li>
+                <li class="uk-active"><a href="<?= site_url('donate') ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('donate_panel') ?></a></li>
+                <li><a href="<?= site_url('vote') ?>"><i class="fas fa-vote-yea"></i> <?= lang('vote_panel') ?></a></li>
+              </ul>
+            </div>
           </div>
           <div class="uk-width-3-4@m">
-            <?= $template['partials']['alerts']; ?>
-            <div class="uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-3@s uk-flex-center" uk-grid>
-              <?php foreach($this->donate_model->getDonations()->result() as $donateList): ?>
-              <div>
-                <div class="uk-transition-toggle" tabindex="0">
-                  <div class="uk-card uk-card-body uk-card-donate uk-text-center uk-transition-scale-up uk-transition-opaque">
-                    <i class="fab fa-paypal fa-3x"></i>
-                    <h2 class="uk-margin-small uk-text-bold"><?= $donateList->name ?><br>
-                      <sup><?= config_item('paypal_currency_symbol'); ?></sup><?= $donateList->price ?>
-                    </h2>
-                    <h5 class="uk-margin-small"><span uk-icon="icon: plus-circle"></span> <?= lang('donate_get'); ?> <span class="uk-text-bold"><?= $donateList->points ?></span> <?= lang('donor_points'); ?>
-                    </h5>
-                    <form action="" method="post" accept-charset="utf-8">
-                      <div class="uk-margin">
-                        <button class="uk-button uk-button-secondary" type="submit" value="<?= $donateList->id ?>" name="button_donate"><i class="fas fa-donate"></i> <?= lang('donate'); ?></button>
-                      </div>
-                    </form>
+            <?= $template['partials']['alerts'] ?>
+            <?= form_open(site_url('donate/paypal')) ?>
+            <div class="uk-card uk-card-default">
+              <div class="uk-card-header">
+                <div class="uk-grid uk-grid-small uk-flex uk-flex-middle">
+                  <div class="uk-width-expand">
+                    <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-donate"></i> <?= lang('donate') ?></h5>
                   </div>
+                  <div class="uk-width-auto"></div>
                 </div>
               </div>
-              <?php endforeach; ?>
+              <div class="uk-card-body">
+                <p class="uk-text-small uk-margin-small"><?= lang('paypal_contribution') ?></p>
+                <p class="uk-text-small uk-margin-small"><i class="fas fa-info-circle"></i> <?= lang_vars('paypal_exchange_rate', [config_item('paypal_currency_rate'), config_item('paypal_currency'), config_item('paypal_points_rate')]) ?></p>
+                <div class="uk-margin-small-bottom uk-light">
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="text" name="amount" value="<?= set_value('amount') ?>" placeholder="<?= lang('amount') ?>">
+                  </div>
+                  <?= form_error('amount', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                </div>
+              </div>
             </div>
+            <div class="uk-margin-small-top">
+              <button class="uk-button uk-button-default" type="submit"><i class="fab fa-paypal"></i> <?= lang('donate') ?></button>
+            </div>
+            <?= form_close() ?>
           </div>
         </div>
       </div>

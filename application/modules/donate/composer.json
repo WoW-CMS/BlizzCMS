@@ -1,0 +1,10 @@
+{
+    "name": "wow-cms/donate",
+    "description": "Donation system for buy points",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^7.3",
+        "paypal/paypal-checkout-sdk": "^1.0"
+    }
+}

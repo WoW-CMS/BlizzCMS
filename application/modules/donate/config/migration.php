@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Module migrations are disabled by default for security reasons.
 |
 */
-$config['migration_enabled'] = FALSE;
+$config['migration_enabled'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
