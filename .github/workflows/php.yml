@@ -14,6 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Setup PHP, with composer and extensions
+      uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+      with:
+        php-version: 7.4
+        extensions: curl, gd2, mbstring, mysqli, openssl, soap, gmp
+
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
