@@ -49,7 +49,7 @@
                       </div>
                       <!-- START TOOLTIPS WOWHEAD -->
                       <span class="uk-text-middle">
-                        <?php if($items->type == 1): ?>
+                        <?php if($this->store_model->getType($top->id) == 1): ?>
                         <!-- You can use 'es.wowhead' or any other as 'ru, fr, cn' -->
                         <a href="https://wowhead.com/item=<?= $this->store_model->getCommand($top->store_item); ?>"><?= $this->store_model->getName($top->store_item); ?></a>
                         <?php else: ?>
