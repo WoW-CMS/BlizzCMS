@@ -48,12 +48,12 @@ private static $installed = array (
     ),
     'composer/semver' => 
     array (
-      'pretty_version' => '3.2.4',
-      'version' => '3.2.4.0',
+      'pretty_version' => '3.2.5',
+      'version' => '3.2.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a02fdf930a3c1c3ed3a49b5f63859c0c20e10464',
+      'reference' => '31f3ea725711245195f62e54ffa402d8ef2fdba9',
     ),
     'desarrolla2/cache' => 
     array (
@@ -63,6 +63,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '4d0cf92133b9800b4949733294bd759cb58bd302',
+    ),
+    'ezyang/htmlpurifier' => 
+    array (
+      'pretty_version' => 'v4.13.0',
+      'version' => '4.13.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '08e27c97e4c6ed02f37c5b2b20488046c8d90d75',
     ),
     'laizerox/php-wowemu-auth' => 
     array (
@@ -84,12 +93,12 @@ private static $installed = array (
     ),
     'phpseclib/phpseclib' => 
     array (
-      'pretty_version' => '2.0.31',
-      'version' => '2.0.31.0',
+      'pretty_version' => '2.0.32',
+      'version' => '2.0.32.0',
       'aliases' => 
       array (
       ),
-      'reference' => '233a920cb38636a43b18d428f9a8db1f0a1a08f4',
+      'reference' => 'f5c4c19880d45d0be3e7d24ae8ac434844a898cd',
     ),
     'psr/log' => 
     array (
@@ -131,6 +140,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '06394df0bbd5fc7d398f591f4602e16c8239aaa0',
+    ),
+    'xemlock/htmlpurifier-html5' => 
+    array (
+      'pretty_version' => 'v0.1.11',
+      'version' => '0.1.11.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f0d563f9fd4a82a3d759043483f9a94c0d8c2255',
     ),
   ),
 );

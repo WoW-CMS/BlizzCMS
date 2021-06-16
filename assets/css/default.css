@@ -905,12 +905,12 @@ h6,
   max-width: none;
 }
 
-tbody tr:first-child {
-  border-top: 1px solid rgba(255, 255, 255, .1);
+.uk-table tbody tr:first-child {
+  border-top-color: rgba(255, 255, 255, .1);
 }
 
-tbody tr:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
+.uk-table tbody tr:last-child {
+  border-bottom-color: rgba(255, 255, 255, .1);
 }
 
 .uk-table-hover tbody tr:hover,
@@ -1015,4 +1015,22 @@ tbody tr:last-child {
   .glass-box-editor {
     max-width: 20rem;
   }
+}
+
+/*
+ * TinyMCE
+ */
+.tox-tinymce {
+  border: none !important;
+  border-radius: 2px !important;
+  box-shadow: 0px 7px 29px 0px rgba(0, 0, 0, .15) !important; 
+}
+
+.tox-tinymce:not(.tox-tinymce-inline) .tox-editor-header:not(:first-child) .tox-toolbar-overlord:first-child .tox-toolbar__primary,
+.tox-tinymce:not(.tox-tinymce-inline) .tox-editor-header:not(:first-child) .tox-toolbar:first-child {
+  border: none !important;
+}
+
+.tox:not([dir="rtl"]) .tox-toolbar__group:not(:last-of-type) {
+  border: none !important;
 }

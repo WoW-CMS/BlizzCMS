@@ -1,18 +1,19 @@
 {
-	"name": "codeigniter/framework",
-	"description": "The CodeIgniter framework",
-	"type": "project",
-	"homepage": "https://codeigniter.com",
-	"license": "MIT",
-	"support": {
-		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"slack": "https://codeigniterchat.slack.com",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
-	},
-	"require": {
-		"php": "^7.3",
-		"visualappeal/php-auto-update": "^0.15.0",
-		"laizerox/php-wowemu-auth": "^1.0"
-	}
+    "name": "codeigniter/framework",
+    "description": "The CodeIgniter framework",
+    "type": "project",
+    "homepage": "https://codeigniter.com",
+    "license": "MIT",
+    "support": {
+        "forum": "http://forum.codeigniter.com/",
+        "wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
+        "slack": "https://codeigniterchat.slack.com",
+        "source": "https://github.com/bcit-ci/CodeIgniter"
+    },
+    "require": {
+        "php": "^7.3",
+        "visualappeal/php-auto-update": "^0.15.0",
+        "laizerox/php-wowemu-auth": "^1.0",
+        "xemlock/htmlpurifier-html5": "^0.1.11"
+    }
 }

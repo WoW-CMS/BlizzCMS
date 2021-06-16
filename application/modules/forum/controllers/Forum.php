@@ -122,6 +122,9 @@ class Forum extends MX_Controller
 
         $this->template->title(config_item('app_name'), lang('forum'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/comment.js'));
+
         $this->template->build('topic', $data);
     }
 
@@ -149,10 +152,13 @@ class Forum extends MX_Controller
 
         $this->template->title(config_item('app_name'), lang('forum'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/content.js'));
+
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
+            $this->form_validation->set_rules('description', 'Description', 'trim|required|richtext_min[50]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -164,7 +170,7 @@ class Forum extends MX_Controller
                     'forum_id'    => $id,
                     'user_id'     => $this->session->userdata('id'),
                     'title'       => $this->input->post('title', TRUE),
-                    'description' => $this->input->post('description'),
+                    'description' => html_purify($this->input->post('description'), 'content'),
                     'created_at'  => current_date()
                 ]);
 
@@ -186,7 +192,7 @@ class Forum extends MX_Controller
         }
 
         $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('comment', 'Comment', 'trim|required');
+        $this->form_validation->set_rules('comment', 'Comment', 'trim|required|richtext_min[10]');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -204,7 +210,7 @@ class Forum extends MX_Controller
                 'topic_id'   => $id,
                 'forum_id'   => $topic->forum_id,
                 'user_id'    => $this->session->userdata('id'),
-                'commentary' => $this->input->post('comment'),
+                'commentary' => html_purify($this->input->post('comment'), 'comment'),
                 'created_at' => current_date()
             ]);
 
@@ -245,10 +251,13 @@ class Forum extends MX_Controller
 
         $this->template->title(config_item('app_name'), lang('forum'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/content.js'));
+
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
+            $this->form_validation->set_rules('description', 'Description', 'trim|required|richtext_min[50]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -258,7 +267,7 @@ class Forum extends MX_Controller
             {
                 $this->forum_topics->update([
                     'title'       => $this->input->post('title', TRUE),
-                    'description' => $this->input->post('description'),
+                    'description' => html_purify($this->input->post('description'), 'content'),
                     'updated_at'  => current_date()
                 ], ['id' => $id]);
 

@@ -99,18 +99,16 @@
           <?php elseif ($this->cms->isLogged() && ! $topic->lock): ?>
           <div>
             <h3 class="uk-h3 uk-text-center uk-margin-small"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('join_conversation') ?></h3>
-            <div class="uk-card uk-card-default uk-card-body">
-              <?= form_open(site_url('forum/post')) ?>
-              <?= form_hidden('id', $topic->id) ?>
-              <div class="uk-margin-small uk-light">
-                <div class="uk-form-controls">
-                  <textarea class="uk-textarea tinyeditor" name="comment" rows="10"></textarea>
-                </div>
-                <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error') ?></span>
+            <?= form_open(site_url('forum/post')) ?>
+            <?= form_hidden('id', $topic->id) ?>
+            <div class="uk-margin-small uk-light">
+              <div class="uk-form-controls">
+                <textarea class="uk-textarea textarea-comment" name="comment" rows="7"></textarea>
               </div>
-              <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send') ?></button>
-              <?= form_close() ?>
+              <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error') ?></span>
             </div>
+            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send') ?></button>
+            <?= form_close() ?>
           </div>
           <?php endif ?>
         </div>

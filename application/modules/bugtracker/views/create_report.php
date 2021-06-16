@@ -62,7 +62,7 @@
             <div class="uk-margin-small-top uk-light">
               <label class="uk-form-label"><?= lang('description') ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea tinyeditor" name="description" rows="12"><?= set_value('description') ?></textarea>
+                <textarea class="uk-textarea textarea-content" name="description" rows="10"><?= set_value('description') ?></textarea>
               </div>
               <?= form_error('description', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>

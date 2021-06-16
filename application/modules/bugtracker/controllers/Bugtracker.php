@@ -73,6 +73,9 @@ class Bugtracker extends MX_Controller
     {
         $this->template->title(config_item('app_name'), lang('bugtracker'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/content.js'));
+
         $data = [
             'realms'     => $this->realms->find_all(),
             'categories' => $this->bugtracker_categories->get_categories()
@@ -83,7 +86,7 @@ class Bugtracker extends MX_Controller
             $this->form_validation->set_rules('title', 'Title', 'trim|required');
             $this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('category', 'Category', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
+            $this->form_validation->set_rules('description', 'Description', 'trim|required|richtext_min[50]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -95,7 +98,7 @@ class Bugtracker extends MX_Controller
                     'user_id'     => $this->session->userdata('id'),
                     'realm_id'    => $this->input->post('realm', TRUE),
                     'title'       => $this->input->post('title', TRUE),
-                    'description' => $this->input->post('description'),
+                    'description' => html_purify($this->input->post('description'), 'content'),
                     'category_id' => $this->input->post('category', TRUE),
                     'created_at'  => current_date()
                 ]);
@@ -133,6 +136,9 @@ class Bugtracker extends MX_Controller
 
         $this->template->title(config_item('app_name'), lang('bugtracker'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/content.js'));
+
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('title', 'Title', 'trim|required');
@@ -155,7 +161,7 @@ class Bugtracker extends MX_Controller
                 $data = [
                     'realm_id'    => $this->input->post('realm', TRUE),
                     'title'       => $this->input->post('title', TRUE),
-                    'description' => $this->input->post('description'),
+                    'description' => html_purify($this->input->post('description'), 'content'),
                     'category_id' => $this->input->post('category', TRUE)
                 ];
 
@@ -215,13 +221,16 @@ class Bugtracker extends MX_Controller
 
         $this->template->title(config_item('app_name'), lang('bugtracker'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/comment.js'));
+
         $this->template->build('report', $data);
     }
 
     public function comment()
     {
         $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('comment', 'Comment', 'trim|required');
+        $this->form_validation->set_rules('comment', 'Comment', 'trim|required|richtext_min[10]');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -237,7 +246,7 @@ class Bugtracker extends MX_Controller
             $this->bugtracker_comments->create([
                 'report_id'  => $id,
                 'user_id'    => $this->session->userdata('id'),
-                'commentary' => $this->input->post('comment'),
+                'commentary' => html_purify($this->input->post('comment'), 'comment'),
                 'created_at' => current_date()
             ]);
 

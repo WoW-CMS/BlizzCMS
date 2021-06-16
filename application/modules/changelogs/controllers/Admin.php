@@ -70,6 +70,9 @@ class Admin extends MX_Controller
     {
         $this->template->title(config_item('app_name'), lang('admin_panel'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/content.js'));
+
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('title', 'Title', 'trim|required');
@@ -117,6 +120,9 @@ class Admin extends MX_Controller
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
+
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/content.js'));
 
         if ($this->input->method() == 'post')
         {

@@ -40,7 +40,7 @@
             <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('reason') ?></label>
               <div class="uk-form-controls">
-                <textarea class="uk-textarea tinyeditor" name="reason" rows="6"><?= set_value('reason') ?></textarea>
+                <textarea class="uk-textarea" name="reason" rows="6"><?= set_value('reason') ?></textarea>
               </div>
               <?= form_error('reason', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>

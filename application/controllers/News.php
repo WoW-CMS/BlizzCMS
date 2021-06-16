@@ -57,6 +57,9 @@ class News extends CI_Controller
 
         $this->template->title(config_item('app_name'), lang('news'));
 
+        $this->template->add_js(base_url('assets/tinymce/tinymce.min.js'));
+        $this->template->add_js(base_url('assets/tinymce/comment.js'));
+
         $this->template->build('article', $data);
     }
 
@@ -68,7 +71,7 @@ class News extends CI_Controller
         }
 
         $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('comment', 'Comment', 'trim|required');
+        $this->form_validation->set_rules('comment', 'Comment', 'trim|required|richtext_min[10]');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -84,7 +87,7 @@ class News extends CI_Controller
             $this->news_comments->create([
                 'news_id'    => $id,
                 'user_id'    => $this->session->userdata('id'),
-                'commentary' => $this->input->post('comment'),
+                'commentary' => html_purify($this->input->post('comment'), 'comment'),
                 'created_at' => current_date()
             ]);
 

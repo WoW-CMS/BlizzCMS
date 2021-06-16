@@ -1,15 +1,12 @@
 # top-most EditorConfig file
 root = true
 
-# Unix-style newlines with a newline ending every file
+# Unix-style newlines
 [*]
 end_of_line = lf
-insert_final_newline = true
 
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*]
+[*.php]
+indent_style = space
+indent_size = 4
 charset = utf-8
-
-# Tab indentation (no size specified)
-indent_style = tab
+insert_final_newline = true

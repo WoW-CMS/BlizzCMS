@@ -71,7 +71,7 @@
             <?= form_hidden('id', $news->id) ?>
             <div class="uk-margin-small uk-light">
               <div class="uk-form-controls">
-                <textarea class="uk-textarea tinyeditor" name="comment" rows="10"></textarea>
+                <textarea class="uk-textarea textarea-comment" name="comment" rows="7"></textarea>
               </div>
               <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error') ?></span>
             </div>

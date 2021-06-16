@@ -532,6 +532,9 @@ ul.uk-nav-sub {
   border-color: #f0f0f5;
 }
 
+/*
+ * Switch
+ */
 .uk-switch {
   position: relative;
   display: inline-block;
@@ -576,4 +579,20 @@ input:checked + .uk-switch-slider {
 
 input:checked + .uk-switch-slider:before {
   transform: translateX(26px);
+}
+
+/*
+ * TinyMCE
+ */
+.tox-tinymce {
+  border-color: #e5e5e5 !important;
+}
+
+.tox-tinymce:not(.tox-tinymce-inline) .tox-editor-header:not(:first-child) .tox-toolbar-overlord:first-child .tox-toolbar__primary,
+.tox-tinymce:not(.tox-tinymce-inline) .tox-editor-header:not(:first-child) .tox-toolbar:first-child {
+  border: none !important;
+}
+
+.tox:not([dir="rtl"]) .tox-toolbar__group:not(:last-of-type) {
+  border: none !important;
 }

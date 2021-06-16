@@ -20,7 +20,7 @@ class Migration_Create_table_menu extends CI_Migration
             'url' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '255',
-                'null' => TRUE
+                'null' => FALSE
             ),
             'icon' => array(
                 'type' => 'VARCHAR',
@@ -59,7 +59,7 @@ class Migration_Create_table_menu extends CI_Migration
         $this->dbforge->create_table('menu');
 
         $data = array(
-            array('name' => 'Home', 'url' => '/', 'icon' => 'fas fa-home', 'target' => '_self', 'type' => 'default', 'position' => 'main', 'parent' => 0, 'order' => 1)
+            array('name' => 'Home', 'url' => '', 'icon' => 'fas fa-home', 'target' => '_self', 'type' => 'default', 'position' => 'main', 'parent' => 0, 'order' => 1)
         );
         $this->db->insert_batch('menu', $data);
     }
