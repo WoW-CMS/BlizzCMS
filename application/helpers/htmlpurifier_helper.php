@@ -29,7 +29,7 @@ if (! function_exists('html_purify'))
 
         switch ($type) {
             case 'comment':
-                $html_allowed = ['p', 'a[href|title]', 'br', 'b', 'strong', 'i', 'em', 's', 'strike', 'u', 'ul[style]', 'ol[style]', 'li', 'span', 'img[style|width|height|alt|src]'];
+                $html_allowed = ['p[style]', 'a[href|title]', 'br', 'b', 'strong', 'i', 'em', 's', 'strike', 'u', 'ul[style]', 'ol[style]', 'li', 'span[style]', 'img[style|width|height|alt|src]'];
                 $css_properties = ['height', 'width', 'min-height', 'min-width', 'max-height', 'max-width', 'list-style-type', 'text-decoration', 'text-align'];
                 break;
             case 'content':
