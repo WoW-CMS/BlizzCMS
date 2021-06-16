@@ -944,7 +944,7 @@ class Admin_model extends CI_Model {
             'vp' => $setvp,
             'icon' => $icon,
             'command' => $command,
-			'item_set' => $iset
+            'item_set' => $iset
         );
 
         $this->db->insert('store_items', $data);
@@ -976,7 +976,7 @@ class Admin_model extends CI_Model {
             'vp' => $setvp,
             'icon' => $icon,
             'command' => $command,
-			'item_set' => $iset
+            'item_set' => $iset
         );
 
         $this->db->where('id', $id)->update('store_items', $update);

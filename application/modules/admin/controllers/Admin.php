@@ -1061,7 +1061,7 @@ class Admin extends MX_Controller {
         $dp_price = $this->input->post('dp_price');
         $vp_price = $this->input->post('vp_price');
         $command = $this->input->post('command');
-		$iset = $this->input->post('iset');
+        $iset = $this->input->post('iset');
         echo $this->admin_model->insertItem($name, $description, $category, $type, $price_type, $dp_price, $vp_price, $icon, $command, $iset);
     }
 
@@ -1077,7 +1077,7 @@ class Admin extends MX_Controller {
         $dp_price = $this->input->post('dp_price');
         $vp_price = $this->input->post('vp_price');
         $command = $this->input->post('command');
-		$iset = $this->input->post('iset');
+        $iset = $this->input->post('iset');
         echo $this->admin_model->updateSpecifyItem($id, $name, $description, $category, $type, $price_type, $dp_price, $vp_price, $icon, $command, $iset);
     }
 

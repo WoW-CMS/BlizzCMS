@@ -51,7 +51,7 @@
                         <option value="5" <?php if($this->admin_model->getItemSpecifyType($idlink) == 5) echo 'selected'; ?>><?= $this->lang->line('option_customize'); ?></option>
                         <option value="6" <?php if($this->admin_model->getItemSpecifyType($idlink) == 6) echo 'selected'; ?>><?= $this->lang->line('option_change_faction'); ?></option>
                         <option value="7" <?php if($this->admin_model->getItemSpecifyType($idlink) == 7) echo 'selected'; ?>><?= $this->lang->line('option_change_race'); ?></option>
-						<option value="8" <?php if($this->admin_model->getItemSpecifyType($idlink) == 8) echo 'selected'; ?>><?= $this->lang->line('option_item_set'); ?></option>
+                        <option value="8" <?php if($this->admin_model->getItemSpecifyType($idlink) == 8) echo 'selected'; ?>><?= $this->lang->line('option_item_set'); ?></option>
                       </select>
                     </div>
                   </div>
@@ -94,24 +94,24 @@
                   </div>
                 </div>
               </div>
-			  <div class="uk-margin-small">
-			     <div class="uk-grid-small" uk-grid>
-			       <div class="uk-inline uk-width-2-3@s">
-				      <label class="uk-form-label"><?= $this->lang->line('placeholder_command'); ?></label>
-					  <div class="uk-form-controls">
-					    <div class="uk-inline uk-width-1-1">
-                          <input class="uk-input" type="text" id="item_command" value="<?= $this->admin_model->getItemSpecifyCommand($idlink); ?>" required>
-                        </div>
-                      </div>
-				    </div>
-                    <div class="uk-inline uk-width-1-3@s">
-                      <label class="uk-form-label"><?=$this->lang->line('option_item_set');?></label>
-                      <div class="uk-form-controls">
-                        <input class="uk-input" type="text" id="item_set" value="<?= $this->admin_model->getItemSpecifyItemSet($idlink); ?>">
+              <div class="uk-margin-small">
+                <div class="uk-grid-small" uk-grid>
+                  <div class="uk-inline uk-width-2-3@s">
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_command'); ?></label>
+                    <div class="uk-form-controls">
+                      <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" type="text" id="item_command" value="<?= $this->admin_model->getItemSpecifyCommand($idlink); ?>" required>
                       </div>
                     </div>
+                  </div>
+                  <div class="uk-inline uk-width-1-3@s">
+                    <label class="uk-form-label"><?=$this->lang->line('option_item_set');?></label>
+                    <div class="uk-form-controls">
+                      <input class="uk-input" type="text" id="item_set" value="<?= $this->admin_model->getItemSpecifyItemSet($idlink); ?>">
+                    </div>
+                  </div>
                 </div>
-			  </div>
+              </div>
               <div class="uk-margin-small">
                 <button class="uk-button uk-button-primary uk-width-1-1" id="button_upitem" type="submit"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
               </div>
@@ -135,7 +135,7 @@
         var dp_price = $.trim($('#item_dp_price').val());
         var vp_price = $.trim($('#item_vp_price').val());
         var command = $.trim($('#item_command').val());
-		var iset = $.trim($('#item_set').val());
+        var iset = $.trim($('#item_set').val());
         if(name == ''){
           $.amaran({
             'theme': 'awesome error',

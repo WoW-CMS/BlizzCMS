@@ -51,7 +51,7 @@
                         <option value="5"><?= $this->lang->line('option_customize'); ?></option>
                         <option value="6"><?= $this->lang->line('option_change_faction'); ?></option>
                         <option value="7"><?= $this->lang->line('option_change_race'); ?></option>
-						<option value="8"><?= $this->lang->line('option_item_set'); ?></option>
+                        <option value="8"><?= $this->lang->line('option_item_set'); ?></option>
                       </select>
                     </div>
                   </div>
@@ -95,23 +95,23 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-			     <div class="uk-grid-small" uk-grid>
-			       <div class="uk-inline uk-width-2-3@s">
-				      <label class="uk-form-label"><?= $this->lang->line('placeholder_command'); ?></label>
-					  <div class="uk-form-controls">
-					    <div class="uk-inline uk-width-1-1">
-                          <input class="uk-input" type="text" id="item_command" required>
-                        </div>
-                      </div>
-				    </div>
-                    <div class="uk-inline uk-width-1-3@s">
-                      <label class="uk-form-label"><?=$this->lang->line('option_item_set');?></label>
-                      <div class="uk-form-controls">
-                        <input class="uk-input" type="text" id="item_set" placeholder="0">
+                <div class="uk-grid-small" uk-grid>
+                  <div class="uk-inline uk-width-2-3@s">
+                    <label class="uk-form-label"><?= $this->lang->line('placeholder_command'); ?></label>
+                    <div class="uk-form-controls">
+                      <div class="uk-inline uk-width-1-1">
+                        <input class="uk-input" type="text" id="item_command" required>
                       </div>
                     </div>
+                  </div>
+                  <div class="uk-inline uk-width-1-3@s">
+                    <label class="uk-form-label"><?=$this->lang->line('option_item_set');?></label>
+                    <div class="uk-form-controls">
+                      <input class="uk-input" type="text" id="item_set" placeholder="0">
+                    </div>
+                  </div>
                 </div>
-			  </div>
+              </div>
               <div class="uk-margin-small">
                 <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_item"><i class="fas fa-check-circle"></i> <?= $this->lang->line('button_create'); ?></button>
               </div>
@@ -134,7 +134,7 @@
         var dp_price = $.trim($('#item_dp_price').val());
         var vp_price = $.trim($('#item_vp_price').val());
         var command = $.trim($('#item_command').val());
-		var iset = $.trim($('#item_set').val());
+        var iset = $.trim($('#item_set').val());
         if(name == ''){
           $.amaran({
             'theme': 'awesome error',
