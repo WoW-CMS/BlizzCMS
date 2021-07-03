@@ -1,5 +1,5 @@
 /*!
- * Chart.js v3.3.0
+ * Chart.js v3.4.0
  * https://www.chartjs.org
  * (c) 2021 Chart.js Contributors
  * Released under the MIT License
@@ -44,7 +44,10 @@ function debounce(fn, delay) {
 }
 const _toLeftRightCenter = (align) => align === 'start' ? 'left' : align === 'end' ? 'right' : 'center';
 const _alignStartEnd = (align, start, end) => align === 'start' ? start : align === 'end' ? end : (start + end) / 2;
-const _textX = (align, left, right) => align === 'right' ? right : align === 'center' ? (left + right) / 2 : left;
+const _textX = (align, left, right, rtl) => {
+  const check = rtl ? 'left' : 'right';
+  return align === check ? right : align === 'center' ? (left + right) / 2 : left;
+};
 
 function noop() {}
 const uid = (function() {
@@ -1319,22 +1322,8 @@ function renderText(ctx, text, x, y, font, opts = {}) {
   const stroke = opts.strokeWidth > 0 && opts.strokeColor !== '';
   let i, line;
   ctx.save();
-  if (opts.translation) {
-    ctx.translate(opts.translation[0], opts.translation[1]);
-  }
-  if (!isNullOrUndef(opts.rotation)) {
-    ctx.rotate(opts.rotation);
-  }
   ctx.font = font.string;
-  if (opts.color) {
-    ctx.fillStyle = opts.color;
-  }
-  if (opts.textAlign) {
-    ctx.textAlign = opts.textAlign;
-  }
-  if (opts.textBaseline) {
-    ctx.textBaseline = opts.textBaseline;
-  }
+  setRenderOpts(ctx, opts);
   for (i = 0; i < lines.length; ++i) {
     line = lines[i];
     if (stroke) {
@@ -1347,23 +1336,43 @@ function renderText(ctx, text, x, y, font, opts = {}) {
       ctx.strokeText(line, x, y, opts.maxWidth);
     }
     ctx.fillText(line, x, y, opts.maxWidth);
-    if (opts.strikethrough || opts.underline) {
-      const metrics = ctx.measureText(line);
-      const left = x - metrics.actualBoundingBoxLeft;
-      const right = x + metrics.actualBoundingBoxRight;
-      const top = y - metrics.actualBoundingBoxAscent;
-      const bottom = y + metrics.actualBoundingBoxDescent;
-      const yDecoration = opts.strikethrough ? (top + bottom) / 2 : bottom;
-      ctx.strokeStyle = ctx.fillStyle;
-      ctx.beginPath();
-      ctx.lineWidth = opts.decorationWidth || 2;
-      ctx.moveTo(left, yDecoration);
-      ctx.lineTo(right, yDecoration);
-      ctx.stroke();
-    }
+    decorateText(ctx, x, y, line, opts);
     y += font.lineHeight;
   }
   ctx.restore();
+}
+function setRenderOpts(ctx, opts) {
+  if (opts.translation) {
+    ctx.translate(opts.translation[0], opts.translation[1]);
+  }
+  if (!isNullOrUndef(opts.rotation)) {
+    ctx.rotate(opts.rotation);
+  }
+  if (opts.color) {
+    ctx.fillStyle = opts.color;
+  }
+  if (opts.textAlign) {
+    ctx.textAlign = opts.textAlign;
+  }
+  if (opts.textBaseline) {
+    ctx.textBaseline = opts.textBaseline;
+  }
+}
+function decorateText(ctx, x, y, line, opts) {
+  if (opts.strikethrough || opts.underline) {
+    const metrics = ctx.measureText(line);
+    const left = x - metrics.actualBoundingBoxLeft;
+    const right = x + metrics.actualBoundingBoxRight;
+    const top = y - metrics.actualBoundingBoxAscent;
+    const bottom = y + metrics.actualBoundingBoxDescent;
+    const yDecoration = opts.strikethrough ? (top + bottom) / 2 : bottom;
+    ctx.strokeStyle = ctx.fillStyle;
+    ctx.beginPath();
+    ctx.lineWidth = opts.decorationWidth || 2;
+    ctx.moveTo(left, yDecoration);
+    ctx.lineTo(right, yDecoration);
+    ctx.stroke();
+  }
 }
 function addRoundedRectPath(ctx, rect) {
   const {x, y, w, h, radius} = rect;
@@ -1566,11 +1575,7 @@ function _arrayUnique(items) {
   if (set.size === ilen) {
     return items;
   }
-  const result = [];
-  set.forEach(item => {
-    result.push(item);
-  });
-  return result;
+  return Array.from(set);
 }
 
 function _createResolver(scopes, prefixes = [''], rootScopes = scopes, fallback, getTarget = () => scopes[0]) {
@@ -1700,7 +1705,7 @@ function _resolveWithContext(target, prop, receiver) {
 function _resolveScriptable(prop, value, target, receiver) {
   const {_proxy, _context, _subProxy, _stack} = target;
   if (_stack.has(prop)) {
-    throw new Error('Recursion detected: ' + [..._stack].join('->') + '->' + prop);
+    throw new Error('Recursion detected: ' + Array.from(_stack).join('->') + '->' + prop);
   }
   _stack.add(prop);
   value = value(_context, _subProxy || receiver);
@@ -1761,7 +1766,7 @@ function createSubResolver(parentScopes, resolver, prop, value) {
       return false;
     }
   }
-  return _createResolver([...set], [''], rootScopes, fallback,
+  return _createResolver(Array.from(set), [''], rootScopes, fallback,
     () => subGetTarget(resolver, prop, value));
 }
 function addScopesFromKey(set, allScopes, key, fallback) {
@@ -1817,7 +1822,7 @@ function resolveKeysFromAllScopes(scopes) {
       set.add(key);
     }
   }
-  return [...set];
+  return Array.from(set);
 }
 
 const EPSILON = Number.EPSILON || 1e-14;
@@ -2454,4 +2459,4 @@ function styleChanged(style, prevStyle) {
   return prevStyle && JSON.stringify(style) !== JSON.stringify(prevStyle);
 }
 
-export { merge as $, _isPointInArea as A, _rlookupByKey as B, toPadding as C, each as D, getMaximumSize as E, _getParentNode as F, readUsedSize as G, HALF_PI as H, throttled as I, supportsEventListenerOptions as J, log10 as K, _factorize as L, finiteOrDefault as M, callback as N, _addGrace as O, PI as P, toDegrees as Q, _measureText as R, _int16Range as S, TAU as T, _alignPixel as U, renderText as V, toFont as W, _toLeftRightCenter as X, _alignStartEnd as Y, overrides as Z, _arrayUnique as _, resolve as a, _capitalize as a0, descriptors as a1, isFunction as a2, _attachContext as a3, _createResolver as a4, _descriptors as a5, mergeIf as a6, uid as a7, debounce as a8, retinaScale as a9, niceNum as aA, almostWhole as aB, almostEquals as aC, _decimalPlaces as aD, _longestText as aE, _filterBetween as aF, _lookup as aG, getHoverColor as aH, clone$1 as aI, _merger as aJ, _mergerIf as aK, _deprecated as aL, toFontString as aM, splineCurve as aN, splineCurveMonotone as aO, getStyle as aP, fontString as aQ, toLineHeight as aR, PITAU as aS, INFINITY as aT, RAD_PER_DEG as aU, QUARTER_PI as aV, TWO_THIRDS_PI as aW, _angleDiff as aX, clearCanvas as aa, setsEqual as ab, _elementsEqual as ac, getAngleFromPoint as ad, _readValueToProps as ae, _updateBezierControlPoints as af, _computeSegments as ag, _boundSegments as ah, _steppedInterpolation as ai, _bezierInterpolation as aj, _pointInLine as ak, _steppedLineTo as al, _bezierCurveTo as am, drawPoint as an, addRoundedRectPath as ao, toTRBL as ap, toTRBLCorners as aq, _boundSegment as ar, _normalizeAngle as as, getRtlAdapter as at, overrideTextDirection as au, _textX as av, restoreTextDirection as aw, noop as ax, distanceBetweenPoints as ay, _setMinAndMaxByKey as az, isArray as b, color as c, defaults as d, effects as e, resolveObjectKey as f, isNumberFinite as g, defined as h, isObject as i, isNullOrUndef as j, clipArea as k, listenArrayEvents as l, unclipArea as m, toPercentage as n, toDimension as o, formatNumber as p, _angleBetween as q, requestAnimFrame as r, sign as s, toRadians as t, unlistenArrayEvents as u, valueOrDefault as v, isNumber as w, _limitValue as x, _lookupByKey as y, getRelativePosition as z };
+export { merge as $, toPadding as A, each as B, getMaximumSize as C, _getParentNode as D, readUsedSize as E, throttled as F, supportsEventListenerOptions as G, HALF_PI as H, log10 as I, _factorize as J, finiteOrDefault as K, callback as L, _addGrace as M, toDegrees as N, _measureText as O, PI as P, _int16Range as Q, _alignPixel as R, clipArea as S, TAU as T, renderText as U, unclipArea as V, toFont as W, _toLeftRightCenter as X, _alignStartEnd as Y, overrides as Z, _arrayUnique as _, resolve as a, _capitalize as a0, descriptors as a1, isFunction as a2, _attachContext as a3, _createResolver as a4, _descriptors as a5, mergeIf as a6, uid as a7, debounce as a8, retinaScale as a9, niceNum as aA, almostWhole as aB, almostEquals as aC, _decimalPlaces as aD, _longestText as aE, _filterBetween as aF, _lookup as aG, getHoverColor as aH, clone$1 as aI, _merger as aJ, _mergerIf as aK, _deprecated as aL, toFontString as aM, splineCurve as aN, splineCurveMonotone as aO, getStyle as aP, fontString as aQ, toLineHeight as aR, PITAU as aS, INFINITY as aT, RAD_PER_DEG as aU, QUARTER_PI as aV, TWO_THIRDS_PI as aW, _angleDiff as aX, clearCanvas as aa, setsEqual as ab, _elementsEqual as ac, getAngleFromPoint as ad, _readValueToProps as ae, _updateBezierControlPoints as af, _computeSegments as ag, _boundSegments as ah, _steppedInterpolation as ai, _bezierInterpolation as aj, _pointInLine as ak, _steppedLineTo as al, _bezierCurveTo as am, drawPoint as an, addRoundedRectPath as ao, toTRBL as ap, toTRBLCorners as aq, _boundSegment as ar, _normalizeAngle as as, getRtlAdapter as at, overrideTextDirection as au, _textX as av, restoreTextDirection as aw, noop as ax, distanceBetweenPoints as ay, _setMinAndMaxByKey as az, isArray as b, color as c, defaults as d, effects as e, resolveObjectKey as f, isNumberFinite as g, defined as h, isObject as i, isNullOrUndef as j, toPercentage as k, listenArrayEvents as l, toDimension as m, formatNumber as n, _angleBetween as o, isNumber as p, _limitValue as q, requestAnimFrame as r, sign as s, toRadians as t, unlistenArrayEvents as u, valueOrDefault as v, _lookupByKey as w, getRelativePosition as x, _isPointInArea as y, _rlookupByKey as z };

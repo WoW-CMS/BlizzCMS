@@ -1,8 +1,8 @@
 tinymce.init({
   selector: '.textarea-content',
-  element_format : 'html',
+  element_format: 'html',
   schema: 'html5-strict',
-  entity_encoding : 'raw',
+  entity_encoding: 'raw',
   branding: false,
   menubar: false,
   statusbar: false,
