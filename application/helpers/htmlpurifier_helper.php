@@ -9,9 +9,6 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use HTMLPurifier;
-use HTMLPurifier_HTML5Config;
-
 if (! function_exists('html_purify'))
 {
     /**
@@ -23,7 +20,7 @@ if (! function_exists('html_purify'))
      */
     function html_purify($content, $type = null)
     {
-        $config = HTMLPurifier_HTML5Config::createDefault();
+        $config = \HTMLPurifier_HTML5Config::createDefault();
 
         $config->set('Core.Encoding', 'UTF-8');
 
@@ -52,7 +49,7 @@ if (! function_exists('html_purify'))
         $config->set('AutoFormat.Linkify', true);
         $config->set('AutoFormat.RemoveEmpty', true);
 
-        $purifier = new HTMLPurifier($config);
+        $purifier = new \HTMLPurifier($config);
 
         return $purifier->purify($content);
     }
