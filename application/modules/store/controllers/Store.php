@@ -28,7 +28,7 @@ class Store extends MX_Controller
             'store_logs_model'  => 'store_logs'
         ]);
 
-        $this->load->language('store');
+        $this->load->language('store', $this->language->current());
 
         $this->template->set_partial('alerts', 'static/alerts');
     }

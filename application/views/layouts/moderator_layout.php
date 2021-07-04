@@ -24,6 +24,16 @@
             <ul class="uk-navbar-nav uk-visible@m">
               <li><a href="<?= site_url() ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
+                <a href="#"><i class="fas fa-language"></i> <?= $this->language->current_name() ?></a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <?php foreach ($this->language->list() as $lang): ?>
+                    <li><a href="<?= site_url('switcher/'.$lang['code']) ?>"><?= $lang['name'] ?></a></li>
+                    <?php endforeach ?>
+                  </ul>
+                </div>
+              </li>
+              <li>
                 <a href="#">
                   <img class="uk-border-circle profile-img" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" alt="Avatar">
                   <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname') ?><span uk-icon="icon: triangle-down"></span></span>

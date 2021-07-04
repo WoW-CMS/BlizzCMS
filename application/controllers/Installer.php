@@ -20,7 +20,7 @@ class Installer extends CI_Controller
             show_404();
         }
 
-        $this->lang->load('installer');
+        $this->lang->load('installer', $this->language->current());
     }
 
     public function index()

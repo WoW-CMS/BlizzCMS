@@ -26,7 +26,7 @@ class Admin extends MX_Controller
         }
 
         $this->load->model('admin_model');
-        $this->load->language('admin');
+        $this->load->language('admin', $this->language->current());
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

@@ -24,3 +24,10 @@ $hook['post_controller_constructor'][] = [
     'filename' => 'Installer.php',
     'filepath' => 'hooks'
 ];
+
+$hook['post_controller_constructor'][] = [
+    'class' => 'Langs',
+    'function' => 'initialize',
+    'filename' => 'Langs.php',
+    'filepath' => 'hooks'
+];

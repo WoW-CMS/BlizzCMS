@@ -28,7 +28,7 @@ class Bugtracker extends MX_Controller
             'bugtracker_categories_model' => 'bugtracker_categories'
         ]);
 
-        $this->load->language('bugtracker');
+        $this->load->language('bugtracker', $this->language->current());
 
         $this->template->set_partial('alerts', 'static/alerts');
     }

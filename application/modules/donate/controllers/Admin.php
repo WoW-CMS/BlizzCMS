@@ -31,8 +31,10 @@ class Admin extends MX_Controller
             'donation_logs_model' => 'donation_logs',
         ]);
 
-        $this->load->language('admin/admin');
-        $this->load->language('donate');
+        $language = $this->language->current();
+
+        $this->load->language('admin/admin', $language);
+        $this->load->language('donate', $language);
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

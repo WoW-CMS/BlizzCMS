@@ -77,6 +77,8 @@
             <?php endif ?>
             <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-user-plus"></i> <?= lang('register') ?></button>
             <?= form_close() ?>
+            <hr class="uk-hr">
+            <p class="uk-text-small uk-text-center uk-margin-small"><i class="fas fa-info-circle"></i> <?= lang('already_have_account') ?> <a href="<?= site_url('login') ?>"><?= lang('here') ?></a></p>
           </div>
           <div class="uk-width-1-5@s"></div>
         </div>

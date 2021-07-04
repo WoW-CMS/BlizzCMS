@@ -31,8 +31,10 @@ class Admin extends MX_Controller
             'changelogs_model' => 'changelogs'
         ]);
 
-        $this->load->language('admin/admin');
-        $this->load->language('changelogs');
+        $language = $this->language->current();
+
+        $this->load->language('admin/admin', $language);
+        $this->load->language('changelogs', $language);
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

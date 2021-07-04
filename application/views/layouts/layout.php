@@ -22,8 +22,17 @@
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
+              <li>
+                <a href="#"><i class="fas fa-language"></i> <?= $this->language->current_name() ?></a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <?php foreach ($this->language->list() as $lang): ?>
+                    <li><a href="<?= site_url('switcher/'.$lang['code']) ?>"><?= $lang['name'] ?></a></li>
+                    <?php endforeach ?>
+                  </ul>
+                </div>
+              </li>
               <?php if (! $this->cms->isLogged()): ?>
-              <li class="uk-visible@m"><a href="<?= site_url('register') ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('register') ?></a></li>
               <li class="uk-visible@m"><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('login') ?></a></li>
               <?php else: ?>
               <li class="uk-visible@m">

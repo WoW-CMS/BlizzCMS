@@ -42,6 +42,47 @@ h6,
   color: #dbdde1;
 }
 
+.uk-navbar-item,
+.uk-navbar-nav > li > a,
+.uk-navbar-toggle {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  min-height: 40px;
+  text-transform: none;
+}
+
+.uk-navbar-nav > li > a,
+.uk-navbar-dropdown-nav > li > a {
+  color: rgba(255, 255, 255, .8);
+  font-size: 14px;
+  padding: 4px 18px;
+  transition: all ease .2s;
+}
+
+.uk-navbar-nav > li:hover > a,
+.uk-navbar-nav > li > a.uk-open,
+.uk-navbar-nav > li > a:focus {
+  color: #fff;
+}
+
+.uk-navbar-dropdown-nav > li > a:focus,
+.uk-navbar-dropdown-nav > li > a:hover {
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+}
+
+.uk-navbar-dropdown {
+  background: #0e1b3e;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+  min-width: 150px;
+  width: auto;
+  padding: 4px 0;
+}
+
+[class*="uk-navbar-dropdown-bottom"] {
+  margin-top: 2px;
+}
+
 .uk-logo {
   font-family: 'Lobster', cursive;
   font-size: 48px;
@@ -51,10 +92,6 @@ h6,
 .uk-heading-line > ::after,
 .uk-heading-line > ::before {
   border-bottom-color: rgba(255, 255, 255, .15);
-}
-
-.uk-section-small {
-  padding-bottom: 20px;
 }
 
 .uk-card-default {

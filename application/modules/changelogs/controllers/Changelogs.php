@@ -26,7 +26,7 @@ class Changelogs extends MX_Controller
             'changelogs_model' => 'changelogs'
         ]);
 
-        $this->load->language('changelogs');
+        $this->load->language('changelogs', $this->language->current());
     }
 
     public function index()

@@ -29,7 +29,7 @@ class Pages extends MX_Controller
             'pages_model' => 'pages'
         ]);
 
-        $this->load->language('admin');
+        $this->load->language('admin', $this->language->current());
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

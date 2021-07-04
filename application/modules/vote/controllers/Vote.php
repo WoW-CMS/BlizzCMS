@@ -27,7 +27,7 @@ class Vote extends MX_Controller
             'topsites_logs_model' => 'topsites_logs'
         ]);
 
-        $this->load->language('vote');
+        $this->load->language('vote', $this->language->current());
 
         $this->template->set_partial('alerts', 'static/alerts');
     }

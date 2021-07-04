@@ -54,9 +54,11 @@ $route['404_override'] = 'errors/error_404';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['install']['get'] = 'installer/index';
+$route['install/cms'] = 'installer/cms';
+$route['install/auth'] = 'installer/auth';
 $route['install/settings'] = 'installer/settings';
-$route['install/preferences'] = 'installer/preferences';
-$route['install/finish']['get'] = 'installer/finish';
+
+$route['switcher/(:any)'] = 'switcher/index/$1';
 
 $route['login'] = 'auth/login';
 $route['logout']['get'] = 'auth/logout';

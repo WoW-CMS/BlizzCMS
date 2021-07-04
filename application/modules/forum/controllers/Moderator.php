@@ -27,8 +27,10 @@ class Moderator extends MX_Controller
             redirect(site_url('user'));
         }
 
-        $this->load->language('admin/admin');
-        $this->load->language('forum');
+        $language = $this->language->current();
+
+        $this->load->language('admin/admin', $language);
+        $this->load->language('forum', $language);
 
         $this->template->set_theme();
         $this->template->set_layout('moderator_layout');

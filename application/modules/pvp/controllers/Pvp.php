@@ -19,7 +19,7 @@ class Pvp extends MX_Controller
             'pvp_model' => 'pvp'
         ]);
 
-        $this->load->language('pvp');
+        $this->load->language('pvp', $this->language->current());
     }
 
     public function index()

@@ -17,7 +17,7 @@
               <?= form_error('username', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
             <div class="uk-margin uk-light">
-              <label class="uk-form-label"><?= lang('password') ?> <span class="uk-float-right"><a href="<?= site_url('forgot') ?>" class="uk-button uk-button-text"><?= lang('forgot_your_password') ?></a></span></label>
+              <label class="uk-form-label"><?= lang('password') ?> <a href="<?= site_url('forgot') ?>" class="uk-button uk-button-text uk-float-right"><?= lang('forgot_your_password') ?></a></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
                   <span class="uk-form-icon"><i class="fas fa-unlock-alt"></i></span>
@@ -33,6 +33,8 @@
             <?php endif ?>
             <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small" type="submit"><i class="fas fa-sign-in-alt"></i> <?= lang('login') ?></button>
             <?= form_close() ?>
+            <hr class="uk-hr">
+            <p class="uk-text-small uk-text-center uk-margin-small"><i class="fas fa-info-circle"></i> <?= lang('dont_have_account') ?> <a href="<?= site_url('register') ?>"><?= lang('here') ?></a></p>
           </div>
           <div class="uk-width-1-5@s"></div>
         </div>

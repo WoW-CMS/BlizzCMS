@@ -23,7 +23,7 @@ class Forum extends MX_Controller
             'forum_posts_model'  => 'forum_posts'
         ]);
 
-        $this->load->language('forum');
+        $this->load->language('forum', $this->language->current());
 
         $this->template->set_partial('alerts', 'static/alerts');
     }

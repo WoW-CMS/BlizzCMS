@@ -33,8 +33,10 @@ class Admin extends MX_Controller
             'forum_posts_model'  => 'forum_posts'
         ]);
 
-        $this->load->language('admin/admin');
-        $this->load->language('forum');
+        $language = $this->language->current();
+
+        $this->load->language('admin/admin', $language);
+        $this->load->language('forum', $language);
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

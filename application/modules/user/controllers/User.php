@@ -21,7 +21,7 @@ class User extends MX_Controller
         }
 
         $this->load->model('user_model');
-        $this->load->language('user');
+        $this->load->language('user', $this->language->current());
 
         $this->template->set_partial('alerts', 'static/alerts');
     }

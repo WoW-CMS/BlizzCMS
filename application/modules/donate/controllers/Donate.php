@@ -32,7 +32,7 @@ class Donate extends MX_Controller
             'donation_logs_model' => 'donation_logs',
         ]);
 
-        $this->load->language('donate');
+        $this->load->language('donate', $this->language->current());
 
         $this->template->set_partial('alerts', 'static/alerts');
     }

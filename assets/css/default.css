@@ -93,7 +93,7 @@ h6,
 .uk-navbar-dropdown-nav > li > a {
   font-size: 12px;
   padding: 4px 18px;
-  transition: background-color .2s ease,color .2s ease;
+  transition: all ease .2s;
 }
 
 .uk-dropdown-nav > li > a:focus,
@@ -474,6 +474,7 @@ h6,
 
 .uk-button-text {
   color: #ccc;
+  text-transform: none;
 }
 
 .uk-button-text::before {

@@ -32,8 +32,10 @@ class Admin extends MX_Controller
             'topsites_logs_model' => 'topsites_logs'
         ]);
 
-        $this->load->language('admin/admin');
-        $this->load->language('vote');
+        $language = $this->language->current();
+
+        $this->load->language('admin/admin', $language);
+        $this->load->language('vote', $language);
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

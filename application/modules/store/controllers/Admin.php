@@ -33,8 +33,10 @@ class Admin extends MX_Controller
             'store_logs_model'  => 'store_logs'
         ]);
 
-        $this->load->language('admin/admin');
-        $this->load->language('store');
+        $language = $this->language->current();
+
+        $this->load->language('admin/admin', $language);
+        $this->load->language('store', $language);
 
         $this->template->set_theme();
         $this->template->set_layout('admin_layout');

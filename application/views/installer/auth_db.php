@@ -12,7 +12,28 @@
     <script src="<?= base_url('assets/fontawesome/js/all.min.js') ?>" defer></script>
   </head>
   <body>
-    <section class="uk-section uk-section-small">
+    <div class="uk-navbar-container uk-navbar-transparent">
+      <div class="uk-container">
+        <nav class="uk-navbar" data-uk-navbar>
+          <div class="uk-navbar-left"></div>
+          <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+              <li>
+                <a href="#"><i class="fas fa-language"></i> <?= $this->language->current_name() ?></a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+                    <?php foreach ($this->language->list() as $lang): ?>
+                    <li><a href="<?= site_url('switcher/'.$lang['code']) ?>"><?= $lang['name'] ?></a></li>
+                    <?php endforeach ?>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <section class="uk-section uk-section-xsmall">
       <div class="uk-container">
         <div class="uk-grid" data-uk-grid>
           <div class="uk-width-1-5@s"></div>
