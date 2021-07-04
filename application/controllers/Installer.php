@@ -23,37 +23,37 @@ class Installer extends CI_Controller
         $this->lang->load('installer');
     }
 
-    /**
-     * Index page
-     */
     public function index()
     {
-        $version      = (version_compare(phpversion(), '7.3', '>=') && version_compare(phpversion(), '8.0', '<'));
-        $gd_ext       = extension_loaded('gd');
-        $gmp_ext      = extension_loaded('gmp');
-        $curl_ext     = function_exists('curl_version');
-        $mbstring_ext = extension_loaded('mbstring');
-        $mysql_ext    = (extension_loaded('mysql') || extension_loaded('mysqlnd'));
-        $openssl_ext  = extension_loaded('openssl');
-        $soap_ext     = extension_loaded('soap');
-        $zip_ext      = extension_loaded('zip');
-        $cache        = (is_dir(APPPATH . 'cache') && is_writable(APPPATH . 'cache'));
-        $uploads      = (is_dir(FCPATH . 'uploads') && is_writable(FCPATH . 'uploads'));
-        $button       = ($version && $gd_ext && $gmp_ext && $curl_ext && $mbstring_ext && $mysql_ext && $openssl_ext && $soap_ext && $zip_ext && $cache && $uploads);
+        $version  = phpversion();
+        $compare  = (version_compare($version, '7.3', '>=') && version_compare($version, '8.0', '<'));
+        $gd       = extension_loaded('gd');
+        $gmp      = extension_loaded('gmp');
+        $curl     = function_exists('curl_version');
+        $mbstring = extension_loaded('mbstring');
+        $mysql    = (extension_loaded('mysql') || extension_loaded('mysqlnd'));
+        $openssl  = extension_loaded('openssl');
+        $soap     = extension_loaded('soap');
+        $zip      = extension_loaded('zip');
+        $cache    = (is_dir(APPPATH . 'cache') && is_writable(APPPATH . 'cache'));
+        $uploads  = (is_dir(FCPATH . 'uploads') && is_writable(FCPATH . 'uploads'));
+        $button   = ($compare && $gd && $gmp && $curl && $mbstring && $mysql && $openssl && $soap && $zip && $cache && $uploads);
 
         $data = [
-            'requirements' => [
-                ['requirement' => lang('php_version'), 'enable' => $version],
-                ['requirement' => lang('gd_extension'), 'enable' => $gd_ext],
-                ['requirement' => lang('gmp_extension'), 'enable' => $gmp_ext],
-                ['requirement' => lang('curl_extension'), 'enable' => $curl_ext],
-                ['requirement' => lang('mbstring_extension'), 'enable' => $mbstring_ext],
-                ['requirement' => lang('mysql_extension'), 'enable' => $mysql_ext],
-                ['requirement' => lang('openssl_extension'), 'enable' => $openssl_ext],
-                ['requirement' => lang('soap_extension'), 'enable' => $soap_ext],
-                ['requirement' => lang('zip_extension'), 'enable' => $zip_ext],
-                ['requirement' => lang('cache_writable'), 'enable' => $cache],
-                ['requirement' => lang('uploads_writable'), 'enable' => $uploads]
+            'info' => ['version' => $version, 'enable' => $compare],
+            'extensions' => [
+                ['name' => 'GD', 'enable' => $gd],
+                ['name' => 'GMP', 'enable' => $gmp],
+                ['name' => 'Curl', 'enable' => $curl],
+                ['name' => 'Mbstring', 'enable' => $mbstring],
+                ['name' => 'MySQL', 'enable' => $mysql],
+                ['name' => 'OpenSSL', 'enable' => $openssl],
+                ['name' => 'SOAP', 'enable' => $soap],
+                ['name' => 'Zip', 'enable' => $zip]
+            ],
+            'permissions' => [
+                ['name' => lang('cache_directory'), 'enable' => $cache],
+                ['name' => lang('uploads_directory'), 'enable' => $uploads]
             ],
             'button' => $button
         ];
@@ -61,47 +61,31 @@ class Installer extends CI_Controller
         $this->load->view('installer/index', $data);
     }
 
-    /**
-     * Set Settings
-     */
-    public function settings()
+    public function cms()
     {
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('language', 'Language', 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('website_hostname', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('website_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('website_prefix', 'Prefix', 'trim|alpha_dash|max_length[6]');
-            $this->form_validation->set_rules('website_database', 'Database', 'trim|required|alpha_dash|max_length[64]');
-            $this->form_validation->set_rules('website_username', 'Username', 'trim|required|alpha_dash|max_length[32]');
-            $this->form_validation->set_rules('website_password', 'Password', 'trim|required|max_length[32]');
-            $this->form_validation->set_rules('auth_hostname', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('auth_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('auth_prefix', 'Prefix', 'trim|alpha_dash|max_length[6]');
-            $this->form_validation->set_rules('auth_database', 'Database', 'trim|required|alpha_dash|max_length[64]');
-            $this->form_validation->set_rules('auth_username', 'Username', 'trim|required|alpha_dash|max_length[32]');
-            $this->form_validation->set_rules('auth_password', 'Password', 'trim|required|max_length[32]');
+            $this->form_validation->set_rules('hostname', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('prefix', lang('prefix'), 'trim|alpha_dash|max_length[6]');
+            $this->form_validation->set_rules('database', lang('database'), 'trim|required|alpha_dash|max_length[64]');
+            $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
+            $this->form_validation->set_rules('password', lang('password'), 'trim|required|max_length[32]');
 
             if ($this->form_validation->run() == FALSE)
             {
-                $this->load->view('installer/settings');
+                $this->load->view('installer/cms_db');
             }
             else
             {
-                $hostname      = $this->input->post('website_hostname', TRUE);
-                $port          = $this->input->post('website_port', TRUE);
-                $prefix        = $this->input->post('website_prefix', TRUE);
-                $database      = $this->input->post('website_database', TRUE);
-                $username      = $this->input->post('website_username', TRUE);
-                $password      = $this->input->post('website_password');
-                $auth_hostname = $this->input->post('auth_hostname', TRUE);
-                $auth_port     = $this->input->post('auth_port', TRUE);
-                $auth_prefix   = $this->input->post('auth_prefix', TRUE);
-                $auth_database = $this->input->post('auth_database', TRUE);
-                $auth_username = $this->input->post('auth_username', TRUE);
-                $auth_password = $this->input->post('auth_password');
+                $hostname = $this->input->post('hostname', TRUE);
+                $port     = $this->input->post('port', TRUE);
+                $prefix   = $this->input->post('prefix', TRUE);
+                $database = $this->input->post('database', TRUE);
+                $username = $this->input->post('username', TRUE);
+                $password = $this->input->post('password');
 
-                $checkDB = $this->load->database([
+                $connect = $this->load->database([
                     'hostname' => $hostname,
                     'username' => $username,
                     'password' => $password,
@@ -110,71 +94,137 @@ class Installer extends CI_Controller
                     'dbdriver' => 'mysqli'
                 ], TRUE);
 
-                $this->load->dbutil($checkDB);
+                $this->load->dbutil($connect);
 
-                if ($this->dbutil->database_exists($database))
+                if (! $this->dbutil->database_exists($database))
                 {
-                    $rewriteDB = $this->_rewrite_database([
-                        'website_hostname' => $hostname,
-                        'website_port'     => $port,
-                        'website_database' => $database,
-                        'website_username' => $username,
-                        'website_password' => $password,
-                        'website_prefix'   => $prefix,
-                        'auth_hostname'    => $auth_hostname,
-                        'auth_port'        => $auth_port,
-                        'auth_database'    => $auth_database,
-                        'auth_username'    => $auth_username,
-                        'auth_password'    => $auth_password,
-                        'auth_prefix'      => $auth_prefix,
-                    ]);
-
-                    if (! $rewriteDB)
-                    {
-                        $this->session->set_flashdata('error', lang('settings_config_error'));
-                        return $this->load->view('installer/settings');
-                    }
-
-                    $this->load->library('config_writer');
-
-                    $config = $this->config_writer->get_instance();
-                    $config->write('language', $this->input->post('language'));
-
-                    if (empty(config_item('encryption_key')))
-                    {
-                        $config->write('encryption_key', bin2hex($this->encryption->create_key(24)));
-                    }
-
-                    redirect(site_url('install/preferences'));
+                    $this->session->set_flashdata('error', lang('db_connection_error'));
+                    return $this->load->view('installer/cms_db');
                 }
 
-                $this->session->set_flashdata('error', lang('settings_db_error'));
-                $this->load->view('installer/settings');
+                $this->cache->file->save('inst_cms', [
+                    'cms_hostname'  => $hostname,
+                    'cms_port'      => $port,
+                    'cms_database'  => $database,
+                    'cms_username'  => $username,
+                    'cms_password'  => $password,
+                    'cms_prefix'    => $prefix
+                ], 3600);
+
+                redirect(site_url('install/auth'));
             }
         }
         else
         {
-            $this->load->view('installer/settings');
+            $this->load->view('installer/cms_db');
         }
     }
 
-    public function preferences()
+    public function auth()
     {
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[3]');
-            $this->form_validation->set_rules('realmlist', 'Realmlist', 'trim');
-            $this->form_validation->set_rules('expansion', 'Expansion', 'trim|required|is_natural');
-            $this->form_validation->set_rules('emulator', 'Emulator', 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('bnet', 'Bnet', 'trim|required|in_list[true,false]');
+            $this->form_validation->set_rules('hostname', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('prefix', lang('prefix'), 'trim|alpha_dash|max_length[6]');
+            $this->form_validation->set_rules('database', lang('database'), 'trim|required|alpha_dash|max_length[64]');
+            $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
+            $this->form_validation->set_rules('password', lang('password'), 'trim|required|max_length[32]');
 
             if ($this->form_validation->run() == FALSE)
             {
-                $this->load->view('installer/preferences');
+                $this->load->view('installer/auth_db');
             }
             else
             {
-                $data = [
+                $hostname = $this->input->post('hostname', TRUE);
+                $port     = $this->input->post('port', TRUE);
+                $prefix   = $this->input->post('prefix', TRUE);
+                $database = $this->input->post('database', TRUE);
+                $username = $this->input->post('username', TRUE);
+                $password = $this->input->post('password');
+
+                $connect = $this->load->database([
+                    'hostname' => $hostname,
+                    'username' => $username,
+                    'password' => $password,
+                    'database' => $database,
+                    'port'     => $port,
+                    'dbdriver' => 'mysqli'
+                ], TRUE);
+
+                $this->load->dbutil($connect);
+
+                if (! $this->dbutil->database_exists($database))
+                {
+                    $this->session->set_flashdata('error', lang('db_connection_error'));
+                    return $this->load->view('installer/auth_db');
+                }
+
+                $cache = $this->cache->file->get('inst_cms');
+
+                if ($cache === false)
+                {
+                    $this->session->set_flashdata('error', lang('data_file_error'));
+                    return $this->load->view('installer/auth_db');
+                }
+
+                $result = array_merge($cache, [
+                    'auth_hostname' => $hostname,
+                    'auth_port'     => $port,
+                    'auth_database' => $database,
+                    'auth_username' => $username,
+                    'auth_password' => $password,
+                    'auth_prefix'   => $prefix
+                ]);
+
+                $rewrite = $this->_rewrite_database($result);
+
+                if (! $rewrite)
+                {
+                    $this->session->set_flashdata('error', lang('file_permission_error'));
+                    return $this->load->view('installer/auth_db');
+                }
+
+                $this->cache->file->delete('inst_cms');
+
+                redirect(site_url('install/settings'));
+            }
+        }
+        else
+        {
+            $this->load->view('installer/auth_db');
+        }
+    }
+
+    public function settings()
+    {
+        $data = [
+            'expansions' => config_item('supported_expansions')
+        ];
+
+        if ($this->input->method() == 'post')
+        {
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required|min_length[3]');
+            $this->form_validation->set_rules('realmlist', lang('realmlist'), 'trim');
+            $this->form_validation->set_rules('expansion', lang('expansion'), 'trim|required|is_natural');
+            $this->form_validation->set_rules('emulator', lang('emulator'), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('bnet', lang('bnet_account'), 'trim|required|in_list[true,false]');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->load->view('installer/settings', $data);
+            }
+            else
+            {
+                $this->load->library('migration');
+
+                if ($this->migration->current() === FALSE)
+                {
+                    show_error($this->migration->error_string());
+                }
+
+                $this->settings->update_batch([
                     [
                         'key' => 'app_name',
                         'value' => $this->input->post('name', TRUE)
@@ -195,52 +245,36 @@ class Installer extends CI_Controller
                         'key' => 'emulator_bnet',
                         'value' => $this->input->post('bnet')
                     ],
-                ];
+                ], 'key');
 
-                $this->cache->file->save('preferences', $data, 1800);
+                $this->load->library('config_writer');
 
-                redirect(site_url('install/finish'), 'refresh');
+                $config = $this->config_writer->get_instance();
+
+                if (empty(config_item('encryption_key')))
+                {
+                    $config->write('encryption_key', bin2hex($this->encryption->create_key(24)));
+                }
+
+                if (config_item('sess_driver') != 'database')
+                {
+                    $config->write('sess_driver', 'database');
+                    $config->write('sess_save_path', 'sessions');
+                }
+
+                if (is_null(config_item('installer_blocked')))
+                {
+                    $installer = $this->config_writer->get_instance(APPPATH . 'config/installer.php');
+                    $installer->write('installer_blocked', TRUE);
+                }
+
+                redirect(site_url(), 'refresh');
             }
         }
         else
         {
-            $this->load->view('installer/preferences');
+            $this->load->view('installer/settings', $data);
         }
-    }
-
-    public function finish()
-    {
-        $this->load->library('migration');
-
-        if ($this->migration->current() === FALSE)
-        {
-            show_error($this->migration->error_string());
-        }
-
-        $data = $this->cache->file->get('preferences');
-
-        if ($data !== false)
-        {
-            $this->settings->update_batch($data, 'key');
-            $this->cache->file->delete('preferences');
-        }
-
-        $this->load->library('config_writer');
-
-        if (config_item('sess_driver') != 'database')
-        {
-            $config = $this->config_writer->get_instance();
-            $config->write('sess_driver', 'database');
-            $config->write('sess_save_path', 'sessions');
-        }
-
-        if (is_null(config_item('installer_blocked')))
-        {
-            $installer = $this->config_writer->get_instance(APPPATH . 'config/installer.php');
-            $installer->write('installer_blocked', TRUE);
-        }
-
-        redirect(site_url(), 'refresh');
     }
 
     /**
@@ -256,58 +290,58 @@ class Installer extends CI_Controller
             return false;
         }
 
-        $data = "<?php".PHP_EOL;
-        $data .= "defined('BASEPATH') OR exit('No direct script access allowed');".PHP_EOL.PHP_EOL;
-        $data .= "\$active_group"." = 'website';".PHP_EOL;
-        $data .= "\$query_builder"." = TRUE;".PHP_EOL.PHP_EOL;
-        $data .= "\$db['website']"." = [".PHP_EOL;
-        $data .= "\t'dsn'    => '',".PHP_EOL;
-        $data .= "\t'hostname' => '".$settings['website_hostname']."',".PHP_EOL;
-        $data .= "\t'username' => '".$settings['website_username']."',".PHP_EOL;
-        $data .= "\t'password' => '".$settings['website_password']."',".PHP_EOL;
-        $data .= "\t'database' => '".$settings['website_database']."',".PHP_EOL;
-        $data .= "\t'port'    => '".$settings['website_port']."',".PHP_EOL;
-        $data .= "\t'dbdriver' => 'mysqli',".PHP_EOL;
-        $data .= "\t'dbprefix' => '".$settings['website_prefix']."',".PHP_EOL;
-        $data .= "\t'pconnect' => FALSE,".PHP_EOL;
-        $data .= "\t'db_debug' => (ENVIRONMENT !== 'production'),".PHP_EOL;
-        $data .= "\t'cache_on' => FALSE,".PHP_EOL;
-        $data .= "\t'cachedir' => '',".PHP_EOL;
-        $data .= "\t'char_set' => 'utf8mb4',".PHP_EOL;
-        $data .= "\t'dbcollat' => 'utf8mb4_unicode_520_ci',".PHP_EOL;
-        $data .= "\t'swap_pre' => '',".PHP_EOL;
-        $data .= "\t'encrypt' => FALSE,".PHP_EOL;
-        $data .= "\t'compress' => FALSE,".PHP_EOL;
-        $data .= "\t'stricton' => FALSE,".PHP_EOL;
-        $data .= "\t'failover' => [],".PHP_EOL;
-        $data .= "\t'save_queries' => TRUE,".PHP_EOL;
-        $data .= "];".PHP_EOL.PHP_EOL;
-        $data .= "\$db['auth']"." = [".PHP_EOL;
-        $data .= "\t'dsn'    => '',".PHP_EOL;
-        $data .= "\t'hostname' => '".$settings['auth_hostname']."',".PHP_EOL;
-        $data .= "\t'username' => '".$settings['auth_username']."',".PHP_EOL;
-        $data .= "\t'password' => '".$settings['auth_password']."',".PHP_EOL;
-        $data .= "\t'database' => '".$settings['auth_database']."',".PHP_EOL;
-        $data .= "\t'port'    => '".$settings['auth_port']."',".PHP_EOL;
-        $data .= "\t'dbdriver' => 'mysqli',".PHP_EOL;
-        $data .= "\t'dbprefix' => '".$settings['auth_prefix']."',".PHP_EOL;
-        $data .= "\t'pconnect' => FALSE,".PHP_EOL;
-        $data .= "\t'db_debug' => (ENVIRONMENT !== 'production'),".PHP_EOL;
-        $data .= "\t'cache_on' => FALSE,".PHP_EOL;
-        $data .= "\t'cachedir' => '',".PHP_EOL;
-        $data .= "\t'char_set' => 'utf8',".PHP_EOL;
-        $data .= "\t'dbcollat' => 'utf8_general_ci',".PHP_EOL;
-        $data .= "\t'swap_pre' => '',".PHP_EOL;
-        $data .= "\t'encrypt' => FALSE,".PHP_EOL;
-        $data .= "\t'compress' => FALSE,".PHP_EOL;
-        $data .= "\t'stricton' => FALSE,".PHP_EOL;
-        $data .= "\t'failover' => [],".PHP_EOL;
-        $data .= "\t'save_queries' => TRUE,".PHP_EOL;
-        $data .= "];";
+        $line = "<?php".PHP_EOL;
+        $line .= "defined('BASEPATH') OR exit('No direct script access allowed');".PHP_EOL.PHP_EOL;
+        $line .= "\$active_group"." = 'cms';".PHP_EOL;
+        $line .= "\$query_builder"." = TRUE;".PHP_EOL.PHP_EOL;
+        $line .= "\$db['cms']"." = [".PHP_EOL;
+        $line .= "\t'dsn'    => '',".PHP_EOL;
+        $line .= "\t'hostname' => '{$settings['cms_hostname']}',".PHP_EOL;
+        $line .= "\t'username' => '{$settings['cms_username']}',".PHP_EOL;
+        $line .= "\t'password' => '{$settings['cms_password']}',".PHP_EOL;
+        $line .= "\t'database' => '{$settings['cms_database']}',".PHP_EOL;
+        $line .= "\t'port'    => {$settings['cms_port']},".PHP_EOL;
+        $line .= "\t'dbdriver' => 'mysqli',".PHP_EOL;
+        $line .= "\t'dbprefix' => '{$settings['cms_prefix']}',".PHP_EOL;
+        $line .= "\t'pconnect' => FALSE,".PHP_EOL;
+        $line .= "\t'db_debug' => (ENVIRONMENT !== 'production'),".PHP_EOL;
+        $line .= "\t'cache_on' => FALSE,".PHP_EOL;
+        $line .= "\t'cachedir' => '',".PHP_EOL;
+        $line .= "\t'char_set' => 'utf8mb4',".PHP_EOL;
+        $line .= "\t'dbcollat' => 'utf8mb4_unicode_520_ci',".PHP_EOL;
+        $line .= "\t'swap_pre' => '',".PHP_EOL;
+        $line .= "\t'encrypt' => FALSE,".PHP_EOL;
+        $line .= "\t'compress' => FALSE,".PHP_EOL;
+        $line .= "\t'stricton' => FALSE,".PHP_EOL;
+        $line .= "\t'failover' => [],".PHP_EOL;
+        $line .= "\t'save_queries' => TRUE,".PHP_EOL;
+        $line .= "];".PHP_EOL.PHP_EOL;
+        $line .= "\$db['auth']"." = [".PHP_EOL;
+        $line .= "\t'dsn'    => '',".PHP_EOL;
+        $line .= "\t'hostname' => '{$settings['auth_hostname']}',".PHP_EOL;
+        $line .= "\t'username' => '{$settings['auth_username']}',".PHP_EOL;
+        $line .= "\t'password' => '{$settings['auth_password']}',".PHP_EOL;
+        $line .= "\t'database' => '{$settings['auth_database']}',".PHP_EOL;
+        $line .= "\t'port'    => {$settings['auth_port']},".PHP_EOL;
+        $line .= "\t'dbdriver' => 'mysqli',".PHP_EOL;
+        $line .= "\t'dbprefix' => '{$settings['auth_prefix']}',".PHP_EOL;
+        $line .= "\t'pconnect' => FALSE,".PHP_EOL;
+        $line .= "\t'db_debug' => (ENVIRONMENT !== 'production'),".PHP_EOL;
+        $line .= "\t'cache_on' => FALSE,".PHP_EOL;
+        $line .= "\t'cachedir' => '',".PHP_EOL;
+        $line .= "\t'char_set' => 'utf8mb4',".PHP_EOL;
+        $line .= "\t'dbcollat' => 'utf8mb4_unicode_520_ci',".PHP_EOL;
+        $line .= "\t'swap_pre' => '',".PHP_EOL;
+        $line .= "\t'encrypt' => FALSE,".PHP_EOL;
+        $line .= "\t'compress' => FALSE,".PHP_EOL;
+        $line .= "\t'stricton' => FALSE,".PHP_EOL;
+        $line .= "\t'failover' => [],".PHP_EOL;
+        $line .= "\t'save_queries' => TRUE,".PHP_EOL;
+        $line .= "];";
 
         $this->load->helper('file');
 
-        if (! write_file(APPPATH.'config/database.php', $data))
+        if (! write_file(APPPATH.'config/database.php', $line))
         {
             return false;
         }

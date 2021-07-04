@@ -16,7 +16,7 @@
 
 html {
   background: transparent;
-  color: #f3f3f3;
+  color: #dbdde1;
 }
 
 body {
@@ -25,13 +25,6 @@ body {
   background-position: center -120px;
   background-repeat: no-repeat;
   font-size: 1rem;
-}
-
-img {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 h1,
@@ -51,20 +44,8 @@ h6,
 
 .uk-logo {
   font-family: 'Lobster', cursive;
-  font-size: 38px;
+  font-size: 48px;
   color: #fff !important;
-}
-
-.uk-navbar-item,
-.uk-navbar-nav > li > a,
-.uk-navbar-toggle {
-  min-height: 60px;
-  padding: 0 5px;
-}
-
-.step-title {
-  font-family: 'Lobster', cursive;
-  color: #fff;
 }
 
 .uk-heading-line > ::after,
@@ -72,19 +53,82 @@ h6,
   border-bottom-color: rgba(255, 255, 255, .15);
 }
 
-.uk-alert {
-  padding: 7px 14px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+.uk-section-small {
+  padding-bottom: 20px;
 }
 
-.uk-alert-danger {
-  background: #b92323;
-  color: #fff;
+.uk-card-default {
+  background: #0e1b3e;
+  border-radius: 4px;
+  color: #dbdde1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
 }
 
-.uk-alert-success {
-  background: #36b923;
+.uk-card-body {
+  padding: 20px;
+}
+
+.uk-form-label {
+  color: #dbdde1;
+}
+
+.uk-input,
+.uk-select,
+.uk-textarea {
+  background: #0a142e;
+  border-color: rgba(255, 255, 255, .075);
+  border-radius: 4px;
+  color: #dbdde1;
+}
+
+.uk-input:focus,
+.uk-select:focus,
+.uk-textarea:focus {
+  background-color: #0a142e;
+  border-color: #0e8bbf;
+  color: #dbdde1;
+}
+
+.uk-input::-ms-input-placeholder {
+  color: #d0d3d8 !important;
+}
+
+.uk-input::placeholder {
+  color: #d0d3d8;
+}
+
+.uk-select:not([multiple]):not([size]) option {
+  color: #d0d3d8;
+}
+
+.uk-button-default {
+  background-color: #0e8bbf;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 2px;
   color: #fff;
+  font-weight: 600;
+}
+
+.uk-button-default:focus,
+.uk-button-default:hover {
+  background: #0f98d1;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.uk-button-default.uk-active,
+.uk-button-default:active {
+  background: #0f98d1;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.uk-text-meta {
+  color: #d0d0d0;
+}
+
+.uk-text-success {
+  color: #0ebf74 !important;
 }
 
 .uk-icon-button {
@@ -134,22 +178,56 @@ h6,
   color: #fff;
 }
 
-.uk-button-primary {
-  background-color: #1b3dbb;
-  border: 1px solid rgba(255, 255, 255, .1);
+.uk-icon-button.ko-fi {
+  background: #ff5e5b;
+  width: 40px;
+  height: 40px;
+  font-size: 1.063rem;
+  color: #fff;
+}
+
+.uk-icon-button:hover.ko-fi,
+.uk-icon-button:focus.ko-fi {
+  background-color: #ff716f;
+  color: #fff;
+}
+
+.uk-icon-button:active.ko-fi,
+.uk-active > .uk-icon-button.ko-fi {
+  background-color: #ff716f;
+  color: #fff;
+}
+
+.uk-alert {
+  padding: 7px 14px;
   border-radius: 2px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
 }
 
-.uk-button-primary:focus,
-.uk-button-primary:hover {
-  background: #3251c2;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, .1);
+.uk-alert-close {
+  top: 12px;
 }
 
-.uk-button-primary.uk-active,
-.uk-button-primary:active {
-  background: #3251c2;
+.uk-alert-danger {
+  background: #bf0e0e;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.uk-alert-success {
+  background: #0ebf74;
+  color: #fff;
+}
+
+.uk-tile {
+  padding: 10px 15px;
+  border-radius: 4px 4px 0 0;
+}
+
+.uk-tile-default {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .075);
+}
+
+.uk-tile-default.tile-success {
+  box-shadow: 0 2px 0 #0ebf74;
 }

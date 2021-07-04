@@ -9,24 +9,27 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['proceed_button'] = 'Proceed with db installation';
-$lang['finish_button'] = 'Finish';
-$lang['requirements_title'] = 'Listing and verification of the requirements for the operation of the CMS';
-$lang['continue_button'] = 'Continue';
-$lang['refresh_button'] = 'Refresh';
-$lang['settings_title'] = 'Please fill the form below to set settings for create your website database';
-$lang['settings_db_error'] = 'Could not possible to verify the data provided when trying to connect to your database.';
-$lang['settings_config_error'] = 'Could not write files to configuration folder, please grant corresponding permissions to files/folders.';
-$lang['preferences_title'] = 'Finally complete this last form to establish basic settings. In your administration panel you will find more options';
-$lang['submit_button'] = 'Submit';
-$lang['php_version'] = 'PHP Version 7.3.x or 7.4.x';
-$lang['gd_extension'] = 'GD Extension';
-$lang['gmp_extension'] = 'GMP Extension';
-$lang['curl_extension'] = 'CURL Extension';
-$lang['mbstring_extension'] = 'Mbstring Extension';
-$lang['mysql_extension'] = 'MySQL Extension';
-$lang['openssl_extension'] = 'OpenSSL Extension';
-$lang['soap_extension'] = 'SOAP Extension';
-$lang['zip_extension'] = 'Zip Extension';
-$lang['cache_writable'] = 'Cache Folder Writable';
-$lang['uploads_writable'] = 'Uploads Folder Writable';
+$lang['installer'] = 'Installer';
+
+$lang['cms_requirements'] = '<b>Welcome!</b> Before starting the installation of BlizzCMS you will need the following requirements to continue with the following steps';
+$lang['extensions'] = 'Extensions';
+$lang['writable_permission'] = 'Writable permission';
+
+$lang['required_version'] = 'Required version 7.3.x or 7.4.x';
+$lang['cache_directory'] = 'Cache directory';
+$lang['uploads_directory'] = 'Uploads directory';
+
+$lang['cms_database'] = 'CMS database';
+$lang['cms_database_data'] = 'Enter the data that will be used to establish a connection to your database for the <b>CMS</b>';
+$lang['auth_database'] = 'Auth database';
+$lang['auth_database_data'] = 'Enter the data that will be used to establish a connection to your database for the <b>Auth</b>';
+
+$lang['basic_settings'] = 'Basic settings';
+$lang['basic_settings_data'] = 'Enter the following basic data to run the installation. Remember that you can change the settings later in the admin panel';
+
+$lang['continue'] = 'Continue';
+$lang['install_now'] = 'Install now';
+
+$lang['db_connection_error'] = 'Could not establish connection to the database with the data provided';
+$lang['data_file_error'] = 'Could not find the necessary data to overwrite';
+$lang['file_permission_error'] = 'Files inside the config folder do not have the necessary writable permissions';
