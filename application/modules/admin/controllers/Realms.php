@@ -49,19 +49,19 @@ class Realms extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('max_cap', 'Max Capacity', 'trim|required|numeric|greater_than[0]');
-            $this->form_validation->set_rules('char_host', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('char_user', 'Username', 'trim|required|alpha_dash|max_length[32]');
-            $this->form_validation->set_rules('char_pass', 'Password', 'trim|required|max_length[32]');
-            $this->form_validation->set_rules('char_db', 'Database', 'trim|required|alpha_dash|max_length[64]');
-            $this->form_validation->set_rules('char_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('console_host', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('console_user', 'Username', 'trim|required');
-            $this->form_validation->set_rules('console_pass', 'Password', 'trim|required');
-            $this->form_validation->set_rules('console_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('realm_host', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('realm_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('max_cap', lang('maximum_capacity'), 'trim|required|numeric|greater_than[0]');
+            $this->form_validation->set_rules('char_host', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('char_user', lang('username'), 'trim|required|alpha_dash|max_length[32]');
+            $this->form_validation->set_rules('char_pass', lang('password'), 'trim|required|max_length[32]');
+            $this->form_validation->set_rules('char_db', lang('database'), 'trim|required|alpha_dash|max_length[64]');
+            $this->form_validation->set_rules('char_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('console_host', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('console_user', lang('username'), 'trim|required');
+            $this->form_validation->set_rules('console_pass', lang('password'), 'trim|required');
+            $this->form_validation->set_rules('console_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('realm_host', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('realm_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -118,19 +118,19 @@ class Realms extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('max_cap', 'Maximum capacity', 'trim|required|numeric|greater_than[0]');
-            $this->form_validation->set_rules('char_host', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('char_user', 'Username', 'trim|required|alpha_dash|max_length[32]');
-            $this->form_validation->set_rules('char_pass', 'Password', 'trim|max_length[32]');
-            $this->form_validation->set_rules('char_db', 'Database', 'trim|required|alpha_dash|max_length[64]');
-            $this->form_validation->set_rules('char_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('console_host', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('console_user', 'Username', 'trim|required');
-            $this->form_validation->set_rules('console_pass', 'Password', 'trim');
-            $this->form_validation->set_rules('console_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('realm_host', 'Hostname', 'trim|required');
-            $this->form_validation->set_rules('realm_port', 'Port', 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('max_cap', lang('maximum_capacity'), 'trim|required|numeric|greater_than[0]');
+            $this->form_validation->set_rules('char_host', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('char_user', lang('username'), 'trim|required|alpha_dash|max_length[32]');
+            $this->form_validation->set_rules('char_pass', lang('password'), 'trim|max_length[32]');
+            $this->form_validation->set_rules('char_db', lang('database'), 'trim|required|alpha_dash|max_length[64]');
+            $this->form_validation->set_rules('char_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('console_host', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('console_user', lang('username'), 'trim|required');
+            $this->form_validation->set_rules('console_pass', lang('password'), 'trim');
+            $this->form_validation->set_rules('console_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('realm_host', lang('hostname'), 'trim|required');
+            $this->form_validation->set_rules('realm_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
 
             if ($this->form_validation->run() == FALSE)
             {

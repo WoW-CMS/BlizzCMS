@@ -19,7 +19,7 @@
                 <ul class="uk-nav uk-dropdown-nav">
                   <li><a href="<?= site_url('admin/system/general') ?>"><?= lang('general') ?></a></li>
                   <li><a href="<?= site_url('admin/system/captcha') ?>"><?= lang('captcha') ?></a></li>
-                  <li><a href="<?= site_url('admin/system/email') ?>"><?= lang('email_preferences') ?></a></li>
+                  <li><a href="<?= site_url('admin/system/mail') ?>"><?= lang('mail_smtp') ?></a></li>
                 </ul>
               </div>
             </li>

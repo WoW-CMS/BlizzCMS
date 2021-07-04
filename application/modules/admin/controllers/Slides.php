@@ -49,10 +49,10 @@ class Slides extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[image,video,iframe]');
-            $this->form_validation->set_rules('route', 'Route', 'trim|required');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[image,video,iframe]');
+            $this->form_validation->set_rules('route', lang('route'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -100,10 +100,10 @@ class Slides extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[image,video,iframe]');
-            $this->form_validation->set_rules('route', 'Route', 'trim|required');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[image,video,iframe]');
+            $this->form_validation->set_rules('route', lang('route'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {

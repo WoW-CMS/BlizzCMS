@@ -76,11 +76,11 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
-                      <li>
-                        <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
-                          <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
-                        </a>
-                      </li>
+                    <li>
+                      <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
+                        <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
+                      </a>
+                    </li>
                     <?php endforeach ?>
                   </ul>
                 </div>
@@ -107,56 +107,6 @@
             <?php endif ?>
           </div>
         </nav>
-        <div id="mobile" data-uk-offcanvas="flip: true">
-          <div class="uk-offcanvas-bar">
-            <button class="uk-offcanvas-close" type="button" uk-close></button>
-            <div class="uk-panel">
-              <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('app_name') ?></p>
-              <?php if ($this->cms->isLogged()): ?>
-              <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
-                <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" width="36" height="36" alt="Avatar">
-                <span class="uk-label"><?= $this->session->userdata('nickname') ?></span>
-              </div>
-              <?php endif ?>
-              <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                <?php if (! $this->cms->isLogged()): ?>
-                <li><a href="<?= site_url('register') ?>"><i class="fas fa-user-plus"></i> <?= lang('register') ?></a></li>
-                <li><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('login') ?></a></li>
-                <?php else: ?>
-                <li><a href="<?= site_url('user') ?>"><i class="far fa-user-circle"></i> <?= lang('user_panel') ?></a></li>
-                <?php if ($this->auth->is_admin()): ?>
-                <li><a href="<?= site_url('admin') ?>"><i class="fas fa-cog"></i> <?= lang('admin_panel') ?></a></li>
-                <?php endif ?>
-                <li><a href="<?= site_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout') ?></a></li>
-                <?php endif ?>
-                <?php foreach ($this->menu->menu_saved() as $item): ?>
-                <?php if ($item->type === TYPE_DROPDOWN): ?>
-                <li class="uk-parent">
-                  <a href="#">
-                    <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
-                  </a>
-                  <ul class="uk-nav-sub">
-                    <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
-                    <li>
-                      <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
-                        <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
-                      </a>
-                    </li>
-                    <?php endforeach ?>
-                  </ul>
-                </li>
-                <?php elseif ($item->type === TYPE_DEFAULT): ?>
-                <li>
-                  <a target="<?= $item->target ?>" href="<?= $item->url ?>">
-                    <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
-                  </a>
-                </li>
-                <?php endif ?>
-                <?php endforeach ?>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -166,7 +116,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
           <div class="uk-width-auto@s">
-            <p class="uk-text-small uk-text-bold uk-text-center uk-text-left@s">Proudly powered by <a target="_blank" href="https://wow-cms.com" class="uk-text-uppercase">BlizzCMS</a></p>
+            <p class="uk-text-small uk-text-bold uk-text-center uk-text-left@s"><?= lang('powered_by') ?> <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
           </div>
           <div class="uk-width-expand@s">
             <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold"><?= config_item('app_name') ?></span>. <?= lang('rights_reserved') ?></p>
@@ -174,6 +124,57 @@
         </div>
       </div>
     </section>
+
+    <div id="mobile" data-uk-offcanvas="flip: true">
+      <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+        <div class="uk-panel">
+          <p class="uk-logo uk-text-center uk-margin-small"><?= config_item('app_name') ?></p>
+          <?php if ($this->cms->isLogged()): ?>
+          <div class="uk-padding-small uk-padding-remove-vertical uk-margin-small uk-text-center">
+            <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" width="36" height="36" alt="Avatar">
+            <span class="uk-label"><?= $this->session->userdata('nickname') ?></span>
+          </div>
+          <?php endif ?>
+          <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+            <?php if (! $this->cms->isLogged()): ?>
+            <li><a href="<?= site_url('register') ?>"><i class="fas fa-user-plus"></i> <?= lang('register') ?></a></li>
+            <li><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('login') ?></a></li>
+            <?php else: ?>
+            <li><a href="<?= site_url('user') ?>"><i class="far fa-user-circle"></i> <?= lang('user_panel') ?></a></li>
+            <?php if ($this->auth->is_admin()): ?>
+            <li><a href="<?= site_url('admin') ?>"><i class="fas fa-cog"></i> <?= lang('admin_panel') ?></a></li>
+            <?php endif ?>
+            <li><a href="<?= site_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout') ?></a></li>
+            <?php endif ?>
+            <?php foreach ($this->menu->menu_saved() as $item): ?>
+            <?php if ($item->type === TYPE_DROPDOWN): ?>
+            <li class="uk-parent">
+              <a href="#">
+                <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
+              </a>
+              <ul class="uk-nav-sub">
+                <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
+                <li>
+                  <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
+                    <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
+                  </a>
+                </li>
+                <?php endforeach ?>
+              </ul>
+            </li>
+            <?php elseif ($item->type === TYPE_DEFAULT): ?>
+            <li>
+              <a target="<?= $item->target ?>" href="<?= $item->url ?>">
+                <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
+              </a>
+            </li>
+            <?php endif ?>
+            <?php endforeach ?>
+          </ul>
+        </div>
+      </div>
+    </div>
     <?= $template['body_data'] ?>
   </body>
 </html>

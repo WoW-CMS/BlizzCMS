@@ -31,7 +31,7 @@ class Migration_Create_table_slides extends CI_Migration
                 'constraint' => '255',
                 'null' => FALSE
             ),
-            'order' => array(
+            'sort' => array(
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
@@ -42,8 +42,8 @@ class Migration_Create_table_slides extends CI_Migration
         $this->dbforge->create_table('slides');
 
         $data = array(
-            array('title' => 'BlizzCMS', 'description' => 'Check our constant updates!', 'type' => 'image', 'route' => 'slide1.jpg', 'order' => 1),
-            array('title' => 'Vote Now', 'description' => 'Each vote will be rewarded!', 'type' => 'image', 'route' => 'slide2.jpg', 'order' => 2)
+            array('title' => 'BlizzCMS', 'description' => 'Check our constant updates!', 'type' => 'image', 'route' => 'slide1.jpg', 'sort' => 1),
+            array('title' => 'Vote Now', 'description' => 'Each vote will be rewarded!', 'type' => 'image', 'route' => 'slide2.jpg', 'sort' => 2)
         );
         $this->db->insert_batch('slides', $data);
     }

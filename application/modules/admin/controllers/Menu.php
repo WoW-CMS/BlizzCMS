@@ -53,12 +53,12 @@ class Menu extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('url', 'Url', 'trim');
-            $this->form_validation->set_rules('icon', 'Icon', 'trim');
-            $this->form_validation->set_rules('target', 'Target', 'trim|required|in_list[_self,_blank]');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[default,dropdown]');
-            $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('url', lang('url'), 'trim');
+            $this->form_validation->set_rules('icon', lang('icon'), 'trim');
+            $this->form_validation->set_rules('target', lang('target'), 'trim|required|in_list[_self,_blank]');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,dropdown]');
+            $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -109,12 +109,12 @@ class Menu extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('url', 'Url', 'trim');
-            $this->form_validation->set_rules('icon', 'Icon', 'trim');
-            $this->form_validation->set_rules('target', 'Target', 'trim|required|in_list[_self,_blank]');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[default,dropdown]');
-            $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('url', lang('url'), 'trim');
+            $this->form_validation->set_rules('icon', lang('icon'), 'trim');
+            $this->form_validation->set_rules('target', lang('target'), 'trim|required|in_list[_self,_blank]');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,dropdown]');
+            $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -122,14 +122,16 @@ class Menu extends MX_Controller
             }
             else
             {
-                $this->menu->update([
+                $set = [
                     'name'   => $this->input->post('name'),
                     'url'    => $this->input->post('url'),
                     'icon'   => $this->input->post('icon'),
                     'target' => $this->input->post('target'),
                     'type'   => $this->input->post('type'),
                     'parent' => $this->input->post('parent')
-                ], ['id' => $id]);
+                ];
+
+                $this->menu->update($set, ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('menu_updated'));
 

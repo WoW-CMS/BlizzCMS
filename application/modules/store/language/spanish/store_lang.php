@@ -13,19 +13,19 @@ $lang['store'] = 'Tienda';
 $lang['cart'] = 'Carrito';
 
 $lang['categories'] = 'Categorías';
-$lang['top_items'] = 'TOP Items';
-$lang['view_item'] = 'Ver ítem';
+$lang['top_items'] = 'Artículos destacados';
+$lang['view_item'] = 'Ver artículo';
 $lang['add_cart'] = 'Añadir al carro';
-$lang['items'] = 'Items';
+$lang['items'] = 'Artículos';
 
 $lang['soap_send_subject'] = 'Compra en la Tienda';
 $lang['soap_send_body'] = '¡Gracias por comprar en nuestra tienda!';
 
 $lang['create_category'] = 'Crear Categoría';
 $lang['edit_category'] = 'Editar Categoría';
-$lang['create_item'] = 'Crear item';
-$lang['edit_item'] = 'Editar Item';
-$lang['enable_top_item'] = 'Display in main page (Top Items)?';
+$lang['create_item'] = 'Crear artículo';
+$lang['edit_item'] = 'Editar artículo';
+$lang['enable_top_item'] = '¿Mostrar en la página principal (artículos destacados)?';
 
 /**
  * Alerts

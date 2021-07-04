@@ -40,33 +40,6 @@
               </li>
             </ul>
             <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#mod-mobile" uk-toggle></a>
-            <div class="uk-offcanvas-content">
-              <div id="mod-mobile" data-uk-offcanvas="overlay: true">
-                <div class="uk-offcanvas-bar">
-                  <div class="sidebar-head uk-text-center">
-                    <a class="uk-logo" href="<?= site_url('forum/mod') ?>">BlizzCMS</a>
-                  </div>
-                  <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                    <li><a href="<?= site_url('forum/mod') ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard') ?></a></li>
-                    <li class="uk-parent">
-                      <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span>Forum</a>
-                      <ul class="uk-nav-sub">
-                        <li><a href="<?= site_url('forum/mod/queue') ?>">Moderation Queue</a></li>
-                        <li><a href="<?= site_url('forum/mod/reports') ?>">Reports</a></li>
-                        <li><a href="<?= site_url('forum/mod/logs') ?>">Moderator Logs</a></li>
-                      </ul>
-                    </li>
-                    <li class="uk-parent">
-                      <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users') ?></a>
-                      <ul class="uk-nav-sub">
-                        <li><a href="<?= site_url('forum/mod/bannings') ?>">Bannings</a></li>
-                        <li><a href="<?= site_url('forum/mod/warnings') ?>">Warnings</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
         </nav>
       </div>
@@ -111,6 +84,32 @@
         <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('rights_reserved') ?></p>
       </div>
     </section>
+
+    <div id="mod-mobile" data-uk-offcanvas="overlay: true">
+      <div class="uk-offcanvas-bar">
+        <div class="sidebar-head uk-text-center">
+          <a class="uk-logo" href="<?= site_url('forum/mod') ?>">BlizzCMS</a>
+        </div>
+        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <li><a href="<?= site_url('forum/mod') ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard') ?></a></li>
+          <li class="uk-parent">
+            <a href="#"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span>Forum</a>
+            <ul class="uk-nav-sub">
+              <li><a href="<?= site_url('forum/mod/queue') ?>">Moderation Queue</a></li>
+              <li><a href="<?= site_url('forum/mod/reports') ?>">Reports</a></li>
+              <li><a href="<?= site_url('forum/mod/logs') ?>">Moderator Logs</a></li>
+            </ul>
+          </li>
+          <li class="uk-parent">
+            <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users') ?></a>
+            <ul class="uk-nav-sub">
+              <li><a href="<?= site_url('forum/mod/bannings') ?>">Bannings</a></li>
+              <li><a href="<?= site_url('forum/mod/warnings') ?>">Warnings</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
     <?= $template['body_data'] ?>
   </body>
 </html>

@@ -117,7 +117,7 @@ class Cms_model extends CI_Model
         }
 
         if (property_exists($row, $column)) {
-            return $row->$column;
+            return $row->{$column};
         }
 
         return $row;
@@ -159,19 +159,19 @@ class Cms_model extends CI_Model
         $this->load->library('email');
 
         $this->email->initialize([
-            'protocol'    => config_item('email_protocol'),
-            'smtp_host'   => config_item('email_hostname'),
-            'smtp_user'   => config_item('email_username'),
-            'smtp_pass'   => ! empty(config_item('email_password')) ? decrypt(config_item('email_password')) : '',
-            'smtp_port'   => config_item('email_port'),
-            'smtp_crypto' => config_item('email_crypto'),
+            'protocol'    => config_item('mail_mailer'),
+            'smtp_host'   => config_item('mail_hostname'),
+            'smtp_user'   => config_item('mail_username'),
+            'smtp_pass'   => ! empty(config_item('mail_password')) ? decrypt(config_item('mail_password')) : '',
+            'smtp_port'   => config_item('mail_port'),
+            'smtp_crypto' => config_item('mail_encryption'),
             'mailtype'    => 'html',
             'charset'     => 'utf-8',
             'newline'     => "\r\n"
         ]);
 
         $this->email->to($to);
-        $this->email->from(config_item('email_sender'), config_item('email_sender_name'));
+        $this->email->from(config_item('mail_username'), config_item('mail_sender'));
         $this->email->subject($subject);
         $this->email->message($message);
 

@@ -54,25 +54,24 @@ class Forum extends MX_Controller
             show_404();
         }
 
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 15;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('forum/view/' . $id),
             'total_rows'  => $this->forum_topics->count_all($id),
-            'per_page'    => 15,
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
             'forum'        => $forum,
             'subforums'    => $this->forum->find_all($id, 'forum'),
-            'topics'       => $this->forum_topics->find_all($id, $config['per_page'], $offset),
+            'topics'       => $this->forum_topics->find_all($id, $per_page, $offset),
             'links'        => $this->pagination->create_links(),
             'total_users'  => $this->users->count_all(),
             'total_topics' => $this->forum_topics->count_all(),
@@ -99,24 +98,23 @@ class Forum extends MX_Controller
             show_404();
         }
 
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 15;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('forum/topic/' . $id),
             'total_rows'  => $this->forum_posts->count_all($id),
-            'per_page'    => 15,
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
             'topic' => $topic,
-            'posts' => $this->forum_posts->find_all($id, $config['per_page'], $offset),
+            'posts' => $this->forum_posts->find_all($id, $per_page, $offset),
             'links' => $this->pagination->create_links()
         ];
 
@@ -157,8 +155,8 @@ class Forum extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required|richtext_min[50]');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|required|richtext_min[50]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -191,8 +189,8 @@ class Forum extends MX_Controller
             redirect(site_url('login'));
         }
 
-        $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('comment', 'Comment', 'trim|required|richtext_min[10]');
+        $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('comment', lang('comment'), 'trim|required|richtext_min[10]');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -256,8 +254,8 @@ class Forum extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required|richtext_min[50]');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|required|richtext_min[50]');
 
             if ($this->form_validation->run() == FALSE)
             {

@@ -39,40 +39,6 @@
             <a class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon href="#admin-mobile" uk-toggle></a>
           </div>
         </nav>
-        <div id="admin-mobile" data-uk-offcanvas="overlay: true">
-          <div class="uk-offcanvas-bar">
-            <div class="sidebar-head uk-text-center">
-              <a class="uk-logo" href="<?= site_url('admin') ?>">BlizzCMS</a>
-            </div>
-            <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-              <li><a href="<?= site_url('admin') ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard') ?></a></li>
-              <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= lang('settings') ?></a>
-                <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/system') ?>"><?= lang('system') ?></a></li>
-                  <li><a href="<?= site_url('admin/mods') ?>"><?= lang('modules') ?></a></li>
-                  <li><a href="<?= site_url('admin/realms') ?>"><?= lang('realms') ?></a></li>
-                </ul>
-              </li>
-              <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users') ?></a>
-                <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/users') ?>"><?= lang('all_users') ?></a></li>
-                  <li><a href="<?= site_url('admin/users/banned') ?>"><?= lang('banned_users') ?></a></li>
-                </ul>
-              </li>
-              <li class="uk-parent">
-                <a href="#"><span class="uk-margin-small-right"><i class="fas fa-th"></i></span><?= lang('sections') ?></a>
-                <ul class="uk-nav-sub">
-                  <li><a href="<?= site_url('admin/menu') ?>"><?= lang('menu') ?></a></li>
-                  <li><a href="<?= site_url('admin/news') ?>"><?= lang('news') ?></a></li>
-                  <li><a href="<?= site_url('admin/pages') ?>"><?= lang('pages') ?></a></li>
-                  <li><a href="<?= site_url('admin/slides') ?>"><?= lang('slides') ?></a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </header>
     <nav class="uk-navbar-container uk-visible@m">
@@ -133,6 +99,41 @@
         </div>
       </div>
     </section>
+
+    <div id="admin-mobile" data-uk-offcanvas="overlay: true">
+      <div class="uk-offcanvas-bar">
+        <div class="sidebar-head uk-text-center">
+          <a class="uk-logo" href="<?= site_url('admin') ?>">BlizzCMS</a>
+        </div>
+        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <li><a href="<?= site_url('admin') ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('dashboard') ?></a></li>
+          <li class="uk-parent">
+            <a href="#"><span class="uk-margin-small-right"><i class="fas fa-sliders-h"></i></span><?= lang('settings') ?></a>
+            <ul class="uk-nav-sub">
+              <li><a href="<?= site_url('admin/system') ?>"><?= lang('system') ?></a></li>
+              <li><a href="<?= site_url('admin/mods') ?>"><?= lang('modules') ?></a></li>
+              <li><a href="<?= site_url('admin/realms') ?>"><?= lang('realms') ?></a></li>
+            </ul>
+          </li>
+          <li class="uk-parent">
+            <a href="#"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('users') ?></a>
+            <ul class="uk-nav-sub">
+              <li><a href="<?= site_url('admin/users') ?>"><?= lang('all_users') ?></a></li>
+              <li><a href="<?= site_url('admin/users/banned') ?>"><?= lang('banned_users') ?></a></li>
+            </ul>
+          </li>
+          <li class="uk-parent">
+            <a href="#"><span class="uk-margin-small-right"><i class="fas fa-th"></i></span><?= lang('sections') ?></a>
+            <ul class="uk-nav-sub">
+              <li><a href="<?= site_url('admin/menu') ?>"><?= lang('menu') ?></a></li>
+              <li><a href="<?= site_url('admin/news') ?>"><?= lang('news') ?></a></li>
+              <li><a href="<?= site_url('admin/pages') ?>"><?= lang('pages') ?></a></li>
+              <li><a href="<?= site_url('admin/slides') ?>"><?= lang('slides') ?></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
     <?= $template['body_data'] ?>
   </body>
 </html>

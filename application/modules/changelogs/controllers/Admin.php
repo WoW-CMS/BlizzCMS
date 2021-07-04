@@ -41,23 +41,22 @@ class Admin extends MX_Controller
 
     public function index()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('changelogs/admin'),
             'total_rows'  => $this->changelogs->count_all(),
-            'per_page'    => 25,
+            'per_page'    => $per_page,
             'uri_segment' => 3
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'changelogs' => $this->changelogs->find_all($config['per_page'], $offset),
+            'changelogs' => $this->changelogs->find_all($per_page, $offset),
             'links'      => $this->pagination->create_links()
         ];
 
@@ -75,8 +74,8 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -126,8 +125,8 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {

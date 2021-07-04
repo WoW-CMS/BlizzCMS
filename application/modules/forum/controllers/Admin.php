@@ -63,11 +63,11 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|max_length[250]');
-            $this->form_validation->set_rules('icon', 'Icon', 'trim');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[category,forum]');
-            $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|max_length[250]');
+            $this->form_validation->set_rules('icon', lang('icon'), 'trim');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[category,forum]');
+            $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -135,11 +135,11 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('description', 'Description', 'trim|max_length[250]');
-            $this->form_validation->set_rules('icon', 'Icon', 'trim');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[category,forum]');
-            $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|max_length[250]');
+            $this->form_validation->set_rules('icon', lang('icon'), 'trim');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[category,forum]');
+            $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
             if ($this->form_validation->run() == FALSE)
             {

@@ -62,10 +62,10 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('slug', 'Slug', 'trim|required|is_unique[store.slug]');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[default,accordion]');
-            $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('slug', lang('slug'), 'trim|required|is_unique[store.slug]');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,accordion]');
+            $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -114,10 +114,10 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('slug', 'Slug', 'trim|required|update_unique[store.slug.'.$store_id.']');
-            $this->form_validation->set_rules('type', 'Type', 'trim|required|in_list[default,accordion]');
-            $this->form_validation->set_rules('parent', 'Parent', 'trim|required|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('slug', lang('slug'), 'trim|required|update_unique[store.slug.'.$store_id.']');
+            $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,accordion]');
+            $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -179,25 +179,24 @@ class Admin extends MX_Controller
             show_404();
         }
 
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('store/admin'),
             'total_rows'  => $this->store_items->count_all($store_id),
-            'per_page'    => 25,
+            'per_page'    => $per_page,
             'uri_segment' => 3
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
             'id'       => $store_id,
             'category' => $store,
-            'items'    => $this->store_items->find_all($store_id, $config['per_page'], $offset),
+            'items'    => $this->store_items->find_all($store_id, $per_page, $offset),
             'links'    => $this->pagination->create_links()
         ];
 
@@ -231,15 +230,15 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('description', 'Description', 'trim');
-            $this->form_validation->set_rules('image', 'Image', 'trim');
-            $this->form_validation->set_rules('price_type', 'Price type', 'trim|required|in_list[dp,vp,and]');
-            $this->form_validation->set_rules('dp', 'DP', 'trim|is_natural');
-            $this->form_validation->set_rules('vp', 'VP', 'trim|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('realm', lang('realm'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('description', lang('description'), 'trim');
+            $this->form_validation->set_rules('image', lang('image'), 'trim');
+            $this->form_validation->set_rules('price_type', lang('price_type'), 'trim|required|in_list[dp,vp,and]');
+            $this->form_validation->set_rules('dp', lang('dp'), 'trim|is_natural');
+            $this->form_validation->set_rules('vp', lang('vp'), 'trim|is_natural');
             $this->form_validation->set_rules('top', 'Top', 'trim');
-            $this->form_validation->set_rules('command', 'Command', 'trim|required');
+            $this->form_validation->set_rules('command', lang('command'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -298,15 +297,15 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required');
-            $this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('description', 'Description', 'trim');
-            $this->form_validation->set_rules('image', 'Image', 'trim');
-            $this->form_validation->set_rules('price_type', 'Price type', 'trim|required|in_list[dp,vp,and]');
-            $this->form_validation->set_rules('dp', 'DP', 'trim|is_natural');
-            $this->form_validation->set_rules('vp', 'VP', 'trim|is_natural');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required');
+            $this->form_validation->set_rules('realm', lang('realm'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('description', lang('description'), 'trim');
+            $this->form_validation->set_rules('image', lang('image'), 'trim');
+            $this->form_validation->set_rules('price_type', lang('price_type'), 'trim|required|in_list[dp,vp,and]');
+            $this->form_validation->set_rules('dp', lang('dp'), 'trim|is_natural');
+            $this->form_validation->set_rules('vp', lang('vp'), 'trim|is_natural');
             $this->form_validation->set_rules('top', 'Top', 'trim');
-            $this->form_validation->set_rules('command', 'Command', 'trim|required');
+            $this->form_validation->set_rules('command', lang('command'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -360,28 +359,27 @@ class Admin extends MX_Controller
 
     public function logs()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page   = $this->input->get('page');
+        $raw_search = $this->input->get('search');
 
-        $search       = $this->input->get('search');
-        $search_clean = $this->security->xss_clean($search);
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $search   = $this->security->xss_clean($raw_search);
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('store/admin/logs'),
-            'total_rows'  => $this->store_logs->count_all($search_clean),
-            'per_page'    => 25,
+            'total_rows'  => $this->store_logs->count_all($search),
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'logs'  => $this->store_logs->find_all($config['per_page'], $offset, $search_clean),
+            'logs'  => $this->store_logs->find_all($per_page, $offset, $search),
             'links'  => $this->pagination->create_links(),
-            'search' => $search
+            'search' => $raw_search
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));

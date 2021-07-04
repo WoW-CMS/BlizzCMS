@@ -9,9 +9,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_alpha_numeric_special'] = "The {field} field may only contain alpha-numeric characters, spaces and ~ ! # $ % & [ ] * - _ + = | : . ' characters";
-$lang['form_validation_richtext_min'] = 'The {field} field must be at least {param} characters in length.';
-$lang['form_validation_richtext_max'] = 'The {field} field cannot exceed {param} characters in length.';
-$lang['form_validation_update_unique'] = 'This {field} already exists.';
-$lang['form_validation_validate_captcha'] = 'This {field} is not valid.';
-$lang['form_validation_validate_date'] = 'This {field} is not valid.';
+$lang['form_validation_alpha_numeric_special'] = "El campo {field} solo puede contener caracteres alfanuméricos, espacios y ~ ! # $ % & [ ] * - _ + = | : . '";
+$lang['form_validation_richtext_min'] = 'El campo {field} debe ser de al menos {param} caracteres de longitud.';
+$lang['form_validation_richtext_max'] = 'El campo {field} no puede superar los {param} caracteres de longitud.';
+$lang['form_validation_update_unique'] = 'El campo {field} ya existe.';
+$lang['form_validation_validate_captcha'] = 'El campo {field} no es válido.';
+$lang['form_validation_validate_date'] = 'El campo {field} no es válido.';

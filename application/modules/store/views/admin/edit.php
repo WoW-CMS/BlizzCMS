@@ -55,7 +55,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
                       <option value="" hidden selected><?= lang('select_parent') ?></option>
-                      <option value="0" <?php if (0 == $category->parent) echo 'selected' ?>><?= lang('whithout_parent') ?></option>
+                      <option value="0" <?php if (0 == $category->parent) echo 'selected' ?>><?= lang('without_parent') ?></option>
                       <?php foreach ($parents as $item): ?>
                       <option value="<?= $item->id ?>" <?php if ($item->id == $category->parent) echo 'selected' ?>><?= $item->name ?></option>
                       <?php endforeach ?>

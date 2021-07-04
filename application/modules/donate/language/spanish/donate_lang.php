@@ -9,44 +9,45 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['donate'] = 'Donate';
+$lang['donate'] = 'Donar';
+$lang['donate_panel'] = 'Panel de Donaciones';
 $lang['view_log'] = 'View log';
 
-$lang['mode'] = 'Mode';
-$lang['client_id'] = 'Client ID';
-$lang['secret'] = 'Secret';
-$lang['currency'] = 'Currency';
-$lang['payment_id'] = 'Payment ID';
-$lang['amount'] = 'Amount';
-$lang['rewarded'] = 'Rewarded';
-$lang['reference_id'] = 'Reference ID';
-$lang['order_id'] = 'Order ID';
+$lang['mode'] = 'Modo';
+$lang['client_id'] = 'ID Cliente';
+$lang['secret'] = 'Secreto';
+$lang['currency'] = 'Moneda';
+$lang['payment_id'] = 'ID Pago';
+$lang['amount'] = 'Cantidad';
+$lang['rewarded'] = 'Recompensado';
+$lang['reference_id'] = 'ID Referencia';
+$lang['order_id'] = 'ID Orden';
 $lang['gateway'] = 'Gateway';
-$lang['points'] = 'Points';
-$lang['minimal_amount'] = 'Minimal amount';
-$lang['virtual_currency'] = 'Virtual currency';
-$lang['currency_exchange'] = 'Currency exchange rate';
-$lang['manual_payment'] = 'Manual payment';
+$lang['points'] = 'Puntos';
+$lang['minimal_amount'] = 'Cantidad mínima';
+$lang['virtual_currency'] = 'Moneda virtual';
+$lang['currency_exchange'] = 'Tasa de cambio de moneda';
+$lang['manual_payment'] = 'Pago manual';
 
 $lang['sandbox'] = 'Sandbox';
-$lang['production'] = 'Production';
-$lang['declined'] = 'Declined';
-$lang['completed'] = 'Completed';
-$lang['pending'] = 'Pending';
+$lang['production'] = 'Producción';
+$lang['declined'] = 'Rechazada';
+$lang['completed'] = 'Terminada';
+$lang['pending'] = 'Pendiente';
 
-$lang['select_mode'] = 'Select a mode';
-$lang['select_currency'] = 'Select a currency';
+$lang['select_mode'] = 'Seleccionar un modo';
+$lang['select_currency'] = 'Seleccionar una moneda';
 $lang['select_gateway'] = 'Select a gateway';
 
-$lang['enable_paypal_donation'] = 'Enable donation by PayPal?';
+$lang['enable_paypal_donation'] = '¿Habilitar la donación por PayPal?';
 
-$lang['donation_statistics'] = 'Donation statistics';
-$lang['latest_donations'] = 'Latest donations';
-$lang['create_manual_payment'] = 'Create manual payment';
-$lang['update_payment'] = 'Update payment';
+$lang['donation_statistics'] = 'Estadísticas de donaciones';
+$lang['latest_donations'] = 'Últimas donaciones';
+$lang['create_manual_payment'] = 'Crear pago manual';
+$lang['update_payment'] = 'Actualizar pago';
 
-$lang['paypal_contribution'] = 'You can contribute to our server by donating through the paypal method and you will receive donation points that you can use in our store, etc.';
-$lang['paypal_exchange_rate'] = 'Each <b>%1$d %2$s</b> = <b>%3$d</b> DP';
+$lang['paypal_contribution'] = 'Puedes contribuir a nuestro servidor donando a través del método paypal y recibirás puntos de donación que podrás utilizar en nuestra tienda, etc.';
+$lang['paypal_exchange_rate'] = 'Cada <b>%1$d %2$s</b> = <b>%3$d</b> DP';
 
 /**
  * Alerts

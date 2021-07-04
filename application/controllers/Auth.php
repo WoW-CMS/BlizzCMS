@@ -40,7 +40,7 @@ class Auth extends CI_Controller
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('username', 'Username/Email', 'trim|required');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required');
+            $this->form_validation->set_rules('password', lang('password'), 'trim|required');
 
             if (config_item('captcha_login') === 'true')
             {
@@ -104,12 +104,12 @@ class Auth extends CI_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]');
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-            $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
-            $this->form_validation->set_rules('terms', 'Terms and conditions', 'trim|required');
+            $this->form_validation->set_rules('nickname', lang('nickname'), 'trim|required|alpha_numeric|max_length[16]');
+            $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_numeric|min_length[3]|max_length[16]|differs[nickname]');
+            $this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email');
+            $this->form_validation->set_rules('password', lang('password'), 'trim|required|min_length[8]');
+            $this->form_validation->set_rules('confirm_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[password]');
+            $this->form_validation->set_rules('terms', lang('terms_and_conditions'), 'trim|required');
 
             if (config_item('captcha_register') === 'true')
             {
@@ -148,7 +148,7 @@ class Auth extends CI_Controller
                     redirect(site_url('register'));
                 }
 
-                if (config_item('register_validation') === 'true')
+                if (config_item('mail_validation') === 'true')
                 {
                     $token = $this->users_tokens->create(0, TOKEN_VALIDATION, 'PT12H', json_encode([
                         'nickname' => $nickname,
@@ -257,7 +257,7 @@ class Auth extends CI_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email');
 
             if (config_item('captcha_forgot') === 'true')
             {
@@ -326,8 +326,8 @@ class Auth extends CI_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-            $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required|min_length[8]|matches[password]');
+            $this->form_validation->set_rules('password', lang('password'), 'trim|required|min_length[8]');
+            $this->form_validation->set_rules('confirm_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[password]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -435,8 +435,8 @@ class Auth extends CI_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('new_password', 'New password', 'trim|required|min_length[8]');
-            $this->form_validation->set_rules('confirm_new_password', 'Confirm new password', 'trim|required|min_length[8]|matches[new_password]');
+            $this->form_validation->set_rules('new_password', lang('new_password'), 'trim|required|min_length[8]');
+            $this->form_validation->set_rules('confirm_new_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[new_password]');
 
             if ($this->form_validation->run() == FALSE)
             {

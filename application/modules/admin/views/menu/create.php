@@ -77,7 +77,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
                       <option value="" hidden selected><?= lang('select_parent') ?></option>
-                      <option value="0" <?= set_select('parent', '0') ?>><?= lang('whithout_parent') ?></option>
+                      <option value="0" <?= set_select('parent', '0') ?>><?= lang('without_parent') ?></option>
                       <?php foreach ($parents as $item): ?>
                       <option value="<?= $item->id ?>" <?= set_select('parent', $item->id) ?>><?= $item->name ?></option>
                       <?php endforeach ?>

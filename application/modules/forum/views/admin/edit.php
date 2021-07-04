@@ -62,7 +62,7 @@
                   <div class="uk-form-controls">
                     <select class="uk-select" name="parent">
                       <option value="" hidden selected><?= lang('select_parent') ?></option>
-                      <option value="0" <?php if (0 == $forum->parent) echo 'selected' ?>><?= lang('whithout_parent') ?></option>
+                      <option value="0" <?php if (0 == $forum->parent) echo 'selected' ?>><?= lang('without_parent') ?></option>
                       <optgroup label="<?= lang('category') ?>">
                         <?php foreach ($categories as $item): ?>
                         <option value="<?= $item->id ?>" <?php if ($item->id == $forum->parent) echo 'selected' ?>><?= $item->name ?></option>

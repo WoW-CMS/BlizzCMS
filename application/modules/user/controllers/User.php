@@ -42,8 +42,8 @@ class User extends MX_Controller
 
     public function change_nickname()
     {
-        $this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('nickname', lang('nickname'), 'trim|required|alpha_numeric|max_length[16]');
+        $this->form_validation->set_rules('password', lang('password'), 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -72,9 +72,9 @@ class User extends MX_Controller
 
     public function change_email()
     {
-        $this->form_validation->set_rules('new_email', 'New Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('confirm_new_email', 'New Email Confirmation', 'trim|required|matches[new_email]');
-        $this->form_validation->set_rules('cu_password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('new_email', lang('new_email'), 'trim|required|valid_email');
+        $this->form_validation->set_rules('confirm_new_email', lang('confirm_new_email'), 'trim|required|matches[new_email]');
+        $this->form_validation->set_rules('cu_password', lang('password'), 'trim|required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -118,9 +118,9 @@ class User extends MX_Controller
 
     public function change_password()
     {
-        $this->form_validation->set_rules('current_password', 'Password', 'trim|required');
-        $this->form_validation->set_rules('new_password', 'New Password', 'trim|required|min_length[8]|max_length[32]|differs[password]');
-        $this->form_validation->set_rules('confirm_new_password', 'New Password Confirmation', 'trim|required|min_length[8]|max_length[32]|matches[new_password]');
+        $this->form_validation->set_rules('current_password', lang('current_password'), 'trim|required');
+        $this->form_validation->set_rules('new_password', lang('new_password'), 'trim|required|min_length[8]|max_length[32]|differs[password]');
+        $this->form_validation->set_rules('confirm_new_password', lang('confirm_password'), 'trim|required|min_length[8]|max_length[32]|matches[new_password]');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -194,7 +194,7 @@ class User extends MX_Controller
 
     public function change_avatar()
     {
-        $this->form_validation->set_rules('avatar', 'Avatar', 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('avatar', lang('avatar'), 'trim|required|is_natural_no_zero');
 
         if ($this->form_validation->run() == FALSE)
         {

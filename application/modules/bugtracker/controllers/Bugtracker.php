@@ -35,33 +35,32 @@ class Bugtracker extends MX_Controller
 
     public function index()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page   = $this->input->get('page');
+        $raw_cat    = $this->input->get('category');
+        $raw_search = $this->input->get('search');
 
-        $search         = $this->input->get('search');
-        $category       = $this->input->get('category');
-        $search_cleaned = $this->security->xss_clean($search);
-        $cat_cleaned    = $this->security->xss_clean($category);
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $category = $this->security->xss_clean($raw_cat);
+        $search   = $this->security->xss_clean($raw_search);
+        $per_page = 15;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('bugtracker'),
-            'total_rows'  => $this->bugtracker->count_all($search_cleaned, $cat_cleaned),
-            'per_page'    => 15,
+            'total_rows'  => $this->bugtracker->count_all($search, $category),
+            'per_page'    => $per_page,
             'uri_segment' => 2
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'reports'    => $this->bugtracker->find_all($config['per_page'], $offset, $search_cleaned, $cat_cleaned),
+            'reports'    => $this->bugtracker->find_all($per_page, $offset, $search, $category),
             'links'      => $this->pagination->create_links(),
             'categories' => $this->bugtracker_categories->get_categories(),
             'latest'     => $this->bugtracker_comments->latest(),
-            'search'     => $search,
-            'category'   => $category
+            'search'     => $raw_search,
+            'category'   => $raw_cat
         ];
 
         $this->template->title(config_item('app_name'), lang('bugtracker'));
@@ -83,10 +82,10 @@ class Bugtracker extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('category', 'Category', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required|richtext_min[50]');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('realm', lang('realm'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('category', lang('category'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|required|richtext_min[50]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -141,15 +140,15 @@ class Bugtracker extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('title', 'Title', 'trim|required');
-            $this->form_validation->set_rules('realm', 'Realm', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('category', 'Category', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('description', 'Description', 'trim|required');
+            $this->form_validation->set_rules('title', lang('title'), 'trim|required');
+            $this->form_validation->set_rules('realm', lang('realm'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('category', lang('category'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('description', lang('description'), 'trim|required');
 
             if ($this->auth->is_moderator())
             {
-                $this->form_validation->set_rules('priority', 'Priority', 'trim|required');
-                $this->form_validation->set_rules('status', 'Status', 'trim|required');
+                $this->form_validation->set_rules('priority', lang('priority'), 'trim|required');
+                $this->form_validation->set_rules('status', lang('status'), 'trim|required');
             }
 
             if ($this->form_validation->run() == FALSE)
@@ -198,24 +197,23 @@ class Bugtracker extends MX_Controller
             show_404();
         }
 
-        $get = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 15;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('bugtracker/report/' . $id),
             'total_rows'  => $this->bugtracker_comments->count_all($id),
-            'per_page'    => 15,
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
             'report'   => $report,
-            'comments' => $this->bugtracker_comments->find_all($id, $config['per_page'], $offset),
+            'comments' => $this->bugtracker_comments->find_all($id, $per_page, $offset),
             'links'    => $this->pagination->create_links()
         ];
 
@@ -229,8 +227,8 @@ class Bugtracker extends MX_Controller
 
     public function comment()
     {
-        $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('comment', 'Comment', 'trim|required|richtext_min[10]');
+        $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('comment', lang('comment'), 'trim|required|richtext_min[10]');
 
         if ($this->form_validation->run() == FALSE)
         {

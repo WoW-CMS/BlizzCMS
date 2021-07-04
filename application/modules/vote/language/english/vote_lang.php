@@ -10,6 +10,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['vote'] = 'Vote';
+$lang['vote_panel'] = 'Vote Panel';
 $lang['next_vote'] = 'Next vote in:';
 
 $lang['topsites'] = 'Topsites';

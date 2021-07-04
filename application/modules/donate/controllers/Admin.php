@@ -59,14 +59,14 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('paypal_mode', 'Mode', 'trim|required|in_list[sandbox,production]');
-            $this->form_validation->set_rules('paypal_minimal', 'Minimal', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('paypal_client', 'Client', 'trim|required');
-            $this->form_validation->set_rules('paypal_secret', 'Secret', 'trim');
-            $this->form_validation->set_rules('paypal_currency_rate', 'Currency amount', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('paypal_currency', 'Currency', 'trim|required|alpha|max_length[3]');
-            $this->form_validation->set_rules('paypal_points_rate', 'Points amount', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('paypal_gateway', 'Gateway', 'trim');
+            $this->form_validation->set_rules('paypal_mode', lang('mode'), 'trim|required|in_list[sandbox,production]');
+            $this->form_validation->set_rules('paypal_minimal', lang('minimal_amount'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('paypal_client', lang('client_id'), 'trim|required');
+            $this->form_validation->set_rules('paypal_secret', lang('secret'), 'trim');
+            $this->form_validation->set_rules('paypal_currency_rate', lang('amount'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('paypal_currency', lang('currency'), 'trim|required|alpha|max_length[3]');
+            $this->form_validation->set_rules('paypal_points_rate', lang('points'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('paypal_gateway', lang('gateway'), 'trim');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -129,28 +129,27 @@ class Admin extends MX_Controller
 
     public function logs()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page   = $this->input->get('page');
+        $raw_search = $this->input->get('search');
 
-        $search       = $this->input->get('search');
-        $search_clean = $this->security->xss_clean($search);
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $search   = $this->security->xss_clean($raw_search);
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('donate/admin/logs'),
-            'total_rows'  => $this->donation_logs->count_all($search_clean),
-            'per_page'    => 25,
+            'total_rows'  => $this->donation_logs->count_all($search),
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'logs'   => $this->donation_logs->find_all($config['per_page'], $offset, $search_clean),
+            'logs'   => $this->donation_logs->find_all($per_page, $offset, $search),
             'links'  => $this->pagination->create_links(),
-            'search' => $search
+            'search' => $raw_search
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -188,14 +187,14 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric');
-            $this->form_validation->set_rules('order', 'Order', 'trim|required');
-            $this->form_validation->set_rules('reference', 'Reference', 'trim|required');
-            $this->form_validation->set_rules('payment', 'Payment', 'trim|required');
-            $this->form_validation->set_rules('gateway', 'Gateway', 'trim|required|in_list[PayPal]');
-            $this->form_validation->set_rules('points', 'Points', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('amount', 'Amount', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('currency', 'Currency', 'trim|required|alpha|max_length[3]');
+            $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_numeric');
+            $this->form_validation->set_rules('order', lang('order_id'), 'trim|required');
+            $this->form_validation->set_rules('reference', lang('reference_id'), 'trim|required');
+            $this->form_validation->set_rules('payment', lang('payment_id'), 'trim|required');
+            $this->form_validation->set_rules('gateway', lang('gateway'), 'trim|required|in_list[PayPal]');
+            $this->form_validation->set_rules('points', lang('points'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('amount', lang('amount'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('currency', lang('currency'), 'trim|required|alpha|max_length[3]');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -263,10 +262,10 @@ class Admin extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('order', 'Order', 'trim');
-            $this->form_validation->set_rules('reference', 'Reference', 'trim');
-            $this->form_validation->set_rules('payment', 'Payment', 'trim');
-            $this->form_validation->set_rules('status', 'Status', 'trim|required|in_list[COMPLETED,PENDING,DECLINED]');
+            $this->form_validation->set_rules('order', lang('order_id'), 'trim');
+            $this->form_validation->set_rules('reference', lang('reference_id'), 'trim');
+            $this->form_validation->set_rules('payment', lang('payment_id'), 'trim');
+            $this->form_validation->set_rules('status', lang('status'), 'trim|required|in_list[COMPLETED,PENDING,DECLINED]');
 
             if ($this->form_validation->run() == FALSE)
             {

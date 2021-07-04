@@ -55,23 +55,22 @@ class Store extends MX_Controller
             show_404();
         }
 
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 15;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('store/' . $slug),
             'total_rows'  => $this->store_items->count_all($store->id),
-            'per_page'    => 15,
+            'per_page'    => $per_page,
             'uri_segment' => 3
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'items' => $this->store_items->find_all($store->id, $config['per_page'], $offset),
+            'items' => $this->store_items->find_all($store->id, $per_page, $offset),
             'links' => $this->pagination->create_links()
         ];
 
@@ -104,8 +103,8 @@ class Store extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('guid', 'Character', 'trim|required|is_natural_no_zero');
-            $this->form_validation->set_rules('qty', 'Quantity', 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('guid', lang('character'), 'trim|required|is_natural_no_zero');
+            $this->form_validation->set_rules('qty', lang('quantity'), 'trim|required|is_natural_no_zero');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -190,8 +189,8 @@ class Store extends MX_Controller
 
     public function update_quantity()
     {
-        $this->form_validation->set_rules('id', 'Id', 'trim|required');
-        $this->form_validation->set_rules('qty', 'Quantity', 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('id', lang('id'), 'trim|required');
+        $this->form_validation->set_rules('qty', lang('quantity'), 'trim|required|is_natural_no_zero');
 
         if ($this->form_validation->run() == FALSE)
         {

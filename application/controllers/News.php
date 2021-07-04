@@ -33,24 +33,23 @@ class News extends CI_Controller
             show_404();
         }
 
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page = $this->input->get('page');
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $per_page = 15;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('news/' . $id),
             'total_rows'  => $this->news_comments->count_all($id),
-            'per_page'    => 15,
+            'per_page'    => $per_page,
             'uri_segment' => 3
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
             'news'     => $news,
-            'comments' => $this->news_comments->find_all($id, $config['per_page'], $offset),
+            'comments' => $this->news_comments->find_all($id, $per_page, $offset),
             'links'    => $this->pagination->create_links(),
             'aside'    => $this->news->latest()
         ];
@@ -70,8 +69,8 @@ class News extends CI_Controller
             redirect(site_url('login'));
         }
 
-        $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('comment', 'Comment', 'trim|required|richtext_min[10]');
+        $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('comment', lang('comment'), 'trim|required|richtext_min[10]');
 
         if ($this->form_validation->run() == FALSE)
         {

@@ -45,16 +45,16 @@ class System extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[3]');
-            $this->form_validation->set_rules('realmlist', 'Realmlist', 'trim');
-            $this->form_validation->set_rules('theme', 'Theme', 'trim');
-            $this->form_validation->set_rules('expansion', 'Expansion', 'trim|required|is_natural');
-            $this->form_validation->set_rules('emulator', 'Emulator', 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('bnet', 'Bnet Account', 'trim|required|in_list[true,false]');
-            $this->form_validation->set_rules('discord', 'Discord URL', 'trim|alpha_dash');
-            $this->form_validation->set_rules('facebook', 'Facebook URL', 'trim|valid_url');
-            $this->form_validation->set_rules('twitter', 'Twitter URL', 'trim|valid_url');
-            $this->form_validation->set_rules('youtube', 'Youtube URL', 'trim|valid_url');
+            $this->form_validation->set_rules('name', lang('name'), 'trim|required|min_length[3]');
+            $this->form_validation->set_rules('realmlist', lang('realmlist'), 'trim');
+            $this->form_validation->set_rules('theme', lang('theme'), 'trim');
+            $this->form_validation->set_rules('expansion', lang('expansion'), 'trim|required|is_natural');
+            $this->form_validation->set_rules('emulator', lang('emulator'), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('bnet', lang('bnet_account'), 'trim|required|in_list[true,false]');
+            $this->form_validation->set_rules('discord', lang('discord_server'), 'trim|alpha_dash');
+            $this->form_validation->set_rules('facebook', lang('facebook_url'), 'trim|valid_url');
+            $this->form_validation->set_rules('twitter', lang('twitter_url'), 'trim|valid_url');
+            $this->form_validation->set_rules('youtube', lang('youtube_url'), 'trim|valid_url');
 
             $this->form_validation->set_rules('admin_access', 'Admin access', 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('mod_access', 'Mod access', 'trim|required|is_natural_no_zero');
@@ -138,10 +138,10 @@ class System extends MX_Controller
             $this->form_validation->set_rules('captcha_register', 'Captcha Register', 'trim');
             $this->form_validation->set_rules('captcha_login', 'Captcha Login', 'trim');
             $this->form_validation->set_rules('captcha_forgot', 'Captcha Forgot', 'trim');
-            $this->form_validation->set_rules('captcha_type', 'Captcha Type', 'trim|in_list[hcaptcha,recaptcha]');
-            $this->form_validation->set_rules('captcha_theme', 'Captcha Theme', 'trim|in_list[light,dark]');
-            $this->form_validation->set_rules('captcha_public', 'Captcha Public', 'trim|alpha_dash');
-            $this->form_validation->set_rules('captcha_private', 'Captcha Private', 'trim|alpha_dash');
+            $this->form_validation->set_rules('captcha_type', lang('type'), 'trim|in_list[hcaptcha,recaptcha]');
+            $this->form_validation->set_rules('captcha_theme', lang('theme'), 'trim|in_list[light,dark]');
+            $this->form_validation->set_rules('captcha_public', lang('public_key'), 'trim|alpha_dash');
+            $this->form_validation->set_rules('captcha_private', lang('private_key'), 'trim|alpha_dash');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -193,82 +193,77 @@ class System extends MX_Controller
         }
     }
 
-    public function email()
+    public function mail()
     {
         $this->template->title(config_item('app_name'), lang('admin_panel'));
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('register', 'Register', 'trim');
-            $this->form_validation->set_rules('email_protocol', 'Email Protocol', 'trim|in_list[mail,sendmail,smtp]');
-            $this->form_validation->set_rules('email_host', 'Email Host', 'trim');
-            $this->form_validation->set_rules('email_user', 'Email User', 'trim');
-            $this->form_validation->set_rules('email_pass', 'Email Password', 'trim');
-            $this->form_validation->set_rules('email_port', 'Email Port', 'trim|numeric|less_than_equal_to[65535]');
-            $this->form_validation->set_rules('email_crypto', 'Email Crypto', 'trim|in_list[tls,ssl]');
-            $this->form_validation->set_rules('email_sender', 'Email Sender', 'trim|valid_email');
-            $this->form_validation->set_rules('email_sender_name', 'Email Sender Name', 'trim');
+            $this->form_validation->set_rules('validation', 'Validation', 'trim');
+            $this->form_validation->set_rules('mailer', lang('mailer'), 'trim|in_list[mail,sendmail,smtp]');
+            $this->form_validation->set_rules('hostname', lang('hostname'), 'trim');
+            $this->form_validation->set_rules('username', lang('username'), 'trim');
+            $this->form_validation->set_rules('password', lang('password'), 'trim');
+            $this->form_validation->set_rules('port', lang('port'), 'trim|numeric|less_than_equal_to[65535]');
+            $this->form_validation->set_rules('encryption', lang('encryption'), 'trim|in_list[tls,ssl]');
+            $this->form_validation->set_rules('sender', lang('sender'), 'trim');
 
             if ($this->form_validation->run() == FALSE)
             {
-                $this->template->build('system/email');
+                $this->template->build('system/mail');
             }
             else
             {
                 $this->settings->update_batch([
                     [
-                        'key'   => 'register_validation',
+                        'key'   => 'mail_validation',
                         'value' => ($this->input->post('register', TRUE) != 'true') ? 'false' : 'true'
                     ],
                     [
-                        'key'   => 'email_protocol',
-                        'value' => $this->input->post('email_protocol')
+                        'key'   => 'mail_mailer',
+                        'value' => $this->input->post('mailer')
                     ],
                     [
-                        'key'   => 'email_hostname',
-                        'value' => $this->input->post('email_host', TRUE)
+                        'key'   => 'mail_hostname',
+                        'value' => $this->input->post('hostname', TRUE)
                     ],
                     [
-                        'key'   => 'email_username',
-                        'value' => $this->input->post('email_user')
+                        'key'   => 'mail_username',
+                        'value' => $this->input->post('username')
                     ],
                     [
-                        'key'   => 'email_port',
-                        'value' => $this->input->post('email_port')
+                        'key'   => 'mail_port',
+                        'value' => $this->input->post('port')
                     ],
                     [
-                        'key'   => 'email_crypto',
-                        'value' => $this->input->post('email_crypto')
+                        'key'   => 'mail_encryption',
+                        'value' => $this->input->post('encryption')
                     ],
                     [
-                        'key'   => 'email_sender',
-                        'value' => $this->input->post('email_sender', TRUE)
-                    ],
-                    [
-                        'key'   => 'email_sender_name',
-                        'value' => $this->input->post('email_sender_name', TRUE)
+                        'key'   => 'mail_sender',
+                        'value' => $this->input->post('sender', TRUE)
                     ]
                 ], 'key');
 
-                $email_password = $this->input->post('email_pass');
+                $password = $this->input->post('password');
 
-                if (! empty($email_password))
+                if (! empty($password))
                 {
                     $this->settings->update([
-                        'value' => encrypt($email_password)
-                    ], ['key' => 'email_password']);
+                        'value' => encrypt($password)
+                    ], ['key' => 'mail_password']);
                 }
 
                 // Clear cache
                 $this->cache->file->delete('settings');
 
                 $this->session->set_flashdata('success', lang('settings_updated'));
-                redirect(site_url('admin/system/email'));
+                redirect(site_url('admin/system/mail'));
             }
         }
         else
         {
-            $this->template->build('system/email');
+            $this->template->build('system/mail');
         }
     }
 
@@ -295,28 +290,27 @@ class System extends MX_Controller
 
     public function logs()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page   = $this->input->get('page');
+        $raw_search = $this->input->get('search');
 
-        $search       = $this->input->get('search');
-        $search_clean = $this->security->xss_clean($search);
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $search   = $this->security->xss_clean($raw_search);
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('admin/system/logs'),
-            'total_rows'  => $this->logs->count_all($search_clean),
-            'per_page'    => 25,
+            'total_rows'  => $this->logs->count_all($search),
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'logs'   => $this->logs->find_all($config['per_page'], $offset, $search_clean),
+            'logs'   => $this->logs->find_all($per_page, $offset, $search),
             'links'  => $this->pagination->create_links(),
-            'search' => $search
+            'search' => $raw_search
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));

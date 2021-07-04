@@ -10,6 +10,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['donate'] = 'Donate';
+$lang['donate_panel'] = 'Donate Panel';
 $lang['view_log'] = 'View log';
 
 $lang['mode'] = 'Mode';

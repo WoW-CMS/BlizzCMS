@@ -71,7 +71,7 @@ if (! function_exists('mod_located'))
         $CI = &get_instance();
         $CI->load->model('modules_model');
 
-        $row = $CI->modules_model->mod_saved($module);
+        $row = $CI->modules_model->saved($module);
 
         if (! $row && $error)
         {

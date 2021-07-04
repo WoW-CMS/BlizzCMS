@@ -34,28 +34,27 @@ class Users extends MX_Controller
 
     public function index()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page   = $this->input->get('page');
+        $raw_search = $this->input->get('search');
 
-        $search       = $this->input->get('search');
-        $search_clean = $this->security->xss_clean($search);
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $search   = $this->security->xss_clean($raw_search);
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('admin/users'),
-            'total_rows'  => $this->users->count_all($search_clean),
-            'per_page'    => 25,
+            'total_rows'  => $this->users->count_all($search),
+            'per_page'    => $per_page,
             'uri_segment' => 3
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'users'  => $this->users->find_all($config['per_page'], $offset, $search_clean),
+            'users'  => $this->users->find_all($per_page, $offset, $search),
             'links'  => $this->pagination->create_links(),
-            'search' => $search
+            'search' => $raw_search
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -89,10 +88,10 @@ class Users extends MX_Controller
 
     public function update()
     {
-        $this->form_validation->set_rules('id', 'Id', 'trim|required|is_natural_no_zero');
-        $this->form_validation->set_rules('nickname', 'Nickname', 'trim|required|alpha_numeric|max_length[16]');
-        $this->form_validation->set_rules('dp', 'Donor points', 'trim|required|is_natural');
-        $this->form_validation->set_rules('vp', 'Voter points', 'trim|required|is_natural');
+        $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
+        $this->form_validation->set_rules('nickname', lang('nickname'), 'trim|required|alpha_numeric|max_length[16]');
+        $this->form_validation->set_rules('dp', lang('donor_points'), 'trim|required|is_natural');
+        $this->form_validation->set_rules('vp', lang('voter_points'), 'trim|required|is_natural');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -115,28 +114,27 @@ class Users extends MX_Controller
 
     public function users_banned()
     {
-        $get  = $this->input->get('page', TRUE);
-        $page = ctype_digit((string) $get) ? $get : 0;
+        $raw_page   = $this->input->get('page');
+        $raw_search = $this->input->get('search');
 
-        $search       = $this->input->get('search');
-        $search_clean = $this->security->xss_clean($search);
+        $page     = ctype_digit((string) $raw_page) ? $raw_page : 0;
+        $search   = $this->security->xss_clean($raw_search);
+        $per_page = 25;
 
-        $config = [
+        $this->pagination->initialize([
             'base_url'    => site_url('admin/users/banned'),
-            'total_rows'  => $this->auth->count_all_bans($search_clean),
-            'per_page'    => 25,
+            'total_rows'  => $this->auth->count_all_bans($search),
+            'per_page'    => $per_page,
             'uri_segment' => 4
-        ];
-
-        $this->pagination->initialize($config);
+        ]);
 
         // Calculate offset if use_page_numbers is TRUE on pagination
-        $offset = ($page > 1) ? ($page - 1) * $config['per_page'] : $page;
+        $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'bans'   => $this->auth->get_all_bans($config['per_page'], $offset, $search_clean),
+            'bans'   => $this->auth->get_all_bans($per_page, $offset, $search),
             'links'  => $this->pagination->create_links(),
-            'search' => $search
+            'search' => $raw_search
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -174,9 +172,9 @@ class Users extends MX_Controller
 
         if ($this->input->method() == 'post')
         {
-            $this->form_validation->set_rules('username', 'Username', 'trim|required');
-            $this->form_validation->set_rules('date', 'Date', 'trim|required|validate_date[Y-m-d]');
-            $this->form_validation->set_rules('reason', 'Reason', 'trim|required');
+            $this->form_validation->set_rules('username', lang('username'), 'trim|required');
+            $this->form_validation->set_rules('date', lang('date'), 'trim|required|validate_date[Y-m-d]');
+            $this->form_validation->set_rules('reason', lang('reason'), 'trim|required');
 
             if ($this->form_validation->run() == FALSE)
             {

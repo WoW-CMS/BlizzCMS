@@ -85,7 +85,7 @@ class Modules_model extends CI_Model
      * @param string $module
      * @return bool
      */
-    public function mod_saved($module)
+    public function saved($module)
     {
         $cache = $this->cache->file->get('modules');
 

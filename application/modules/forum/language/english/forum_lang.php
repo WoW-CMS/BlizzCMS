@@ -10,6 +10,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['forum'] = 'Forum';
+$lang['mod_panel'] = 'Mod panel';
 
 $lang['topic_list'] = 'Topics list';
 $lang['posts'] = 'Posts';

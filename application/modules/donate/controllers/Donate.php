@@ -58,7 +58,7 @@ class Donate extends MX_Controller
 
         $minimal = config_item('paypal_minimal_amount');
 
-        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|is_natural|greater_than_equal_to['.$minimal.']');
+        $this->form_validation->set_rules('amount', lang('amount'), 'trim|required|is_natural|greater_than_equal_to['.$minimal.']');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -92,12 +92,11 @@ class Donate extends MX_Controller
                 ]
             ];
 
-            $client = $this->_paypal_client();
-
             try {
+                $client   = $this->_paypal_client();
                 $response = $client->execute($request);
-            } catch (HttpException $ex) {
-                $error = json_decode($ex->getMessage());
+            } catch (HttpException $exception) {
+                $error = json_decode($exception->getMessage());
 
                 show_error($error->message, 500, 'Error: ' . $error->details[0]->issue);
             }
@@ -122,22 +121,21 @@ class Donate extends MX_Controller
 
     public function paypal_check()
     {
-        if (! $this->cms->isLogged())
+        $token = $this->input->get('token', TRUE);
+
+        if (empty($token) || ! $this->cms->isLogged())
         {
             show_404();
         }
 
-        $token = $this->input->get('token', TRUE);
-
         $request = new OrdersCaptureRequest($token);
         $request->prefer('return=representation');
 
-        $client = $this->_paypal_client();
-
         try {
+            $client   = $this->_paypal_client();
             $response = $client->execute($request);
-        } catch (HttpException $ex) {
-            $error = json_decode($ex->getMessage());
+        } catch (HttpException $exception) {
+            $error = json_decode($exception->getMessage());
 
             show_error($error->message, 500, 'Error: ' . $error->details[0]->issue);
         }
@@ -184,7 +182,7 @@ class Donate extends MX_Controller
             show_404();
         }
 
-        $log  = $this->donation_logs->find(['order_id' => $token, 'payment_status' => 'PENDING']);
+        $log = $this->donation_logs->find(['order_id' => $token, 'payment_status' => 'PENDING']);
 
         if (empty($log))
         {
