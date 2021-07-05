@@ -48,14 +48,14 @@ class Auth extends CI_Controller
                 $this->form_validation->set_rules($captcha_rule, 'Captcha', 'trim|required|validate_captcha');
             }
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('auth/login');
             }
             else
             {
                 $response = $this->cms->authentication(
-                    $this->input->post('username', TRUE),
+                    $this->input->post('username', true),
                     $this->input->post('password')
                 );
 
@@ -117,15 +117,15 @@ class Auth extends CI_Controller
                 $this->form_validation->set_rules($captcha_rule, 'Captcha', 'trim|required|validate_captcha');
             }
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('auth/register');
             }
             else
             {
-                $nickname   = $this->input->post('nickname', TRUE);
-                $username   = $this->input->post('username', TRUE);
-                $email      = $this->input->post('email', TRUE);
+                $nickname   = $this->input->post('nickname', true);
+                $username   = $this->input->post('username', true);
+                $email      = $this->input->post('email', true);
                 $password   = $this->input->post('password');
 
                 $emulator   = config_item('emulator');
@@ -160,7 +160,7 @@ class Auth extends CI_Controller
                         'message' => lang('message_validate'),
                         'link'    => site_url('validate/' . $token),
                         'note'    => lang('note_time_limit')
-                    ], TRUE);
+                    ], true);
 
                     $this->cms->send_email($email, lang('subject_validate'), $html);
 
@@ -265,13 +265,13 @@ class Auth extends CI_Controller
                 $this->form_validation->set_rules($captcha_rule, 'Captcha', 'trim|required|validate_captcha');
             }
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('auth/forgot');
             }
             else
             {
-                $email = $this->input->post('email', TRUE);
+                $email = $this->input->post('email', true);
                 $id    = $this->auth->account_id($email, 'email');
 
                 if (! empty($id))
@@ -282,7 +282,7 @@ class Auth extends CI_Controller
                         'message' => lang('message_reset'),
                         'link'    => site_url('reset/' . $token),
                         'note'    => lang('note_time_limit')
-                    ], TRUE);
+                    ], true);
 
                     $this->cms->send_email($email, lang('subject_reset'), $html);
                 }
@@ -329,7 +329,7 @@ class Auth extends CI_Controller
             $this->form_validation->set_rules('password', lang('password'), 'trim|required|min_length[8]');
             $this->form_validation->set_rules('confirm_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[password]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('auth/validate', $data);
             }
@@ -438,7 +438,7 @@ class Auth extends CI_Controller
             $this->form_validation->set_rules('new_password', lang('new_password'), 'trim|required|min_length[8]');
             $this->form_validation->set_rules('confirm_new_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[new_password]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('auth/reset');
             }

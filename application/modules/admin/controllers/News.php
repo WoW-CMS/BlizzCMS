@@ -76,7 +76,7 @@ class News extends MX_Controller
             $this->form_validation->set_rules('image', lang('image'), 'callback__image_required');
             $this->form_validation->set_rules('comments', lang('comments'), 'trim');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('news/create');
             }
@@ -86,7 +86,7 @@ class News extends MX_Controller
                     'upload_path'   => FCPATH . 'uploads/news/',
                     'allowed_types' => 'jpg|jpeg|png',
                     'max_size'      => 1024 * 5,
-                    'encrypt_name'  => TRUE
+                    'encrypt_name'  => true
                 ]);
 
                 if (! $this->upload->do_upload('image'))
@@ -102,7 +102,7 @@ class News extends MX_Controller
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'image'       => $img,
-                    'comments'    => empty($this->input->post('comments', TRUE)) ? 0 : 1,
+                    'comments'    => empty($this->input->post('comments', true)) ? 0 : 1,
                     'created_at'  => current_date()
                 ]);
 
@@ -146,7 +146,7 @@ class News extends MX_Controller
             $this->form_validation->set_rules('description', lang('description'), 'trim|required');
             $this->form_validation->set_rules('comments', lang('comments'), 'trim');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('news/edit', $data);
             }
@@ -158,7 +158,7 @@ class News extends MX_Controller
                         'upload_path'   => FCPATH . 'uploads/news/',
                         'allowed_types' => 'jpg|jpeg|png',
                         'max_size'      => 1024 * 5,
-                        'encrypt_name'  => TRUE
+                        'encrypt_name'  => true
                     ]);
 
                     if ($this->upload->do_upload('image'))
@@ -183,7 +183,7 @@ class News extends MX_Controller
                 $this->news->update([
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
-                    'comments'    => empty($this->input->post('comments', TRUE)) ? 0 : 1
+                    'comments'    => empty($this->input->post('comments', true)) ? 0 : 1
                 ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('news_updated'));

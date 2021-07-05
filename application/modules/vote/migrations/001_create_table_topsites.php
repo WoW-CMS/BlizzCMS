@@ -5,42 +5,42 @@ class Migration_Create_table_topsites extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'name' => array(
+            ],
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'url' => array(
+            ],
+            'url' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'time' => array(
+            ],
+            'time' => [
                 'type' => 'TINYINT',
                 'constraint' => '3',
                 'unsigned' => TRUE,
                 'default' => 1
-            ),
-            'points' => array(
+            ],
+            'points' => [
                 'type' => 'INT',
                 'constraint' => '10',
                 'unsigned' => TRUE,
                 'default' => 1
-            ),
-            'image' => array(
+            ],
+            'image' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('topsites');
     }
 

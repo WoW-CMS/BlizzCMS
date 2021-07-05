@@ -45,13 +45,13 @@ class User extends MX_Controller
         $this->form_validation->set_rules('nickname', lang('nickname'), 'trim|required|alpha_numeric|max_length[16]');
         $this->form_validation->set_rules('password', lang('password'), 'trim|required');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
             return $this->settings();
         }
         else
         {
-            $nickname = $this->input->post('nickname', TRUE);
+            $nickname = $this->input->post('nickname', true);
             $password = $this->input->post('password');
             $user     = $this->cms->user();
 
@@ -76,13 +76,13 @@ class User extends MX_Controller
         $this->form_validation->set_rules('confirm_new_email', lang('confirm_new_email'), 'trim|required|matches[new_email]');
         $this->form_validation->set_rules('cu_password', lang('password'), 'trim|required');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
             return $this->settings();
         }
         else
         {
-            $new_email  = $this->input->post('new_email', TRUE);
+            $new_email  = $this->input->post('new_email', true);
             $password   = $this->input->post('cu_password');
             $user       = $this->cms->user();
 
@@ -122,7 +122,7 @@ class User extends MX_Controller
         $this->form_validation->set_rules('new_password', lang('new_password'), 'trim|required|min_length[8]|max_length[32]|differs[password]');
         $this->form_validation->set_rules('confirm_new_password', lang('confirm_password'), 'trim|required|min_length[8]|max_length[32]|matches[new_password]');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
             return $this->settings();
         }
@@ -196,13 +196,13 @@ class User extends MX_Controller
     {
         $this->form_validation->set_rules('avatar', lang('avatar'), 'trim|required|is_natural_no_zero');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
             return $this->settings();
         }
         else
         {
-            $avatar = $this->input->post('avatar', TRUE);
+            $avatar = $this->input->post('avatar', true);
             $id     = $this->session->userdata('id');
 
             $this->users->update(['avatar' => $avatar], ['id' => $id]);

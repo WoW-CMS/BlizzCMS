@@ -106,7 +106,7 @@ class Store extends MX_Controller
             $this->form_validation->set_rules('guid', lang('character'), 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('qty', lang('quantity'), 'trim|required|is_natural_no_zero');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('item', $data);
             }
@@ -192,7 +192,7 @@ class Store extends MX_Controller
         $this->form_validation->set_rules('id', lang('id'), 'trim|required');
         $this->form_validation->set_rules('qty', lang('quantity'), 'trim|required|is_natural_no_zero');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
             $this->session->set_flashdata('error', lang('item_quantity_invalid'));
             redirect(site_url('store/cart'));
@@ -200,7 +200,7 @@ class Store extends MX_Controller
         else
         {
             $this->cart->update([
-                'rowid' => $this->input->post('id', TRUE),
+                'rowid' => $this->input->post('id', true),
                 'qty'   => $this->input->post('qty')
             ]);
 

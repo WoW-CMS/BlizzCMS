@@ -79,7 +79,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('title', lang('title'), 'trim|required');
             $this->form_validation->set_rules('description', lang('description'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/create');
             }
@@ -130,7 +130,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('title', lang('title'), 'trim|required');
             $this->form_validation->set_rules('description', lang('description'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/edit', $data);
             }

@@ -5,40 +5,40 @@ class Migration_Create_table_forum extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'name' => array(
+            ],
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'description' => array(
+            ],
+            'description' => [
                 'type' => 'TEXT',
                 'null' => TRUE
-            ),
-            'icon' => array(
+            ],
+            'icon' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'type' => array(
+            ],
+            'type' => [
                 'type' => 'ENUM("category","forum")',
                 'default' => 'category',
                 'null' => FALSE
-            ),
-            'parent' => array(
+            ],
+            'parent' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'default' => 0
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('forum');
     }
 

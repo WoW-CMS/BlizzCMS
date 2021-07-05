@@ -5,39 +5,39 @@ class Migration_Create_table_bugtracker_categories extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'name' => array(
+            ],
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('bugtracker_categories');
 
-        $data = array(
-            array('name' => 'Achievements'),
-            array('name' => 'Battle Pets'),
-            array('name' => 'Battlegrounds - Arena'),
-            array('name' => 'Classes'),
-            array('name' => 'Creatures'),
-            array('name' => 'Exploits/Usebugs'),
-            array('name' => 'Garrison'),
-            array('name' => 'Guilds'),
-            array('name' => 'Instances'),
-            array('name' => 'Items'),
-            array('name' => 'Other'),
-            array('name' => 'Professions'),
-            array('name' => 'Quests'),
-            array('name' => 'Website')
-        );
-        $this->db->insert_batch('bugtracker_categories', $data);
+        $this->db->insert_batch('bugtracker_categories', [
+            ['name' => 'Achievements'],
+            ['name' => 'Arena'],
+            ['name' => 'Battle Pets'],
+            ['name' => 'Battlegrounds'],
+            ['name' => 'Classes'],
+            ['name' => 'Creatures'],
+            ['name' => 'Exploits'],
+            ['name' => 'Garrison'],
+            ['name' => 'Guilds'],
+            ['name' => 'Instances'],
+            ['name' => 'Items'],
+            ['name' => 'Other'],
+            ['name' => 'Professions'],
+            ['name' => 'Quests'],
+            ['name' => 'Website']
+        ]);
     }
 
     public function down()

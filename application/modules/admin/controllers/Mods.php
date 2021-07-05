@@ -66,7 +66,7 @@ class Mods extends MX_Controller
 
         if ($this->migration->init_module($name))
         {
-            if ($this->migration->current() === FALSE)
+            if ($this->migration->current() === false)
             {
                 show_error($this->migration->error_string());
             }
@@ -103,7 +103,7 @@ class Mods extends MX_Controller
 
         if ($this->migration->init_module($name))
         {
-            if ($this->migration->version(0) === FALSE)
+            if ($this->migration->version(0) === false)
             {
                 show_error($this->migration->error_string());
             }
@@ -167,7 +167,7 @@ class Mods extends MX_Controller
 
         if ($this->migration->init_module($name))
         {
-            if ($this->migration->current() === FALSE)
+            if ($this->migration->current() === false)
             {
                 show_error($this->migration->error_string());
             }
@@ -188,7 +188,7 @@ class Mods extends MX_Controller
         {
             $this->form_validation->set_rules('file', 'File', 'callback__file_required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('mods/upload');
             }
@@ -220,7 +220,7 @@ class Mods extends MX_Controller
                 $zip    = new \ZipArchive();
                 $opened = $zip->open($file);
 
-                if ($opened === TRUE)
+                if ($opened === true)
                 {
                     $zip->extractTo(APPPATH . 'modules/');
                     $zip->close();

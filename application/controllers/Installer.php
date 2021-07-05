@@ -72,17 +72,17 @@ class Installer extends CI_Controller
             $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
             $this->form_validation->set_rules('password', lang('password'), 'trim|required|max_length[32]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->load->view('installer/cms_db');
             }
             else
             {
-                $hostname = $this->input->post('hostname', TRUE);
-                $port     = $this->input->post('port', TRUE);
-                $prefix   = $this->input->post('prefix', TRUE);
-                $database = $this->input->post('database', TRUE);
-                $username = $this->input->post('username', TRUE);
+                $hostname = $this->input->post('hostname', true);
+                $port     = $this->input->post('port', true);
+                $prefix   = $this->input->post('prefix', true);
+                $database = $this->input->post('database', true);
+                $username = $this->input->post('username', true);
                 $password = $this->input->post('password');
 
                 $connect = $this->load->database([
@@ -92,7 +92,7 @@ class Installer extends CI_Controller
                     'database' => $database,
                     'port'     => $port,
                     'dbdriver' => 'mysqli'
-                ], TRUE);
+                ], true);
 
                 $this->load->dbutil($connect);
 
@@ -131,17 +131,17 @@ class Installer extends CI_Controller
             $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
             $this->form_validation->set_rules('password', lang('password'), 'trim|required|max_length[32]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->load->view('installer/auth_db');
             }
             else
             {
-                $hostname = $this->input->post('hostname', TRUE);
-                $port     = $this->input->post('port', TRUE);
-                $prefix   = $this->input->post('prefix', TRUE);
-                $database = $this->input->post('database', TRUE);
-                $username = $this->input->post('username', TRUE);
+                $hostname = $this->input->post('hostname', true);
+                $port     = $this->input->post('port', true);
+                $prefix   = $this->input->post('prefix', true);
+                $database = $this->input->post('database', true);
+                $username = $this->input->post('username', true);
                 $password = $this->input->post('password');
 
                 $connect = $this->load->database([
@@ -151,7 +151,7 @@ class Installer extends CI_Controller
                     'database' => $database,
                     'port'     => $port,
                     'dbdriver' => 'mysqli'
-                ], TRUE);
+                ], true);
 
                 $this->load->dbutil($connect);
 
@@ -211,7 +211,7 @@ class Installer extends CI_Controller
             $this->form_validation->set_rules('emulator', lang('emulator'), 'trim|required|alpha_dash');
             $this->form_validation->set_rules('bnet', lang('bnet_account'), 'trim|required|in_list[true,false]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->load->view('installer/settings', $data);
             }
@@ -219,7 +219,7 @@ class Installer extends CI_Controller
             {
                 $this->load->library('migration');
 
-                if ($this->migration->current() === FALSE)
+                if ($this->migration->current() === false)
                 {
                     show_error($this->migration->error_string());
                 }
@@ -227,11 +227,11 @@ class Installer extends CI_Controller
                 $this->settings->update_batch([
                     [
                         'key' => 'app_name',
-                        'value' => $this->input->post('name', TRUE)
+                        'value' => $this->input->post('name', true)
                     ],
                     [
                         'key' => 'realmlist',
-                        'value' => $this->input->post('realmlist', TRUE)
+                        'value' => $this->input->post('realmlist', true)
                     ],
                     [
                         'key' => 'expansion',
@@ -239,7 +239,7 @@ class Installer extends CI_Controller
                     ],
                     [
                         'key' => 'emulator',
-                        'value' => $this->input->post('emulator', TRUE)
+                        'value' => $this->input->post('emulator', true)
                     ],
                     [
                         'key' => 'emulator_bnet',
@@ -265,7 +265,7 @@ class Installer extends CI_Controller
                 if (is_null(config_item('installer_blocked')))
                 {
                     $installer = $this->config_writer->get_instance(APPPATH . 'config/installer.php');
-                    $installer->write('installer_blocked', TRUE);
+                    $installer->write('installer_blocked', true);
                 }
 
                 redirect(site_url(), 'refresh');
@@ -293,7 +293,7 @@ class Installer extends CI_Controller
         $line = "<?php".PHP_EOL;
         $line .= "defined('BASEPATH') OR exit('No direct script access allowed');".PHP_EOL.PHP_EOL;
         $line .= "\$active_group"." = 'cms';".PHP_EOL;
-        $line .= "\$query_builder"." = TRUE;".PHP_EOL.PHP_EOL;
+        $line .= "\$query_builder"." = true;".PHP_EOL.PHP_EOL;
         $line .= "\$db['cms']"." = [".PHP_EOL;
         $line .= "\t'dsn'    => '',".PHP_EOL;
         $line .= "\t'hostname' => '{$settings['cms_hostname']}',".PHP_EOL;
@@ -303,18 +303,18 @@ class Installer extends CI_Controller
         $line .= "\t'port'    => {$settings['cms_port']},".PHP_EOL;
         $line .= "\t'dbdriver' => 'mysqli',".PHP_EOL;
         $line .= "\t'dbprefix' => '{$settings['cms_prefix']}',".PHP_EOL;
-        $line .= "\t'pconnect' => FALSE,".PHP_EOL;
+        $line .= "\t'pconnect' => false,".PHP_EOL;
         $line .= "\t'db_debug' => (ENVIRONMENT !== 'production'),".PHP_EOL;
-        $line .= "\t'cache_on' => FALSE,".PHP_EOL;
+        $line .= "\t'cache_on' => false,".PHP_EOL;
         $line .= "\t'cachedir' => '',".PHP_EOL;
         $line .= "\t'char_set' => 'utf8mb4',".PHP_EOL;
         $line .= "\t'dbcollat' => 'utf8mb4_unicode_520_ci',".PHP_EOL;
         $line .= "\t'swap_pre' => '',".PHP_EOL;
-        $line .= "\t'encrypt' => FALSE,".PHP_EOL;
-        $line .= "\t'compress' => FALSE,".PHP_EOL;
-        $line .= "\t'stricton' => FALSE,".PHP_EOL;
+        $line .= "\t'encrypt' => false,".PHP_EOL;
+        $line .= "\t'compress' => false,".PHP_EOL;
+        $line .= "\t'stricton' => false,".PHP_EOL;
         $line .= "\t'failover' => [],".PHP_EOL;
-        $line .= "\t'save_queries' => TRUE,".PHP_EOL;
+        $line .= "\t'save_queries' => true,".PHP_EOL;
         $line .= "];".PHP_EOL.PHP_EOL;
         $line .= "\$db['auth']"." = [".PHP_EOL;
         $line .= "\t'dsn'    => '',".PHP_EOL;
@@ -325,18 +325,18 @@ class Installer extends CI_Controller
         $line .= "\t'port'    => {$settings['auth_port']},".PHP_EOL;
         $line .= "\t'dbdriver' => 'mysqli',".PHP_EOL;
         $line .= "\t'dbprefix' => '{$settings['auth_prefix']}',".PHP_EOL;
-        $line .= "\t'pconnect' => FALSE,".PHP_EOL;
+        $line .= "\t'pconnect' => false,".PHP_EOL;
         $line .= "\t'db_debug' => (ENVIRONMENT !== 'production'),".PHP_EOL;
-        $line .= "\t'cache_on' => FALSE,".PHP_EOL;
+        $line .= "\t'cache_on' => false,".PHP_EOL;
         $line .= "\t'cachedir' => '',".PHP_EOL;
         $line .= "\t'char_set' => 'utf8mb4',".PHP_EOL;
         $line .= "\t'dbcollat' => 'utf8mb4_unicode_520_ci',".PHP_EOL;
         $line .= "\t'swap_pre' => '',".PHP_EOL;
-        $line .= "\t'encrypt' => FALSE,".PHP_EOL;
-        $line .= "\t'compress' => FALSE,".PHP_EOL;
-        $line .= "\t'stricton' => FALSE,".PHP_EOL;
+        $line .= "\t'encrypt' => false,".PHP_EOL;
+        $line .= "\t'compress' => false,".PHP_EOL;
+        $line .= "\t'stricton' => false,".PHP_EOL;
         $line .= "\t'failover' => [],".PHP_EOL;
-        $line .= "\t'save_queries' => TRUE,".PHP_EOL;
+        $line .= "\t'save_queries' => true,".PHP_EOL;
         $line .= "];";
 
         $this->load->helper('file');

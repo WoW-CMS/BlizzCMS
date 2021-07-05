@@ -60,13 +60,13 @@ class Donate extends MX_Controller
 
         $this->form_validation->set_rules('amount', lang('amount'), 'trim|required|is_natural|greater_than_equal_to['.$minimal.']');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
             return $this->index();
         }
         else
         {
-            $amount    = $this->input->post('amount', TRUE);
+            $amount    = $this->input->post('amount', true);
             $user      = $this->session->userdata('id');
             $currency  = config_item('paypal_currency');
             $reference = $user . bin2hex(random_bytes(16));
@@ -121,7 +121,7 @@ class Donate extends MX_Controller
 
     public function paypal_check()
     {
-        $token = $this->input->get('token', TRUE);
+        $token = $this->input->get('token', true);
 
         if (empty($token) || ! $this->cms->isLogged())
         {
@@ -175,7 +175,7 @@ class Donate extends MX_Controller
 
     public function paypal_cancel()
     {
-        $token = $this->input->get('token', TRUE);
+        $token = $this->input->get('token', true);
 
         if (! $this->cms->isLogged() || empty($token))
         {

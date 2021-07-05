@@ -60,7 +60,7 @@ class Menu extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,dropdown]');
             $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('menu/create', $data);
             }
@@ -116,7 +116,7 @@ class Menu extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,dropdown]');
             $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('menu/edit', $data);
             }

@@ -69,7 +69,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,accordion]');
             $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/create', $data);
             }
@@ -121,7 +121,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[default,accordion]');
             $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/edit', $data);
             }
@@ -242,7 +242,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('top', 'Top', 'trim');
             $this->form_validation->set_rules('command', lang('command'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/create_item', $data);
             }
@@ -257,7 +257,7 @@ class Admin extends MX_Controller
                     'price_type'  => $this->input->post('price_type'),
                     'dp'          => $this->input->post('dp'),
                     'vp'          => $this->input->post('vp'),
-                    'top'         => empty($this->input->post('top', TRUE)) ? 0 : 1,
+                    'top'         => empty($this->input->post('top', true)) ? 0 : 1,
                     'command'     => $this->input->post('command')
                 ]);
 
@@ -309,7 +309,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('top', 'Top', 'trim');
             $this->form_validation->set_rules('command', lang('command'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/edit_item', $data);
             }
@@ -323,7 +323,7 @@ class Admin extends MX_Controller
                     'price_type'  => $this->input->post('price_type'),
                     'dp'          => $this->input->post('dp'),
                     'vp'          => $this->input->post('vp'),
-                    'top'         => empty($this->input->post('top', TRUE)) ? 0 : 1,
+                    'top'         => empty($this->input->post('top', true)) ? 0 : 1,
                     'command'     => $this->input->post('command')
                 ], ['id' => $id]);
 

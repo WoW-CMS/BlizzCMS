@@ -10,11 +10,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['per_page'] = 25;
-$config['page_query_string'] = TRUE;
+$config['page_query_string'] = true;
 $config['query_string_segment'] = 'page';
-$config['reuse_query_string'] = TRUE;
+$config['reuse_query_string'] = true;
 $config['num_links'] = 8;
-$config['use_page_numbers'] = TRUE;
+$config['use_page_numbers'] = true;
 
 $config['full_tag_open'] = '<ul class="pagination uk-pagination uk-margin">';
 $config['full_tag_close'] = '</ul>';

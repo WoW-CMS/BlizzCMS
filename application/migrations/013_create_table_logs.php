@@ -5,38 +5,38 @@ class Migration_Create_table_logs extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'user_id' => array(
+            ],
+            'user_id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE
-            ),
-            'type' => array(
+            ],
+            'type' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'message' => array(
+            ],
+            'message' => [
                 'type' => 'MEDIUMTEXT',
                 'null' => TRUE
-            ),
-            'ip' => array(
+            ],
+            'ip' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'created_at' => array(
+            ],
+            'created_at' => [
                 'type' => 'DATETIME',
                 'null' => TRUE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->add_key('user_id');
         $this->dbforge->create_table('logs');
     }

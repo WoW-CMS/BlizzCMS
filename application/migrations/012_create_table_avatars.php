@@ -5,43 +5,42 @@ class Migration_Create_table_avatars extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'INT',
                 'constraint' => '10',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'image' => array(
+            ],
+            'image' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('avatars');
 
-        $data = array(
-            array('image' => 'default.png'),
-            array('image' => 'arthas.png'),
-            array('image' => 'deathwing.png'),
-            array('image' => 'garrosh.png'),
-            array('image' => 'ghoul.png'),
-            array('image' => 'hogger.png'),
-            array('image' => 'illidan.png'),
-            array('image' => 'kelthuzad.png'),
-            array('image' => 'kiljeaden.png'),
-            array('image' => 'lurker.png'),
-            array('image' => 'maiev.png'),
-            array('image' => 'malfurion.png'),
-            array('image' => 'neptulon.png'),
-            array('image' => 'nerzhul.png'),
-            array('image' => 'velen.png'),
-            array('image' => 'worgen.png'),
-            array('image' => 'imp.png'),
-            array('image' => 'vault_guardian.png')
-        );
-        $this->db->insert_batch('avatars', $data);
+        $this->db->insert_batch('avatars', [
+            ['image' => 'default.png'],
+            ['image' => 'arthas.png'],
+            ['image' => 'deathwing.png'],
+            ['image' => 'garrosh.png'],
+            ['image' => 'ghoul.png'],
+            ['image' => 'hogger.png'],
+            ['image' => 'illidan.png'],
+            ['image' => 'kelthuzad.png'],
+            ['image' => 'kiljeaden.png'],
+            ['image' => 'lurker.png'],
+            ['image' => 'maiev.png'],
+            ['image' => 'malfurion.png'],
+            ['image' => 'neptulon.png'],
+            ['image' => 'nerzhul.png'],
+            ['image' => 'velen.png'],
+            ['image' => 'worgen.png'],
+            ['image' => 'imp.png'],
+            ['image' => 'vault_guardian.png']
+        ]);
     }
 
     public function down()

@@ -158,7 +158,7 @@ class Forum extends MX_Controller
             $this->form_validation->set_rules('title', lang('title'), 'trim|required');
             $this->form_validation->set_rules('description', lang('description'), 'trim|required|richtext_min[50]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('create_topic', $data);
             }
@@ -167,7 +167,7 @@ class Forum extends MX_Controller
                 $this->forum_topics->create([
                     'forum_id'    => $id,
                     'user_id'     => $this->session->userdata('id'),
-                    'title'       => $this->input->post('title', TRUE),
+                    'title'       => $this->input->post('title', true),
                     'description' => html_purify($this->input->post('description'), 'content'),
                     'created_at'  => current_date()
                 ]);
@@ -192,16 +192,16 @@ class Forum extends MX_Controller
         $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
         $this->form_validation->set_rules('comment', lang('comment'), 'trim|required|richtext_min[10]');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
-            $id = $this->input->post('id', TRUE);
+            $id = $this->input->post('id', true);
 
             $this->session->set_flashdata('form_error', form_error('comment', '', ''));
             redirect(site_url('forum/topic/' . $id));
         }
         else
         {
-            $id    = $this->input->post('id', TRUE);
+            $id    = $this->input->post('id', true);
             $topic = $this->forum_topics->find(['id' => $id]);
 
             $this->forum_posts->create([
@@ -257,14 +257,14 @@ class Forum extends MX_Controller
             $this->form_validation->set_rules('title', lang('title'), 'trim|required');
             $this->form_validation->set_rules('description', lang('description'), 'trim|required|richtext_min[50]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('edit_topic', $data);
             }
             else
             {
                 $this->forum_topics->update([
-                    'title'       => $this->input->post('title', TRUE),
+                    'title'       => $this->input->post('title', true),
                     'description' => html_purify($this->input->post('description'), 'content'),
                     'updated_at'  => current_date()
                 ], ['id' => $id]);

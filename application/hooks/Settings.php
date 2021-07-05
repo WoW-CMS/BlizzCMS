@@ -15,7 +15,7 @@ class Settings
     {
         $CI =& get_instance();
 
-        $data = ($CI->load->database() === FALSE) ? $CI->settings_model->saved() : FALSE;
+        $data = ($CI->load->database() === false) ? $CI->settings_model->saved() : false;
 
         if ($data) {
             foreach ($data as $row) {

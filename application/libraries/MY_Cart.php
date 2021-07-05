@@ -41,40 +41,40 @@ class MY_Cart extends CI_Cart
      *
      * @var bool
      */
-    public $product_name_safe = TRUE;
+    public $product_name_safe = true;
 
     /**
      * Contents of the cart
      *
      * @var array
      */
-    protected $_cart_contents = array();
+    protected $_cart_contents = [];
 
     /**
      * Shopping Class Constructor
      *
      * The constructor loads the Session class, used to store the shopping cart contents.
      *
-     * @param    array
-     * @return    void
+     * @param array
+     * @return void
      */
-    public function __construct($params = array())
+    public function __construct($params = [])
     {
         // Set the super object to a local variable for use later
         $this->CI =& get_instance();
 
         // Are any config settings being passed manually?  If so, set them
-        $config = is_array($params) ? $params : array();
+        $config = is_array($params) ? $params : [];
 
         // Load the Sessions class
         $this->CI->load->driver('session', $config);
 
         // Grab the shopping cart array from the session table
         $this->_cart_contents = $this->CI->session->userdata('cart_contents');
-        if ($this->_cart_contents === NULL)
+        if ($this->_cart_contents === null)
         {
             // No cart exists so we'll set some base values
-            $this->_cart_contents = array('total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0);
+            $this->_cart_contents = ['total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0];
         }
 
         log_message('info', 'Cart Class Initialized');
@@ -83,16 +83,16 @@ class MY_Cart extends CI_Cart
     /**
      * Insert
      *
-     * @param    array
-     * @return    bool
+     * @param array
+     * @return bool
      */
-    protected function _insert($items = array())
+    protected function _insert($items = [])
     {
         // Was any cart data passed? No? Bah...
         if (! is_array($items) OR count($items) === 0)
         {
             log_message('error', 'The insert method must be passed an array containing data.');
-            return FALSE;
+            return false;
         }
 
         // --------------------------------------------------------------------
@@ -101,7 +101,7 @@ class MY_Cart extends CI_Cart
         if (! isset($items['id'], $items['qty'], $items['name'], $items['dp'], $items['vp'], $items['realm'], $items['guid']))
         {
             log_message('error', 'The cart array must contain a product ID, quantity, name, dp, vp, realm and guid.');
-            return FALSE;
+            return false;
         }
 
         // --------------------------------------------------------------------
@@ -112,7 +112,7 @@ class MY_Cart extends CI_Cart
         // If the quantity is zero or blank there's nothing for us to do
         if ($items['qty'] == 0)
         {
-            return FALSE;
+            return false;
         }
 
         // --------------------------------------------------------------------
@@ -123,7 +123,7 @@ class MY_Cart extends CI_Cart
         if (! preg_match('/^['.$this->product_id_rules.']+$/i', $items['id']))
         {
             log_message('error', 'Invalid product ID.  The product ID can only contain alpha-numeric characters, dashes, and underscores');
-            return FALSE;
+            return false;
         }
 
         // --------------------------------------------------------------------
@@ -133,7 +133,7 @@ class MY_Cart extends CI_Cart
         if ($this->product_name_safe && ! preg_match('/^['.$this->product_name_rules.']+$/i'.(UTF8_ENABLED ? 'u' : ''), $items['name']))
         {
             log_message('error', 'An invalid name was submitted as the product name: '.$items['name'].' The name can only contain alpha-numeric characters, dashes, underscores, colons, and spaces');
-            return FALSE;
+            return false;
         }
 
         // --------------------------------------------------------------------
@@ -189,15 +189,15 @@ class MY_Cart extends CI_Cart
      * changes to the quantity before checkout. That array must contain the
      * rowid and quantity for each item.
      *
-     * @param    array
-     * @return    bool
+     * @param array
+     * @return bool
      */
-    protected function _update($items = array())
+    protected function _update($items = [])
     {
         // Without these array indexes there is nothing we can do
         if (! isset($items['rowid'], $this->_cart_contents[$items['rowid']]))
         {
-            return FALSE;
+            return false;
         }
 
         // Prep the quantity
@@ -209,7 +209,7 @@ class MY_Cart extends CI_Cart
             if ($items['qty'] == 0)
             {
                 unset($this->_cart_contents[$items['rowid']]);
-                return TRUE;
+                return true;
             }
         }
 
@@ -237,18 +237,18 @@ class MY_Cart extends CI_Cart
         }
 
         // product id & name shouldn't be changed
-        foreach (array_diff($keys, array('id', 'name')) as $key)
+        foreach (array_diff($keys, ['id', 'name']) as $key)
         {
             $this->_cart_contents[$items['rowid']][$key] = $items[$key];
         }
 
-        return TRUE;
+        return true;
     }
 
     /**
      * Save the cart array to the session DB
      *
-     * @return    bool
+     * @return bool
      */
     protected function _save_cart()
     {
@@ -275,21 +275,21 @@ class MY_Cart extends CI_Cart
             $this->CI->session->unset_userdata('cart_contents');
 
             // Nothing more to do... coffee time!
-            return FALSE;
+            return false;
         }
 
         // If we made it this far it means that our cart has data.
         // Let's pass it to the Session class so it can be stored
-        $this->CI->session->set_userdata(array('cart_contents' => $this->_cart_contents));
+        $this->CI->session->set_userdata(['cart_contents' => $this->_cart_contents]);
 
         // Woot!
-        return TRUE;
+        return true;
     }
 
     /**
      * Total DP
      *
-     * @return    int
+     * @return int
      */
     public function total_dp()
     {
@@ -299,7 +299,7 @@ class MY_Cart extends CI_Cart
     /**
      * Total VP
      *
-     * @return    int
+     * @return int
      */
     public function total_vp()
     {
@@ -309,7 +309,7 @@ class MY_Cart extends CI_Cart
     /**
      * Count Items on cart
      *
-     * @return    int
+     * @return int
      */
     public function count_items()
     {
@@ -319,7 +319,7 @@ class MY_Cart extends CI_Cart
     /**
      * Valid guid on items
      *
-     * @return    int
+     * @return int
      */
     public function valid_items()
     {
@@ -331,10 +331,10 @@ class MY_Cart extends CI_Cart
      *
      * Returns the entire cart array
      *
-     * @param    bool
-     * @return    array
+     * @param bool
+     * @return array
      */
-    public function contents($newest_first = FALSE)
+    public function contents($newest_first = false)
     {
         // do we want the newest first?
         $cart = ($newest_first) ? array_reverse($this->_cart_contents) : $this->_cart_contents;
@@ -354,13 +354,13 @@ class MY_Cart extends CI_Cart
      *
      * Returns the details of a specific item in the cart
      *
-     * @param    string    $row_id
-     * @return    array
+     * @param string $row_id
+     * @return array
      */
     public function get_item($row_id)
     {
-        return (in_array($row_id, array('total_items', 'total_dp', 'total_vp', 'count_items','valid_items'), TRUE) OR ! isset($this->_cart_contents[$row_id]))
-            ? FALSE
+        return (in_array($row_id, ['total_items', 'total_dp', 'total_vp', 'count_items','valid_items'], true) OR ! isset($this->_cart_contents[$row_id]))
+            ? false
             : $this->_cart_contents[$row_id];
     }
 
@@ -369,11 +369,11 @@ class MY_Cart extends CI_Cart
      *
      * Empties the cart and kills the session
      *
-     * @return    void
+     * @return void
      */
     public function destroy()
     {
-        $this->_cart_contents = array('total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0);
+        $this->_cart_contents = ['total_items' => 0, 'total_dp' => 0, 'total_vp' => 0, 'count_items' => 0, 'valid_items' => 0];
         $this->CI->session->unset_userdata('cart_contents');
     }
 }

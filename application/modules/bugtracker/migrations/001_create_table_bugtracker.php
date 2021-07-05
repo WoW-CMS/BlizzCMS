@@ -5,53 +5,53 @@ class Migration_Create_table_bugtracker extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'user_id' => array(
+            ],
+            'user_id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE
-            ),
-            'realm_id' => array(
+            ],
+            'realm_id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE
-            ),
-            'title' => array(
+            ],
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'description' => array(
+            ],
+            'description' => [
                 'type' => 'MEDIUMTEXT',
                 'null' => TRUE
-            ),
-            'category_id' => array(
+            ],
+            'category_id' => [
                 'type' => 'INT',
                 'constraint' => '10',
                 'default' => 1
-            ),
-            'priority' => array(
+            ],
+            'priority' => [
                 'type' => 'ENUM("low","normal","medium","high","critical")',
                 'default' => 'normal',
                 'null' => FALSE
-            ),
-            'status' => array(
+            ],
+            'status' => [
                 'type' => 'ENUM("open","waiting information","confirmed","in progress","invalid","fixed")',
                 'default' => 'open',
                 'null' => FALSE
-            ),
-            'created_at' => array(
+            ],
+            'created_at' => [
                 'type' => 'DATETIME',
                 'null' => TRUE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->add_key('user_id');
         $this->dbforge->add_key('realm_id');
         $this->dbforge->add_key('category_id');

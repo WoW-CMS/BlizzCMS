@@ -5,26 +5,26 @@ class Migration_Create_table_sessions extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '40',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'ip_address' => array(
+            ],
+            'ip_address' => [
                 'type' => 'VARCHAR',
                 'constraint' => '45'
-            ),
-            'timestamp' => array(
+            ],
+            'timestamp' => [
                 'type' => 'INT',
                 'constraint' => '10'
-            ),
-            'data' => array(
+            ],
+            'data' => [
                 'type' => 'BLOB'
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->add_key('timestamp');
         $this->dbforge->create_table('sessions');
     }

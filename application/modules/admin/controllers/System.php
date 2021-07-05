@@ -59,7 +59,7 @@ class System extends MX_Controller
             $this->form_validation->set_rules('admin_access', 'Admin access', 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('mod_access', 'Mod access', 'trim|required|is_natural_no_zero');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('system/general');
             }
@@ -68,15 +68,15 @@ class System extends MX_Controller
                 $this->settings->update_batch([
                     [
                         'key' => 'app_name',
-                        'value' => $this->input->post('name', TRUE)
+                        'value' => $this->input->post('name', true)
                     ],
                     [
                         'key' => 'realmlist',
-                        'value' => $this->input->post('realmlist', TRUE)
+                        'value' => $this->input->post('realmlist', true)
                     ],
                     [
                         'key' => 'app_theme',
-                        'value' => $this->input->post('theme', TRUE)
+                        'value' => $this->input->post('theme', true)
                     ],
                     [
                         'key' => 'expansion',
@@ -84,7 +84,7 @@ class System extends MX_Controller
                     ],
                     [
                         'key' => 'emulator',
-                        'value' => $this->input->post('emulator', TRUE)
+                        'value' => $this->input->post('emulator', true)
                     ],
                     [
                         'key' => 'emulator_bnet',
@@ -92,27 +92,27 @@ class System extends MX_Controller
                     ],
                     [
                         'key' => 'discord_server_id',
-                        'value' => $this->input->post('discord', TRUE)
+                        'value' => $this->input->post('discord', true)
                     ],
                     [
                         'key' => 'facebook_url',
-                        'value' => $this->input->post('facebook', TRUE)
+                        'value' => $this->input->post('facebook', true)
                     ],
                     [
                         'key' => 'twitter_url',
-                        'value' => $this->input->post('twitter', TRUE)
+                        'value' => $this->input->post('twitter', true)
                     ],
                     [
                         'key' => 'youtube_url',
-                        'value' => $this->input->post('youtube', TRUE)
+                        'value' => $this->input->post('youtube', true)
                     ],
                     [
                         'key' => 'admin_access_level',
-                        'value' => $this->input->post('admin_access', TRUE)
+                        'value' => $this->input->post('admin_access', true)
                     ],
                     [
                         'key' => 'mod_access_level',
-                        'value' => $this->input->post('mod_access', TRUE)
+                        'value' => $this->input->post('mod_access', true)
                     ]
                 ], 'key');
 
@@ -143,7 +143,7 @@ class System extends MX_Controller
             $this->form_validation->set_rules('captcha_public', lang('public_key'), 'trim|alpha_dash');
             $this->form_validation->set_rules('captcha_private', lang('private_key'), 'trim|alpha_dash');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('system/captcha');
             }
@@ -152,15 +152,15 @@ class System extends MX_Controller
                 $this->settings->update_batch([
                     [
                         'key'   => 'captcha_register',
-                        'value' => ($this->input->post('captcha_register', TRUE) != 'true') ? 'false' : 'true'
+                        'value' => ($this->input->post('captcha_register', true) != 'true') ? 'false' : 'true'
                     ],
                     [
                         'key'   => 'captcha_login',
-                        'value' => ($this->input->post('captcha_login', TRUE) != 'true') ? 'false' : 'true'
+                        'value' => ($this->input->post('captcha_login', true) != 'true') ? 'false' : 'true'
                     ],
                     [
                         'key'   => 'captcha_forgot',
-                        'value' => ($this->input->post('captcha_forgot', TRUE) != 'true') ? 'false' : 'true'
+                        'value' => ($this->input->post('captcha_forgot', true) != 'true') ? 'false' : 'true'
                     ],
                     [
                         'key'   => 'captcha_type',
@@ -208,7 +208,7 @@ class System extends MX_Controller
             $this->form_validation->set_rules('encryption', lang('encryption'), 'trim|in_list[tls,ssl]');
             $this->form_validation->set_rules('sender', lang('sender'), 'trim');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('system/mail');
             }
@@ -217,7 +217,7 @@ class System extends MX_Controller
                 $this->settings->update_batch([
                     [
                         'key'   => 'mail_validation',
-                        'value' => ($this->input->post('register', TRUE) != 'true') ? 'false' : 'true'
+                        'value' => ($this->input->post('register', true) != 'true') ? 'false' : 'true'
                     ],
                     [
                         'key'   => 'mail_mailer',
@@ -225,7 +225,7 @@ class System extends MX_Controller
                     ],
                     [
                         'key'   => 'mail_hostname',
-                        'value' => $this->input->post('hostname', TRUE)
+                        'value' => $this->input->post('hostname', true)
                     ],
                     [
                         'key'   => 'mail_username',
@@ -241,7 +241,7 @@ class System extends MX_Controller
                     ],
                     [
                         'key'   => 'mail_sender',
-                        'value' => $this->input->post('sender', TRUE)
+                        'value' => $this->input->post('sender', true)
                     ]
                 ], 'key');
 

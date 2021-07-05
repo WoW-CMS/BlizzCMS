@@ -5,63 +5,62 @@ class Migration_Create_table_menu extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'name' => array(
+            ],
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'url' => array(
+            ],
+            'url' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'icon' => array(
+            ],
+            'icon' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'target' => array(
+            ],
+            'target' => [
                 'type' => 'ENUM("_self","_blank")',
                 'default' => '_self',
                 'null' => FALSE
-            ),
-            'type' => array(
+            ],
+            'type' => [
                 'type' => 'ENUM("default","dropdown")',
                 'default' => 'default',
                 'null' => FALSE
-            ),
-            'position' => array(
+            ],
+            'position' => [
                 'type' => 'ENUM("main","aside")',
                 'default' => 'main',
                 'null' => FALSE
-            ),
-            'parent' => array(
+            ],
+            'parent' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'default' => 0
-            ),
-            'sort' => array(
+            ],
+            'sort' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'default' => 0
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('menu');
 
-        $data = array(
-            array('name' => 'Home', 'url' => '', 'icon' => 'fas fa-home', 'target' => '_self', 'type' => 'default', 'position' => 'main', 'parent' => 0, 'sort' => 1)
-        );
-        $this->db->insert_batch('menu', $data);
+        $this->db->insert_batch('menu', [
+            ['name' => 'Home', 'url' => '', 'icon' => 'fas fa-home', 'target' => '_self', 'type' => 'default', 'position' => 'main', 'parent' => 0, 'sort' => 1]
+        ]);
     }
 
     public function down()

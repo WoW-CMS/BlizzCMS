@@ -87,7 +87,7 @@ class Bugtracker extends MX_Controller
             $this->form_validation->set_rules('category', lang('category'), 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('description', lang('description'), 'trim|required|richtext_min[50]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('create_report', $data);
             }
@@ -95,10 +95,10 @@ class Bugtracker extends MX_Controller
             {
                 $this->bugtracker->create([
                     'user_id'     => $this->session->userdata('id'),
-                    'realm_id'    => $this->input->post('realm', TRUE),
-                    'title'       => $this->input->post('title', TRUE),
+                    'realm_id'    => $this->input->post('realm', true),
+                    'title'       => $this->input->post('title', true),
                     'description' => html_purify($this->input->post('description'), 'content'),
-                    'category_id' => $this->input->post('category', TRUE),
+                    'category_id' => $this->input->post('category', true),
                     'created_at'  => current_date()
                 ]);
 
@@ -151,23 +151,23 @@ class Bugtracker extends MX_Controller
                 $this->form_validation->set_rules('status', lang('status'), 'trim|required');
             }
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('edit_report', $data);
             }
             else
             {
                 $data = [
-                    'realm_id'    => $this->input->post('realm', TRUE),
-                    'title'       => $this->input->post('title', TRUE),
+                    'realm_id'    => $this->input->post('realm', true),
+                    'title'       => $this->input->post('title', true),
                     'description' => html_purify($this->input->post('description'), 'content'),
-                    'category_id' => $this->input->post('category', TRUE)
+                    'category_id' => $this->input->post('category', true)
                 ];
 
                 if ($this->auth->is_moderator())
                 {
-                    $data['priority'] = $this->input->post('priority', TRUE);
-                    $data['status']   = $this->input->post('status', TRUE);
+                    $data['priority'] = $this->input->post('priority', true);
+                    $data['status']   = $this->input->post('status', true);
                 }
 
                 $this->bugtracker->update($data, ['id' => $id]);
@@ -230,16 +230,16 @@ class Bugtracker extends MX_Controller
         $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
         $this->form_validation->set_rules('comment', lang('comment'), 'trim|required|richtext_min[10]');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
-            $id = $this->input->post('id', TRUE);
+            $id = $this->input->post('id', true);
 
             $this->session->set_flashdata('form_error', form_error('comment', '', ''));
             redirect(site_url('bugtracker/report/' . $id));
         }
         else
         {
-            $id = $this->input->post('id', TRUE);
+            $id = $this->input->post('id', true);
 
             $this->bugtracker_comments->create([
                 'report_id'  => $id,

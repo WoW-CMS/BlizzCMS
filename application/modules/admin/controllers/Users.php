@@ -93,16 +93,16 @@ class Users extends MX_Controller
         $this->form_validation->set_rules('dp', lang('donor_points'), 'trim|required|is_natural');
         $this->form_validation->set_rules('vp', lang('voter_points'), 'trim|required|is_natural');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
-            return $this->view($this->input->post('id', TRUE));
+            return $this->view($this->input->post('id', true));
         }
         else
         {
-            $id = $this->input->post('id', TRUE);
+            $id = $this->input->post('id', true);
 
             $this->users->update([
-                'nickname' => $this->input->post('nickname', TRUE),
+                'nickname' => $this->input->post('nickname', true),
                 'dp'       => $this->input->post('dp'),
                 'vp'       => $this->input->post('vp')
             ], ['id' => $id]);
@@ -176,16 +176,16 @@ class Users extends MX_Controller
             $this->form_validation->set_rules('date', lang('date'), 'trim|required|validate_date[Y-m-d]');
             $this->form_validation->set_rules('reason', lang('reason'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('users/add_ban');
             }
             else
             {
                 $emulator = config_item('emulator');
-                $user   = $this->auth->account_id($this->input->post('username', TRUE));
+                $user   = $this->auth->account_id($this->input->post('username', true));
                 $date   = $this->input->post('date');
-                $reason = $this->input->post('reason', TRUE);
+                $reason = $this->input->post('reason', true);
 
                 if (empty($user))
                 {

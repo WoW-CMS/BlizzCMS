@@ -25,9 +25,9 @@ class Characters_model extends CI_Model
             'port'     => $row->char_port,
             'dbdriver' => 'mysqli',
             'pconnect' => FALSE
-        ], TRUE);
+        ], true);
 
-        if ($db->conn_id === FALSE) {
+        if ($db->conn_id === false) {
             show_error(lang('characters_connection_error'));
         }
 

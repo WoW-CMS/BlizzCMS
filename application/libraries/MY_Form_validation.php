@@ -97,7 +97,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         sscanf($field, '%[^.].%[^.].%[^.]', $table, $field, $id);
         return is_object($this->CI->db)
-            ? ($this->CI->db->limit(1)->get_where($table, array($field => $str, 'id !=' => $id))->num_rows() === 0)
+            ? ($this->CI->db->limit(1)->get_where($table, [$field => $str, 'id !=' => $id])->num_rows() === 0)
             : false;
     }
 
@@ -117,10 +117,10 @@ class MY_Form_validation extends CI_Form_validation
 
         // Send POST Request
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $response = curl_exec($ch);
         curl_close($ch);

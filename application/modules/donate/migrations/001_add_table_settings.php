@@ -5,22 +5,21 @@ class Migration_Add_table_settings extends CI_Migration
 {
     public function up()
     {
-        $data = array(
-            array('key' => 'paypal_currency', 'value' => 'USD'),
-            array('key' => 'paypal_gateway', 'value' => 'false'),
-            array('key' => 'paypal_mode', 'value' => NULL),
-            array('key' => 'paypal_client', 'value' => NULL),
-            array('key' => 'paypal_secret', 'value' => NULL),
-            array('key' => 'paypal_minimal_amount', 'value' => 1),
-            array('key' => 'paypal_currency_rate', 'value' => 1),
-            array('key' => 'paypal_points_rate', 'value' => 1)
-        );
-        $this->db->insert_batch('settings', $data);
+        $this->db->insert_batch('settings', [
+            ['key' => 'paypal_currency', 'value' => 'USD'],
+            ['key' => 'paypal_gateway', 'value' => 'false'],
+            ['key' => 'paypal_mode', 'value' => NULL],
+            ['key' => 'paypal_client', 'value' => NULL],
+            ['key' => 'paypal_secret', 'value' => NULL],
+            ['key' => 'paypal_minimal_amount', 'value' => 1],
+            ['key' => 'paypal_currency_rate', 'value' => 1],
+            ['key' => 'paypal_points_rate', 'value' => 1]
+        ]);
     }
 
     public function down()
     {
-        $data = array(
+        $this->db->where_in('key', [
             'paypal_currency',
             'paypal_gateway',
             'paypal_mode',
@@ -29,7 +28,6 @@ class Migration_Add_table_settings extends CI_Migration
             'paypal_minimal_amount',
             'paypal_currency_rate',
             'paypal_points_rate'
-        );
-        $this->db->where_in('key', $data)->delete('settings');
+        ])->delete('settings');
     }
 }

@@ -5,19 +5,19 @@ class Migration_Create_table_modules extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'module' => array(
+        $this->dbforge->add_field([
+            'module' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'version' => array(
+            ],
+            'version' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            )
-        ));
-        $this->dbforge->add_key('module', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('module', true);
         $this->dbforge->create_table('modules');
     }
 

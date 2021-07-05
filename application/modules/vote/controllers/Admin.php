@@ -80,7 +80,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('points', lang('points'), 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('image', lang('image'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/create');
             }
@@ -88,10 +88,10 @@ class Admin extends MX_Controller
             {
                 $this->topsites->create([
                     'name'   => $this->input->post('name'),
-                    'url'    => $this->input->post('url', TRUE),
+                    'url'    => $this->input->post('url', true),
                     'time'   => $this->input->post('time'),
                     'points' => $this->input->post('points'),
-                    'image'  => $this->input->post('image', TRUE)
+                    'image'  => $this->input->post('image', true)
                 ]);
 
                 $this->session->set_flashdata('success', lang('topsite_created'));
@@ -133,7 +133,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('points', lang('points'), 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('image', lang('image'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/edit', $data);
             }
@@ -141,10 +141,10 @@ class Admin extends MX_Controller
             {
                 $this->topsites->update([
                     'name'   => $this->input->post('name'),
-                    'url'    => $this->input->post('url', TRUE),
+                    'url'    => $this->input->post('url', true),
                     'time'   => $this->input->post('time'),
                     'points' => $this->input->post('points'),
-                    'image'  => $this->input->post('image', TRUE)
+                    'image'  => $this->input->post('image', true)
                 ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('topsite_updated'));

@@ -54,7 +54,7 @@ class Cms_model extends CI_Model
                 'username'  => $account->username,
                 'email'     => $account->email,
                 'gmlevel'   => $this->auth->get_gmlevel($account->id),
-                'logged_in' => TRUE
+                'logged_in' => true
             ];
         }
         else {
@@ -64,7 +64,7 @@ class Cms_model extends CI_Model
                 'username'  => $user->username,
                 'email'     => $user->email,
                 'gmlevel'   => $this->auth->get_gmlevel($user->id),
-                'logged_in' => TRUE
+                'logged_in' => true
             ];
         }
 

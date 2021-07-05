@@ -63,14 +63,14 @@ class Realms extends MX_Controller
             $this->form_validation->set_rules('realm_host', lang('hostname'), 'trim|required');
             $this->form_validation->set_rules('realm_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('realms/create');
             }
             else
             {
                 $this->realms->create([
-                    'name'             => $this->input->post('name', TRUE),
+                    'name'             => $this->input->post('name', true),
                     'max_cap'          => $this->input->post('max_cap'),
                     'char_hostname'    => $this->input->post('char_host'),
                     'char_username'    => $this->input->post('char_user'),
@@ -132,14 +132,14 @@ class Realms extends MX_Controller
             $this->form_validation->set_rules('realm_host', lang('hostname'), 'trim|required');
             $this->form_validation->set_rules('realm_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('realms/edit', $data);
             }
             else
             {
                 $realm = [
-                    'name'             => $this->input->post('name', TRUE),
+                    'name'             => $this->input->post('name', true),
                     'max_cap'          => $this->input->post('max_cap'),
                     'char_hostname'    => $this->input->post('char_host'),
                     'char_username'    => $this->input->post('char_user'),

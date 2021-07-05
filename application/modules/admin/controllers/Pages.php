@@ -75,7 +75,7 @@ class Pages extends MX_Controller
             $this->form_validation->set_rules('description', lang('description'), 'trim|required');
             $this->form_validation->set_rules('slug', lang('slug'), 'trim|required|is_unique[pages.slug]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('pages/create');
             }
@@ -128,7 +128,7 @@ class Pages extends MX_Controller
             $this->form_validation->set_rules('description', lang('description'), 'trim|required');
             $this->form_validation->set_rules('slug', lang('slug'), 'trim|required|update_unique[pages.slug.'.$id.']');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('pages/edit', $data);
             }

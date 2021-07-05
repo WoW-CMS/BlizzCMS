@@ -5,28 +5,28 @@ class Migration_Create_table_changelogs extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'title' => array(
+            ],
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => FALSE
-            ),
-            'description' => array(
+            ],
+            'description' => [
                 'type' => 'MEDIUMTEXT',
                 'null' => TRUE
-            ),
-            'created_at' => array(
+            ],
+            'created_at' => [
                 'type' => 'DATETIME',
                 'null' => TRUE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('changelogs');
     }
 

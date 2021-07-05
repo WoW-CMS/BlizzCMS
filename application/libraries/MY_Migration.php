@@ -17,7 +17,7 @@ class MY_Migration extends CI_Migration
      *
      * @var bool
      */
-    protected $_migration_enabled = FALSE;
+    protected $_migration_enabled = false;
 
     /**
      * Migration numbering type
@@ -31,7 +31,7 @@ class MY_Migration extends CI_Migration
      *
      * @var string
      */
-    protected $_migration_path = NULL;
+    protected $_migration_path = null;
 
     /**
      * Current migration version
@@ -52,7 +52,7 @@ class MY_Migration extends CI_Migration
      *
      * @var    bool
      */
-    protected $_migration_auto_latest = FALSE;
+    protected $_migration_auto_latest = false;
 
     /**
      * Migration basename regex
@@ -107,7 +107,7 @@ class MY_Migration extends CI_Migration
         log_message('info', 'Migrations Class Initialized');
 
         // Are they trying to use migrations while it is disabled?
-        if ($this->_migration_enabled !== TRUE)
+        if ($this->_migration_enabled !== true)
         {
             show_error('Migrations has been loaded but is disabled or set up incorrectly.');
         }
@@ -144,27 +144,27 @@ class MY_Migration extends CI_Migration
         // If the migrations table is missing, make it
         if (! $this->db->table_exists($this->_migration_table))
         {
-            $this->dbforge->add_field(array(
-                'module'  => array(
+            $this->dbforge->add_field([
+                'module'  => [
                     'type' => 'VARCHAR',
                     'constraint' => '255',
                     'null' => FALSE
-                ),
-                'version' => array(
+                ],
+                'version' => [
                     'type' => 'BIGINT',
                     'constraint' => '20',
                     'unsigned' => TRUE,
                     'default' => 0
-                )
-            ));
+                ]
+            ]);
 
-            $this->dbforge->create_table($this->_migration_table, TRUE);
+            $this->dbforge->create_table($this->_migration_table, true);
 
             $this->db->insert($this->_migration_table, ['module' => 'CI_Core', 'version' => 0]);
         }
 
         // Do we auto migrate to the latest migration?
-        if ($this->_migration_auto_latest === TRUE && ! $this->latest())
+        if ($this->_migration_auto_latest === true && ! $this->latest())
         {
             show_error($this->error_string());
         }
@@ -253,7 +253,7 @@ class MY_Migration extends CI_Migration
             $this->current();
         }
 
-        return TRUE;
+        return true;
     }
 
     public function list_all_modules_with_migrations()
@@ -264,7 +264,7 @@ class MY_Migration extends CI_Migration
         {
             list($location, $name) = $module;
 
-            if ($this->init_module($name) !== TRUE)
+            if ($this->init_module($name) !== true)
             {
                 unset($modules[$i]);
             }
@@ -299,14 +299,14 @@ class MY_Migration extends CI_Migration
                 [$path, $file] = Modules::find('migration', $module, 'config/');
             }
 
-            if ($path === FALSE)
+            if ($path === false)
             {
-                return FALSE;
+                return false;
             }
 
             if (! $config = Modules::load_file($file, $path, 'config'))
             {
-                return FALSE;
+                return false;
             }
 
             ! $config['migration_path'] && $config['migration_path'] = '../migrations';
@@ -319,20 +319,20 @@ class MY_Migration extends CI_Migration
             $this->{'_' . $key} = $val;
         }
 
-        if ($this->_migration_enabled !== TRUE)
+        if ($this->_migration_enabled !== true)
         {
-            return FALSE;
+            return false;
         }
 
         $this->_migration_path = rtrim($this->_migration_path, '/').'/';
 
         if (! file_exists($this->_migration_path))
         {
-            return FALSE;
+            return false;
         }
 
         $this->_current_module = $module;
 
-        return TRUE;
+        return true;
     }
 }

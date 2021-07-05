@@ -12,9 +12,9 @@ class Auth_model extends CI_Model
      */
     public function connect()
     {
-        $db = $this->load->database('auth', TRUE);
+        $db = $this->load->database('auth', true);
 
-        if ($db->conn_id === FALSE) {
+        if ($db->conn_id === false) {
             show_error(lang('auth_connection_error'));
         }
 
@@ -83,9 +83,9 @@ class Auth_model extends CI_Model
                 $g = gmp_init(7);
                 $N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
                 // Calculate first hash
-                $h1 = sha1(strtoupper($username.':'.$password), TRUE);
+                $h1 = sha1(strtoupper($username.':'.$password), true);
                 // Calculate second hash
-                $h2 = sha1($salt.$h1, TRUE);
+                $h2 = sha1($salt.$h1, true);
                 // Convert to integer (little-endian)
                 $h2 = gmp_import($h2, 1, GMP_LSW_FIRST);
                 // g^h2 mod N

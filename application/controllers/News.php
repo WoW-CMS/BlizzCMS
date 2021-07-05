@@ -72,16 +72,16 @@ class News extends CI_Controller
         $this->form_validation->set_rules('id', lang('id'), 'trim|required|is_natural_no_zero');
         $this->form_validation->set_rules('comment', lang('comment'), 'trim|required|richtext_min[10]');
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == false)
         {
-            $id = $this->input->post('id', TRUE);
+            $id = $this->input->post('id', true);
 
             $this->session->set_flashdata('form_error', form_error('comment', '', ''));
             redirect(site_url('news/' . $id));
         }
         else
         {
-            $id = $this->input->post('id', TRUE);
+            $id = $this->input->post('id', true);
 
             $this->news_comments->create([
                 'news_id'    => $id,

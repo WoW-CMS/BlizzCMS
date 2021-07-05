@@ -5,80 +5,80 @@ class Migration_Create_table_donation_logs extends CI_Migration
 {
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
+        $this->dbforge->add_field([
+            'id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE,
                 'auto_increment' => TRUE
-            ),
-            'user_id' => array(
+            ],
+            'user_id' => [
                 'type' => 'BIGINT',
                 'constraint' => '20',
                 'unsigned' => TRUE
-            ),
-            'order_id' => array(
+            ],
+            'order_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'reference_id' => array(
+            ],
+            'reference_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'payment_id' => array(
+            ],
+            'payment_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'payment_status' => array(
+            ],
+            'payment_status' => [
                 'type' => 'ENUM("DECLINED","PENDING","COMPLETED")',
                 'default' => 'PENDING',
                 'null' => FALSE
-            ),
-            'payment_gateway' => array(
+            ],
+            'payment_gateway' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'points' => array(
+            ],
+            'points' => [
                 'type' => 'FLOAT',
                 'constraint' => '10,2',
                 'unsigned' => TRUE,
                 'default' => 0
-            ),
-            'amount' => array(
+            ],
+            'amount' => [
                 'type' => 'FLOAT',
                 'constraint' => '10,2',
                 'unsigned' => TRUE,
                 'default' => 0
-            ),
-            'currency' => array(
+            ],
+            'currency' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'rewarded' => array(
+            ],
+            'rewarded' => [
                 'type' => 'ENUM("YES","NO")',
                 'default' => 'NO',
                 'null' => FALSE
-            ),
-            'ip' => array(
+            ],
+            'ip' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE
-            ),
-            'created_at' => array(
+            ],
+            'created_at' => [
                 'type' => 'DATETIME',
                 'null' => TRUE
-            ),
-            'updated_at' => array(
+            ],
+            'updated_at' => [
                 'type' => 'DATETIME',
                 'null' => TRUE
-            )
-        ));
-        $this->dbforge->add_key('id', TRUE);
+            ]
+        ]);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->add_key('user_id');
         $this->dbforge->create_table('donation_logs');
     }

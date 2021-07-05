@@ -70,7 +70,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('paypal_points_rate', lang('points'), 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('paypal_gateway', lang('gateway'), 'trim');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/settings');
             }
@@ -87,7 +87,7 @@ class Admin extends MX_Controller
                     ],
                     [
                         'key'   => 'paypal_client',
-                        'value' => $this->input->post('paypal_client', TRUE)
+                        'value' => $this->input->post('paypal_client', true)
                     ],
                     [
                         'key'   => 'paypal_minimal_amount',
@@ -103,7 +103,7 @@ class Admin extends MX_Controller
                     ],
                     [
                         'key'   => 'paypal_gateway',
-                        'value' => ($this->input->post('paypal_gateway', TRUE) != 'true') ? 'false' : 'true'
+                        'value' => ($this->input->post('paypal_gateway', true) != 'true') ? 'false' : 'true'
                     ]
                 ], 'key');
 
@@ -198,13 +198,13 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('amount', lang('amount'), 'trim|required|is_natural_no_zero');
             $this->form_validation->set_rules('currency', lang('currency'), 'trim|required|alpha|max_length[3]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/create_payment');
             }
             else
             {
-                $user   = $this->cms->user_id($this->input->post('username', TRUE));
+                $user   = $this->cms->user_id($this->input->post('username', true));
                 $points = (int) $this->input->post('points');
                 $ip     = $this->input->ip_address();
 
@@ -269,7 +269,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('payment', lang('payment_id'), 'trim');
             $this->form_validation->set_rules('status', lang('status'), 'trim|required|in_list[COMPLETED,PENDING,DECLINED]');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/update_payment', $data);
             }

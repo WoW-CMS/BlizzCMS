@@ -23,7 +23,7 @@ class MY_Exceptions extends CI_Exceptions
      * @param bool $log_error
      * @return void
      */
-    public function show_404($page = '', $log_error = TRUE)
+    public function show_404($page = '', $log_error = true)
     {
         if (is_cli()) {
             $heading = 'Not Found';
@@ -57,7 +57,7 @@ class MY_Exceptions extends CI_Exceptions
             $CI->config->set_item('app_name', $name);
             $CI->template->title($name, $CI->lang->line('error_404'));
 
-            $output = $CI->template->build('404', $data, TRUE);
+            $output = $CI->template->build('404', $data, true);
 
             set_status_header(404);
             echo $output;

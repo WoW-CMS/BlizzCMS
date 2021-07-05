@@ -6,12 +6,12 @@
  *
  * Should the Parser library be used for the entire page?
  *
- * Can be overridden with $this->template->enable_parser(TRUE/FALSE);
+ * Can be overridden with $this->template->enable_parser(true/false);
  *
- * Default: TRUE
+ * Default: true
  *
 */
-$config['parser_enabled'] = FALSE;
+$config['parser_enabled'] = false;
 
 /**
  *
@@ -19,12 +19,12 @@ $config['parser_enabled'] = FALSE;
  *
  * If the parser is enabled, do you want it to parse the body or not?
  *
- * Can be overridden with $this->template->enable_parser(TRUE/FALSE);
+ * Can be overridden with $this->template->enable_parser(true/false);
  *
- * Default: FALSE
+ * Default: false
  *
 */
-$config['parser_body_enabled'] = FALSE;
+$config['parser_body_enabled'] = false;
 
 /**
  *
@@ -69,7 +69,7 @@ $config['theme'] = '';
  *
  * Where should we expect to see themes?
  *
- * Default: array(APPPATH.'themes/' => '../themes/')
+ * Default: [APPPATH.'themes/' => '../themes/']
  *
 */
 $config['theme_locations'] = [

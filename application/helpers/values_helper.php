@@ -69,7 +69,7 @@ if (! function_exists('race_name'))
      */
     function race_name($id)
     {
-        $data  = get_instance()->lang->load('wow', '', TRUE);
+        $data  = get_instance()->lang->load('wow', '', true);
         $races = $data['races'];
 
         return array_key_exists($id, $races) ? $races[$id] : lang('unknown');
@@ -86,7 +86,7 @@ if (! function_exists('class_name'))
      */
     function class_name($id)
     {
-        $data    = get_instance()->lang->load('wow', '', TRUE);
+        $data    = get_instance()->lang->load('wow', '', true);
         $classes = $data['classes'];
 
         return array_key_exists($id, $classes) ? $classes[$id] : lang('unknown');
@@ -103,7 +103,7 @@ if (! function_exists('zone_name'))
      */
     function zone_name($id)
     {
-        $data  = get_instance()->lang->load('wow', '', TRUE);
+        $data  = get_instance()->lang->load('wow', '', true);
         $zones = $data['zones'];
 
         return array_key_exists($id, $zones) ? $zones[$id] : lang('unknown');

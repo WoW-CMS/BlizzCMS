@@ -54,7 +54,7 @@ class Slides extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[image,video,iframe]');
             $this->form_validation->set_rules('route', lang('route'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('slides/create');
             }
@@ -64,7 +64,7 @@ class Slides extends MX_Controller
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'type'        => $this->input->post('type'),
-                    'route'       => $this->input->post('route', TRUE)
+                    'route'       => $this->input->post('route', true)
                 ]);
 
                 $this->session->set_flashdata('success', lang('slide_created'));
@@ -105,7 +105,7 @@ class Slides extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[image,video,iframe]');
             $this->form_validation->set_rules('route', lang('route'), 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('slides/edit', $data);
             }
@@ -115,7 +115,7 @@ class Slides extends MX_Controller
                     'title'       => $this->input->post('title'),
                     'description' => $this->input->post('description'),
                     'type'        => $this->input->post('type'),
-                    'route'       => $this->input->post('route', TRUE)
+                    'route'       => $this->input->post('route', true)
                 ], ['id' => $id]);
 
                 $this->session->set_flashdata('success', lang('slide_updated'));

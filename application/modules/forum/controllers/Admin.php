@@ -71,7 +71,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[category,forum]');
             $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/create', $data);
             }
@@ -143,7 +143,7 @@ class Admin extends MX_Controller
             $this->form_validation->set_rules('type', lang('type'), 'trim|required|in_list[category,forum]');
             $this->form_validation->set_rules('parent', lang('parent'), 'trim|required|is_natural');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run() == false)
             {
                 $this->template->build('admin/edit', $data);
             }
