@@ -160,7 +160,7 @@ class Donate extends MX_Controller
             redirect(site_url('donate'));
         }
 
-        $this->db->query("UPDATE users SET dp = dp + ? WHERE id = ?", [$log->points, $log->user_id]);
+        $this->users->set(['dp' => 'dp+' . $log->points], ['id' => $log->user_id], false);
 
         $this->donation_logs->update([
             'payment_id'     => $response->result->purchase_units[0]->payments->captures[0]->id,

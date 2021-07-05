@@ -52,6 +52,21 @@ class Users_tokens_model extends CI_Model
     }
 
     /**
+     * Set record
+     *
+     * @param array $keys
+     * @param array $where
+     * @param bool $escape
+     * @return bool
+     */
+    public function set(array $keys, array $where, $escape = null)
+    {
+        return $this->db->set($keys, '', $escape)
+                    ->where($where)
+                    ->update($this->table);
+    }
+
+    /**
      * Delete record
      *
      * @param array $where

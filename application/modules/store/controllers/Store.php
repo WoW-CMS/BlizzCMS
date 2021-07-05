@@ -280,13 +280,16 @@ class Store extends MX_Controller
 
         switch ($item['options']['price_type']) {
             case 'dp':
-                $this->db->query("UPDATE users SET dp = dp - ? WHERE id = ?", [$total_dp, $user]);
+                $this->users->set(['dp' => 'dp-' . $total_dp], ['id' => $user], false);
                 break;
             case 'vp':
-                $this->db->query("UPDATE users SET vp = vp - ? WHERE id = ?", [$total_vp, $user]);
+                $this->users->set(['vp' => 'vp-' . $total_vp], ['id' => $user], false);
                 break;
             case 'and':
-                $this->db->query("UPDATE users SET dp = dp - ?, vp = vp - ? WHERE id = ?", [$total_dp, $total_vp, $user]);
+                $this->users->set([
+                    'dp' => 'dp-' . $total_dp,
+                    'vp' => 'vp-' . $total_vp
+                ], ['id' => $user], false);
                 break;
         }
 

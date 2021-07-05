@@ -1,4 +1,4 @@
-    <section class="uk-section uk-section-xsmall uk-padding-remove header-section" data-uk-height-viewport="expand: true">
+    <section class="uk-section uk-section-xsmall header-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-5@s"></div>

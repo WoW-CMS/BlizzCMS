@@ -34,6 +34,21 @@ class Menu_model extends CI_Model
     }
 
     /**
+     * Set record
+     *
+     * @param array $keys
+     * @param array $where
+     * @param bool $escape
+     * @return bool
+     */
+    public function set(array $keys, array $where, $escape = null)
+    {
+        return $this->db->set($keys, '', $escape)
+                    ->where($where)
+                    ->update($this->table);
+    }
+
+    /**
      * Delete record
      *
      * @param array $where
@@ -58,11 +73,18 @@ class Menu_model extends CI_Model
     /**
      * Find all records
      *
+     * @param array $where
      * @return array
      */
-    public function find_all()
+    public function find_all(array $where = [])
     {
-        return $this->db->get($this->table)->result();
+        $query = $this->db->from($this->table);
+
+        if (empty($where)) {
+            $query = $query->where($where); 
+        }
+
+        return $query->get()->result();
     }
 
     /**
@@ -76,22 +98,12 @@ class Menu_model extends CI_Model
     }
 
     /**
-     * Find all parents menu (dropdown)
-     *
-     * @return array
-     */
-    public function parents()
-    {
-        return $this->db->where('type', 2)->get($this->table)->result();
-    }
-
-    /**
      * Get menu in a cached records
      *
      * @param int $parent
      * @return array
      */
-    public function menu_saved($parent = 0)
+    public function saved($parent = 0)
     {
         if (! $this->db->table_exists($this->table)) {
             return [];
@@ -99,15 +111,11 @@ class Menu_model extends CI_Model
 
         $cache = $this->cache->file->get('menu_' . $parent);
 
-        if ($cache !== false)
-        {
+        if ($cache !== false) {
             return $cache;
         }
 
-        $rows = $this->db->where([
-            'parent'   => $parent
-        ])->get($this->table)->result();
-
+        $rows = $this->find_all(['parent' => $parent]);
         $data = [];
 
         foreach ($rows as $item) {

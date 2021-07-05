@@ -46,7 +46,7 @@ class Menu extends MX_Controller
     public function create()
     {
         $data = [
-            'parents' => $this->menu->parents()
+            'parents' => $this->menu->find_all(['type' => TYPE_DROPDOWN])
         ];
 
         $this->template->title(config_item('app_name'), lang('admin_panel'));
@@ -101,7 +101,7 @@ class Menu extends MX_Controller
         }
 
         $data = [
-            'parents' => $this->menu->parents(),
+            'parents' => $this->menu->find_all(['type' => TYPE_DROPDOWN]),
             'menu'    => $menu
         ];
 
@@ -160,6 +160,7 @@ class Menu extends MX_Controller
         }
 
         $this->menu->delete(['id' => $id]);
+        $this->menu->delete(['parent' => $id]);
 
         $this->session->set_flashdata('success', lang('menu_deleted'));
         redirect(site_url('admin/menu'));

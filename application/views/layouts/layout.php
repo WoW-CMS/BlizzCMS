@@ -76,7 +76,7 @@
         <nav class="uk-navbar" uk-navbar="mode: click">
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <?php foreach ($this->menu->menu_saved() as $item): ?>
+              <?php foreach ($this->menu->saved() as $item): ?>
               <?php if ($item->type === TYPE_DROPDOWN): ?>
               <li class="uk-visible@m">
                 <a href="#">
@@ -84,7 +84,7 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
+                    <?php foreach ($this->menu->saved($item->id) as $subitem): ?>
                     <li>
                       <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
                         <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
@@ -156,14 +156,14 @@
             <?php endif ?>
             <li><a href="<?= site_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('logout') ?></a></li>
             <?php endif ?>
-            <?php foreach ($this->menu->menu_saved() as $item): ?>
+            <?php foreach ($this->menu->saved() as $item): ?>
             <?php if ($item->type === TYPE_DROPDOWN): ?>
             <li class="uk-parent">
               <a href="#">
                 <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
               </a>
               <ul class="uk-nav-sub">
-                <?php foreach ($this->menu->menu_saved($item->id) as $subitem): ?>
+                <?php foreach ($this->menu->saved($item->id) as $subitem): ?>
                 <li>
                   <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
                     <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>

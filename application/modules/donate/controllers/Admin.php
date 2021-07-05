@@ -214,7 +214,7 @@ class Admin extends MX_Controller
                     redirect(site_url('donate/admin/logs/create'));
                 }
 
-                $this->db->query("UPDATE users SET dp = dp + ? WHERE id = ?", [$points, $user]);
+                $this->users->set(['dp' => 'dp+' . $points], ['id' => $user], false);
 
                 $this->donation_logs->create([
                     'user_id'         => $user,
@@ -287,7 +287,7 @@ class Admin extends MX_Controller
 
                 if ($status === 'COMPLETED')
                 {
-                    $this->db->query("UPDATE users SET dp = dp + ? WHERE id = ?", [$log->points, $log->user_id]);
+                    $this->users->set(['dp' => 'dp+' . $log->points], ['id' => $log->user_id], false);
 
                     $this->donation_logs->update([
                         'rewarded'   => 'YES',
