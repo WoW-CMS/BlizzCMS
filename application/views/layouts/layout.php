@@ -33,12 +33,12 @@
                 </div>
               </li>
               <?php if (! $this->cms->isLogged()): ?>
-              <li class="uk-visible@m"><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('login') ?></a></li>
+              <li class="uk-visible@m"><a href="<?= site_url('login') ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('login') ?></a></li>
               <?php else: ?>
               <li class="uk-visible@m">
                 <a href="#">
                   <img class="uk-border-circle" src="<?= $template['uploads'].'avatars/'.$this->cms->user_avatar() ?>" width="30" height="30" alt="Avatar">
-                  <span class="uk-text-middle uk-text-bold">&nbsp;<?= $this->session->userdata('nickname') ?>&nbsp;<i class="fas fa-caret-down"></i></span>
+                  <span class="uk-text-middle uk-text-bold"><?= $this->session->userdata('nickname') ?> <i class="fas fa-caret-down"></i></span>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -52,7 +52,7 @@
               </li>
               <?php if (mod_located('store')): ?>
               <li>
-                <a href="#"><i class="fas fa-shopping-cart"></i>&nbsp;<span class="uk-badge"><?= $this->cart->total_items() ?></span></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i> <span class="uk-badge"><?= $this->cart->total_items() ?></span></a>
                 <div class="uk-navbar-dropdown">
                   <div class="cart-container">
                     <?php if ($this->cart->total_items()): ?>
@@ -80,14 +80,14 @@
               <?php if ($item->type === TYPE_DROPDOWN): ?>
               <li class="uk-visible@m">
                 <a href="#">
-                  <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>&nbsp;<i class="fas fa-caret-down"></i>
+                  <i class="<?= $item->icon ?>"></i> <?= $item->name ?> <i class="fas fa-caret-down"></i>
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php foreach ($this->menu->saved($item->id) as $subitem): ?>
                     <li>
                       <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
-                        <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
+                        <i class="<?= $subitem->icon ?>"></i> <?= $subitem->name ?>
                       </a>
                     </li>
                     <?php endforeach ?>
@@ -97,7 +97,7 @@
               <?php elseif ($item->type === TYPE_DEFAULT): ?>
               <li class="uk-visible@m">
                 <a target="<?= $item->target ?>" href="<?= $item->url ?>">
-                  <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
+                  <i class="<?= $item->icon ?>"></i> <?= $item->name ?>
                 </a>
               </li>
               <?php endif ?>
@@ -160,13 +160,13 @@
             <?php if ($item->type === TYPE_DROPDOWN): ?>
             <li class="uk-parent">
               <a href="#">
-                <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
+                <i class="<?= $item->icon ?>"></i> <?= $item->name ?>
               </a>
               <ul class="uk-nav-sub">
                 <?php foreach ($this->menu->saved($item->id) as $subitem): ?>
                 <li>
                   <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
-                    <i class="<?= $subitem->icon ?>"></i>&nbsp;<?= $subitem->name ?>
+                    <i class="<?= $subitem->icon ?>"></i> <?= $subitem->name ?>
                   </a>
                 </li>
                 <?php endforeach ?>
@@ -175,7 +175,7 @@
             <?php elseif ($item->type === TYPE_DEFAULT): ?>
             <li>
               <a target="<?= $item->target ?>" href="<?= $item->url ?>">
-                <i class="<?= $item->icon ?>"></i>&nbsp;<?= $item->name ?>
+                <i class="<?= $item->icon ?>"></i> <?= $item->name ?>
               </a>
             </li>
             <?php endif ?>

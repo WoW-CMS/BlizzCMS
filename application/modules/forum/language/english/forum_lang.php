@@ -37,7 +37,7 @@ $lang['edit_forum'] = 'Edit Forum';
  * Alerts
 */
 $lang['topic_created'] = 'The new topic has been created';
-$lang['topic_updated'] = 'The topic has been updated';
+$lang['topic_updated'] = 'The topic data has been updated';
 $lang['post_sended'] = 'The new post has been sended';
 $lang['post_deleted'] = 'The post has been deleted';
 

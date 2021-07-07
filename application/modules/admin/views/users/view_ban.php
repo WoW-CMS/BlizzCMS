@@ -34,7 +34,7 @@
                 <dd><i class="fas fa-calendar-day"></i> <?= date('Y-m-d H:i', $ban->bandate) ?></dd>
                 <dt class="uk-text-muted"><?= lang('unban_date') ?>:</dt>
                 <dd><i class="fas fa-calendar-day"></i> <?= date('Y-m-d H:i', $ban->unbandate) ?></dd>
-                <dt class="uk-text-muted"><?= lang('ban_by') ?>:</dt>
+                <dt class="uk-text-muted"><?= lang('banned_by') ?>:</dt>
                 <dd><i class="fas fa-user-edit"></i> <?= html_escape($ban->bannedby) ?></dd>
                 <dt class="uk-text-muted"><?= lang('reason') ?>:</dt>
                 <dd><i class="fas fa-sticky-note"></i> <?= html_escape($ban->banreason) ?></dd>

@@ -45,7 +45,7 @@
                   <th class="uk-table-expand"><?= lang('username') ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('ban_date') ?></th>
                   <th class="uk-width-medium uk-visible@s"><?= lang('unban_date') ?></th>
-                  <th class="uk-width-small"><?= lang('ban_by') ?></th>
+                  <th class="uk-width-small"><?= lang('banned_by') ?></th>
                   <th class="uk-width-small"><?= lang('actions') ?></th>
                 </tr>
               </thead>

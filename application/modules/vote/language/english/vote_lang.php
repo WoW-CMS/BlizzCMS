@@ -9,14 +9,14 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['vote'] = 'Vote';
-$lang['vote_panel'] = 'Vote Panel';
+$lang['vote_panel'] = 'Vote panel';
+$lang['vote_now'] = 'Vote now';
 $lang['next_vote'] = 'Next vote in:';
 
 $lang['topsites'] = 'Topsites';
 $lang['topsite'] = 'Topsite';
-$lang['create_topsite'] = 'Create Topsite';
-$lang['edit_topsite'] = 'Edit Topsite';
+$lang['create_topsite'] = 'Create topsite';
+$lang['edit_topsite'] = 'Edit topsite';
 
 /**
  * Alerts

@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Alerts
 */
-$lang['nickname_changed'] = 'The nickname has been changed';
-$lang['email_changed'] = 'The email has been changed';
-$lang['password_changed'] = 'The password has been changed';
-$lang['avatar_changed'] = 'The avatar has been changed';
+$lang['nickname_changed'] = 'El apodo ha sido cambiado';
+$lang['email_changed'] = 'El correo electrónico ha sido cambiado';
+$lang['password_changed'] = 'La contraseña ha sido cambiada';
+$lang['avatar_changed'] = 'El avatar ha sido cambiado';

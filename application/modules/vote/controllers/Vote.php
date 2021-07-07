@@ -53,7 +53,7 @@ class Vote extends MX_Controller
             'links'    => $this->pagination->create_links()
         ];
 
-        $this->template->title(config_item('app_name'), lang('vote'));
+        $this->template->title(config_item('app_name'), lang('vote_panel'));
 
         $this->template->build('index', $data);
     }

@@ -173,7 +173,7 @@ class Users extends MX_Controller
         if ($this->input->method() == 'post')
         {
             $this->form_validation->set_rules('username', lang('username'), 'trim|required');
-            $this->form_validation->set_rules('date', lang('date'), 'trim|required|validate_date[Y-m-d]');
+            $this->form_validation->set_rules('date', lang('unban_date'), 'trim|required|validate_date[Y-m-d]');
             $this->form_validation->set_rules('reason', lang('reason'), 'trim|required');
 
             if ($this->form_validation->run() == false)

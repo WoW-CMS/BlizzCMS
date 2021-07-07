@@ -153,6 +153,7 @@ $lang['ip'] = 'IP';
 $lang['upload'] = 'Upload';
 $lang['version'] = 'Version';
 $lang['position'] = 'Position';
+$lang['captcha'] = 'Captcha';
 
 /**
  * Selects

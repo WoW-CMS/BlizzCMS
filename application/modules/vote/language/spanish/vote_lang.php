@@ -9,20 +9,20 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['vote'] = 'Votar';
-$lang['vote_panel'] = 'Panel de Votos';
+$lang['vote_panel'] = 'Panel de votación';
+$lang['vote_now'] = 'Vota ahora';
 $lang['next_vote'] = 'Próximo voto en:';
 
-$lang['topsites'] = 'Topsites';
-$lang['topsite'] = 'Topsite';
-$lang['create_topsite'] = 'Crear Topsite';
-$lang['edit_topsite'] = 'Editar Topsite';
+$lang['topsites'] = 'Sitios top';
+$lang['topsite'] = 'Sitio top';
+$lang['create_topsite'] = 'Crear sitio top';
+$lang['edit_topsite'] = 'Editar sitio top';
 
 /**
  * Alerts
 */
-$lang['already_voted'] = 'You have already voted on this topsite';
+$lang['already_voted'] = 'Tú ya has votado en este sitio top';
 
-$lang['topsite_created'] = 'The new topsite has been created';
-$lang['topsite_updated'] = 'The topsite data has been updated';
-$lang['topsite_deleted'] = 'The topsite has been deleted';
+$lang['topsite_created'] = 'El nuevo sitio top ha sido creado';
+$lang['topsite_updated'] = 'Los datos del sitio top se han actualizado';
+$lang['topsite_deleted'] = 'El sitio top ha sido eliminado';

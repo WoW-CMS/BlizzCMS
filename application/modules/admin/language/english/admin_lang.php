@@ -22,7 +22,6 @@ $lang['pages'] = 'Pages';
 $lang['slides'] = 'Slides';
 
 $lang['general'] = 'General';
-$lang['captcha'] = 'Captcha';
 $lang['mail_smtp'] = 'Mail SMTP';
 
 $lang['recaptcha'] = 'reCaptcha';
@@ -67,7 +66,7 @@ $lang['view'] = 'View';
 $lang['logs'] = 'Logs';
 $lang['ban_date'] = 'Ban date';
 $lang['unban_date'] = 'Unban date';
-$lang['ban_by'] = 'Ban by';
+$lang['banned_by'] = 'Banned by';
 $lang['reason'] = 'Reason';
 $lang['unban_user'] = 'Unban user';
 
@@ -100,9 +99,9 @@ $lang['selecting_one'] = 'selecting one';
 /**
  * Alerts
 */
-$lang['settings_updated'] = 'Settings data has been updated';
-$lang['cache_error'] = 'Unable to delete cache files, please check that you have the necessary permissions on the folder.';
-$lang['cache_deleted'] = 'All cache files have been removed';
+$lang['settings_updated'] = 'Los datos de configuración se han actualizado';
+$lang['cache_error'] = 'Cache files could not be deleted. please verify that you have the necessary permissions on the folder';
+$lang['cache_deleted'] = 'All cache files have been deleted';
 $lang['module_installed'] = 'The module <b>%1$s</b> has been installed';
 $lang['module_uninstalled'] = 'The module <b>%1$s</b> has been uninstalled and its data deleted';
 $lang['module_updated'] = 'The module <b>%1$s</b> has been updated';

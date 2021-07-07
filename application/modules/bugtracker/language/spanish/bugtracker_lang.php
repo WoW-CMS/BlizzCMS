@@ -18,5 +18,5 @@ $lang['edit_report'] = 'Editar reporte';
 /**
  * Alerts
 */
-$lang['report_created'] = 'The new report has been created';
-$lang['report_edited'] = 'Report information has been updated';
+$lang['report_created'] = 'El nuevo reporte ha sido creado';
+$lang['report_edited'] = 'Los datos del reporte se han actualizado';

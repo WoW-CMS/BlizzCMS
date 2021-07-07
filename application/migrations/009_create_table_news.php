@@ -41,7 +41,7 @@ class Migration_Create_table_news extends CI_Migration
         $this->dbforge->create_table('news');
 
         $this->db->insert_batch('news', [
-            ['title' => 'Welcome to your new website!', 'description' => '<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us on <a href="https://wow-cms.com">WoW-CMS</a></p>', 'image' => 'news.jpg', 'comments' => 1, 'created_at' => '2021-05-23 12:00:00']
+            ['title' => 'Welcome to your new website!', 'description' => '<p>Your site has been installed successfully. To continue, sign in with your account and go to the administration panel to have access to all the features provided. don\'t forget that if you have problems you can contact us on <a href="https://wow-cms.com">WoW-CMS</a></p>', 'image' => 'news.jpg', 'comments' => 1, 'created_at' => current_date()]
         ]);
     }
 

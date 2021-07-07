@@ -39,7 +39,7 @@
                     </div>
                     <p class="uk-text-small uk-text-center uk-margin-small"><?= $topsite->points ?> <?= lang('vote_points') ?></p>
                     <?php if (now() >= $this->topsites_logs->expiration($topsite->id)): ?>
-                    <a href="<?= site_url('vote/site/'.$topsite->id) ?>" class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-vote-yea"></i> <?= lang('vote') ?></a>
+                    <a href="<?= site_url('vote/site/'.$topsite->id) ?>" class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-vote-yea"></i> <?= lang('vote_now') ?></a>
                     <?php else: ?>
                     <h5 class="uk-h5 uk-text-uppercase uk-text-bold uk-text-center uk-margin-remove-bottom uk-margin-small-top"><?= lang('next_vote') ?></h5>
                     <div class="uk-grid-collapse uk-child-width-auto uk-flex-center uk-margin-small-bottom" uk-grid uk-countdown="date: <?= date('c', $this->topsites_logs->expiration($topsite->id)) ?>">

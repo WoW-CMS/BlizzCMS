@@ -52,11 +52,12 @@ $lang['paypal_exchange_rate'] = 'Each <b>%1$d %2$s</b> = <b>%3$d</b> DP';
 /**
  * Alerts
 */
-$lang['donation_order_notfound'] = 'Donation order could not be found';
-$lang['donation_process_error'] = 'Donation has not yet been fully processed. Please contact our support team for more details';
-$lang['donation_already_rewarded'] = 'Donation order has already received the corresponding reward';
+$lang['order_notfound'] = 'The order could not be found';
+$lang['order_process_error'] = 'The order has not yet been fully processed. Please contact our support team for more details';
+$lang['order_already_rewarded'] = 'The order has already been processed and the corresponding reward has been delivered';
 
-$lang['donation_order_canceled'] = 'Donation order <b>%1$s</b> has been canceled. If you feel this is and error, please contact our support team';
-$lang['donation_order_completed'] = 'Donation order <b>%1$s</b> has been completed. If your points are not visible yet please contact our support team';
-$lang['manual_donation_success'] = 'A manual donation has been added successfully';
-$lang['update_payment_error'] = 'Selected payment log cannot be updated as it has been canceled/completed';
+$lang['order_canceled'] = 'Order <b>%1$s</b> has been canceled. If you feel this is and error, please contact our support team';
+$lang['order_completed'] = 'Order <b>%1$s</b> has been completed. If your points are not visible yet please contact our support team';
+$lang['manual_payment_created'] = 'The manual payment has been added';
+$lang['payment_updated'] = 'The payment data has been updated';
+$lang['update_payment_error'] = "The payment can't be updated as it has been marked canceled/completed";

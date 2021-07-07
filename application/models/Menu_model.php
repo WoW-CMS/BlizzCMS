@@ -80,7 +80,7 @@ class Menu_model extends CI_Model
     {
         $query = $this->db->from($this->table);
 
-        if (empty($where)) {
+        if (! empty($where)) {
             $query = $query->where($where); 
         }
 

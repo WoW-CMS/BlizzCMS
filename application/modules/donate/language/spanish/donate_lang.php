@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['donate'] = 'Donar';
 $lang['donate_panel'] = 'Panel de Donaciones';
-$lang['view_log'] = 'View log';
+$lang['view_log'] = 'Ver registro';
 
 $lang['mode'] = 'Modo';
 $lang['client_id'] = 'ID Cliente';
@@ -52,11 +52,12 @@ $lang['paypal_exchange_rate'] = 'Cada <b>%1$d %2$s</b> = <b>%3$d</b> DP';
 /**
  * Alerts
 */
-$lang['donation_order_notfound'] = 'Donation order could not be found';
-$lang['donation_process_error'] = 'Donation has not yet been fully processed. Please contact our support team for more details';
-$lang['donation_already_rewarded'] = 'Donation order has already received the corresponding reward';
+$lang['order_notfound'] = 'La orden no ha sido posible encontrarla';
+$lang['order_process_error'] = 'La orden aún no ha sido procesada por completo. Por favor, póngase en contacto con nuestro equipo de soporte para obtener más detalles';
+$lang['order_already_rewarded'] = 'La orden ya ha sido procesada y se ha entregado la recompensa correspondiente';
 
-$lang['donation_order_canceled'] = 'Donation order <b>%1$s</b> has been canceled. If you feel this is and error, please contact our support team';
-$lang['donation_order_completed'] = 'Donation order <b>%1$s</b> has been completed. If your points are not visible yet please contact our support team';
-$lang['manual_donation_success'] = 'A manual donation has been added successfully';
-$lang['update_payment_error'] = 'Selected payment log cannot be updated as it has been canceled/completed';
+$lang['order_canceled'] = 'La orden <b>%1$s</b> ha sido cancelada. Si cree que esto es un error, comuníquese con nuestro equipo de soporte';
+$lang['order_completed'] = 'La orden <b>%1$s</b> se ha completado. Si sus puntos aún no son visibles, comuníquese con nuestro equipo de soporte';
+$lang['manual_payment_created'] = 'El pago manual ha sido creado';
+$lang['payment_updated'] = 'Los datos del pago se han actualizado';
+$lang['update_payment_error'] = "El pago no se puede actualizar porque se marcó como cancelado/completado";

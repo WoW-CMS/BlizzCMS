@@ -1,5 +1,5 @@
 /*!
- * Chart.js v3.4.0
+ * Chart.js v3.4.1
  * https://www.chartjs.org
  * (c) 2021 Chart.js Contributors
  * Released under the MIT License
@@ -246,6 +246,8 @@ const TWO_THIRDS_PI = PI * 2 / 3;
 const log10 = Math.log10;
 const sign = Math.sign;
 function niceNum(range) {
+  const roundedRange = Math.round(range);
+  range = almostEquals(range, roundedRange, range / 1000) ? roundedRange : range;
   const niceRange = Math.pow(10, Math.floor(log10(range)));
   const fraction = range / niceRange;
   const niceFraction = fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;

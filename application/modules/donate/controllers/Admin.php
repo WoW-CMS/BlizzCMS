@@ -231,7 +231,7 @@ class Admin extends MX_Controller
                     'created_at'      => current_date()
                 ]);
 
-                $this->session->set_flashdata('success', lang('manual_donation_success'));
+                $this->session->set_flashdata('success', lang('manual_payment_created'));
                 redirect(site_url('donate/admin/logs/create'));
             }
         }
@@ -252,7 +252,7 @@ class Admin extends MX_Controller
 
         if (in_array($log->payment_status, ['COMPLETED', 'DECLINED'], true))
         {
-            $this->session->set_flashdata('error', lang('update_payment_error'));
+            $this->session->set_flashdata('error', lang('payment_update_error'));
             redirect(site_url('donate/admin/logs'));
         }
 
@@ -295,7 +295,7 @@ class Admin extends MX_Controller
                     ], ['id' => $id]);
                 }
 
-                $this->session->set_flashdata('success', lang('manual_donation_success'));
+                $this->session->set_flashdata('success', lang('payment_updated'));
                 redirect(site_url('donate/admin/logs/view/'.$id));
             }
         }

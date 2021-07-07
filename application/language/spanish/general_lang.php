@@ -17,9 +17,9 @@ $lang['account_settings'] = 'Ajustes de la cuenta';
 $lang['forgot_password'] = 'Recuperación de contraseña';
 $lang['error_404'] = 'Error 404';
 $lang['online_players'] = 'Jugadores en linea';
-$lang['powered_by'] = 'Powered by';
+$lang['powered_by'] = 'Impulsado por';
 
-$lang['register'] = 'Registrar';
+$lang['register'] = 'Registrarse';
 $lang['login'] = 'Iniciar sesión';
 $lang['logout'] = 'Cerrar sesión';
 $lang['forgot_your_password'] = '¿Olvidaste tu contraseña?';
@@ -100,9 +100,9 @@ $lang['id'] = 'ID';
 $lang['status'] = 'Estado';
 $lang['priority'] = 'Prioridad';
 $lang['date'] = 'Fecha';
-$lang['expiration_date'] = 'Expiration date';
-$lang['creation_date'] = 'Creation date';
-$lang['update_date'] = 'Update date';
+$lang['expiration_date'] = 'Fecha de expiración';
+$lang['creation_date'] = 'Fecha de creación';
+$lang['update_date'] = 'Fecha de actualización';
 $lang['author'] = 'Autor';
 $lang['time'] = 'Tiempo';
 $lang['realm'] = 'Reino';
@@ -141,11 +141,11 @@ $lang['dp_vp'] = 'DP & VP';
 $lang['new_tab'] = 'Nueva pestaña/ventana';
 $lang['same_tab'] = 'Misma pestaña/ventana';
 $lang['without_parent'] = 'Without parent';
-$lang['characters'] = 'Caracteres';
+$lang['characters'] = 'Personajes';
 $lang['account'] = 'Cuenta';
 $lang['bnet_account'] = 'Cuenta Bnet';
 $lang['language'] = 'Lenguaje';
-$lang['website_name'] = 'Nombre del Sitio Web';
+$lang['website_name'] = 'Nombre del sitio web';
 $lang['realmlist'] = 'Realmlist';
 $lang['list'] = 'Lista';
 $lang['message'] = 'Mensaje';
@@ -153,6 +153,7 @@ $lang['ip'] = 'IP';
 $lang['upload'] = 'Cargar';
 $lang['version'] = 'Versión';
 $lang['position'] = 'Posición';
+$lang['captcha'] = 'Captcha';
 
 /**
  * Status
@@ -223,8 +224,8 @@ $lang['page_not_found_description'] = 'Parece que la página que estás buscando
  * Errors
 */
 $lang['auth_connection_error'] = 'No se pudo establecer conexión con la base de datos auth';
-$lang['characters_connection_error'] = 'No se pudo establecer conexión con la base de datos characters';
-$lang['characters_db_notfound'] = 'No se pudieron encontrar los datos para establecer conexión con la base de datos characters';
+$lang['characters_connection_error'] = 'No se pudo establecer conexión con la base de datos de personajes';
+$lang['characters_db_notfound'] = 'No se pudieron encontrar los datos para establecer conexión con la base de datos de personajes';
 
 /**
  * Emails

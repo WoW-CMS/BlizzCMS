@@ -144,19 +144,19 @@ class Donate extends MX_Controller
 
         if (empty($log))
         {
-            $this->session->set_flashdata('error', lang('donation_order_notfound'));
+            $this->session->set_flashdata('error', lang('order_notfound'));
             redirect(site_url('donate'));
         }
 
         if ($response->result->purchase_units[0]->payments->captures[0]->status !== 'COMPLETED')
         {
-            $this->session->set_flashdata('error', lang('donation_process_error'));
+            $this->session->set_flashdata('error', lang('order_process_error'));
             redirect(site_url('donate'));
         }
 
         if ($log->rewarded !== 'NO')
         {
-            $this->session->set_flashdata('error', lang('donation_already_rewarded'));
+            $this->session->set_flashdata('error', lang('order_already_rewarded'));
             redirect(site_url('donate'));
         }
 
@@ -169,7 +169,7 @@ class Donate extends MX_Controller
             'updated_at'     => current_date()
         ], ['order_id' => $token]);
 
-        $this->session->set_flashdata('success', lang_vars('donation_order_completed', [$token]));
+        $this->session->set_flashdata('success', lang_vars('order_completed', [$token]));
         redirect(site_url('donate'));
     }
 
@@ -186,7 +186,7 @@ class Donate extends MX_Controller
 
         if (empty($log))
         {
-            $this->session->set_flashdata('error', lang('donation_order_notfound'));
+            $this->session->set_flashdata('error', lang('order_notfound'));
             redirect(site_url('donate'));
         }
 
@@ -194,7 +194,7 @@ class Donate extends MX_Controller
             'payment_status' => 'DECLINED'
         ], ['order_id' => $token]);
 
-        $this->session->set_flashdata('warning', lang_vars('donation_order_canceled', [$token]));
+        $this->session->set_flashdata('warning', lang_vars('order_canceled', [$token]));
         redirect(site_url('donate'));
     }
 

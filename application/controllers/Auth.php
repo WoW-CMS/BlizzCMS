@@ -45,7 +45,7 @@ class Auth extends CI_Controller
             if (config_item('captcha_login') === 'true')
             {
                 $captcha_rule = (config_item('captcha_type') === 'hcaptcha') ? 'h-captcha-response' : 'g-recaptcha-response';
-                $this->form_validation->set_rules($captcha_rule, 'Captcha', 'trim|required|validate_captcha');
+                $this->form_validation->set_rules($captcha_rule, lang('captcha'), 'trim|required|validate_captcha');
             }
 
             if ($this->form_validation->run() == false)
@@ -114,7 +114,7 @@ class Auth extends CI_Controller
             if (config_item('captcha_register') === 'true')
             {
                 $captcha_rule = (config_item('captcha_type') === 'hcaptcha') ? 'h-captcha-response' : 'g-recaptcha-response';
-                $this->form_validation->set_rules($captcha_rule, 'Captcha', 'trim|required|validate_captcha');
+                $this->form_validation->set_rules($captcha_rule, lang('captcha'), 'trim|required|validate_captcha');
             }
 
             if ($this->form_validation->run() == false)
@@ -262,7 +262,7 @@ class Auth extends CI_Controller
             if (config_item('captcha_forgot') === 'true')
             {
                 $captcha_rule = (config_item('captcha_type') === 'hcaptcha') ? 'h-captcha-response' : 'g-recaptcha-response';
-                $this->form_validation->set_rules($captcha_rule, 'Captcha', 'trim|required|validate_captcha');
+                $this->form_validation->set_rules($captcha_rule, lang('captcha'), 'trim|required|validate_captcha');
             }
 
             if ($this->form_validation->run() == false)

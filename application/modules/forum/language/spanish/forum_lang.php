@@ -36,13 +36,13 @@ $lang['edit_forum'] = 'Editar Foro';
 /**
  * Alerts
 */
-$lang['topic_created'] = 'The new topic has been created';
-$lang['topic_updated'] = 'The topic has been updated';
-$lang['post_sended'] = 'The new post has been sended';
-$lang['post_deleted'] = 'The post has been deleted';
+$lang['topic_created'] = 'El nuevo tema ha sido creado';
+$lang['topic_updated'] = 'Los datos del tema se han actualizado';
+$lang['post_sended'] = 'La nueva publicación ha sido enviada';
+$lang['post_deleted'] = 'La publicación ha sido eliminada';
 
-$lang['forum_created'] = 'The new forum has been created';
-$lang['forum_updated'] = 'The forum data has been updated';
-$lang['forum_deleted'] = 'The forum has been deleted';
-$lang['category_not_relate'] = 'The category can not relate to a forum/category';
-$lang['forum_need_related'] = 'The forum needs to be related to a category or another forum';
+$lang['forum_created'] = 'El nuevo foro ha sido creado';
+$lang['forum_updated'] = 'Los datos del foro se han actualizado';
+$lang['forum_deleted'] = 'El foro ha sido eliminado';
+$lang['category_not_relate'] = 'La categoría no puede relacionarse con un foro/categoría';
+$lang['forum_need_related'] = 'El foro debe estar relacionado con una categoría u otro foro';
