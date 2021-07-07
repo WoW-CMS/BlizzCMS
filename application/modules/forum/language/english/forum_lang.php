@@ -23,15 +23,15 @@ $lang['latest_activity'] = 'Latest activity';
 $lang['created_by'] = 'Created by';
 $lang['last_post_by'] = 'Last post by';
 $lang['whos_online'] = 'Whos online';
-$lang['join_conversation'] = 'Join the Conversation';
+$lang['join_conversation'] = 'Join the conversation';
 $lang['have_something_say'] = 'Have something to say? Login to join the conversation.';
 $lang['categories'] = 'Categories';
 $lang['forums'] = 'Forums';
 $lang['new_topic'] = 'New topic';
 $lang['edit_topic'] = 'Edit topic';
 
-$lang['create_forum'] = 'Create Forum';
-$lang['edit_forum'] = 'Edit Forum';
+$lang['create_forum'] = 'Create forum';
+$lang['edit_forum'] = 'Edit forum';
 
 /**
  * Alerts

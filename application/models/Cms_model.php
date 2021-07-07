@@ -45,6 +45,7 @@ class Cms_model extends CI_Model
                 'nickname'  => $account->username,
                 'username'  => $account->username,
                 'email'     => $account->email,
+                'language'  => $this->language->current(),
                 'joined_at' => date('Y-m-d H:i:s', $account->joindate)
             ]);
 
@@ -54,6 +55,7 @@ class Cms_model extends CI_Model
                 'username'  => $account->username,
                 'email'     => $account->email,
                 'gmlevel'   => $this->auth->get_gmlevel($account->id),
+                'language'  => $this->language->current(),
                 'logged_in' => true
             ];
         }
@@ -64,6 +66,7 @@ class Cms_model extends CI_Model
                 'username'  => $user->username,
                 'email'     => $user->email,
                 'gmlevel'   => $this->auth->get_gmlevel($user->id),
+                'language'  => $user->language,
                 'logged_in' => true
             ];
         }

@@ -30,8 +30,8 @@ $lang['forums'] = 'Foros';
 $lang['new_topic'] = 'Nuevo tema';
 $lang['edit_topic'] = 'Editar tema';
 
-$lang['create_forum'] = 'Crear Foro';
-$lang['edit_forum'] = 'Editar Foro';
+$lang['create_forum'] = 'Crear foro';
+$lang['edit_forum'] = 'Editar foro';
 
 /**
  * Alerts

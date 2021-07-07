@@ -11,8 +11,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['changelogs'] = 'Changelogs';
 
-$lang['create_changelog'] = 'Create Changelog';
-$lang['edit_changelog'] = 'Edit Changelog';
+$lang['create_changelog'] = 'Create changelog';
+$lang['edit_changelog'] = 'Edit changelog';
 
 /**
  * Alerts

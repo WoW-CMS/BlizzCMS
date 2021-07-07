@@ -226,6 +226,7 @@ class Auth extends CI_Controller
                         'nickname'  => $nickname,
                         'username'  => $username,
                         'email'     => $email,
+                        'language'  => $this->language->current(),
                         'joined_at' => current_date()
                     ]);
 
@@ -395,6 +396,7 @@ class Auth extends CI_Controller
                     'nickname'  => $data['user']->nickname,
                     'username'  => $data['user']->username,
                     'email'     => $data['user']->email,
+                    'language'  => $this->language->current(),
                     'joined_at' => current_date()
                 ]);
 

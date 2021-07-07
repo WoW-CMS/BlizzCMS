@@ -45,6 +45,12 @@ class Migration_Create_table_users extends CI_Migration
                 'unsigned' => TRUE,
                 'default' => 1
             ],
+            'language' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => FALSE,
+                'default' => 'english'
+            ],
             'joined_at' => [
                 'type' => 'DATETIME',
                 'null' => TRUE

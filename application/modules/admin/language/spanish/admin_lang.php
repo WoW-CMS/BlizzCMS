@@ -99,7 +99,7 @@ $lang['selecting_one'] = 'seleccionando uno';
 /**
  * Alerts
 */
-$lang['settings_updated'] = 'Se actualizaron los datos de configuración';
+$lang['settings_updated'] = 'Los datos de configuración se han actualizado';
 $lang['cache_error'] = 'Los archivos de caché no se pudieron eliminar. por favor verifique que tiene los permisos necesarios en la carpeta';
 $lang['cache_deleted'] = 'Todos los archivos de caché han sido eliminados';
 $lang['module_installed'] = 'El módulo <b>%1$s</b> ha sido instalado';

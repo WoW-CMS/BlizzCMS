@@ -92,11 +92,11 @@ class Language
      */
     private function user_language()
     {
-        $this->user = $this->CI->session->userdata('lang');
+        $this->user = $this->CI->session->userdata('language');
 
         if (! $this->user)
         {
-            $this->CI->session->set_userdata(['lang' => $this->browser]);
+            $this->CI->session->set_userdata(['language' => $this->browser]);
             $this->user = $this->browser;
         }
     }
@@ -198,7 +198,7 @@ class Language
     {
         if (array_key_exists($code, $this->codes))
         {
-            $this->CI->session->set_userdata(['lang' => $this->codes[$code]]);
+            $this->CI->session->set_userdata(['language' => $this->codes[$code]]);
             return true;
         }
 
