@@ -41,16 +41,22 @@ class Forum extends MX_Controller {
     {
         parent::__construct();
         $this->load->model('forum_model');
-        $this->load->model('logs_model', 'logs'); // Logs System
 
-        if(!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
+        if (!ini_get('date.timezone')) {
+            date_default_timezone_set($this->config->item('timezone'));
+        }
+        
+        if ($this->service->modService->checkAccBan($this->session->userdata('wow_sess_id'))) {
+            redirect(base_url('accBanned'), 'refresh');
+        }
 
-        if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
-
-        if (!$this->wowmodule->getForumStatus())
-            redirect(base_url(),'refresh');
+        if (!$this->wowgeneral->getMaintenance()) {
+            redirect(base_url('maintenance'), 'refresh');
+        }
+        
+        if (!$this->wowmodule->getForumStatus()) {
+            redirect(base_url(), 'refresh');
+        }
     }
 
     public function index()
@@ -78,11 +84,13 @@ class Forum extends MX_Controller {
             'tiny' => $tiny
         ];
 
-        if ($this->forum_model->getType($id) == 2 && $this->wowauth->isLogged())
-            if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
-        else
-            redirect(base_url('forum'),'refresh');
-
+        if ($this->forum_model->authType($id) == 2):
+            if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) <= config_item('mod_access_level')):
+                redirect(base_url('forum'),'refresh');
+            endif;    
+        endif;
+        
+        
         $this->template->build('category', $data);
     }
 
@@ -91,10 +99,9 @@ class Forum extends MX_Controller {
         if (empty($id) || is_null($id))
             redirect(base_url('forum'),'refresh');
 
-        if ($this->forum_model->getType($this->forum_model->getTopicForum($id)) == 2 && $this->wowauth->isLogged())
-            if ($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0) { }
-        else
+        if ($this->forum_model->authType('1') == 2 && $this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level'))
             redirect(base_url('forum'),'refresh');
+        else
 
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
@@ -112,20 +119,33 @@ class Forum extends MX_Controller {
     }
 
     public function newtopic($idlink)
-    {
+    {		
+        if (!$this->wowauth->isLogged())
+		{
+			redirect(base_url(),'refresh');
+		}
+		
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
         else
             $tiny = $this->wowgeneral->tinyEditor('User');
-
+		
         $data = [
             'idlink' => $idlink,
             'pagetitle' => $this->lang->line('tab_forum'),
             'lang' => $this->lang->lang(),
             'tiny' => $tiny,
         ];
-
-        $this->template->build('new_topic', $data);
+		
+        if ($this->input->method() == 'post') {
+            $category = $this->input->post('category');
+            $title = $this->input->post('title');
+            $ssesid = $this->session->userdata('wow_sess_id');
+            $description = $_POST['description'];
+			echo $this->forum_model->newTopic($category, $title, $ssesid, $description, '0', '0');
+        }else{
+            $this->template->build('new_topic', $data);
+        }
     }
 
     public function reply()
@@ -152,11 +172,5 @@ class Forum extends MX_Controller {
     {
         if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
-
-        $category = $this->input->post('category');
-        $title = $this->input->post('title');
-        $ssesid = $this->session->userdata('wow_sess_id');
-        $description = $_POST['description'];
-        echo $this->forum_model->insertTopic($category, $title, $ssesid, $description, '0', '0');
     }
 }

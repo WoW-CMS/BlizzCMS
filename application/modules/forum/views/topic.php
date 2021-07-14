@@ -1,21 +1,3 @@
-<?php
-if (isset($_POST['button_editTopic'])):
-  $title = $_POST['edit_title'];
-  $description = $_POST['edit_description'];
-
-  if (isset($_POST['topic_locked']))
-    $locked = '1';
-  else
-    $locked = '0';
-
-  if (isset($_POST['topic_pinned']))
-    $pinned = '1';
-  else
-    $pinned = '0';
-
-  $this->forum_model->updateTopic($idlink, $title, $description, $locked, $pinned);
-endif; ?>
-
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
     </section>
@@ -25,15 +7,15 @@ endif; ?>
           <div class="uk-card-header">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-expand">
-                <h4 class="uk-h4 uk-text-bold"><span uk-icon="icon: comments; ratio: 1.2"></span>&nbsp;<?= $this->forum_model->getSpecifyPostName($idlink); ?></h4>
+                <h4 class="uk-h4 uk-text-bold"><span uk-icon="icon: comments; ratio: 1.2"></span>&nbsp;<?= $this->forum_model->getTopicRow($idlink, 'title'); ?></h4>
               </div>
               <div class="uk-width-auto">
                 <?php if($this->wowauth->isLogged()): ?>
-                <?php if($this->forum_model->getSpecifyPostAuthor($idlink) == $this->session->userdata('wow_sess_id')): ?>
-                <div class="uk-text-center uk-text-right@s">
-                  <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= $this->lang->line('button_edit_topic'); ?></a>
-                </div>
-                <?php endif; ?>
+                  <?php if($this->forum_model->getTopicRow($idlink, 'author') == $this->session->userdata('wow_sess_id')): ?>
+                    <div class="uk-text-center uk-text-right@s">
+                      <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= $this->lang->line('button_edit_topic'); ?></a>
+                    </div>
+                  <?php endif; ?>
                 <?php endif; ?>
               </div>
             </div>
@@ -41,24 +23,24 @@ endif; ?>
           <div class="uk-card-body">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-1-6@s">
-                <div class="Author <?php if($this->wowauth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                <div class="Author <?php if($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                   <div class="topic-author-avatar profile">
-                    <?php if($this->wowgeneral->getUserInfoGeneral($this->forum_model->getSpecifyPostAuthor($idlink))->num_rows()): ?>
-                    <img src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->forum_model->getSpecifyPostAuthor($idlink))); ?>" alt="" />
+                    <?php if($this->wowgeneral->getUserInfoGeneral($this->forum_model->getTopicRow($idlink, 'author'))->num_rows()): ?>
+                    <img src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->forum_model->getTopicRow($idlink, 'author'))); ?>" alt="" />
                     <?php else: ?>
                     <img src="<?= base_url('assets/images/profiles/default.png'); ?>" alt="" />
                     <?php endif; ?>
                   </div>
                 </div>
-                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($this->forum_model->getSpecifyPostAuthor($idlink)); ?></p>
-                <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountPostAuthor($this->forum_model->getSpecifyPostAuthor($idlink)); ?> <?= $this->lang->line('forum_post_count'); ?></p>
-                <?php if($this->wowauth->getRank($this->forum_model->getSpecifyPostAuthor($idlink)) > 0): ?>
+                <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($this->forum_model->getTopicRow($idlink, 'author')); ?></p>
+                <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountTopics('author', $this->forum_model->getTopicRow($idlink, 'author')); ?> <?= $this->lang->line('forum_post_count'); ?></p>
+                <?php if($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif; ?>
               </div>
               <div class="uk-width-expand@s">
-                <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $this->forum_model->getSpecifyPostDate($idlink)); ?></p>
-                <?= $this->forum_model->getSpecifyPostContent($idlink); ?>
+                <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $this->forum_model->getTopicRow($idlink, 'date')); ?></p>
+                <?= $this->forum_model->getTopicRow($idlink, 'content'); ?>
               </div>
             </div>
           </div>
@@ -97,7 +79,7 @@ endif; ?>
             </div>
           </div>
           <?php endforeach; ?>
-          <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+          <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicRow($idlink, 'locked') == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
@@ -108,7 +90,7 @@ endif; ?>
             </div>
           </div>
           <?php endif; ?>
-          <?php if($this->forum_model->getTopicLocked($idlink) == 1): ?>
+          <?php if($this->forum_model->getTopicRow($idlink, 'locked') == 1): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: lock; ratio: 1.5"></span> <?= $this->lang->line('forum_not_authorized'); ?></h3>
@@ -118,7 +100,7 @@ endif; ?>
             </div>
           </div>
           <?php endif; ?>
-          <?php if($this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+          <?php if($this->wowauth->isLogged() && $this->forum_model->getTopicRow($idlink, 'locked') == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>

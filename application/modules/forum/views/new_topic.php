@@ -93,7 +93,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/forum/topic/create'); ?>",
+          url:"<?= base_url($lang.'/forum/topic/new/'.$idlink); ?>",
           method:"POST",
           data:{category, title, description},
           dataType:"text",
