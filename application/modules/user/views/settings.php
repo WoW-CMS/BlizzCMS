@@ -26,13 +26,13 @@
           </div>
           <div class="uk-width-3-4@m">
             <?= $template['partials']['alerts'] ?>
+            <?= form_open(site_url('user/settings/nickname')) ?>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-bold"><i class="fas fa-users"></i> <?= lang('change_nickname') ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(site_url('user/settings/nickname')) ?>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <label class="uk-form-label"><?= lang('current_nickname') ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -41,7 +41,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <label class="uk-form-label"><?= lang('new_nickname') ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -51,7 +51,7 @@
                   </div>
                   <?= form_error('nickname', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <div class="uk-form-controls">
                     <label class="uk-form-label"><?= lang('password') ?>:</label>
                     <div class="uk-inline uk-width-1-1">
@@ -61,19 +61,17 @@
                   </div>
                   <?= form_error('password', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
-                <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
-                </div>
-                <?= form_close() ?>
               </div>
             </div>
+            <button class="uk-button uk-button-default uk-margin-small" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
+            <?= form_close() ?>
+            <?= form_open(site_url('user/settings/email')) ?>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-bold"><i class="fas fa-envelope"></i> <?= lang('change_email') ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(site_url('user/settings/email')) ?>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <label class="uk-form-label"><?= lang('current_email') ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -82,7 +80,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('new_email') ?>:</label>
@@ -106,7 +104,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <div class="uk-form-controls">
                     <label class="uk-form-label"><?= lang('password') ?>:</label>
                     <div class="uk-inline uk-width-1-1">
@@ -116,19 +114,17 @@
                   </div>
                   <?= form_error('cu_password', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
-                <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
-                </div>
-                <?= form_close() ?>
               </div>
             </div>
+            <button class="uk-button uk-button-default uk-margin-small" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
+            <?= form_close() ?>
+            <?= form_open(site_url('user/settings/password')) ?>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-bold"><i class="fas fa-key"></i> <?= lang('change_password') ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(site_url('user/settings/password')) ?>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <label class="uk-form-label"><?= lang('current_password') ?>:</label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
@@ -138,7 +134,7 @@
                   </div>
                   <?= form_error('current_password', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
                       <label class="uk-form-label"><?= lang('new_password') ?></label>
@@ -162,19 +158,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
-                </div>
-                <?= form_close() ?>
               </div>
             </div>
+            <button class="uk-button uk-button-default uk-margin-small" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
+            <?= form_close() ?>
+            <?= form_open(site_url('user/settings/avatar')) ?>
             <div class="uk-card uk-card-default uk-margin-small">
               <div class="uk-card-header">
                 <h5 class="uk-h5 uk-text-bold"><i class="fas fa-id-badge"></i> <?= lang('change_avatar') ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(site_url('user/settings/avatar')) ?>
-                <div class="uk-margin-small uk-light">
+                <div class="uk-margin-small">
                   <div class="uk-form-controls">
                     <div class="uk-grid uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>
                       <?php foreach ($this->avatars->find_all() as $avatar): ?>
@@ -187,12 +181,10 @@
                   </div>
                   <?= form_error('avatar', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
-                <div class="uk-margin-top">
-                  <button class="uk-button uk-button-default uk-width-1-1" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
-                </div>
-                <?= form_close() ?>
               </div>
             </div>
+            <button class="uk-button uk-button-default uk-margin-small" type="submit"><i class="fas fa-sync"></i> <?= lang('save_changes') ?></button>
+            <?= form_close() ?>
           </div>
         </div>
       </div>

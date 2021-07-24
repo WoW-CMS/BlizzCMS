@@ -10,6 +10,7 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
+        <?= $template['partials']['alerts'] ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
             <h5 class="uk-h5 uk-text-bold"><i class="fas fa-shopping-cart"></i> <?= lang('cart') ?></h5>
@@ -45,7 +46,7 @@
                       <?= form_hidden('id', $item['rowid']) ?>
                       <div class="uk-grid uk-grid-small" data-uk-grid>
                         <div class="uk-width-expand">
-                          <div class="uk-form-controls uk-light">
+                          <div class="uk-form-controls">
                             <input class="uk-input uk-width-1-1" type="number" name="qty" min="1" value="<?= $item['qty'] ?>">
                           </div>
                         </div>

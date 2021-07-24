@@ -31,7 +31,10 @@ class Forum extends MX_Controller
     public function index()
     {
         $data = [
-            'categories' => $this->forum->find_all(0, 'category')
+            'categories'   => $this->forum->find_all(0, 'category'),
+            'total_users'  => $this->users->count_all(),
+            'total_topics' => $this->forum_topics->count_all(),
+            'total_posts'  => $this->forum_posts->count_all()
         ];
 
         $this->template->title(config_item('app_name'), lang('forum'));
@@ -69,13 +72,10 @@ class Forum extends MX_Controller
         $offset = ($page > 1) ? ($page - 1) * $per_page : $page;
 
         $data = [
-            'forum'        => $forum,
-            'subforums'    => $this->forum->find_all($id, 'forum'),
-            'topics'       => $this->forum_topics->find_all($id, $per_page, $offset),
-            'links'        => $this->pagination->create_links(),
-            'total_users'  => $this->users->count_all(),
-            'total_topics' => $this->forum_topics->count_all(),
-            'total_posts'  => $this->forum_posts->count_all()
+            'forum'     => $forum,
+            'subforums' => $this->forum->find_all($id, 'forum'),
+            'topics'    => $this->forum_topics->find_all($id, $per_page, $offset),
+            'links'     => $this->pagination->create_links()
         ];
 
         $this->template->title(config_item('app_name'), lang('forum'));

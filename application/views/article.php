@@ -69,7 +69,7 @@
             <h4 class="uk-h4 uk-margin-top uk-margin-remove-bottom"><i class="fas fa-comment-dots"></i> <?= lang('your_comment') ?></h4>
             <?= form_open(site_url('news/comment')) ?>
             <?= form_hidden('id', $news->id) ?>
-            <div class="uk-margin-small uk-light">
+            <div class="uk-margin-small">
               <div class="uk-form-controls">
                 <textarea class="uk-textarea textarea-comment" name="comment" rows="7"></textarea>
               </div>

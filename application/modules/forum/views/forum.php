@@ -14,9 +14,9 @@
     </section>
     <section class="uk-section uk-section-xsmall main-section" data-uk-height-viewport="expand: true">
       <div class="uk-container">
-        <?= $template['partials']['alerts'] ?>
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-3-4@m">
+            <?= $template['partials']['alerts'] ?>
             <?php if (isset($subforums) && ! empty($subforums)): ?>
             <div class="uk-overflow-auto uk-margin-medium forum-table">
               <table class="uk-table uk-table-hover uk-table-middle">

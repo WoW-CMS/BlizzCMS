@@ -6,7 +6,7 @@
             <h3 class="uk-h3 uk-text-uppercase uk-text-bold  uk-margin-medium-top uk-margin-small-bottom"><?= lang('reset_your_password') ?></h3>
             <?= form_open(current_url()) ?>
             <?= $template['partials']['alerts'] ?>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <label class="uk-form-label"><?= lang('new_password') ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
@@ -16,7 +16,7 @@
               </div>
               <?= form_error('new_password', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <label class="uk-form-label"><?= lang('confirm_password') ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">

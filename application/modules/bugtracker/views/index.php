@@ -23,12 +23,12 @@
               <div class="uk-card-body">
                 <?= form_open(site_url('bugtracker'), ['method' => 'get']) ?>
                   <div class="uk-grid uk-grid-small" data-uk-grid>
-                    <div class="uk-inline uk-width-expand@s uk-width-2-5@m uk-light">
+                    <div class="uk-inline uk-width-expand@s uk-width-2-5@m">
                       <div class="uk-form-controls">
                         <input class="uk-input" type="text" name="search" value="<?= $search ?>" placeholder="<?= lang('search') ?>">
                       </div>
                     </div>
-                    <div class="uk-inline uk-width-1-3@s uk-width-2-5@m uk-light">
+                    <div class="uk-inline uk-width-1-3@s uk-width-2-5@m">
                       <div class="uk-form-controls">
                         <select class="uk-select" name="category">
                           <option value="" hidden selected><?= lang('select_category') ?></option>

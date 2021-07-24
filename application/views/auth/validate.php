@@ -6,7 +6,7 @@
             <h3 class="uk-h3 uk-text-uppercase uk-text-bold  uk-margin-medium-top uk-margin-small-bottom"><?= lang('validate_your_registration') ?></h3>
             <?= form_open(current_url()) ?>
             <?= $template['partials']['alerts'] ?>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('nickname') ?></label>
@@ -28,7 +28,7 @@
                 </div>
               </div>
             </div>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <label class="uk-form-label"><?= lang('email') ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
@@ -37,7 +37,7 @@
                 </div>
               </div>
             </div>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('password') ?></label>

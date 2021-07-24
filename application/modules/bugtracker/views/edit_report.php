@@ -24,14 +24,14 @@
             </div>
           </div>
           <div class="uk-card-body">
-            <div class="uk-margin-small uk-light">
+            <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('title') ?></label>
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" name="title" value="<?= $report->title ?>" placeholder="<?= lang('title') ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
-            <div class="uk-margin-small uk-light">
+            <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('realm') ?></label>
@@ -60,7 +60,7 @@
               </div>
             </div>
             <?php if ($this->auth->is_moderator()): ?>
-            <div class="uk-margin-small uk-light">
+            <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('priority') ?></label>
@@ -92,7 +92,7 @@
               </div>
             </div>
             <?php endif ?>
-            <div class="uk-margin-small-top uk-light">
+            <div class="uk-margin-small-top">
               <label class="uk-form-label"><?= lang('description') ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea textarea-content" name="description" rows="10"><?= $report->description ?></textarea>

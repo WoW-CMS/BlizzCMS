@@ -92,7 +92,7 @@ h6,
 .uk-dropdown-nav > li > a,
 .uk-navbar-dropdown-nav > li > a {
   font-size: 12px;
-  padding: 4px 18px;
+  padding: 4px 12px;
   transition: all ease .2s;
 }
 
@@ -364,8 +364,94 @@ h6,
     background-repeat: no-repeat;
     width: 100%;
     height: 133px;
-    box-shadow: 0 8px 17px rgba(0,0,0,.1);
+    box-shadow: 0 8px 17px rgba(0, 0, 0, .1);
   }
+}
+
+.uk-input,
+.uk-select,
+.uk-textarea {
+  background: rgba(0, 6, 53, .45);
+  color: #dfdfdf;
+  border: 1px solid rgba(172, 167, 227, .25);
+}
+
+.uk-input:focus,
+.uk-select:focus,
+.uk-textarea:focus {
+  background-color: rgba(0, 6, 53, .5);
+  color: #dfdfdf;
+  border-color: #0e86ca;
+}
+
+.uk-input:disabled,
+.uk-select:disabled,
+.uk-textarea:disabled {
+  background-color: rgba(0, 6, 53, .5);
+  color: #d5d5d5;
+  border-color: rgba(172, 167, 227, .25);
+}
+
+.uk-input::-ms-input-placeholder {
+  color: #d5d5d5 !important;
+}
+
+.uk-input::placeholder {
+  color: #d5d5d5;
+}
+
+.uk-textarea::-ms-input-placeholder {
+  color: #d5d5d5 !important;
+}
+
+.uk-textarea::placeholder {
+  color: #d5d5d5;
+}
+
+.uk-select option {
+  background-color: #000d3d;
+}
+
+.uk-select:not([multiple]):not([size]) option {
+  color: #dfdfdf;
+}
+
+.uk-checkbox,
+.uk-radio {
+  background-color: rgba(0, 6, 53, .45);
+  border-color: rgba(172, 167, 227, .25);
+}
+
+.uk-checkbox:focus,
+.uk-radio:focus {
+  border-color: #0e86ca
+}
+
+.uk-checkbox:checked,
+.uk-checkbox:indeterminate,
+.uk-radio:checked {
+  background-color: #0e86ca;
+}
+
+.uk-checkbox:checked:focus,
+.uk-checkbox:indeterminate:focus,
+.uk-radio:checked:focus {
+  background-color: #0e86ca
+}
+
+.uk-checkbox:disabled,
+.uk-radio:disabled {
+  background-color: rgba(0, 6, 53, .5);
+  border-color: rgba(172, 167, 227, .25);
+}
+
+.uk-form-label {
+  color: #dfdfdf;
+}
+
+.uk-form-icon,
+.uk-form-icon:hover {
+  color: #dfdfdf;
 }
 
 .uk-button-small {
@@ -507,17 +593,20 @@ h6,
 }
 
 .uk-alert-danger {
-  background: #ff3636;
+  background: rgba(163, 0, 22, .75);
+  border: 1px solid rgba(163, 0, 22, 1);
   color: #fff;
 }
 
 .uk-alert-warning {
-  background: #ff8b36;
+  background: rgba(255, 115, 0, .75);
+  border: 1px solid rgba(255, 115, 0, 1);
   color: #fff;
 }
 
 .uk-alert-success {
-  background: #25ce5c;
+  background: rgba(30, 149, 0, .75);
+  border: 1px solid rgba(30, 149, 0, 1);
   color: #fff;
 }
 
@@ -629,10 +718,9 @@ h6,
   background-image: url('../images/icons/dp.svg');
   background-repeat: no-repeat;
   background-size: contain;
-  width: 24px;
-  height: 24px;
-  margin: 0 3px;
-  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
 }
 
 .vp-icon {
@@ -641,10 +729,9 @@ h6,
   background-image: url('../images/icons/vp.svg');
   background-repeat: no-repeat;
   background-size: contain;
-  width: 24px;
-  height: 24px;
-  margin: 0 3px;
-  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
 }
 
 .uk-logo,

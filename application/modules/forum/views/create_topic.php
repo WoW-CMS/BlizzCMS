@@ -19,14 +19,14 @@
             <h4 class="uk-h4 uk-text-bold uk-margin-remove"><i class="fas fa-pen-square"></i> <?= lang('new_topic') ?></h4>
           </div>
           <div class="uk-card-body">
-            <div class="uk-margin-small uk-light">
+            <div class="uk-margin-small">
               <label class="uk-form-label"><?= lang('title') ?></label>
               <div class="uk-form-controls">
                 <input class="uk-input" type="text" name="title" value="<?= set_value('title') ?>" placeholder="<?= lang('title') ?>">
               </div>
               <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
-            <div class="uk-margin-small-top uk-light">
+            <div class="uk-margin-small-top">
               <label class="uk-form-label"><?= lang('description') ?></label>
               <div class="uk-form-controls">
                 <textarea class="uk-textarea textarea-content" name="description" rows="10"><?= set_value('description') ?></textarea>

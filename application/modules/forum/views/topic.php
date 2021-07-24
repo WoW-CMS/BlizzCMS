@@ -88,26 +88,24 @@
           </div>
           <?php endforeach ?>
           <?php if ($topic->lock): ?>
-          <div>
-            <h3 class="uk-h3 uk-text-center uk-margin-small"><span uk-icon="icon: lock; ratio: 1.5"></span> <?= lang('not_authorized') ?></h3>
-            <div class="uk-card uk-card-default uk-card-body">
-              <div class="glass-box-container">
-                <p class="uk-margin-small"><?= lang('topic_locked') ?></p>
-              </div>
+          <div class="uk-margin">
+            <div class="glass-box-container">
+              <h3 class="uk-h3 uk-text-center uk-margin-small"><i class="fas fa-lock"></i> <?= lang('not_authorized') ?></h3>
+              <p class="uk-margin-small"><?= lang('topic_locked') ?></p>
             </div>
           </div>
           <?php elseif ($this->cms->isLogged() && ! $topic->lock): ?>
-          <div>
-            <h3 class="uk-h3 uk-text-center uk-margin-small"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('join_conversation') ?></h3>
+          <div class="uk-margin">
+            <h4 class="uk-h4 uk-margin-remove"><i class="fas fa-comment-dots"></i> <?= lang('your_post') ?></h4>
             <?= form_open(site_url('forum/post')) ?>
             <?= form_hidden('id', $topic->id) ?>
-            <div class="uk-margin-small uk-light">
+            <div class="uk-margin-small">
               <div class="uk-form-controls">
                 <textarea class="uk-textarea textarea-comment" name="comment" rows="7"></textarea>
               </div>
               <span class="uk-text-small uk-text-danger"><?= $this->session->flashdata('form_error') ?></span>
             </div>
-            <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send') ?></button>
+            <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><i class="fas fa-reply"></i> <?= lang('send') ?></button>
             <?= form_close() ?>
           </div>
           <?php endif ?>

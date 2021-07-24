@@ -6,7 +6,7 @@
             <h3 class="uk-h3 uk-text-uppercase uk-text-bold  uk-margin-medium-top uk-margin-small-bottom"><?= lang('register') ?></h3>
             <?= form_open(current_url()) ?>
             <?= $template['partials']['alerts'] ?>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('nickname') ?></label>
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <label class="uk-form-label"><?= lang('email') ?></label>
               <div class="uk-form-controls">
                 <div class="uk-inline uk-width-1-1">
@@ -40,7 +40,7 @@
               </div>
               <?= form_error('email', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
             </div>
-            <div class="uk-margin uk-light">
+            <div class="uk-margin">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
                   <label class="uk-form-label"><?= lang('password') ?></label>
@@ -65,8 +65,8 @@
               </div>
             </div>
             <div class="uk-margin-top uk-margin-small-bottom">
-              <label class="uk-form-label uk-light">
-                <input class="uk-checkbox" name="terms" value="agree" type="checkbox" <?= set_checkbox('terms', 'agree') ?>> <?= lang('read_and_agree') ?> <a target="_blank" href="<?= site_url('page/tos') ?>" class="uk-link"><?= lang('terms_and_conditions') ?></a>.
+              <label class="uk-form-label">
+                <input class="uk-checkbox" name="terms" value="agree" type="checkbox" <?= set_checkbox('terms', 'agree') ?>> <?= lang('read_and_agree') ?> <a target="_blank" href="<?= site_url('page/tos') ?>"><?= lang('terms_and_conditions') ?></a>.
               </label>
               <?= form_error('terms', '<span class="uk-display-block uk-text-small uk-text-danger">', '</span>') ?>
             </div>

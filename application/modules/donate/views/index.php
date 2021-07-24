@@ -39,7 +39,7 @@
               <div class="uk-card-body">
                 <p class="uk-text-small uk-margin-small"><?= lang('paypal_contribution') ?></p>
                 <p class="uk-text-small uk-margin-small"><i class="fas fa-info-circle"></i> <?= lang_vars('paypal_exchange_rate', [config_item('paypal_currency_rate'), config_item('paypal_currency'), config_item('paypal_points_rate')]) ?></p>
-                <div class="uk-margin-small-bottom uk-light">
+                <div class="uk-margin-small-bottom">
                   <div class="uk-form-controls">
                     <input class="uk-input" type="text" name="amount" value="<?= set_value('amount') ?>" placeholder="<?= lang('amount') ?>">
                   </div>
@@ -47,9 +47,7 @@
                 </div>
               </div>
             </div>
-            <div class="uk-margin-small-top">
-              <button class="uk-button uk-button-default" type="submit"><i class="fab fa-paypal"></i> <?= lang('donate') ?></button>
-            </div>
+            <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><i class="fab fa-paypal"></i> <?= lang('donate') ?></button>
             <?= form_close() ?>
           </div>
         </div>

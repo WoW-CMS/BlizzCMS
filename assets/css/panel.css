@@ -451,6 +451,11 @@ ul.uk-nav-sub {
   padding: 0 10px;
 }
 
+.uk-button-xsmall {
+  line-height: 20px;
+  padding: 0 10px;
+}
+
 .uk-button-primary {
   background: #0077ef;
   border: 1px solid rgba(255, 255, 255, .1);
@@ -481,6 +486,11 @@ ul.uk-nav-sub {
 .uk-button-danger.uk-active,
 .uk-button-danger:active {
   background: #ff1515;
+}
+
+.uk-button-default:disabled {
+  background-color: #f5f5fa;
+  color: #333;
 }
 
 .uk-tab > * > a {
@@ -523,6 +533,7 @@ ul.uk-nav-sub {
 .uk-table th {
   background-color: #f5f5fa;
   color: #000849;
+  font-size: .75rem;
   font-weight: 700;
 }
 
@@ -530,6 +541,30 @@ ul.uk-nav-sub {
 .uk-table-divider > :not(:first-child) > tr,
 .uk-table-divider > tr:not(:first-child) {
   border-color: #f0f0f5;
+}
+
+/*
+ * Vertical group
+ */
+.uk-button-vertical-group {
+  display: inline-flex;
+  vertical-align: middle;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.uk-button-vertical-group > .uk-button:nth-child(n+2),
+.uk-button-vertical-group > div:nth-child(n+2) .uk-button {
+  margin-top: -1px;
+}
+
+.uk-button-vertical-group .uk-button.uk-active,
+.uk-button-vertical-group .uk-button:active,
+.uk-button-vertical-group .uk-button:focus,
+.uk-button-vertical-group .uk-button:hover {
+  position: relative;
+  z-index: 1;
 }
 
 /*

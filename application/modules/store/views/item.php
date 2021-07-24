@@ -57,7 +57,7 @@
                 <?php endif ?>
                 <?= form_open(current_url()) ?>
                 <p class="uk-text-small uk-text-bold uk-margin-top uk-margin-small-bottom"><?= lang('character') ?>:</p>
-                <div class="uk-margin-remove-top uk-margin-small-bottom uk-light">
+                <div class="uk-margin-remove-top uk-margin-small-bottom">
                   <select class="uk-select uk-width-medium uk-display-block" name="guid">
                     <option value="" hidden selected><?= lang('select_character') ?></option>
                     <?php foreach ($characters as $character): ?>
@@ -68,7 +68,7 @@
                 </div>
                 <p class="uk-text-small uk-text-bold uk-margin-small"><?= lang('quantity') ?>:</p>
                 <div class="uk-grid uk-grid-small uk-margin-remove-top uk-margin-small-bottom" data-uk-grid>
-                  <div class="uk-width-auto@s uk-light">
+                  <div class="uk-width-auto@s">
                     <input class="uk-input uk-width-small" type="number" name="qty" min="1" value="1">
                     <?= form_error('qty', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                   </div>

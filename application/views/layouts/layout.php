@@ -109,8 +109,8 @@
             <?php if ($this->cms->isLogged()): ?>
             <div class="uk-navbar-item">
               <ul class="uk-subnav uk-subnav-divider subnav-points">
-                <li><span uk-tooltip="title: <?= lang('donor_points') ?>;pos: bottom"><i class="dp-icon"></i></span> <?= $this->cms->user(null, 'dp') ?></li>
-                <li><span uk-tooltip="title: <?= lang('vote_points') ?>;pos: bottom"><i class="vp-icon"></i></span> <?= $this->cms->user(null, 'vp') ?></li>
+                <li><i class="dp-icon" uk-tooltip="title: <?= lang('donor_points') ?>;pos: bottom"></i><?= $this->cms->user(null, 'dp') ?></li>
+                <li><i class="vp-icon" uk-tooltip="title: <?= lang('vote_points') ?>;pos: bottom"></i><?= $this->cms->user(null, 'vp') ?></li>
               </ul>
             </div>
             <?php endif ?>
