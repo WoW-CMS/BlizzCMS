@@ -15,10 +15,7 @@ class User extends MX_Controller
     {
         parent::__construct();
 
-        if (! $this->cms->isLogged())
-        {
-            redirect(site_url('login'));
-        }
+        require_login();
 
         $this->load->model('user_model');
         $this->load->language('user', $this->language->current());

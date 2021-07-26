@@ -34,6 +34,18 @@ class Settings_model extends CI_Model
     }
 
     /**
+     * Update multiple records
+     *
+     * @param array $set
+     * @param string $where
+     * @return bool
+     */
+    public function update_batch(array $set, $where)
+    {
+        return $this->db->update_batch($this->table, $set, $where);
+    }
+
+    /**
      * Set record
      *
      * @param array $keys
@@ -46,18 +58,6 @@ class Settings_model extends CI_Model
         return $this->db->set($keys, '', $escape)
                     ->where($where)
                     ->update($this->table);
-    }
-
-    /**
-     * Update multiple records
-     *
-     * @param array $set
-     * @param string $where
-     * @return bool
-     */
-    public function update_batch(array $set, $where)
-    {
-        return $this->db->update_batch($this->table, $set, $where);
     }
 
     /**

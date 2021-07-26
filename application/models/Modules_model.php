@@ -104,8 +104,7 @@ class Modules_model extends CI_Model
     {
         $cache = $this->cache->file->get('modules');
 
-        if ($cache !== false)
-        {
+        if ($cache !== false) {
             return in_array($module, $cache, true);
         }
 

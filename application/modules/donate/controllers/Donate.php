@@ -28,6 +28,8 @@ class Donate extends MX_Controller
 
         mod_located('donate', true);
 
+        require_login();
+
         $this->load->model([
             'donation_logs_model' => 'donation_logs',
         ]);
@@ -39,11 +41,6 @@ class Donate extends MX_Controller
 
     public function index()
     {
-        if (! $this->cms->isLogged())
-        {
-            redirect(site_url('login'));
-        }
-
         $this->template->title(config_item('app_name'), lang('donate'));
 
         $this->template->build('index');
@@ -51,7 +48,7 @@ class Donate extends MX_Controller
 
     public function paypal_donate()
     {
-        if (! $this->cms->isLogged() || config_item('paypal_gateway') === 'false')
+        if (config_item('paypal_gateway') === 'false')
         {
             show_404();
         }
@@ -123,7 +120,7 @@ class Donate extends MX_Controller
     {
         $token = $this->input->get('token', true);
 
-        if (empty($token) || ! $this->cms->isLogged())
+        if (empty($token))
         {
             show_404();
         }
@@ -177,7 +174,7 @@ class Donate extends MX_Controller
     {
         $token = $this->input->get('token', true);
 
-        if (! $this->cms->isLogged() || empty($token))
+        if (empty($token))
         {
             show_404();
         }

@@ -17,10 +17,7 @@ class Store extends MX_Controller
 
         mod_located('store', true);
 
-        if (! $this->cms->isLogged())
-        {
-            redirect(site_url('login'));
-        }
+        require_login();
 
         $this->load->model([
             'store_model'       => 'store',

@@ -15,7 +15,7 @@ $lang['menu'] = 'Menu';
 $lang['my_account'] = 'My account';
 $lang['account_settings'] = 'Account settings';
 $lang['forgot_password'] = 'Forgot password';
-$lang['error_404'] = 'Error 404';
+$lang['error'] = 'Error';
 $lang['online_players'] = 'Online Players';
 $lang['powered_by'] = 'Powered by';
 
@@ -215,10 +215,14 @@ $lang['cart_items'] = 'You have added <b>%1$d</b> Item(s) in your shopping cart'
 $lang['cart_empty'] = 'You do not have items in your cart';
 
 /**
- * Page 404
+ * Exceptions
 */
-$lang['page_not_found'] = '404 Page not found';
-$lang['page_not_found_description'] = 'It looks like the page you are looking could not be found';
+$lang['page_not_found'] = 'Page not found';
+$lang['page_requested_not_found'] = 'The page you requested could not be found';
+$lang['permission_rejected'] = 'Permission rejected';
+$lang['dont_have_permission'] = 'You do not have permission to access this page!';
+$lang['must_be_logged_in'] = 'You must be logged in to view this page!';
+$lang['already_logged_in'] = 'You have already logged in so you no longer have permission to view this page';
 
 /**
  * Errors

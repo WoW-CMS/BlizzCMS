@@ -24,10 +24,7 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        if ($this->cms->isLogged())
-        {
-            redirect(site_url('user'));
-        }
+        require_guest();
 
         $this->template->title(config_item('app_name'), lang('login'));
 
@@ -89,10 +86,7 @@ class Auth extends CI_Controller
 
     public function register()
     {
-        if ($this->cms->isLogged())
-        {
-            redirect(site_url('user'));
-        }
+        require_guest();
 
         $this->template->title(config_item('app_name'), lang('register'));
 
@@ -243,10 +237,7 @@ class Auth extends CI_Controller
 
     public function forgot()
     {
-        if ($this->cms->isLogged())
-        {
-            redirect(site_url('user'));
-        }
+        require_guest();
 
         $this->template->title(config_item('app_name'), lang('forgot_password'));
 
@@ -306,10 +297,7 @@ class Auth extends CI_Controller
      */
     public function register_validate($token = null)
     {
-        if (empty($token) || $this->cms->isLogged())
-        {
-            show_404();
-        }
+        require_guest();
 
         $result = $this->users_tokens->validate($token, TOKEN_VALIDATION);
 
@@ -420,10 +408,7 @@ class Auth extends CI_Controller
      */
     public function reset_password($token = null)
     {
-        if (empty($token) || $this->cms->isLogged())
-        {
-            show_404();
-        }
+        require_guest();
 
         $result = $this->users_tokens->validate($token, TOKEN_PASSWORD);
 

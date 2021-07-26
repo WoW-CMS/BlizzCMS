@@ -8113,5 +8113,12 @@ $lang['zones'] = [
     13686 => "Rugido de la Muerte",
     13687 => "Aullido de la Muerte",
     13688 => "Guarida de la Madre",
-    13689 => "Cobertizo del Torturador"
+    13689 => "Cobertizo del Torturador",
+    13691 => "Cámara del Conocimiento",
+    13692 => "Cámara de la Sabiduría",
+    13695 => "La Falla",
+    13697 => "The Chained Precipice",
+    13699 => "Trono de la Arconte",
+    13700 => "Cueva de los Grómits",
+    13701 => "Fuente de la Lealtad"
 ];

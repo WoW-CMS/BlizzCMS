@@ -17,10 +17,7 @@ class Vote extends MX_Controller
 
         mod_located('vote', true);
 
-        if (! $this->cms->isLogged())
-        {
-            redirect(site_url('login'));
-        }
+        require_login();
 
         $this->load->model([
             'topsites_model'      => 'topsites',

@@ -17,10 +17,7 @@ class Changelogs extends MX_Controller
 
         mod_located('changelogs', true);
 
-        if (! $this->cms->isLogged())
-        {
-            redirect(site_url('login'));
-        }
+        require_login();
 
         $this->load->model([
             'changelogs_model' => 'changelogs'

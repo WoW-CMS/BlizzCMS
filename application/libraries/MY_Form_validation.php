@@ -50,7 +50,7 @@ class MY_Form_validation extends CI_Form_validation
 
         $text = preg_replace('/\s+/', ' ', strip_tags($str));
 
-        return ($val <= mb_strlen(trim($text)));
+        return $val <= mb_strlen(trim($text));
     }
 
     /**
@@ -69,7 +69,7 @@ class MY_Form_validation extends CI_Form_validation
 
         $text = preg_replace('/\s+/', ' ', strip_tags($str));
 
-        return ($val >= mb_strlen(trim($text)));
+        return $val >= mb_strlen(trim($text));
     }
 
     /**

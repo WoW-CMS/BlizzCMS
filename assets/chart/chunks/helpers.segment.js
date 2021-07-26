@@ -1,5 +1,5 @@
 /*!
- * Chart.js v3.4.1
+ * Chart.js v3.5.0
  * https://www.chartjs.org
  * (c) 2021 Chart.js Contributors
  * Released under the MIT License
@@ -1280,7 +1280,7 @@ function drawPoint(ctx, options, x, y) {
 }
 function _isPointInArea(point, area, margin) {
   margin = margin || 0.5;
-  return point && point.x > area.left - margin && point.x < area.right + margin &&
+  return point && area && point.x > area.left - margin && point.x < area.right + margin &&
 		point.y > area.top - margin && point.y < area.bottom + margin;
 }
 function clipArea(ctx, area) {
@@ -1983,6 +1983,9 @@ function _updateBezierControlPoints(points, options, area, loop, indexAxis) {
   }
 }
 
+function _isDomSupported() {
+  return typeof window !== 'undefined' && typeof document !== 'undefined';
+}
 function _getParentNode(domNode) {
   let parent = domNode.parentNode;
   if (parent && parent.toString() === '[object ShadowRoot]') {
@@ -2408,29 +2411,38 @@ function _computeSegments(line, segmentOptions) {
   const loop = !!line._loop;
   const {start, end} = findStartAndEnd(points, count, loop, spanGaps);
   if (spanGaps === true) {
-    return splitByStyles([{start, end, loop}], points, segmentOptions);
+    return splitByStyles(line, [{start, end, loop}], points, segmentOptions);
   }
   const max = end < start ? end + count : end;
   const completeLoop = !!line._fullLoop && start === 0 && end === count - 1;
-  return splitByStyles(solidSegments(points, start, max, completeLoop), points, segmentOptions);
+  return splitByStyles(line, solidSegments(points, start, max, completeLoop), points, segmentOptions);
 }
-function splitByStyles(segments, points, segmentOptions) {
+function splitByStyles(line, segments, points, segmentOptions) {
   if (!segmentOptions || !segmentOptions.setContext || !points) {
     return segments;
   }
-  return doSplitByStyles(segments, points, segmentOptions);
+  return doSplitByStyles(line, segments, points, segmentOptions);
 }
-function doSplitByStyles(segments, points, segmentOptions) {
+function doSplitByStyles(line, segments, points, segmentOptions) {
+  const baseStyle = readStyle(line.options);
   const count = points.length;
   const result = [];
   let start = segments[0].start;
   let i = start;
   for (const segment of segments) {
-    let prevStyle, style;
+    let prevStyle = baseStyle;
     let prev = points[start % count];
+    let style;
     for (i = start + 1; i <= segment.end; i++) {
       const pt = points[i % count];
-      style = readStyle(segmentOptions.setContext({type: 'segment', p0: prev, p1: pt}));
+      style = readStyle(segmentOptions.setContext({
+        type: 'segment',
+        p0: prev,
+        p1: pt,
+        p0DataIndex: (i - 1) % count,
+        p1DataIndex: i % count,
+        datasetIndex: line._datasetIndex
+      }));
       if (styleChanged(style, prevStyle)) {
         result.push({start: start, end: i - 1, loop: segment.loop, style: prevStyle});
         prevStyle = style;
@@ -2461,4 +2473,4 @@ function styleChanged(style, prevStyle) {
   return prevStyle && JSON.stringify(style) !== JSON.stringify(prevStyle);
 }
 
-export { merge as $, toPadding as A, each as B, getMaximumSize as C, _getParentNode as D, readUsedSize as E, throttled as F, supportsEventListenerOptions as G, HALF_PI as H, log10 as I, _factorize as J, finiteOrDefault as K, callback as L, _addGrace as M, toDegrees as N, _measureText as O, PI as P, _int16Range as Q, _alignPixel as R, clipArea as S, TAU as T, renderText as U, unclipArea as V, toFont as W, _toLeftRightCenter as X, _alignStartEnd as Y, overrides as Z, _arrayUnique as _, resolve as a, _capitalize as a0, descriptors as a1, isFunction as a2, _attachContext as a3, _createResolver as a4, _descriptors as a5, mergeIf as a6, uid as a7, debounce as a8, retinaScale as a9, niceNum as aA, almostWhole as aB, almostEquals as aC, _decimalPlaces as aD, _longestText as aE, _filterBetween as aF, _lookup as aG, getHoverColor as aH, clone$1 as aI, _merger as aJ, _mergerIf as aK, _deprecated as aL, toFontString as aM, splineCurve as aN, splineCurveMonotone as aO, getStyle as aP, fontString as aQ, toLineHeight as aR, PITAU as aS, INFINITY as aT, RAD_PER_DEG as aU, QUARTER_PI as aV, TWO_THIRDS_PI as aW, _angleDiff as aX, clearCanvas as aa, setsEqual as ab, _elementsEqual as ac, getAngleFromPoint as ad, _readValueToProps as ae, _updateBezierControlPoints as af, _computeSegments as ag, _boundSegments as ah, _steppedInterpolation as ai, _bezierInterpolation as aj, _pointInLine as ak, _steppedLineTo as al, _bezierCurveTo as am, drawPoint as an, addRoundedRectPath as ao, toTRBL as ap, toTRBLCorners as aq, _boundSegment as ar, _normalizeAngle as as, getRtlAdapter as at, overrideTextDirection as au, _textX as av, restoreTextDirection as aw, noop as ax, distanceBetweenPoints as ay, _setMinAndMaxByKey as az, isArray as b, color as c, defaults as d, effects as e, resolveObjectKey as f, isNumberFinite as g, defined as h, isObject as i, isNullOrUndef as j, toPercentage as k, listenArrayEvents as l, toDimension as m, formatNumber as n, _angleBetween as o, isNumber as p, _limitValue as q, requestAnimFrame as r, sign as s, toRadians as t, unlistenArrayEvents as u, valueOrDefault as v, _lookupByKey as w, getRelativePosition as x, _isPointInArea as y, _rlookupByKey as z };
+export { overrides as $, toPadding as A, each as B, getMaximumSize as C, _getParentNode as D, readUsedSize as E, throttled as F, supportsEventListenerOptions as G, HALF_PI as H, _isDomSupported as I, log10 as J, _factorize as K, finiteOrDefault as L, callback as M, _addGrace as N, toDegrees as O, PI as P, _measureText as Q, _int16Range as R, _alignPixel as S, TAU as T, clipArea as U, renderText as V, unclipArea as W, toFont as X, _toLeftRightCenter as Y, _alignStartEnd as Z, _arrayUnique as _, resolve as a, merge as a0, _capitalize as a1, descriptors as a2, isFunction as a3, _attachContext as a4, _createResolver as a5, _descriptors as a6, mergeIf as a7, uid as a8, debounce as a9, _setMinAndMaxByKey as aA, niceNum as aB, almostWhole as aC, almostEquals as aD, _decimalPlaces as aE, _longestText as aF, _filterBetween as aG, _lookup as aH, getHoverColor as aI, clone$1 as aJ, _merger as aK, _mergerIf as aL, _deprecated as aM, toFontString as aN, splineCurve as aO, splineCurveMonotone as aP, getStyle as aQ, fontString as aR, toLineHeight as aS, PITAU as aT, INFINITY as aU, RAD_PER_DEG as aV, QUARTER_PI as aW, TWO_THIRDS_PI as aX, _angleDiff as aY, retinaScale as aa, clearCanvas as ab, setsEqual as ac, _elementsEqual as ad, getAngleFromPoint as ae, _readValueToProps as af, _updateBezierControlPoints as ag, _computeSegments as ah, _boundSegments as ai, _steppedInterpolation as aj, _bezierInterpolation as ak, _pointInLine as al, _steppedLineTo as am, _bezierCurveTo as an, drawPoint as ao, addRoundedRectPath as ap, toTRBL as aq, toTRBLCorners as ar, _boundSegment as as, _normalizeAngle as at, getRtlAdapter as au, overrideTextDirection as av, _textX as aw, restoreTextDirection as ax, noop as ay, distanceBetweenPoints as az, isArray as b, color as c, defaults as d, effects as e, resolveObjectKey as f, isNumberFinite as g, defined as h, isObject as i, isNullOrUndef as j, toPercentage as k, listenArrayEvents as l, toDimension as m, formatNumber as n, _angleBetween as o, isNumber as p, _limitValue as q, requestAnimFrame as r, sign as s, toRadians as t, unlistenArrayEvents as u, valueOrDefault as v, _lookupByKey as w, getRelativePosition as x, _isPointInArea as y, _rlookupByKey as z };

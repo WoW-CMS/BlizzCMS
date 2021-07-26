@@ -17,10 +17,7 @@ class Bugtracker extends MX_Controller
 
         mod_located('bugtracker', true);
 
-        if (! $this->cms->isLogged())
-        {
-            redirect(site_url('login'));
-        }
+        require_login();
 
         $this->load->model([
             'bugtracker_model'            => 'bugtracker',

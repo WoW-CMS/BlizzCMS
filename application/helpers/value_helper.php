@@ -19,8 +19,7 @@ if (! function_exists('encrypt'))
      */
     function encrypt($data)
     {
-        $CI = &get_instance();
-
+        $CI =& get_instance();
         $CI->load->library('encryption');
 
         $CI->encryption->initialize([
@@ -44,8 +43,7 @@ if (! function_exists('decrypt'))
      */
     function decrypt($data)
     {
-        $CI = &get_instance();
-
+        $CI =& get_instance();
         $CI->load->library('encryption');
 
         $CI->encryption->initialize([
@@ -115,7 +113,7 @@ if (! function_exists('faction_name'))
     /**
      * Get faction name from race
      *
-     * @param int $id
+     * @param int|string $id
      * @return string
      */
     function faction_name($id)

@@ -8113,5 +8113,12 @@ $lang['zones'] = [
     13686 => "Death's Roar",
     13687 => "Death's Howl",
     13688 => "Mother's Den",
-    13689 => "Torturer's Hovel"
+    13689 => "Torturer's Hovel",
+    13691 => "Chamber of Knowledge",
+    13692 => "Chamber of Wisdom",
+    13695 => "The Rift",
+    13697 => "The Chained Precipice",
+    13699 => "Seat of the Archon",
+    13700 => "Gromit Hollow",
+    13701 => "Font of Fealty"
 ];
