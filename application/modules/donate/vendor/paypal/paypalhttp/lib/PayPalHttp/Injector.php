@@ -13,7 +13,7 @@ namespace PayPalHttp;
 interface Injector
 {
     /**
-     * @param HttpRequest $httpRequest
+     * @param $httpRequest HttpRequest
      */
     public function inject($httpRequest);
 }

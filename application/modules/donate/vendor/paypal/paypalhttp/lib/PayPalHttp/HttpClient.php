@@ -28,7 +28,7 @@ class HttpClient
     /**
      * HttpClient constructor. Pass the environment you wish to make calls to.
      *
-     * @param Environment $environment
+     * @param $environment Environment
      * @see Environment
      */
     function __construct(Environment $environment)
@@ -52,11 +52,8 @@ class HttpClient
     /**
      * The method that takes an HTTP request, serializes the request, makes a call to given environment, and deserialize response
      *
-     * @param HttpRequest $httpRequest
+     * @param $httpRequest HttpRequest
      * @return HttpResponse
-     *
-     * @throws HttpException
-     * @throws IOException
      */
     public function execute(HttpRequest $httpRequest)
     {
@@ -113,11 +110,7 @@ class HttpClient
      * @return array
      */
     public function prepareHeaders($headers){
-        $preparedHeaders = array_change_key_case($headers);
-        if (array_key_exists("content-type", $preparedHeaders)) {
-            $preparedHeaders["content-type"] = strtolower($preparedHeaders["content-type"]);
-        }
-        return $preparedHeaders;
+        return array_change_key_case($headers);
     }
 
     /**

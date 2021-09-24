@@ -70,7 +70,6 @@ class Encoder
         }
 
         $contentType = $headers['content-type'];
-        $contentType = strtolower($contentType);
         /** @var Serializer $serializer */
         $serializer = $this->serializer($contentType);
 

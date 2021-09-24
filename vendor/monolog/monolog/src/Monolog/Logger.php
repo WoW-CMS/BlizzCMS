@@ -17,7 +17,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LogLevel;
 use Throwable;
-use Stringable;
 
 /**
  * Monolog log channel
@@ -383,7 +382,6 @@ class Logger implements LoggerInterface, ResettableInterface
      * Gets all supported logging levels.
      *
      * @return array<string, int> Assoc array with human-readable level names => level codes.
-     * @phpstan-return array<LevelName, Level>
      */
     public static function getLevels(): array
     {
@@ -483,18 +481,14 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param mixed             $level   The log level
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param int|string $level   The log level
+     * @param string     $message The log message
+     * @param mixed[]    $context The log context
      *
      * @phpstan-param Level|LevelName|LogLevel::* $level
      */
     public function log($level, $message, array $context = []): void
     {
-        if (!is_int($level) && !is_string($level)) {
-            throw new \InvalidArgumentException('$level is expected to be a string or int');
-        }
-
         $level = static::toMonologLevel($level);
 
         $this->addRecord($level, (string) $message, $context);
@@ -505,8 +499,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function debug($message, array $context = []): void
     {
@@ -518,8 +512,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function info($message, array $context = []): void
     {
@@ -531,8 +525,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function notice($message, array $context = []): void
     {
@@ -544,8 +538,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function warning($message, array $context = []): void
     {
@@ -557,8 +551,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function error($message, array $context = []): void
     {
@@ -570,8 +564,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function critical($message, array $context = []): void
     {
@@ -583,8 +577,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function alert($message, array $context = []): void
     {
@@ -596,8 +590,8 @@ class Logger implements LoggerInterface, ResettableInterface
      *
      * This method allows for compatibility with common interfaces.
      *
-     * @param string|Stringable $message The log message
-     * @param mixed[]           $context The log context
+     * @param string  $message The log message
+     * @param mixed[] $context The log context
      */
     public function emergency($message, array $context = []): void
     {

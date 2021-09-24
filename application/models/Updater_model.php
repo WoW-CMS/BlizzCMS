@@ -1,9 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-use Desarrolla2\Cache\File;
+use Desarrolla2\Cache\Adapter\File;
 use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
 use VisualAppeal\AutoUpdate;
 
 class Updater_model extends CI_Model
@@ -33,14 +32,8 @@ class Updater_model extends CI_Model
         // Set server update url
         $update->setUpdateUrl('https://wow-cms.com');
 
-        // Set logger (optional)
-        $logger = new Logger('default');
-        $logger->pushHandler(new StreamHandler(APPPATH . 'logs/update.log'));
-        $update->setLogger($logger);
-
-        // Set cache (optional)
-        // $cache = new File(APPPATH . 'cache');
-        // $update->setCache($cache, 3600);
+        $update->addLogHandler(new StreamHandler(APPPATH . 'logs/updater.log'));
+        // $update->setCache(new File(APPPATH . 'cache'), 3600);
 
         // Check for a new update
         if ($update->checkUpdate() === false)

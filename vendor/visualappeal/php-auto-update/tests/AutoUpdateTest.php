@@ -25,9 +25,7 @@ class AutoUpdateTest extends TestCase
         $this->_update = new AutoUpdate(__DIR__ . DIRECTORY_SEPARATOR . 'temp', __DIR__ . DIRECTORY_SEPARATOR . 'install');
         $this->_update->setCurrentVersion('0.1.0');
         $this->_update->setUpdateUrl(__DIR__ . DIRECTORY_SEPARATOR . 'fixtures');
-        $logger = new Monolog\Logger("default");
-        $logger->pushHandler(new Monolog\Handler\StreamHandler(__DIR__ . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'update.log'));
-        $this->_update->setLogger($logger);
+        $this->_update->addLogHandler(new Monolog\Handler\StreamHandler(__DIR__ . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'update.log'));
     }
 
     /**
