@@ -12,22 +12,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $hook['post_controller_constructor'][] = [
-    'class' => 'Settings',
+    'class' => 'Settings_hook',
     'function' => 'initialize',
-    'filename' => 'Settings.php',
+    'filename' => 'Settings_hook.php',
     'filepath' => 'hooks'
 ];
 
 $hook['post_controller_constructor'][] = [
-    'class' => 'Installer',
+    'class' => 'Installer_hook',
     'function' => 'initialize',
-    'filename' => 'Installer.php',
+    'filename' => 'Installer_hook.php',
     'filepath' => 'hooks'
 ];
 
 $hook['post_controller_constructor'][] = [
-    'class' => 'Langs',
+    'class' => 'Langs_hook',
     'function' => 'initialize',
-    'filename' => 'Langs.php',
+    'filename' => 'Langs_hook.php',
     'filepath' => 'hooks'
 ];

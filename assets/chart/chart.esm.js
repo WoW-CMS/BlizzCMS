@@ -1,5 +1,5 @@
 /*!
- * Chart.js v3.5.0
+ * Chart.js v3.5.1
  * https://www.chartjs.org
  * (c) 2021 Chart.js Contributors
  * Released under the MIT License
@@ -1128,22 +1128,30 @@ class DatasetController {
     }
     meta.data.splice(start, count);
   }
+  _sync(args) {
+    if (this._parsing) {
+      this._syncList.push(args);
+    } else {
+      const [method, arg1, arg2] = args;
+      this[method](arg1, arg2);
+    }
+  }
   _onDataPush() {
     const count = arguments.length;
-    this._syncList.push(['_insertElements', this.getDataset().data.length - count, count]);
+    this._sync(['_insertElements', this.getDataset().data.length - count, count]);
   }
   _onDataPop() {
-    this._syncList.push(['_removeElements', this._cachedMeta.data.length - 1, 1]);
+    this._sync(['_removeElements', this._cachedMeta.data.length - 1, 1]);
   }
   _onDataShift() {
-    this._syncList.push(['_removeElements', 0, 1]);
+    this._sync(['_removeElements', 0, 1]);
   }
   _onDataSplice(start, count) {
-    this._syncList.push(['_removeElements', start, count]);
-    this._syncList.push(['_insertElements', start, arguments.length - 2]);
+    this._sync(['_removeElements', start, count]);
+    this._sync(['_insertElements', start, arguments.length - 2]);
   }
   _onDataUnshift() {
-    this._syncList.push(['_insertElements', 0, arguments.length]);
+    this._sync(['_insertElements', 0, arguments.length]);
   }
 }
 DatasetController.defaults = {};
@@ -1597,9 +1605,6 @@ BarController.defaults = {
   }
 };
 BarController.overrides = {
-  interaction: {
-    mode: 'index'
-  },
   scales: {
     _index_: {
       type: 'category',
@@ -4463,8 +4468,16 @@ class Scale extends Element {
     let x;
     if (position === 'left') {
       if (mirror) {
-        textAlign = 'left';
         x = me.right + padding;
+        if (crossAlign === 'near') {
+          textAlign = 'left';
+        } else if (crossAlign === 'center') {
+          textAlign = 'center';
+          x += (widest / 2);
+        } else {
+          textAlign = 'right';
+          x += widest;
+        }
       } else {
         x = me.right - tickAndPadding;
         if (crossAlign === 'near') {
@@ -4479,8 +4492,16 @@ class Scale extends Element {
       }
     } else if (position === 'right') {
       if (mirror) {
-        textAlign = 'right';
         x = me.left + padding;
+        if (crossAlign === 'near') {
+          textAlign = 'right';
+        } else if (crossAlign === 'center') {
+          textAlign = 'center';
+          x -= (widest / 2);
+        } else {
+          textAlign = 'left';
+          x -= widest;
+        }
       } else {
         x = me.left + tickAndPadding;
         if (crossAlign === 'near') {
@@ -5278,7 +5299,7 @@ function needContext(proxy, names) {
   return false;
 }
 
-var version = "3.5.0";
+var version = "3.5.1";
 
 const KNOWN_POSITIONS = ['top', 'bottom', 'left', 'right', 'chartArea'];
 function positionIsHorizontal(position, axis) {
@@ -5355,7 +5376,6 @@ class Chart {
     this._responsiveListeners = undefined;
     this._sortedMetasets = [];
     this.scales = {};
-    this.scale = undefined;
     this._plugins = new PluginService();
     this.$proxies = {};
     this._hiddenIndices = {};

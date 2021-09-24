@@ -9,9 +9,8 @@ use ZipArchive;
 use Composer\Semver\Comparator;
 use Desarrolla2\Cache\CacheInterface;
 use Desarrolla2\Cache\NotCache;
-use Monolog\Handler\HandlerInterface;
 use Monolog\Logger;
-use Monolog\Handler\NullHandler;
+use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\InvalidArgumentException;
 use VisualAppeal\Exceptions\DownloadException;
 use VisualAppeal\Exceptions\ParserException;
@@ -44,7 +43,7 @@ class AutoUpdate {
     /**
      * Logger instance.
      *
-     * @var Logger
+     * @var LoggerInterface
      */
     private $log;
 
@@ -133,7 +132,7 @@ class AutoUpdate {
     protected $currentVersion;
 
     /**
-     * Create new folders with this privileges.
+     * Create new folders with these privileges.
      *
      * @var int
      */
@@ -199,7 +198,6 @@ class AutoUpdate {
     {
         // Init logger
         $this->log = new Logger('auto-update');
-        $this->log->pushHandler(new NullHandler());
 
         $this->setTempDir($tempDir ?? (__DIR__ . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR));
         $this->setInstallDir($installDir ?? (__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR));
@@ -364,14 +362,14 @@ class AutoUpdate {
     }
 
     /**
-     * Add a new logging handler.
+     * Replace the logger internally used by the given logger instance.
      *
-     * @param HandlerInterface $handler See https://github.com/Seldaek/monolog
+     * @param LoggerInterface $logger
      * @return AutoUpdate
      */
-    public function addLogHandler(HandlerInterface $handler): AutoUpdate
+    public function setLogger(LoggerInterface $logger): AutoUpdate
     {
-        $this->log->pushHandler($handler);
+        $this->log = $logger;
 
         return $this;
     }
@@ -806,7 +804,7 @@ class AutoUpdate {
         // Read every file from archive
         for ($i = 0; $i < $zip->numFiles; $i++) {
             $fileStats        = $zip->statIndex($i);
-            $filename         = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $fileStats['filename']);
+            $filename         = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $fileStats['name']);
             $foldername       = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR,
                 $this->installDir . dirname($filename));
             $absoluteFilename = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $this->installDir . $filename);
@@ -824,8 +822,8 @@ class AutoUpdate {
             }
 
             // Extract file
-            if ($zip->extractTo($absoluteFilename, $fileStats['filename']) === false) {
-                $this->log->error(sprintf('Coud not read zip entry "%s"', $fileStats['filename']));
+            if ($zip->extractTo($absoluteFilename, $fileStats['name']) === false) {
+                $this->log->error(sprintf('Coud not read zip entry "%s"', $fileStats['name']));
                 continue;
             }
 
@@ -873,7 +871,7 @@ class AutoUpdate {
             return self::ERROR_VERSION_CHECK;
         }
 
-        // Check if current version is up to date
+        // Check if current version is up-to-date
         if (!$this->newVersionAvailable()) {
             $this->log->warning('No update available!');
 

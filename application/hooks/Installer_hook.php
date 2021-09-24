@@ -9,7 +9,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Installer
+class Installer_hook
 {
     public function initialize()
     {

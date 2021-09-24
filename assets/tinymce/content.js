@@ -6,7 +6,7 @@ tinymce.init({
   branding: false,
   menubar: false,
   statusbar: false,
-  plugins: ['preview searchreplace autolink directionality image link media advlist lists imagetools emoticons table advtable'],
+  plugins: ['preview searchreplace autolink directionality image link media advlist lists imagetools emoticons table'],
   toolbar: 'bold italic underline strikethrough | fontsizeselect formatselect | forecolor casechange | emoticons | image link media | alignment | numlist bullist | table | removeformat',
   toolbar_mode: 'floating',
   invalid_elements: 'pre,code',

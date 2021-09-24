@@ -2,11 +2,17 @@
 
 ![Home Image](homepage.jpg)
 
+### To consolidate support across various channels, we have currently turned off the feature of GitHub issues. Please visit https://www.paypal.com/support to submit your request or ask questions within our community forum.
+
 __Welcome to PayPal PHP SDK__. This repository contains PayPal's PHP SDK and samples for [v2/checkout/orders](https://developer.paypal.com/docs/api/orders/v2/) and [v2/payments](https://developer.paypal.com/docs/api/payments/v2/) APIs.
 
 This is a part of the next major PayPal SDK. It includes a simplified interface to only provide simple model objects and blueprints for HTTP calls. This repo currently contains functionality for PayPal Checkout APIs which includes [Orders V2](https://developer.paypal.com/docs/api/orders/v2/) and [Payments V2](https://developer.paypal.com/docs/api/payments/v2/).
 
 Please refer to the [PayPal Checkout Integration Guide](https://developer.paypal.com/docs/checkout/) for more information. Also refer to [Setup your SDK](https://developer.paypal.com/docs/checkout/reference/server-integration/setup-sdk/) for additional information about setting up the SDK's. 
+## Latest Updates
+Beginning January 2020, PayPal will require an update on the Personal Home Page (PHP) Checkout Software Developer Kit (SDK) to version 1.0.1. Merchants who have not updated their PHP Checkout SDK to version 1.0.1 will not be able to deserialize responses using outdated SDK integrations.
+All PHP Checkout SDK integrations are expected to be updated by March 1, 2020. Merchants are encouraged to prepare for the update as soon as possible to avoid possible service disruption.
+The Status Page has been updated with this information. The bulletin can be found [here](https://www.paypal-status.com/history/eventdetails/11015)
 
 ## Prerequisites
 
@@ -20,7 +26,7 @@ An environment which supports TLS 1.2 (see the TLS-update site for more informat
 
 It is not mandatory to fork this repository for using the PayPal SDK. You can refer [PayPal Checkout Server SDK](https://developer.paypal.com/docs/checkout/reference/server-integration) for configuring and working with SDK without forking this code.
 
-For contirbuting or referrring the samples, You can fork/refer this repository. 
+For contributing or referring the samples, You can fork/refer this repository. 
 
 ### Setting up credentials
 Get client ID and client secret by going to https://developer.paypal.com/developer/applications and generating a REST API app. Get <b>Client ID</b> and <b>Secret</b> from there.
@@ -162,7 +168,7 @@ You can start off by trying out [creating and capturing an order](/samples/Captu
 
 To try out different samples for both create and authorize intent check [this link](/samples)
 
-Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable whie executing the samples.
+Note: Update the `PayPalClient.php` with your sandbox client credentials or pass your client credentials as environment variable while executing the samples.
 
 
 ## License

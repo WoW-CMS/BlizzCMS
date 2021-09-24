@@ -9,21 +9,18 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Langs
+class Settings_hook
 {
     public function initialize()
     {
         $CI =& get_instance();
 
-        $CI->load->helper('language');
+        $data = ($CI->load->database() === false) ? $CI->settings_model->saved() : false;
 
-        $lang  = $CI->language->current();
-        $files = ['general', 'alerts'];
-
-        foreach ($files as $value) {
-            $CI->lang->load($value, $lang);
+        if ($data) {
+            foreach ($data as $row) {
+                $CI->config->set_item($row->key, $row->value);
+            }
         }
-
-        $CI->config->set_item('language', $lang);
     }
 }

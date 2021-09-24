@@ -467,6 +467,8 @@ class SFTP extends SSH2
         $response = $this->_get_channel_packet(self::CHANNEL, true);
         if ($response === false) {
             return false;
+        } elseif ($response === true && $this->isTimeout()) {
+            return false;
         }
 
         $packet = pack(
@@ -513,6 +515,8 @@ class SFTP extends SSH2
             if ($response === false) {
                 return false;
             }
+        } elseif ($response === true && $this->isTimeout()) {
+            return false;
         }
 
         $this->channel_status[self::CHANNEL] = NET_SSH2_MSG_CHANNEL_DATA;
@@ -3108,6 +3112,9 @@ class SFTP extends SSH2
                 $this->packet_buffer = '';
                 return false;
             }
+            if ($temp === false) {
+                return false;
+            }
             $this->packet_buffer.= $temp;
         }
         if (strlen($this->packet_buffer) < 4) {
@@ -3119,7 +3126,7 @@ class SFTP extends SSH2
 
 
         // 256 * 1024 is what SFTP_MAX_MSG_LENGTH is set to in OpenSSH's sftp-common.h
-        if ($tempLength > 256 * 1024) {
+        if (!$this->use_request_id && $tempLength > 256 * 1024) {
             user_error('Invalid SFTP packet size');
             return false;
         }
