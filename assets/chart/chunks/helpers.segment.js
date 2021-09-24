@@ -1,5 +1,5 @@
 /*!
- * Chart.js v3.5.1
+ * Chart.js v3.5.0
  * https://www.chartjs.org
  * (c) 2021 Chart.js Contributors
  * Released under the MIT License
@@ -1280,8 +1280,8 @@ function drawPoint(ctx, options, x, y) {
 }
 function _isPointInArea(point, area, margin) {
   margin = margin || 0.5;
-  return !area || (point && point.x > area.left - margin && point.x < area.right + margin &&
-		point.y > area.top - margin && point.y < area.bottom + margin);
+  return point && area && point.x > area.left - margin && point.x < area.right + margin &&
+		point.y > area.top - margin && point.y < area.bottom + margin;
 }
 function clipArea(ctx, area) {
   ctx.save();
