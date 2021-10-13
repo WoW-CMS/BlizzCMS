@@ -3,7 +3,10 @@
 
 [![Project Status](https://img.shields.io/badge/Status-In_Development-yellow.svg?style=flat-square)](#)
 [![Project Version](https://img.shields.io/badge/Version-1.0.7-green.svg?style=flat-square)](#)
+[![PHP Composer Master](https://github.com/WoW-CMS/BlizzCMS/actions/workflows/php.yml/badge.svg?branch=master&event=push)](https://github.com/WoW-CMS/BlizzCMS/actions/workflows/php.yml)
+[![PHP Composer Refactor](https://github.com/WoW-CMS/BlizzCMS/actions/workflows/php.yml/badge.svg?branch=refactor&event=push)](https://github.com/WoW-CMS/BlizzCMS/actions/workflows/php.yml)
 [![Discord](https://img.shields.io/discord/217589275766685707.svg)](https://discord.com/invite/QXhHZpbeu5 "Our community hub on Discord")
+
 
 | Requirements | Description |
 | :----------- | :---------- |
