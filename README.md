@@ -4,7 +4,6 @@
 [![Project Status](https://img.shields.io/badge/Status-In_Development-yellow.svg?style=flat-square)](#)
 [![Project Version](https://img.shields.io/badge/Version-1.0.7-green.svg?style=flat-square)](#)
 [![Discord](https://img.shields.io/discord/217589275766685707.svg)](https://discord.com/invite/QXhHZpbeu5 "Our community hub on Discord")
-[![Donations](https://www.vectorlogo.zone/logos/ko-fi/ko-fi-ar21.svg)](https://ko-fi.com/wowcms)
 
 | Requirements | Description |
 | :----------- | :---------- |
@@ -16,6 +15,7 @@
 
 * [Website](https://wow-cms.com)
 * [Docs](https://docs.wow-cms.com)
+* [Donations](https://ko-fi.com/wowcms)
 
 ## In linux (Apache Modules)
 
