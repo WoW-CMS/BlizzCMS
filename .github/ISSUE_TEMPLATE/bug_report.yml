@@ -1,0 +1,79 @@
+name: bug_report
+description: Create a bug report to help us improve.
+title: "[Bug Report]: "
+labels: bug, help wanted
+assignees: pangolp, sayghteight, DZywolf
+body:
+  - type: markdown
+    attributes:
+      value: Hello and welcome. Before we start we need to ask you a couple of questions. That will help us to have the necessary information, and then, try to give you the best support possible.
+  - type: dropdown
+    id: operating_system
+    attributes:
+      label: What operating system are you using?
+      options:
+        - Windows
+        - Linux
+        - macOS
+    validations:
+      required: true
+  - type: dropdown
+    id: version_of_php
+    attributes:
+      label: What version of PHP do you use?
+      options:
+        - PHP 7.x
+        - PHP 8.x
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: cms_code
+    attributes:
+      label: Where did you get the CMS code?
+      options:
+        - Website
+        - Gitlab
+        - Github
+        - Forum
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: cms_install
+    attributes:
+      label: Where are you trying to install the CMS?
+      options:
+        - Localhost
+        - Web Hosting
+        - VPS
+        - Dedicated server
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: emulator
+    attributes:
+      label: Which emulator are you using and which version?
+      options:
+        - AzerothCore
+        - TrinityCore
+        - MaNGOS
+        - SkyFire
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Describe the bug
+      description: Describe the bug in detail. We need information in order to solve the problem.
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How can I reproduce the problem?
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: You can drag the images here to upload or share the links.
