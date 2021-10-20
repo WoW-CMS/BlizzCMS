@@ -58,7 +58,7 @@ endif; ?>
               </div>
             <?php else: ?>
               <div class="uk-alert-danger" uk-alert>
-                <p><i class="fas fa-times-circle"></i> PHP Version <span class="uk-text-bold">(<?= PHP_VERSION; ?>)</span> is not compatible, please use a version higher than 7.1</p>
+                <p><i class="fas fa-times-circle"></i> PHP Version <span class="uk-text-bold">(<?= PHP_VERSION; ?>)</span> is not compatible, please use a version higher than 7.1. 7.3 or 7.4 are recommended.</p>
               </div>
             <?php endif; ?>
             <?php if ($core->getError()): ?>
