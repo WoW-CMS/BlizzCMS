@@ -37,7 +37,8 @@ endif; ?>
             <div class="uk-navbar-right">
               <div class="uk-navbar-item">
                 <a target="_blank" href="https://gitlab.com/WoW-CMS" class="uk-icon-button gitlab uk-margin-small-right"><i class="fab fa-gitlab"></i></a>
-                <a target="_blank" href="https://discord.gg/vZG9vpS" class="uk-icon-button discord"><i class="fab fa-discord"></i></a>
+                <a target="_blank" href="https://github.com/WoW-CMS" class="uk-icon-button github uk-margin-small-right"><i class="fab fa-github"></i></a>
+                <a target="_blank" href="https://discord.wow-cms-com" class="uk-icon-button discord"><i class="fab fa-discord"></i></a>
               </div>
             </div>
           </nav>
@@ -66,6 +67,41 @@ endif; ?>
                 <?php echo "<li>$item</li>"; ?>
               <?php endforeach; ?>
               <?php echo "</ul></div>"; ?>
+            <?php endif; ?>
+            <?php if (!extension_loaded('curl')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php curl extension is required</p>
+              </div>
+            <?php endif; ?>
+            <?php if (!extension_loaded('gd')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php gd extension is required</p>
+              </div>
+            <?php endif; ?>
+            <?php if (!extension_loaded('mbstring')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php mbstring extension is required</p>
+              </div>
+            <?php endif; ?>
+            <?php if (!extension_loaded('mysqli')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php mysqli extension is required</p>
+              </div>
+            <?php endif; ?>
+            <?php if (!extension_loaded('openssl')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php openssl extension is required</p>
+              </div>
+            <?php endif; ?>
+            <?php if (!extension_loaded('soap')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php soap extension is required</p>
+              </div>
+            <?php endif; ?>
+            <?php if (!extension_loaded('gmp')): ?>
+              <div class="uk-alert-danger" uk-alert>
+                <p><i class="fas fa-times-circle"></i> The php gmp extension is required</p>
+              </div>
             <?php endif; ?>
             <form id="form_install" action="" method="POST" accept-charset="utf-8" autocomplete="off">
               <h5 class="uk-h5 uk-heading-line uk-margin-small uk-text-uppercase uk-text-bold"><span><i class="fas fa-cog fa-spin"></i> General Settings</span></h5>
@@ -145,7 +181,9 @@ endif; ?>
                 </div>
               </div>
               <div class="uk-margin">
-                <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" type="submit" form="form_install"><i class="fas fa-cog fa-spin"></i> Write settings Files</button>
+                <?php if ($core->checkExtension() && $core->PHPVersion()): ?>
+                  <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" type="submit" form="form_install"><i class="fas fa-cog fa-spin"></i> Write settings Files</button>
+                <?php endif; ?>
               </div>
             </form>
           </div>

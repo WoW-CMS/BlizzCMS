@@ -1,6 +1,7 @@
 <?php
 
 class Core {
+
     private
         $appPath,
         $reConfig,
@@ -63,7 +64,24 @@ class Core {
 
     public function PHPVersion()
     {
-        return (version_compare(PHP_VERSION, '7.1.0') >= 0);
+        if ((version_compare(PHP_VERSION, '7.3') >= 0 ) && (version_compare(PHP_VERSION, '8') <= 0 ))
+        {
+            return true;
+        }
+    }
+
+    public function checkExtension()
+    {
+        if (extension_loaded('curl') &&
+            extension_loaded('gd') &&
+            extension_loaded('mbstring') &&
+            extension_loaded('mysqli') &&
+            extension_loaded('openssl') &&
+            extension_loaded('soap') &&
+            extension_loaded('gmp'))
+        {
+            return true;
+        }
     }
 
     public function removeFiles($target)
