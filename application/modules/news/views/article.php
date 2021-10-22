@@ -55,7 +55,7 @@
                 </div>
               </div>
               <?php endforeach; ?>
-              <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicLocked($idlink) == 0): ?>
+              <?php if(!$this->wowauth->isLogged()): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
                   <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
