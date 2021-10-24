@@ -1,4 +1,7 @@
 # _BlizzCMS Plus_
+
+![blizzcms_plus](https://user-images.githubusercontent.com/2810187/138610672-c936818d-5b87-4f1f-800d-2741384879ae.png)
+
 **_BlizzCMS Plus_** is a restructured and improved version of BlizzCMS **v1**. The development of this version is made constantly by the developers of **WoW-CMS** in closed source taking into consideration that it is necessary to obtain a **license** for a public use.
 
 [![Project Status](https://img.shields.io/badge/Status-In_Development-yellow.svg?style=flat-square)](#)
@@ -32,7 +35,7 @@ a2enmod expires
 
 ```
 <Directory "/var/www/html">
-	AllowOverride All
+    AllowOverride All
 </Directory>
 ```
 
@@ -52,4 +55,4 @@ a2enmod expires
 
 ## Copyright
 
-Copyright © 2021 [WoW-CMS](https://wow-cms.com).
+Copyright © 2017+ [WoW-CMS](https://wow-cms.com).
