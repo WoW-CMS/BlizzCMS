@@ -156,7 +156,7 @@ class Forum extends MX_Controller {
         $ssesid = $this->session->userdata('wow_sess_id');
         $topicid = $this->input->post('topic');
         $reply = $_POST['reply'];
-        echo $this->forum_model->insertComment($reply, $topicid, $ssesid);
+        echo $this->forum_model->newComment($reply, $topicid, $ssesid);
     }
 
     public function deletereply()
