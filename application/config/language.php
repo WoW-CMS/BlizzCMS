@@ -28,11 +28,17 @@ $config['supported_languages'] = array(
      'direction' => 'ltr',
      'codes' => array('en', 'english', 'en_US'),
   ),
+  'fr' => array(
+     'name' => 'French',
+     'folder' => 'french',
+     'direction' => 'ltr',
+     'codes' => array('fr', 'French', 'fr_FR'),
+  ),
   'de' => array(
-    'name' => 'Deutsch',
-    'folder' => 'german',
-    'direction' => 'ltr',
-    'codes' => array('en', 'german', 'de_DE'),
+     'name' => 'Deutsch',
+     'folder' => 'german',
+     'direction' => 'ltr',
+     'codes' => array('de', 'german', 'de_DE'),
  )
 );
 
@@ -58,7 +64,7 @@ $config['default_language'] = 'en';
   |    FALSE
   |
  */
-$config['detect_language'] = FALSE;
+$config['detect_language'] = TRUE;
 
 /*
   |--------------------------------------------------------------------------
