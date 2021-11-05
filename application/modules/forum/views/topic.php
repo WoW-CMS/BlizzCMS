@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
-                  <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountPostAuthor($commentss->author); ?> <?= $this->lang->line('forum_post_count'); ?></p>
+                  <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->lang->line('forum_post_count'); ?></p>
                   <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                   <?php endif; ?>
