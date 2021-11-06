@@ -1,0 +1,19 @@
+Added files : 
+        modified:   application/config/language.php
+        new file:   application/language/english/form_validation_lang.php
+        new file:   application/language/french/admin_lang.php
+        new file:   application/language/french/db_lang.php
+        new file:   application/language/french/email_lang.php
+        new file:   application/language/french/form_validation_lang.php
+        new file:   application/language/french/general_lang.php
+        new file:   application/language/french/index.html
+        new file:   application/language/french/migration_lang.php
+        new file:   application/language/french/notification_lang.php
+        new file:   application/language/french/pagination_lang.php
+        new file:   application/language/german/form_validation_lang.php
+        new file:   application/language/spanish/form_validation_lang.php
+
+Purpose of changements :
+	Adding french language
+	Activatiing the language changing automatically
+	Solving a bug related to form_validation_lang.php
