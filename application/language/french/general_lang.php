@@ -130,27 +130,27 @@ $lang['placeholder_subject'] = 'Sujet';
 /*Table Header Lang*/
 $lang['table_header_name'] = 'Nom';
 $lang['table_header_faction'] = 'Faction';
-$lang['table_header_total_kills'] = 'Total Kills';
-$lang['table_header_today_kills'] = 'Today Kills';
-$lang['table_header_yersterday_kills'] = 'Yesterday Kills';
-$lang['table_header_team_name'] = 'Team Name';
-$lang['table_header_members'] = 'Members';
-$lang['table_header_rating'] = 'Rating';
-$lang['table_header_games'] = 'Games';
+$lang['table_header_total_kills'] = 'Total de Kills';
+$lang['table_header_today_kills'] = 'Today de Kills';
+$lang['table_header_yersterday_kills'] = 'Kills d\'hier';
+$lang['table_header_team_name'] = 'Nom de l\'Equipe';
+$lang['table_header_members'] = 'Membres';
+$lang['table_header_rating'] = 'Rang';
+$lang['table_header_games'] = 'Jeux';
 $lang['table_header_id'] = 'ID';
 $lang['table_header_status'] = 'Status';
-$lang['table_header_priority'] = 'Priority';
+$lang['table_header_priority'] = 'Priorité';
 $lang['table_header_date'] = 'Date';
-$lang['table_header_author'] = 'Author';
-$lang['table_header_time'] = 'Time';
+$lang['table_header_author'] = 'Auteur';
+$lang['table_header_time'] = 'heure';
 $lang['table_header_icon'] = 'Icon';
-$lang['table_header_realm'] = 'Realm';
+$lang['table_header_realm'] = 'Roayume';
 $lang['table_header_zone'] = 'Zone';
-$lang['table_header_character'] = 'Character';
-$lang['table_header_price'] = 'Price';
-$lang['table_header_item_name'] = 'Item Name';
+$lang['table_header_character'] = 'Personnages';
+$lang['table_header_price'] = 'Prix';
+$lang['table_header_item_name'] = 'Nom d\'Item';
 $lang['table_header_items'] = 'Item(s)';
-$lang['table_header_quantity'] = 'Quantity';
+$lang['table_header_quantity'] = 'Quantité';
 
 /*Class Lang*/
 $lang['class_warrior'] = 'Guerrier';
@@ -187,22 +187,22 @@ $lang['race_goblin'] = 'Goblin';
 $lang['race_blood_elf'] = 'Elfe De Sang';
 $lang['race_draenei'] = 'Draenei';
 $lang['race_worgen'] = 'Worgen';
-$lang['race_panda_neutral'] = 'Pandaren Neutral';
+$lang['race_panda_neutral'] = 'Pandaren Neutre';
 $lang['race_panda_alli'] = 'Pandaren Alliance';
 $lang['race_panda_horde'] = 'Pandaren Horde';
 $lang['race_nightborde'] = 'Nightborne';
-$lang['race_void_elf'] = 'Void Elf';
+$lang['race_void_elf'] = 'Elf du vide';
 $lang['race_lightforged_draenei'] = 'Lightforged Draenei';
 $lang['race_highmountain_tauren'] = 'Highmountain Tauren';
 $lang['race_dark_iron_dwarf'] = 'Dark Iron Dwarf';
 $lang['race_maghar_orc'] = 'Maghar Orc';
 
 /*Header Lang*/
-$lang['header_cookie_message'] = 'This website Uses Cookies To Ensure You Get The Best Experience On Our website. ';
+$lang['header_cookie_message'] = 'Ce site Web utilise des cookies pour vous garantir la meilleure expérience sur notre site Web.';
 $lang['header_cookie_button'] = 'Got It!';
 
 /*Footer Lang*/
-$lang['footer_rights'] = 'All Rights Reserved.';
+$lang['footer_rights'] = 'Tous les droits sont réservés.';
 
 /*Page 404 Lang*/
 $lang['page_404_title'] = '404 Page Not Found';
@@ -252,18 +252,18 @@ $lang['vote_next_time'] = 'Prochain Vote Dans :';
 
 /*Forum Lang*/
 $lang['forum_posts_count'] = 'Postes';
-$lang['forum_topic_locked'] = 'This Topic Is Locked.';
-$lang['forum_comment_locked'] = 'Have Something To Say? Log In To Join The Conversation.';
-$lang['forum_comment_header'] = 'Join The Conversation';
-$lang['forum_not_authorized'] = 'Not Authorized';
-$lang['forum_post_history'] = 'View Post History';
-$lang['forum_topic_list'] = 'Topic List';
-$lang['forum_last_activity'] = 'Latest Activity';
-$lang['forum_last_post_by'] = 'Last Post By';
-$lang['forum_whos_online'] = 'Whos Online';
-$lang['forum_replies_count'] = 'Replies';
-$lang['forum_topics_count'] = 'Topics';
-$lang['forum_users_count'] = 'Users';
+$lang['forum_topic_locked'] = 'Ce sujet est verrouillé.';
+$lang['forum_comment_locked'] = 'Avez-vous quelque chose à dire? Connecte toi pour rejoindre la conversation.';
+$lang['forum_comment_header'] = 'Rejoindre la conversation';
+$lang['forum_not_authorized'] = 'Pas autorisé';
+$lang['forum_post_history'] = 'Afficher l\'historique des publications';
+$lang['forum_topic_list'] = 'Liste des sujets';
+$lang['forum_last_activity'] = 'Dernère Activité';
+$lang['forum_last_post_by'] = 'Dernier message par';
+$lang['forum_whos_online'] = 'Qui est en ligne';
+$lang['forum_replies_count'] = 'Réponses';
+$lang['forum_topics_count'] = 'Sujets';
+$lang['forum_users_count'] = 'Utilisateurs';
 
 /*Store Lang*/
 $lang['store_categories'] = 'Catégories';
@@ -279,3 +279,4 @@ $lang['soap_send_body'] = 'Merci D\'avoir Acheté Dans Notre Boutique!';
 /*Email Lang*/
 $lang['email_password_recovery'] = 'Récupération De Mot De Passe';
 $lang['email_account_activation'] = 'Activation De Compte';
+?>
