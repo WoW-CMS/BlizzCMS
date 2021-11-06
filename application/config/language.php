@@ -17,28 +17,28 @@
  */
 $config['supported_languages'] = array(
   'es' => array(
-     'name' => 'Español',
-     'folder' => 'spanish',
-     'direction' => 'ltr',
-     'codes' => array('es', 'spanish', 'es_ES'),
+	'name' => 'Español',
+	'folder' => 'spanish',
+	'direction' => 'ltr',
+	'codes' => array('es', 'spanish', 'es_ES'),
   ),
   'en' => array(
-     'name' => 'English',
-     'folder' => 'english',
-     'direction' => 'ltr',
-     'codes' => array('en', 'english', 'en_US'),
+	'name' => 'English',
+	'folder' => 'english',
+	'direction' => 'ltr',
+	'codes' => array('en', 'english', 'en_US'),
   ),
   'fr' => array(
-     'name' => 'French',
-     'folder' => 'french',
-     'direction' => 'ltr',
-     'codes' => array('fr', 'French', 'fr_FR'),
+	'name' => 'French',
+	'folder' => 'french',
+	'direction' => 'ltr',
+	'codes' => array('fr', 'French', 'fr_FR'),
   ),
   'de' => array(
-     'name' => 'Deutsch',
-     'folder' => 'german',
-     'direction' => 'ltr',
-     'codes' => array('de', 'german', 'de_DE'),
+	'name' => 'Deutsch',
+	'folder' => 'german',
+	'direction' => 'ltr',
+	'codes' => array('de', 'german', 'de_DE'),
  )
 );
 
@@ -64,7 +64,7 @@ $config['default_language'] = 'en';
   |    FALSE
   |
  */
-$config['detect_language'] = TRUE;
+$config['detect_language'] = FALSE;
 
 /*
   |--------------------------------------------------------------------------
