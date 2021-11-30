@@ -79,7 +79,7 @@
                   </div>
                 </div>
                   <div class="uk-margin">
-                    <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> Guardar Cambios</button>
+                    <button class="uk-button uk-button-default uk-width-1-1"><i class="fas fa-sync"></i> <?= $this->lang->line('button_save_changes'); ?></button>
                   </div>
                   <?= form_close(); ?>
                 </div>
