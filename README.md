@@ -88,6 +88,14 @@ For the mod_rewrite to work correctly and generate friendly URLs, it is necessar
 /etc/init.d/apache2 restart
 ```
 
+### Docker Alternative
+```sh
+git clone https://github.com/WoW-CMS/BlizzCMS.git
+cd BlizzCMS
+docker-compose build
+docker-compose up -d
+```
+
 ## Active Developers
 
 * [Darthar - Back/Front-End Developer](https://github.com/perioner)
