@@ -1,4 +1,4 @@
  {
-  "schemaVersion": 2,
-  "templateId": "php/7.2"
+  "schemaVersion": 3,
+  "dockerfilePath": "./Dockerfile"
  }
