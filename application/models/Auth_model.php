@@ -243,11 +243,11 @@ class Auth_model extends CI_Model {
         {
             $value = $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel');
         }
-        elseif (($this->auth->field_exists('gmlevel', 'account'))
+        elseif ($this->auth->field_exists('gmlevel', 'account'))
         {
             $value = $this->auth->where('id', $account)->get('account')->row('gmlevel');
         }
-        elseif (($this->auth->field_exists('gmlevel', 'account_access'))
+        elseif ($this->auth->field_exists('gmlevel', 'account_access'))
         {
             $value = $this->auth->where('id', $account)->get('account_access')->row('gmlevel');
         }
