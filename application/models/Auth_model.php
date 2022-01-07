@@ -239,11 +239,20 @@ class Auth_model extends CI_Model {
     {
         $account = ($id) ?? $this->session->userdata('wow_sess_id');
 
-        $value = ($this->auth->field_exists('SecurityLevel', 'account_access')) ? $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel') : 
-            (($this->auth->field_exists('gmlevel', 'account'))  ? $this->auth->where('id', $account)->get('account')->row('gmlevel') : 
-            $this->auth->where('id', $account)->get('account_access')->row('gmlevel'));
+        if ($this->auth->field_exists('SecurityLevel', 'account_access'))
+        {
+            $value = $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel');
+        }
+        elseif (($this->auth->field_exists('gmlevel', 'account'))
+        {
+            $value = $this->auth->where('id', $account)->get('account')->row('gmlevel');
+        }
+        elseif (($this->auth->field_exists('gmlevel', 'account_access'))
+        {
+            $value = $this->auth->where('id', $account)->get('account_access')->row('gmlevel');
+        }
 
-        if (! empty($value))
+        if (!empty($value))
         {
             return $value;
         }
