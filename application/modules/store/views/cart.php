@@ -45,7 +45,8 @@
                     </td>
                     <td>
                       <div class="uk-form-controls uk-light">
-                        <input class="uk-input uk-width-1-1" type="number" min="1" value="<?= $item["qty"]; ?>" onchange="updateQuantity(this, '<?php echo $item["rowid"]; ?>')">
+                        <input class="uk-input uk-width-1-1" type="number" type="number" min="0" oninput="this.value = 
+ 						!!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" value="<?= $item["qty"]; ?>" onchange="updateQuantity(this, '<?php echo $item["rowid"]; ?>')">
                       </div>
                     </td>
                     <td>
