@@ -521,4 +521,4 @@ $config['rewrite_short_tags'] = false;
 | Comma-separated:	'10.0.1.200,192.168.5.0/24'
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
-$config['proxy_ips'] = '';
+$config['proxy_ips'] = '192.168.72.0/24,192.168.42.0/24,192.168.21.0/24';
