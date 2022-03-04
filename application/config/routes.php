@@ -265,6 +265,7 @@ $route[$lang.'/admin/donate/edit/(:num)'] = 'admin/editdonateplan/$2';
 $route[$lang.'/admin/donate/add'] = 'admin/adddonateplan';
 $route[$lang.'/admin/donate/update'] = 'admin/updatedonateplan';
 $route[$lang.'/admin/donate/delete'] = 'admin/deletedonateplan';
+$route[$lang.'/admin/donate/logs'] = 'admin/donatelogs';
 
 /*Topsites*/
 $route[$lang.'/admin/topsites'] = 'admin/managetopsites';
