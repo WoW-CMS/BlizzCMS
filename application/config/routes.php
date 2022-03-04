@@ -55,16 +55,19 @@ $route['default_controller'] = 'home';
 $route['404_override'] = 'general/error404';
 $route['translate_uri_dashes'] = FALSE;
 
-/**
- * Website Routes
- *
+/*
+ *  Website Routes
+ *  Configuration paths used by the CMS
 */
 $route[$lang.'$'] = $route['default_controller'];
 $route[$lang.'/confmigrate'] = 'home/setconfig';
 $route[$lang.'/dbmigrate'] = 'home/migrateNow';
 $route[$lang.'/maintenance'] = 'general/maintenance';
 
-/*User*/
+/*
+ *  User
+ *  Routes with functionalities for the user.
+*/
 $route[$lang.'/login'] = 'user/login';
 $route[$lang.'/register'] = 'user/register';
 $route[$lang.'/recovery'] = 'user/recovery';
@@ -81,16 +84,25 @@ $route[$lang.'/changepass'] = 'user/newpass';
 $route[$lang.'/changeavatar'] = 'user/newavatar';
 $route[$lang.'/changeusername'] = 'user/newusername';
 
-/*Vote*/
+/*
+ *  Vote
+ *  Voting system guidelines
+*/
 $route[$lang.'/vote'] = 'vote/index';
 $route[$lang.'/vote/votenow/(:num)'] = 'vote/votenow/$2';
 
-/*Donate*/
+/*
+ *  Donate
+ *  Donations module, routes for the user
+*/
 $route[$lang.'/donate'] = 'donate/index';
 $route[$lang.'/donate/check/(:any)'] = 'donate/check/$2';
 $route[$lang.'/donate/canceled'] = 'donate/canceled';
 
-/*Download*/
+/*
+ *  Download
+ *  Download module, where addons and clients can be added.
+*/
 $route[$lang.'/download'] = 'download/index';
 $route[$lang.'/admin/download'] = 'admin/managedownload';
 $route[$lang.'/admin/download/create'] = 'admin/createdownload';
@@ -99,17 +111,26 @@ $route[$lang.'/admin/download/add'] = 'admin/adddownload';
 $route[$lang.'/admin/download/update'] = 'admin/updatedownload';
 $route[$lang.'/admin/download/delete'] = 'admin/deletedownload';
 
-/*Changelog*/
+/*
+ *  Changelog
+ *  Route for changes in the project
+*/
 $route[$lang.'/changelogs'] = 'changelogs/index';
 
-/*Bugtracker*/
+/*
+ *  Bugtracker
+ *  Error reporting system
+*/
 $route[$lang.'/bugtracker'] = 'bugtracker/index';
 $route[$lang.'/bugtracker/(:num)'] = 'bugtracker/index/$2';
 $route[$lang.'/bugtracker/new'] = 'bugtracker/newreport';
 $route[$lang.'/bugtracker/create'] = 'bugtracker/create';
 $route[$lang.'/bugtracker/report/(:num)'] = 'bugtracker/report/$2';
 
-/*Forum*/
+/*
+ *  Forum
+ *  Own forum within the CMS, still under development.
+*/
 $route[$lang.'/forum'] = 'forum/index';
 $route[$lang.'/forum/category/(:num)'] = 'forum/category/$2';
 $route[$lang.'/forum/topic/(:num)'] = 'forum/topic/$2';
@@ -118,12 +139,18 @@ $route[$lang.'/forum/topic/create'] = 'forum/addtopic';
 $route[$lang.'/forum/topic/reply'] = 'forum/reply';
 $route[$lang.'/forum/topic/reply/delete'] = 'forum/deletereply';
 
-/*News*/
+/*
+ *  News
+ *  News module, to visualize and make comments.
+*/
 $route[$lang.'/news/(:num)'] = 'news/article/$2';
 $route[$lang.'/news/reply'] = 'news/reply';
 $route[$lang.'/news/reply/delete'] = 'news/deletereply';
 
-/*Store*/
+/*
+ *  Store
+ *  Routes over the store
+*/
 $route[$lang.'/store'] = 'store/index';
 $route[$lang.'/store/(:any)'] = 'store/category/$2/';
 $route[$lang.'/cart'] = 'store/cart';
@@ -133,18 +160,28 @@ $route[$lang.'/cart/delete'] = 'store/removeitem';
 $route[$lang.'/cart/updatequantity'] = 'store/updatequantity';
 $route[$lang.'/cart/updatecharacter'] = 'store/updatecharacter';
 
-/*Pages*/
+/*
+ *  Pages
+ *  Static pages, which can be created from the admin panel.
+*/
 $route[$lang.'/page/(:any)'] = 'page/index/$2/';
 
-/*PvP*/
+/*
+ *  PVP
+ *  PVP statistics of the server and its realms.
+ *  It also includes arena statistics.
+*/
 $route[$lang.'/pvp'] = 'pvp/index';
 
-/*Online*/
+/*
+ *  Online
+ *  Information about people active within the server.
+*/
 $route[$lang.'/online'] = 'online/index';
 
-/**
- * Mod Routes
- *
+/*
+ *  Mod Routes
+ *  Route for moderators
 */
 $route[$lang.'/mod'] = 'mod/index';
 $route[$lang.'/mod/queue'] = 'mod/queue';
@@ -153,9 +190,9 @@ $route[$lang.'/mod/logs'] = 'mod/logs';
 $route[$lang.'/mod/bannings'] = 'mod/bannings';
 $route[$lang.'/mod/warnings'] = 'mod/warnings';
 
-/**
- * Admin Routes
- *
+/*
+ *  Admin Routes
+ *  Routes for administrators
 */
 $route[$lang.'/admin'] = 'admin/index';
 $route[$lang.'/admin/cms'] = 'admin/cmsmanage';
@@ -173,7 +210,9 @@ $route[$lang.'/admin/modules'] = 'admin/managemodules';
 $route[$lang.'/admin/modules/enable'] = 'admin/enablemodule';
 $route[$lang.'/admin/modules/disable'] = 'admin/disablemodule';
 
-/*Manage Accounts*/
+/*
+ *  Manage Accounts
+*/
 $route[$lang.'/admin/accounts'] = 'admin/accounts';
 $route[$lang.'/admin/accounts/(:num)'] = 'admin/accounts/$2';
 $route[$lang.'/admin/account/manage/(:num)'] = 'admin/accountmanage/$2';
@@ -184,7 +223,9 @@ $route[$lang.'/admin/account/unban'] = 'admin/unbanaccount';
 $route[$lang.'/admin/account/grantrank'] = 'admin/grantrankaccount';
 $route[$lang.'/admin/account/delrank'] = 'admin/delrankaccount';
 
-/*Menu*/
+/*
+ *  Menu
+*/
 $route[$lang.'/admin/menu'] = 'admin/managemenu';
 $route[$lang.'/admin/menu/create'] = 'admin/createmenu';
 $route[$lang.'/admin/menu/edit/(:num)'] = 'admin/editmenu/$2';
@@ -192,7 +233,9 @@ $route[$lang.'/admin/menu/add'] = 'admin/addmenu';
 $route[$lang.'/admin/menu/update'] = 'admin/updatemenu';
 $route[$lang.'/admin/menu/delete'] = 'admin/deletemenu';
 
-/*Realms*/
+/*
+ *  Realms
+*/
 $route[$lang.'/admin/realms'] = 'admin/managerealms';
 $route[$lang.'/admin/realms/(:num)'] = 'admin/managerealms/$2';
 $route[$lang.'/admin/realms/create'] = 'admin/createrealm';
@@ -201,7 +244,9 @@ $route[$lang.'/admin/realms/add'] = 'admin/addrealm';
 $route[$lang.'/admin/realms/update'] = 'admin/updaterealm';
 $route[$lang.'/admin/realms/delete'] = 'admin/deleterealm';
 
-/*Slides*/
+/*
+ *  Slides
+*/
 $route[$lang.'/admin/slides'] = 'admin/manageslides';
 $route[$lang.'/admin/slides/(:num)'] = 'admin/manageslides/$2';
 $route[$lang.'/admin/slides/create'] = 'admin/createslide';
@@ -210,14 +255,18 @@ $route[$lang.'/admin/slides/add'] = 'admin/addslide';
 $route[$lang.'/admin/slides/update'] = 'admin/updateslide';
 $route[$lang.'/admin/slides/delete'] = 'admin/deleteslide';
 
-/*News*/
+/*
+ *  News
+*/
 $route[$lang.'/admin/news'] = 'admin/managenews';
 $route[$lang.'/admin/news/(:num)'] = 'admin/managenews/$2';
 $route[$lang.'/admin/news/create'] = 'admin/createnews';
 $route[$lang.'/admin/news/edit/(:num)'] = 'admin/editnews/$2';
 $route[$lang.'/admin/news/delete'] = 'admin/deletenews';
 
-/*Changelog*/
+/*
+ *  Changelog
+*/
 $route[$lang.'/admin/changelogs'] = 'admin/managechangelogs';
 $route[$lang.'/admin/changelogs/(:num)'] = 'admin/managechangelogs/$2';
 $route[$lang.'/admin/changelogs/create'] = 'admin/createchangelog';
@@ -226,7 +275,9 @@ $route[$lang.'/admin/changelogs/add'] = 'admin/addchangelog';
 $route[$lang.'/admin/changelogs/update'] = 'admin/updatechangelog';
 $route[$lang.'/admin/changelogs/delete'] = 'admin/deletechangelog';
 
-/*Pages*/
+/*
+ *  Pages
+*/
 $route[$lang.'/admin/pages'] = 'admin/managepages';
 $route[$lang.'/admin/pages/(:num)'] = 'admin/managepages/$2';
 $route[$lang.'/admin/pages/create'] = 'admin/createpage';
@@ -235,7 +286,9 @@ $route[$lang.'/admin/pages/add'] = 'admin/addpage';
 $route[$lang.'/admin/pages/update'] = 'admin/updatepage';
 $route[$lang.'/admin/pages/delete'] = 'admin/deletepage';
 
-/*Store*/
+/*
+ *  Store
+*/
 $route[$lang.'/admin/store'] = 'admin/managestore';
 $route[$lang.'/admin/store/(:num)'] = 'admin/managestore/$2';
 $route[$lang.'/admin/store/items'] = 'admin/managestoreitems';
@@ -258,7 +311,9 @@ $route[$lang.'/admin/store/top/add'] = 'admin/addstoretop';
 $route[$lang.'/admin/store/top/update'] = 'admin/updatestoretop';
 $route[$lang.'/admin/store/top/delete'] = 'admin/deletestoretop';
 
-/*Donate*/
+/*
+ *  Donate
+*/
 $route[$lang.'/admin/donate'] = 'admin/donate';
 $route[$lang.'/admin/donate/create'] = 'admin/createdonateplan';
 $route[$lang.'/admin/donate/edit/(:num)'] = 'admin/editdonateplan/$2';
@@ -267,7 +322,9 @@ $route[$lang.'/admin/donate/update'] = 'admin/updatedonateplan';
 $route[$lang.'/admin/donate/delete'] = 'admin/deletedonateplan';
 $route[$lang.'/admin/donate/logs'] = 'admin/donatelogs';
 
-/*Topsites*/
+/*
+ *  Topsites
+*/
 $route[$lang.'/admin/topsites'] = 'admin/managetopsites';
 $route[$lang.'/admin/topsites/(:num)'] = 'admin/managetopsites/$2';
 $route[$lang.'/admin/topsites/create'] = 'admin/createtopsite';
@@ -276,7 +333,9 @@ $route[$lang.'/admin/topsites/add'] = 'admin/addtopsite';
 $route[$lang.'/admin/topsites/update'] = 'admin/updatetopsite';
 $route[$lang.'/admin/topsites/delete'] = 'admin/deletetopsite';
 
-/*Forum*/
+/*
+ *  Forum
+*/
 $route[$lang.'/admin/forum'] = 'admin/manageforum';
 $route[$lang.'/admin/forum/(:num)'] = 'admin/manageforum/$2';
 $route[$lang.'/admin/forum/elements'] = 'admin/manageforumelements';
@@ -292,5 +351,7 @@ $route[$lang.'/admin/forum/category/add'] = 'admin/addforumcategory';
 $route[$lang.'/admin/forum/category/update'] = 'admin/updateforumcategory';
 $route[$lang.'/admin/forum/category/delete'] = 'admin/deleteforumcategory';
 
-/*Check*/
+/*
+ *  To check the soap connection
+*/
 $route[$lang.'/admin/checksoap'] = 'admin/checkSoap';

@@ -15,32 +15,32 @@
   |    array('en'=> 'English', 'fr'=> 'French', 'de'=> 'German')
   |
  */
-$config['supported_languages'] = array(
-  'es' => array(
-	'name' => 'Español',
-	'folder' => 'spanish',
-	'direction' => 'ltr',
-	'codes' => array('es', 'spanish', 'es_ES'),
-  ),
-  'en' => array(
-	'name' => 'English',
-	'folder' => 'english',
-	'direction' => 'ltr',
-	'codes' => array('en', 'english', 'en_US'),
-  ),
-  'fr' => array(
-	'name' => 'French',
-	'folder' => 'french',
-	'direction' => 'ltr',
-	'codes' => array('fr', 'French', 'fr_FR'),
-  ),
-  'de' => array(
-	'name' => 'Deutsch',
-	'folder' => 'german',
-	'direction' => 'ltr',
-	'codes' => array('de', 'german', 'de_DE'),
- )
-);
+$config['supported_languages'] = [
+    'es' => [
+        'name' => 'Español',
+        'folder' => 'spanish',
+        'direction' => 'ltr',
+        'codes' => ['es', 'spanish', 'es_ES'],
+    ],
+    'en' => [
+        'name' => 'English',
+        'folder' => 'english',
+        'direction' => 'ltr',
+        'codes' => ['en', 'english', 'en_US'],
+    ],
+    'fr' => [
+        'name' => 'French',
+        'folder' => 'french',
+        'direction' => 'ltr',
+        'codes' => ['fr', 'French', 'fr_FR'],
+    ],
+    'de' => [
+        'name' => 'Deutsch',
+        'folder' => 'german',
+        'direction' => 'ltr',
+        'codes' => ['de', 'german', 'de_DE'],
+    ]
+];
 
 /*
   |--------------------------------------------------------------------------
@@ -89,6 +89,4 @@ $config['default_uri'] = '/';
   |    array('admin', 'auth', 'api')
   |
  */
-$config['special_uris'] = array(
-
-);
+$config['special_uris'] = [];

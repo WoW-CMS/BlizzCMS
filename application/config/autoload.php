@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$autoload['packages'] = array();
+$autoload['packages'] = [];
 
 /*
 | -------------------------------------------------------------------
@@ -51,14 +51,14 @@ $autoload['packages'] = array();
 |
 | Prototype:
 |
-|	$autoload['libraries'] = array('database', 'email', 'session');
+|   $autoload['libraries'] = array('database', 'email', 'session');
 |
 | You can also supply an alternative library name to be assigned
 | in the controller:
 |
-|	$autoload['libraries'] = array('user_agent' => 'ua');
+|   $autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'parser', 'template', 'cart');
+$autoload['libraries'] = ['database', 'session', 'form_validation', 'parser', 'template', 'cart'];
 
 /*
 | -------------------------------------------------------------------
@@ -71,15 +71,15 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'parser
 |
 | Prototype:
 |
-|	$autoload['drivers'] = array('cache');
+|   $autoload['drivers'] = array('cache');
 |
 | You can also supply an alternative property name to be assigned in
 | the controller:
 |
-|	$autoload['drivers'] = array('cache' => 'cch');
+|   $autoload['drivers'] = array('cache' => 'cch');
 |
 */
-$autoload['drivers'] = array('cache');
+$autoload['drivers'] = ['cache'];
 
 /*
 | -------------------------------------------------------------------
@@ -87,9 +87,9 @@ $autoload['drivers'] = array('cache');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['helper'] = array('url', 'file');
+|   $autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language');
+$autoload['helper'] = ['url', 'file', 'text', 'form', 'html', 'language'];
 
 /*
 | -------------------------------------------------------------------
@@ -97,13 +97,13 @@ $autoload['helper'] = array('url', 'file', 'text', 'form', 'html', 'language');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['config'] = array('config1', 'config2');
+|   $autoload['config'] = array('config1', 'config2');
 |
 | NOTE: This item is intended for use ONLY if you have created custom
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('blizzcms', 'seo');
+$autoload['config'] = ['blizzcms', 'seo'];
 
 /*
 | -------------------------------------------------------------------
@@ -111,13 +111,13 @@ $autoload['config'] = array('blizzcms', 'seo');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['language'] = array('lang1', 'lang2');
+|   $autoload['language'] = array('lang1', 'lang2');
 |
 | NOTE: Do not include the "_lang" part of your file.  For example
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = array('general', 'notification', 'admin');
+$autoload['language'] = ['general', 'notification', 'admin'];
 
 /*
 | -------------------------------------------------------------------
@@ -125,17 +125,17 @@ $autoload['language'] = array('general', 'notification', 'admin');
 | -------------------------------------------------------------------
 | Prototype:
 |
-|	$autoload['model'] = array('first_model', 'second_model');
+|   $autoload['model'] = array('first_model', 'second_model');
 |
 | You can also supply an alternative model name to be assigned
 | in the controller:
 |
-|	$autoload['model'] = array('first_model' => 'first');
+|   $autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array(
-	'auth_model'    => 'wowauth',
-	'general_model' => 'wowgeneral',
-	'realm_model'   => 'wowrealm',
-	'module_model'  => 'wowmodule',
-	'service_model' => 'service'
-);
+$autoload['model'] = [
+    'auth_model'    => 'wowauth',
+    'general_model' => 'wowgeneral',
+    'realm_model'   => 'wowrealm',
+    'module_model'  => 'wowmodule',
+    'service_model' => 'service'
+];
