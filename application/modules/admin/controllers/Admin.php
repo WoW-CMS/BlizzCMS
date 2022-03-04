@@ -1190,6 +1190,17 @@ class Admin extends MX_Controller {
         echo $this->admin_model->delSpecifyDonation($value);
     }
 
+    public function donatelogs()
+    {
+        $data = [
+            'pagetitle' => 'Donate Logs',
+            'lang' => $this->lang->lang(),
+            'donations' => $this->admin_model->getDonateLogs()
+        ];
+
+        $this->template->build('donate/donate_logs', $data);
+    }
+
     /**
      * Forum functions
      */
