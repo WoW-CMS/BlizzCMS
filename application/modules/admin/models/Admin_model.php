@@ -70,12 +70,7 @@ class Admin_model extends CI_Model {
 
     public function getDonateLogs()
     {
-        $query = $this->db->select('*')->order_by('id', 'DESC')->get('donate_logs');
-
-        if ($query->num_rows() > 0)
-        {
-            return $query->result();
-        }
+        return $this->db->order_by('id', 'DESC')->get('donate_logs')->result();
     }
 
     public function updateAccountData($id, $dp, $vp)
