@@ -140,7 +140,8 @@
                     <li><a href="<?= base_url('admin/store'); ?>"><span class="admin-subnav-icon"><i class="fas fa-shopping-cart"></i></span><?= $this->lang->line('admin_nav_manage_store'); ?></a></li>
                     <li><a href="<?= base_url('admin/donate'); ?>"><span class="admin-subnav-icon"><i class="fas fa-donate"></i></span><?= $this->lang->line('admin_nav_donate_methods'); ?></a></li>
                     <li><a href="<?= base_url('admin/topsites'); ?>"><span class="admin-subnav-icon"><i class="fas fa-star"></i></span><?= $this->lang->line('admin_nav_topsites'); ?></a></li>
-                    <li><a href="<?= base_url('admin/donate/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_donate_vote_logs'); ?></a></li>
+                    <li><a href="<?= base_url('admin/donate/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_donate_logs'); ?></a></li>
+                    <li><a href="<?= base_url('admin/vote/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_vote_logs'); ?></a></li>
                   </ul>
                 </div>
               </li>

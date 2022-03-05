@@ -1201,6 +1201,17 @@ class Admin extends MX_Controller {
         $this->template->build('donate/donate_logs', $data);
     }
 
+    public function votelogs()
+    {
+        $data = [
+            'pagetitle' => 'Vote Logs',
+            'lang' => $this->lang->lang(),
+            'votes' => $this->admin_model->getVoteLogs()
+        ];
+
+        $this->template->build('vote/vote_logs', $data);
+    }
+
     /**
      * Forum functions
      */

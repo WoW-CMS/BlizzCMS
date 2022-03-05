@@ -73,6 +73,11 @@ class Admin_model extends CI_Model {
         return $this->db->order_by('id', 'DESC')->get('donate_logs')->result();
     }
 
+    public function getVoteLogs()
+    {
+        return $this->db->order_by('id', 'DESC')->get('votes_logs')->result();
+    }
+
     public function updateAccountData($id, $dp, $vp)
     {
         $update = array(

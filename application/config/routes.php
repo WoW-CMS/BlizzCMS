@@ -352,6 +352,11 @@ $route[$lang.'/admin/forum/category/update'] = 'admin/updateforumcategory';
 $route[$lang.'/admin/forum/category/delete'] = 'admin/deleteforumcategory';
 
 /*
+ *  Vote (admin)
+*/
+$route[$lang.'/admin/vote/logs'] = 'admin/votelogs';
+
+/*
  *  To check the soap connection
 */
 $route[$lang.'/admin/checksoap'] = 'admin/checkSoap';
