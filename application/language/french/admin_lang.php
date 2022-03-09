@@ -58,6 +58,8 @@ $lang['admin_nav_forum'] = 'Forum';
 $lang['admin_nav_manage_forum'] = 'Gérer le Forum';
 $lang['admin_nav_logs'] = 'Logs du Systeme';
 $lang['admin_nav_download'] = 'Téléchargement';
+$lang['admin_nav_Tickets'] = 'Tickets';
+$lang['admin_nav_manage_tickets'] = 'Gérer le Tickets';
 
 /*Sections Lang*/
 $lang['section_general_settings'] = 'Réglages Généraux';

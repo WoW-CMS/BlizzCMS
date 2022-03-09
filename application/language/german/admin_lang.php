@@ -58,6 +58,8 @@ $lang['admin_nav_manage_store'] = 'Store bearbeiten';
 $lang['admin_nav_forum'] = 'Forum';
 $lang['admin_nav_manage_forum'] = 'Forum bearbeiten';
 $lang['admin_nav_logs'] = 'Logs System';
+$lang['admin_nav_Tickets'] = 'Tickets';
+$lang['admin_nav_manage_tickets'] = 'Tickets bearbeiten';
 
 /*Sections Lang*/
 $lang['section_general_settings'] = 'Allgemeine Einstellungen';
