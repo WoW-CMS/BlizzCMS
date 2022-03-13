@@ -173,4 +173,9 @@ class Bugtracker_model extends CI_Model {
     {
         return $this->db->select('author')->where('id', $id)->get('bugtracker')->row('author');
     }
+	
+	public function ReportExist($id)
+	{
+		return $this->db->select('*')->where('id', $id)->get('bugtracker')->num_rows();
+	}
 }

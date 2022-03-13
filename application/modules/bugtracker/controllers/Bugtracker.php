@@ -111,6 +111,9 @@ class Bugtracker extends MX_Controller {
         if (!$this->wowmodule->getBugtrackerStatus())
             redirect(base_url(),'refresh');
 
+		if ($this->bugtracker_model->ReportExist($id) == 0)
+			redirect(base_url('404'), 'refresh');
+		
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_bugtracker'),
