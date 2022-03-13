@@ -109,7 +109,6 @@ $lang['table_header_value'] = 'Value';
 
 /*Input Placeholder Lang*/
 $lang['placeholder_manage_account'] = 'Manage Account';
-$lang['placeholder_manage_account'] = 'Manage Account';
 $lang['placeholder_update_information'] = 'Update Account Information';
 $lang['placeholder_donation_logs'] = 'Donation Logs';
 $lang['placeholder_store_logs'] = 'Store Logs';
