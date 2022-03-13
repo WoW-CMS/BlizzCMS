@@ -224,6 +224,13 @@ $route[$lang.'/admin/account/grantrank'] = 'admin/grantrankaccount';
 $route[$lang.'/admin/account/delrank'] = 'admin/delrankaccount';
 
 /*
+ *	Tickets
+*/
+$route[$lang.'/admin/tickets'] = 'admin/managetickets';
+$route[$lang.'/admin/tickets/realm/(:num)'] = 'admin/ticketrealm/$2';
+$route[$lang.'/admin/tickets/realm/(:num)/(:num)'] = 'admin/ticketrealm/$2/$3';
+
+/*
  *  Menu
 */
 $route[$lang.'/admin/menu'] = 'admin/managemenu';

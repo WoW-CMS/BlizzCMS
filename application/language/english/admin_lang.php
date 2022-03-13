@@ -59,6 +59,8 @@ $lang['admin_nav_forum'] = 'Forum';
 $lang['admin_nav_manage_forum'] = 'Manage Forum';
 $lang['admin_nav_logs'] = 'Logs System';
 $lang['admin_nav_download'] = 'Download';
+$lang['admin_nav_Tickets'] = 'Tickets';
+$lang['admin_nav_manage_tickets'] = 'Manage Tickets';
 
 /*Sections Lang*/
 $lang['section_general_settings'] = 'General Settings';
@@ -106,6 +108,7 @@ $lang['table_header_information'] = 'Information';
 $lang['table_header_value'] = 'Value';
 
 /*Input Placeholder Lang*/
+$lang['placeholder_manage_account'] = 'Manage Account';
 $lang['placeholder_manage_account'] = 'Manage Account';
 $lang['placeholder_update_information'] = 'Update Account Information';
 $lang['placeholder_donation_logs'] = 'Donation Logs';

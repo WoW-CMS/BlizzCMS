@@ -91,6 +91,7 @@
                   <li><a href="<?= base_url('admin/forum'); ?>"><span class="admin-subnav-icon"><i class="fas fa-bookmark"></i></span><?= $this->lang->line('admin_nav_manage_forum'); ?></a></li>
                 </ul>
               </li>
+              <li><a href="<?= base_url('admin/tickets'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= $this->lang->line('admin_nav_Tickets'); ?></a></li>
             </ul>
           </div>
         </div>
@@ -153,6 +154,7 @@
                   </ul>
                 </div>
               </li>
+              <li><a href="<?= base_url('admin/tickets'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= $this->lang->line('admin_nav_Tickets'); ?></a></li>
             </ul>
           </div>
           <div class="uk-navbar-right"></div>
