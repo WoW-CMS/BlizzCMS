@@ -53,7 +53,7 @@
                                 <p class="uk-text-small"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_class'); ?> : <?= $this->wowgeneral->getClassName($this->wowrealm->getCharClass($ticket->playerGuid, $multirealm)) ?></span></p>
                                 <p class="uk-text-small"><i class="fas fa-info-circle"></i> <?= $this->lang->line('table_header_faction'); ?> : <?= $this->wowgeneral->getFaction($this->wowrealm->getCharRace($ticket->playerGuid, $multirealm)) ?></p>
                                 <p class="uk-text-small"><i class="fas fa-star"></i> <?= $this->lang->line('panel_last_ip'); ?> : <?= $this->wowauth->getLastIPID($this->wowrealm->getAccountCharGuid($multirealm, $ticket->playerGuid)) ?> </span></p>
-                                <p class="uk-text-small"><i class="fas fa-clock"></i> <?= $this->lang->line('table_header_date'); ?> : <?= date('H:i, d Y', $ticket->createTime); ?></p>
+                                <p class="uk-text-small"><i class="fas fa-clock"></i> <?= $this->lang->line('table_header_date'); ?> : <?= date('H:i, m/d/Y', $ticket->createTime); ?></p>
                               </div>
                             </div>
                           </div>
