@@ -16,8 +16,8 @@
                         <td><?= $vote->idaccount; ?></td>
                         <td><?= $vote->idvote; ?></td>
                         <td><?= $vote->points; ?></td>
-                        <td><?= $vote->lasttime; ?></td>
-                        <td><?= $vote->expired_at; ?></td>
+                        <td><?= gmdate("m/d/Y H:i",$vote->lasttime); ?></td>
+                        <td><?= gmdate("m/d/Y H:i",$vote->expired_at); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
