@@ -77,6 +77,11 @@ class Admin_model extends CI_Model {
     {
         return $this->db->order_by('id', 'DESC')->get('votes_logs')->result();
     }
+	
+	public function getStoreLogs()
+    {
+        return $this->db->order_by('id', 'DESC')->get('store_logs')->result();
+    }
 
     public function updateAccountData($id, $dp, $vp)
     {

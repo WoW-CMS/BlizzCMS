@@ -120,7 +120,7 @@ class Store_model extends CI_Model {
 
     public function insertStoreLog($accountid, $charid, $name, $type, $pricetype, $dp, $vp)
     {
-        $date = $this->wowgeneral->getTimestamp();
+        $date = date("Y-m-d H:i:s");
 
         $data = array(
             'accountid' => $accountid,

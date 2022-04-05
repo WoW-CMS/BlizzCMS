@@ -364,6 +364,11 @@ $route[$lang.'/admin/forum/category/delete'] = 'admin/deleteforumcategory';
 $route[$lang.'/admin/vote/logs'] = 'admin/votelogs';
 
 /*
+ *  Store (admin)
+*/
+$route[$lang.'/admin/store/logs'] = 'admin/storelogs';
+
+/*
  *  To check the soap connection
 */
 $route[$lang.'/admin/checksoap'] = 'admin/checkSoap';
