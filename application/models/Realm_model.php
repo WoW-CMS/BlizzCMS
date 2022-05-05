@@ -106,9 +106,9 @@ class Realm_model extends CI_Model {
         return $this->auth->select('address')->where('id', $id)->get('realmlist')->row('address');
     }
 
-    public function realmGetHostnameLocal($realmID)
+    public function realmGetHostnameLocal($id)
     {
-        return $this->auth->select('localAddress')->where('realmID', $realmID)->get('realmlist')->row('localAddress');
+        return $this->auth->select('localAddress')->where('id', $id)->get('realmlist')->row('localAddress');
     }
 
     public function getGeneralCharactersSpecifyAcc($multiRealm, $id)
