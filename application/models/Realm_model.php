@@ -30,9 +30,19 @@ class Realm_model extends CI_Model {
         return $this->auth->select('port')->where('id', $id)->get('realmlist')->row('port');
     }
 
+    public function getRealmPortByRealmID($realmID)
+    {
+        return $this->db->select('console_port')->where('realmID', $realmID)->get('realms')->row('console_port');
+    }
+
+    public function getRealmHostnameByRealmID($realmID)
+    {
+        return $this->db->select('hostname')->where('realmID', $realmID)->get('realms')->row('hostname');
+    }
+
     public function RealmStatus($MultiRealm, $host, $status = false)
     {
-        $port = $this->getRealmPort($MultiRealm);
+        $port = $this->getRealmPortByRealmID($MultiRealm);
         error_reporting(0);
 
         if ($this->RealmStatus != null)
