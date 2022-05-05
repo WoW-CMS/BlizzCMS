@@ -30,10 +30,18 @@ class Realm_model extends CI_Model {
         return $this->auth->select('port')->where('id', $id)->get('realmlist')->row('port');
     }
 
-    public function RealmStatus($MultiRealm, $host, $status = false)
+    public function RealmStatus($MultiRealm, $status = false)
     {
         $port = $this->getRealmPort($MultiRealm);
-        error_reporting(0);
+
+        if ($this->config->item('check_realm_local'))
+        {
+            $host = $this->realmGetHostnameLocal($MultiRealm);
+        }
+        else
+        {
+            $host = $this->realmGetHostname($MultiRealm);
+        }
 
         if ($this->RealmStatus != null)
         {
@@ -96,6 +104,11 @@ class Realm_model extends CI_Model {
     public function realmGetHostname($id)
     {
         return $this->auth->select('address')->where('id', $id)->get('realmlist')->row('address');
+    }
+
+    public function realmGetHostnameLocal($id)
+    {
+        return $this->auth->select('localAddress')->where('id', $id)->get('realmlist')->row('localAddress');
     }
 
     public function getGeneralCharactersSpecifyAcc($multiRealm, $id)

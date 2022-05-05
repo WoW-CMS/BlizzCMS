@@ -180,3 +180,14 @@ $config['mod_access_level'] = '2';
  *
 */
 $config['migrate_status'] = '1';
+
+/**
+ *
+ *  Check Realm Local
+ *
+ *  Set the way in which it checks the server status.
+ *  If false, the public IP from the `realmlist` table of the `auth` database is used.
+ *  Otherwise, if it is true, it performs the check by means of the private IP.
+ *
+*/
+$config['check_realm_local'] = false;
