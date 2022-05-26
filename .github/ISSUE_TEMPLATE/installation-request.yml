@@ -24,25 +24,43 @@ body:
       label: Version
       description: What version of our software are you running?
       options:
-        - 1.0.6.4.1 (Default)
-        - 1.0.7 (Edge)
-        - 1.0.7.1 (Edge)
-        - 1.0.7.2 (Edge)
-        - 1.0.7.3 (Edge)
-        - 1.0.7.4 (Edge)
-        - 1.0.7.5 (Edge)
-        - 1.0.7.6 (Edge)
-        - 1.0.7.7 (Edge)
-        - 1.0.7.8 (Edge)
+        - 1.0.6.4.1 (Unsupported)
+        - 1.0.7 (Unsupported)
+        - 1.0.7.1 (Unsupported)
+        - 1.0.7.2 (Unsupported)
+        - 1.0.7.3 (Unsupported)
+        - 1.0.7.4 (Unsupported)
+        - 1.0.7.5 (Unsupported)
+        - 1.0.7.6 (Supported)
+        - 1.0.7.7 (Supported)
+        - 1.0.7.8 (Recommended)
     validations:
       required: true
   - type: dropdown
-    id: browsers
+    id: version
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.6.4.1 (Unsupported)
+        - 1.0.7 (Unsupported)
+        - 1.0.7.1 (Unsupported)
+        - 1.0.7.2 (Unsupported)
+        - 1.0.7.3 (Unsupported)
+        - 1.0.7.4 (Unsupported)
+        - 1.0.7.5 (Unsupported)
+        - 1.0.7.6 (Supported)
+        - 1.0.7.7 (Supported)
+        - 1.0.7.8 (Recommended)
+    validations:
+      required: true
+  - type: dropdown
+    id: PHP Version
+    attributes:
+      label:What version of PHP are you running?
       multiple: true
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - PHP7
+        - PHP8
+    validations:
+      required: true
