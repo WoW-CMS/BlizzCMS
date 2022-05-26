@@ -15,7 +15,7 @@ body:
       label: What happened?
       description: Also tell us, what did you expect to happen?
       placeholder: Tell us what you see!
-      value: "Installatio problem!"
+      value: "Installation problem!"
     validations:
       required: true
   - type: dropdown
