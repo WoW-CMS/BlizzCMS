@@ -1,0 +1,48 @@
+name: Installation Report
+description: Have you had a problem installing BlizzCMS?
+title: "[Help Wanted]: "
+labels: ["Help Wanted", "triage"]
+assignees:
+  - sayghteight
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this installation help!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "Installatio problem!"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.6.4.1 (Default)
+        - 1.0.7 (Edge)
+        - 1.0.7.1 (Edge)
+        - 1.0.7.2 (Edge)
+        - 1.0.7.3 (Edge)
+        - 1.0.7.4 (Edge)
+        - 1.0.7.5 (Edge)
+        - 1.0.7.6 (Edge)
+        - 1.0.7.7 (Edge)
+        - 1.0.7.8 (Edge)
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
