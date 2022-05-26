@@ -55,7 +55,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: PHP Version
+    id: PHPVersion
     attributes:
       label: What version of PHP are you running?
       multiple: true
