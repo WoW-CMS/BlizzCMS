@@ -57,7 +57,7 @@ body:
   - type: dropdown
     id: PHP Version
     attributes:
-      label:What version of PHP are you running?
+      label: What version of PHP are you running?
       multiple: true
       options:
         - PHP7
