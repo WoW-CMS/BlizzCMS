@@ -1,0 +1,61 @@
+name: Installation Report
+description: Have you had a problem installing BlizzCMS?
+title: "[Help Wanted]: "
+labels: ["Help Wanted", "triage"]
+assignees:
+  - sayghteight
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this installation help!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "Installation problem!"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.6.4.1 (Unsupported)
+        - 1.0.7 (Unsupported)
+        - 1.0.7.1 (Unsupported)
+        - 1.0.7.2 (Unsupported)
+        - 1.0.7.3 (Unsupported)
+        - 1.0.7.4 (Unsupported)
+        - 1.0.7.5 (Unsupported)
+        - 1.0.7.6 (Supported)
+        - 1.0.7.7 (Supported)
+        - 1.0.7.8 (Recommended)
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: Browser
+      description: What Browser are you running?
+      options:
+        - Firefox
+        - Edge
+        - Opera
+        - Chrome
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: PHPVersion
+    attributes:
+      label: What version of PHP are you running?
+      multiple: true
+      options:
+        - PHP7
+        - PHP8
+    validations:
+      required: true
