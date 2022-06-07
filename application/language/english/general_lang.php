@@ -224,6 +224,7 @@ $lang['panel_replace_pass_by'] = 'Replace password by';
 $lang['panel_current_username'] = 'Current Username';
 $lang['panel_current_email'] = 'Current Email Address';
 $lang['panel_replace_email_by'] = 'Replace Email by';
+$lang['panel_server_checkstatus'] = 'Server is offline. Purchases are not available.';
 
 /*Home Lang*/
 $lang['home_latest_news'] = 'Latest News';

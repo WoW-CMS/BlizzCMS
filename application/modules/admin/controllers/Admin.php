@@ -1211,6 +1211,17 @@ class Admin extends MX_Controller {
 
         $this->template->build('vote/vote_logs', $data);
     }
+	
+	public function storelogs()
+    {
+        $data = [
+            'pagetitle' => 'Store Logs',
+            'lang' => $this->lang->lang(),
+            'stores' => $this->admin_model->getStoreLogs()
+        ];
+
+        $this->template->build('store/store_logs', $data);
+    }
 
     /**
      * Forum functions
