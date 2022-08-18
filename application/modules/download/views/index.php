@@ -32,14 +32,16 @@
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach ($this->download_model->getGame()->result() as $files): ?>
-													<tr>
-														<td><div style="background:url(<?=base_url('assets/images/forums/wow-icons/' . $files->image);?>); width: 50px; height: 50px;)"></div></td>
-														<td><?=$files->fileName?></td>
-														<td><?=$files->weight?></td>
-														<td><?=$files->type?></td>
-														<td><a class="uk-button uk-label-success uk-button-small" href="<?=$files->url?>" target="_blank"><i class="fas fa-download"></i> Download</a></td>
-													</tr>
+													<?php foreach ($downloads as $files): ?>
+														<?php if($files->category == 1): ?>
+															<tr>
+																<td><div style="background:url(<?=base_url('assets/images/forums/wow-icons/' . $files->image);?>); width: 50px; height: 50px;)"></div></td>
+																<td><?=$files->fileName?></td>
+																<td><?=$files->weight?></td>
+																<td><?=$files->type?></td>
+																<td><a class="uk-button uk-label-success uk-button-small" href="<?=$files->url?>" target="_blank"><i class="fas fa-download"></i> Download</a></td>
+															</tr>
+														<?php endif; ?>
 													<?php endforeach;?>
 												</tbody>
 											</table>
@@ -55,13 +57,15 @@
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach ($this->download_model->getAddons()->result() as $files): ?>
-													<tr>
-														<td><div style="background:url(<?=base_url('assets/images/forums/wow-icons/' . $files->image);?>); width: 50px; height: 50px;)"></div></td>
-														<td><?=$files->fileName?></td>
-														<td><?=$files->weight?></td>
-														<td><a class="uk-button uk-label-success uk-button-small" href="<?=$files->url?>" target="_blank"><i class="fas fa-download"></i> Download</a></td>
-													</tr>
+													<?php foreach ($downloads as $files): ?>
+														<?php if($files->category == 2): ?>
+															<tr>
+																<td><div style="background:url(<?=base_url('assets/images/forums/wow-icons/' . $files->image);?>); width: 50px; height: 50px;)"></div></td>
+																<td><?=$files->fileName?></td>
+																<td><?=$files->weight?></td>
+																<td><a class="uk-button uk-label-success uk-button-small" href="<?=$files->url?>" target="_blank"><i class="fas fa-download"></i> Download</a></td>
+															</tr>
+														<?php endif; ?>
 													<?php endforeach;?>
 												</tbody>
 											</table>

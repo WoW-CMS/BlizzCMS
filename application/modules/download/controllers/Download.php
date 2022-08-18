@@ -59,7 +59,7 @@ class Download extends MX_Controller {
     {
 
         $data = array(
-		
+            'downloads' => $this->download_model->getDownloads()->result(),
             'pagetitle' => 'Download Center',
         );
 
