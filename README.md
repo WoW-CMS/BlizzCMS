@@ -40,7 +40,7 @@ Although some of them are still under constant development and maintenance/impro
 
 #### PHP
 
-- **7.1 or newer** is recommended (Version 8.x is currently not supported.)
+- **7.1 or newer** is recommended (Version 8.x is currently supported.)
 
 #### Apache Modules
 
