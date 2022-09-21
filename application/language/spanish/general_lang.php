@@ -196,6 +196,7 @@ $lang['race_lightforged_draenei'] = 'Draenei forjado por la Luz';
 $lang['race_highmountain_tauren'] = 'Tauren monte alto';
 $lang['race_dark_iron_dwarf'] = 'Enano Hierro Negro';
 $lang['race_maghar_orc'] = 'Orco Maghar';
+$lang['race_vulpera'] = 'Vulpera';
 
 /*Header Lang*/
 $lang['header_cookie_message'] = 'Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web. ';

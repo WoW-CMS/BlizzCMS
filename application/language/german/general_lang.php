@@ -195,6 +195,7 @@ $lang['race_lightforged_draenei'] = 'Lichtgeschmiedeten Draenei';
 $lang['race_highmountain_tauren'] = 'Hochberg Taure';
 $lang['race_dark_iron_dwarf'] = 'Dunkeleisen Zwerg';
 $lang['race_maghar_orc'] = 'Maghar Ork';
+$lang['race_vulpera'] = 'Vulpera';
 
 /*Header Lang*/
 $lang['header_cookie_message'] = 'diese website benutzt Cookies um eine Benutzerfreundliche erfahrung zu Garantieren';

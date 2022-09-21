@@ -262,6 +262,9 @@ class General_model extends CI_Model {
             case 34:
                 return $this->lang->line('race_dark_iron_dwarf');
                 break;
+            case 35:
+                return $this->lang->line('race_vulpera');
+                break;
             case 36:
                 return $this->lang->line('race_maghar_orc');
                 break;
@@ -329,6 +332,9 @@ class General_model extends CI_Model {
                 break;
             case 34:
                 return 'irondwarf.png';
+                break;
+            case 35:
+                return 'vulpera.png'
                 break;
             case 36:
                 return 'magharorc.png';
@@ -405,7 +411,7 @@ class General_model extends CI_Model {
             case '26': // Pandaren horde
             case '28':
             case '31':
-            case '35':
+            case '35': // Vulpera
             case '36':
                 return 'Horde';
             break;
