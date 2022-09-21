@@ -89,7 +89,7 @@ $autoload['drivers'] = ['cache'];
 |
 |   $autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = ['url', 'file', 'text', 'form', 'html', 'language'];
+$autoload['helper'] = ['url', 'file', 'text', 'form', 'html', 'language', 'recaptcha'];
 
 /*
 | -------------------------------------------------------------------

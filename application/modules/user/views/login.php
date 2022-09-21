@@ -42,7 +42,7 @@
           <div class="uk-width-1-4@m">
             <?php if ($this->wowmodule->getreCaptchaStatus() == '1') : ?>
               <div class="uk-margin-small">
-                <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+                <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response">
               </div>
             <?php endif; ?>
             <a href="<?= base_url('recovery'); ?>" class="uk-button uk-button-text"><i class="fas fa-key"></i> <?= lang('button_forgot_password'); ?></a>
