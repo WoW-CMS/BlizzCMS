@@ -196,6 +196,7 @@ $lang['race_lightforged_draenei'] = 'Lightforged Draenei';
 $lang['race_highmountain_tauren'] = 'Highmountain Tauren';
 $lang['race_dark_iron_dwarf'] = 'Dark Iron Dwarf';
 $lang['race_maghar_orc'] = 'Maghar Orc';
+$lang['race_vulpera'] = 'Vulpera';
 
 /*Header Lang*/
 $lang['header_cookie_message'] = 'This website uses cookies to ensure you get the best experience on our website. ';
