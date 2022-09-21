@@ -334,7 +334,7 @@ class General_model extends CI_Model {
                 return 'irondwarf.png';
                 break;
             case 35:
-                return 'vulpera.png'
+                return 'vulpera.png';
                 break;
             case 36:
                 return 'magharorc.png';
