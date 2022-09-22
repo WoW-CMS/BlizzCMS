@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = '';
+$config['website_name'] = 'Test';
 
 /**
  *
@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  *  Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = '';
+$config['discord_invitation'] = 'sdasda';
 
 /**
  *
@@ -44,7 +44,7 @@ $config['discord_invitation'] = '';
  *  Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = '';
+$config['realmlist'] = 'logon.test';
 
 /**
  *  Bnet enabled?
@@ -52,7 +52,7 @@ $config['realmlist'] = '';
  *  true for Emulators BattleNet.
  *  false for not bnetserver
  */
-$config['bnet_enabled'] = false;
+$config['bnet_enabled'] = true;
 
  /**
  *  Emulator
@@ -82,7 +82,7 @@ $config['emulator'] = 'srp6';
  *  9 = Shadowlands
  *
 */
-$config['expansion'] = '';
+$config['expansion'] = '1';
 
 /**
  *
@@ -109,14 +109,19 @@ $config['social_youtube'] = '';
 
 /**
  *
- *  Recaptcha (V2)
+ * The site key
+ * get site key @ www.google.com/recaptcha/admin
  *
- *  Write the necessary keys to enable recaptcha in the register
- *  Use the following page to create the necessary keys.
- *  https://www.google.com/recaptcha/admin#list
+ */
+$config['recaptcha_sitekey'] = '6LfAlhgiAAAAAJhAXirHys55JY6AupwdxMSjUgM3';
+
+/**
  *
-*/
-$config['recaptcha_sitekey'] = '';
+ * The secret key
+ * get secret key @ www.google.com/recaptcha/admin
+ *
+ */
+$config['recaptcha_secretkey'] = '6LfAlhgiAAAAAGly6O9IcnT_8dwqfzngzskTIWQd';
 
 /**
  *
@@ -179,7 +184,7 @@ $config['mod_access_level'] = '2';
  *  Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '1';
+$config['migrate_status'] = '0';
 
 /**
  *
