@@ -52,7 +52,7 @@ $config['realmlist'] = '';
  *  true for Emulators BattleNet.
  *  false for not bnetserver
  */
-$config['bnet_enabled'] = false;
+$config['bnet_enabled'] = true;
 
  /**
  *  Emulator
@@ -82,7 +82,7 @@ $config['emulator'] = 'srp6';
  *  9 = Shadowlands
  *
 */
-$config['expansion'] = '';
+$config['expansion'] = '1';
 
 /**
  *
@@ -109,14 +109,19 @@ $config['social_youtube'] = '';
 
 /**
  *
- *  Recaptcha (V2)
+ * The site key
+ * get site key @ www.google.com/recaptcha/admin
  *
- *  Write the necessary keys to enable recaptcha in the register
- *  Use the following page to create the necessary keys.
- *  https://www.google.com/recaptcha/admin#list
- *
-*/
+ */
 $config['recaptcha_sitekey'] = '';
+
+/**
+ *
+ * The secret key
+ * get secret key @ www.google.com/recaptcha/admin
+ *
+ */
+$config['recaptcha_secretkey'] = '';
 
 /**
  *

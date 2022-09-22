@@ -17,6 +17,12 @@
             <p><i class="far fa-times-circle"></i> <?= $msg_notification_used_email; ?></p>
           </div>
         <?php endif; ?>
+        <?php if(isset($msg_notification_fail_google)): ?>
+          <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><i class="far fa-times-circle"></i> <?= $msg_notification_fail_google; ?></p>
+          </div>
+        <?php endif; ?>
         <?= form_open(current_url()); ?>
         <div class="uk-margin uk-light">
           <label class="uk-form-label"><?= lang('label_login_info'); ?></label>
@@ -55,7 +61,7 @@
           <div class="uk-width-1-4@m">
             <?php if ($this->wowmodule->getreCaptchaStatus() == '1') : ?>
               <div class="uk-margin-small">
-                <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
+                <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response">
               </div>
             <?php endif; ?>
           </div>
