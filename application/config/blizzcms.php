@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  Write the name of your website this will appear by default.
  *
 */
-$config['website_name'] = 'Test';
+$config['website_name'] = '';
 
 /**
  *
@@ -35,7 +35,7 @@ $config['maintenance_mode'] = '0';
  *  Write the invitation of your discord channel.
  *
 */
-$config['discord_invitation'] = 'sdasda';
+$config['discord_invitation'] = '';
 
 /**
  *
@@ -44,7 +44,7 @@ $config['discord_invitation'] = 'sdasda';
  *  Write the realmlist used on your server to publish it on the website.
  *
 */
-$config['realmlist'] = 'logon.test';
+$config['realmlist'] = '';
 
 /**
  *  Bnet enabled?
@@ -113,7 +113,7 @@ $config['social_youtube'] = '';
  * get site key @ www.google.com/recaptcha/admin
  *
  */
-$config['recaptcha_sitekey'] = '6LfAlhgiAAAAAJhAXirHys55JY6AupwdxMSjUgM3';
+$config['recaptcha_sitekey'] = '';
 
 /**
  *
@@ -121,7 +121,7 @@ $config['recaptcha_sitekey'] = '6LfAlhgiAAAAAJhAXirHys55JY6AupwdxMSjUgM3';
  * get secret key @ www.google.com/recaptcha/admin
  *
  */
-$config['recaptcha_secretkey'] = '6LfAlhgiAAAAAGly6O9IcnT_8dwqfzngzskTIWQd';
+$config['recaptcha_secretkey'] = '';
 
 /**
  *
@@ -184,7 +184,7 @@ $config['mod_access_level'] = '2';
  *  Warning: Don't change this configuration.
  *
 */
-$config['migrate_status'] = '0';
+$config['migrate_status'] = '1';
 
 /**
  *
