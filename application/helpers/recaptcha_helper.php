@@ -4,7 +4,7 @@ $CI =& get_instance();
 
 defined('RECAPTCHA_SITE_KEY')                 OR define('RECAPTCHA_SITE_KEY', $CI->config->item('recaptcha_sitekey'));
 defined('RECAPTCHA_SITE_SECRET')              OR define('RECAPTCHA_SITE_SECRET', $CI->config->item('recaptcha_secretkey'));
-defined('RECAPTCHA_ACCEPTABLE_SPAM_SCORE')    OR define('RECAPTCHA_ACCEPTABLE_SPAM_SCORE', 0.5);
+defined('RECAPTCHA_ACCEPTABLE_SPAM_SCORE')    OR define('RECAPTCHA_ACCEPTABLE_SPAM_SCORE', $CI->config->item('score_puntuation'));
 
 
 if(!function_exists('get_recapture_score')) { 

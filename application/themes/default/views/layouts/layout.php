@@ -9,15 +9,16 @@
     <script src="<?= $template['assets'].'core/uikit/js/uikit.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'core/uikit/js/uikit-icons.min.js'; ?>"></script> 
     <!-- ReCaptcha v3 Google API -->
-    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo RECAPTCHA_SITE_KEY; ?>"></script>
-    <script>
-        grecaptcha.ready(function() {
-            grecaptcha.execute('<?php echo RECAPTCHA_SITE_KEY; ?>', {action: 'form_submission'}).then(function(token) {
-                document.querySelector('.g-recaptcha-response').value = token;
-            });
-        });
-    </script>
-
+    <?php if ($this->wowmodule->getreCaptchaStatus()) { ?>
+      <script src="https://www.google.com/recaptcha/api.js?render=<?php echo RECAPTCHA_SITE_KEY; ?>"></script>
+      <script>
+          grecaptcha.ready(function() {
+              grecaptcha.execute('<?php echo RECAPTCHA_SITE_KEY; ?>', {action: 'form_submission'}).then(function(token) {
+                  document.querySelector('.g-recaptcha-response').value = token;
+              });
+          });
+      </script>
+    <?php } ?> 
   </head>
   <body>
     <div class="uk-navbar-container uk-navbar-transparent">

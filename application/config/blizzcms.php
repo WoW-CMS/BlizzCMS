@@ -125,6 +125,14 @@ $config['recaptcha_secretkey'] = '6LfAlhgiAAAAAGly6O9IcnT_8dwqfzngzskTIWQd';
 
 /**
  *
+ * Puntuation Score
+ * 0.5 Default Puntuation score, more information in @ https://developers.google.com/recaptcha/docs/v3
+ *
+ */
+$config['score_puntuation'] = '0.5';
+
+/**
+ *
  *  SMTP
  *
  *  Write the necessary information for use SMTP to use in recovery password
