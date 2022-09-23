@@ -191,7 +191,6 @@ class User extends MX_Controller {
 				$password = $this->input->post('password');
 				$emulator = $this->config->item('emulator');
 
-				$score = get_recapture_score($this->input->post('g-recaptcha-response'));
 
 				if (!$this->wowauth->account_unique($username, 'username'))
 				{
@@ -207,11 +206,16 @@ class User extends MX_Controller {
 					return false;
 				}
 
-				if($score < RECAPTCHA_ACCEPTABLE_SPAM_SCORE){
-					$data['msg_notification_used_email'] = 'A low score has been detected when registering an account on our site.';
-					$this->template->build('register', $data);
-					return false;
-				}				
+				if ($this->wowmodule->getreCaptchaStatus())
+				{
+					$score = get_recapture_score($this->input->post('g-recaptcha-response'));
+
+					if($score < RECAPTCHA_ACCEPTABLE_SPAM_SCORE){
+						$data['msg_notification_used_email'] = 'A low score has been detected when registering an account on our site.';
+						$this->template->build('register', $data);
+						return false;
+					}
+				}
 
 				$register = $this->user_model->insertRegister($username, $email, $password, $emulator);
 
