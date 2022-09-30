@@ -2,7 +2,67 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class General_model extends CI_Model {
+    
+    /**
+     * EXPANSION
+     *
+     * @var [type]
+     */
+    protected const EXPANSION = 
+    [
+        1 => [
+            'DB' => '0',
+            'Nombre' => 'Vanilla',
+            'Level' => '60',
+        ],
 
+        2 => [
+            'DB' => '1',
+            'Nombre' => 'The Burning Crusade',
+            'Level' => '70'
+        ],
+        3 => [
+            'DB' => '2',
+            'Nombre' => 'Wrath of the Lich King',
+            'Level' => '80',
+        ],
+        4 => [
+            'DB' => '3',
+            'Nombre' => 'Cataclysm',
+            'Level' => '85',
+        ],
+        5 => [
+            'DB' => '4',
+            'Nombre' => 'Mist of Pandaria',
+            'Level' => '90',
+        ],
+        6 => [
+            'DB' => '5',
+            'Nombre' => 'Warlords of Draenor',
+            'Level' => '100',
+        ],
+        7 => [
+            'DB' => '6',
+            'Nombre' => 'Legion',
+            'Level' => '110',
+        ],
+        8 => [
+            'DB' => '7',
+            'Nombre' => 'Battle of Azeroth',
+            'Level' => '120',
+        ],
+        9 => [
+            'DB' => '8',
+            'Nombre' => 'ShadowLands',
+            'Level' => '60',
+        ],
+    ];
+
+    /**
+     * RACES
+     *
+     * @var [type]
+     */
     protected const RACES = [
         'text' => 
         [
@@ -18,7 +78,7 @@ class General_model extends CI_Model {
             10 => 'race_blood_elf',
             11 => 'race_draenei',
             22 => 'race_worgen',
-            24 => 'race_panda_neutral'
+            24 => 'race_panda_neutral',
             25 => 'race_panda_alli',
             26 => 'race_panda_horde',
             27 => 'race_nightborne',
@@ -64,12 +124,24 @@ class General_model extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * [Description for getTimestamp]
+     *
+     * @return [type]
+     * 
+     */
     public function getTimestamp()
     {
         $date = new DateTime();
         return $date->getTimestamp();
     }
 
+    /**
+     * [Description for getMaintenance]
+     *
+     * @return [type]
+     * 
+     */
     public function getMaintenance()
     {
         $config = $this->config->item('maintenance_mode');
@@ -85,11 +157,27 @@ class General_model extends CI_Model {
             return true;
     }
 
+    /**
+     * [Description for getUserInfoGeneral]
+     *
+     * @param mixed $id
+     * 
+     * @return [type]
+     * 
+     */
     public function getUserInfoGeneral($id)
     {
         return $this->db->select('*')->where('id', $id)->get('users');
     }
 
+    /**
+     * [Description for getCharDPTotal]
+     *
+     * @param mixed $id
+     * 
+     * @return [type]
+     * 
+     */
     public function getCharDPTotal($id)
     {
         $qq = $this->db->select('dp')->where('id', $id)->get('users');
@@ -100,6 +188,14 @@ class General_model extends CI_Model {
             return '0';
     }
 
+    /**
+     * [Description for getCharVPTotal]
+     *
+     * @param mixed $id
+     * 
+     * @return [type]
+     * 
+     */
     public function getCharVPTotal($id)
     {
         $qq = $this->db->select('vp')->where('id', $id)->get('users');
@@ -110,6 +206,12 @@ class General_model extends CI_Model {
             return '0';
     }
 
+    /**
+     * [Description for getEmulatorAction]
+     *
+     * @return [type]
+     * 
+     */
     public function getEmulatorAction()
     {
         $emulator = $this->config->item('emulator_legacy');
@@ -126,6 +228,12 @@ class General_model extends CI_Model {
 
     }
 
+    /**
+     * [Description for getExpansionAction]
+     *
+     * @return [type]
+     * 
+     */
     public function getExpansionAction()
     {
         $expansion = $this->config->item('expansion');
@@ -146,111 +254,66 @@ class General_model extends CI_Model {
         }
     }
 
+    /**
+     * [Description for getExpansionName]
+     *
+     * @return [type]
+     * 
+     */
     public function getExpansionName()
     {
         $expansion = $this->config->item('expansion');
-        switch ($expansion)
-        {
-            case 1:
-                return "Vanilla";
-                break;
-            case 2:
-                return "The Burning Crusade";
-                break;
-            case 3:
-                return "Wrath of the Lich King";
-                break;
-            case 4:
-                return "Cataclysm";
-                break;
-            case 5:
-                return "Mist of Pandaria";
-                break;
-            case 6:
-                return "Warlords of Draenor";
-                break;
-            case 7:
-                return "Legion";
-                break;
-            case 8:
-                return "Battle of Azeroth";
-                break;
-            case 9:
-                return "ShadowLands";
-                break;
+
+        if (empty($expansion)) {
+            return false;
         }
+                
+        return self::EXPANSION[$expansion]['Nombre'];
     }
 
+    /**
+     * [Description for getMaxLevel]
+     *
+     * @return [type]
+     * 
+     */
     public function getMaxLevel()
     {
         $expansion = $this->config->item('expansion');
-        switch ($expansion)
-        {
-            case 1:
-                return "60";
-                break;
-            case 2:
-                return "70";
-                break;
-            case 3:
-                return "80";
-                break;
-            case 4:
-                return "85";
-                break;
-            case 5:
-                return "90";
-                break;
-            case 6:
-                return "100";
-                break;
-            case 7:
-                return "110";
-                break;
-            case 8:
-                return "120";
-                break;
-            case 9:
-                return "60";
-                break;
+
+        if (empty($expansion)) {
+            return false;
         }
+                
+        return self::EXPANSION[$expansion]['Level'];
     }
 
+    /**
+     * [Description for getRealExpansionDB]
+     *
+     * @return [type]
+     * 
+     */
     public function getRealExpansionDB()
     {
         $expansion = $this->config->item('expansion');
-        switch ($expansion)
-        {
-            case 1:
-                return "0";
-                break;
-            case 2:
-                return "1";
-                break;
-            case 3:
-                return "2";
-                break;
-            case 4:
-                return "3";
-                break;
-            case 5:
-                return "4";
-                break;
-            case 6:
-                return "5";
-                break;
-            case 7:
-                return "6";
-                break;
-            case 8:
-                return "7";
-                break;
-            case 9:
-                return "8";
-                break;
+
+        if (empty($expansion)) {
+            return false;
         }
+                
+        return self::EXPANSION[$expansion]['DB'];
+        
     }
 
+    /**
+     * [Description for getRaceName]
+     *
+     * @param int $race
+     * 
+     * @return [type]
+     * 
+     */
     public function getRaceName(int $race)
     {
         if (empty($race)) {
@@ -260,6 +323,14 @@ class General_model extends CI_Model {
         return self::RACES['text'][$race];
     }
 
+    /**
+     * [Description for getRaceIcon]
+     *
+     * @param int $race
+     * 
+     * @return [type]
+     * 
+     */
     public function getRaceIcon(int $race)
     {
         if (empty($race)) {
@@ -269,6 +340,14 @@ class General_model extends CI_Model {
         return self::RACES['icon'][$race];
     }
 
+    /**
+     * [Description for getClassIcon]
+     *
+     * @param mixed $race
+     * 
+     * @return [type]
+     * 
+     */
     public function getClassIcon($race)
     {
         switch ($race)
@@ -312,6 +391,14 @@ class General_model extends CI_Model {
         }
     }
 
+    /**
+     * [Description for getFaction]
+     *
+     * @param mixed $race
+     * 
+     * @return [type]
+     * 
+     */
     public function getFaction($race)
     {
         switch ($race)
@@ -345,6 +432,14 @@ class General_model extends CI_Model {
         }
     }
 
+    /**
+     * [Description for getClassName]
+     *
+     * @param mixed $class
+     * 
+     * @return [type]
+     * 
+     */
     public function getClassName($class)
     {
         switch ($class)
@@ -388,6 +483,14 @@ class General_model extends CI_Model {
         }
     }
 
+    /**
+     * [Description for getGender]
+     *
+     * @param mixed $gender
+     * 
+     * @return [type]
+     * 
+     */
     public function getGender($gender)
     {
         switch ($gender)
@@ -401,6 +504,14 @@ class General_model extends CI_Model {
         }
     }
 
+    /**
+     * [Description for getSpecifyZone]
+     *
+     * @param mixed $zoneid
+     * 
+     * @return [type]
+     * 
+     */
     public function getSpecifyZone($zoneid)
     {
         $qq = $this->db->select('zone_name')->where('id', $zoneid)->get('zones');
@@ -411,6 +522,14 @@ class General_model extends CI_Model {
             return 'Unknown Zone';
     }
 
+    /**
+     * [Description for moneyConversor]
+     *
+     * @param mixed $amount
+     * 
+     * @return [type]
+     * 
+     */
     public function moneyConversor($amount)
     {
         $gold = substr($amount, 0, -4);
@@ -435,6 +554,14 @@ class General_model extends CI_Model {
         return $money;
     }
 
+    /**
+     * [Description for timeConversor]
+     *
+     * @param mixed $time
+     * 
+     * @return [type]
+     * 
+     */
     public function timeConversor($time)
     {
         $dateF = new DateTime('@0');
@@ -442,6 +569,14 @@ class General_model extends CI_Model {
         return $dateF->diff($dateT)->format('%aD %hH %iM %sS');
     }
 
+    /**
+     * [Description for tinyEditor]
+     *
+     * @param mixed $rank
+     * 
+     * @return [type]
+     * 
+     */
     public function tinyEditor($rank)
     {
         switch ($rank) {
@@ -462,6 +597,16 @@ class General_model extends CI_Model {
         }
     }
 
+    /**
+     * [Description for smtpSendEmail]
+     *
+     * @param mixed $to
+     * @param mixed $subject
+     * @param mixed $message
+     * 
+     * @return [type]
+     * 
+     */
     public function smtpSendEmail($to, $subject, $message)
     {
         $this->load->library('email');
@@ -488,11 +633,25 @@ class General_model extends CI_Model {
         return $this->email->send();
     }
 
+    /**
+     * [Description for getMenu]
+     *
+     * @return [type]
+     * 
+     */
     public function getMenu()
     {
         return $this->db->select('*')->get('menu');
     }
 
+    /**
+     * [Description for getMenuChild]
+     *
+     * @param mixed $id
+     * 
+     * @return [type]
+     * 
+     */
     public function getMenuChild($id)
     {
         return $this->db->select('*')->where('child', $id)->get('menu');
