@@ -3,6 +3,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class General_model extends CI_Model {
 
+    protected const RACES = [
+        'text' => 
+        [
+            1 => 'race_human',
+            2 => 'race_orc', 
+            3 => 'race_dwarf',
+            4 => 'race_night_elf',
+            5 => 'race_undead',
+            6 => 'race_tauren',
+            7 => 'race_gnome',
+            8 => 'race_troll',
+            9 => 'race_goblin',
+            10 => 'race_blood_elf',
+            11 => 'race_draenei',
+            22 => 'race_worgen',
+            24 => 'race_panda_neutral'
+            25 => 'race_panda_alli',
+            26 => 'race_panda_horde',
+            27 => 'race_nightborne',
+            28 => 'race_highmountain_taure',
+            29 => 'race_void_elf',
+            30 => 'race_lightforged_draenei',
+            34 => 'race_dark_iron_dwarf',
+            35 => 'race_vulpera',
+            36 => 'race_maghar_orc'
+        ],
+        'icon' => 
+        [
+            1 => 'human.jpg',
+            2 => 'orc.jpg', 
+            3 => 'dwarf.jpg',
+            4 => 'night_elf.jpg',
+            5 => 'undead.jpg',
+            6 => 'tauren.jpg',
+            7 => 'gnome.jpg',
+            8 => 'troll.jpg',
+            9 => 'goblin.jpg',
+            10 => 'blood_elf.jpg',
+            11 => 'draenei.jpg',
+            22 => 'worgen.jpg',
+            24 => 'pandaren_male.jpg',
+            25 => 'pandaren_male.jpg',
+            26 => 'pandaren_male.jpg',
+            27 => 'nightborne.png',
+            28 => 'highmountain.png',
+            29 => 'voidelf.png',
+            30 => 'lightforged.png',
+            34 => 'irondwarf.png',
+            35 => 'vulpera.png',
+            36 => 'magharorc.png'
+        ],
+    ];
+
     /**
      * General_model constructor.
      */
@@ -198,148 +251,22 @@ class General_model extends CI_Model {
         }
     }
 
-    public function getRaceName($race)
+    public function getRaceName(int $race)
     {
-        switch ($race)
-        {
-            case 1:
-                return $this->lang->line('race_human');
-                break;
-            case 2:
-                return $this->lang->line('race_orc');
-                break;
-            case 3:
-                return $this->lang->line('race_dwarf');
-                break;
-            case 4:
-                return $this->lang->line('race_night_elf');
-                break;
-            case 5:
-                return $this->lang->line('race_undead');
-                break;
-            case 6:
-                return $this->lang->line('race_tauren');
-                break;
-            case 7:
-                return $this->lang->line('race_gnome');
-                break;
-            case 8:
-                return $this->lang->line('race_troll');
-                break;
-            case 9:
-                return $this->lang->line('race_goblin');
-                break;
-            case 10:
-                return $this->lang->line('race_blood_elf');
-                break;
-            case 11:
-                return $this->lang->line('race_draenei');
-                break;
-            case 22:
-                return $this->lang->line('race_worgen');
-                break;
-            case 24:
-                return $this->lang->line('race_panda_neutral');
-                break;
-            case 25:
-                return $this->lang->line('race_panda_alli');
-                break;
-            case 26:
-                return $this->lang->line('race_panda_horde');
-                break;
-            case 27:
-                return $this->lang->line('race_nightborne');
-                break;
-            case 28:
-                return $this->lang->line('race_highmountain_tauren');
-                break;
-            case 29:
-                return $this->lang->line('race_void_elf');
-                break;
-            case 30:
-                return $this->lang->line('race_lightforged_draenei');
-                break;
-            case 34:
-                return $this->lang->line('race_dark_iron_dwarf');
-                break;
-            case 35:
-                return $this->lang->line('race_vulpera');
-                break;
-            case 36:
-                return $this->lang->line('race_maghar_orc');
-                break;
+        if (empty($race)) {
+            return false;
         }
+        
+        return self::RACES['text'][$race];
     }
 
-    public function getRaceIcon($race)
+    public function getRaceIcon(int $race)
     {
-        switch ($race)
-        {
-            case 1:
-                return 'human.jpg';
-                break;
-            case 2:
-                return 'orc.jpg';
-                break;
-            case 3:
-                return 'dwarf.jpg';
-                break;
-            case 4:
-                return 'night_elf.jpg';
-                break;
-            case 5:
-                return 'undead.jpg';
-                break;
-            case 6:
-                return 'tauren.jpg';
-                break;
-            case 7:
-                return 'gnome.jpg';
-                break;
-            case 8:
-                return 'troll.jpg';
-                break;
-            case 9:
-                return 'goblin.jpg';
-                break;
-            case 10:
-                return 'blood_elf.jpg';
-                break;
-            case 11:
-                return 'draenei.jpg';
-                break;
-            case 22:
-                return 'worgen.jpg';
-                break;
-            case 25:
-                return 'pandaren_male.jpg';
-                break;
-            case 26:
-                return 'pandaren_female.jpg';
-                break;
-            // Legion Support Race Allied (BFA)
-            case 27:
-                return 'nightborne.png';
-                break;
-            case 28:
-                return 'highmountain.png';
-                break;
-            case 29:
-                return 'voidelf.png';
-                break;
-            case 30:
-                return 'lightforged.png';
-                break;
-            case 34:
-                return 'irondwarf.png';
-                break;
-            case 35:
-                return 'vulpera.png';
-                break;
-            case 36:
-                return 'magharorc.png';
-                break;
+        if (empty($race)) {
+            return false;
         }
+        
+        return self::RACES['icon'][$race];
     }
 
     public function getClassIcon($race)
