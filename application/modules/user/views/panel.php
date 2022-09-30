@@ -92,8 +92,10 @@
                           <tr>
                             <td><?= $chars->name ?></td>
                             <td>
-                              <img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($chars->race)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getRaceName($chars->race); ?>" alt="">
+                              <?php if($chars->race or $chars->class > 0) { ?>
+                              <img class="uk-border-rounded" src="<?= base_url('assets/images/races/'.$this->wowgeneral->getRaceIcon($chars->race)); ?>" width="20" height="20" title="<?= $this->lang->line($this->wowgeneral->getRaceName($chars->race)); ?>" alt="">
                               <img class="uk-border-rounded" src="<?= base_url('assets/images/class/'.$this->wowgeneral->getClassIcon($chars->class)); ?>" width="20" height="20" title="<?= $this->wowgeneral->getClassName($chars->class); ?>" alt="">
+                              <?php } ?>
                             </td>
                             <td><?= $chars->level ?></td>
                             <td><?= $this->wowgeneral->timeConversor($chars->totaltime); ?></td>
