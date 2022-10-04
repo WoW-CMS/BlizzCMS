@@ -14,3 +14,7 @@ updates:
     # Raise all npm pull requests with an assignee
     assignees:
       - "sayghteight"
+    # Use custom labels on pull requests for Docker version updates
+    labels:
+      - "Docker dependencies"
+      - "triage-board"
