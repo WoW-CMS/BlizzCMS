@@ -1,0 +1,16 @@
+# dependabot.yml file with
+# reviews and an assignee for all npm pull requests
+
+version: 2
+updates:
+  # Keep npm dependencies up to date
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Raise all npm pull requests with reviewers
+    reviewers:
+      - "WoW-CMS"
+    # Raise all npm pull requests with an assignee
+    assignees:
+      - "sayghteight"
