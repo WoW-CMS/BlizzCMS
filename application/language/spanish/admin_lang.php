@@ -181,6 +181,7 @@ $lang['conf_social_facebook'] = 'Facebook URL';
 $lang['conf_social_twitter'] = 'Twitter URL';
 $lang['conf_social_youtube'] = 'Youtube URL';
 $lang['conf_paypal_currency'] = 'PayPal Currency';
+$lang['conf_paypal_currency_symbol'] = 'PayPal Currency Symbol';
 $lang['conf_paypal_mode'] = 'PayPal Mode';
 $lang['conf_paypal_client'] = 'PayPal Client ID';
 $lang['conf_paypal_secretpass'] = 'PayPal Secret Password';
