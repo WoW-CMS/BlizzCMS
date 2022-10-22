@@ -1,7 +1,37 @@
-Version 1.2.0:
-
-
 Version 1.1.0:
+ - Merge branch 'dev' of https://github.com/WoW-CMS/BlizzCMS into dev
+ - Merge pull request #91 from WoW-CMS/hotfix/_php8_compatibility
+ - Fix; Update PHP Compatibility to Loaded Third Party
+ - Fix: Update support controller to PHP 8
+ - BumpVersion Created
+ - Version bump to 1.2.0
+ - Version bump to 1.1.0
+ - Added VERSION and CHANGES files, Version bump to v0.1.0
+ - Merge pull request #89 from WoW-CMS/fix_show_currency_symbol
+ - Merge branch 'fix_show_currency_symbol' into dev
+ - Update .gitignore
+ - Fix: Added the option to change the currency symbol that had disappeared
+ - Init work in fix
+ - Update dependabot.yml
+ - Activate Dependabot
+ - chore: Update version
+ - Merge pull request #82 from WoW-CMS/69-bug-report-pvp-module-error
+ - chore: Update docs and more cleans
+ - Merge pull request #81 from WoW-CMS/69-bug-report-pvp-module-error
+ - chore: Clean code general
+ - Merge pull request #80 from WoW-CMS/77-question-update-the-discord-url-on-the-website
+ - chore: Update discord URL
+ - Merge pull request #79 from WoW-CMS/71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - Merge branch '71-bug-report-recaptcha-mail-verification-not-working-getting-bombed' of https://github.com/WoW-CMS/BlizzCMS into 71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - chore: Update recaptcha security
+ - Merge pull request #78 from WoW-CMS/71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - Update blizzcms.php
+ - chore: Update recaptcha v3
+ - chore: Update security V3
+ - Merge pull request #76 from WoW-CMS/71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - chore: Fixed error sintax
+
+Version 1.0.8:
  - Added VERSION and CHANGES files, Version bump to v0.1.0
  - Update dependabot.yml
  - Activate Dependabot
