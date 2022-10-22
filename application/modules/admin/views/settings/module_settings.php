@@ -27,7 +27,7 @@
                 <?= form_open('', 'id="updatedonateForm" onsubmit="UpdateDonateForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
-                    <div class="uk-width-1-2@s">
+                    <div class="uk-width-1-3@s">
                       <label class="uk-form-label"><?= $this->lang->line('conf_paypal_currency'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
@@ -36,7 +36,16 @@
                         </div>
                       </div>
                     </div>
-                    <div class="uk-width-1-2@s">
+                    <div class="uk-width-1-3@s">
+                      <label class="uk-form-label"><?= $this->lang->line('conf_paypal_currency_symbol'); ?></label>
+                      <div class="uk-form-controls">
+                        <div class="uk-inline uk-width-1-1">
+                          <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-file-invoice-dollar"></i></span>
+                          <input class="uk-input" type="text" id="paypal_currency_symbol" value="<?= $this->config->item('paypal_currency_symbol'); ?>" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="uk-width-1-3@s">
                       <label class="uk-form-label"><?= $this->lang->line('conf_paypal_mode'); ?></label>
                       <div class="uk-form-controls">
                         <select class="uk-select" id="paypal_mode">
