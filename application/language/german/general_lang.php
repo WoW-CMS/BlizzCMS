@@ -243,6 +243,7 @@ $lang['news_comments'] = 'Kommentare';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Bericht nicht gefunden';
+$lang['bugtracker_answered'] = 'Beantwortet von';
 
 /*Donate Lang*/
 $lang['donate_get'] = 'Erhalte';

@@ -166,7 +166,8 @@ class Admin extends MX_Controller {
         $mode = $this->input->post('mode');
         $client = $this->input->post('client');
         $password = $this->input->post('password');
-        echo $this->admin_model->updateDonateSettings($currency, $mode, $client, $password);
+        $currencySymbol = $this->input->post('symbol');
+        echo $this->admin_model->updateDonateSettings($currency, $mode, $client, $password, $currencySymbol);
     }
 
     public function updatebugtrackersettings()

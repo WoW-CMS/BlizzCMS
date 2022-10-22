@@ -113,10 +113,16 @@ class Bugtracker extends MX_Controller {
 
 		if ($this->bugtracker_model->ReportExist($id) == 0)
 			redirect(base_url('404'), 'refresh');
-		
+        
+        if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
+            $tiny = $this->wowgeneral->tinyEditor('Admin');
+        else
+            $tiny = $this->wowgeneral->tinyEditor('User');
+
         $data = array(
             'idlink' => $id,
             'pagetitle' => $this->lang->line('tab_bugtracker'),
+            'tiny' => $tiny,
         );
 
         $this->template->build('report', $data);

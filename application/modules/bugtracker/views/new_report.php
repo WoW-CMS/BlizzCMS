@@ -81,7 +81,9 @@
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_description'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-width-1-1">
-                      <textarea class="uk-textarea tinyeditor" id="report_description" rows="12"></textarea>
+                      <textarea class="uk-textarea tinyeditor" id="report_description" rows="12">
+                        <?= $this->config->item('textarea'); ?>
+                      </textarea>
                     </div>
                   </div>
                 </div>
