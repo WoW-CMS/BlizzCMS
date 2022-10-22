@@ -16,7 +16,13 @@ endif;
 
 if (isset($_POST['btn_closeBugtracker'])):
   $this->bugtracker_model->closeIssue($idlink);
-endif; ?>
+endif; 
+
+if (isset($_POST['sendComment'])):
+  $value = $_POST['bugtracker_reply'];
+  $this->bugtracker_model->sendReplied($idlink, $value);
+endif; 
+?>
 
     <section class="uk-section uk-section-xsmall uk-padding-remove slider-section">
       <div class="uk-background-cover uk-height-small header-section"></div>
@@ -76,6 +82,41 @@ endif; ?>
                 </div>
               </div>
             </div>
+            <?php if($this->bugtracker_model->getBugtrackerRows($idlink)): ?>
+            <hr>
+            <div class="uk-card uk-card-default uk-margin-small">
+              <div class="uk-card-header">
+                <div class="uk-grid uk-grid-small" data-uk-grid>
+                  <div class="uk-width-expand@s">
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= $this->lang->line('bugtracker_answered'); ?> <?= $this->wowauth->getUsernameID($this->bugtracker_model->getBugtrackerReplied($idlink, 'author')); ?></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="uk-card-body">
+                <div class="uk-grid uk-grid-small" data-uk-grid>
+                  <div>
+                    <?= $this->bugtracker_model->getBugtrackerReplied($idlink, 'description'); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endif; ?>
+            <hr>
+            <div>
+                <form method="post" action="">
+                  <div class="uk-margin uk-light">
+                    <label class="uk-form-label"><?= $this->lang->line('bugtracker_replied'); ?></label>
+                    <div class="uk-form-controls">
+                      <div class="uk-width-1-1">
+                        <textarea class="uk-textarea tinyeditor" rows="12" name="bugtracker_reply"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="uk-margin-small">
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="sendComment"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                  </div>
+                </form>
+              </div>
             <hr>
             <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0): ?>
             <div class="uk-grid uk-grid-small uk-grid-divider uk-child-width-1-1 uk-child-width-1-3@m uk-margin-small" data-uk-grid>
@@ -140,3 +181,5 @@ endif; ?>
         </div>
       </div>
     </section>
+
+    <?= $tiny ?>

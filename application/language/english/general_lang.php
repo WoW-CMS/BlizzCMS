@@ -244,6 +244,7 @@ $lang['news_comments'] = 'Comments';
 
 /*Bugtracker Lang*/
 $lang['bugtracker_report_notfound'] = 'Reports not found';
+$lang['bugtracker_answered'] = 'Answered by';
 
 /*Donate Lang*/
 $lang['donate_get'] = 'Get';

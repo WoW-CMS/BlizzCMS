@@ -178,4 +178,33 @@ class Bugtracker_model extends CI_Model {
 	{
 		return $this->db->select('*')->where('id', $id)->get('bugtracker')->num_rows();
 	}
+
+    public function sendReplied($idlink, $description)
+    {
+        $date = $this->wowgeneral->getTimestamp();
+        $author = $this->session->userdata('wow_sess_id');
+
+        $data = array(
+            'idlink' => $idlink,
+            'description' => $description,
+            'author' => $author,
+        );
+
+        $this->db->insert('bugtracker_replied', $data);
+        return true;
+    }
+
+    public function getBugtrackerReplied($id, $row)
+    {
+        return $this->db->where('idlink', $id)->get('bugtracker_replied')->row($row);
+    }
+
+    public function getBugtrackerRows($id)
+	{
+		$qq = $this->db->where('idlink', $id)->get('bugtracker_replied')->num_rows();
+
+        if ($qq >= 1) return true;
+        
+        return false;
+	}
 }
