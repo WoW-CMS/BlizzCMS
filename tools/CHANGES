@@ -1,0 +1,463 @@
+Version 0.1.0
+ - Update dependabot.yml
+ - Activate Dependabot
+ - chore: Update version
+ - Merge pull request #82 from WoW-CMS/69-bug-report-pvp-module-error
+ - chore: Update docs and more cleans
+ - Merge pull request #81 from WoW-CMS/69-bug-report-pvp-module-error
+ - chore: Clean code general
+ - Merge pull request #80 from WoW-CMS/77-question-update-the-discord-url-on-the-website
+ - chore: Update discord URL
+ - Merge pull request #79 from WoW-CMS/71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - Merge branch '71-bug-report-recaptcha-mail-verification-not-working-getting-bombed' of https://github.com/WoW-CMS/BlizzCMS into 71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - chore: Update recaptcha security
+ - Merge pull request #78 from WoW-CMS/71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - Update blizzcms.php
+ - chore: Update recaptcha v3
+ - chore: Update security V3
+ - Merge pull request #76 from WoW-CMS/71-bug-report-recaptcha-mail-verification-not-working-getting-bombed
+ - chore: Fixed error sintax
+ - Merge pull request #75 from WoW-CMS/74-bug-report-php-819-compatibility
+ - chore: Update PHP Support
+ - Merge pull request #73 from WoW-CMS/72-bug-report-allied-races-vulpera
+ - chore: Added Vulpera to core
+ - Update General_model.php
+ - README.md PHP 8 Version
+ - Update Update_model.php
+ - [Module/Download] Little Changes in this module.
+ - Update installation-request.yml
+ - Update installation-request.yml
+ - Update installation-request.yml
+ - Update installation-request.yml
+ - Update installation-request.yml
+ - Rename installation-request.md to installation-request.yml
+ - Create installation-request.md
+ - Update RealmStatus function (#57)
+ - Update unix timestamp (#46)
+ - Update view timecode in tickets (#44)
+ - Fixed duplicate line
+ - Merge pull request #42 from BTyrael/master
+ - Merge pull request #43 from TheNickoos/master
+ - Fixed a problem when watching an inexistant report
+ - Ticket Module
+ - Logs for votes
+ - Update in the configuration files
+ - Modifying blizzcms.php format
+ - Editing the query in getDonateLogs
+ - Adding the path for donation logs
+ - Donation Logs (#41)
+ - Migration (#40)
+ - fixed untracked files (#39)
+ - Allow the use of the - character in the URI (#38)
+ - Including version 7.1 and 7.2 (#36)
+ - Update Cart.php
+ - Update captain-definition
+ - Update captain-definition
+ - Create captain-definition
+ - Add support for docker out of the box (#9)
+ - Save button change. (#29)
+ - French Language (#25)
+ - Removing duplicate migrations folder. (#27)
+ - Update README.md (#26)
+ - Removing getCountPostAuthor() from the view (#24)
+ - [Modules/Forum] Fix 500 Internal Server error on reply (#23)
+ - Modifying information in the README.md file (#22)
+ - Removed conditional in article (#21)
+ - Adding php version and extension validations (#20)
+ - Replacing bug_report.md with bug_report.yml (#19)
+ - Updating README.md information (#18)
+ - Removing character restriction in discord invitation. (#17)
+ - Merge branch 'master' of https://github.com/WoW-CMS/BlizzCMS
+ - [Modules/Forums] Primera fase: Foros reelaborados.
+ - Merge pull request #14 from pangolp/store
+ - Merge branch 'master' of https://github.com/WoW-CMS/BlizzCMS into store
+ - Merge pull request #15 from pangolp/workflows
+ - gd2 Could not install gd2 on PHP 7.4.20
+ - Testing change in workflows
+ - Fixing error in store top
+ - SetUP WrokFlows
+ - Create FUNDING.yml
+ - [AutoUpdate/Update] update for 1.0.7.5 version
+ - [Controller/User] Update to new standards
+ - [Module/UserModel] Standards and Tabs
+ - Correct typo error
+ - Remove license system
+ - Merge branch 'master' of https://github.com/WoW-CMS/BlizzCMS
+ - New standards in Arrays
+ - Merge pull request #12 from WoW-CMS/armory
+ - Fixed Bugtracker
+ - Update vendors
+ - Revert "Downloading and adding libcms"
+ - Revert "Adding libcms library"
+ - Revert "Updating libraries"
+ - Downloading and adding libcms
+ - Adding libcms library
+ - Updating libraries
+ - Update Update_model.php
+ - Merge pull request #10 from BTyrael/master
+ - Download Module
+ - Create CODE_OF_CONDUCT.md
+ - Add Issue templates, PR Template and custom
+ - Update version
+ - Merge pull request #7 from pangolp/notifications
+ - Adding error messages in view.
+ - Adding return and modifying rules
+ - Error messages and line breaks
+ - Validations and messages
+ - New notification to inform that the account was not created.
+ - Modifications in the User controller
+ - Merge pull request #6 from pangolp/notifications
+ - Modifying some of the identations.
+ - Notifications in login view
+ - Merge pull request #4 from pangolp/install
+ - Modifying the input value
+ - Merge pull request #1 from pangolp/readme
+ - Applying suggestions
+ - Merge pull request #3 from pangolp/session
+ - Back to the file system
+ - updating README.md information
+ - Update storage sessions
+ - Fixed storage database session
+ - Update index.php
+ - Merge branch 'master' into 'master'
+ - Fix Tooltip
+ - Merge branch 'SRP6' into 'master'
+ - 1.0.7
+ - Update blizzcms.php
+ - Update blizzcms.php
+ - Revert "Update blizzcms.php"
+ - Revert "Update blizzcms.php"
+ - Update blizzcms.php
+ - Update blizzcms.php
+ - Update .gitignore
+ - Revert "gitIgnore"
+ - gitIgnore
+ - Merge branch 'master' into 'master'
+ - Added German language Files [*] Not finished (notification_lang.php still needs translation)
+ - Merge branch 'register' into 'master'
+ - Merge branch 'login' into 'master'
+ - update register.php
+ - Update login
+ - Merge branch 'sweetalert2' into 'master'
+ - Adding sweetalert2 to template
+ - Merge branch 'discord' into 'master'
+ - Adding options in the widget style
+ - Updating the api version of discord
+ - Adding 2 configurations in config/home.php
+ - Merge branch 'realm' into 'master'
+ - Merge branch 'paypal' into 'master'
+ - (Fix) Config PayPal
+ - Changing the realms form
+ - Merge branch 'cherry-pick-89b2b73c' into 'master'
+ - Vulnerability security:
+ - Merge branch 'revert-4046d3de' into 'master'
+ - Revert "Merge branch 'dev' into 'master'"
+ - Merge branch 'dev' into 'master'
+ - Merge branch 'revert-ee70c2db' into 'master'
+ - Revert "Merge branch 'gitignore' into 'master'"
+ - Merge branch 'spanish' into 'master'
+ - Merge branch 'gitignore' into 'master'
+ - Adding missing constant in Spanish file
+ - I prefer to remove the * and to include the migration folder
+ - Ignoring from now on, the content of the migration folder.
+ - Modifying the gitignore file
+ - Removing from cache, the files I don't want to be followed by git.
+ - Merge branch 'config' into 'master'
+ - Merge branch 'updateComposer' into 'master'
+ - Merge branch 'NewsComment' into 'master'
+ - Adding line break, at the end of the files.
+ - Updating dependencies with composer.
+ - Merge branch 'readme' into 'master'
+ - Editing information in README.md
+ - Update composer.json
+ - Fix comments staff news
+ - Update composer.json
+ - Merge branch 'Tooltips' into 'master'
+ - Store Tooltips from WowHead
+ - Merge branch 'revert-30872a6d' into 'dev'
+ - Revert "Cleanup"
+ - Merge remote-tracking branch 'origin/dev' into dev
+ - 1.0.7 Phase #1 and WTLK theme
+ - Cleanup
+ - Vulnerability security:
+ - Cleanup
+ - Add new file
+ - Add docs Folder
+ - Update 1.0.6.4.1 for Open-Source
+ - Fix nav
+ - Fix store issue
+ - Merge branch 'master' of https://gitlab.com/WoW-CMS/BlizzCMS-Plus
+ - 1.0.6.3 more support for TrinityCore Legacy.
+ - Update blizzcms.php
+ - BlizzCMS 1.0.6.2 : Now support TrinityCore Legacy.
+ - 1.0.6 Pre-Release
+ - Fix issue
+ - 1.0.6 Update : Pre-Release
+ - Phase 1 : Store subcategory
+ - Fix issue
+ - Fix migration issue
+ - Merge branch 'revert-9419bc5f' into 'master'
+ - Revert "Reparados archivos no trackeados"
+ - Reparados archivos no trackeados
+ - GitIgnore updated
+ - 1.0.5 hotfix 1
+ - Revert blizzcms.php
+ - Revert database.php
+ - Install upload
+ - Update 1.0.5
+ - Update Font Awesome to 5.11.2
+ - Update TinyMCE to 5.0.16
+ - Update CI to 3.1.11
+ - Fix issue wrong table
+ - Update language.php
+ - Merge branch 'store' into 'master'
+ - Update assets
+ - Merge branch 'master' into 'store'
+ - Master
+ - Update Assets
+ - Fixed migrations
+ - Order migrations
+ - 1.0.4.3 Update
+ - Cleanup
+ - Cleanup
+ - Fix mistake in cart
+ - Add missing route
+ - Cleanup
+ - Decrease requests to discord api
+ - Fix missing post (edit forum)
+ - Fix count in pagination (bugtracker)
+ - Fix store button and get points in top items
+ - Fix manage donate logs
+ - Fixed getAccountExist
+ - Fixed save url in social network
+ - Merge branch 'revert-803b965a' into 'master'
+ - Revert "Update mysqli_driver.php"
+ - Merge branch 'revert-89da2f8d' into 'master'
+ - Revert "Update mysqli_driver.php"
+ - Update mysqli_driver.php
+ - Update AutoUpdate.php
+ - Update mysqli_driver.php
+ - Update Readme
+ - Merge branch '1.0.4' into 'master'
+ - 1.0.4 - Rewrite Store module (you can create items on chain, money, level, rename,etc) - Fixed missing column (pending_users) - Update languages - Fixed some issues - Remove sync old account (now is automatic) - Clean Structure - New Function for time and money (displayed in characters list)
+ - Fix migration
+ - [FIX/CURL] SSL CURL ERROR
+ - Fix donate issues
+ - Cleanup
+ - Add new functions
+ - Fix realm status
+ - Fix Donate issues
+ - Fix last message on the forums
+ - Fix SMTP
+ - Don't display deleted characters
+ - Fix issue
+ - Cleanup
+ - Fix Edit Page
+ - Fix issue
+ - Fix issue
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - CMS Update
+ - Merge branch 'autoupdate' into 'master'
+ - Autoupdate
+ - Set Dynamic base url
+ - [FS#7] Fixed [ADMIN PANEL] Granting users GM Rank.
+ - Cleanup
+ - Finish online module
+ - Cleanup
+ - Fix issues
+ - Cleanup
+ - Cleanup
+ - Merge branch 'structure' into 'master'
+ - Apply latest changes [structure branch]
+ - Fixed
+ - Cleanup CSS
+ - Update to UIKit 3.1.4
+ - [Forums/Logs] Moved Logs to separated model file.
+ - [Forums] Finished some fuctions <3
+ - Merge branch 'structure' into 'master'
+ - Apply latest changes [structure branch]
+ - Merge branch 'structure' into 'master'
+ - Apply latest changes [structure branch]
+ - Merge branch 'language' into 'master'
+ - Update Language
+ - Merge branch 'install' into 'master'
+ - Apply latest changes [install branch]
+ - Add missing route
+ - Merge branch 'migrations' into 'master'
+ - Migrations
+ - Merge branch 'structure' into 'master'
+ - Apply latest changes [structure branch]
+ - Merge branch 'structure' into 'master'
+ - Apply some changes to structure
+ - Cleanup
+ - Fix issues
+ - Move settings
+ - Cleanup
+ - Cleanup
+ - Merge branch 'template-system' into 'master'
+ - Template system
+ - Cleanup
+ - Move Files
+ - Cleanup
+ - Merge remote-tracking branch 'origin/master'
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Update Admin Panel
+ - Update SQL
+ - Compress Images
+ - Merge remote-tracking branch 'origin/master'
+ - Cleanup
+ - Update Wowcms class
+ - Cleanup
+ - Update Admin Panel
+ - Fixed correct method for get content
+ - Revert a change
+ - Update Bugtracker
+ - Update bugtracker
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Update Admin Panel
+ - Update routes
+ - Improve folders security
+ - Cleanup
+ - Cleanup
+ - Update Composer
+ - Update Donate
+ - Update Admin Panel
+ - Update News
+ - Update SQL
+ - Update editor
+ - Remove encode
+ - Update Bugtracker
+ - New routes
+ - Update Admin Panel
+ - Fix issue
+ - Fix route
+ - Cleanup
+ - Update installation
+ - Cleanup
+ - Update Admin Panel
+ - Update SQL
+ - Set element format
+ - use mb_substr
+ - Remove unused images
+ - Cleanup
+ - Cleanup
+ - Fix Route
+ - Update Admin Panel
+ - Update Lang
+ - Cleanup Admin
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Application/Lang: Update languages (3/3)
+ - Fix issue
+ - Application/Lang: Update languages (2/3)
+ - Application/Lang: Update languages (1/3)
+ - Add view for error 404
+ - Cleanup
+ - Cleanup lang
+ - Cleanup lang
+ - Cleanup
+ - [BUG] Fix Admin links
+ - [BUG] Fix Admin routes
+ - [Application/Routes] Added Admin routes
+ - [Application/Routes] Added FAQ and PVP routes for Website :)
+ - [BUG/007] UserCP settigns fixed, now working perfectly.
+ - [BUG/006] Fix register routes
+ - [BUG/005] Fixed login, register and forgot password with work now i18n
+ - Merge remote-tracking branch 'origin/master'
+ - Remove Base URL from install
+ - [BUG/004] Fixed route vote redirection
+ - [BUG/003] Fixed route pages with Friendly URI.
+ - [Bug/002] Fixed redirection in comments
+ - [Error/#1043] Tittle and description doesn't work in I18N
+ - Application/Routes: Updated routes for i18n (Phase #2/3).
+ - Application/Routes: Updated routes for i18n (Phase #1/3)
+ - Application/Routes: Added new routes for i18n
+ - Updated routes
+ - Core/i18n : Added
+ - Update Default Theme
+ - Cleanup
+ - Update Changelog
+ - Update SQL
+ - Cleanup
+ - Rewrite Change Email/Password
+ - Fix forgot password
+ - Para que wolf deje de tocarme los huevos con mis fallos.
+ - Camuflado
+ - Merge branch 'master' of https://gitlab.com/ProjectCMS/BlizzCMS-Plus
+ - para evitar que empiecen a toquiñar donde no deben
+ - Fix redirection
+ - Rename view
+ - Fix incorrect section size
+ - Update Forum view
+ - Update SQL
+ - Cleanup
+ - Update Complements
+ - Cleanup
+ - Update Copyright
+ - URL Friendly in Page module
+ - Changelog 21-03-2019 - Helper/Seo : Added and working in BlizzCMS plus. - Helper/CMS: Added and working in BlizzCMS Plus. - [#001/FIX]:  When detecting the install folder in the directory, the CMS went directly to install again, now it will go with the status of the module. - [#002/Fix]:  The changepassword module does not correctly change the password in-game. - [#003/Fix]:  Fixed javascript blocking problem in browsers with the module Vote. - [#004/Fix]:  When you installed the CMS, it gave you an error in the configuration of discord parameters, regardless of whether or not it was activated. Now it will work perfectly.
+ - Fix changepassword
+ - Update Install
+ - Remove tags
+ - Fix small issues
+ - Add missing class
+ - Add SEO Config
+ - Update .gitignore
+ - Revert changes in configs
+ - Updated Plus
+ - Updated GitIgnote for install
+ - Revert Install Delete
+ - Plus/Vote: Arreglado el problema de bloqueo de javascript en los navegadores;
+ - Remove prefix
+ - Fix Bnet login
+ - Update ACP
+ - Cleanup
+ - Update ACP
+ - add missing function
+ - Update ACP
+ - Remove image in changelogs
+ - Cleanup
+ - Cleanup
+ - Update Changelog
+ - Update ACP
+ - Update copyright note
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Update base.sql
+ - Add Account activation by email
+ - Cleanup and Add form for configure SMTP
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Cleanup
+ - Fix base.sql
+ - Fixed remember lock/highlight
+ - add missing lines to language
+ - Change route
+ - Cleanup
+ - Cleanup
+ - Update Changelog
+ - Cleanup
+ - Update base.sql
+ - Cleanup
+ - Cleanup
+ - Add permissions system using gmlevel
+ - Cleanup
+ - Update m_module and base.sql
+ - Cleanup
+ - Use tinyEditor function for set script
+ - Update Changelog
+ - Initial base for BlizzCMS Plus
+ - Initial commit
+
