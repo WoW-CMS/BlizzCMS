@@ -107,6 +107,7 @@
         var mode = $.trim($('#paypal_mode').val());
         var client = $.trim($('#paypal_client').val());
         var password = $.trim($('#paypal_password').val());
+        var symbol = $.trim($('#paypal_currency_symbol').val());
         if(currency == ''){
           $.amaran({
             'theme': 'awesome error',
@@ -126,7 +127,7 @@
         $.ajax({
           url:"<?= base_url($lang.'/admin/settings/module/updonate'); ?>",
           method:"POST",
-          data:{currency, mode, client, password},
+          data:{currency, mode, client, password, symbol},
           dataType:"text",
           beforeSend: function(){
             $.amaran({
@@ -166,6 +167,7 @@
           }
         });
       }
+
       function UpdateBugtrackerForm(e) {
         e.preventDefault();
 

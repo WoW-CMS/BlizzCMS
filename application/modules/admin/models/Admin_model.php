@@ -223,7 +223,7 @@ class Admin_model extends CI_Model {
         return true;
     }
 
-    public function updateDonateSettings($currency, $mode, $client, $password)
+    public function updateDonateSettings($currency, $mode, $client, $password, $currencySymbol)
     {
         $this->load->library('config_writer');
 
@@ -232,8 +232,7 @@ class Admin_model extends CI_Model {
         $writer->write('paypal_mode', $mode);
         $writer->write('paypal_userid', $client);
         $writer->write('paypal_secretpass', $password);
-        $writer->write('paypal_client', $client);
-        $writer->write('paypal_password', $password);
+        $writer->write('paypal_currency_symbol', $currencySymbol);
         return true;
     }
 
