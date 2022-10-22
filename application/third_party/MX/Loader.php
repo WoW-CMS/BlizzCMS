@@ -253,7 +253,7 @@ class MX_Loader extends CI_Loader
             return $this;
         }
 
-        ($_alias = strtolower($object_name)) or $_alias = $class;
+        ($_alias = strtolower($object_name ?? '')) or $_alias = $class;
 
         // Backward function
         // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
