@@ -24,11 +24,7 @@ class Module_model extends CI_Model {
 		return $qq;
 	}
 
-	/**
-	 * @param $module
-	 * @return bool
-	 */
-	public function getStatusModule($module)
+	public function getStatusModule($module): bool
 	{
 		$moduleID = $this->_getModules($module);
 
