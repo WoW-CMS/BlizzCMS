@@ -13,7 +13,7 @@ class Mod_model extends CI_Model {
     {
         parent::__construct();
 
-        if (!$this->wowmodule->getACPStatus())
+        if (!$this->wowmodule->getStatusModule('Admin Panel'))
             redirect(base_url(),'refresh');
     }
 
