@@ -48,7 +48,7 @@ class Store extends MX_Controller {
         if (!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getStoreStatus())
+        if (!$this->wowmodule->getStatusModule('Store'))
             redirect(base_url(),'refresh');
 
         if (!$this->wowauth->isLogged())

@@ -48,7 +48,7 @@ class Changelogs extends MX_Controller {
         if(!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getChangelogsStatus())
+        if (!$this->wowmodule->getStatusModule('Changelogs'))
             redirect(base_url(),'refresh');
 
         if(!$this->wowauth->isLogged())
