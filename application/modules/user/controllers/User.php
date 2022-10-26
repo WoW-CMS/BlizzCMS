@@ -50,7 +50,7 @@ class User extends MX_Controller {
 
 	public function login()
 	{
-		if (!$this->wowmodule->getLoginStatus())
+		if (!$this->wowmodule->getStatusModule('Login'))
 		{
 			redirect(base_url(),'refresh');
 		}
@@ -123,7 +123,7 @@ class User extends MX_Controller {
 			redirect(base_url('maintenance'),'refresh');
 		}
 
-		if (!$this->wowmodule->getRegisterStatus())
+		if (!$this->wowmodule->getStatusModule('Register'))
 		{
 			redirect(base_url(),'refresh');
 		}
@@ -206,7 +206,7 @@ class User extends MX_Controller {
 					return false;
 				}
 
-				if ($this->wowmodule->getreCaptchaStatus())
+				if ($this->wowmodule->getStatusModule('reCaptcha'))
 				{
 					$score = get_recapture_score($this->input->post('g-recaptcha-response'));
 
@@ -248,7 +248,7 @@ class User extends MX_Controller {
 			redirect(base_url('maintenance'),'refresh');
 		}
 
-		if (!$this->wowmodule->getRecoveryStatus())
+		if (!$this->wowmodule->getStatusModule('Recovery'))
 		{
 			redirect(base_url(),'refresh');
 		}
@@ -286,7 +286,7 @@ class User extends MX_Controller {
 			redirect(base_url(),'refresh');
 		}
 
-		if (!$this->wowmodule->getUCPStatus())
+		if (!$this->wowmodule->getStatusModule('User Panel'))
 		{
 			redirect(base_url(),'refresh');
 		}
@@ -311,7 +311,7 @@ class User extends MX_Controller {
 			redirect(base_url(),'refresh');
 		}
 
-		if (!$this->wowmodule->getUCPStatus())
+		if (!$this->wowmodule->getStatusModule('User Panel'))
 		{
 			redirect(base_url(),'refresh');
 		}

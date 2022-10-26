@@ -50,7 +50,7 @@ class Bugtracker extends MX_Controller {
         if(!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getBugtrackerStatus())
+        if (!$this->wowmodule->getStatusModule('Bugtracker'))
             redirect(base_url(),'refresh');
 
         if(!$this->wowauth->isLogged())
@@ -108,7 +108,7 @@ class Bugtracker extends MX_Controller {
         if (empty($id) || is_null($id) || $id == '0')
             redirect(base_url(),'refresh');
 
-        if (!$this->wowmodule->getBugtrackerStatus())
+        if (!$this->wowmodule->getStatusModule('Bugtracker'))
             redirect(base_url(),'refresh');
 
 		if ($this->bugtracker_model->ReportExist($id) == 0)

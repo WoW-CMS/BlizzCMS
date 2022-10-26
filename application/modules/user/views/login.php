@@ -40,7 +40,7 @@
         </div>
         <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <?php if ($this->wowmodule->getreCaptchaStatus() == '1') : ?>
+            <?php if ($this->wowmodule->getStatusModule('reCaptcha') == '1') : ?>
               <div class="uk-margin-small">
                 <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response">
               </div>

@@ -202,6 +202,7 @@ class Realm_model extends CI_Model {
             return '0';
     }
 
+
     public function getCharactersOnlineHorde($multiRealm)
     {
         $this->multiRealm = $multiRealm;
@@ -225,22 +226,6 @@ class Realm_model extends CI_Model {
             return $qq->num_rows();
         else
             return '0';
-    }
-
-    public function getPercentageOnlineAlliance($multirealm)
-    {
-        $players = $this->getCharactersOnlineAlliance($multirealm);
-        $total = $this->getAllCharactersOnline($multirealm);
-        $percentage = ($players / $total) * 100;
-        return $percentage;
-    }
-
-    public function getPercentageOnlineHorde($multirealm)
-    {
-        $players = $this->getCharactersOnlineHorde($multirealm);
-        $total = $this->getAllCharactersOnline($multirealm);
-        $percentage = ($players / $total) * 100;
-        return $percentage;
     }
 
     public function getInformationCharacter($MultiRealm, $id)
@@ -270,9 +255,28 @@ class Realm_model extends CI_Model {
         return $this->client;
     }
 
-    public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
+	/**
+	 * @param $command
+	 * @param $soapUser
+	 * @param $soapPass
+	 * @param $soapHost
+	 * @param $soapPort
+	 * @param $soap_uri
+	 * @return void
+	 */
+	public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
     {
         $client = $this->connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
-        return $client->executeCommand(new SoapParam($command, "command"));
+
+		try {
+			$result = $client->executeCommand(new SoapParam($command, "command"));
+
+			return $result;
+		}
+		catch (Exception $e)
+		{
+			echo "Command failed! Reason:<br />\n";
+			echo $e->getMessage();
+		}
     }
 }

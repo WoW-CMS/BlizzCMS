@@ -9,7 +9,7 @@
     <script src="<?= $template['assets'].'core/uikit/js/uikit.min.js'; ?>"></script>
     <script src="<?= $template['assets'].'core/uikit/js/uikit-icons.min.js'; ?>"></script> 
     <!-- ReCaptcha v3 Google API -->
-    <?php if ($this->wowmodule->getreCaptchaStatus()) { ?>
+    <?php if ($this->wowmodule->getStatusModule('reCaptcha')) { ?>
       <script src="https://www.google.com/recaptcha/api.js?render=<?php echo RECAPTCHA_SITE_KEY; ?>"></script>
       <script>
           grecaptcha.ready(function() {
@@ -30,10 +30,10 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <?php if (!$this->wowauth->isLogged()): ?>
-              <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
+			  <?php if($this->wowmodule->getStatusModule('Register')): ?>
               <li class="uk-visible@m"><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= $this->lang->line('button_register'); ?></a></li>
               <?php endif; ?>
-              <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
+			  <?php if($this->wowmodule->getStatusModule('Login')): ?>
               <li class="uk-visible@m"><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= $this->lang->line('button_login'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
@@ -50,13 +50,13 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->wowauth->isLogged()): ?>
-                    <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
+                    <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
                     <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
                     <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= $this->lang->line('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowmodule->getACPStatus() == '1'): ?>
+                    <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
                     <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
                     <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
@@ -159,21 +159,21 @@
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 <?php if (!$this->wowauth->isLogged()): ?>
-                <?php if($this->wowmodule->getRegisterStatus() == '1'): ?>
+				<?php if($this->wowmodule->getStatusModule('Register')): ?>
                 <li><a href="<?= base_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_register'); ?></a></li>
                 <?php endif; ?>
-                <?php if($this->wowmodule->getLoginStatus() == '1'): ?>
+				<?php if($this->wowmodule->getStatusModule('Login')): ?>
                 <li><a href="<?= base_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($this->wowauth->isLogged()): ?>
-                <?php if($this->wowmodule->getUCPStatus() == '1'): ?>
+                <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
                 <li><a href="<?= base_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
                 <li><a href="<?= base_url('mod'); ?>"><i class="fas fa-gavel"></i>s <?= $this->lang->line('button_mod_panel'); ?></a></li>
                 <?php endif; ?>
-                <?php if($this->wowmodule->getACPStatus() == '1'): ?>
+                <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
                 <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
                 <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                 <?php endif; ?>

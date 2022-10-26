@@ -14,7 +14,7 @@ class Admin_model extends CI_Model {
         parent::__construct();
         $this->auth = $this->load->database('auth', TRUE);
 
-        if (!$this->wowmodule->getACPStatus())
+        if (!$this->wowmodule->getStatusModule('Admin Panel'))
             redirect(base_url(),'refresh');
     }
 

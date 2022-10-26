@@ -54,7 +54,7 @@ class Forum extends MX_Controller {
             redirect(base_url('maintenance'), 'refresh');
         }
         
-        if (!$this->wowmodule->getForumStatus()) {
+        if (!$this->wowmodule->getStatusModule('Forum')) {
             redirect(base_url(), 'refresh');
         }
     }

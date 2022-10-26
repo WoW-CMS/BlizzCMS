@@ -48,7 +48,7 @@ class News extends MX_Controller {
         if(!$this->wowgeneral->getMaintenance())
             redirect(base_url('maintenance'),'refresh');
 
-        if (!$this->wowmodule->getNewsStatus())
+        if (!$this->wowmodule->getStatusModule('News'))
             redirect(base_url(),'refresh');
     }
 
