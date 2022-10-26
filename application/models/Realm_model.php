@@ -258,6 +258,17 @@ class Realm_model extends CI_Model {
     public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
     {
         $client = $this->connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
-        return $client->executeCommand(new SoapParam($command, "command"));
+		
+		try {
+			$result = $client->executeCommand(new SoapParam($command, "command"));
+
+			echo "Command succeeded! Output:<br />\n";
+			echo $result;
+		}
+		catch (Exception $e)
+		{
+			echo "Command failed! Reason:<br />\n";
+			echo $e->getMessage();
+		}
     }
 }
