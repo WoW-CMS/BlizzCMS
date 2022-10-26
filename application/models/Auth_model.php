@@ -45,22 +45,22 @@ class Auth_model extends CI_Model {
         return rand(0, 999999999);
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getUsernameID($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getUsernameID($id)
     {
         return $this->auth->select('username')->where('id', $id)->get('account')->row('username');
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getSiteUsernameID($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getSiteUsernameID($id)
     {
         return $this->db->select('username')->where('id', $id)->get('users')->row('username');
     }
@@ -82,7 +82,7 @@ class Auth_model extends CI_Model {
 	 * @param string $password
 	 * @return boolean
 	 */
-	public function valid_password($username, $password)
+	public function valid_password($username, $password): bool
 	{
 		$account  = $this->auth->where('username', $username)->or_where('email', $username)->get('account')->row();
 		$emulator = config_item('emulator');
@@ -136,13 +136,13 @@ class Auth_model extends CI_Model {
         return $this->auth->select('id')->where('email', $email)->get('account');
     }
 
-    /**
-     * @param mixed $account
-     * 
-     * @return [type]
-     */
-    public function getIDAccount($account)
-    {
+
+	/**
+	 * @param $account
+	 * @return string
+	 */
+	public function getIDAccount($account): string
+	{
         $account = strtoupper($account);
 
         $qq = $this->auth->select('id')->where('username', $account)->get('account');
@@ -153,33 +153,33 @@ class Auth_model extends CI_Model {
             return '0';
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getImageProfile($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getImageProfile($id)
     {
         return $this->db->select('profile')->where('id', $id)->get('users')->row('profile');
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getNameAvatar($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getNameAvatar($id)
     {
         return $this->db->select('name')->where('id', $id)->get('avatars')->row('name');
     }
 
-    /**
-     * @param mixed $email
-     * 
-     * @return [type]
-     */
-    public function getIDEmail($email)
-    {
+
+	/**
+	 * @param $email
+	 * @return string
+	 */
+	public function getIDEmail($email): string
+	{
         $email = strtoupper($email);
 
         $qq = $this->auth->select('id')->where('email', $email)->get('account');
@@ -190,53 +190,53 @@ class Auth_model extends CI_Model {
             return '0';
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getExpansionID($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getExpansionID($id)
     {
         return $this->auth->select('expansion')->where('id', $id)->get('account')->row('expansion');
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getLastIPID($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getLastIPID($id)
     {
         return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getLastLoginID($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getLastLoginID($id)
     {
         return $this->auth->select('last_login')->where('id', $id)->get('account')->row('last_login');
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getJoinDateID($id)
+
+	/**
+	 * @param $id
+	 * @return mixed
+	 */
+	public function getJoinDateID($id)
     {
         return $this->auth->select('joindate')->where('id', $id)->get('account')->row('joindate');
     }
 
-    /**
-     * @param mixed $id
-     * 
-     * @return [type]
-     */
-    public function getRank($id = null)
-    {
+
+	/**
+	 * @param $id
+	 * @return int
+	 */
+	public function getRank($id = null): int
+	{
         $account = ($id) ?? $this->session->userdata('wow_sess_id');
 
         $value = ($this->auth->field_exists('SecurityLevel', 'account_access')) ? $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel') : 
@@ -256,8 +256,8 @@ class Auth_model extends CI_Model {
      * 
      * @return [type]
      */
-    public function getBanStatus($id)
-    {
+    public function getBanStatus($id): bool
+	{
         $qq = $this->auth->select('*')->where('id', $id)->where('active', '1')->get('account_banned');
 
         if ($qq->num_rows())
@@ -269,8 +269,8 @@ class Auth_model extends CI_Model {
     /**
      * @return [type]
      */
-    public function isLogged()
-    {
+    public function isLogged(): bool
+	{
         if ($this->session->userdata('wow_sess_username'))
             return true;
         else
@@ -282,8 +282,8 @@ class Auth_model extends CI_Model {
      * 
      * @return [type]
      */
-    public function sessionConnect($data)
-    {
+    public function sessionConnect($data): bool
+	{
         $this->session->set_userdata($data);
         return true;
     }
@@ -305,8 +305,8 @@ class Auth_model extends CI_Model {
      * 
      * @return [type]
      */
-    public function game_hash($username, $password, $type = null, $salt = null)
-    {
+    public function game_hash($username, $password, $type = null, $salt = null): string
+	{
         switch ($type)
 		{
 			case 'bnet':
@@ -347,7 +347,7 @@ class Auth_model extends CI_Model {
 	 * @param string $column
 	 * @return bool
 	 */
-	public function account_unique($data, $column = 'username')
+	public function account_unique($data, $column = 'username'): bool
 	{
 		$query = $this->auth->where($column, $data)->get('account')->num_rows();
 
