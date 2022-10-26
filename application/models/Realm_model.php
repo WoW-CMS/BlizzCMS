@@ -255,15 +255,23 @@ class Realm_model extends CI_Model {
         return $this->client;
     }
 
-    public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
+	/**
+	 * @param $command
+	 * @param $soapUser
+	 * @param $soapPass
+	 * @param $soapHost
+	 * @param $soapPort
+	 * @param $soap_uri
+	 * @return void
+	 */
+	public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
     {
         $client = $this->connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
-		
+
 		try {
 			$result = $client->executeCommand(new SoapParam($command, "command"));
 
-			echo "Command succeeded! Output:<br />\n";
-			echo $result;
+			return $result;
 		}
 		catch (Exception $e)
 		{
