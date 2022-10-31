@@ -268,7 +268,7 @@ class BigInteger
             $versions = array();
 
             // avoid generating errors (even with suppression) when phpinfo() is disabled (common in production systems)
-            if (strpos(ini_get('disable_functions'), 'phpinfo') === false) {
+            if (function_exists('phpinfo')) {
                 ob_start();
                 @phpinfo();
                 $content = ob_get_contents();
@@ -372,7 +372,7 @@ class BigInteger
                         break;
                     case self::MODE_BCMATH:
                         // round $len to the nearest 4 (thanks, DavidMJ!)
-                        $len = (strlen($x) + 3) & 0xFFFFFFFC;
+                        $len = (strlen($x) + 3) & ~3;
 
                         $x = str_pad($x, $len, chr(0), STR_PAD_LEFT);
 
@@ -658,11 +658,11 @@ class BigInteger
     {
         $hex = $this->toHex($twos_compliment);
         $bits = '';
-        for ($i = strlen($hex) - 8, $start = strlen($hex) & 7; $i >= $start; $i-=8) {
-            $bits = str_pad(decbin(hexdec(substr($hex, $i, 8))), 32, '0', STR_PAD_LEFT) . $bits;
+        for ($i = strlen($hex) - 6, $start = strlen($hex) % 6; $i >= $start; $i-=6) {
+            $bits = str_pad(decbin(hexdec(substr($hex, $i, 6))), 24, '0', STR_PAD_LEFT) . $bits;
         }
         if ($start) { // hexdec('') == 0
-            $bits = str_pad(decbin(hexdec(substr($hex, 0, $start))), 8, '0', STR_PAD_LEFT) . $bits;
+            $bits = str_pad(decbin(hexdec(substr($hex, 0, $start))), 8 * $start, '0', STR_PAD_LEFT) . $bits;
         }
         $result = $this->precision > 0 ? substr($bits, -$this->precision) : ltrim($bits, '0');
 

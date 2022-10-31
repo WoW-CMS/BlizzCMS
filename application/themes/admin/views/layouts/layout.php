@@ -15,7 +15,9 @@
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
             <a class="uk-navbar-item uk-logo" href="<?= base_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
-            <div class="uk-navbar-item uk-visible@s"><span class="rev-label"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->update_model->getCurrentVersion(); ?></a></span></div>
+			<div class="uk-navbar-item uk-visible@s">
+				<span class="rev-label"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->updater->latest_version() ?></a></span>
+			</div>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
@@ -48,7 +50,7 @@
           <div class="uk-offcanvas-bar">
             <div class="sidebar-head uk-text-center">
               <a class="uk-logo" href="<?= base_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
-              <span class="rev-label uk-margin-small-bottom"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->update_model->getCurrentVersion(); ?></a></span>
+              <span class="rev-label uk-margin-small-bottom"><a href="<?= base_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->updater->latest_version(); ?></a></span>
             </div>
             <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
               <li><a href="<?= base_url('admin'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>

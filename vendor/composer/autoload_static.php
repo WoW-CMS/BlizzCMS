@@ -15,13 +15,30 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             'phpseclib\\' => 10,
         ),
+        'V' => 
+        array (
+            'VisualAppeal\\' => 13,
+        ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'L' => 
         array (
             'Laizerox\\' => 9,
+        ),
+        'D' => 
+        array (
+            'Desarrolla2\\Cache\\' => 18,
+        ),
+        'C' => 
+        array (
+            'Composer\\Semver\\' => 16,
         ),
     );
 
@@ -30,13 +47,33 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
         ),
+        'VisualAppeal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/visualappeal/php-auto-update/src',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
         'Laizerox\\' => 
         array (
             0 => __DIR__ . '/..' . '/laizerox/php-wowemu-auth/src',
+        ),
+        'Desarrolla2\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/desarrolla2/cache/src',
+        ),
+        'Composer\\Semver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/semver/src',
         ),
     );
 
@@ -50,12 +87,17 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         ),
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$classMap;
 
         }, null, ClassLoader::class);
     }

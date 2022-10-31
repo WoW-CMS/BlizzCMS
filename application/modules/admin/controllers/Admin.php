@@ -44,10 +44,10 @@ class Admin extends MX_Controller {
     {
         parent::__construct();
         $this->load->model('admin_model');
-        $this->load->model('update/update_model');
         $this->config->load('donate/donate');
         $this->config->load('bugtracker/bugtracker');
-        $this->load->library('pagination');
+		$this->load->library('pagination');
+		$this->load->library('updater');
 
         if(!ini_get('date.timezone'))
            date_default_timezone_set($this->config->item('timezone'));
@@ -202,6 +202,7 @@ class Admin extends MX_Controller {
     {
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
+			'latest_version' => $this->updater->latest_version(),
             'lang' => $this->lang->lang()
         ];
 
@@ -209,8 +210,21 @@ class Admin extends MX_Controller {
     }
 
     public function updatecms()
-    {
-        echo $this->update_model->checkUpdates();
+	{
+		$lang = $this->lang->lang();
+		$update = $this->updater->update();
+
+		if (in_array($update['alert'], ['error', 'info', 'warning'], true)) {
+			$this->session->set_flashdata($update['alert'], $update['message']);
+			redirect(base_url($lang . '/admin/cms/'));
+		}
+
+		if ($this->migration->current() === false) {
+			show_error($this->migration->error_string());
+		}
+
+		$this->session->set_flashdata('success', $update['message']);
+		redirect(base_url($lang . '/admin/cms/'));
     }
 
     /**
