@@ -117,7 +117,7 @@ $autoload['config'] = ['blizzcms', 'seo'];
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */
-$autoload['language'] = ['general', 'notification', 'admin'];
+$autoload['language'] = ['general', 'notification', 'admin', 'update'];
 
 /*
 | -------------------------------------------------------------------
