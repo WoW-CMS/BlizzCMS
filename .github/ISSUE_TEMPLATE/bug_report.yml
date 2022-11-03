@@ -23,7 +23,8 @@ body:
       label: What version of PHP do you use?
       options:
         - PHP 7.x
-        - PHP 8.x
+        - PHP 8.0
+        - PHP 8.1
         - Other
     validations:
       required: true
