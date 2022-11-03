@@ -31,9 +31,12 @@ body:
         - 1.0.7.3 (Unsupported)
         - 1.0.7.4 (Unsupported)
         - 1.0.7.5 (Unsupported)
-        - 1.0.7.6 (Supported)
+        - 1.0.7.6 (Unsupported)
         - 1.0.7.7 (Supported)
-        - 1.0.7.8 (Recommended)
+        - 1.0.7.8 (Supported)
+        - 1.0.8 (Supported)
+        - 1.1.0 (Supported)
+        - 1.1.1 (Recommended)
     validations:
       required: true
   - type: dropdown
