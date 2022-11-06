@@ -1,3 +1,9 @@
+Version 1.2.0:
+ - Deprecated wowmodule
+ - 1.2.0 | Phase 2
+ - Init work 1.2.0
+ - Version Update 1.1.1
+
 Version 1.1.1:
  - bugfix: Seccond part
  - bugfix: SOAP Possible error, added checks.
