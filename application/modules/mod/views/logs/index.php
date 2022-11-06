@@ -26,9 +26,9 @@
                     <td class="uk-text-center"><?= date('d-m-Y', $logs->datetime) ?></td>
                     <td class="uk-text-center">
                       <?php if($logs->type == 1): ?>
-                        Forums/Topic
+                        Topic
                       <?php else: ?>
-                        Forums/Comment
+                        Comment
                       <?php endif; ?>
                     </td>
                     <td class="uk-text-center"><?= $logs->function ?><?= $logs->annotation ?></td>

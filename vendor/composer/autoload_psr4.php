@@ -7,6 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+    'VisualAppeal\\' => array($vendorDir . '/visualappeal/php-auto-update/src'),
+    'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Laizerox\\' => array($vendorDir . '/laizerox/php-wowemu-auth/src'),
+    'Desarrolla2\\Cache\\' => array($vendorDir . '/desarrolla2/cache/src'),
+    'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
 );

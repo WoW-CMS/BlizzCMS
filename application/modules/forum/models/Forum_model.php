@@ -157,7 +157,7 @@ class Forum_model extends CI_Model
         
         $idTopic = $this->db->select('*')->order_by('id',"desc")->limit(1)->get('forum_topics')->row('id');
 
-        $this->service->logsService->send($userid, 1, $idTopic, '[Guardian - Created Topic]', $title);
+        $this->service->logsService->send($userid, 1, $idTopic, '[New Topic]', $title);
         
         return true;
     }
@@ -205,7 +205,7 @@ class Forum_model extends CI_Model
 
         $this->db->insert('forum_replies', $data);
         
-        $this->service->logsService->send($author, 2, $topicid, '[Guardian - Created Reply]', $reply);
+        $this->service->logsService->send($author, 2, $topicid, '[New Reply]', $reply);
         return true;
     }
 }
