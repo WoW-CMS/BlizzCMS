@@ -54,7 +54,7 @@ class Updater
 	{
 		$this->CI =& get_instance();
 
-		// $this->version = $this->CI->config->item('cms_version');
+		$this->version = $this->CI->config->item('cms_version');
 
 		$update = new AutoUpdate(FCPATH . 'temp', FCPATH . '', 60);
 

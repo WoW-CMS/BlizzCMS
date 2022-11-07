@@ -204,3 +204,11 @@ $config['migrate_status'] = '1';
  *
 */
 $config['check_realm_local'] = false;
+
+/**
+*
+*  Version CMS
+*
+*
+*/
+$config['cms_version'] = '1.2.1';
