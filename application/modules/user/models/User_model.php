@@ -80,7 +80,19 @@ class User_model extends CI_Model
 	 */
 	public function getLastIp($id)
 	{
-		return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
+		$emulator = config_item('emulator');
+		switch ($emulator)
+		{
+			case 'srp6':
+				return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
+				break;
+			case 'hex':
+				return $this->auth->select('ip')->where('id', $id)->get('account_logons')->row('ip');
+				break;
+			case 'old-trinity':
+				return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
+				break;
+		}	
 	}
 
 	/**
@@ -196,7 +208,6 @@ class User_model extends CI_Model
 				's'          => $salt,
 				'email'     => $email,
 				'expansion' => $expansion,
-				'last_ip' => '127.0.0.1'
 			];
 
 			$this->auth->insert('account', $data);
