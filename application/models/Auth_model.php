@@ -196,7 +196,7 @@ class Auth_model extends CI_Model {
 	 * @return mixed
 	 */
 	public function getExpansionID($id)
-    {
+    {		
         return $this->auth->select('expansion')->where('id', $id)->get('account')->row('expansion');
     }
 
@@ -207,7 +207,19 @@ class Auth_model extends CI_Model {
 	 */
 	public function getLastIPID($id)
     {
-        return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
+		$emulator = config_item('emulator');
+		switch ($emulator)
+		{
+			case 'srp6':
+				return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
+				break;
+			case 'hex':
+				return $this->auth->select('ip')->where('id', $id)->get('account_logons')->row('ip');
+				break;
+			case 'old-trinity':
+				return $this->auth->select('last_ip')->where('id', $id)->get('account')->row('last_ip');
+				break;
+		}		
     }
 
 
@@ -217,7 +229,19 @@ class Auth_model extends CI_Model {
 	 */
 	public function getLastLoginID($id)
     {
-        return $this->auth->select('last_login')->where('id', $id)->get('account')->row('last_login');
+		$emulator = config_item('emulator');
+		switch ($emulator)
+		{
+			case 'srp6':
+				 return $this->auth->select('last_login')->where('id', $id)->get('account')->row('last_login');
+				break;
+			case 'hex':
+				return $this->auth->select('loginTime')->where('id', $id)->get('account_logons')->row('loginTime');
+				break;
+			case 'old-trinity':
+				 return $this->auth->select('last_login')->where('id', $id)->get('account')->row('last_login');
+				break;
+		}
     }
 
 
@@ -239,9 +263,24 @@ class Auth_model extends CI_Model {
 	{
         $account = ($id) ?? $this->session->userdata('wow_sess_id');
 
-        $value = ($this->auth->field_exists('SecurityLevel', 'account_access')) ? $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel') : 
-            (($this->auth->field_exists('gmlevel', 'account'))  ? $this->auth->where('id', $account)->get('account')->row('gmlevel') : 
-            $this->auth->where('id', $account)->get('account_access')->row('gmlevel'));
+		$emulator = config_item('emulator');
+		switch ($emulator)
+		{
+			case 'srp6':
+				 $value = ($this->auth->field_exists('SecurityLevel', 'account_access')) ? $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel') : 
+					(($this->auth->field_exists('gmlevel', 'account'))  ? $this->auth->where('id', $account)->get('account')->row('gmlevel') : 
+						$this->auth->where('id', $account)->get('account_access')->row('gmlevel'));
+				break;
+			case 'hex':
+				$value = $this->auth->where('id', $account)->get('account')->row('gmlevel');
+				break;
+			case 'old-trinity':
+				 $value = ($this->auth->field_exists('SecurityLevel', 'account_access')) ? $this->auth->where('AccountID', $account)->get('account_access')->row('SecurityLevel') : 
+					(($this->auth->field_exists('gmlevel', 'account'))  ? $this->auth->where('id', $account)->get('account')->row('gmlevel') : 
+						$this->auth->where('id', $account)->get('account_access')->row('gmlevel'));
+				break;
+		}		
+
 
         if (! empty($value))
         {
