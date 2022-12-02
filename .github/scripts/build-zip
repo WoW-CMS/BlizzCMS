@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Variables
+NAME=$1
+
+# Create zip archive
+zip -r ${NAME}.zip . -x \
+  *.git* \
+  .github/\*

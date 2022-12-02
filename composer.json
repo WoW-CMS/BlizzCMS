@@ -1,0 +1,28 @@
+{
+    "name": "wow-cms/blizzcms",
+    "type": "project",
+    "description": "CMS for private World of Warcraft communities",
+    "license": "MIT",
+    "homepage": "https://wow-cms.com",
+    "authors": [
+        {
+            "name": "WoW-CMS",
+            "homepage": "https://wow-cms.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/WoW-CMS/php-wowemu-auth"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "visualappeal/php-auto-update": "^1.0",
+        "xemlock/htmlpurifier-html5": "^0.1",
+        "mlocati/ip-lib": "^1.18",
+        "laizerox/php-wowemu-auth": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
