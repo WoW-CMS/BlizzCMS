@@ -16,7 +16,8 @@ class Migration_Create_bans extends CI_Migration
                 'type' => 'ENUM("email","ip","user")'
             ],
             'value' => [
-                'type' => 'TEXT'
+                'type' => 'VARCHAR',
+                'constraint' => 255
             ],
             'reason' => [
                 'type' => 'MEDIUMTEXT'
