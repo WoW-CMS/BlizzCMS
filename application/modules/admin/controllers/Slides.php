@@ -44,14 +44,14 @@ class Slides extends Admin_Controller
         $this->form_validation->set_rules('file', lang('file'), 'callback__file_required');
 
         if ($this->input->method() === 'post' && $this->form_validation->run()) {
-            $uploadFolder = 'uploads/' . current_date('Y') . '/' . current_date('m') . '/';
+            $directory = current_date('Y') . '/' . current_date('m') . '/';
 
-            if (! is_dir(FCPATH . $uploadFolder)) {
-                mkdir(FCPATH . $uploadFolder, 0755, true);
+            if (! is_dir(FCPATH . 'uploads/' . $directory)) {
+                mkdir(FCPATH . 'uploads/' . $directory, 0755, true);
             }
 
             $this->load->library('upload', [
-                'upload_path'   => FCPATH . $uploadFolder,
+                'upload_path'   => FCPATH . 'uploads/' . $directory,
                 'allowed_types' => 'gif|jpg|jpeg|png|mpeg|mpg|mp4|webm|ogg',
                 'encrypt_name'  => true
             ]);
@@ -67,7 +67,7 @@ class Slides extends Admin_Controller
                 'title'       => $this->input->post('title'),
                 'description' => $this->input->post('description', true),
                 'type'        => strpos($uploadData['file_type'], 'video/') !== false ? SLIDE_VIDEO : SLIDE_IMAGE,
-                'path'        => $uploadFolder. $uploadData['file_name'],
+                'path'        => $directory . $uploadData['file_name'],
                 'sort'        => $this->slide_model->last_item_sort() + 1
             ]);
 
@@ -115,14 +115,14 @@ class Slides extends Admin_Controller
 
         if ($this->input->method() === 'post' && $this->form_validation->run()) {
             if (isset($_FILES['file']['name']) && $_FILES['file']['name'] !== '') {
-                $uploadFolder = 'uploads/' . current_date('Y') . '/' . current_date('m') . '/';
+                $directory = current_date('Y') . '/' . current_date('m') . '/';
 
-                if (! is_dir(FCPATH . $uploadFolder)) {
-                    mkdir(FCPATH . $uploadFolder, 0755, true);
+                if (! is_dir(FCPATH . 'uploads/' . $directory)) {
+                    mkdir(FCPATH . 'uploads/' . $directory, 0755, true);
                 }
 
                 $this->load->library('upload', [
-                    'upload_path'   => FCPATH . $uploadFolder,
+                    'upload_path'   => FCPATH . 'uploads/' . $directory,
                     'allowed_types' => 'gif|jpg|jpeg|png|mpeg|mpg|mp4|webm|ogg',
                     'encrypt_name'  => true
                 ]);
@@ -132,15 +132,15 @@ class Slides extends Admin_Controller
                     redirect(site_url('admin/slides/edit/' . $id));
                 }
 
-                if (is_file(FCPATH . $slide->path)) {
-                    unlink(FCPATH . $slide->path);
+                if (is_file(FCPATH . 'uploads/' . $slide->path)) {
+                    unlink(FCPATH . 'uploads/' . $slide->path);
                 }
 
                 $uploadData = $this->upload->data();
 
                 $this->slide_model->update([
                     'type' => strpos($uploadData['file_type'], 'video/') !== false ? SLIDE_VIDEO : SLIDE_IMAGE,
-                    'path' => $uploadFolder . $uploadData['file_name']
+                    'path' => $directory . $uploadData['file_name']
                 ], ['id' => $id]);
             }
 
@@ -214,8 +214,8 @@ class Slides extends Admin_Controller
             show_404();
         }
 
-        if (is_file(FCPATH . $slide->path)) {
-            unlink(FCPATH . $slide->path);
+        if (is_file(FCPATH . 'uploads/' . $slide->path)) {
+            unlink(FCPATH . 'uploads/' . $slide->path);
         }
 
         $this->slide_model->delete(['id' => $id]);

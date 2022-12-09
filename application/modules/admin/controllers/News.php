@@ -62,14 +62,14 @@ class News extends Admin_Controller
         $this->form_validation->set_rules('meta_robots', lang('meta_robots'), 'trim');
 
         if ($this->input->method() === 'post' && $this->form_validation->run()) {
-            $uploadFolder = 'uploads/' . current_date('Y') . '/' . current_date('m') . '/';
+            $directory = current_date('Y') . '/' . current_date('m') . '/';
 
-            if (! is_dir(FCPATH . $uploadFolder)) {
-                mkdir(FCPATH . $uploadFolder, 0755, true);
+            if (! is_dir(FCPATH . 'uploads/' . $directory)) {
+                mkdir(FCPATH . 'uploads/' . $directory, 0755, true);
             }
 
             $this->load->library('upload', [
-                'upload_path'   => FCPATH . $uploadFolder,
+                'upload_path'   => FCPATH . 'uploads/' . $directory,
                 'allowed_types' => 'gif|jpg|jpeg|png',
                 'encrypt_name'  => true
             ]);
@@ -86,7 +86,7 @@ class News extends Admin_Controller
                 'summary'          => $this->input->post('summary'),
                 'content'          => purify($this->input->post('content'), 'article'),
                 'slug'             => url_title($this->input->post('title'), '-', true),
-                'image'            => $uploadFolder . $uploadData['file_name'],
+                'image'            => $directory . $uploadData['file_name'],
                 'meta_description' => $this->input->post('meta_description', true),
                 'meta_robots'      => $this->input->post('meta_robots', true),
                 'discuss'          => empty($this->input->post('discuss', true)) ? 0 : 1
@@ -142,14 +142,14 @@ class News extends Admin_Controller
 
         if ($this->input->method() === 'post' && $this->form_validation->run()) {
             if (isset($_FILES['file']['name']) && $_FILES['file']['name'] !== '') {
-                $uploadFolder = 'uploads/' . current_date('Y') . '/' . current_date('m') . '/';
+                $directory = current_date('Y') . '/' . current_date('m') . '/';
 
-                if (! is_dir(FCPATH . $uploadFolder)) {
-                    mkdir(FCPATH . $uploadFolder, 0755, true);
+                if (! is_dir(FCPATH . 'uploads/' . $directory)) {
+                    mkdir(FCPATH . 'uploads/' . $directory, 0755, true);
                 }
 
                 $this->load->library('upload', [
-                    'upload_path'   => FCPATH . $uploadFolder,
+                    'upload_path'   => FCPATH . 'uploads/' . $directory,
                     'allowed_types' => 'gif|jpg|jpeg|png',
                     'encrypt_name'  => true
                 ]);
@@ -159,14 +159,14 @@ class News extends Admin_Controller
                     redirect(site_url('admin/news/edit/' . $id));
                 }
 
-                if (is_file(FCPATH . $article->image)) {
-                    unlink(FCPATH . $article->image);
+                if (is_file(FCPATH . 'uploads/' . $article->image)) {
+                    unlink(FCPATH . 'uploads/' . $article->image);
                 }
 
                 $uploadData = $this->upload->data();
 
                 $this->news_model->update([
-                    'image' => $uploadFolder . $uploadData['file_name']
+                    'image' => $directory . $uploadData['file_name']
                 ], ['id' => $id]);
             }
 
@@ -207,8 +207,8 @@ class News extends Admin_Controller
             show_404();
         }
 
-        if (is_file(FCPATH . $article->image)) {
-            unlink(FCPATH . $article->image);
+        if (is_file(FCPATH . 'uploads/' . $article->image)) {
+            unlink(FCPATH . 'uploads/' . $article->image);
         }
 
         $this->news_model->delete(['id' => $id]);
