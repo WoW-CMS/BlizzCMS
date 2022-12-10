@@ -598,6 +598,12 @@ hr,
   border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
+.uk-navbar-left,
+.uk-navbar-right,
+[class*="uk-navbar-center"] {
+  gap: 20px;
+}
+
 .uk-navbar-nav {
   gap: 20px;
 }

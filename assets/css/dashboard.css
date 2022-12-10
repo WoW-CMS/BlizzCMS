@@ -527,6 +527,12 @@ pre {
   padding: 0 20px;
 }
 
+.uk-navbar-left,
+.uk-navbar-right,
+[class*="uk-navbar-center"] {
+  gap: 20px;
+}
+
 .uk-navbar-nav {
   gap: 20px;
 }
