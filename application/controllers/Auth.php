@@ -209,6 +209,8 @@ class Auth extends BS_Controller
                 'language' => $this->multilanguage->current_language()
             ]);
 
+            $this->cache->delete('users_avatars');
+
             $this->session->set_flashdata('success', lang('alert_registration_success'));
             redirect(site_url('login'));
         } else {
@@ -250,6 +252,8 @@ class Auth extends BS_Controller
         ]);
 
         $this->user_token_model->delete(['hash' => $result->hash, 'type' => User_token_model::TOKEN_CONFIRMATION]);
+
+        $this->cache->delete('users_avatars');
 
         $this->session->set_flashdata('success', lang('alert_registration_validated'));
         redirect(site_url('login'));

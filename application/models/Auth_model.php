@@ -53,6 +53,8 @@ class Auth_model extends CI_Model
 
             $this->user_model->insert($setUser);
 
+            $this->cache->delete('users_avatars');
+
             // Remove element in the array after creating new user
             unset($setUser['username'], $setUser['role'], $setUser['password']);
 
