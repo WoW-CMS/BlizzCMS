@@ -21,6 +21,7 @@ $lang['validate_your_registration'] = 'Validate your registration';
 $lang['dont_have_account'] = "Don't have an account yet? Sign up";
 $lang['already_have_account'] = 'Do you already have an account? Log in';
 $lang['fill_form_password_reset'] = 'Fill out the form to reset your password';
+$lang['account_confirmation'] = 'Account confirmation';
 $lang['here'] = 'Here';
 $lang['submit'] = 'Submit';
 $lang['change'] = 'Change';

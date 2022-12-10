@@ -115,7 +115,6 @@ $lang['login_page'] = 'Página de inicio de sesión';
 $lang['register_page'] = 'Página de registro';
 $lang['forgot_password_page'] = 'Página de contraseña olvidada';
 $lang['mailer_on_sections'] = 'Servicio de correo en secciones';
-$lang['account_confirmation'] = 'Confirmación de cuenta';
 $lang['general_settings_list'] = 'Lista de configuraciones relacionadas con el CMS.';
 $lang['social_settings_list'] = 'Lista de configuraciones relacionadas con las redes sociales.';
 $lang['pages_settings_list'] = 'Lista de configuraciones relacionadas con el estado de las páginas principales.';
