@@ -87,6 +87,7 @@ body:
     attributes:
       label: What happened?
       description: Describe the issue in detail.
+    validations:
       required: true
   
   - type: textarea
@@ -94,6 +95,7 @@ body:
     attributes:
       label: How can the issue be reproduced?
       description: Describe steps to reproduce the behavior.
+    validations:
       required: true
 
   - type: textarea
