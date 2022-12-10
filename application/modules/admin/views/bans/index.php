@@ -61,41 +61,39 @@
                 </div>
               </form>
             </div>
-            <div class="uk-overflow-auto">
-              <table class="uk-table uk-table-middle uk-table-divider uk-table-small uk-margin-remove">
-                <thead>
-                  <tr>
-                    <th class="uk-table-expand"><?= lang('username') ?></th>
-                    <th class="uk-width-medium"><?= lang('end_at') ?></th>
-                    <th class="uk-width-small"><?= lang('actions') ?></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($bans as $item): ?>
-                  <tr>
-                    <td>
-                      <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->value) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
-                      <span class="uk-text-middle"><?= $item->username ?></span>
-                    </td>
-                    <td><?= $item->end_at === '0000-00-00 00:00:00' ? lang('endless') : $item->end_at ?></td>
-                    <td>
-                      <div class="uk-button-group">
-                        <a href="<?= site_url('admin/bans/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>
-                        <div class="uk-inline">
-                          <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fa-solid fa-caret-down"></i></button>
-                          <div uk-dropdown="mode: click; boundary: ! .uk-container">
-                            <ul class="uk-nav uk-dropdown-nav">
-                              <li><a href="<?= site_url('admin/bans/delete?user='.$item->username) ?>"><span class="bc-li-icon"><i class="fa-solid fa-trash-can"></i></span><?= lang('delete') ?></a></li>
-                            </ul>
-                          </div>
+            <table class="uk-table uk-table-middle uk-table-divider uk-table-small uk-margin-remove">
+              <thead>
+                <tr>
+                  <th class="uk-table-expand"><?= lang('username') ?></th>
+                  <th class="uk-width-medium"><?= lang('end_at') ?></th>
+                  <th class="uk-width-small"><?= lang('actions') ?></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($bans as $item): ?>
+                <tr>
+                  <td>
+                    <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->value) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
+                    <span class="uk-text-middle"><?= $item->username ?></span>
+                  </td>
+                  <td><?= $item->end_at === '0000-00-00 00:00:00' ? lang('endless') : $item->end_at ?></td>
+                  <td>
+                    <div class="uk-button-group">
+                      <a href="<?= site_url('admin/bans/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>
+                      <div class="uk-inline">
+                        <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fa-solid fa-caret-down"></i></button>
+                        <div uk-dropdown="mode: click; boundary: ! .uk-container">
+                          <ul class="uk-nav uk-dropdown-nav">
+                            <li><a href="<?= site_url('admin/bans/delete?user='.$item->username) ?>"><span class="bc-li-icon"><i class="fa-solid fa-trash-can"></i></span><?= lang('delete') ?></a></li>
+                          </ul>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                  <?php endforeach ?>
-                </tbody>
-              </table>
-            </div>
+                    </div>
+                  </td>
+                </tr>
+                <?php endforeach ?>
+              </tbody>
+            </table>
           </div>
         </div>
         <?= $pagination ?>

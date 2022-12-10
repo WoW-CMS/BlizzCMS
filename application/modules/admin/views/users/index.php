@@ -38,49 +38,47 @@
             </div>
           </form>
         </div>
-        <div class="uk-overflow-auto">
-          <table class="uk-table uk-table-middle uk-table-divider uk-table-small uk-margin-remove">
-            <thead>
-              <tr>
-                <th class="uk-table-expand"><?= lang('username') ?></th>
-                <th class="uk-width-medium"><?= lang('nickname') ?></th>
-                <th class="uk-width-medium uk-visible@s"><?= lang('email') ?></th>
-                <th class="uk-width-medium"><?= lang('role') ?></th>
-                <th class="uk-width-small"><?= lang('actions') ?></th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($users as $item): ?>
-              <tr>
-                <td>
-                  <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->id) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
-                  <span class="uk-text-middle"><?= $item->username ?></span>
-                </td>
-                <td><?= $item->nickname ?></td>
-                <td class="uk-visible@s"><?= hide_email($item->email) ?></td>
-                <td><?= $this->role_model->get_name($item->role) ?></td>
-                <td>
-                  <div class="uk-button-group">
-                    <a href="<?= site_url('admin/users/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>
-                    <div class="uk-inline">
-                      <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fa-solid fa-caret-down"></i></button>
-                      <div uk-dropdown="mode: click; boundary: ! .uk-container">
-                        <ul class="uk-nav uk-dropdown-nav">
-                          <?php if ($item->role == Role_model::ROLE_BANNED): ?>
-                          <li><a href="<?= site_url('admin/bans/delete?user='.$item->username) ?>"><span class="bc-li-icon"><i class="fa-solid fa-user-minus"></i></span><?= lang('delete_ban') ?></a></li>
-                          <?php else: ?>
-                          <li><a href="<?= site_url('admin/bans/add?user='.$item->username) ?>"><span class="bc-li-icon"><i class="fa-solid fa-user-plus"></i></span><?= lang('add_ban') ?></a></li>
-                          <?php endif ?>
-                        </ul>
-                      </div>
+        <table class="uk-table uk-table-middle uk-table-divider uk-table-small uk-margin-remove">
+          <thead>
+            <tr>
+              <th class="uk-table-expand"><?= lang('username') ?></th>
+              <th class="uk-width-medium uk-visible@s"><?= lang('nickname') ?></th>
+              <th class="uk-width-medium uk-visible@s"><?= lang('email') ?></th>
+              <th class="uk-width-medium"><?= lang('role') ?></th>
+              <th class="uk-width-small"><?= lang('actions') ?></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($users as $item): ?>
+            <tr>
+              <td>
+                <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->id) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
+                <span class="uk-text-middle"><?= $item->username ?></span>
+              </td>
+              <td class="uk-visible@s"><?= $item->nickname ?></td>
+              <td class="uk-visible@s"><?= hide_email($item->email) ?></td>
+              <td><?= $this->role_model->get_name($item->role) ?></td>
+              <td>
+                <div class="uk-button-group">
+                  <a href="<?= site_url('admin/users/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>
+                  <div class="uk-inline">
+                    <button class="uk-button uk-button-primary uk-button-small" type="button"><i class="fa-solid fa-caret-down"></i></button>
+                    <div uk-dropdown="mode: click; boundary: ! .uk-container">
+                      <ul class="uk-nav uk-dropdown-nav">
+                        <?php if ($item->role == Role_model::ROLE_BANNED): ?>
+                        <li><a href="<?= site_url('admin/bans/delete?user='.$item->username) ?>"><span class="bc-li-icon"><i class="fa-solid fa-user-minus"></i></span><?= lang('delete_ban') ?></a></li>
+                        <?php else: ?>
+                        <li><a href="<?= site_url('admin/bans/add?user='.$item->username) ?>"><span class="bc-li-icon"><i class="fa-solid fa-user-plus"></i></span><?= lang('add_ban') ?></a></li>
+                        <?php endif ?>
+                      </ul>
                     </div>
                   </div>
-                </td>
-              </tr>
-              <?php endforeach ?>
-            </tbody>
-          </table>
-        </div>
+                </div>
+              </td>
+            </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
       </div>
     </div>
     <?= $pagination ?>
