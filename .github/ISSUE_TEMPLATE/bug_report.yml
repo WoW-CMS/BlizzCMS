@@ -1,14 +1,14 @@
 name: 🐛 Bug Report
-description: Create a bug report to help us improve.
+description: Create a Bug Report
 title: "🐛 [Bug Report]: "
-labels: bug
+labels: ['bug']
 body:
   - type: markdown
     attributes:
       value: |
-        Hello and thanks for taking the time to fill out this bug report!
+        Hello, thanks for taking the time to fill out this bug report!
 
-        Before you begin, **please ensure there are no existing open or closed issue related your report**.
+        Before you begin, **please ensure there is no existing open or closed issue related to your report**.
 
         ---
 
@@ -19,11 +19,13 @@ body:
       description: e.g. 1.1.0
     validations:
       required: true
+
   - type: dropdown
     id: emulator
     attributes:
       label: Emulator
       description: Which emulator are you using?
+      multiple: false
       options:
         - AzerothCore
         - CMaNGOS
@@ -32,57 +34,70 @@ body:
         - Other
     validations:
       required: true
+
   - type: dropdown
     id: php-version
     attributes:
       label: PHP Version
-      description: What version of PHP do you use?
+      description: Which PHP version are you using?
+      multiple: false
       options:
         - PHP 7.4
         - PHP 8.0
         - PHP 8.1
     validations:
       required: true
+
   - type: dropdown
     id: operating-system
     attributes:
       label: Operating system
-      description: What operating system are you using?
+      description: Which operating system are you using?
+      multiple: true
       options:
         - Linux
         - macOS
         - Windows
     validations:
       required: true
+
   - type: dropdown
     id: web-server
     attributes:
       label: Web server
-      description: What web server are you using?
+      description: Which web server are you using?
+      multiple: false
       options:
         - Apache
         - Nginx
         - Other
     validations:
       required: true
+
   - type: input
     id: database
     attributes:
       label: Database
       description: e.g. MySQL 5.7, MariaDB 10.6
     validations:
-      required: false
+      required: true
+
   - type: textarea
-    id: current
+    id: what-happened
     attributes:
-      label: Description
-      description: Describe the bug in detail. We need information in order to solve the problem.
+      label: What happened?
+      description: Describe the issue in detail.
+      required: true
+  
   - type: textarea
-    id: reproduce
+    id: issue-reproduce
     attributes:
-      label: How can I reproduce the problem?
+      label: How can the issue be reproduced?
+      description: Describe steps to reproduce the behavior.
+      required: true
+
   - type: textarea
-    id: screenshots
+    id: issue-screenshots
     attributes:
       label: Screenshots
-      description: You can drag the images here to upload or share the links.
+      description: Provide screenshots here or share links.

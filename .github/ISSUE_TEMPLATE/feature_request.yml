@@ -1,25 +1,35 @@
 name: 💡 Feature Request
-description: Suggest an idea for this project.
+description: Create a Feature Request
 title: "💡 [Feature Request]: "
-labels: suggest
+labels: ['suggest']
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Hello, thank you for taking the time to give ideas for the project!
+
+        Before you begin, **please ensure there is no existing open or closed feature request related to your request**.
+
+        ---
+
   - type: textarea
     id: feature
     attributes:
-      label: Is your feature request related to a problem? Please describe.
-      description: A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+      label: Feature
+      description: Describe the feature request in detail explaining its implementation and how it would work.
+    validations:
+      required: true
+
   - type: textarea
-    id: solution
+    id: feature-purpose
     attributes:
-      label: Describe the solution you'd like.
-      description: A clear and concise description of what you want to happen.
+      label: Feature Purpose
+      description: Describe the purpose of this feature request.
+    validations:
+      required: true
+
   - type: textarea
-    id: alternatives
+    id: extra-info
     attributes:
-      label: Describe alternatives you've considered.
-      description: A clear and concise description of any alternative solutions or features you've considered.
-  - type: textarea
-    id: context
-    attributes:
-      label: Additional context.
-      description: Add any other context or screenshots about the feature request here.
+      label: Additional information
+      description: Provide screenshots here or share links.
