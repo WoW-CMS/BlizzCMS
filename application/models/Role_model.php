@@ -99,11 +99,11 @@ class Role_model extends BS_Model
         $cache = $this->cache->get('roles');
 
         if ($cache !== false) {
-            if (! array_key_exists($id, $cache)) {
-                return null;
+            if (array_key_exists($id, $cache)) {
+                return $cache[$id];
             }
 
-            return $cache[$id];
+            return '';
         }
 
         $list = [];
@@ -114,10 +114,10 @@ class Role_model extends BS_Model
 
         $this->cache->save('roles', $list, 604800);
 
-        if (! array_key_exists($id, $list)) {
-            return null;
+        if (array_key_exists($id, $list)) {
+            return $list[$id];
         }
 
-        return $list[$id];
+        return '';
     }
 }

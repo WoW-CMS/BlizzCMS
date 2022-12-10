@@ -146,7 +146,7 @@ class Ban_model extends BS_Model
         $cache  = $this->cache->get('banned_ips');
 
         if ($cache !== false) {
-            if (empty($cache)) {
+            if ($cache === []) {
                 return false;
             }
 

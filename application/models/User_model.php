@@ -183,9 +183,7 @@ class User_model extends BS_Model
 
         if ($cache !== false) {
             if (array_key_exists($id, $cache)) {
-                if (! empty($cache[$id])) {
-                    return $cache[$id];
-                }
+                return $cache[$id];
             }
 
             return '';
@@ -212,15 +210,13 @@ class User_model extends BS_Model
             }
         }
 
-        $this->cache->save('users_avatars', $list, 604800);
+        $this->cache->save('users_avatars', $list, 86400);
 
         if (array_key_exists($id, $list)) {
-            if (! empty($list[$id])) {
-                return $list[$id];
-            }
+            return $list[$id];
         }
 
-         return '';
+        return '';
     }
 
     /**
