@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-adasd
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
