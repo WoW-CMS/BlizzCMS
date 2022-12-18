@@ -198,7 +198,7 @@ class Realms extends Admin_Controller
         }
 
         $data = [
-            'check' => $this->realm_model->send_command($id, '.server info')
+            'result' => $this->realm_model->execute_command($id, '.server info', true)
         ];
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));

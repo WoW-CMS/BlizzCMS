@@ -182,13 +182,14 @@ class Realm_model extends BS_Model
     }
 
     /**
-     * Send command to SOAP of the realm
+     * Execute a command in a realm through SOAP
      *
      * @param int $realm
      * @param string $command
-     * @return mixed
+     * @param bool $return Whether to return the command response
+     * @return bool|string
      */
-    public function send_command($realm, $command)
+    public function execute_command($realm, $command, $return = false)
     {
         $row      = $this->find(['id' => $realm]);
         $emulator = config_item('app_emulator');
@@ -200,15 +201,23 @@ class Realm_model extends BS_Model
             'style'    => SOAP_RPC,
             'login'    => $row->console_username,
             'password' => decrypt($row->console_password),
-            'trace'    => 1
+            'trace'    => true
         ]);
 
         try {
-            $result = $client->executeCommand(new \SoapParam($command, 'command'));
-        } catch (\SoapFault $fault) {
-            $result = $fault->getMessage();
-        }
+            $response = $client->executeCommand(new \SoapParam($command, 'command'));
 
-        return $result;
+            if ($return) {
+                return $response;
+            }
+
+            return true;
+        } catch (\SoapFault $fault) {
+            if ($return) {
+                return $fault->faultstring;
+            }
+
+            return false;
+        }
     }
 }
