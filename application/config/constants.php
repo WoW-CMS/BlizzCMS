@@ -97,7 +97,6 @@ defined('CURRENCY_DP')   OR define('CURRENCY_DP', 'dp');
 defined('CURRENCY_VP')   OR define('CURRENCY_VP', 'vp');
 defined('ITEM_LINK')     OR define('ITEM_LINK', 'link');
 defined('ITEM_DROPDOWN') OR define('ITEM_DROPDOWN', 'dropdown');
-defined('MAX_MONEY')     OR define('MAX_MONEY', 2147480000);
 defined('SLIDE_IMAGE')   OR define('SLIDE_IMAGE', 'image');
 defined('SLIDE_VIDEO')   OR define('SLIDE_VIDEO', 'video');
 defined('SLIDE_IFRAME')  OR define('SLIDE_IFRAME', 'iframe');
