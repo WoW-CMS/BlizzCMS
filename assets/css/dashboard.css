@@ -1019,28 +1019,28 @@ pre {
 .bc-gold-money {
   display: inline-block;
   position: relative;
-  background-image: url('../img/icons/misc/gold-money.png');
+  background-image: url('../img/icons/misc/gold.png');
   background-repeat: no-repeat;
   background-position: right;
-  padding-right: 14px;
+  padding-right: 16px;
 }
 
 .bc-silver-money {
   display: inline-block;
   position: relative;
-  background-image: url('../img/icons/misc/silver-money.png');
+  background-image: url('../img/icons/misc/silver.png');
   background-repeat: no-repeat;
   background-position: right;
-  padding-right: 14px;
+  padding-right: 16px;
 }
 
 .bc-copper-money {
   display: inline-block;
   position: relative;
-  background-image: url('../img/icons/misc/copper-money.png');
+  background-image: url('../img/icons/misc/copper.png');
   background-repeat: no-repeat;
   background-position: right;
-  padding-right: 14px;
+  padding-right: 16px;
 }
 
 /**
