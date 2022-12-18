@@ -97,14 +97,16 @@
               <?php if ($item->type === ITEM_DROPDOWN): ?>
               <li class="uk-visible@s">
                 <a href="#">
-                  <i class="<?= $item->icon ?>"></i> <?= $item->name ?> <span uk-navbar-parent-icon></span>
+                  <?= $item->icon !== '' ? '<span class="bc-li-icon"><i class="'.$item->icon.'"></i></span>' : '' ?>
+                  <?= $item->name ?> <span uk-navbar-parent-icon></span>
                 </a>
                 <div class="uk-navbar-dropdown" uk-drop="boundary: ! .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php foreach ($item->childs as $subitem): ?>
                     <li class="<?= is_route_active($subitem->url) ? 'uk-active' : '' ?>">
                       <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
-                        <span class="bc-li-icon"><i class="<?= $subitem->icon ?>"></i></span><?= $subitem->name ?>
+                        <?= $subitem->icon !== '' ? '<span class="bc-li-icon"><i class="'.$subitem->icon.'"></i></span>' : '' ?>
+                        <?= $subitem->name ?>
                       </a>
                     </li>
                     <?php endforeach ?>
@@ -114,7 +116,8 @@
               <?php elseif ($item->type === ITEM_LINK): ?>
               <li class="<?= is_route_active($item->url) ? 'uk-visible@s uk-active' : 'uk-visible@s' ?>">
                 <a target="<?= $item->target ?>" href="<?= $item->url ?>">
-                  <i class="<?= $item->icon ?>"></i> <?= $item->name ?>
+                  <?= $item->icon !== '' ? '<span class="bc-li-icon"><i class="'.$item->icon.'"></i></span>' : '' ?>
+                  <?= $item->name ?>
                 </a>
               </li>
               <?php endif ?>
@@ -167,13 +170,15 @@
             <?php if ($item->type === ITEM_DROPDOWN): ?>
             <li class="uk-parent">
               <a href="#">
-                <span class="bc-li-icon"><i class="<?= $item->icon ?>"></i></span><?= $item->name ?> <span uk-nav-parent-icon></span>
+                <?= $item->icon !== '' ? '<span class="bc-li-icon"><i class="'.$item->icon.'"></i></span>' : '' ?>
+                <?= $item->name ?> <span uk-nav-parent-icon></span>
               </a>
               <ul class="uk-nav-sub">
                 <?php foreach ($item->childs as $subitem): ?>
                 <li class="<?= is_route_active($subitem->url) ? 'uk-active' : '' ?>">
                   <a target="<?= $subitem->target ?>" href="<?= $subitem->url ?>">
-                    <span class="bc-li-icon"><i class="<?= $subitem->icon ?>"></i></span><?= $subitem->name ?>
+                    <?= $subitem->icon !== '' ? '<span class="bc-li-icon"><i class="'.$subitem->icon.'"></i></span>' : '' ?>
+                    <?= $subitem->name ?>
                   </a>
                 </li>
                 <?php endforeach ?>
@@ -182,7 +187,8 @@
             <?php elseif ($item->type === ITEM_LINK): ?>
             <li class="<?= is_route_active($item->url) ? 'uk-active' : '' ?>">
               <a target="<?= $item->target ?>" href="<?= $item->url ?>">
-                <span class="bc-li-icon"><i class="<?= $item->icon ?>"></i></span><?= $item->name ?>
+                <?= $item->icon !== '' ? '<span class="bc-li-icon"><i class="'.$item->icon.'"></i></span>' : '' ?>
+                <?= $item->name ?>
               </a>
             </li>
             <?php endif ?>
