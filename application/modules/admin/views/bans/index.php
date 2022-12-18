@@ -72,10 +72,7 @@
               <tbody>
                 <?php foreach ($bans as $item): ?>
                 <tr>
-                  <td>
-                    <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->value) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
-                    <span class="uk-text-middle"><?= $item->username ?></span>
-                  </td>
+                  <td><?= $item->username ?></td>
                   <td><?= $item->end_at === '0000-00-00 00:00:00' ? lang('endless') : $item->end_at ?></td>
                   <td>
                     <div class="uk-button-group">

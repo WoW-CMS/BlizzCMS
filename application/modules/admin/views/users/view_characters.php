@@ -47,10 +47,10 @@
                 <thead>
                   <tr>
                     <th><?= lang('guid') ?></th>
-                    <th class="uk-width-small"><?= lang('name') ?></th>
-                    <th class="uk-width-small"><?= lang('race') ?></th>
-                    <th class="uk-width-small"><?= lang('class') ?></th>
-                    <th class="uk-width-small"><?= lang('level') ?></th>
+                    <th class="uk-table-expand"><?= lang('name') ?></th>
+                    <th class="uk-table-shrink"><?= lang('race') ?></th>
+                    <th class="uk-table-shrink"><?= lang('class') ?></th>
+                    <th class="uk-width-small uk-text-center"><?= lang('level') ?></th>
                     <th class="uk-width-medium"><?= lang('money') ?></th>
                   </tr>
                 </thead>
@@ -59,13 +59,15 @@
                   <tr>
                     <td><?= $character->guid ?></td>
                     <td><?= html_escape($character->name) ?></td>
-                    <td><img class="uk-border-circle" src="<?= $template['assets'].'img/icons/race/'.$character->race.'-'.$character->gender.'.png' ?>" width="24" height="24" alt="<?= race_name($character->race) ?>"></td>
-                    <td><img class="uk-border-circle" src="<?= $template['assets'].'img/icons/class/'.$character->class.'.png' ?>" width="24" height="24" alt="<?= class_name($character->class) ?>"></td>
-                    <td><?= $character->level ?></td>
+                    <td class="uk-text-center">
+                      <img class="uk-preserve-width uk-border-circle" src="<?= $template['assets'].'img/icons/race/'.$character->race.'-'.$character->gender.'.png' ?>" width="24" height="24" alt="<?= race_name($character->race) ?>">
+                    </td>
+                    <td class="uk-text-center">
+                      <img class="uk-preserve-width uk-border-circle" src="<?= $template['assets'].'img/icons/class/'.$character->class.'.png' ?>" width="24" height="24" alt="<?= class_name($character->class) ?>">
+                    </td>
+                    <td class="uk-text-center"><?= $character->level ?></td>
                     <td>
-                      <span class="bc-gold-money"><?= money_pieces($character->money) ?></span>
-                      <span class="bc-silver-money"><?= money_pieces($character->money, 's') ?></span>
-                      <span class="bc-copper-money"><?= money_pieces($character->money, 'c') ?></span>
+                      <span class="bc-gold-money"><?= money_pieces($character->money) ?></span> <span class="bc-silver-money"><?= money_pieces($character->money, 's') ?></span> <span class="bc-copper-money"><?= money_pieces($character->money, 'c') ?></span>
                     </td>
                   </tr>
                   <?php endforeach ?>

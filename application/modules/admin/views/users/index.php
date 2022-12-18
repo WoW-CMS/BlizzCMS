@@ -41,23 +41,24 @@
         <table class="uk-table uk-table-middle uk-table-divider uk-table-small uk-margin-remove">
           <thead>
             <tr>
-              <th class="uk-table-expand"><?= lang('username') ?></th>
-              <th class="uk-width-medium uk-visible@s"><?= lang('nickname') ?></th>
+              <th class="uk-table-shrink uk-text-center"><i class="fa-solid fa-circle-user fa-lg"></i></th>
+              <th class="uk-width-small"><?= lang('username') ?></th>
+              <th class="uk-width-small uk-visible@s"><?= lang('nickname') ?></th>
               <th class="uk-width-medium uk-visible@s"><?= lang('email') ?></th>
-              <th class="uk-width-medium"><?= lang('role') ?></th>
+              <th class="uk-width-small uk-visible@s"><?= lang('role') ?></th>
               <th class="uk-width-small"><?= lang('actions') ?></th>
             </tr>
           </thead>
           <tbody>
             <?php foreach ($users as $item): ?>
             <tr>
-              <td>
-                <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->id) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
-                <span class="uk-text-middle"><?= $item->username ?></span>
+              <td class="uk-text-center">
+                <img class="uk-preserve-width uk-border-circle" src="<?= user_avatar($item->id) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
               </td>
+              <td><?= $item->username ?></td>
               <td class="uk-visible@s"><?= $item->nickname ?></td>
               <td class="uk-visible@s"><?= hide_email($item->email) ?></td>
-              <td><?= $this->role_model->get_name($item->role) ?></td>
+              <td class="uk-visible@s"><?= $this->role_model->get_name($item->role) ?></td>
               <td>
                 <div class="uk-button-group">
                   <a href="<?= site_url('admin/users/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>

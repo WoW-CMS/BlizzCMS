@@ -43,7 +43,7 @@
               <tr>
                 <th><?= lang('id') ?></th>
                 <th class="uk-width-small"><?= lang('date') ?></th>
-                <th class="uk-width-small"><?= lang('username') ?></th>
+                <th class="uk-table-shrink"><?= lang('user') ?></th>
                 <th class="uk-width-small"><?= lang('ip') ?></th>
                 <th class="uk-table-shrink"><?= lang('status') ?></th>
                 <th class="uk-width-small"><?= lang('object') ?></th>
@@ -56,13 +56,13 @@
               <tr>
                 <td><?= $item->id ?></td>
                 <td><?= $item->created_at ?></td>
-                <td>
+                <td class="uk-text-center">
                   <?php if ($item->user_id == 0): ?>
-                  <span class="bc-avatar-guest bc-margin-xsmall-right"><i class="fa-solid fa-user-secret"></i></span>
-                  <span class="uk-text-middle"><?= lang('guest') ?></span>
+                  <span class="bc-avatar-guest">
+                    <i class="fa-solid fa-robot"></i>
+                  </span>
                   <?php else: ?>
-                  <img class="uk-preserve-width uk-border-circle bc-margin-xsmall-right" src="<?= user_avatar($item->user_id) ?>" width="32" height="32" alt="<?= lang('avatar') ?>">
-                  <span class="uk-text-middle uk-text-break"><?= $item->username ?></span>
+                  <img class="uk-preserve-width uk-border-circle" src="<?= user_avatar($item->user_id) ?>" width="32" height="32" alt="<?= $item->username ?>" uk-tooltip="<?= $item->username ?>">
                   <?php endif ?>
                 </td>
                 <td><?= $item->ip ?></td>
