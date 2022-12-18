@@ -164,8 +164,8 @@ class Server_auth_model extends CI_Model
                     ->row('SecurityLevel');
                 break;
 
-            case 'mangos':
             case 'cmangos':
+            case 'mangos':
                 $query = $database->where('id', $id)
                     ->get('account')
                     ->row('gmlevel');

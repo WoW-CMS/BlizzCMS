@@ -191,13 +191,13 @@ class Realm_model extends BS_Model
      */
     public function execute_command($realm, $command, $return = false)
     {
-        $row      = $this->find(['id' => $realm]);
-        $emulator = config_item('app_emulator');
-        $urns     = config_item('emulator_urn');
+        $row       = $this->find(['id' => $realm]);
+        $emulators = config_item('emulators');
+        $emulator  = config_item('app_emulator');
 
         $client = new \SoapClient(null, [
             'location' => 'http://' . $row->console_hostname . ':' . $row->console_port . '/',
-            'uri'      => 'urn:' . $urns[$emulator],
+            'uri'      => 'urn:' . $emulators[$emulator]['urn'],
             'style'    => SOAP_RPC,
             'login'    => $row->console_username,
             'password' => decrypt($row->console_password),

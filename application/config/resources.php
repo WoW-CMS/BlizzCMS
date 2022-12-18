@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Alliance races
 |--------------------------------------------------------------------------
 |
-| List of IDs of the races that have the alliance as the faction
+| Array of race ids belonging to the alliance faction.
 |
 */
 $config['alliance_races'] = [1, 3, 4, 7, 11, 22, 25, 29, 30, 32, 34, 37];
@@ -16,59 +16,85 @@ $config['alliance_races'] = [1, 3, 4, 7, 11, 22, 25, 29, 30, 32, 34, 37];
 | Horde races
 |--------------------------------------------------------------------------
 |
-| List of IDs of the races that have the horde as the faction
+| Array of race ids belonging to the horde faction.
 |
 */
 $config['horde_races'] = [2, 5, 6, 8, 9, 10, 26, 27, 28, 31, 35, 36];
 
 /*
 |--------------------------------------------------------------------------
-| Supported Expansions
+| Expansions
 |--------------------------------------------------------------------------
 |
-| List of supported expansions for use with functions in the CMS.
+| Array of expansion ids associated with its data.
 |
 */
-$config['supported_expansions'] = [
-    0 => 'Vanilla Classic',
-    1 => 'The Burning Crusade',
-    2 => 'Wrath of the Lich King',
-    3 => 'Cataclysm',
-    4 => 'Mist of Pandaria',
-    5 => 'Warlords of Draenor',
-    6 => 'Legion',
-    7 => 'Battle for Azeroth',
-    8 => 'Shadowlands'
+$config['expansions'] = [
+    0 => [
+        'name'      => 'Vanilla Classic',
+        'max_money' => 2_147_483_647 // 214,748g 36s 47c
+    ],
+    1 => [
+        'name'      => 'The Burning Crusade',
+        'max_money' => 2_147_483_647
+    ],
+    2 => [
+        'name'      => 'Wrath of the Lich King',
+        'max_money' => 2_147_483_647
+    ],
+    3 => [
+        'name'      => 'Cataclysm',
+        'max_money' => 9_999_999_999 // 999,999g 99s 99c
+    ],
+    4 => [
+        'name'      => 'Mist of Pandaria',
+        'max_money' => 9_999_999_999
+    ],
+    5 => [
+        'name'      => 'Warlords of Draenor',
+        'max_money' => 9_999_999_999
+    ],
+    6 => [
+        'name'      => 'Legion',
+        'max_money' => 99_999_999_999 // 9,999,999g 99s 99c
+    ],
+    7 => [
+        'name'      => 'Battle for Azeroth',
+        'max_money' => 99_999_999_999
+    ],
+    8 => [
+        'name'      => 'Shadowlands',
+        'max_money' => 99_999_999_999
+    ]
 ];
 
 /*
 |--------------------------------------------------------------------------
-| Supported Emulators
+| Emulators
 |--------------------------------------------------------------------------
 |
-| List of supported emulators for use with functions in the CMS.
+| Array of emulator keys associated with its data.
 |
 */
-$config['supported_emulators'] = [
-    'azeroth'     => 'AzerothCore',
-    'cmangos'     => 'CMaNGOS',
-    'mangos'      => 'MaNGOS',
-    'trinity'     => 'TrinityCore',
-    'trinity_sha' => 'TrinityCore (SHA Hash)'
-];
-
-/*
-|--------------------------------------------------------------------------
-| Emulator URN
-|--------------------------------------------------------------------------
-|
-| List of URNs related to emulators supported in the CMS.
-|
-*/
-$config['emulator_urn'] = [
-    'azeroth'     => 'AC',
-    'cmangos'     => 'MaNGOS',
-    'mangos'      => 'MaNGOS',
-    'trinity'     => 'TC',
-    'trinity_sha' => 'TC'
+$config['emulators'] = [
+    'azeroth'     => [
+        'name' => 'AzerothCore',
+        'urn'  => 'AC'
+    ],
+    'cmangos'     => [
+        'name' => 'CMaNGOS',
+        'urn'  => 'MaNGOS'
+    ],
+    'mangos'     => [
+        'name' => 'MaNGOS',
+        'urn'  => 'MaNGOS'
+    ],
+    'trinity'     => [
+        'name' => 'TrinityCore',
+        'urn'  => 'TC'
+    ],
+    'trinity_sha' => [
+        'name' => 'TrinityCore (SHA Hash)',
+        'urn'  => 'TC'
+    ]
 ];

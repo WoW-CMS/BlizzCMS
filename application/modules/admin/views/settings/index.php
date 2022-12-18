@@ -70,8 +70,8 @@
                   <div class="uk-width-1-2 uk-width-2-5@m">
                     <div class="uk-form-controls">
                       <select class="uk-select tail-single" id="select_expansion" name="expansion" autocomplete="off" data-placeholder="<?= lang('select_expansion') ?>">
-                        <?php foreach (config_item('supported_expansions') as $key => $expansion): ?>
-                        <option value="<?= $key ?>" <?= set_select('expansion', $key, $key === config_item('app_expansion')) ?>><?= $expansion ?></option>
+                        <?php foreach (config_item('expansions') as $key => $expansion): ?>
+                        <option value="<?= $key ?>" <?= set_select('expansion', $key, $key === config_item('app_expansion')) ?>><?= $expansion['name'] ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>
@@ -88,8 +88,8 @@
                   <div class="uk-width-1-2 uk-width-2-5@m">
                     <div class="uk-form-controls">
                       <select class="uk-select tail-single" id="select_emulator" name="emulator" autocomplete="off" data-placeholder="<?= lang('select_emulator') ?>">
-                        <?php foreach (config_item('supported_emulators') as $key => $emulator): ?>
-                        <option value="<?= $key ?>" <?= set_select('emulator', $key, $key === config_item('app_emulator')) ?>><?= $emulator ?></option>
+                        <?php foreach (config_item('emulators') as $key => $emulator): ?>
+                        <option value="<?= $key ?>" <?= set_select('emulator', $key, $key === config_item('app_emulator')) ?>><?= $emulator['name'] ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>

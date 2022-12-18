@@ -158,11 +158,6 @@ class Install extends BS_Controller
 
     public function settings_step()
     {
-        $data = [
-            'expansions' => config_item('supported_expansions'),
-            'emulators'  => config_item('supported_emulators')
-        ];
-
         $this->form_validation->set_rules('name', lang('name'), 'trim|required');
         $this->form_validation->set_rules('realmlist', lang('realmlist'), 'trim');
         $this->form_validation->set_rules('expansion', lang('expansion'), 'trim|required|is_natural');
@@ -214,7 +209,7 @@ class Install extends BS_Controller
 
             redirect(site_url('install/account'), 'refresh');
         } else {
-            $this->load->view('install/settings', $data);
+            $this->load->view('install/settings');
         }
     }
 

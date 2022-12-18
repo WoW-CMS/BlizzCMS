@@ -71,8 +71,8 @@
                     <label class="uk-form-label"><?= lang('expansion') ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select tail-single" id="select_expansion" name="expansion" autocomplete="off" data-placeholder="<?= lang('select_expansion') ?>">
-                        <?php foreach ($expansions as $key => $expansion): ?>
-                        <option value="<?= $key ?>" <?= set_select('expansion', $key) ?>><?= $expansion ?></option>
+                        <?php foreach (config_item('expansions') as $key => $expansion): ?>
+                        <option value="<?= $key ?>" <?= set_select('expansion', $key) ?>><?= $expansion['name'] ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>
@@ -82,8 +82,8 @@
                     <label class="uk-form-label"><?= lang('emulator') ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select tail-single" id="select_emulator" name="emulator" autocomplete="off" data-placeholder="<?= lang('select_emulator') ?>">
-                        <?php foreach ($emulators as $key => $emulator): ?>
-                        <option value="<?= $key ?>" <?= set_select('emulator', $key) ?>><?= $emulator ?></option>
+                        <?php foreach (config_item('emulators') as $key => $emulator): ?>
+                        <option value="<?= $key ?>" <?= set_select('emulator', $key) ?>><?= $emulator['name'] ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>
