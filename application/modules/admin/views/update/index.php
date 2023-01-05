@@ -21,7 +21,7 @@
             <?php foreach ($versions as $item): ?>
             <li>
               <a target="_blank" href="<?= $item->link ?>" class="uk-button uk-button-text"><?= html_escape($item->name) ?></a>
-              <p class="uk-text-meta uk-margin-remove"><i class="fa-regular fa-clock"></i> <time datetime="<?= format_date($item->date, 'c') ?>"><?= format_date($item->date, 'y-m-d, h:i A') ?></time></p>
+              <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($item->date, 'c') ?>"><?= format_date($item->date, 'M j, Y, h:i A') ?></time></p>
             </li>
             <?php endforeach ?>
             <?php else: ?>

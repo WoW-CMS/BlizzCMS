@@ -7,7 +7,7 @@
           <li><a href="<?= site_url('news') ?>"><?= lang('news') ?></a></li>
         </ul>
         <h1 class="uk-h3 uk-text-bold uk-margin-remove"><?= html_escape($article->title) ?></h1>
-        <p class="uk-text-meta uk-margin-remove"><i class="fa-regular fa-clock"></i> <time datetime="<?= format_date($article->created_at, 'c') ?>"><?= format_date($article->created_at, 'M j, Y, h:i A') ?></time></p>
+        <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($article->created_at, 'c') ?>"><?= format_date($article->created_at, 'M j, Y, h:i A') ?></time></p>
       </div>
       <div class="uk-width-auto"></div>
     </div>
@@ -113,7 +113,7 @@
               <?php foreach ($aside as $item): ?>
               <li>
                 <a href="<?= site_url('news/'.$item->id.'/'.$item->slug) ?>"><?= word_limiter($item->title, 10) ?></a>
-                <p class="uk-text-meta uk-margin-remove"><i class="fa-regular fa-clock"></i> <time datetime="<?= format_date($item->created_at, 'c') ?>"><?= format_date($item->created_at, 'y-m-d, h:i A') ?></time></p>
+                <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($item->created_at, 'c') ?>"><?= format_date($item->created_at, 'M j, Y, h:i A') ?></time></p>
               </li>
               <?php endforeach ?>
             </ul>
