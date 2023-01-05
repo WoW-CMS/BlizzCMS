@@ -1,4 +1,4 @@
-/*! Main | https://wow-cms.com | (c) 2019 - 2022 WoW-CMS | MIT License */
+/*! Main | https://wow-cms.com | (c) 2019 - 2023 WoW-CMS | MIT License */
 
 document.addEventListener('DOMContentLoaded', (event) => {
   if (typeof tail.select === 'function') {

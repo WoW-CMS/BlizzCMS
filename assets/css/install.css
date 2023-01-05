@@ -1,4 +1,4 @@
-/*! Install | https://wow-cms.com | (c) 2019 - 2022 WoW-CMS | MIT License */
+/*! Install | https://wow-cms.com | (c) 2019 - 2023 WoW-CMS | MIT License */
 
 @font-face {
   font-family: 'Lobster Two';
@@ -114,7 +114,7 @@ h6 {
 .uk-select:focus,
 .uk-textarea:focus {
   background-color: #0a142e;
-  border-color: #0e8bbf;
+  border-color: #3874d0;
   color: #dbdde1;
 }
 
@@ -135,7 +135,7 @@ h6 {
 }
 
 .uk-button-default {
-  background-color: #0d77d5;
+  background-color: #3874d0;
   border: 1px solid rgba(255, 255, 255, .1);
   border-radius: 2px;
   color: #fff;
@@ -143,14 +143,14 @@ h6 {
 }
 
 .uk-button-default:hover {
-  background-color: #0e81e7;
+  background-color: #487fd4;
   border-color: rgba(255, 255, 255, .1);
   color: #fff;
 }
 
 .uk-button-default.uk-active,
 .uk-button-default:active {
-  background-color: #0e81e7;
+  background-color: #487fd4;
   border-color: rgba(255, 255, 255, .1);
   color: #fff;
 }
@@ -163,7 +163,7 @@ h6 {
 
 .uk-tile-default {
   background-color: transparent;
-  border-color: rgba(14, 191, 116, .75);
+  border-color: rgba(56, 208, 148, .75);
 }
 
 .uk-tile-muted {
@@ -194,22 +194,22 @@ h6 {
 }
 
 .uk-alert-primary {
-  background: #0c63a2;
+  background: #3874d0;
   color: #fff;
 }
 
 .uk-alert-success {
-  background: #0ca262;
+  background: #38d094;
   color: #fff;
 }
 
 .uk-alert-warning {
-  background: #a2570c;
+  background: #d08438;
   color: #fff;
 }
 
 .uk-alert-danger {
-  background: #a20c0c;
+  background: #d03838;
   color: #fff;
 }
 
@@ -264,15 +264,19 @@ h6 {
 
 .uk-tab > .uk-active > a {
   color: #dbdde1;
-  border-color: #0e8bbf;
+  border-color: #3874d0;
 }
 
 .uk-text-meta {
-  color: #d0d0d0;
+  color: #bcbec3;
 }
 
 .uk-text-success {
-  color: #0ebf74 !important;
+  color: #58d7a5 !important;
+}
+
+.uk-text-danger {
+  color: #d75858 !important;
 }
 
 .uk-logo {
@@ -313,7 +317,7 @@ h6 {
 .tail-select:focus .select-label,
 .tail-select.idle .select-label,
 .tail-select.active .select-label {
-  border-color: #0e8bbf;
+  border-color: #3874d0;
 }
 
 .tail-select .select-dropdown {

@@ -1,4 +1,4 @@
-/*! Media Preview | https://wow-cms.com | (c) 2019 - 2022 WoW-CMS | MIT License */
+/*! Media Preview | https://wow-cms.com | (c) 2019 - 2023 WoW-CMS | MIT License */
 
 document.querySelectorAll('input.mfp-input').forEach((mfp) => {
   mfp.addEventListener('change', (event) => {
