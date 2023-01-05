@@ -327,8 +327,8 @@ class Auth extends BS_Controller
         $this->form_validation->set_rules('new_password', lang('new_password'), 'trim|required|min_length[8]');
 
         if ($this->input->method() === 'post' && $this->form_validation->run()) {
-            $password = $this->input->post('new_password');
-            $result   = $this->user_token_model->verify_token($this->input->post('token', true), User_token_model::TOKEN_PASSWORD);
+            $newPassword = $this->input->post('new_password');
+            $result      = $this->user_token_model->verify_token($this->input->post('token', true), User_token_model::TOKEN_PASSWORD);
 
             if (! $result) {
                 $this->session->set_flashdata('error', lang('alert_token_invalid'));
@@ -344,7 +344,7 @@ class Auth extends BS_Controller
                     $salt = random_bytes(32);
                     $setUser = [
                         'salt'        => $salt,
-                        'verifier'    => client_pwd_hash($account->username, $password, 'srp6', $salt),
+                        'verifier'    => client_pwd_hash($account->username, $newPassword, 'srp6', $salt),
                         'session_key' => null
                     ];
                     break;
@@ -353,7 +353,7 @@ class Auth extends BS_Controller
                     $salt = random_bytes(32);
                     $setUser = [
                         'salt'             => $salt,
-                        'verifier'         => client_pwd_hash($account->username, $password, 'srp6', $salt),
+                        'verifier'         => client_pwd_hash($account->username, $newPassword, 'srp6', $salt),
                         'session_key_auth' => null,
                         'session_key_bnet' => null
                     ];
@@ -363,7 +363,7 @@ class Auth extends BS_Controller
                     $salt = strtoupper(bin2hex(random_bytes(32)));
                     $setUser = [
                         'sessionkey' => '',
-                        'v'          => client_pwd_hash($account->username, $password, 'hex', $salt),
+                        'v'          => client_pwd_hash($account->username, $newPassword, 'hex', $salt),
                         's'          => $salt
                     ];
                     break;
@@ -371,7 +371,7 @@ class Auth extends BS_Controller
                 case 'mangos':
                 case 'trinity_sha':
                     $setUser = [
-                        'sha_pass_hash' => client_pwd_hash($account->username, $password),
+                        'sha_pass_hash' => client_pwd_hash($account->username, $newPassword),
                         'sessionkey'    => '',
                         'v'             => '',
                         's'             => ''
@@ -384,9 +384,11 @@ class Auth extends BS_Controller
             // Update the BNET account if BNET is enabled and the table exists
             if (config_item('app_emulator_bnet') && $auth->table_exists('battlenet_accounts')) {
                 $auth->update('battlenet_accounts', [
-                    'sha_pass_hash' => client_pwd_hash($account->email, $password, 'bnet')
+                    'sha_pass_hash' => client_pwd_hash($account->email, $newPassword, 'bnet')
                 ], ['id' => $result->user_id]);
             }
+
+            $this->user_model->update(['password' => $newPassword], ['id' => $result->user_id]);
 
             $this->user_token_model->delete(['user_id' => $result->user_id, 'type' => User_token_model::TOKEN_PASSWORD]);
 
