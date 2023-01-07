@@ -55,19 +55,6 @@
           <div class="uk-card-body">
             <ul class="uk-list uk-list-divider">
               <li>
-              <a class="uk-link-toggle" href="<?= site_url('user/security/password') ?>">
-                  <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
-                    <div class="uk-width-auto">
-                      <i class="fa-solid fa-key fa-xl"></i>
-                    </div>
-                    <div class="uk-width-expand">
-                      <h5 class="uk-h5 uk-margin-remove"><span class="uk-link-heading"><?= lang('password') ?></span></h5>
-                      <p class="uk-text-small uk-margin-remove"><?= lang('update_account_password') ?></p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
                 <a class="uk-link-toggle" href="<?= site_url('user/security/email') ?>">
                   <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
                     <div class="uk-width-auto">
@@ -76,6 +63,19 @@
                     <div class="uk-width-expand">
                       <h5 class="uk-h5 uk-margin-remove"><span class="uk-link-heading"><?= lang('email') ?></span></h5>
                       <p class="uk-text-small uk-margin-remove"><?= lang('update_account_email') ?></p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="uk-link-toggle" href="<?= site_url('user/security/password') ?>">
+                  <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                      <i class="fa-solid fa-key fa-xl"></i>
+                    </div>
+                    <div class="uk-width-expand">
+                      <h5 class="uk-h5 uk-margin-remove"><span class="uk-link-heading"><?= lang('password') ?></span></h5>
+                      <p class="uk-text-small uk-margin-remove"><?= lang('update_account_password') ?></p>
                     </div>
                   </div>
                 </a>
