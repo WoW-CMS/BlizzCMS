@@ -31,7 +31,7 @@
               <h3 class="uk-card-title"><?= lang('languages') ?></h3>
             </div>
             <div class="uk-width-auto">
-              <a target="_blank" href="https://wow-cms.github.io/docs/blizzcms" class="uk-button uk-button-default uk-button-small"><i class="fa-solid fa-square-arrow-up-right"></i></a>
+              <a target="_blank" href="https://wow-cms.github.io/docs/blizzcms/#what-languages-does-it-support" class="uk-button uk-button-default uk-button-small"><i class="fa-solid fa-square-arrow-up-right"></i> <?= lang('information') ?></a>
             </div>
           </div>
         </div>

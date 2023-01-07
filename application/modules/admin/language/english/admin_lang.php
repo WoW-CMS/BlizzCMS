@@ -22,6 +22,7 @@ $lang['discussion'] = 'Discussion';
 $lang['mailer'] = 'Mailer';
 $lang['seo'] = 'SEO';
 $lang['support'] = 'Support';
+$lang['docs'] = 'Docs';
 $lang['banned_ips'] = 'Banned IPs';
 $lang['banned_emails'] = 'Banned emails';
 $lang['banned_users'] = 'Banned users';

@@ -104,7 +104,7 @@
           </ul>
           <div class="uk-card-footer uk-padding-remove">
             <ul class="uk-subnav uk-subnav-divider">
-              <li><a target="_blank" href="https://wow-cms.com/news"><i class="fa-solid fa-newspaper"></i> <?= lang('news') ?></a></li>
+              <li><a target="_blank" href="https://wow-cms.github.io/docs/blizzcms"><i class="fa-solid fa-book"></i> <?= lang('docs') ?></a></li>
               <li><a target="_blank" href="https://discord.wow-cms.com"><i class="fa-solid fa-life-ring"></i> <?= lang('support') ?></a></li>
             </ul>
           </div>
