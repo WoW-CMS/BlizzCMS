@@ -130,7 +130,7 @@ class Install extends BS_Controller
             $cache = $this->cache->get('install');
 
             if ($cache === false) {
-                $this->session->set_flashdata('error', lang('install_cache_not_found'));
+                $this->session->set_flashdata('error', lang('install_database_settings_not_found'));
                 redirect(site_url('install/auth'));
             }
 
@@ -144,7 +144,7 @@ class Install extends BS_Controller
             ]));
 
             if (! $rewrite) {
-                $this->session->set_flashdata('error', lang('install_writable_failed'));
+                $this->session->set_flashdata('error', lang('install_change_file_failed'));
                 redirect(site_url('install/auth'));
             }
 
@@ -247,7 +247,7 @@ class Install extends BS_Controller
                 ]);
 
                 if ($users !== 0 || $usersAdmin !== 0) {
-                    $this->session->set_flashdata('warning', lang('install_step_blocked'));
+                    $this->session->set_flashdata('warning', lang('install_step_locked'));
                     redirect(site_url('install/account'));
                 }
 
