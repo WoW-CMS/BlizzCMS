@@ -53,10 +53,6 @@ class BS_Exceptions extends CI_Exceptions
 
             $CI->template->title($CI->lang->line('exception_error_404'), $name);
 
-            $CI->template->head_tags([
-                ['meta', ['name' => 'robots', 'content' => 'noindex, follow']]
-            ]);
-
             $output = $CI->template->build('static/errors/404', $data, true);
 
             set_status_header(404);
@@ -95,9 +91,7 @@ class BS_Exceptions extends CI_Exceptions
 
         $CI->template->title($CI->lang->line('error'), $name);
 
-        $CI->template->head_tags([
-            ['meta', ['name' => 'robots', 'content' => 'noindex, follow']]
-        ]);
+        $CI->template->add_meta('robots', 'noindex, follow');
 
         $output = $CI->template->build('static/errors/permission', $data, true);
 
@@ -136,9 +130,7 @@ class BS_Exceptions extends CI_Exceptions
 
         $CI->template->title($CI->lang->line('error'), $name);
 
-        $CI->template->head_tags([
-            ['meta', ['name' => 'robots', 'content' => 'noindex, follow']]
-        ]);
+        $CI->template->add_meta('robots', 'noindex, follow');
 
         $output = $CI->template->build('static/errors/guest', $data, true);
 
@@ -177,9 +169,7 @@ class BS_Exceptions extends CI_Exceptions
 
         $CI->template->title($CI->lang->line('error'), $name);
 
-        $CI->template->head_tags([
-            ['meta', ['name' => 'robots', 'content' => 'noindex, follow']]
-        ]);
+        $CI->template->add_meta('robots', 'noindex, follow');
 
         $output = $CI->template->build('static/errors/loggedin', $data, true);
 

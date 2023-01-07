@@ -97,9 +97,7 @@ class BS_Controller extends MX_Controller
 
         $this->form_validation->set_rules($field, lang('captcha'), 'trim|required|valid_captcha');
 
-        $this->template->head_tags([
-            ['script', ['src' => $src, 'async' => null, 'defer' => null]]
-        ]);
+        $this->template->add_js(['src' => $src, 'async' => null, 'defer' => null], 'head');
     }
 }
 

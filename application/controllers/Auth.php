@@ -23,9 +23,10 @@ class Auth extends BS_Controller
 
         $this->template->title(lang('login'), config_item('app_name'));
 
-        $this->template->set_meta_tags([
+        $this->template->set_seo_metas([
+            'title'  => lang('login'),
             'robots' => 'noindex, follow',
-            'title'  => lang('login')
+            'url'    => current_url()
         ]);
 
         $this->form_validation->set_rules('username', lang('username'), 'trim|required');
@@ -145,9 +146,10 @@ class Auth extends BS_Controller
 
         $this->template->title(lang('register'), config_item('app_name'));
 
-        $this->template->set_meta_tags([
+        $this->template->set_seo_metas([
+            'title'  => lang('register'),
             'robots' => 'noindex, follow',
-            'title'  => lang('register')
+            'url'    => current_url()
         ]);
 
         $this->form_validation->set_rules('nickname', lang('nickname'), 'trim|required|alpha_dash|max_length[15]|is_user_field_unique[nickname]');
@@ -269,9 +271,10 @@ class Auth extends BS_Controller
 
         $this->template->title(lang('forgot_password'), config_item('app_name'));
 
-        $this->template->set_meta_tags([
+        $this->template->set_seo_metas([
+            'title'  => lang('forgot_password'),
             'robots' => 'noindex, follow',
-            'title'  => lang('forgot_password')
+            'url'    => current_url()
         ]);
 
         $this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email');
@@ -318,9 +321,10 @@ class Auth extends BS_Controller
 
         $this->template->title(lang('reset_password'), config_item('app_name'));
 
-        $this->template->set_meta_tags([
-            'robots' => 'noindex, nofollow',
-            'title'  => lang('reset_password')
+        $this->template->set_seo_metas([
+            'title'  => lang('reset_password'),
+            'robots' => 'noindex, follow',
+            'url'    => current_url()
         ]);
 
         $this->form_validation->set_rules('token', lang('token'), 'trim|required');

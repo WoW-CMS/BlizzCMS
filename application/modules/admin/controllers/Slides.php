@@ -35,9 +35,7 @@ class Slides extends Admin_Controller
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
 
-        $this->template->body_tags([
-            ['script', ['src' => base_url('assets/js/media-preview.js')]]
-        ]);
+        $this->template->add_js(base_url('assets/js/media-preview.js'));
 
         $this->form_validation->set_rules('title', lang('title'), 'trim|required');
         $this->form_validation->set_rules('description', lang('description'), 'trim');
@@ -106,9 +104,7 @@ class Slides extends Admin_Controller
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
 
-        $this->template->body_tags([
-            ['script', ['src' => base_url('assets/js/media-preview.js')]]
-        ]);
+        $this->template->add_js(base_url('assets/js/media-preview.js'));
 
         $this->form_validation->set_rules('title', lang('title'), 'trim|required');
         $this->form_validation->set_rules('description', lang('description'), 'trim');

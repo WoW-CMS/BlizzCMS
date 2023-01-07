@@ -83,18 +83,16 @@ class News extends BS_Controller
         }
 
         $this->template->title($article->title, config_item('app_name'));
-        $this->template->set_meta_tags([
+        $this->template->set_seo_metas([
+            'title'       => $article->title,
             'description' => $article->meta_description,
             'robots'      => $article->meta_robots,
-            'title'       => $article->title,
             'type'        => 'article',
             'url'         => current_url()
         ]);
 
-        $this->template->body_tags([
-            ['script', ['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin']],
-            ['script', ['src' => base_url('assets/js/tmce-comment.js')]]
-        ]);
+        $this->template->add_js(['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin'])
+            ->add_js(base_url('assets/js/tmce-comment.js'));
 
         $this->template->build('article', $data);
     }
@@ -179,10 +177,8 @@ class News extends BS_Controller
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
 
-        $this->template->body_tags([
-            ['script', ['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin']],
-            ['script', ['src' => base_url('assets/js/tmce-comment.js')]]
-        ]);
+        $this->template->add_js(['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin'])
+            ->add_js(base_url('assets/js/tmce-comment.js'));
 
         $minimum = config_item('comments_min_length') ?? 10;
         $maximum = config_item('comments_max_length') ?? 1000;

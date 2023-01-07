@@ -23,11 +23,12 @@ class Home extends BS_Controller
         ];
 
         $this->template->title(config_item('app_name'));
-        $this->template->set_meta_tags([
-            'robots' => 'index, follow',
-            'type'   => 'website',
-            'url'    => current_url()
-        ], true);
+        $this->template->set_seo_metas([
+            'description' => config_item('seo_description_tag'),
+            'robots'      => 'index, follow',
+            'url'         => current_url(),
+            'type'        => 'website'
+        ]);
 
         $this->template->build('home', $data);
     }

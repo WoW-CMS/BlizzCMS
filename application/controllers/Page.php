@@ -42,10 +42,10 @@ class Page extends BS_Controller
         }
 
         $this->template->title($page->title, config_item('app_name'));
-        $this->template->set_meta_tags([
+        $this->template->set_seo_metas([
+            'title'       => $page->title,
             'description' => $page->meta_description,
             'robots'      => $page->meta_robots,
-            'title'       => $page->title,
             'type'        => 'article',
             'url'         => current_url()
         ]);

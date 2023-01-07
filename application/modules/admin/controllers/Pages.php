@@ -47,10 +47,8 @@ class Pages extends Admin_Controller
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
 
-        $this->template->body_tags([
-            ['script', ['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin']],
-            ['script', ['src' => base_url('assets/js/tmce-content.js')]]
-        ]);
+        $this->template->add_js(['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin'])
+            ->add_js(base_url('assets/js/tmce-content.js'));
 
         $this->form_validation->set_rules('title', lang('title'), 'trim|required');
         $this->form_validation->set_rules('content', lang('content'), 'trim|required');
@@ -110,10 +108,8 @@ class Pages extends Admin_Controller
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
 
-        $this->template->body_tags([
-            ['script', ['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin']],
-            ['script', ['src' => base_url('assets/js/tmce-content.js')]]
-        ]);
+        $this->template->add_js(['src' => base_url('assets/tinymce/tinymce.min.js'), 'referrerpolicy' => 'origin'])
+            ->add_js(base_url('assets/js/tmce-content.js'));
 
         $this->form_validation->set_rules('title', lang('title'), 'trim|required');
         $this->form_validation->set_rules('content', lang('content'), 'trim|required');

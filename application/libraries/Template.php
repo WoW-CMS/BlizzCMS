@@ -190,8 +190,8 @@ class Template
         $template['title']       = $this->_title;
         $template['breadcrumbs'] = $this->_breadcrumbs;
 
-        $template['head_tags'] = empty($this->_head_tags) ? '' : implode(PHP_EOL . '    ', $this->_head_tags) . PHP_EOL;
-        $template['body_tags'] = empty($this->_body_tags) ? '' : implode(PHP_EOL . '    ', $this->_body_tags) . PHP_EOL;
+        $template['head_tags'] = empty($this->_head_tags) ? '' : implode('    ', $this->_head_tags);
+        $template['body_tags'] = empty($this->_body_tags) ? '' : implode('    ', $this->_body_tags);
 
         $template['location'] = base_url('application/themes/' . $this->get_theme() . '/');
         $template['assets']   = base_url('assets/');
@@ -297,165 +297,113 @@ class Template
     }
 
     /**
-     * Add tags to head
+     * Include a meta in the header
      *
-     * @param array $data
+     * @param string $name
+     * @param string $content
+     * @param string $type
      * @return void
      */
-    public function head_tags($data)
+    public function add_meta($name, $content, $type = 'name')
     {
-        $items = [];
+        $type = ! in_array($type, ['name', 'property'], true) ? 'name' : $type;
 
-        foreach ($data as $key => $item)
-        {
-            if (! is_int($key) || empty($item))
-            {
-                continue;
-            }
-
-            $name       = $item[0];
-            $attributes = $item[1];
-
-            if (empty($name) || empty($attributes) || ! is_array($attributes))
-            {
-                continue;
-            }
-
-            $items[] = $this->_build_tag($attributes, $name);
-        }
-
-        $tags = array_filter($items);
-
-        if (! empty($tags))
-        {
-            foreach ($tags as $tag)
-            {
-                $this->_head_tags[] = $tag;
-            }
-        }
+        $this->_head_tags[] = '<meta ' . $type . '="' . $name . '" content="' . $content . '">' . PHP_EOL;
 
         return $this;
     }
 
     /**
-     * Add tags to body
+     * Include a CSS file in the header
      *
-     * @param array $data
+     * @param string $href
      * @return void
      */
-    public function body_tags($data)
+    public function add_css($href)
     {
-        $items = [];
-
-        foreach ($data as $key => $item)
-        {
-            if (! is_int($key) || empty($item))
-            {
-                continue;
-            }
-
-            $name       = $item[0];
-            $attributes = $item[1];
-            $allowed    = ['script'];
-
-            if (empty($name) || ! in_array($name, $allowed, true) || empty($attributes) || ! is_array($attributes))
-            {
-                continue;
-            }
-
-            $items[] = $this->_build_tag($attributes, $name);
-        }
-
-        $tags = array_filter($items);
-
-        if (! empty($tags))
-        {
-            foreach ($tags as $tag)
-            {
-                $this->_body_tags[] = $tag;
-            }
-        }
+        $this->_head_tags[] = '<link rel="stylesheet" href="' . $href . '">' . PHP_EOL;
 
         return $this;
     }
 
     /**
-     * Set meta tags for SEO
+     * Include a JS file in the header/body
      *
-     * @param array $data
-     * @param bool $default
-     * @return bool
+     * @param string|array $src
+     * @param string $position
+     * @return void
      */
-    public function set_meta_tags($data, $default = false)
+    public function add_js($src, $position = 'body')
     {
-        $site_name   = config_item('app_name');
-        $description = config_item('seo_description_tag');
-        $seo         = config_item('seo_tags') ?? false;
-        $open_graph  = config_item('seo_og_tags') ?? false;
-        $items       = [];
+        $src      = is_string($src) ? ['src' => $src] : $src;
+        $position = $position === 'body' ? '_body_tags' : '_head_tags';
 
-        if ($seo)
+        $attrs = [];
+
+        foreach ($src as $k => $v)
         {
-            if (array_key_exists('description', $data) && ! $default)
+            $name  = preg_replace('/[^a-z0-9-]+/i', '', $k);
+            $value = $v === null ? '' : '="' . strip_tags($v) . '"';
+
+            $attrs[] = $name . $value;
+        }
+
+        $this->$position[] = '<script ' . implode(' ', $attrs) . '></script>' . PHP_EOL;
+
+        return $this;
+    }
+
+    /**
+     * Set SEO Metas of the page
+     *
+     * @param array $metas
+     * @return void
+     */
+    public function set_seo_metas($metas)
+    {
+        $sitename = config_item('app_name');
+
+        if (config_item('seo_tags'))
+        {
+            if (array_key_exists('description', $metas))
             {
-                $items[] = ['meta', ['name' => 'description', 'content' => $data['description']]];
-            }
-            elseif (! array_key_exists('description', $data) && $default)
-            {
-                $items[] = ['meta', ['name' => 'description', 'content' => $description]];
+                $this->add_meta('description', $metas['description']);
             }
 
-            if (array_key_exists('robots', $data))
+            if (array_key_exists('robots', $metas))
             {
-                $items[] = ['meta', ['name' => 'robots', 'content' => $data['robots']]];
+                $this->add_meta('robots', $metas['robots']);
             }
         }
 
-        if ($open_graph)
+        if (config_item('seo_og_tags'))
         {
-            if (array_key_exists('title', $data) && ! $default)
+            $this->add_meta('og:site_name', $sitename, 'property');
+
+            $this->add_meta('og:title', array_key_exists('title', $metas) && $metas['title'] !== $sitename ? $metas['title'] . $this->_title_separator . $sitename : $sitename, 'property');
+
+            if (array_key_exists('type', $metas))
             {
-                $items[] = ['meta', ['property' => 'og:title', 'content' => $data['title'] . $this->_title_separator . $site_name]];
-            }
-            elseif (! array_key_exists('title', $data) && $default)
-            {
-                $items[] = ['meta', ['property' => 'og:title', 'content' => $site_name]];
+                $this->add_meta('og:type', $metas['type'], 'property');
             }
 
-            if (array_key_exists('type', $data))
+            if (array_key_exists('description', $metas))
             {
-                $items[] = ['meta', ['property' => 'og:type', 'content' => $data['type']]];
+                $this->add_meta('og:description', $metas['description'], 'property');
             }
 
-            if (array_key_exists('description', $data) && ! $default)
+            if (array_key_exists('url', $metas))
             {
-                $items[] = ['meta', ['property' => 'og:description', 'content' => $data['description']]];
-            }
-            elseif (! array_key_exists('description', $data) && $default)
-            {
-                $items[] = ['meta', ['property' => 'og:description', 'content' => $description]];
+                $this->add_meta('og:url', $metas['url'], 'property');
             }
 
-            if (array_key_exists('url', $data))
+            if (array_key_exists('image', $metas))
             {
-                $items[] = ['meta', ['property' => 'og:url', 'content' => $data['url']]];
-            }
-
-            $items[] = ['meta', ['property' => 'og:site_name', 'content' => $site_name]];
-
-            if (array_key_exists('image', $data))
-            {
-                $items[] = ['meta', ['property' => 'og:image', 'content' => $data['image']]];
+                $this->add_meta('og:image', $metas['image'], 'property');
             }
         }
 
-        if (empty($items))
-        {
-            return false;
-        }
-
-        $this->head_tags($items);
-        return true;
+        return $this;
     }
 
     /**
@@ -485,10 +433,10 @@ class Template
      *
      * @return string
      */
-     public function get_theme()
-     {
-         return $this->_theme;
-     }
+    public function get_theme()
+    {
+        return $this->_theme;
+    }
 
     /**
      * Get the current theme path
@@ -499,7 +447,6 @@ class Template
     {
         return $this->_theme_path;
     }
-
 
     /**
      * Set a theme layout for the template library to use
@@ -570,7 +517,6 @@ class Template
         $this->cache_lifetime = $minutes;
         return $this;
     }
-
 
     /**
      * Enabled parser
@@ -867,42 +813,5 @@ class Template
     private function _ext($file)
     {
         return pathinfo($file, PATHINFO_EXTENSION) ? '' : '.php';
-    }
-
-    /**
-     * Build html tags with attributes
-     *
-     * @param array $data
-     * @param string $tag
-     * @return void
-     */
-    private function _build_tag($data, $tag)
-    {
-        $attributes = [];
-
-        foreach ($data as $key => $value)
-        {
-            $attribute = preg_replace('/[^a-z0-9-]+/i', '', $key);
-            $content   = $value === null ? '' : '="' . strip_tags($value) . '"';
-
-            $attributes[] = $attribute . $content;
-        }
-
-        $line = ' ' . implode(' ', $attributes);
-
-        switch ($tag)
-        {
-            case 'link':
-                return '<link' . $line . '>';
-
-            case 'meta':
-                return '<meta' . $line . '>';
-
-            case 'script':
-                return '<script' . $line . '></script>';
-
-            default:
-                return '';
-        }
     }
 }
