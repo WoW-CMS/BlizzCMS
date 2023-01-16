@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Array of race ids belonging to the alliance faction.
 |
 */
-$config['alliance_races'] = [1, 3, 4, 7, 11, 22, 25, 29, 30, 32, 34, 37];
+$config['alliance_races'] = [1, 3, 4, 7, 11, 22, 25, 29, 30, 32, 34, 37, 52];
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +19,7 @@ $config['alliance_races'] = [1, 3, 4, 7, 11, 22, 25, 29, 30, 32, 34, 37];
 | Array of race ids belonging to the horde faction.
 |
 */
-$config['horde_races'] = [2, 5, 6, 8, 9, 10, 26, 27, 28, 31, 35, 36];
+$config['horde_races'] = [2, 5, 6, 8, 9, 10, 26, 27, 28, 31, 35, 36, 70];
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +64,10 @@ $config['expansions'] = [
     ],
     8 => [
         'name'      => 'Shadowlands',
+        'max_money' => 99_999_999_999
+    ],
+    9 => [
+        'name'      => 'DragonFlight',
         'max_money' => 99_999_999_999
     ]
 ];
