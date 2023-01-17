@@ -67,7 +67,7 @@ $config['expansions'] = [
         'max_money' => 99_999_999_999
     ],
     9 => [
-        'name'      => 'DragonFlight',
+        'name'      => 'Dragonflight',
         'max_money' => 99_999_999_999
     ]
 ];
