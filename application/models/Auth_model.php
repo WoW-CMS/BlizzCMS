@@ -66,6 +66,14 @@ class Auth_model extends CI_Model
                 return ['status' => 'error'];
             }
 
+            if (password_needs_rehash($user->password, PASSWORD_ARGON2ID, [
+                'memory_cost' => 64<<10,
+                'time_cost'   => 4,
+                'threads'     => 1
+            ])) {
+                $this->user_model->update(['password' => $password], ['id' => $user->id]);
+            }
+
             if ($this->ban_model->is_user_banned($user->id, true)) {
                 return ['status' => 'banned'];
             }

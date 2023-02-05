@@ -31,9 +31,9 @@ class User_model extends BS_Model
 
         if (array_key_exists('password', $set)) {
             $set['password'] = password_hash($set['password'], PASSWORD_ARGON2ID, [
-                'memory_cost' => 2<<10,
-                'time_cost'   => 2,
-                'threads'     => 2
+                'memory_cost' => 64<<10,
+                'time_cost'   => 4,
+                'threads'     => 1
             ]);
         }
 
@@ -55,9 +55,9 @@ class User_model extends BS_Model
 
         if (array_key_exists('password', $set)) {
             $set['password'] = password_hash($set['password'], PASSWORD_ARGON2ID, [
-                'memory_cost' => 2<<10,
-                'time_cost'   => 2,
-                'threads'     => 2
+                'memory_cost' => 64<<10,
+                'time_cost'   => 4,
+                'threads'     => 1
             ]);
         }
 
