@@ -64,7 +64,7 @@ class Bans extends Admin_Controller
                 $this->form_validation->set_rules('value_option', lang('option'), 'trim|required|in_list[D,M,Y]');
             }
 
-            $this->form_validation->set_rules('reason', lang('reason'), 'trim|required');  
+            $this->form_validation->set_rules('reason', lang('reason'), 'trim|required');
 
             $this->form_validation->set_data($inputs);
 

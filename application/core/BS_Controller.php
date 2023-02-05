@@ -81,7 +81,7 @@ class BS_Controller extends MX_Controller
         switch ($type) {
             case 'recaptcha':
                 $field  = 'g-recaptcha-response';
-                $src    = 'https://www.google.com/recaptcha/api.js'; 
+                $src    = 'https://www.google.com/recaptcha/api.js';
                 break;
 
             case 'turnstile':
