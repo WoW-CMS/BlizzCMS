@@ -342,6 +342,19 @@ a.uk-link-heading:hover {
   color: #ccc;
 }
 
+.uk-button-link {
+  color: #ccc;
+  text-transform: none;
+}
+
+.uk-button-link:hover {
+  color: #a7c2ea;
+}
+
+.uk-button-link:disabled {
+  color: #ccc;
+}
+
 .bc-default-section {
   position: relative;
   background-image: url('../img/theme/background.jpg');
