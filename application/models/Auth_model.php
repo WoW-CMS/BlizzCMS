@@ -25,40 +25,22 @@ class Auth_model extends CI_Model
     {
         $user = $this->user_model->find_user($username);
 
-        // If the user on the site doesn't exist sync values from auth account
         if (empty($user)) {
-            $account = $this->server_auth_model->find_account($username);
+            $this->log_model->create('user', 'login', 'Login attempt', [
+                'username' => $username
+            ], '', Log_model::STATUS_FAILED);
 
-            if (empty($account)) {
-                $this->log_model->create('user', 'login', 'Login attempt', [
-                    'username' => $username
-                ], '', Log_model::STATUS_FAILED);
+            return ['status' => 'error'];
+        }
+
+        if ($user->password === '') {
+            if (! $this->server_auth_model->password_verify($password, $user->id)) {
+                $this->log_model->create('user', 'login', 'Login', [], '', Log_model::STATUS_FAILED, $user->id);
 
                 return ['status' => 'error'];
             }
 
-            if (! $this->server_auth_model->password_verify($password, $account->id)) {
-                return ['status' => 'error'];
-            }
-
-            $setUser = [
-                'id'       => $account->id,
-                'nickname' => $account->username,
-                'username' => $account->username,
-                'email'    => $account->email,
-                'password' => $password,
-                'role'     => Role_model::ROLE_USER,
-                'language' => $this->multilanguage->current_language()
-            ];
-
-            $this->user_model->insert($setUser);
-
-            $this->cache->delete('users_avatars');
-
-            // Remove element in the array after creating new user
-            unset($setUser['username'], $setUser['role'], $setUser['password']);
-
-            $setUser['logged_in'] = true;
+            $this->user_model->update(['password' => $password], ['id' => $user->id]);
         } else {
             if (! password_verify($password, $user->password)) {
                 $this->log_model->create('user', 'login', 'Login', [], '', Log_model::STATUS_FAILED, $user->id);
@@ -77,20 +59,18 @@ class Auth_model extends CI_Model
             if ($this->ban_model->is_user_banned($user->id, true)) {
                 return ['status' => 'banned'];
             }
-
-            $setUser = [
-                'id'        => $user->id,
-                'nickname'  => $user->nickname,
-                'email'     => $user->email,
-                'language'  => $user->language,
-                'logged_in' => true
-            ];
         }
 
-        $this->session->set_userdata($setUser);
+        $this->session->set_userdata([
+            'id'        => $user->id,
+            'nickname'  => $user->nickname,
+            'email'     => $user->email,
+            'language'  => $user->language,
+            'logged_in' => true
+        ]);
 
         if (filter_var($remember, FILTER_VALIDATE_BOOLEAN)) {
-            $token = $this->user_token_model->create_token($setUser['id'], User_token_model::TOKEN_REMEMBER, 'P7D');
+            $token = $this->user_token_model->create_token($user->id, User_token_model::TOKEN_REMEMBER, 'P7D');
 
             set_cookie(
                 'remember',

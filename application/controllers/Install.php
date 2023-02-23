@@ -32,7 +32,16 @@ class Install extends BS_Controller
         $requiredExtensions = ['bcmath', 'curl', 'gd', 'gmp', 'mbstring', 'mysqli', 'openssl', 'soap', 'zip'];
         $missingExtensions  = array_diff($requiredExtensions, $loadedExtensions);
         $verifiedExtensions = array_diff($requiredExtensions, $missingExtensions);
-        $dependencies       = is_file(FCPATH . 'vendor/autoload.php');
+
+        $dependencies = is_file(FCPATH . 'vendor/autoload.php');
+
+        $directoryPaths = [
+            APPPATH . '/cache',
+            APPPATH . '/config/config.php',
+            APPPATH . '/config/database.php',
+            APPPATH . '/config/install.php'
+        ];
+        $missingPermissions = array_filter($directoryPaths, fn($v) => ! is_writable($v));
 
         $data = [
             'version'             => $version,
@@ -40,119 +49,80 @@ class Install extends BS_Controller
             'verified_extensions' => $verifiedExtensions,
             'missing_extensions'  => $missingExtensions,
             'dependencies'        => $dependencies,
-            'next_step'           => ($checkVersion && $missingExtensions === [] && $dependencies)
+            'missing_permissions' => $missingPermissions,
+            'next_step'           => ($checkVersion && $missingExtensions === [] && $dependencies && $missingPermissions === [])
         ];
 
         $this->load->view('install/index', $data);
     }
 
-    public function cms_step()
+    public function database_step()
     {
-        $this->form_validation->set_rules('hostname', lang('hostname'), 'trim|required|alpha_period');
-        $this->form_validation->set_rules('port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
-        $this->form_validation->set_rules('prefix', lang('prefix'), 'trim|alpha_dash|max_length[6]');
-        $this->form_validation->set_rules('database', lang('database'), 'trim|required|alpha_dash|max_length[64]');
-        $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
-        $this->form_validation->set_rules('password', lang('password'), 'trim|required');
+        $this->form_validation->set_rules('cms_hostname', lang('hostname'), 'trim|required|alpha_period');
+        $this->form_validation->set_rules('cms_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+        $this->form_validation->set_rules('cms_prefix', lang('prefix'), 'trim|alpha_dash|max_length[6]');
+        $this->form_validation->set_rules('cms_database', lang('database'), 'trim|required|alpha_dash|max_length[64]');
+        $this->form_validation->set_rules('cms_username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
+        $this->form_validation->set_rules('cms_password', lang('password'), 'trim|required');
+        $this->form_validation->set_rules('auth_hostname', lang('hostname'), 'trim|required|alpha_period');
+        $this->form_validation->set_rules('auth_port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
+        $this->form_validation->set_rules('auth_prefix', lang('prefix'), 'trim|alpha_dash|max_length[6]');
+        $this->form_validation->set_rules('auth_database', lang('database'), 'trim|required|alpha_dash|max_length[64]');
+        $this->form_validation->set_rules('auth_username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
+        $this->form_validation->set_rules('auth_password', lang('password'), 'trim|required');
 
         if ($this->input->method() === 'post' && $this->form_validation->run()) {
-            $hostname = $this->input->post('hostname');
-            $port     = $this->input->post('port');
-            $prefix   = $this->input->post('prefix');
-            $database = $this->input->post('database');
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
-
-            $connect = $this->load->database([
-                'hostname' => $hostname,
-                'username' => $username,
-                'password' => $password,
-                'database' => $database,
-                'port'     => $port,
+            $cmsdb = $this->load->database([
+                'hostname' => $this->input->post('cms_hostname'),
+                'username' => $this->input->post('cms_username'),
+                'password' => $this->input->post('cms_password'),
+                'database' => $this->input->post('cms_database'),
+                'port'     => $this->input->post('cms_port'),
                 'dbdriver' => 'mysqli'
             ], true);
 
-            $this->load->dbutil($connect);
-
-            if (! $this->dbutil->database_exists($database)) {
-                $this->session->set_flashdata('error', lang('install_connection_failed'));
-                redirect(site_url('install/cms'));
+            if ($cmsdb->conn_id === false) {
+                $this->session->set_flashdata('error', lang('install_cms_db_failed'));
+                redirect(site_url('install/database'));
             }
 
-            $this->cache->save('install', [
-                'cms_hostname'  => $hostname,
-                'cms_port'      => $port,
-                'cms_database'  => $database,
-                'cms_username'  => $username,
-                'cms_password'  => addcslashes($password, "'\\"),
-                'cms_prefix'    => $prefix
-            ], 3600);
-
-            redirect(site_url('install/auth'));
-        } else {
-            $this->load->view('install/cms_db');
-        }
-    }
-
-    public function auth_step()
-    {
-        $this->form_validation->set_rules('hostname', lang('hostname'), 'trim|required|alpha_period');
-        $this->form_validation->set_rules('port', lang('port'), 'trim|required|numeric|less_than_equal_to[65535]');
-        $this->form_validation->set_rules('prefix', lang('prefix'), 'trim|alpha_dash|max_length[6]');
-        $this->form_validation->set_rules('database', lang('database'), 'trim|required|alpha_dash|max_length[64]');
-        $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_dash|max_length[32]');
-        $this->form_validation->set_rules('password', lang('password'), 'trim|required');
-
-        if ($this->input->method() === 'post' && $this->form_validation->run()) {
-            $hostname = $this->input->post('hostname');
-            $port     = $this->input->post('port');
-            $prefix   = $this->input->post('prefix');
-            $database = $this->input->post('database');
-            $username = $this->input->post('username');
-            $password = $this->input->post('password');
-
-            $connect = $this->load->database([
-                'hostname' => $hostname,
-                'username' => $username,
-                'password' => $password,
-                'database' => $database,
-                'port'     => $port,
+            $authdb = $this->load->database([
+                'hostname' => $this->input->post('auth_hostname'),
+                'username' => $this->input->post('auth_username'),
+                'password' => $this->input->post('auth_password'),
+                'database' => $this->input->post('auth_database'),
+                'port'     => $this->input->post('auth_port'),
                 'dbdriver' => 'mysqli'
             ], true);
 
-            $this->load->dbutil($connect);
-
-            if (! $this->dbutil->database_exists($database)) {
-                $this->session->set_flashdata('error', lang('install_connection_failed'));
-                redirect(site_url('install/auth'));
+            if ($authdb->conn_id === false) {
+                $this->session->set_flashdata('error', lang('install_auth_db_failed'));
+                redirect(site_url('install/database'));
             }
 
-            $cache = $this->cache->get('install');
-
-            if ($cache === false) {
-                $this->session->set_flashdata('error', lang('install_database_settings_not_found'));
-                redirect(site_url('install/auth'));
-            }
-
-            $rewrite = $this->_rewrite_config(array_merge($cache, [
-                'auth_hostname' => $hostname,
-                'auth_port'     => $port,
-                'auth_database' => $database,
-                'auth_username' => $username,
-                'auth_password' => addcslashes($password, "'\\"),
-                'auth_prefix'   => $prefix
-            ]));
+            $rewrite = $this->_rewrite_config([
+                'cms_hostname'  => $this->input->post('cms_hostname'),
+                'cms_port'      => $this->input->post('cms_port'),
+                'cms_database'  => $this->input->post('cms_database'),
+                'cms_username'  => $this->input->post('cms_username'),
+                'cms_password'  => addcslashes($this->input->post('cms_password'), "'\\"),
+                'cms_prefix'    => $this->input->post('cms_prefix'),
+                'auth_hostname' => $this->input->post('auth_hostname'),
+                'auth_port'     => $this->input->post('auth_port'),
+                'auth_database' => $this->input->post('auth_database'),
+                'auth_username' => $this->input->post('auth_username'),
+                'auth_password' => addcslashes($this->input->post('auth_password'), "'\\"),
+                'auth_prefix'   => $this->input->post('auth_prefix')
+            ]);
 
             if (! $rewrite) {
                 $this->session->set_flashdata('error', lang('install_change_file_failed'));
-                redirect(site_url('install/auth'));
+                redirect(site_url('install/database'));
             }
-
-            $this->cache->delete('install');
 
             redirect(site_url('install/settings'));
         } else {
-            $this->load->view('install/auth_db');
+            $this->load->view('install/database');
         }
     }
 
@@ -194,6 +164,8 @@ class Install extends BS_Controller
                 ]
             ], 'key');
 
+            $this->cache->delete('settings');
+
             $configWriter = $this->config_writer->get_instance();
 
             if (config_item('encryption_key') === '') {
@@ -205,15 +177,13 @@ class Install extends BS_Controller
                 $configWriter->write('sess_save_path', 'sessions');
             }
 
-            $this->cache->delete('settings');
-
-            redirect(site_url('install/account'), 'refresh');
+            redirect(site_url('install/last'), 'refresh');
         } else {
             $this->load->view('install/settings');
         }
     }
 
-    public function account_step()
+    public function last_step()
     {
         $data = [
             'option' => null
@@ -227,65 +197,62 @@ class Install extends BS_Controller
             $data['option'] = $option;
             unset($inputs['option']);
 
-            if ($option === 'new') {
+            if ($option === 'previous') {
+                $this->form_validation->set_rules('previous_username', lang('username'), 'trim|required|alpha_numeric');
+            } else {
                 $this->form_validation->set_rules('nickname', lang('nickname'), 'trim|required|alpha_dash|max_length[15]|is_user_field_unique[nickname]');
                 $this->form_validation->set_rules('username', lang('username'), 'trim|required|alpha_numeric|min_length[4]|max_length[15]|differs[nickname]|is_user_field_unique[username]');
                 $this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email|is_user_field_unique[email]');
                 $this->form_validation->set_rules('password', lang('password'), 'trim|required|min_length[8]');
                 $this->form_validation->set_rules('confirm_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[password]');
-            } else {
-                $this->form_validation->set_rules('account_email', lang('email'), 'trim|required|valid_email');
-                $this->form_validation->set_rules('account_password', lang('password'), 'trim|required');
             }
 
             $this->form_validation->set_data($inputs);
 
             if ($this->form_validation->run()) {
-                $users      = $this->user_model->count_all();
-                $usersAdmin = $this->user_model->count_all([
-                    'role' => Role_model::ROLE_ADMIN
-                ]);
+                $count = $this->user_model->count_all();
 
-                if ($users !== 0 || $usersAdmin !== 0) {
+                if ($count !== 0) {
                     $this->session->set_flashdata('warning', lang('install_step_locked'));
-                    redirect(site_url('install/account'));
+                    redirect(site_url('install/last'));
                 }
 
-                if ($option === 'new') {
-                    $id = $this->server_auth_model->create_account($inputs['username'], $inputs['email'], $inputs['password']);
+                if ($option === 'previous') {
+                    $adminId = $this->server_auth_model->account_id($inputs['previous_username']);
+
+                    if (empty($adminId)) {
+                        $this->session->set_flashdata('error', lang('install_find_account_failed'));
+                        redirect(site_url('install/last'));
+                    }
+
+                    if ($this->server_auth_model->account_gmlevel($adminId) <= 2) {
+                        $this->session->set_flashdata('error', lang('install_require_gm_rank'));
+                        redirect(site_url('install/last'));
+                    }
+
+                    $auth     = $this->server_auth_model->connect();
+                    $accounts = $auth->get('account')->result();
+
+                    foreach ($accounts as $account) {
+                        $this->user_model->insert([
+                            'id'       => $account->id,
+                            'nickname' => $account->username,
+                            'username' => $account->username,
+                            'email'    => ! empty($account->email) ? $account->email : strtolower($account->username) . '@localhost',
+                            'role'     => Role_model::ROLE_USER
+                        ]);
+                    }
+
+                    $this->user_model->update(['role' => Role_model::ROLE_ADMIN], ['id' => $adminId]);
+                } else {
+                    $accountId = $this->server_auth_model->create_account($inputs['username'], $inputs['email'], $inputs['password']);
 
                     $this->user_model->insert([
-                        'id'       => $id,
+                        'id'       => $accountId,
                         'nickname' => $inputs['nickname'],
                         'username' => $inputs['username'],
                         'email'    => $inputs['email'],
                         'password' => $inputs['password'],
-                        'role'     => Role_model::ROLE_ADMIN
-                    ]);
-                } else {
-                    $account = $this->server_auth_model->find_account($inputs['account_email']);
-
-                    if (empty($account)) {
-                        $this->session->set_flashdata('error', lang('install_find_email_failed'));
-                        redirect(site_url('install/account'));
-                    }
-
-                    if (! $this->server_auth_model->password_verify($inputs['account_password'], $account->id)) {
-                        $this->session->set_flashdata('error', lang('install_auth_account_failed'));
-                        redirect(site_url('install/account'));
-                    }
-
-                    if ($this->server_auth_model->account_gmlevel($account->id) <= 2) {
-                        $this->session->set_flashdata('error', lang('install_require_gm_rank'));
-                        redirect(site_url('install/account'));
-                    }
-
-                    $this->user_model->insert([
-                        'id'       => $account->id,
-                        'nickname' => $account->username,
-                        'username' => $account->username,
-                        'email'    => $inputs['account_email'],
-                        'password' => $inputs['account_password'],
                         'role'     => Role_model::ROLE_ADMIN
                     ]);
                 }
@@ -302,7 +269,7 @@ class Install extends BS_Controller
             }
         }
 
-        $this->load->view('install/account', $data);
+        $this->load->view('install/last', $data);
     }
 
     /**

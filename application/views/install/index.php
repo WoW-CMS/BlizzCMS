@@ -46,46 +46,60 @@
               <h1 class="uk-logo uk-margin-remove">BlizzCMS</h1>
             </div>
             <div class="uk-card uk-card-default uk-card-body">
-              <p class="uk-text-meta uk-margin-remove-top uk-margin-small-bottom"><?= lang('install_requirements') ?></p>
-              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-remove"><span><i class="fa-solid fa-circle-info"></i> PHP</span></h6>
-              <div class="uk-grid-small uk-flex uk-flex-middle uk-margin-small-bottom" uk-grid>
-                <div class="uk-width-auto">
-                  <?= $version_supported ? '<span class="uk-text-success"><i class="fa-regular fa-circle-check fa-lg"></i></span>' : '<span class="uk-text-danger"><i class="fa-regular fa-circle-xmark fa-lg"></i></span>' ?>
-                </div>
-                <div class="uk-width-expand">
-                  <p class="uk-text-bold uk-margin-remove"><?= $version ?></p>
-                  <p class="uk-text-meta uk-margin-remove"><?= lang('install_required_version') ?></p>
-                </div>
-              </div>
-              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-top uk-margin-remove-bottom"><span><i class="fa-solid fa-gear"></i> <?= lang('install_php_extensions') ?></span></h6>
-              <div class="uk-grid-small uk-grid-match uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-5@m uk-flex-center uk-margin-small" uk-grid>
-                <?php foreach ($verified_extensions as $item): ?>
+              <p class="uk-text-small uk-margin-remove-top uk-margin-small-bottom"><?= lang('install_welcome') ?></p>
+              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><?= lang('install_requirements_check') ?></span></h6>
+              <div class="uk-grid-small uk-grid-divider uk-child-width-1-1 uk-margin-small" uk-grid>
                 <div>
-                  <div class="uk-tile uk-tile-default">
-                    <span class="uk-text-success"><i class="fa-regular fa-circle-check"></i></span> <?= $item ?>
+                  <div class="uk-grid-small" uk-grid>
+                    <div class="uk-width-expand">
+                      <h6 class="uk-h6 uk-text-uppercase uk-text-bold uk-margin-remove"><?= $version_supported ? '<span class="uk-text-success"><i class="fa-solid fa-check"></i></span>' : '<span class="uk-text-danger"><i class="fa-solid fa-xmark"></i></span>' ?> PHP</h6>
+                      <p class="uk-text-meta uk-margin-remove"><?= lang('install_required_version') ?></p>
+                    </div>
+                    <div class="uk-width-auto">
+                      <?= $version ?> <i class="fa-solid fa-server"></i>
+                    </div>
                   </div>
                 </div>
-                <?php endforeach ?>
-                <?php foreach ($missing_extensions as $item): ?>
                 <div>
-                  <div class="uk-tile uk-tile-muted">
-                    <i class="fa-regular fa-circle-xmark fa-fade"></i> <?= $item ?>
-                  </div>
+                  <h6 class="uk-h6 uk-text-uppercase uk-text-bold uk-margin-remove"><?= empty($missing_extensions) ? '<span class="uk-text-success"><i class="fa-solid fa-check"></i></span>' : '<span class="uk-text-danger"><i class="fa-solid fa-xmark"></i></span>' ?> <?= lang('install_php_extensions') ?></h6>
+                  <p class="uk-text-meta uk-margin-remove"><?= lang('install_required_extensions') ?></p>
+                  <?php if (! empty($missing_extensions) && is_array($missing_extensions)): ?>
+                  <p class="uk-text-small uk-text-emphasis uk-margin-small"><i class="fa-solid fa-circle-question fa-fade"></i> <?= lang('install_how_comply_requirement') ?></p>
+                  <ul class="uk-list uk-list-square uk-text-small uk-margin-remove">
+                    <li>
+                      <?= lang('install_missing_extensions') ?>
+                      <pre><?= implode(', ', $missing_extensions) ?></pre>
+                    </li>
+                  </ul>
+                  <?php endif ?>
                 </div>
-                <?php endforeach ?>
-              </div>
-              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-top uk-margin-remove-bottom"><span><i class="fa-solid fa-box"></i> <?= lang('install_dependencies') ?></span></h6>
-              <div class="uk-grid-small uk-flex uk-flex-middle uk-margin-small-bottom" uk-grid>
-                <div class="uk-width-auto">
-                  <?= $dependencies ? '<span class="uk-text-success"><i class="fa-regular fa-circle-check fa-lg"></i></span>' : '<span class="uk-text-danger"><i class="fa-regular fa-circle-xmark fa-lg"></i></span>' ?>
-                </div>
-                <div class="uk-width-expand">
-                  <p class="uk-text-bold uk-margin-remove"><?= $dependencies ? lang('installed') : lang('not_installed') ?></p>
+                <div>
+                  <h6 class="uk-h6 uk-text-uppercase uk-text-bold uk-margin-remove"><?= $dependencies ? '<span class="uk-text-success"><i class="fa-solid fa-check"></i></span>' : '<span class="uk-text-danger"><i class="fa-solid fa-xmark"></i></span>' ?> <?= lang('install_dependencies') ?></h6>
                   <p class="uk-text-meta uk-margin-remove"><?= lang('install_required_dependencies') ?></p>
+                  <?php if (! $dependencies): ?>
+                  <p class="uk-text-small uk-text-emphasis uk-margin-small"><i class="fa-solid fa-circle-question fa-fade"></i> <?= lang('install_how_comply_requirement') ?></p>
+                  <ul class="uk-list uk-list-square uk-text-small uk-margin-remove">
+                    <li><?= lang('install_missing_composer') ?></li>
+                    <li>
+                      <?= lang('install_missing_dependencies') ?>
+                      <pre>composer install --no-plugins --no-scripts</pre>
+                    </li>
+                  </ul>
+                  <?php endif ?>
+                </div>
+                <div>
+                  <h6 class="uk-h6 uk-text-uppercase uk-text-bold uk-margin-remove"><?= empty($missing_permissions) ? '<span class="uk-text-success"><i class="fa-solid fa-check"></i></span>' : '<span class="uk-text-danger"><i class="fa-solid fa-xmark"></i></span>' ?> <?= lang('install_permissions') ?></h6>
+                  <p class="uk-text-meta uk-margin-remove"><?= lang('install_required_permissions') ?></p>
+                  <?php if (! empty($missing_permissions)): ?>
+                  <p class="uk-text-small uk-text-emphasis uk-margin-small"><i class="fa-solid fa-circle-question fa-fade"></i> <?= lang('install_how_comply_requirement') ?></p>
+                  <ul class="uk-list uk-list-square uk-text-small uk-margin-remove">
+                    <li><?= lang('install_missing_permissions') ?></li>
+                  </ul>
+                  <?php endif ?>
                 </div>
               </div>
               <?php if ($next_step): ?>
-              <a href="<?= site_url('install/cms') ?>" class="uk-button uk-button-default uk-margin-small-top"><?= lang('continue') ?></a>
+              <a href="<?= site_url('install/database') ?>" class="uk-button uk-button-default uk-margin-small-top"><?= lang('continue') ?></a>
               <?php else: ?>
               <a href="<?= current_url() ?>" class="uk-button uk-button-default uk-margin-small-top"><?= lang('reload') ?></a>
               <?php endif ?>

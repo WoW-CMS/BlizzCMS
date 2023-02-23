@@ -46,45 +46,21 @@
               <h1 class="uk-logo uk-margin-remove">BlizzCMS</h1>
             </div>
             <?= $this->load->view('static/alerts') ?>
+            <ul class="uk-subnav uk-subnav-pill uk-margin-remove-bottom" uk-switcher="connect: #option-type">
+              <li class="<?= $option === 'fresh' ? 'uk-active' : '' ?>">
+                <a href="#"><i class="fa-solid fa-asterisk"></i> <?= lang('install_fresh_install') ?></a>
+              </li>
+              <li class="<?= $option === 'previous' ? 'uk-active' : '' ?>">
+                <a href="#"><i class="fa-solid fa-arrow-rotate-right"></i> <?= lang('install_previous_data') ?></a>
+              </li>
+            </ul>
             <div class="uk-card uk-card-default uk-card-body">
-              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-remove"><span><i class="fa-solid fa-user-gear"></i> <?= lang('install_account_role') ?></span></h6>
-              <p class="uk-text-meta uk-margin-remove-top uk-margin-small-bottom"><?= lang('install_account_role_note') ?></p>
-              <ul class="uk-margin-small-bottom" uk-tab="connect: #account-option">
-                <li class="<?= $option === 'previous' ? 'uk-active' : '' ?>">
-                  <a href="#"><?= lang('install_previous_account') ?></a>
-                </li>
-                <li class="<?= $option === 'new' ? 'uk-active' : '' ?>">
-                  <a href="#"><?= lang('install_new_account') ?></a>
-                </li>
-              </ul>
-              <ul id="account-option" class="uk-switcher">
+              <ul id="option-type" class="uk-switcher">
                 <li>
-                  <p class="uk-text-meta uk-margin-small"><?= lang('install_previous_account_note') ?></p>
+                  <p class="uk-text-small uk-margin-small"><?= lang('install_fresh_install_note') ?></p>
                   <?= form_open(current_url()) ?>
-                    <?= form_hidden('option', 'previous') ?>
-                    <div class="uk-grid-small uk-margin-small" uk-grid>
-                      <div class="uk-width-1-1">
-                        <label class="uk-form-label"><?= lang('email') ?></label>
-                        <div class="uk-form-controls">
-                          <input class="uk-input" type="text" name="account_email" autocomplete="off">
-                        </div>
-                        <?= form_error('account_email', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
-                      </div>
-                      <div class="uk-width-1-1">
-                        <label class="uk-form-label"><?= lang('password') ?></label>
-                        <div class="uk-form-controls">
-                          <input class="uk-input" type="password" name="account_password" autocomplete="off">
-                        </div>
-                        <?= form_error('account_password', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
-                      </div>
-                    </div>
-                    <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><?= lang('submit') ?></button>
-                  <?= form_close() ?>
-                </li>
-                <li>
-                  <p class="uk-text-meta uk-margin-small"><?= lang('install_new_account_note') ?></p>
-                  <?= form_open(current_url()) ?>
-                    <?= form_hidden('option', 'new') ?>
+                    <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span> <?= lang('install_admin_account') ?></span></h6>
+                    <?= form_hidden('option', 'fresh') ?>
                     <div class="uk-grid-small uk-margin-small" uk-grid>
                       <div class="uk-width-1-2@s">
                         <label class="uk-form-label"><?= lang('nickname') ?></label>
@@ -121,6 +97,25 @@
                         </div>
                         <?= form_error('confirm_password', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                       </div>
+                    </div>
+                    <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><?= lang('submit') ?></button>
+                  <?= form_close() ?>
+                </li>
+                <li>
+                  <p class="uk-text-small uk-margin-small"><?= lang('install_previous_data_note') ?></p>
+                  <p class="uk-text-small uk-text-uppercase uk-text-bold uk-text-warning uk-margin-small"><i class="fa-solid fa-triangle-exclamation fa-fade"></i> <?= lang('warning') ?></p>
+                  <ul class="uk-list uk-list-square uk-text-small uk-margin-small">
+                    <li><?= lang('install_previous_data_warning') ?></li>
+                  </ul>
+                  <?= form_open(current_url()) ?>
+                    <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span> <?= lang('install_admin_account') ?></span></h6>
+                    <?= form_hidden('option', 'previous') ?>
+                    <div class="uk-margin-small">
+                      <label class="uk-form-label"><?= lang('username') ?></label>
+                      <div class="uk-form-controls">
+                        <input class="uk-input" type="text" name="previous_username" autocomplete="off">
+                      </div>
+                      <?= form_error('previous_username', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                     </div>
                     <button class="uk-button uk-button-default uk-margin-small-top" type="submit"><?= lang('submit') ?></button>
                   <?= form_close() ?>

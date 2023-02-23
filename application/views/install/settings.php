@@ -48,8 +48,9 @@
             <div class="uk-flex uk-flex-center uk-margin">
               <h1 class="uk-logo uk-margin-remove">BlizzCMS</h1>
             </div>
+            <?= $this->load->view('static/alerts') ?>
             <div class="uk-card uk-card-default uk-card-body">
-              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-remove"><span><i class="fa-solid fa-gears"></i> <?= lang('install_main_settings') ?></span></h6>
+              <h6 class="uk-h6 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-remove"><span><?= lang('install_main_settings') ?></span></h6>
               <p class="uk-text-meta uk-margin-remove-top uk-margin-small-bottom"><?= lang('install_main_settings_note') ?></p>
               <?= form_open(current_url()) ?>
                 <div class="uk-grid-small uk-margin-small" uk-grid>

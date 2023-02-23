@@ -66,10 +66,9 @@ $route['lang/(:any)']['get'] = 'home/lang/$1';
  * Install Routes
 */
 $route['install']['get'] = 'install/index';
-$route['install/cms'] = 'install/cms_step';
-$route['install/auth'] = 'install/auth_step';
+$route['install/database'] = 'install/database_step';
 $route['install/settings'] = 'install/settings_step';
-$route['install/account'] = 'install/account_step';
+$route['install/last'] = 'install/last_step';
 
 /**
  * News Routes

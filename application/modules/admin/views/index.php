@@ -149,6 +149,16 @@
                 <a href="<?= site_url('admin/tools/sessions') ?>" class="uk-button uk-button-small uk-button-primary"><?= lang('clear') ?></a>
               </div>
             </div>
+            <hr class="uk-hr">
+            <div class="uk-grid-small" uk-grid>
+              <div class="uk-width-expand">
+                <h5 class="uk-h5 uk-text-bold uk-margin-remove"><?= lang('migrate_accounts') ?></h5>
+                <p class="uk-text-small uk-margin-remove"><span class="uk-text-danger"><i class="fa-solid fa-note-sticky"></i></span> <?= lang('migrate_accounts_note') ?></p>
+              </div>
+              <div class="uk-width-auto">
+                <a href="<?= site_url('admin/tools/accounts') ?>" class="uk-button uk-button-small uk-button-primary"><?= lang('migrate') ?></a>
+              </div>
+            </div>
           </div>
         </div>
         <?php endif ?>

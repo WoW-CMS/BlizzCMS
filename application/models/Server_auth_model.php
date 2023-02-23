@@ -209,21 +209,6 @@ class Server_auth_model extends CI_Model
     }
 
     /**
-     * Find an account if it exists
-     *
-     * @param string $user
-     * @return mixed
-     */
-    public function find_account($user)
-    {
-        return $this->connect()
-            ->where('username', $user)
-            ->or_where('email', $user)
-            ->get('account')
-            ->row();
-    }
-
-    /**
      * Password verify
      *
      * @param string $password
@@ -249,8 +234,8 @@ class Server_auth_model extends CI_Model
                 $validate = (strtoupper($row->v) === client_pwd_hash($row->username, $password, 'hex', $row->s));
                 break;
 
-            case 'trinity_sha':
             case 'mangos':
+            case 'trinity_sha':
                 $validate = hash_equals(strtoupper($row->sha_pass_hash), client_pwd_hash($row->username, $password));
                 break;
         }
