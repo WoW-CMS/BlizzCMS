@@ -412,7 +412,7 @@ a.uk-link-heading:hover {
 
 .uk-card-default.uk-card-hover:hover {
   background-color: #0e1b3e;
-  box-shadow: 8px 4px 10px 2px rgba(1, 5, 32, .2), 0 0 0 1px rgba(13, 119, 213, .075);
+  box-shadow: 8px 4px 10px 2px rgba(8, 15, 34, .4), 0 0 0 1px rgba(13, 119, 213, .075);
 }
 
 .uk-card-default .uk-card-header {
