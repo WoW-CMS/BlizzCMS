@@ -210,6 +210,7 @@ $lang['timespan'] = 'Lapso de tiempo';
 $lang['endless'] = 'Interminable';
 $lang['visible'] = 'Visible';
 $lang['hidden'] = 'Oculto';
+$lang['terms'] = 'Términos';
 
 $lang['offline'] = 'Offline';
 $lang['online'] = 'Online';

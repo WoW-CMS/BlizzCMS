@@ -210,6 +210,7 @@ $lang['timespan'] = 'Timespan';
 $lang['endless'] = 'Endless';
 $lang['visible'] = 'Visible';
 $lang['hidden'] = 'Hidden';
+$lang['terms'] = 'Terms';
 
 $lang['offline'] = 'Offline';
 $lang['online'] = 'Online';

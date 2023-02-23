@@ -157,7 +157,7 @@ class Auth extends BS_Controller
         $this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email|is_user_field_unique[email]');
         $this->form_validation->set_rules('password', lang('password'), 'trim|required|min_length[8]');
         $this->form_validation->set_rules('confirm_password', lang('confirm_password'), 'trim|required|min_length[8]|matches[password]');
-        $this->form_validation->set_rules('terms', lang('terms_and_conditions'), 'trim|required');
+        $this->form_validation->set_rules('terms', lang('terms'), 'trim|required');
 
         if (config_item('captcha_register_page')) {
             $this->set_captcha_rule();
