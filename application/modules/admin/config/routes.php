@@ -5,6 +5,7 @@ $route['admin'] = 'admin/index';
 
 $route['admin/tools/cache']['get'] = 'tools/cache';
 $route['admin/tools/sessions']['get'] = 'tools/sessions';
+$route['admin/tools/accounts']['get'] = 'tools/migrate_accounts';
 
 $route['admin/update']['get'] = 'update/index';
 $route['admin/update/run']['get'] = 'update/run';
