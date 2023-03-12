@@ -1150,10 +1150,10 @@ input:checked + .uk-switch-slider::before {
 
 .uk-radio-button-group .uk-radio-container .uk-label-container {
   display: flex;
-  border: 2px solid #e9e9ee;
+  border: 1px solid #e9e9ee;
   border-radius: 2px;
   align-items: center;
-  padding: 8px 16px;
+  padding: 10px 15px;
   transition: all ease-in-out .2s;
 }
 
@@ -1167,7 +1167,7 @@ input:checked + .uk-switch-slider::before {
 
 .uk-radio-button-group .uk-radio-container .uk-label-dot {
   position: relative;
-  background: #e9e9ee;
+  background: #efeff2;
   border-radius: 50%;
   margin-right: 4px;
   height: 12px;
@@ -1189,7 +1189,7 @@ input:checked + .uk-switch-slider::before {
 }
 
 .uk-radio-button-group .uk-radio-container label {
-  color: #333;
+  color: #4e4f55;
   font-size: .75rem;
   font-weight: 600;
   text-align: center;
