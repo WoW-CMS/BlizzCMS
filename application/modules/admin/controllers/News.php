@@ -54,6 +54,7 @@ class News extends Admin_Controller
         $this->form_validation->set_rules('title', lang('title'), 'trim|required');
         $this->form_validation->set_rules('summary', lang('summary'), 'trim|required|max_length[255]');
         $this->form_validation->set_rules('content', lang('content'), 'trim|required');
+        $this->form_validation->set_rules('slug', lang('slug'), 'trim|required|alpha_dash');
         $this->form_validation->set_rules('file', lang('file'), 'callback__file_required');
         $this->form_validation->set_rules('discuss', lang('allow_comments'), 'trim');
         $this->form_validation->set_rules('meta_description', lang('meta_description'), 'trim|max_length[155]');
@@ -83,7 +84,7 @@ class News extends Admin_Controller
                 'title'            => $this->input->post('title'),
                 'summary'          => $this->input->post('summary'),
                 'content'          => purify($this->input->post('content'), 'article'),
-                'slug'             => url_title($this->input->post('title'), '-', true),
+                'slug'             => strtolower($this->input->post('slug')),
                 'image'            => $directory . $uploadData['file_name'],
                 'meta_description' => $this->input->post('meta_description', true),
                 'meta_robots'      => $this->input->post('meta_robots', true),
@@ -132,6 +133,7 @@ class News extends Admin_Controller
         $this->form_validation->set_rules('title', lang('title'), 'trim|required');
         $this->form_validation->set_rules('summary', lang('summary'), 'trim|required|max_length[255]');
         $this->form_validation->set_rules('content', lang('content'), 'trim|required');
+        $this->form_validation->set_rules('slug', lang('slug'), 'trim|required|alpha_dash');
         $this->form_validation->set_rules('discuss', lang('allow_comments'), 'trim');
         $this->form_validation->set_rules('meta_description', lang('meta_description'), 'trim|max_length[155]');
         $this->form_validation->set_rules('meta_robots', lang('meta_robots'), 'trim');
@@ -170,7 +172,7 @@ class News extends Admin_Controller
                 'title'            => $this->input->post('title'),
                 'summary'          => $this->input->post('summary'),
                 'content'          => purify($this->input->post('content'), 'article'),
-                'slug'             => url_title($this->input->post('title'), '-', true),
+                'slug'             => strtolower($this->input->post('slug')),
                 'meta_description' => $this->input->post('meta_description', true),
                 'meta_robots'      => $this->input->post('meta_robots', true),
                 'discuss'          => empty($this->input->post('discuss', true)) ? 0 : 1

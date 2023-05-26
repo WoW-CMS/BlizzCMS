@@ -25,6 +25,13 @@
                   <?= form_error('title', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                 </div>
                 <div class="uk-width-1-1">
+                  <label class="uk-form-label"><?= lang('slug') ?></label>
+                  <div class="uk-form-controls">
+                    <input class="uk-input" type="text" name="slug" value="<?= $article->slug ?>" placeholder="<?= lang('slug') ?>" autocomplete="off">
+                  </div>
+                  <?= form_error('slug', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                </div>
+                <div class="uk-width-1-1">
                   <label class="uk-form-label"><?= lang('summary') ?></label>
                   <div class="uk-form-controls">
                     <textarea class="uk-textarea" name="summary" rows="5" autocomplete="off"><?= $article->summary ?></textarea>
