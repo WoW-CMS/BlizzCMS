@@ -31,7 +31,7 @@
               </div>
               <div class="uk-width-auto">
                 <div class="uk-button-group">
-                  <button href="#filter_toggle" class="uk-button uk-button-default uk-button-small uk-margin-small-right" type="button" uk-toggle="target: #filter_toggle; animation: uk-animation-slide-top-small"><i class="fa-solid fa-filter"></i></button>
+                  <button class="uk-button uk-button-default uk-button-small uk-margin-small-right" type="button" uk-toggle="target: #filter_toggle; animation: uk-animation-slide-top-small"><i class="fa-solid fa-filter"></i></button>
                   <a href="<?= site_url('admin/bans/emails/add') ?>" class="uk-button uk-button-default uk-button-small"><i class="fa-solid fa-pen"></i> <?= lang('add') ?></a>
                 </div>
               </div>

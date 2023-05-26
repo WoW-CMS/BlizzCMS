@@ -16,7 +16,7 @@
             <h3 class="uk-card-title"><?= lang('logs') ?></h3>
           </div>
           <div class="uk-width-auto">
-            <button href="#filter_toggle" class="uk-button uk-button-default uk-button-small" type="button" uk-toggle="target: #filter_toggle; animation: uk-animation-slide-top-small"><i class="fa-solid fa-filter"></i></button>
+            <button class="uk-button uk-button-default uk-button-small" type="button" uk-toggle="target: #filter_toggle; animation: uk-animation-slide-top-small"><i class="fa-solid fa-filter"></i></button>
           </div>
         </div>
       </div>

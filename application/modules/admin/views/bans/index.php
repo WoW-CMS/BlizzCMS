@@ -30,7 +30,7 @@
               </div>
               <div class="uk-width-auto">
                 <div class="uk-button-group">
-                  <button href="#filter_toggle" class="uk-button uk-button-default uk-button-small" type="button" uk-toggle="target: #filter_toggle; animation: uk-animation-slide-top-small"><i class="fa-solid fa-filter"></i></button>
+                  <button class="uk-button uk-button-default uk-button-small" type="button" uk-toggle="target: #filter_toggle; animation: uk-animation-slide-top-small"><i class="fa-solid fa-filter"></i></button>
                   <div class="uk-inline uk-margin-small-left">
                     <button class="uk-button uk-button-default uk-button-small" type="button"><i class="fa-solid fa-gavel"></i></button>
                     <div uk-dropdown="mode: click; boundary: ! .uk-container">
