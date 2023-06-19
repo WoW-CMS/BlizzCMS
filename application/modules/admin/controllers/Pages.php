@@ -75,6 +75,13 @@ class Pages extends Admin_Controller
                 'description' => "Can view {$title} page"
             ]);
 
+            $permissionId = $this->permission_model->find(['key' => $pageId, 'module' => ':page:'])->id;
+
+            $this->role_permission_model->insert([
+                'role_id'         => 5,
+                'permission_id'   => $permissionId,
+            ]);
+
             $this->log_model->create('page', 'add', 'Added a page', [
                 'page' => $title
             ], 'admin/pages/edit/' . $pageId);
