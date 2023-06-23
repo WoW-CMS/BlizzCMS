@@ -71,7 +71,7 @@ class Roles extends Admin_Controller
             $rows        = [];
 
             foreach ($permissions as $item) {
-                $permissions[] = ['role_id' => $roleId, 'permission_id' => $item];
+                $rows[] = ['role_id' => $roleId, 'permission_id' => $item];
             }
 
             if (! empty($rows)) {
