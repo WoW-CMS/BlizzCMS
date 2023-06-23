@@ -55,7 +55,7 @@
               <?php foreach ($logs as $item): ?>
               <tr>
                 <td><?= $item->id ?></td>
-                <td><?= $item->created_at ?></td>
+                <td><?= format_date($item->created_at, 'M j, Y, h:i A') ?></td>
                 <td class="uk-text-center">
                   <?php if ($item->user_id == 0): ?>
                   <span class="bc-avatar-guest">

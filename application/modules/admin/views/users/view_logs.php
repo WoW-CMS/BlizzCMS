@@ -74,7 +74,7 @@
                 <tbody>
                   <?php foreach ($logs as $item): ?>
                   <tr>
-                    <td><?= $item->created_at ?></td>
+                    <td><?= format_date($item->created_at, 'M j, Y, h:i A') ?></td>
                     <td><?= $item->ip ?></td>
                     <td class="uk-text-center">
                       <?php if ($item->status === Log_model::STATUS_SUCCEEDED): ?>
