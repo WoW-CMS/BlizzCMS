@@ -112,6 +112,7 @@ endif; ?>
                     <option value="english">English</option>
                     <option value="spanish">Spanish</option>
                     <option value="german">German</option>
+                    <option value="french">French</option>
                   </select>
                 </div>
               </div>
