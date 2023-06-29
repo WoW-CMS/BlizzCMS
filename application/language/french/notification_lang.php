@@ -161,4 +161,5 @@ $lang['notification_cms_updated'] = 'Le CMS a été mis à jour';
 $lang['notification_cms_update_error'] = 'Le CMS n\'a pas pu être mis à jour';
 $lang['notification_cms_not_updated'] = 'Une nouvelle version n\'a pas été trouvée pour la mise à jour';
 $lang['notification_select_category'] = 'Ce n\'est pas une sous-catégorie';
+$lang['notification_delete_comment_error'] = 'Impossible de supprimer le commentaire.';
 ?>

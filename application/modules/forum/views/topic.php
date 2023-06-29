@@ -197,47 +197,61 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/forum/topic/reply/delete'); ?>",
-          method:"POST",
-          data:{value},
-          dataType:"text",
-          beforeSend: function(){
-            $.amaran({
-              'theme': 'awesome info',
-              'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
-                info: '',
-                icon: 'fas fa-sign-in-alt'
-              },
-              'delay': 5000,
-              'position': 'top right',
-              'inEffect': 'slideRight',
-              'outEffect': 'slideRight'
-            });
-          },
-          success:function(response){
-            if(!response)
-              alert(response);
-
-            if (response) {
-              $.amaran({
-                'theme': 'awesome ok',
-                  'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_reply_deleted'); ?>',
-                  info: '',
-                  icon: 'fas fa-check-circle'
-                },
-                'delay': 5000,
-                'position': 'top right',
-                'inEffect': 'slideRight',
-                'outEffect': 'slideRight'
-              });
+            url: "<?= base_url($lang.'/forum/topic/reply/delete'); ?>",
+            method: "POST",
+            data: { value },
+            dataType: "text",
+            beforeSend: function() {
+                $.amaran({
+                    'theme': 'awesome info',
+                    'content': {
+                        title: '<?= $this->lang->line('notification_title_info'); ?>',
+                        message: '<?= $this->lang->line('notification_checking'); ?>',
+                        info: '',
+                        icon: 'fas fa-sign-in-alt'
+                    },
+                    'delay': 1500,
+                    'position': 'top right',
+                    'inEffect': 'slideRight',
+                    'outEffect': 'slideRight'
+                });
+            },
+            success: function(response) {
+                if (!response) {
+                    $.amaran({
+                      'theme': 'awesome error',
+                      'content': {
+                          title: '<?= $this->lang->line('notification_title_error'); ?>',
+                          message: '<?= $this->lang->line('notification_delete_comment_error'); ?>',
+                          info: '',
+                          icon: 'fas fa-times-circle'
+                      },
+                      'delay': 6000,
+                      'position': 'top right',
+                      'inEffect': 'slideRight',
+                      'outEffect': 'slideRight'
+                  });
+                }
+                if (response) {
+                    $.amaran({
+                        'theme': 'awesome ok',
+                        'content': {
+                            title: '<?= $this->lang->line('notification_title_success'); ?>',
+                            message: '<?= $this->lang->line('notification_reply_deleted'); ?>',
+                            info: '',
+                            icon: 'fas fa-check-circle'
+                        },
+                        'delay': 5000,
+                        'position': 'top right',
+                        'inEffect': 'slideRight',
+                        'outEffect': 'slideRight'
+                    });
+                    
+                    window.location.replace("<?= base_url('forum/topic/'.$idlink); ?>");
+                }
             }
-            window.location.replace("<?= base_url('forum/topic/'.$idlink); ?>");
-          }
         });
+
       }
     </script>
     <?php endif; ?>

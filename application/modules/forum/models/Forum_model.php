@@ -181,6 +181,8 @@ class Forum_model extends CI_Model
         );
 
         $this->db->where('id', $idlink)->update('forum_topics', $data);
+
+        $this->service->logsService->send($author, 2, $idlink, '[Update topic]', $title);
         
         return true;
     }
@@ -208,4 +210,34 @@ class Forum_model extends CI_Model
         $this->service->logsService->send($author, 2, $topicid, '[New Reply]', $reply);
         return true;
     }
+
+    /**
+     * Remueve un comentario en el foro.
+     *
+     * @param int $commentId ID del comentario a remover.
+     * @param int $userId ID del usuario que realiza la acción.
+     * @return bool True si se eliminó el comentario correctamente, False en caso contrario.
+     */
+    public function removeComment($commentId, $userId)
+    {
+        // Verificar si el comentario pertenece al usuario
+        $comment = $this->db->where('id', $commentId)
+                            ->where('author', $userId)
+                            ->get('forum_replies')
+                            ->row();
+
+        if (!$comment) {
+            return false;
+        }
+
+        // Eliminar el comentario de la base de datos
+        $this->db->where('id', $commentId)
+                ->delete('forum_replies');
+
+        // Registrar la acción en los logs
+        $this->service->logsService->send($userId, 3, $comment->topic, '[Remove Comment]', $comment->commentary);
+
+        return true;
+    }
+
 }

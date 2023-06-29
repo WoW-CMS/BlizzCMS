@@ -162,3 +162,4 @@ $lang['notification_cms_update_error'] = 'The CMS could not be updated';
 $lang['notification_cms_not_updated'] = 'A new version has not been found to update';
 
 $lang['notification_select_category'] = 'It is not subcategory';
+$lang['notification_delete_comment_error'] = 'Failed to delete the comment.';

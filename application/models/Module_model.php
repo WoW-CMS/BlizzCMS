@@ -17,14 +17,14 @@ class Module_model extends CI_Model {
 	 * @param $module
 	 * @return mixed
 	 */
-	protected function _getModules($module)
+	protected function _getModules(string $module)
 	{
 		$qq = $this->db->select('id')->where('name', $module)->get(self::MODULES_TABLE)->row('id');
 
 		return $qq;
 	}
 
-	public function getStatusModule($module): bool
+	public function getStatusModule(string $module): bool
 	{
 		$moduleID = $this->_getModules($module);
 

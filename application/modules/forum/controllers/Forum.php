@@ -164,13 +164,9 @@ class Forum extends MX_Controller {
         if (!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 
+        $ssesid = $this->session->userdata('wow_sess_id');
         $id = $this->input->post('value');
-        echo $this->forum_model->removeComment($id);
+        echo $this->forum_model->removeComment($id, $ssesid);
     }
 
-    public function addtopic()
-    {
-        if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
-    }
 }
