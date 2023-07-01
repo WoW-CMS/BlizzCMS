@@ -189,11 +189,17 @@ class User_model extends CI_Model
 					'verifier'      => $this->wowauth->game_hash($username, $password, 'srp6', $salt),
 					'email'         => $email,
 					'expansion'     => $expansion,
-					'session_key'   => null
 				];
 
-				if (!$this->auth->field_exists('session_key', 'account')) {
+				if ($this->auth->field_exists('session_key', 'account')) {
+					$data['session_key'] = null;
+				}
+
+				if ($this->auth->field_exists('session_key_auth', 'account')) {
 					$data['session_key_auth'] = null;
+				}
+
+				if ($this->auth->field_exists('session_key_bnet', 'account')) {
 					$data['session_key_bnet'] = null;
 				}
 
@@ -538,10 +544,14 @@ class User_model extends CI_Model
 			$mail_message .= 'Kind regards,<br>';
 			$mail_message .= $this->config->item('email_settings_sender_name') . ' Support.';
 
-			return $this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
+			$this->wowgeneral->smtpSendEmail($email, $this->lang->line('email_password_recovery'), $mail_message);
+
+			return true;
 		} else {
 			return 'sendErr';
 		}
+
+		return 'sendErr';
 	}
 
 	/**
@@ -566,10 +576,10 @@ class User_model extends CI_Model
 	public function generateHash($emulator, $username, $password)
 	{
 		if ($emulator == "srp6") {
-			$salt = random_bytes(32);
+			$salt = bin2hex(random_bytes(16));
 			$data = [
 				'salt'      => $salt,
-				'verifier' => $this->wowauth->game_hash($username, $password, 'srp6', $salt)
+				'verifier' => $this->wowauth->game_hash($username, $password, 'srp6', $salt),
 			];
 		} elseif ($emulator == "hex") {
 			$salt = strtoupper(bin2hex(random_bytes(32)));
