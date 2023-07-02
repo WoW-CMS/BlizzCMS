@@ -238,7 +238,12 @@ class User extends MX_Controller {
 
 	public function logout()
 	{
-		$this->wowauth->logout();
+		if (! $this->wowauth->isLogged()) {
+			redirect(site_url(), 'refresh');
+		}
+
+		$this->session->sess_destroy();
+		redirect(site_url('login'), 'refresh');
 	}
 
 	public function recovery()
