@@ -72,8 +72,12 @@
                           <?php endif; ?>
                         </div>
                         <div class="uk-width-auto">
+						<?php if ($this->wowrealm->RealmStatus($MultiRealm->realmID, $this->wowrealm->realmGetHostname($MultiRealm->realmID))): ?>
                           <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $top->store_item ?>" value="<?= $top->store_item ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
-                        </div>
+                        <?php else: ?>
+						  <button title="<?= $this->lang->line('panel_server_checkstatus'); ?>" class="uk-button uk-button-default uk-button-small" id="button_item<?= $top->store_item ?>" value="<?= $top->store_item ?> " onclick="AddItem(event, this.value)" disabled><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
+						<?php endif ?>					
+						</div>
                       </div>
                     </div>
                   </div>

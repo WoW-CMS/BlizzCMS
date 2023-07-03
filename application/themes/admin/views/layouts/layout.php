@@ -143,8 +143,6 @@
                     <li><a href="<?= base_url('admin/store'); ?>"><span class="admin-subnav-icon"><i class="fas fa-shopping-cart"></i></span><?= $this->lang->line('admin_nav_manage_store'); ?></a></li>
                     <li><a href="<?= base_url('admin/donate'); ?>"><span class="admin-subnav-icon"><i class="fas fa-donate"></i></span><?= $this->lang->line('admin_nav_donate_methods'); ?></a></li>
                     <li><a href="<?= base_url('admin/topsites'); ?>"><span class="admin-subnav-icon"><i class="fas fa-star"></i></span><?= $this->lang->line('admin_nav_topsites'); ?></a></li>
-                    <li><a href="<?= base_url('admin/donate/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_donate_logs'); ?></a></li>
-                    <li><a href="<?= base_url('admin/vote/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_vote_logs'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -157,6 +155,16 @@
                 </div>
               </li>
               <li><a href="<?= base_url('admin/tickets'); ?>"><span class="admin-subnav-icon"><i class="fas fa-scroll"></i></span><?= $this->lang->line('admin_nav_Tickets'); ?></a></li>
+             <li>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comments"></i></span><?= $this->lang->line('admin_nav_system_logs'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <div class="uk-navbar-dropdown">
+                  <ul class="uk-nav uk-navbar-dropdown-nav">
+				    <li><a href="<?= base_url('admin/store/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_store_logs'); ?></a></li>
+                    <li><a href="<?= base_url('admin/donate/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_donate_logs'); ?></a></li>
+                    <li><a href="<?= base_url('admin/vote/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-receipt"></i></span><?= $this->lang->line('admin_nav_vote_logs'); ?></a></li>
+                  </ul>
+                </div>
+              </li>
             </ul>
           </div>
           <div class="uk-navbar-right"></div>
