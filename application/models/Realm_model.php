@@ -1,78 +1,91 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Realm_model extends CI_Model {
-
+class Realm_model extends CI_Model
+{
     private $RealmStatus;
-    
+
     /**
      * General_model constructor.
      */
     public function __construct()
     {
         parent::__construct();
+
         $this->RealmStatus = null;
-        $this->auth = $this->load->database('auth', TRUE);
     }
 
+    /**
+     * @return mixed
+     */
     public function getRealms()
     {
-        return $this->db->select('*')->get('realms');
+        return $this->db->get('realms');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealm($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('realms');
+        return $this->db->where('id', $id)
+            ->get('realms');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmPort($id)
     {
-        return $this->auth->select('port')->where('id', $id)->get('realmlist')->row('port');
+        return $this->wowauth->auth_database()
+            ->where('id', $id)
+            ->get('realmlist')
+            ->row('port');
     }
 
-    public function RealmStatus($MultiRealm, $status = false)
+    /**
+     * @param object $multirealm
+     * @param bool $status
+     * @return bool
+     */
+    public function RealmStatus($multirealm, $status = false)
     {
-        $port = $this->getRealmPort($MultiRealm);
+        $port = $this->getRealmPort($multirealm);
 
-        if ($this->config->item('check_realm_local'))
-        {
-            $host = $this->realmGetHostnameLocal($MultiRealm);
-        }
-        else
-        {
-            $host = $this->realmGetHostname($MultiRealm);
+        if (config_item('check_realm_local')) {
+            $host = $this->realmGetHostnameLocal($multirealm);
+        } else {
+            $host = $this->realmGetHostname($multirealm);
         }
 
-        if ($this->RealmStatus != null)
-        {
+        if ($this->RealmStatus != null) {
             return $this->RealmStatus;
-        }
-        else
-        {
-            if (!$status)
-            {
-                $cachestatus = $this->cache->file->get('realmstatus_'.$MultiRealm);
+        } else {
+            if (!$status) {
+                $cachestatus = $this->cache->file->get('realmstatus_' . $multirealm);
 
-                if($cachestatus !== false)
-                {
-                    return ($cachestatus == "online") ? true : false;
+                if ($cachestatus !== false) {
+                    return ($cachestatus == 'online') ? true : false;
                 }
             }
 
-            if (fsockopen($host, $port, $errno, $errstr, 1.5))
-            {
+            if (fsockopen($host, $port, $errno, $errstr, 1.5)) {
                 $this->RealmStatus = true;
-            }
-            else
-            {
+            } else {
                 $this->RealmStatus = false;
             }
 
-            $this->cache->file->save('realmstatus_'.$MultiRealm, ($this->RealmStatus) ? "online" : "offline", 180);
+            $this->cache->file->save('realmstatus_' . $multirealm, ($this->RealmStatus) ? 'online' : 'offline', 180);
             return $this->RealmStatus;
         }
     }
 
+    /**
+     * @param int $id
+     * @return object
+     */
     public function getRealmConnectionData($id)
     {
         $data = $this->getRealm($id)->row_array();
@@ -85,6 +98,10 @@ class Realm_model extends CI_Model {
         );
     }
 
+    /**
+     * @param int $id
+     * @return object
+     */
     public function realmConnection($username, $password, $hostname, $database)
     {
         $dsn = 'mysqli://'.
@@ -96,187 +113,303 @@ class Realm_model extends CI_Model {
         return $this->load->database($dsn, TRUE);
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmName($id)
     {
-        return $this->auth->select('name')->where('id', $id)->get('realmlist')->row('name');
+        return $this->wowauth->auth_database()
+            ->where('id', $id)
+            ->get('realmlist')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function realmGetHostname($id)
     {
-        return $this->auth->select('address')->where('id', $id)->get('realmlist')->row('address');
+        return $this->wowauth->auth_database()
+            ->where('id', $id)
+            ->get('realmlist')
+            ->row('address');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function realmGetHostnameLocal($id)
     {
-        return $this->auth->select('localAddress')->where('id', $id)->get('realmlist')->row('localAddress');
+        return $this->wowauth->auth_database()
+            ->where('id', $id)
+            ->get('realmlist')
+            ->row('localAddress');
     }
 
-    public function getGeneralCharactersSpecifyAcc($multiRealm, $id)
+    /**
+     * @param object $multirealm
+     * @param int $id
+     * @return mixed
+     */
+    public function getGeneralCharactersSpecifyAcc($multirealm, $id)
     {
-        $this->multiRealm = $multiRealm;
-        return $this->multiRealm->select('*')->where('account', $id)->get('characters');
+        $this->multirealm = $multirealm;
+
+        return $this->multirealm->where('account', $id)
+            ->get('characters');
     }
 
-    public function getGuidCharacterSpecifyName($multiRealm, $name)
+    /**
+     * @param object $multirealm
+     * @param string $name
+     * @return mixed
+     */
+    public function getGuidCharacterSpecifyName($multirealm, $name)
     {
-        $this->multiRealm = $multiRealm;
-        return $this->multiRealm->select('guid')->where('name', $name)->get('characters')->row('guid');
+        $this->multirealm = $multirealm;
+
+        return $this->multirealm->where('name', $name)
+            ->get('characters')
+            ->row('guid');
     }
 
+    /**
+     * @param int $id
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getGeneralCharactersSpecifyGuid($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('*')->where('guid', $id)->get('characters');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters');
     }
 
+    /**
+     * @param object $multirealm
+     * @param int $id
+     * @return mixed
+     */
     public function getNameCharacterSpecifyGuid($multirealm, $id)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('name');
     }
 
+    /**
+     * @param string $name
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getCharNameAlreadyExist($name, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')->where('name', $name)->get('characters');
+
+        return $this->multirealm->where('name', $name)
+            ->get('characters');
     }
 
+    /**
+     * @param object $multirealm
+     * @param int $id
+     * @return mixed
+     */
     public function getCharExistGuid($multirealm, $id)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('guid')->where('guid', $id)->get('characters')->num_rows();
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getAccountCharGuid($multirealm, $id)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('account')->where('guid', $id)->get('characters')->row('account');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('account');
     }
 
+    /**
+     * @param int $id
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getCharBanSpecifyGuid($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('guid')->where('guid', $id)->where('active', '1')->get('character_banned');
+
+        return $this->multirealm->select('guid')
+            ->where('guid', $id)
+            ->where('active', '1')
+            ->get('character_banned');
     }
 
+    /**
+     * @param int $id
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getCharName($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('name')->where('guid', $id)->get('characters')->row('name');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getCharLevel($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('level')->where('guid', $id)->get('characters')->row('level');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('level');
     }
 
+    /**
+     * @param int $id
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getCharActive($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('online')->where('guid', $id)->get('characters')->row('online');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('online');
     }
 
+    /**
+     * @param object $multirealm
+     * @param int $id
+     * @return mixed
+     */
     public function getCharRace($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('race')->where('guid', $id)->get('characters')->row('race');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('race');
     }
 
+    /**
+     * @param object $multirealm
+     * @param int $id
+     * @return mixed
+     */
     public function getCharClass($id, $multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('class')->where('guid', $id)->get('characters')->row('class');
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters')
+            ->row('class');
     }
 
-    public function getCharactersOnlineAlliance($multiRealm)
+    /**
+     * @param object $multirealm
+     * @return mixed
+     */
+    public function getCharactersOnlineAlliance($multirealm)
     {
-        $this->multiRealm = $multiRealm;
-        $races = array('1','3','4','7','11','22','25');
+        $this->multirealm = $multirealm;
 
-        $qq = $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters');
-
-        if($qq->num_rows())
-            return $qq->num_rows();
-        else
-            return '0';
+        return $this->multirealm->where_in('race', General_model::ALLIANCE_RACES)
+            ->where('online', 1)
+            ->get('characters')
+            ->num_rows();
     }
 
-
-    public function getCharactersOnlineHorde($multiRealm)
+    /**
+     * @param object $multirealm
+     * @return mixed
+     */
+    public function getCharactersOnlineHorde($multirealm)
     {
-        $this->multiRealm = $multiRealm;
-        $races = array('2','5','6','8','10','9','26');
+        $this->multirealm = $multirealm;
 
-        $qq = $this->multiRealm->select('guid')->where_in('race', $races)->where('online', '1')->get('characters');
-
-        if($qq->num_rows())
-            return $qq->num_rows();
-        else
-            return '0';
+        return $this->multirealm->where_in('race', General_model::HORDE_RACES)
+            ->where('online', 1)
+            ->get('characters')
+            ->num_rows();
     }
 
-    public function getAllCharactersOnline($multiRealm)
+    /**
+     * @param object $multirealm
+     * @return mixed
+     */
+    public function getAllCharactersOnline($multirealm)
     {
-        $this->multiRealm = $multiRealm;
+        $this->multirealm = $multirealm;
 
-        $qq = $this->multiRealm->select('online')->where('online', '1')->get('characters');
-
-        if($qq->num_rows())
-            return $qq->num_rows();
-        else
-            return '0';
+        return $this->multirealm->where('online', 1)
+            ->get('characters')
+            ->num_rows();
     }
 
-    public function getInformationCharacter($MultiRealm, $id)
+    /**
+     * @param object $multirealm
+     * @param int $id
+     * @return mixed
+     */
+    public function getInformationCharacter($multirealm, $id)
     {
-        $this->multirealm = $MultiRealm;
-        
-        return $this->multirealm->select('*')->where('guid', $id)->get('characters');
+        $this->multirealm = $multirealm;
+
+        return $this->multirealm->where('guid', $id)
+            ->get('characters');
     }
 
-    public function connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
+    /**
+     * @param $command
+     * @param $soapUser
+     * @param $soapPass
+     * @param $soapHost
+     * @param $soapPort
+     * @param $soapUri
+     * @return mixed
+     */
+    public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soapUri)
     {
-        $this->client = new SoapClient(NULL, array(
-            "location"      => "http://".$soapHost.":".$soapPort."/",
-            "uri"           => "urn:". $soap_uri ."",
-            "style"         => SOAP_RPC,
-            "login"         => $soapUser,
-            "password"      => $soapPass,
-            "trace"         => 1,
-            "exceptions"    => 0
-            )
-        );
+        try {
+            $client = new SoapClient(NULL, [
+                'location'   => 'http://' . $soapHost . ':' . $soapPort . '/',
+                'uri'        => 'urn:' . $soapUri,
+                'style'      => SOAP_RPC,
+                'login'      => $soapUser,
+                'password'   => $soapPass,
+                'trace'      => 1,
+                'exceptions' => 0
+            ]);
 
-        if (is_soap_fault($this->client))
-        {
-            return 'Soap not found';
+            $response = $client->executeCommand(new SoapParam($command, "command"));
+        } catch (\SoapFault $fault) {
+            $response = $fault->getMessage();
         }
-        return $this->client;
-    }
 
-	/**
-	 * @param $command
-	 * @param $soapUser
-	 * @param $soapPass
-	 * @param $soapHost
-	 * @param $soapPort
-	 * @param $soap_uri
-	 * @return void
-	 */
-	public function commandSoap($command, $soapUser, $soapPass, $soapHost, $soapPort, $soap_uri)
-    {
-        $client = $this->connect($soapUser, $soapPass, $soapHost, $soapPort, $soap_uri);
-
-		try {
-			$result = $client->executeCommand(new SoapParam($command, "command"));
-
-			return $result;
-		}
-		catch (Exception $e)
-		{
-			echo "Command failed! Reason:<br />\n";
-			echo $e->getMessage();
-		}
+        return $response;
     }
 }

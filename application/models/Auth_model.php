@@ -227,7 +227,7 @@ class Auth_model extends CI_Model
                 return $authdb->where('id', $id)->get('account')->row('last_ip');
 
             default:
-                return 'Unknown';
+                return lang('unknown');
         }
     }
 
@@ -251,7 +251,7 @@ class Auth_model extends CI_Model
                 return $authdb->where('id', $id)->get('account')->row('last_login');
 
             default:
-                return 'Unknown';
+                return lang('unknown');
         }
     }
 

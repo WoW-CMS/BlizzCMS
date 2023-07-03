@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Module_model extends CI_Model
 {
-    protected const MODULES_TABLE = 'modules';
-
     /**
      * Module_model constructor.
      */
@@ -19,7 +17,9 @@ class Module_model extends CI_Model
      */
     protected function _getModules(string $module)
     {
-        return $this->db->where('name', $module)->get(self::MODULES_TABLE)->row('id');
+        return $this->db->where('name', $module)
+            ->get('modules')
+            ->row('id');
     }
 
     /**
@@ -29,7 +29,7 @@ class Module_model extends CI_Model
     public function getStatusModule(string $module): bool
     {
         $query = $this->db->where('name', $module)
-            ->get(self::MODULES_TABLE)
+            ->get('modules')
             ->row('status');
 
         if ($query === '1') {

@@ -1,5 +1,5 @@
-<?php 
-
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Service_model extends CI_Model
 {
@@ -9,16 +9,12 @@ class Service_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->logsService = new LogsService();
         $this->modService = new ModService();
     }
-    
 }
 
-/**
- * [Description LogsService]
- */
 class LogsService extends CI_Model
 {
     /**
@@ -27,36 +23,29 @@ class LogsService extends CI_Model
      * @param int $topicid
      * @param string $body
      * @param string $reply
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function send(int $author, int $type, int $topicid, string $body, string $reply)
     {
-        $data = [
-            'userid' => $author,
-            'type' => $type,
-            'idtopic' => $topicid,
-            'function' => $body,
+        $this->db->insert('mod_logs', [
+            'userid'     => $author,
+            'type'       => $type,
+            'idtopic'    => $topicid,
+            'function'   => $body,
             'annotation' => $reply,
-            'datetime' => $this->wowgeneral->getTimestamp()
-        ];
-        
-		$this->db->insert('mod_logs', $data);
+            'datetime'   => $this->wowgeneral->getTimestamp()
+        ]);
     }
 }
 
-/**
- * [Description ModService]
- */
 class ModService extends CI_Model
 {
     /**
      * @param mixed $userId
-     * 
      * @return [type]
      */
     public function checkAccBan($userId)
     {
-        
-    }    
+
+    }
 }

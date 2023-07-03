@@ -98,6 +98,7 @@ $lang['alert_points_insufficient'] = 'Puntos insuficientes';
 /*Status Lang*/
 $lang['offline'] = 'Offline';
 $lang['online'] = 'Online';
+$lang['unknown'] = 'Desconocido';
 
 /*Label Lang*/
 $lang['label_open'] = 'Abierto';
