@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_model extends CI_Model {
-
+class Admin_model extends CI_Model
+{
     private $_limit,
             $_pageNumber,
             $_offset;
@@ -12,10 +12,6 @@ class Admin_model extends CI_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->auth = $this->load->database('auth', TRUE);
-
-        if (!$this->wowmodule->getStatusModule('Admin Panel'))
-            redirect(base_url(),'refresh');
     }
 
     public function setLimit($limit)
@@ -33,152 +29,272 @@ class Admin_model extends CI_Model {
         $this->_offset = $offset;
     }
 
+    /**
+     * @return int
+     */
     public function countAccounts()
     {
-        $this->db->from('users');
-        return $this->db->count_all_results();
+        return $this->db->from('users')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function accountsList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('users')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('users')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getAccountExist($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('users')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('users')
+            ->num_rows();
     }
 
+    /**
+     * @param object $multirealm
+     * @return mixed
+     */
     public function getAdminCharactersList($multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('guid, account, name')->order_by('name', 'ASC')->get('characters');
+
+        return $this->multirealm->select('guid, account, name')
+            ->order_by('name', 'ASC')
+            ->get('characters');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getUserHistoryDonate($id)
     {
-        return $this->db->select('*')->where('user_id', $id)->order_by('id', 'DESC')->get('donate_logs');
+        return $this->db->where('user_id', $id)
+            ->order_by('id', 'DESC')
+            ->get('donate_logs');
     }
 
+    /**
+     * @param int $id
+     * @return string
+     */
     public function getDonateStatus($id)
     {
         switch ($id) {
-            case 0: return $this->lang->line('status_cancelled'); break;
-            case 1: return $this->lang->line('status_completed'); break;
+            case 0:
+                return lang('status_cancelled');
+
+            case 1:
+                return lang('status_completed');
         }
     }
 
+    /**
+     * @return object
+     */
     public function getDonateLogs()
     {
-        return $this->db->order_by('id', 'DESC')->get('donate_logs')->result();
+        return $this->db->order_by('id', 'DESC')
+            ->get('donate_logs')
+            ->result();
     }
 
+    /**
+     * @return object
+     */
     public function getVoteLogs()
     {
-        return $this->db->order_by('id', 'DESC')->get('votes_logs')->result();
+        return $this->db->order_by('id', 'DESC')
+            ->get('votes_logs')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @param int $dp
+     * @param int $vp
+     * @return bool
+     */
     public function updateAccountData($id, $dp, $vp)
     {
-        $update = array(
+        $this->db->where('id', $id)->update('users', [
             'dp' => $dp,
             'vp' => $vp
-        );
-
-        $this->db->where('id', $id)->update('users', $update);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $iduser
+     * @param string $reason
+     * @return bool
+     */
     public function insertBanAccount($iduser, $reason)
     {
-        $date = $this->wowgeneral->getTimestamp();
-        $id = $this->session->userdata('wow_sess_id');
+        $reason = $reason === '' ? lang('log_banned') : $reason;
 
-        if (empty($reason))
-            $reason = $this->lang->line('log_banned');
+        $authdb = $this->wowauth->auth_database();
 
-        $data2 = array(
-            'id' => $iduser,
-            'bandate' => $date,
-            'unbandate' => $date,
-            'bannedby' => $id,
-            'banreason' => $reason,
-        );
+        $data = [
+            'id'        => $iduser,
+            'bandate'   => $this->wowgeneral->getTimestamp(),
+            'unbandate' => $this->wowgeneral->getTimestamp(),
+            'bannedby'  => $this->session->userdata('wow_sess_id'),
+            'banreason' => $reason
+        ];
 
-        $this->auth->insert('account_banned', $data2);
+        $authdb->insert('account_banned', $data);
 
-        if ($this->wowgeneral->getExpansionAction() == 2)
-            $this->auth->insert('battlenet_account_bans', $data2);
+        if (config_item('bnet_enabled')) {
+            $authdb->insert('battlenet_account_bans', $data);
+        }
 
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delBanAccount($id)
     {
-        $this->auth->where('id', $id)->delete('account_banned');
+        $authdb = $this->wowauth->auth_database();
 
-        if ($this->wowgeneral->getExpansionAction() == 2)
-            $this->auth->where('id', $id)->delete('battlenet_account_bans');
+        $authdb->where('id', $id)
+            ->delete('account_banned');
+
+        if (config_item('bnet_enabled')) {
+            $authdb->where('id', $id)
+                ->delete('battlenet_account_bans');
+        }
 
         return true;
     }
 
-
+    /**
+     * @param int $id
+     * @param int $gmlevel
+     * @return bool
+     */
     public function insertRankAccount($id, $gmlevel)
     {
-        $data = array(
-            'id' => $id,
-            'gmlevel' => $gmlevel,
-            'RealmID' => '-1'
-        );
+        $this->wowauth->auth_database()
+            ->insert('account_access', [
+                'id'      => $id,
+                'gmlevel' => $gmlevel,
+                'RealmID' => '-1'
+            ]);
 
-        $this->auth->insert('account_access', $data);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delRankAccount($id)
     {
-        $this->auth->where('id', $id)->delete('account_access');
+        $this->wowauth->auth_database()
+            ->where('id', $id)
+            ->delete('account_access');
+
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function getBanCount()
     {
-        return $this->auth->select('id')->get('account_banned')->num_rows();
+        return $this->wowauth->auth_database()
+            ->get('account_banned')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getBanSpecify($id)
     {
-        return $this->auth->select('*')->where('id', $id)->where('active', '1')->get('account_banned');
+        return $this->wowauth->auth_database()
+            ->where('id', $id)
+            ->where('active', '1')
+            ->get('account_banned');
     }
 
+    /**
+     * @param int $idrealm
+     * @return int
+     */
     public function getGmCount($idrealm)
     {
-        return $this->auth->select('id')->where('RealmID', $idrealm)->or_where('RealmID', '-1')->get('account_access')->num_rows();
+        return $this->wowauth->auth_database()
+            ->where('RealmID', $idrealm)
+            ->or_where('RealmID', '-1')
+            ->get('account_access')
+            ->num_rows();
     }
 
+    /**
+     * @return int
+     */
     public function getAccCreated()
     {
-        return $this->auth->select('id')->get('account')->num_rows();
+        return $this->wowauth->auth_database()
+            ->get('account')
+            ->num_rows();
     }
 
+    /**
+     * @param object $multirealm
+     * @return int
+     */
     public function getCharOn($multirealm)
     {
         $this->multirealm = $multirealm;
 
-        return $this->multirealm->select('*')->where('online', '1')->get('characters')->num_rows();
+        return $this->multirealm->where('online', '1')
+            ->get('characters')
+            ->num_rows();
     }
 
+    /**
+     * @return int
+     */
     public function getNewsCreated()
     {
-        return $this->db->select('id')->get('news')->num_rows();
+        return $this->db->get('news')
+            ->num_rows();
     }
 
+    /**
+     * @param string $project
+     * @param string $timezone
+     * @param string $maintenance
+     * @param string $discord
+     * @param string $realmlist
+     * @param string $theme
+     * @param string $facebook
+     * @param string $twitter
+     * @param string $youtube
+     * @return bool
+     */
     public function updateGeneralSettings($project, $timezone, $maintenance, $discord, $realmlist, $theme, $facebook, $twitter, $youtube)
     {
         $this->load->library('config_writer');
 
-        $writer = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
+        $writer = $this->config_writer->get_instance(APPPATH . 'config/blizzcms.php', 'config');
+
         $writer->write('website_name', $project);
         $writer->write('timezone', $timezone);
         $writer->write('maintenance_mode', $maintenance);
@@ -191,11 +307,26 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    /**
+     * @param string $admin
+     * @param string $mod
+     * @param string $recaptcha
+     * @param string $register
+     * @param string $smtphost
+     * @param string $smtpport
+     * @param string $smtpcrypto
+     * @param string $smtpuser
+     * @param string $smtppass
+     * @param string $sender
+     * @param string $sendername
+     * @return bool
+     */
     public function updateOptionalSettings($admin, $mod, $recaptcha, $register, $smtphost, $smtpport, $smtpcrypto, $smtpuser, $smtppass, $sender, $sendername)
     {
         $this->load->library('config_writer');
 
-        $writer = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
+        $writer = $this->config_writer->get_instance(APPPATH . 'config/blizzcms.php', 'config');
+
         $writer->write('recaptcha_sitekey', $recaptcha);
         $writer->write('smtp_host', $smtphost);
         $writer->write('smtp_user', $smtpuser);
@@ -210,11 +341,20 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    /**
+     * @param string $metastatus
+     * @param string $description
+     * @param string $keywords
+     * @param string $twitterstatus
+     * @param string $graphstatus
+     * @return bool
+     */
     public function updateSeoSettings($metastatus, $description, $keywords, $twitterstatus, $graphstatus)
     {
         $this->load->library('config_writer');
 
-        $writer = $this->config_writer->get_instance(APPPATH.'config/seo.php', 'config');
+        $writer = $this->config_writer->get_instance(APPPATH . 'config/seo.php', 'config');
+
         $writer->write('seo_meta_enable', ($metastatus == 'TRUE')  ? true : false);
         $writer->write('seo_meta_desc', $description);
         $writer->write('seo_meta_keywords', $keywords);
@@ -223,11 +363,20 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    /**
+     * @param string $currency
+     * @param string $mode
+     * @param string $client
+     * @param string $password
+     * @param string $currencySymbol
+     * @return bool
+     */
     public function updateDonateSettings($currency, $mode, $client, $password, $currencySymbol)
     {
         $this->load->library('config_writer');
 
-        $writer = $this->config_writer->get_instance(APPPATH.'modules/donate/config/donate.php', 'config');
+        $writer = $this->config_writer->get_instance(APPPATH . 'modules/donate/config/donate.php', 'config');
+
         $writer->write('paypal_currency', $currency);
         $writer->write('paypal_mode', $mode);
         $writer->write('paypal_userid', $client);
@@ -236,760 +385,1220 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    /**
+     * @param string $textarea
+     * @return bool
+     */
     public function updateBugtrackerSettings($textarea)
     {
         $this->load->library('config_writer');
 
-        $writer = $this->config_writer->get_instance(APPPATH.'modules/bugtracker/config/bugtracker.php', 'config');
+        $writer = $this->config_writer->get_instance(APPPATH . 'modules/bugtracker/config/bugtracker.php', 'config');
+
         $writer->write('textarea', $textarea);
         return true;
     }
 
+    /**
+     * @param string $name
+     * @param string $url
+     * @param string $icon
+     * @param int $main
+     * @param int $child
+     * @param int $type
+     * @return bool
+     */
     public function insertMenu($name, $url, $icon, $main, $child, $type)
     {
-        $data = array(
-            'name' => $name,
-            'url' => $url,
-            'icon' => $icon,
-            'main' => $main,
+        $this->db->insert('menu', [
+            'name'  => $name,
+            'url'   => $url,
+            'icon'  => $icon,
+            'main'  => $main,
             'child' => $child,
-            'type' => $type
-        );
-
-        $this->db->insert('menu', $data);
+            'type'  => $type
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $url
+     * @param string $icon
+     * @param int $main
+     * @param int $child
+     * @param int $type
+     * @return bool
+     */
     public function updateSpecifyMenu($id, $name, $url, $icon, $main, $child, $type)
     {
-        $update = array(
-            'name' => $name,
-            'url' => $url,
-            'icon' => $icon,
-            'main' => $main,
+        $this->db->where('id', $id)->update('menu', [
+            'name'  => $name,
+            'url'   => $url,
+            'icon'  => $icon,
+            'main'  => $main,
             'child' => $child,
-            'type' => $type
-        );
-
-        $this->db->where('id', $id)->update('menu', $update);
+            'type'  => $type
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delSpecifyMenu($id)
     {
         $this->db->where('id', $id)->delete('menu');
         return true;
     }
 
+    /**
+     * @return object
+     */
     public function getMenu()
     {
-        return $this->db->select('*')->get('menu')->result();
+        return $this->db->get('menu')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getMenuSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('menu')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getMenuSpecifyName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('menu')->row('name');
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getMenuSpecifyUrl($id)
     {
-        return $this->db->select('url')->where('id', $id)->get('menu')->row('url');
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->row('url');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getMenuSpecifyIcon($id)
     {
-        return $this->db->select('icon')->where('id', $id)->get('menu')->row('icon');
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->row('icon');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getMenuSpecifyMain($id)
     {
-        return $this->db->select('main')->where('id', $id)->get('menu')->row('main');
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->row('main');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getMenuSpecifyChild($id)
     {
-        return $this->db->select('child')->where('id', $id)->get('menu')->row('child');
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->row('child');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getMenuSpecifyType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('menu')->row('type');
+        return $this->db->where('id', $id)
+            ->get('menu')
+            ->row('type');
     }
 
+    /**
+     * @param string $hostname
+     * @param string $username
+     * @param string $password
+     * @param string $database
+     * @param int $realm_id
+     * @param string $soaphost
+     * @param string $soapuser
+     * @param string $soappass
+     * @param string $soapport
+     * @param string $emulator
+     * @return bool
+     */
     public function insertRealm($hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, $emulator)
     {
-        $data = array(
-            'hostname' => $hostname,
-            'username' => $username,
-            'password' => $password,
-            'char_database' => $database,
-            'realmID' => $realm_id,
+        $this->db->insert('realms', [
+            'hostname'         => $hostname,
+            'username'         => $username,
+            'password'         => $password,
+            'char_database'    => $database,
+            'realmID'          => $realm_id,
             'console_hostname' => $soaphost,
             'console_username' => $soapuser,
             'console_password' => $soappass,
-            'console_port' => $soapport,
-            'emulator' => $emulator
-        );
-
-        $this->db->insert('realms', $data);
+            'console_port'     => $soapport,
+            'emulator'         => $emulator
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $hostname
+     * @param string $username
+     * @param string $password
+     * @param string $database
+     * @param int $realm_id
+     * @param string $soaphost
+     * @param string $soapuser
+     * @param string $soappass
+     * @param string $soapport
+     * @param string $emulator
+     * @return bool
+     */
     public function updateSpecifyRealm($id, $hostname, $username, $password, $database, $realm_id, $soaphost, $soapuser, $soappass, $soapport, $emulator)
     {
-        $update = array(
-            'hostname' => $hostname,
-            'username' => $username,
-            'password' => $password,
-            'char_database' => $database,
-            'realmID' => $realm_id,
+        $this->db->where('id', $id)->update('realms', [
+            'hostname'         => $hostname,
+            'username'         => $username,
+            'password'         => $password,
+            'char_database'    => $database,
+            'realmID'          => $realm_id,
             'console_hostname' => $soaphost,
             'console_username' => $soapuser,
             'console_password' => $soappass,
-            'console_port' => $soapport,
-            'emulator' => $emulator
-        );
-
-        $this->db->where('id', $id)->update('realms', $update);
+            'console_port'     => $soapport,
+            'emulator'         => $emulator
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delSpecifyRealm($id)
     {
         $this->db->where('id', $id)->delete('realms');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countRealms()
     {
-        $this->db->from('realms');
-        return $this->db->count_all_results();
+        return $this->db->from('realms')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function realmsList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('realms')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('realms')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getRealmsSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('realms')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyHost($id)
     {
-        return $this->db->select('hostname')->where('id', $id)->get('realms')->row('hostname');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('hostname');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyUser($id)
     {
-        return $this->db->select('username')->where('id', $id)->get('realms')->row('username');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('username');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyPass($id)
     {
-        return $this->db->select('password')->where('id', $id)->get('realms')->row('password');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('password');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyCharDB($id)
     {
-        return $this->db->select('char_database')->where('id', $id)->get('realms')->row('char_database');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('char_database');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyId($id)
     {
-        return $this->db->select('realmID')->where('id', $id)->get('realms')->row('realmID');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('realmID');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyConsoleHost($id)
     {
-        return $this->db->select('console_hostname')->where('id', $id)->get('realms')->row('console_hostname');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('console_hostname');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyConsoleUser($id)
     {
-        return $this->db->select('console_username')->where('id', $id)->get('realms')->row('console_username');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('console_username');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyConsolePass($id)
     {
-        return $this->db->select('console_password')->where('id', $id)->get('realms')->row('console_password');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('console_password');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyConsolePort($id)
     {
-        return $this->db->select('console_port')->where('id', $id)->get('realms')->row('console_port');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('console_port');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getRealmSpecifyEmulator($id)
     {
-        return $this->db->select('emulator')->where('id', $id)->get('realms')->row('emulator');
+        return $this->db->where('id', $id)
+            ->get('realms')
+            ->row('emulator');
     }
 
+    /**
+     * @param string $title
+     * @param string $description
+     * @param int $type
+     * @param string $route
+     * @return bool
+     */
     public function insertSlide($title, $description, $type, $route)
     {
-        $data = array(
-            'title' => $title,
+        $this->db->insert('slides', [
+            'title'       => $title,
             'description' => $description,
-            'type' => $type,
-            'route' => $route
-        );
-
-        $this->db->insert('slides', $data);
+            'type'        => $type,
+            'route'       => $route
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $title
+     * @param string $description
+     * @param int $type
+     * @param string $route
+     * @return bool
+     */
     public function updateSpecifySlide($id, $title, $description, $type, $route)
     {
-        $update = array(
-            'title' => $title,
+        $this->db->where('id', $id)->update('slides', [
+            'title'       => $title,
             'description' => $description,
-            'type' => $type,
-            'route' => $route
-        );
-
-        $this->db->where('id', $id)->update('slides', $update);
+            'type'        => $type,
+            'route'       => $route
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delSpecifySlide($id)
     {
         $this->db->where('id', $id)->delete('slides');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countSlides()
     {
-        $this->db->from('slides');
-        return $this->db->count_all_results();
+        return $this->db->from('slides')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function slidesList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('slides')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('slides')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getSlidesSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('slides')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('slides')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSlideSpecifyTitle($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('slides')->row('title');
+        return $this->db->where('id', $id)
+            ->get('slides')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSlideSpecifyDescription($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('slides')->row('description');
+        return $this->db->where('id', $id)
+            ->get('slides')
+            ->row('description');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSlideSpecifyType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('slides')->row('type');
+        return $this->db->where('id', $id)
+            ->get('slides')
+            ->row('type');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSlideSpecifyRoute($id)
     {
-        return $this->db->select('route')->where('id', $id)->get('slides')->row('route');
+        return $this->db->where('id', $id)
+            ->get('slides')
+            ->row('route');
     }
 
+    /**
+     * @param string $title
+     * @param string $description
+     * @param string $image
+     * @return bool
+     */
     public function insertNews($title, $description, $image)
     {
-        $date = $this->wowgeneral->getTimestamp();
-
-        $data = array(
-            'title' => $title,
-            'image' => $image,
+        $this->db->insert('news', [
+            'title'       => $title,
+            'image'       => $image,
             'description' => $description,
-            'date' => $date,
-        );
+            'date'        => $this->wowgeneral->getTimestamp()
+        ]);
 
-        $this->db->insert('news', $data);
-
-        redirect(base_url('admin/news'),'refresh');
+        redirect(site_url('admin/news'), 'refresh');
     }
 
+    /**
+     * @param int $id
+     * @param string $title
+     * @param string $description
+     * @param string $image
+     * @return bool
+     */
     public function updateSpecifyNews($id, $title, $description, $image)
     {
         $unlink = $this->getFileNameImage($id);
-        unlink('./assets/images/news/'.$unlink);
 
-        $date = $this->wowgeneral->getTimestamp();
+        unlink('./assets/images/news/' . $unlink);
 
-        $update = array(
-            'title' => $title,
-            'image' => $image,
+        $this->db->where('id', $id)->update('news', [
+            'title'       => $title,
+            'image'       => $image,
             'description' => $description,
-            'date' => $date
-        );
+            'date'        => $this->wowgeneral->getTimestamp()
+        ]);
 
-        $this->db->where('id', $id)->update('news', $update);
-
-        redirect(base_url('admin/news'),'refresh');
+        redirect(site_url('admin/news'), 'refresh');
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delSpecifyNew($id)
     {
         $this->db->where('id', $id)->delete('news');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countNews()
     {
-        $this->db->from('news');
-        return $this->db->count_all_results();
+        return $this->db->from('news')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function newsList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('news')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('news')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getNewsSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('news')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('news')
+            ->num_rows();
     }
 
+    /**
+     * @param int $date
+     * @return mixed
+     */
     public function getNewIDperDate($date)
     {
-        return $this->db->select('id')->where('date', $date)->get('news')->row('id');
+        return $this->db->where('date', $date)
+            ->get('news')
+            ->row('id');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getFileNameImage($id)
     {
-        return $this->db->select('image')->where('id', $id)->get('news')->row('image');
+        return $this->db->where('id', $id)
+            ->get('news')
+            ->row('image');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getNewsSpecifyName($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('news')->row('title');
+        return $this->db->where('id', $id)
+            ->get('news')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getNewsSpecifyDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('news')->row('description');
+        return $this->db->where('id', $id)
+            ->get('news')
+            ->row('description');
     }
 
+    /**
+     * @param string $title
+     * @param string $description
+     * @return bool
+     */
     public function insertChangelog($title, $description)
     {
-        $date = $this->wowgeneral->getTimestamp();
-
-        $data = array(
-            'title' => $title,
+        $this->db->insert('changelogs', [
+            'title'       => $title,
             'description' => $description,
-            'date' => $date,
-        );
-
-        $this->db->insert('changelogs', $data);
+            'date'        => $this->wowgeneral->getTimestamp()
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $title
+     * @param string $description
+     * @return bool
+     */
     public function updateSpecifyChangelog($id, $title, $description)
     {
-        $date = $this->wowgeneral->getTimestamp();
-
-        $update = array(
-            'title' => $title,
+        $this->db->where('id', $id)->update('changelogs', [
+            'title'       => $title,
             'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)->update('changelogs', $update);
+            'date'        => $this->wowgeneral->getTimestamp()
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delChangelog($id)
     {
         $this->db->where('id', $id)->delete('changelogs');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countChangelogs()
     {
-        $this->db->from('changelogs');
-        return $this->db->count_all_results();
+        return $this->db->from('changelogs')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function changelogsList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('changelogs')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('changelogs')
+            ->result();
     }
 
+    /**
+     * @return int
+     */
     public function getChangelogsCreated()
     {
-        return $this->db->select('id')->get('changelogs')->num_rows();
+        return $this->db->get('changelogs')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getChangelogSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('changelogs')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('changelogs')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getChangelogSpecifyName($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('changelogs')->row('title');
+        return $this->db->where('id', $id)
+            ->get('changelogs')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getChangelogSpecifyDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('changelogs')->row('description');
+        return $this->db->where('id', $id)
+            ->get('changelogs')
+            ->row('description');
     }
 
+    /**
+     * @param string $title
+     * @param string $uri
+     * @param string $description
+     * @return bool
+     */
     public function insertPage($title, $uri, $description)
     {
-        $date = $this->wowgeneral->getTimestamp();
-        $rand = rand(1, 15);
+        $uri = $this->pagecheckUri($uri) ? $uri . '-' . rand(1, 15) : $uri;
 
-        if($this->pagecheckUri($uri) == TRUE)
-        {
-            $new_uri = $uri."-".$rand;
-
-            $data = array(
-                'title' => $title,
-                'uri_friendly' => strtolower($new_uri),
-                'description' => $description,
-                'date' => $date
-            );
-
-            $this->db->insert('pages', $data);
-            return true;
-        }
-        else
-            $data1 = array(
-                'title' => $title,
-                'uri_friendly' => $uri,
-                'description' => $description,
-                'date' => $date
-            );
-
-            $this->db->insert('pages', $data1);
-            return true;
-    }
-
-    public function updateSpecifyPage($id, $title, $uri, $description)
-    {
-        $date = $this->wowgeneral->getTimestamp();
-
-        $update = array(
-            'title' => $title,
+        $this->db->insert('pages', [
+            'title'        => $title,
             'uri_friendly' => strtolower($uri),
-            'description' => $description,
-            'date' => $date
-        );
-
-        $this->db->where('id', $id)->update('pages', $update);
+            'description'  => $description,
+            'date'         => $this->wowgeneral->getTimestamp()
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $title
+     * @param string $uri
+     * @param string $description
+     * @return bool
+     */
+    public function updateSpecifyPage($id, $title, $uri, $description)
+    {
+        $this->db->where('id', $id)->update('pages', [
+            'title'        => $title,
+            'uri_friendly' => strtolower($uri),
+            'description'  => $description,
+            'date'         => $this->wowgeneral->getTimestamp()
+        ]);
+        return true;
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delPage($id)
     {
         $this->db->where('id', $id)->delete('pages');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countPages()
     {
-        $this->db->from('pages');
-        return $this->db->count_all_results();
+        return $this->db->from('pages')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function pagesList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('pages')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('pages')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getPagesSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('pages')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('pages')
+            ->num_rows();
     }
 
     public function pagecheckUri($uri)
     {
-        $qq = $this->db->select('uri_friendly')->where('uri_friendly', $uri)->get('pages')->row('uri_friendly');
+        $query = $this->db->where('uri_friendly', $uri)
+            ->get('pages')
+            ->row();
 
-        if($qq == $uri)
+        if (! empty($query)) {
             return true;
-        else
-            return false;
+        }
+
+        return false;
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getPagesSpecifyName($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('pages')->row('title');
+        return $this->db->where('id', $id)
+            ->get('pages')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getPagesSpecifyURI($id)
     {
-        return $this->db->select('uri_friendly')->where('id', $id)->get('pages')->row('uri_friendly');
+        return $this->db->where('id', $id)
+            ->get('pages')
+            ->row('uri_friendly');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getPagesSpecifyDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('pages')->row('description');
+        return $this->db->where('id', $id)
+            ->get('pages')
+            ->row('description');
     }
 
+    /**
+     * @param string $name
+     * @param string $url
+     * @param int $time
+     * @param int $points
+     * @param string $image
+     * @return bool
+     */
     public function insertTopsite($name, $url, $time, $points, $image)
     {
-        $data = array(
-            'name' => $name,
-            'url' => $url,
-            'time' => $time,
+        $this->db->insert('votes', [
+            'name'   => $name,
+            'url'    => $url,
+            'time'   => $time,
             'points' => $points,
-            'image' => $image
-        );
-
-        $this->db->insert('votes', $data);
+            'image'  => $image
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $url
+     * @param int $time
+     * @param int $points
+     * @param string $image
+     * @return bool
+     */
     public function updateSpecifyTopsite($id, $name, $url, $time, $points, $image)
     {
-        $update = array(
-            'name' => $name,
-            'url' => $url,
-            'time' => $time,
+        $this->db->where('id', $id)->update('votes', [
+            'name'   => $name,
+            'url'    => $url,
+            'time'   => $time,
             'points' => $points,
-            'image' => $image
-        );
-
-        $this->db->where('id', $id)->update('votes', $update);
+            'image'  => $image
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delTopsite($id)
     {
         $this->db->where('id', $id)->delete('votes');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countTopsites()
     {
-        $this->db->from('votes');
-        return $this->db->count_all_results();
+        return $this->db->from('votes')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function topsitesList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('votes')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('votes')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getTopsitesSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('votes')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('votes')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTopsiteSpecifyName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('votes')->row('name');
+        return $this->db->where('id', $id)
+            ->get('votes')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTopsiteSpecifyURL($id)
     {
-        return $this->db->select('url')->where('id', $id)->get('votes')->row('url');
+        return $this->db->where('id', $id)
+            ->get('votes')
+            ->row('url');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTopsiteSpecifyTime($id)
     {
-        return $this->db->select('time')->where('id', $id)->get('votes')->row('time');
+        return $this->db->where('id', $id)
+            ->get('votes')
+            ->row('time');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTopsiteSpecifyPoints($id)
     {
-        return $this->db->select('points')->where('id', $id)->get('votes')->row('points');
+        return $this->db->where('id', $id)
+            ->get('votes')
+            ->row('points');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTopsiteSpecifyImage($id)
     {
-        return $this->db->select('image')->where('id', $id)->get('votes')->row('image');
+        return $this->db->where('id', $id)
+            ->get('votes')
+            ->row('image');
     }
 
+    /**
+     * @return object
+     */
     public function getModules()
     {
-        return $this->db->select('*')->get('modules')->result();
+        return $this->db->get('modules')
+            ->result();
     }
 
     public function enableSpecifyModule($id)
     {
-        $update = array(
+        $this->db->where('id', $id)->update('modules', [
             'status' => '1'
-        );
-
-        $this->db->where('id', $id)->update('modules', $update);
+        ]);
         return true;
     }
 
     public function disableSpecifyModule($id)
     {
-        $update = array(
+        $this->db->where('id', $id)->update('modules', [
             'status' => '0'
-        );
-
-        $this->db->where('id', $id)->update('modules', $update);
+        ]);
         return true;
     }
 
+    /**
+     * @return mixed
+     */
     public function getDropDownsSpecify()
     {
-        return $this->db->select('*')->where('main', '2')->where('father', '0')->get('store_categories');
-
+        return $this->db->where('main', '2')
+            ->where('father', '0')
+            ->get('store_categories');
     }
 
+    /**
+     * @param string $name
+     * @param string $route
+     * @param int $realmid
+     * @param int $main
+     * @param int $father
+     * @return mixed
+     */
     public function insertStoreCategory($name, $route, $realmid, $main, $father)
     {
-        if(!$this->StoreCategoryCheckRoute($route))
-        {
-            $data = array(
-                'name' => $name,
-                'route' => strtolower($route),
-                'realmid' => $realmid,
-                'main' => $main,
-                'father' => $father
-            );
-    
-            $this->db->insert('store_categories', $data);
-            return true;
-        }
-        else
+        if ($this->StoreCategoryCheckRoute($route)) {
             return 'Rouerr';
+        }
+
+        $this->db->insert('store_categories', [
+            'name'    => $name,
+            'route'   => strtolower($route),
+            'realmid' => $realmid,
+            'main'    => $main,
+            'father'  => $father
+        ]);
+        return true;
     }
 
+    /**
+     * @param int $idlink
+     * @param string $name
+     * @param string $route
+     * @param int $realmid
+     * @return mixed
+     */
     public function updateSpecifyStoreCategory($idlink, $name, $route, $realmid)
     {
-        if(!$this->StoreCategoryCheckRoute($route))
-        {
-            $update = array(
-                'name' => $name,
-                'route' => strtolower($route),
-                'realmid' => $realmid
-            );
-
-            $this->db->where('id', $idlink)->update('store_categories', $update);
-            return true;
-        }
-        else
+        if ($this->StoreCategoryCheckRoute($route)) {
             return 'Rouerr';
+        }
+
+        $this->db->where('id', $idlink)->update('store_categories', [
+            'name'    => $name,
+            'route'   => strtolower($route),
+            'realmid' => $realmid
+        ]);
+        return true;
     }
 
     public function StoreCategoryCheckRoute($route)
     {
-        $qq = $this->db->select('route')->where('route', $route)->get('store_categories')->row('route');
+        $query = $this->db->where('route', $route)
+            ->get('store_categories')
+            ->row();
 
-        if($qq == $route)
+        if (! empty($query)) {
             return true;
-        else
-            return false;
+        }
+
+        return false;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function deleteStoreCategory($id)
     {
         $this->db->where('id', $id)->delete('store_categories');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countStoreCategories()
     {
-        $this->db->from('store_categories');
-        return $this->db->count_all_results();
+        return $this->db->from('store_categories')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function storeCategoryList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_categories')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('store_categories')
+            ->result();
     }
 
+    /**
+     * @return mixed
+     */
     public function getCategoryStore()
     {
-        return $this->db->select('*')->get('store_categories');
+        return $this->db->get('store_categories');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStoreCategorySpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_categories')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('store_categories')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStoreCategoryName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('store_categories')->row('name');
+        return $this->db->where('id', $id)
+            ->get('store_categories')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStoreCategoryRoute($id)
     {
-        return $this->db->select('route')->where('id', $id)->get('store_categories')->row('route');
+        return $this->db->where('id', $id)
+            ->get('store_categories')
+            ->row('route');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStoreCategoryRealm($id)
     {
-        return $this->db->select('realmid')->where('id', $id)->get('store_categories')->row('realmid');
+        return $this->db->where('id', $id)
+            ->get('store_categories')
+            ->row('realmid');
     }
 
+    /**
+     * @param string $name
+     * @param string $description
+     * @param int $category
+     * @param int $type
+     * @param int $price_type
+     * @param int $pricedp
+     * @param int $pricevp
+     * @param string $icon
+     * @param string $command
+     * @return bool
+     */
     public function insertItem($name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command)
     {
-        if ($price_type == 1) {
-            $setdp = $pricedp;
-            $setvp = 0;
-        }
-        else if ($price_type == 2) {
-            $setdp = 0;
-            $setvp = $pricevp;
-        }
-        else if($price_type == 3) {
-            $setdp = $pricedp;
-            $setvp = $pricevp;
-        }
+        $pricedp = $price_type == 2 ? 0 : $pricedp;
+        $pricevp = $price_type == 1 ? 0 : $pricevp;
 
-        $data = array(
-            'name' => $name,
+        $this->db->insert('store_items', [
+            'name'        => $name,
             'description' => $description,
-            'category' => $category,
-            'type' => $type,
-            'price_type' => $price_type,
-            'dp' => $setdp,
-            'vp' => $setvp,
-            'icon' => $icon,
-            'command' => $command
-        );
-
-        $this->db->insert('store_items', $data);
+            'category'    => $category,
+            'type'        => $type,
+            'price_type'  => $price_type,
+            'dp'          => $pricedp,
+            'vp'          => $pricevp,
+            'icon'        => $icon,
+            'command'     => $command
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $description
+     * @param int $category
+     * @param int $type
+     * @param int $price_type
+     * @param int $pricedp
+     * @param int $pricevp
+     * @param string $icon
+     * @param string $command
+     * @return bool
+     */
     public function updateSpecifyItem($id, $name, $description, $category, $type, $price_type, $pricedp, $pricevp, $icon, $command)
     {
-        if ($price_type == 1) {
-            $setdp = $pricedp;
-            $setvp = 0;
-        }
-        else if ($price_type == 2) {
-            $setdp = 0;
-            $setvp = $pricevp;
-        }
-        else if($price_type == 3) {
-            $setdp = $pricedp;
-            $setvp = $pricevp;
-        }
+        $pricedp = $price_type == 2 ? 0 : $pricedp;
+        $pricevp = $price_type == 1 ? 0 : $pricevp;
 
-        $update = array(
-            'name' => $name,
+        $this->db->where('id', $id)->update('store_items', [
+            'name'        => $name,
             'description' => $description,
-            'category' => $category,
-            'type' => $type,
-            'price_type' => $price_type,
-            'dp' => $setdp,
-            'vp' => $setvp,
-            'icon' => $icon,
-            'command' => $command
-        );
-
-        $this->db->where('id', $id)->update('store_items', $update);
+            'category'    => $category,
+            'type'        => $type,
+            'price_type'  => $price_type,
+            'dp'          => $pricedp,
+            'vp'          => $pricevp,
+            'icon'        => $icon,
+            'command'     => $command
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delStoreItem($id)
     {
         $this->db->where('id', $id)->delete('store_items');
@@ -997,398 +1606,703 @@ class Admin_model extends CI_Model {
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countStoreItems()
     {
-        $this->db->from('store_items');
-        return $this->db->count_all_results();
+        return $this->db->from('store_items')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function storeItemList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_items')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('store_items')
+            ->result();
     }
 
+    /**
+     * @return object
+     */
     public function getStoreItems()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('store_items')->result();
+        return $this->db->order_by('id', 'ASC')
+            ->get('store_items')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_items')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('store_items')->row('name');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyDescription($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('store_items')->row('description');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('description');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyCategory($id)
     {
-        return $this->db->select('category')->where('id', $id)->get('store_items')->row('category');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('category');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('store_items')->row('type');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('type');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyPriceType($id)
     {
-        return $this->db->select('price_type')->where('id', $id)->get('store_items')->row('price_type');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('price_type');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyDpPrice($id)
     {
-        return $this->db->select('dp')->where('id', $id)->get('store_items')->row('dp');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('dp');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyVpPrice($id)
     {
-        return $this->db->select('vp')->where('id', $id)->get('store_items')->row('vp');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('vp');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyIcon($id)
     {
-        return $this->db->select('icon')->where('id', $id)->get('store_items')->row('icon');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('icon');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getItemSpecifyCommand($id)
     {
-        return $this->db->select('command')->where('id', $id)->get('store_items')->row('command');
+        return $this->db->where('id', $id)
+            ->get('store_items')
+            ->row('command');
     }
 
+    /**
+     * @param int $item
+     * @return bool
+     */
     public function insertStoreTop($item)
     {
-        $data = array(
+        $this->db->insert('store_top', [
             'store_item' => $item
-        );
-
-        $this->db->insert('store_top', $data);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $idlink
+     * @param int $item
+     * @return bool
+     */
     public function updateSpecifyStoreTop($idlink, $item)
     {
-        $update = array(
+        $this->db->where('id', $idlink)->update('store_top', [
             'store_item' => $item
-        );
-
-        $this->db->where('id', $idlink)->update('store_top', $update);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function deleteStoreTop($id)
     {
         $this->db->where('id', $id)->delete('store_top');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countStoreTop()
     {
-        $this->db->from('store_top');
-        return $this->db->count_all_results();
+        return $this->db->from('store_top')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function storeTopList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('store_top')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('store_top')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStoreTopSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('store_top')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('store_top')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTopSpecifyItem($id)
     {
-        return $this->db->select('store_item')->where('id', $id)->get('store_top')->row('store_item');
+        return $this->db->where('id', $id)
+            ->get('store_top')
+            ->row('store_item');
     }
 
+    /**
+     * @param string $name
+     * @param string $price
+     * @param string $tax
+     * @param int $points
+     * @return bool
+     */
     public function insertDonation($name, $price, $tax, $points)
     {
-        $data = array(
-            'name' => $name,
-            'price' => $price,
-            'tax' => $tax,
+        $this->db->insert('donate', [
+            'name'   => $name,
+            'price'  => $price,
+            'tax'    => $tax,
             'points' => $points
-        );
-
-        $this->db->insert('donate', $data);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $price
+     * @param string $tax
+     * @param int $points
+     * @return bool
+     */
     public function updateDonation($id, $name, $price, $tax, $points)
     {
-        $update = array(
-            'name' => $name,
-            'price' => $price,
-            'tax' => $tax,
+        $this->db->where('id', $id)->update('donate', [
+            'name'   => $name,
+            'price'  => $price,
+            'tax'    => $tax,
             'points' => $points
-        );
-
-        $this->db->where('id', $id)->update('donate', $update);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delSpecifyDonation($id)
     {
         $this->db->where('id', $id)->delete('donate');
         return true;
     }
 
+    /**
+     * @return object
+     */
     public function getDonateList()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('donate')->result();
+        return $this->db->order_by('id', 'ASC')
+            ->get('donate')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDonateSpecifyName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('donate')->row('name');
+        return $this->db->where('id', $id)
+            ->get('donate')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDonateSpecifyPrice($id)
     {
-        return $this->db->select('price')->where('id', $id)->get('donate')->row('price');
+        return $this->db->where('id', $id)
+            ->get('donate')
+            ->row('price');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDonateSpecifyTax($id)
     {
-        return $this->db->select('tax')->where('id', $id)->get('donate')->row('tax');
+        return $this->db->where('id', $id)
+            ->get('donate')
+            ->row('tax');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDonateSpecifyPoints($id)
     {
-        return $this->db->select('points')->where('id', $id)->get('donate')->row('points');
+        return $this->db->where('id', $id)
+            ->get('donate')
+            ->row('points');
     }
 
+    /**
+     * @param string $name
+     * @param string $description
+     * @param string $icon
+     * @param int $type
+     * @param int $category
+     * @return bool
+     */
     public function insertForum($name, $description, $icon, $type, $category)
     {
-        $data = array(
-            'name' => $name,
-            'category' => $category,
+        $this->db->insert('forum', [
+            'name'        => $name,
+            'category'    => $category,
             'description' => $description,
-            'icon' => $icon,
-            'type' => $type
-        );
-
-        $this->db->insert('forum', $data);
+            'icon'        => $icon,
+            'type'        => $type
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $name
+     * @param string $description
+     * @param string $icon
+     * @param int $type
+     * @param int $category
+     * @return bool
+     */
     public function updateSpecifyForum($id, $name, $description, $icon, $type, $category)
     {
-        $update = array(
-            'name' => $name,
-            'category' => $category,
+        $this->db->where('id', $id)->update('forum', [
+            'name'        => $name,
+            'category'    => $category,
             'description' => $description,
-            'icon' => $icon,
-            'type' => $type
-        );
-
-        $this->db->where('id', $id)->update('forum', $update);
+            'icon'        => $icon,
+            'type'        => $type
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function deleteForum($id)
     {
         $this->db->where('id', $id)->delete('forum');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countForumElements()
     {
-        $this->db->from('forum');
-        return $this->db->count_all_results();
+        return $this->db->from('forum')
+            ->count_all_results();
     }
 
+    /**
+     * @return object
+     */
     public function forumElementList()
     {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('forum')->result();
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('forum')
+            ->result();
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
     public function getSpecifyForumRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('forum')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->num_rows();
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSpecifyForumName($id)
     {
-        return $this->db->select('name')->where('id', $id)->get('forum')->row('name');
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row('name');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSpecifyForumDesc($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('forum')->row('description');
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row('description');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSpecifyForumIcon($id)
     {
-        return $this->db->select('icon')->where('id', $id)->get('forum')->row('icon');
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row('icon');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSpecifyForumCategory($id)
     {
-        return $this->db->select('category')->where('id', $id)->get('forum')->row('category');
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row('category');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getSpecifyForumType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('forum')->row('type');
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row('type');
     }
 
+    /**
+     * @param string $category
+     * @return bool
+     */
     public function insertForumCategory($category)
     {
-        $data = array(
+        $this->db->insert('forum_category', [
             'name' => $category
-        );
-
-        $this->db->insert('forum_category', $data);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $category
+     * @return bool
+     */
     public function updateForumCategory($id, $category)
     {
-        $update = array(
+        $this->db->where('id', $id)->update('forum_category', [
             'name' => $category
-        );
-
-        $this->db->where('id', $id)->update('forum_category', $update);
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function deleteForumCategory($id)
     {
         $this->db->where('id', $id)->delete('forum_category');
         return true;
     }
 
+    /**
+     * @return int
+     */
     public function countForumCategories()
     {
-        $this->db->from('forum_category');
-        return $this->db->count_all_results();
-    }
-
-    public function forumCategoryList()
-    {
-        return $this->db->select('*')->limit($this->_pageNumber, $this->_offset)->get('forum_category')->result();
-    }
-
-    public function getForumCategoryList()
-    {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('forum_category');
-    }
-
-    public function getSpecifyForumCategoryRows($id)
-    {
-        return $this->db->select('*')->where('id', $id)->get('forum_category')->num_rows();
-    }
-
-    public function getForumCategoryName($id)
-    {
-        return $this->db->select('name')->where('id', $id)->get('forum_category')->row('name');
+        return $this->db->from('forum_category')
+            ->count_all_results();
     }
 
     /**
-    * Download
-    **/
-    
+     * @return object
+     */
+    public function forumCategoryList()
+    {
+        return $this->db->limit($this->_pageNumber, $this->_offset)
+            ->get('forum_category')
+            ->result();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getForumCategoryList()
+    {
+        return $this->db->order_by('id', 'ASC')
+            ->get('forum_category');
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function getSpecifyForumCategoryRows($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('forum_category')
+            ->num_rows();
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getForumCategoryName($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('forum_category')
+            ->row('name');
+    }
+
+    /**
+     * @return object
+     */
     public function getDownload()
     {
-        return $this->db->select('*')->get('download')->result();
+        return $this->db->get('download')
+            ->result();
     }
-    
+
     public function getDownloadSpecifyRows($id)
     {
-        return $this->db->select('*')->where('id', $id)->get('download')->num_rows();
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->num_rows();
     }
-    
+
+    /**
+     * @param string $fileName
+     * @param string $url
+     * @param string $image
+     * @param int $category
+     * @param int $weight
+     * @param int $type
+     * @return bool
+     */
     public function insertDownload($fileName, $url, $image, $category, $weight, $type)
     {
-        $data = array(
+        $this->db->insert('download', [
             'fileName' => $fileName,
-            'url' => $url,
-            'image' => $image,
+            'url'      => $url,
+            'image'    => $image,
             'category' => $category,
-            'weight' => $weight,
-            'type' => $type
-        );
-
-        $this->db->insert('download', $data);
+            'weight'   => $weight,
+            'type'     => $type
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delSpecifyDownload($id)
     {
         $this->db->where('id', $id)->delete('download');
         return true;
     }
-    
+
+    /**
+     * @param int $id
+     * @param string $fileName
+     * @param string $url
+     * @param string $image
+     * @param int $category
+     * @param int $weight
+     * @param int $type
+     * @return bool
+     */
     public function updateSpecifyDownload($id, $fileName, $url, $image, $category, $weight, $type)
     {
-        $update = array(
-            'id' => $id,
+        $this->db->where('id', $id)->update('download', [
+            'id'       => $id,
             'fileName' => $fileName,
-            'url' => $url,
-            'image' => $image,
+            'url'      => $url,
+            'image'    => $image,
             'category' => $category,
-            'weight' => $weight,
-            'type' => $type
-        );
-
-        $this->db->where('id', $id)->update('download', $update);
+            'weight'   => $weight,
+            'type'     => $type
+        ]);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDownloadSpecifyfileName($id)
     {
-        return $this->db->select('fileName')->where('id', $id)->get('download')->row('fileName');
-    }
-
-    public function getDownloadSpecifyUrl($id)
-    {
-        return $this->db->select('url')->where('id', $id)->get('download')->row('url');
-    }
-
-    public function getDownloadSpecifyImage($id)
-    {
-        return $this->db->select('image')->where('id', $id)->get('download')->row('image');
-    }
-
-    public function getDownloadSpecifyCategory($id)
-    {
-        return $this->db->select('category')->where('id', $id)->get('download')->row('category');
-    }
-
-    public function getDownloadSpecifyWeight($id)
-    {
-        return $this->db->select('weight')->where('id', $id)->get('download')->row('weight');
-    }
-
-    public function getDownloadSpecifyType($id)
-    {
-        return $this->db->select('type')->where('id', $id)->get('download')->row('type');
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->row('fileName');
     }
 
     /**
-     * Tickets
+     * @param int $id
+     * @return mixed
      */
+    public function getDownloadSpecifyUrl($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->row('url');
+    }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getDownloadSpecifyImage($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->row('image');
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getDownloadSpecifyCategory($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->row('category');
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getDownloadSpecifyWeight($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->row('weight');
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getDownloadSpecifyType($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('download')
+            ->row('type');
+    }
+
+    /**
+     * @param object $multirealm
+     * @return int
+     */
     public function countTickets($multirealm)
     {
         $this->multirealm = $multirealm;
-        $this->multirealm->from('gm_ticket');
-        return $this->multirealm->count_all_results();
+
+        return $this->multirealm->from('gm_ticket')
+            ->count_all_results();
     }
 
+    /**
+     * @param object $multirealm
+     * @return object
+     */
     public function ticketsList($multirealm)
     {
         $this->multirealm = $multirealm;
-        return $this->multirealm->select('*')->limit($this->_pageNumber, $this->_offset)->get('gm_ticket')->result();
+
+        return $this->multirealm->limit($this->_pageNumber, $this->_offset)
+            ->get('gm_ticket')
+            ->result();
     }
 }

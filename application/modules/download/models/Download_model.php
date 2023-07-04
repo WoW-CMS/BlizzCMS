@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Download_model extends CI_Model {
-
+class Download_model extends CI_Model
+{
     /**
      * Download_model constructor.
      */
@@ -10,10 +10,13 @@ class Download_model extends CI_Model {
     {
         parent::__construct();
     }
-	
-	public function getDownloads()
-    {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('download');
-    }
 
+    /**
+     * @return mixed
+     */
+    public function getDownloads()
+    {
+        return $this->db->order_by('id', 'ASC')
+            ->get('download');
+    }
 }

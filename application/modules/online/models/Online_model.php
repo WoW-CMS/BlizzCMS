@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Online_model extends CI_Model {
-
+class Online_model extends CI_Model
+{
     /**
      * Online_model constructor.
      */
@@ -11,10 +11,17 @@ class Online_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getOnlinePlayers($MultiRealm)
+    /**
+     * @param object $multirealm
+     * @return mixed
+     */
+    public function getOnlinePlayers($multirealm)
     {
-        $this->multirealm = $MultiRealm;
+        $this->multirealm = $multirealm;
 
-        return $this->multirealm->select('name, race, class, level, zone')->where('online', '1')->order_by('name', 'DESC')->get('characters');
+        return $this->multirealm->select('name, race, class, level, zone')
+            ->where('online', '1')
+            ->order_by('name', 'DESC')
+            ->get('characters');
     }
 }

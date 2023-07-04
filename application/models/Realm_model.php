@@ -46,40 +46,31 @@ class Realm_model extends CI_Model
     }
 
     /**
-     * @param object $multirealm
-     * @param bool $status
+     * @param int $realmid
+     * @param bool $cache
      * @return bool
      */
-    public function RealmStatus($multirealm, $status = false)
+    public function RealmStatus($realmid, $cache = true)
     {
-        $port = $this->getRealmPort($multirealm);
-
-        if (config_item('check_realm_local')) {
-            $host = $this->realmGetHostnameLocal($multirealm);
-        } else {
-            $host = $this->realmGetHostname($multirealm);
-        }
-
         if ($this->RealmStatus != null) {
             return $this->RealmStatus;
-        } else {
-            if (!$status) {
-                $cachestatus = $this->cache->file->get('realmstatus_' . $multirealm);
-
-                if ($cachestatus !== false) {
-                    return ($cachestatus == 'online') ? true : false;
-                }
-            }
-
-            if (fsockopen($host, $port, $errno, $errstr, 1.5)) {
-                $this->RealmStatus = true;
-            } else {
-                $this->RealmStatus = false;
-            }
-
-            $this->cache->file->save('realmstatus_' . $multirealm, ($this->RealmStatus) ? 'online' : 'offline', 180);
-            return $this->RealmStatus;
         }
+
+        if ($cache) {
+            $status = $this->cache->file->get('realmstatus_' . $realmid);
+
+            if ($status !== false) {
+                return ($status == 'online') ? true : false;
+            }
+        }
+
+        $port = $this->getRealmPort($realmid);
+        $host = config_item('check_realm_local') ? $this->realmGetHostnameLocal($realmid) : $this->realmGetHostname($realmid);
+
+        $this->RealmStatus = fsockopen($host, $port, $errno, $errstr, 1.5) === false ? false : true;
+
+        $this->cache->file->save('realmstatus_' . $realmid, $this->RealmStatus ? 'online' : 'offline', 180);
+        return $this->RealmStatus;
     }
 
     /**

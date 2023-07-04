@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Bugtracker_model extends CI_Model {
-
+class Bugtracker_model extends CI_Model
+{
     private $_limit,
             $_pageNumber,
             $_offset;
@@ -14,34 +14,68 @@ class Bugtracker_model extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * @return mixed
+     */
     public function getBugtracker()
     {
-        return $this->db->select('*')->where('close', '0')->get('bugtracker');
+        return $this->db->where('close', 0)
+            ->get('bugtracker');
     }
 
+    /**
+     * @param int $id
+     * @param int $priority
+     * @return mixed
+     */
     public function changePriority($id, $priority)
     {
-        return $this->db->set('priority', $priority)->where('id', $id)->update('bugtracker');
+        return $this->db->set('priority', $priority)
+            ->where('id', $id)
+            ->update('bugtracker');
 
-        redirect(base_url('bugtracker/report/').$id,'refresh');
+        redirect(site_url('bugtracker/report/' . $id), 'refresh');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function closeIssue($id)
     {
-        return $this->db->set('close','1')->where('id', $id)->update('bugtracker');
-        redirect(base_url('bugtracker/report/').$id,'refresh');
+        return $this->db->set('close', 1)
+            ->where('id', $id)
+            ->update('bugtracker');
+
+        redirect(site_url('bugtracker/report/' . $id), 'refresh');
     }
 
+    /**
+     * @param int $id
+     * @param int $type
+     * @return mixed
+     */
     public function changeType($id, $type)
     {
-        return $this->db->set('type', $type)->where('id', $id)->update('bugtracker');
-        redirect(base_url('bugtracker/report/').$id,'refresh');
+        return $this->db->set('type', $type)
+            ->where('id', $id)
+            ->update('bugtracker');
+
+        redirect(site_url('bugtracker/report/' . $id), 'refresh');
     }
 
+    /**
+     * @param int $id
+     * @param int $status
+     * @return mixed
+     */
     public function changeStatus($id, $status)
     {
-        return $this->db->set('status', $status)->where('id', $id)->update('bugtracker');
-        redirect(base_url('bugtracker/report/').$id,'refresh');
+        return $this->db->set('status', $status)
+            ->where('id', $id)
+            ->update('bugtracker');
+
+        redirect(site_url('bugtracker/report/' . $id), 'refresh');
     }
 
     public function setLimit($limit)
@@ -59,152 +93,276 @@ class Bugtracker_model extends CI_Model {
         $this->_offset = $offset;
     }
 
+    /**
+     * @return int
+     */
     public function getAllBugs()
     {
-        return $this->db->select('id')->where('close', '0')->get('bugtracker')->num_rows();
+        return $this->db->where('close', 0)
+            ->get('bugtracker')
+            ->num_rows();
     }
 
+    /**
+     * @return object
+     */
     public function bugtrackerList()
     {
-        return $this->db->select('*')->where('close', '0')->order_by('id', 'DESC')->limit($this->_pageNumber, $this->_offset)->get('bugtracker')->result();
+        return $this->db->where('close', 0)
+            ->order_by('id', 'DESC')
+            ->limit($this->_pageNumber, $this->_offset)
+            ->get('bugtracker')
+            ->result();
     }
 
+    /**
+     * @param string $title
+     * @param string $description
+     * @param int $type
+     * @param int $priority
+     * @return bool
+     */
     public function insertIssue($title, $description, $type, $priority)
     {
-        $date = $this->wowgeneral->getTimestamp();
-        $author = $this->session->userdata('wow_sess_id');
-
-        $data = array(
-            'title' => $title,
+        $this->db->insert('bugtracker', [
+            'title'       => $title,
             'description' => $description,
-            'status' => '1',
-            'type' => $type,
-            'priority' => $priority,
-            'date' => $date,
-            'author' => $author,
-            'close' => '0',
-        );
+            'status'      => 1,
+            'type'        => $type,
+            'priority'    => $priority,
+            'date'        => $this->wowgeneral->getTimestamp(),
+            'author'      => $this->session->userdata('wow_sess_id'),
+            'close'       => 0
+        ]);
 
-        $this->db->insert('bugtracker', $data);
         return true;
     }
 
+    /**
+     * @param int $date
+     * @return mixed
+     */
     public function getIDPostPerDate($date)
     {
-        return $this->db->select('id')->where('date', $date)->get('bugtracker')->row('id');
+        return $this->db->where('date', $date)
+            ->get('bugtracker')
+            ->row('id');
     }
 
+    /**
+     * @return mixed
+     */
     public function getTypes()
     {
-        return $this->db->select('*')->get('bugtracker_type');
+        return $this->db->get('bugtracker_type');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getType($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker_type')->row('title');
+        return $this->db->where('id', $id)
+            ->get('bugtracker_type')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTitleIssue($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker')->row('title');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDescIssue($id)
     {
-        return $this->db->select('description')->where('id', $id)->get('bugtracker')->row('description');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('description');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStatus($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker_status')->row('title');
+        return $this->db->where('id', $id)
+            ->get('bugtracker_status')
+            ->row('title');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getStatusID($id)
     {
-        return $this->db->select('status')->where('id', $id)->get('bugtracker')->row('status');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('status');
     }
 
+    /**
+     * @return mixed
+     */
     public function getPriorities()
     {
-        return $this->db->select('*')->get('bugtracker_priority');
+        return $this->db->get('bugtracker_priority');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getPriority($id)
     {
-        return $this->db->select('title')->where('id', $id)->get('bugtracker_priority')->row('title');
+        return $this->db->where('id', $id)
+            ->get('bugtracker_priority')
+            ->row('title');
     }
 
+    /**
+     * @return mixed
+     */
     public function getPriorityGeneral()
     {
-        return $this->db->select('*')->get('bugtracker_priority');
+        return $this->db->get('bugtracker_priority');
     }
 
+    /**
+     * @return mixed
+     */
     public function getStatusGeneral()
     {
-        return $this->db->select('*')->get('bugtracker_status');
+        return $this->db->get('bugtracker_status');
     }
 
+    /**
+     * @return mixed
+     */
     public function getTypesGeneral()
     {
-        return $this->db->select('*')->get('bugtracker_type');
+        return $this->db->get('bugtracker_type');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getPriorityID($id)
     {
-        return $this->db->select('priority')->where('id', $id)->get('bugtracker')->row('priority');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('priority');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getTypeID($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('bugtracker')->row('type');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('type');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getDate($id)
     {
-        return $this->db->select('date')->where('id', $id)->get('bugtracker')->row('date');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('date');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function closeStatus($id)
     {
-        return $this->db->select('close')->where('id', $id)->get('bugtracker')->row('close');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('close');
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function getAuthor($id)
     {
-        return $this->db->select('author')->where('id', $id)->get('bugtracker')->row('author');
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->row('author');
     }
-	
-	public function ReportExist($id)
-	{
-		return $this->db->select('*')->where('id', $id)->get('bugtracker')->num_rows();
-	}
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function ReportExist($id)
+    {
+        return $this->db->where('id', $id)
+            ->get('bugtracker')
+            ->num_rows();
+    }
+
+    /**
+     * @param int $idlink
+     * @param string $description
+     * @return bool
+     */
     public function sendReplied($idlink, $description)
     {
-        $date = $this->wowgeneral->getTimestamp();
-        $author = $this->session->userdata('wow_sess_id');
-
-        $data = array(
-            'idlink' => $idlink,
+        $this->db->insert('bugtracker_replied', [
+            'idlink'      => $idlink,
             'description' => $description,
-            'author' => $author,
-        );
+            'author'      => $this->session->userdata('wow_sess_id')
+        ]);
 
-        $this->db->insert('bugtracker_replied', $data);
         return true;
     }
 
+    /**
+     * @param int $id
+     * @param string $row
+     * @return mixed
+     */
     public function getBugtrackerReplied($id, $row)
     {
-        return $this->db->where('idlink', $id)->get('bugtracker_replied')->row($row);
+        return $this->db->where('idlink', $id)
+            ->get('bugtracker_replied')
+            ->row($row);
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function getBugtrackerRows($id)
-	{
-		$qq = $this->db->where('idlink', $id)->get('bugtracker_replied')->num_rows();
+    {
+        $query = $this->db->where('idlink', $id)
+            ->get('bugtracker_replied')
+            ->num_rows();
 
-        if ($qq >= 1) return true;
-        
+        if ($query >= 1) {
+            return true;
+        }
+
         return false;
-	}
+    }
 }

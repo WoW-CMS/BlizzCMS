@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Page_model extends CI_Model {
-
+class Page_model extends CI_Model
+{
     /**
      * Page_model constructor.
      */
@@ -11,23 +11,47 @@ class Page_model extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * @param string $uri
+     * @return mixed
+     */
     public function getName($uri)
     {
-        return $this->db->select('title')->where('uri_friendly', $uri)->get('pages')->row('title');
+        return $this->db->where('uri_friendly', $uri)
+            ->get('pages')
+            ->row('title');
     }
 
+    /**
+     * @param string $uri
+     * @return mixed
+     */
     public function getDesc($uri)
     {
-        return $this->db->select('description')->where('uri_friendly', $uri)->get('pages')->row('description');
+        return $this->db->where('uri_friendly', $uri)
+            ->get('pages')
+            ->row('description');
     }
 
+    /**
+     * @param string $uri
+     * @return mixed
+     */
     public function getDate($uri)
     {
-        return $this->db->select('date')->where('uri_friendly', $uri)->get('pages')->row('date');
+        return $this->db->where('uri_friendly', $uri)
+            ->get('pages')
+            ->row('date');
     }
 
+    /**
+     * @param string $uri
+     * @return int
+     */
     public function getVerifyExist($uri)
     {
-        return $this->db->select('uri_friendly')->where('uri_friendly', $uri)->get('pages')->num_rows();
+        return $this->db->where('uri_friendly', $uri)
+            ->get('pages')
+            ->num_rows();
     }
 }

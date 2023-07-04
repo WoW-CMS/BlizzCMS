@@ -13,17 +13,6 @@ class Module_model extends CI_Model
 
     /**
      * @param string $module
-     * @return mixed
-     */
-    protected function _getModules(string $module)
-    {
-        return $this->db->where('name', $module)
-            ->get('modules')
-            ->row('id');
-    }
-
-    /**
-     * @param string $module
      * @return bool
      */
     public function getStatusModule(string $module): bool

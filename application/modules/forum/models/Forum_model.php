@@ -1,9 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Forum_model extends CI_Model
-{        
+{
     /**
      * Forum_model constructor.
     */
@@ -11,124 +10,148 @@ class Forum_model extends CI_Model
     {
         parent::__construct();
     }
-    
+
     /**
-     * @param null $id
-     * 
-     * @return [type]
+     * @param mixed $id
+     * @return object
      */
     public function getCategory($id = null)
     {
-        $value = is_null($id) ? $this->db->get('forum_category')->result() : $this->db->where('category', $id)->get('forum')->result();
-        
-        return $value;
+        if (is_null($id)) {
+            return $this->db->get('forum_category')
+                ->result();
+        }
+
+        return $this->db->where('category', $id)
+            ->get('forum')
+            ->result();
     }
-    
+
     /**
      * @param mixed $column
      * @param mixed $id
-     * 
-     * @return [type]
+     * @return int
      */
     public function getCountTopics($column = null, $id = null)
     {
-        $value = (is_null($id) && is_null($column)) ? $this->db->get('forum_topics')->num_rows() : 
-                    $this->db->where($column, $id)->get('forum_topics')->num_rows();
+        if (is_null($column) && is_null($id)) {
+            return $this->db->get('forum_topics')
+                ->num_rows();
+        }
    
-        return $value;
+        return $this->db->where($column, $id)
+            ->get('forum_topics')
+            ->num_rows();
     }
-    
-        
+ 
     /**
      * @param mixed $column
      * @param mixed $id
-     * 
-     * @return [type]
+     * @return int
      */
     public function getCountReplies($column = null, $id = null)
     {
-        $value = (is_null($id) && is_null($column)) ? $this->db->get('forum_replies')->num_rows() : 
-                    $this->db->where($column, $id)->get('forum_replies')->num_rows();
+        if (is_null($column) && is_null($id)) {
+            return $this->db->get('forum_replies')
+                ->num_rows();
+        }
    
-        return $value;
+        return $this->db->where($column, $id)
+            ->get('forum_replies')
+            ->num_rows();
     }
-    
+
     /**
-     * @param null $id
-     * 
-     * @return [type]
+     * @param mixed $id
+     * @return object
      */
     public function getLastPosts($id = null)
     {
-        $value = is_null($id) ? $this->db->limit('5')->order_by('date', 'ASC')->get('forum_topics')->result() : 
-                    $this->db->select('*')->where('forums', $id)->limit('1')->order_by('date', 'DESC')->get('forum_topics')->result();
+        if (is_null($id)) {
+            return $this->db->order_by('date', 'ASC')
+                ->limit('5')
+                ->get('forum_topics')
+                ->result();
+        }
         
-        return $value;
+        return $this->db->where('forums', $id)
+            ->order_by('date', 'DESC')
+            ->limit('1')
+            ->get('forum_topics')
+            ->result();
     }
-    
+
     /**
      * @param mixed $id
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function getLastReplies($id)
     {
-        $value = $this->db->where('topic', $id)->limit('1')->order_by('date', 'DESC')->get('forum_replies');
+        $query = $this->db->where('topic', $id)
+            ->order_by('date', 'DESC')
+            ->limit('1')
+            ->get('forum_replies');
 
-        return $value;
+        return $query;
     }
 
     /**
      * @param mixed $id
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function authType($id)
     {
-        return $this->db->select('type')->where('id', $id)->get('forum')->row('type');
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row('type');
     }
-    
+
     /**
+     * @param mixed $id
      * @param mixed $row
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function getForumRow($id, $row)
     {
-        return $this->db->where('id', $id)->get('forum')->row($row);
+        return $this->db->where('id', $id)
+            ->get('forum')
+            ->row($row);
     }
-        
+
     /**
+     * @param mixed $id
      * @param mixed $row
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function getTopicRow($id, $row)
     {
-        return $this->db->where('id', $id)->get('forum_topics')->row($row);
+        return $this->db->where('id', $id)
+            ->get('forum_topics')
+            ->row($row);
     }
 
-    
     /**
      * @param mixed $id
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function getPosts($id)
     {
-        return $this->db->where('forums', $id)->order_by('pinned', 'DESC')->order_by('id', 'ASC')->get('forum_topics');
+        return $this->db->where('forums', $id)
+            ->order_by('pinned', 'DESC')
+            ->order_by('id', 'ASC')
+            ->get('forum_topics');
     }
-    
+
     /**
      * @param mixed $id
-     * 
-     * @return [type]
+     * @return mixed
      */
     public function getComments($id)
     {
-        return $this->db->where('topic', $id)->get('forum_replies');
+        return $this->db->where('topic', $id)
+            ->get('forum_replies');
     }
-    
+
     /**
      * @param mixed $category
      * @param mixed $title
@@ -136,77 +159,65 @@ class Forum_model extends CI_Model
      * @param mixed $description
      * @param mixed $locked
      * @param mixed $pinned
-     * 
-     * @return [type]
+     * @return bool
      */
     public function newTopic($category, $title, $userid, $description, $locked, $pinned)
     {
-        $date = $this->wowgeneral->getTimestamp();
-
-        $data = array(
-            'forums' => $category,
-            'title' => $title,
-            'author' => $userid,
-            'date' => $date,
+        $this->db->insert('forum_topics', [
+            'forums'  => $category,
+            'title'   => $title,
+            'author'  => $userid,
+            'date'    => $this->wowgeneral->getTimestamp(),
             'content' => $description,
-            'locked' => $locked,
-            'pinned' => $pinned
-        );
+            'locked'  => $locked,
+            'pinned'  => $pinned
+        ]);
 
-        $this->db->insert('forum_topics', $data);
-        
-        $idTopic = $this->db->select('*')->order_by('id',"desc")->limit(1)->get('forum_topics')->row('id');
+        $topicId = $this->db->order_by('id', 'DESC')
+            ->limit(1)
+            ->get('forum_topics')
+            ->row('id');
 
-        $this->service->logsService->send($userid, 1, $idTopic, '[New Topic]', $title);
-        
+        $this->service->logsService->send($userid, 1, $topicId, '[New Topic]', $title);
         return true;
     }
-    
+
     /**
      * @param mixed $idlink
      * @param mixed $title
      * @param mixed $description
      * @param mixed $locked
      * @param mixed $pinned
-     * 
-     * @return [type]
+     * @return bool
      */
     public function updateTopic($idlink, $title, $description, $locked, $pinned)
     {
-        $data = array(
-            'title' => $title,
+        $this->db->where('id', $idlink)->update('forum_topics', [
+            'title'   => $title,
             'content' => $description,
-            'locked' => $locked,
-            'pinned' => $pinned
-        );
-
-        $this->db->where('id', $idlink)->update('forum_topics', $data);
+            'locked'  => $locked,
+            'pinned'  => $pinned
+        ]);
 
         $this->service->logsService->send($author, 2, $idlink, '[Update topic]', $title);
-        
         return true;
     }
-    
+
     /**
      * @param mixed $reply
      * @param mixed $topicid
      * @param mixed $author
-     * 
-     * @return [type]
+     * @return bool
      */
     public function newComment($reply, $topicid, $author)
     {
-        $date = $this->wowgeneral->getTimestamp();
-
-        $data = array(
-            'topic' => $topicid,
-            'author' => $author,
+        $this->db->insert('forum_replies', [
+            'topic'      => $topicid,
+            'author'     => $author,
             'commentary' => $reply,
-            'date' => $date
-        );
+            'date'       => $this->wowgeneral->getTimestamp()
+        ]);
 
-        $this->db->insert('forum_replies', $data);
-        
         $this->service->logsService->send($author, 2, $topicid, '[New Reply]', $reply);
         return true;
     }
@@ -214,19 +225,19 @@ class Forum_model extends CI_Model
     /**
      * Remueve un comentario en el foro.
      *
-     * @param int $commentId ID del comentario a remover.
-     * @param int $userId ID del usuario que realiza la acción.
-     * @return bool True si se eliminó el comentario correctamente, False en caso contrario.
+     * @param int $commentId
+     * @param int $userId
+     * @return bool
      */
     public function removeComment($commentId, $userId)
     {
         // Verificar si el comentario pertenece al usuario
         $comment = $this->db->where('id', $commentId)
-                            ->where('author', $userId)
-                            ->get('forum_replies')
-                            ->row();
+            ->where('author', $userId)
+            ->get('forum_replies')
+            ->row();
 
-        if (!$comment) {
+        if (empty($comment)) {
             return false;
         }
 
@@ -236,8 +247,6 @@ class Forum_model extends CI_Model
 
         // Registrar la acción en los logs
         $this->service->logsService->send($userId, 3, $comment->topic, '[Remove Comment]', $comment->commentary);
-
         return true;
     }
-
 }

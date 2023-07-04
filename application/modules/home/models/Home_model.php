@@ -1,63 +1,60 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home_model extends CI_Model {
-
+class Home_model extends CI_Model
+{
     /**
      * Home_model constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->auth = $this->load->database('auth', TRUE);
-        $this->load->config('home');
     }
 
+    /**
+     * @return mixed
+     */
     public function getSlides()
     {
-        return $this->db->select('*')->order_by('id', 'ASC')->get('slides');
+        return $this->db->order_by('id', 'ASC')
+            ->get('slides');
     }
 
     public function getDiscordInfo()
     {
-        $invitation = $this->config->item('discord_invitation');
         error_reporting(0);
 
-		if ($this->wowmodule->getStatusModule('Discord'))
-        {
-            $discordapi = $this->cache->file->get('discordapi');
-
-            if ($discordapi !== false) {
-                $api = json_decode($discordapi, true);
-                return $api;
-            }
-            else {
-                $this->cache->file->save('discordapi', file_get_contents('https://discordapp.com/api/v8/invites/'.$invitation.'?with_counts=true'), 300);
-                $check = $this->cache->file->get('discordapi');
-
-                if ($check !== false)
-                    return $this->getDiscordInfo();
-            }
+        if (! $this->wowmodule->getStatusModule('Discord')) {
+            return [];
         }
+
+        $cache = $this->cache->file->get('discordapi');
+
+        if ($cache !== false) {
+            return json_decode($cache, true);
+        }
+
+        $content = file_get_contents('https://discord.com/api/v10/invites/' . config_item('discord_invitation') . '?with_counts=true');
+
+        $this->cache->file->save('discordapi', $content, 1800);
+
+        return json_decode($content, true);
     }
 
     public function updateconfigs($data)
     {
         $this->load->library('config_writer');
-        $blizz = $this->config_writer->get_instance(APPPATH.'config/blizzcms.php', 'config');
-       
-        if ($this->config_writer->isEnabled($data['bnet'])) 
-            $bnet_enable = true;
-        else
-            $bnet_enable = false;
 
-        $blizz->write('website_name', $data['name']);
-        $blizz->write('discord_invitation', $data['invitation']);
-        $blizz->write('realmlist', $data['realmlist']);
-        $blizz->write('expansion', $data['expansion']);
-        $blizz->write('bnet_enabled', $bnet_enable);
-        $blizz->write('emulator', $data['emulator']);
-        $blizz->write('migrate_status', '0');
-        
+        $writer = $this->config_writer->get_instance(APPPATH . 'config/blizzcms.php', 'config');
+
+        $bnet = $data['bnet'] == '1' ? true : false;
+
+        $writer->write('website_name', $data['name']);
+        $writer->write('discord_invitation', $data['invitation']);
+        $writer->write('realmlist', $data['realmlist']);
+        $writer->write('expansion', $data['expansion']);
+        $writer->write('bnet_enabled', $bnet);
+        $writer->write('emulator', $data['emulator']);
+        $writer->write('migrate_status', '0');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mod_model extends CI_Model {
-
+class Mod_model extends CI_Model
+{
     private $_limit,
             $_pageNumber,
             $_offset;
@@ -12,9 +12,6 @@ class Mod_model extends CI_Model {
     public function __construct()
     {
         parent::__construct();
-
-        if (!$this->wowmodule->getStatusModule('Admin Panel'))
-            redirect(base_url(),'refresh');
     }
 
     public function setLimit($limit)
@@ -32,13 +29,19 @@ class Mod_model extends CI_Model {
         $this->_offset = $offset;
     }
 
+    /**
+     * @return mixed
+     */
     public function getLogs()
     {
-      return $this->db->select('*')->get('mod_logs');
+      return $this->db->get('mod_logs');
     }
 
+    /**
+     * @return mixed
+     */
     public function getReports()
     {
-      return $this->db->select('*')->get('mod_reports');
+      return $this->db->get('mod_reports');
     }
 }
