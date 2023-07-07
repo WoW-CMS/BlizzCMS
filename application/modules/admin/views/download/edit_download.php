@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_download'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= lang('placeholder_edit_download'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= site_url('admin/download'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -14,20 +14,20 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_name'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-pen"></i></span>
-                      <input class="uk-input" type="text" id="down_name" value="<?= $this->admin_model->getDownloadSpecifyfileName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
+                      <input class="uk-input" type="text" id="down_name" value="<?= $this->admin_model->getDownloadSpecifyfileName($idlink); ?>" placeholder="<?= lang('placeholder_name'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_url'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_url'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-link"></i></span>
-                      <input class="uk-input" type="text" id="down_url" value="<?= $this->admin_model->getDownloadSpecifyUrl($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_url'); ?>" required>
+                      <input class="uk-input" type="text" id="down_url" value="<?= $this->admin_model->getDownloadSpecifyUrl($idlink); ?>" placeholder="<?= lang('placeholder_url'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -36,19 +36,19 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('option_image'); ?></label>
+                  <label class="uk-form-label"><?= lang('option_image'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fab fa-font-awesome-flag"></i></span>
-                      <input class="uk-input" type="text" id="down_image" value="<?= $this->admin_model->getDownloadSpecifyImage($idlink); ?>" placeholder="<?= $this->lang->line('option_image'); ?>" required>
+                      <input class="uk-input" type="text" id="down_image" value="<?= $this->admin_model->getDownloadSpecifyImage($idlink); ?>" placeholder="<?= lang('option_image'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_category'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_category'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="down_category">
-                      <option value="0"><?= $this->lang->line('placeholder_select_category'); ?></option>
+                      <option value="0"><?= lang('placeholder_select_category'); ?></option>
                       <option value="1" <?php if($this->admin_model->getDownloadSpecifyCategory($idlink) == '1') echo 'selected'; ?>>Client</option>
                       <option value="2" <?php if($this->admin_model->getDownloadSpecifyCategory($idlink) == '2') echo 'selected'; ?>>Addon</option>
                     </select>
@@ -59,7 +59,7 @@
             <div class="uk-margin-small">
               <div class="uk-grid-small" uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_size'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_size'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-bars"></i></span>
@@ -68,10 +68,10 @@
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_type'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_type'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="down_type">
-                      <option value="0"><?= $this->lang->line('notification_select_type'); ?></option>
+                      <option value="0"><?= lang('notification_select_type'); ?></option>
                       <option value="Rar" <?php if($this->admin_model->getDownloadSpecifyType($idlink) == 'Rar') echo 'selected'; ?>>Rar</option>
                       <option value="Zip" <?php if($this->admin_model->getDownloadSpecifyType($idlink) == 'Zip') echo 'selected'; ?>>Zip</option>
                     </select>
@@ -80,7 +80,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_download"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
+              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_download"><i class="fas fa-sync-alt"></i> <?= lang('button_save'); ?></button>
             </div>
             <?= form_close(); ?>
           </div>
@@ -103,8 +103,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_name_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_name_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -119,8 +119,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_type'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_select_type'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -140,8 +140,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -159,8 +159,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_menu_edited'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_menu_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

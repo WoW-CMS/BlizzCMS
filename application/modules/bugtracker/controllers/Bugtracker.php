@@ -57,7 +57,7 @@ class Bugtracker extends MX_Controller {
     public function index()
     {
         $data = array(
-            'pagetitle' => $this->lang->line('tab_bugtracker'),
+            'pagetitle' => lang('tab_bugtracker'),
         );
 
         $config['total_rows'] = $this->bugtracker_model->getAllBugs();
@@ -92,7 +92,7 @@ class Bugtracker extends MX_Controller {
             $tiny = $this->wowgeneral->tinyEditor('User');
 
         $data = array(
-            'pagetitle' => $this->lang->line('tab_bugtracker'),
+            'pagetitle' => lang('tab_bugtracker'),
             'lang' => $this->lang->lang(),
             'tiny' => $tiny,
         );
@@ -118,7 +118,7 @@ class Bugtracker extends MX_Controller {
 
         $data = array(
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('tab_bugtracker'),
+            'pagetitle' => lang('tab_bugtracker'),
             'tiny' => $tiny,
         );
 

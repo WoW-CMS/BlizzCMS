@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-user-cog"></i> <?= $this->lang->line('placeholder_manage_account'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-user-cog"></i> <?= lang('placeholder_manage_account'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= site_url('admin/accounts'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -10,7 +10,7 @@
         </div>
         <div class="uk-card uk-card-default uk-margin-small">
           <div class="uk-card-header">
-            <h5 class="uk-h5"><i class="fas fa-info-circle"></i> <?= $this->lang->line('placeholder_update_information'); ?></h5>
+            <h5 class="uk-h5"><i class="fas fa-info-circle"></i> <?= lang('placeholder_update_information'); ?></h5>
           </div>
           <div class="uk-card-body">
             <div class="uk-grid uk-grid-medium" data-uk-grid>
@@ -26,78 +26,78 @@
                 </div>
               </div>
               <div class="uk-width-3-4@s">
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-coins"></i> <?= $this->lang->line('placeholder_account_points'); ?></span></h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-coins"></i> <?= lang('placeholder_account_points'); ?></span></h5>
                 <?= form_open('', 'id="updateaccountForm" onsubmit="UpdateAccountForm(event)"'); ?>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= $this->lang->line('panel_dp'); ?></label>
+                      <label class="uk-form-label"><?= lang('panel_dp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->wowgeneral->getCharDPTotal($idlink); ?>" placeholder="<?= $this->lang->line('panel_dp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_dp" min="0" value="<?= $this->wowgeneral->getCharDPTotal($idlink); ?>" placeholder="<?= lang('panel_dp'); ?>" required>
                       </div>
                     </div>
                     <div class="uk-inline uk-width-1-2@s">
-                      <label class="uk-form-label"><?= $this->lang->line('panel_vp'); ?></label>
+                      <label class="uk-form-label"><?= lang('panel_vp'); ?></label>
                       <div class="uk-form-controls">
-                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->wowgeneral->getCharVPTotal($idlink); ?>" placeholder="<?= $this->lang->line('panel_vp'); ?>" required>
+                        <input class="uk-input" type="number" id="account_vp" min="0" value="<?= $this->wowgeneral->getCharVPTotal($idlink); ?>" placeholder="<?= lang('panel_vp'); ?>" required>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">
-                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upaccount"><i class="fas fa-sync"></i> <?= $this->lang->line('button_update'); ?></button>
+                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upaccount"><i class="fas fa-sync"></i> <?= lang('button_update'); ?></button>
                   </div>
                 </div>
                 <?= form_close(); ?>
                 <?php if($this->admin_model->getBanSpecify($idlink)->num_rows()): ?>
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="far fa-check-circle"></i> <?= $this->lang->line('placeholder_account_unban'); ?></span></h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="far fa-check-circle"></i> <?= lang('placeholder_account_unban'); ?></span></h5>
                 <div class="uk-margin-small">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-inline uk-width-1-3@s">
-                      <button class="uk-button uk-button-primary uk-width-1-1" type="submit" value="<?= $idlink ?>" id="button_unban" onclick="RemoveBan(event, this.value)"><i class="far fa-check-circle"></i> <?= $this->lang->line('button_unban'); ?></button>
+                      <button class="uk-button uk-button-primary uk-width-1-1" type="submit" value="<?= $idlink ?>" id="button_unban" onclick="RemoveBan(event, this.value)"><i class="far fa-check-circle"></i> <?= lang('button_unban'); ?></button>
                     </div>
                   </div>
                 </div>
                 <?php else: ?>
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-ban"></i> <?= $this->lang->line('placeholder_account_ban'); ?></span></h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-ban"></i> <?= lang('placeholder_account_ban'); ?></span></h5>
                 <?= form_open('', 'id="banaccountForm" onsubmit="BanAccountForm(event)"'); ?>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_reason'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_reason'); ?></label>
                   <div class="uk-inline uk-width-1-1">
                     <div class="uk-form-controls">
-                      <textarea class="uk-textarea" type="textarea" id="ban_reason" placeholder="<?= $this->lang->line('placeholder_reason'); ?>" required></textarea>
+                      <textarea class="uk-textarea" type="textarea" id="ban_reason" placeholder="<?= lang('placeholder_reason'); ?>" required></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">
-                    <button class="uk-button uk-button-danger uk-width-1-1" type="submit" id="button_ban"><i class="fas fa-ban"></i> <?= $this->lang->line('button_ban'); ?></button>
+                    <button class="uk-button uk-button-danger uk-width-1-1" type="submit" id="button_ban"><i class="fas fa-ban"></i> <?= lang('button_ban'); ?></button>
                   </div>
                 </div>
                 <?= form_close(); ?>
                 <?php endif; ?>
                 <?php if($this->wowauth->getRank($idlink) <= '1'): ?>
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-minus"></i> <?= $this->lang->line('placeholder_account_remove_rank'); ?></span></h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-minus"></i> <?= lang('placeholder_account_remove_rank'); ?></span></h5>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">
-                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" value="<?= $idlink ?>" id="button_delrank" onclick="RemoveRank(event, this.value)"><i class="fas fa-user-minus"></i> <?= $this->lang->line('button_remove'); ?></button>
+                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" value="<?= $idlink ?>" id="button_delrank" onclick="RemoveRank(event, this.value)"><i class="fas fa-user-minus"></i> <?= lang('button_remove'); ?></button>
                   </div>
                 </div>
                 <?php else: ?>
-                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-plus"></i> <?= $this->lang->line('placeholder_account_grant_rank'); ?></span></h5>
+                <h5 class="uk-h5 uk-heading-line uk-text-uppercase uk-text-bold uk-margin-small"><span><i class="fas fa-user-plus"></i> <?= lang('placeholder_account_grant_rank'); ?></span></h5>
                 <?= form_open('', 'id="grantrankForm" onsubmit="GrantRankForm(event)"'); ?>
                 <div class="uk-margin-small">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_gmlevel'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_gmlevel'); ?></label>
                   <div class="uk-inline uk-width-1-1">
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="number" id="account_gmrank" min="0" placeholder="<?= $this->lang->line('placeholder_gmlevel'); ?>" required>
+                      <input class="uk-input" type="number" id="account_gmrank" min="0" placeholder="<?= lang('placeholder_gmlevel'); ?>" required>
                     </div>
                   </div>
                 </div>
                 <div class="uk-grid uk-grid-small uk-margin-small-top uk-margin-remove-bottom" data-uk-grid>
                   <div class="uk-width-1-2@s">
-                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_addrank"><i class="fas fa-user-plus"></i> <?= $this->lang->line('button_grant'); ?></button>
+                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_addrank"><i class="fas fa-user-plus"></i> <?= lang('button_grant'); ?></button>
                   </div>
                 </div>
                 <?= form_close(); ?>
@@ -108,7 +108,7 @@
         </div>
         <div class="uk-grid uk-grid-small uk-margin" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-users-cog"></i> <?= $this->lang->line('panel_chars_list'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-users-cog"></i> <?= lang('panel_chars_list'); ?></h3>
           </div>
           <div class="uk-width-auto"></div>
         </div>
@@ -133,13 +133,13 @@
                     <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                       <thead>
                         <tr>
-                          <th class="uk-table-shrink"><?= $this->lang->line('table_header_guid'); ?></th>
-                          <th class="uk-width-small"><?= $this->lang->line('table_header_name'); ?></th>
-                          <th class="uk-table-shrink"><?= $this->lang->line('table_header_race'); ?></th>
-                          <th class="uk-table-shrink"><?= $this->lang->line('table_header_class'); ?></th>
-                          <th class="uk-table-shrink"><?= $this->lang->line('table_header_level'); ?></th>
-                          <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_money'); ?></th>
-                          <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_total_kills'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('table_header_guid'); ?></th>
+                          <th class="uk-width-small"><?= lang('table_header_name'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('table_header_race'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('table_header_class'); ?></th>
+                          <th class="uk-table-shrink"><?= lang('table_header_level'); ?></th>
+                          <th class="uk-width-small uk-text-center"><?= lang('table_header_money'); ?></th>
+                          <th class="uk-width-small uk-text-center"><?= lang('table_header_total_kills'); ?></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -177,8 +177,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_dp_vp_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_dp_vp_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -198,8 +198,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -217,8 +217,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_account_updated'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_account_updated'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -242,8 +242,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_reason_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_reason_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -263,8 +263,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -282,8 +282,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_account_banned'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_account_banned'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -310,8 +310,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -329,8 +329,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_account_ban_remove'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_account_ban_remove'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -353,8 +353,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_rank_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_rank_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -374,8 +374,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -393,8 +393,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_rank_granted'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_rank_granted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -421,8 +421,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -440,8 +440,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_rank_removed'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_rank_removed'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

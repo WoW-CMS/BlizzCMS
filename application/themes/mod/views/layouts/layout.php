@@ -31,14 +31,14 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                    <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                     <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
                     <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
-                    <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
+                    <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>
-                    <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
+                    <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -51,7 +51,7 @@
                     <a class="uk-logo" href="<?= site_url('mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
                   </div>
                   <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                    <li><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
+                    <li><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('admin_nav_dashboard'); ?></a></li>
                     <li class="uk-parent">
                       <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comment-alt"></i></span>Forum and Post</a>
                       <ul class="uk-nav-sub">
@@ -61,7 +61,7 @@
                       </ul>
                     </li>
                     <li class="uk-parent">
-                      <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?></a>
+                      <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('admin_nav_users'); ?></a>
                       <ul class="uk-nav-sub">
                         <li><a href="<?= site_url('mod/bannings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-ban"></i></span>Bannings</a></li>
                         <li><a href="<?= site_url('mod/warnings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-exclamation-triangle"></i></span>Warnings</a></li>
@@ -80,7 +80,7 @@
         <div class="uk-navbar" uk-navbar="mode: click">
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <li class="uk-active"><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
+              <li class="uk-active"><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= lang('admin_nav_dashboard'); ?></a></li>
               <li>
                 <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comment-alt"></i></span>Forum and Post<span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
@@ -92,7 +92,7 @@
                 </div>
               </li>
               <li>
-                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
+                <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= lang('admin_nav_users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('mod/bannings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-ban"></i></span>Bannings</a></li>
@@ -112,7 +112,7 @@
     <section class="uk-section uk-section-xsmall">
       <div class="uk-container uk-container-expand">
         <hr class="uk-hr">
-        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= $this->lang->line('footer_rights'); ?></p>
+        <p class="uk-text-small uk-text-center uk-text-right@s">Copyright <i class="far fa-copyright"></i> <?= date('Y'); ?> <span class="uk-text-bold">WoW-CMS</span>. <?= lang('footer_rights'); ?></p>
       </div>
     </section>
     <script src="<?= base_url('assets/core/js/jquery.countTo.js'); ?>"></script>

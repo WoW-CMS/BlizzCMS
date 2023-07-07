@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_topsite'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= lang('placeholder_edit_topsite'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= site_url('admin/topsites'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -14,15 +14,15 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_name'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="text" id="topsite_name" placeholder="<?= $this->lang->line('placeholder_name'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyName($idlink); ?>" required>
+                    <input class="uk-input" type="text" id="topsite_name" placeholder="<?= lang('placeholder_name'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyName($idlink); ?>" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('placeholder_url'); ?></label>
+                  <label class="uk-form-label"><?= lang('placeholder_url'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="url" id="topsite_url" placeholder="<?= $this->lang->line('placeholder_url'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyURL($idlink); ?>" required>
+                    <input class="uk-input" type="url" id="topsite_url" placeholder="<?= lang('placeholder_url'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyURL($idlink); ?>" required>
                   </div>
                 </div>
               </div>
@@ -30,15 +30,15 @@
             <div class="uk-margin-small">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('table_header_time'); ?> <span class="uk-text-bold">(<?= $this->lang->line('placeholder_hours'); ?>)</span></label>
+                  <label class="uk-form-label"><?= lang('table_header_time'); ?> <span class="uk-text-bold">(<?= lang('placeholder_hours'); ?>)</span></label>
                   <div class="uk-form-controls">
                     <input class="uk-input" type="number" id="topsite_time" min="1" placeholder="Hours" value="<?= $this->admin_model->getTopsiteSpecifyTime($idlink); ?>" required>
                   </div>
                 </div>
                 <div class="uk-inline uk-width-1-2@s">
-                  <label class="uk-form-label"><?= $this->lang->line('table_header_points'); ?></label>
+                  <label class="uk-form-label"><?= lang('table_header_points'); ?></label>
                   <div class="uk-form-controls">
-                    <input class="uk-input" type="number" id="topsite_points" min="1" placeholder="<?= $this->lang->line('table_header_points'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyPoints($idlink); ?>" required>
+                    <input class="uk-input" type="number" id="topsite_points" min="1" placeholder="<?= lang('table_header_points'); ?>" value="<?= $this->admin_model->getTopsiteSpecifyPoints($idlink); ?>" required>
                   </div>
                 </div>
               </div>
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="uk-margin-small">
-              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_uptopsite"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
+              <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_uptopsite"><i class="fas fa-sync-alt"></i> <?= lang('button_save'); ?></button>
             </div>
             <?= form_close(); ?>
           </div>
@@ -74,8 +74,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_name_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_name_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -95,8 +95,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -114,8 +114,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_topsite_edited'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_topsite_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

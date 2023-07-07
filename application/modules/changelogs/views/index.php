@@ -7,32 +7,32 @@
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
 				<?php if($this->wowmodule->getStatusModule('User Panel')): ?>
-				<li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
+				<li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('tab_account'); ?></a></li>
 				<?php endif; ?>
 				<li class="uk-nav-divider"></li>
 				<?php if($this->wowmodule->getStatusModule('Donation') == '1'): ?>
-				<li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
+				<li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('navbar_donate_panel'); ?></a></li>
 				<?php endif; ?>
 				<?php if($this->wowmodule->getStatusModule('Vote') == '1'): ?>
-				<li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
+				<li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('navbar_vote_panel'); ?></a></li>
 				<?php endif; ?>
 				<?php if($this->wowmodule->getStatusModule('Store') == '1'): ?>
-				<li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
+				<li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('tab_store'); ?></a></li>
 				<?php endif; ?>
 				<li class="uk-nav-divider"></li>
 				<?php if($this->wowmodule->getStatusModule('Bugtracker') == '1'): ?>
-				<li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
+				<li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?= lang('tab_bugtracker'); ?></a></li>
 				<?php endif; ?>
 				<?php if($this->wowmodule->getStatusModule('Changelogs') == '1'): ?>
-				<li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
+				<li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('tab_changelogs'); ?></a></li>
 				<?php endif; ?>
 				<?php if($this->wowmodule->getStatusModule('Download') == '1'): ?>
-				<li><a href="<?= site_url('download'); ?>"><i class="fas fa-download"></i> <?=$this->lang->line('tab_download'); ?></a></li>
+				<li><a href="<?= site_url('download'); ?>"><i class="fas fa-download"></i> <?= lang('tab_download'); ?></a></li>
 				<?php endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
-            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= $this->lang->line('tab_changelogs'); ?></h4>
+            <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><?= lang('tab_changelogs'); ?></h4>
             <?php if($this->changelogs_model->getAll()->num_rows()): ?>
             <div class="uk-grid uk-grid-small uk-child-width-1-1" data-uk-grid>
               <?php foreach($this->changelogs_model->getChangelogs()->result() as $changelogsList): ?>
@@ -57,7 +57,7 @@
             </div>
             <?php else: ?>
             <div class="uk-alert-warning" uk-alert>
-              <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('alert_changelog_not_found'); ?></p>
+              <p class="uk-text-center"><i class="fas fa-exclamation-triangle"></i> <?= lang('alert_changelog_not_found'); ?></p>
             </div>
             <?php endif; ?>
           </div>

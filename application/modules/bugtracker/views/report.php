@@ -33,24 +33,24 @@ endif;
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->wowmodule->getStatusModule('User Panel') == '1'): ?>
-              <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
+              <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getStatusModule('Donation') == '1'): ?>
-              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
+              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('navbar_donate_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Vote') == '1'): ?>
-              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
+              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('navbar_vote_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Store') == '1'): ?>
-              <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
+              <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('tab_store'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getStatusModule('Bugtracker') == '1'): ?>
-              <li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
+              <li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?= lang('tab_bugtracker'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Changelogs') == '1'): ?>
-              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
+              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('tab_changelogs'); ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
@@ -73,10 +73,10 @@ endif;
                   </div>
                   <div class="uk-width-1-4@s">
                     <ul class="uk-list uk-text-small">
-                      <li><i class="far fa-user-circle"></i> <?= $this->lang->line('table_header_author'); ?>: <?= $this->wowauth->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></li>
-                      <li><i class="fas fa-list"></i> <?= $this->lang->line('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></li>
-                      <li><i class="fas fa-exclamation-circle"></i> <?= $this->lang->line('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></li>
-                      <li><i class="fas fa-tags"></i> <?= $this->lang->line('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></li>
+                      <li><i class="far fa-user-circle"></i> <?= lang('table_header_author'); ?>: <?= $this->wowauth->getUsernameID($this->bugtracker_model->getAuthor($idlink)); ?></li>
+                      <li><i class="fas fa-list"></i> <?= lang('placeholder_type'); ?>: <span class="uk-label"><?= $this->bugtracker_model->getType($this->bugtracker_model->getTypeID($idlink)); ?></span></li>
+                      <li><i class="fas fa-exclamation-circle"></i> <?= lang('table_header_priority'); ?>: <span class="uk-label uk-label-danger"><?= $this->bugtracker_model->getPriority($this->bugtracker_model->getPriorityID($idlink)); ?></span></li>
+                      <li><i class="fas fa-tags"></i> <?= lang('table_header_status'); ?>: <span class="uk-label uk-label-success"><?= $this->bugtracker_model->getStatus($this->bugtracker_model->getStatusID($idlink)); ?></span></li>
                     </ul>
                   </div>
                 </div>
@@ -88,7 +88,7 @@ endif;
               <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small" data-uk-grid>
                   <div class="uk-width-expand@s">
-                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= $this->lang->line('bugtracker_answered'); ?> <?= $this->wowauth->getUsernameID($this->bugtracker_model->getBugtrackerReplied($idlink, 'author')); ?></h5>
+                    <h5 class="uk-h5 uk-text-bold"><i class="fas fa-bug"></i> <?= lang('bugtracker_answered'); ?> <?= $this->wowauth->getUsernameID($this->bugtracker_model->getBugtrackerReplied($idlink, 'author')); ?></h5>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@ endif;
             <div>
                 <form method="post" action="">
                   <div class="uk-margin uk-light">
-                    <label class="uk-form-label"><?= $this->lang->line('bugtracker_replied'); ?></label>
+                    <label class="uk-form-label"><?= lang('bugtracker_replied'); ?></label>
                     <div class="uk-form-controls">
                       <div class="uk-width-1-1">
                         <textarea class="uk-textarea tinyeditor" rows="12" name="bugtracker_reply"></textarea>
@@ -113,7 +113,7 @@ endif;
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="sendComment"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="sendComment"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
                 </form>
               </div>
@@ -132,7 +132,7 @@ endif;
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changePriory"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changePriory"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
                 </form>
               </div>
@@ -148,7 +148,7 @@ endif;
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changeStatus"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changeStatus"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
                 </form>
               </div>
@@ -164,7 +164,7 @@ endif;
                     </div>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changetypes"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save_changes'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" name="changetypes"><i class="fas fa-sync-alt"></i> <?= lang('button_save_changes'); ?></button>
                   </div>
                 </form>
               </div>
@@ -172,7 +172,7 @@ endif;
             <div>
               <div class="uk-margin-small">
                 <form method="post" action="">
-                  <button type="submit" name="btn_closeBugtracker" class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle"></i> <?= $this->lang->line('button_close'); ?></button>
+                  <button type="submit" name="btn_closeBugtracker" class="uk-button uk-button-danger uk-width-1-1"><i class="fas fa-times-circle"></i> <?= lang('button_close'); ?></button>
                 </form>
               </div>
             </div>

@@ -67,7 +67,7 @@ class Admin extends MX_Controller {
     public function index()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
         ];
 
         $this->template->build('index', $data);
@@ -79,7 +79,7 @@ class Admin extends MX_Controller {
     public function settings()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -103,7 +103,7 @@ class Admin extends MX_Controller {
     public function optionalsettings()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -129,7 +129,7 @@ class Admin extends MX_Controller {
     public function seosettings()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -149,7 +149,7 @@ class Admin extends MX_Controller {
     public function modulesettings()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'tiny' =>  $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
         ];
@@ -176,7 +176,7 @@ class Admin extends MX_Controller {
     public function managemodules()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -198,7 +198,7 @@ class Admin extends MX_Controller {
     public function cmsmanage()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
 			'latest_version' => $this->updater->latest_version(),
             'lang' => $this->lang->lang()
         ];
@@ -230,7 +230,7 @@ class Admin extends MX_Controller {
     public function accounts()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
         ];
 
         $config['total_rows'] = $this->admin_model->countAccounts();
@@ -266,7 +266,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -283,7 +283,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id
         ];
 
@@ -330,7 +330,7 @@ class Admin extends MX_Controller {
     public function managemenu()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -340,7 +340,7 @@ class Admin extends MX_Controller {
     public function createmenu()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -356,7 +356,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -396,7 +396,7 @@ class Admin extends MX_Controller {
     public function managerealms()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -427,7 +427,7 @@ class Admin extends MX_Controller {
     public function createrealm()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -443,7 +443,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -491,7 +491,7 @@ class Admin extends MX_Controller {
     public function manageslides()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -522,7 +522,7 @@ class Admin extends MX_Controller {
     public function createslide()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -538,7 +538,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -574,7 +574,7 @@ class Admin extends MX_Controller {
     public function managenews()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -605,7 +605,7 @@ class Admin extends MX_Controller {
     public function createnews()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'tiny' => $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
         ];
@@ -622,7 +622,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
@@ -640,7 +640,7 @@ class Admin extends MX_Controller {
     public function managechangelogs()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -671,7 +671,7 @@ class Admin extends MX_Controller {
     public function createchangelog()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'tiny' => $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
         ];
@@ -688,7 +688,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
@@ -721,7 +721,7 @@ class Admin extends MX_Controller {
     public function managepages()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -752,7 +752,7 @@ class Admin extends MX_Controller {
     public function createpage()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'tiny' => $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
         ];
@@ -769,7 +769,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'tiny' => $this->wowgeneral->tinyEditor('Admin'),
             'lang' => $this->lang->lang()
@@ -804,7 +804,7 @@ class Admin extends MX_Controller {
     public function managetopsites()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -835,7 +835,7 @@ class Admin extends MX_Controller {
     public function createtopsite()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -851,7 +851,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -892,7 +892,7 @@ class Admin extends MX_Controller {
     public function managestore()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang(),
         ];
 
@@ -923,7 +923,7 @@ class Admin extends MX_Controller {
     public function managestoreitems()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang(),
         ];
 
@@ -954,7 +954,7 @@ class Admin extends MX_Controller {
     public function managestoretop()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang(),
         ];
 
@@ -985,7 +985,7 @@ class Admin extends MX_Controller {
     public function createstorecategory()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1001,7 +1001,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1038,7 +1038,7 @@ class Admin extends MX_Controller {
     public function createstoreitem()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1054,7 +1054,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1100,7 +1100,7 @@ class Admin extends MX_Controller {
     public function createstoretop()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1116,7 +1116,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1146,7 +1146,7 @@ class Admin extends MX_Controller {
     public function donate()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1156,7 +1156,7 @@ class Admin extends MX_Controller {
     public function createdonateplan()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1169,7 +1169,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1230,7 +1230,7 @@ class Admin extends MX_Controller {
     public function manageforum()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1261,7 +1261,7 @@ class Admin extends MX_Controller {
     public function manageforumelements()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1292,7 +1292,7 @@ class Admin extends MX_Controller {
     public function createforumcategory()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1308,7 +1308,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1338,7 +1338,7 @@ class Admin extends MX_Controller {
     public function createforum()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1354,7 +1354,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1404,7 +1404,7 @@ class Admin extends MX_Controller {
 	public function managedownload()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1414,7 +1414,7 @@ class Admin extends MX_Controller {
 	public function createdownload()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang()
         ];
 
@@ -1430,7 +1430,7 @@ class Admin extends MX_Controller {
             redirect(site_url());
 
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang()
         ];
@@ -1474,7 +1474,7 @@ class Admin extends MX_Controller {
     public function managetickets()
     {
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'lang' => $this->lang->lang(),
         ];
 
@@ -1506,7 +1506,7 @@ class Admin extends MX_Controller {
     {
         $multirealm = $this->wowrealm->getRealmConnectionData($id);
         $data = [
-            'pagetitle' => $this->lang->line('button_admin_panel'),
+            'pagetitle' => lang('button_admin_panel'),
             'idlink' => $id,
             'lang' => $this->lang->lang(),
             'multirealm' => $multirealm
