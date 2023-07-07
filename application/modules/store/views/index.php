@@ -7,10 +7,10 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-default">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= $this->lang->line('store_categories'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="far fa-list-alt"></i> <?= lang('store_categories'); ?></h5>
               </div>
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
-                <li class="uk-active"><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></a></li>
+                <li class="uk-active"><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></a></li>
                 <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
                 <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
@@ -37,7 +37,7 @@
           </div>
           <div class="uk-width-3-4@m">
             <div class="uk-card uk-card-default uk-card-body">
-              <h5 class="uk-h5 uk-text-bold uk-margin-remove-bottom"><i class="fas fa-star"></i> <?= $this->lang->line('store_top_items'); ?></h5>
+              <h5 class="uk-h5 uk-text-bold uk-margin-remove-bottom"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></h5>
               <hr class="uk-margin-small-top">
               <div class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m" data-uk-grid>
                <?php foreach($this->store_model->getStoreTop() as $top): ?>
@@ -64,15 +64,15 @@
                       <div class="uk-grid uk-grid-small uk-flex uk-flex-center" data-uk-grid>
                         <div class="uk-width-auto">
                           <?php if($this->store_model->getPriceType($top->store_item) == 1): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?></span>
                           <?php elseif($this->store_model->getPriceType($top->store_item) == 2): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
                           <?php elseif($this->store_model->getPriceType($top->store_item) == 3): ?>
-                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= $this->lang->line('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= $this->lang->line('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
+                          <span class="blizzcms-item-price"><span uk-tooltip="title: <?= lang('panel_dp'); ?>"><i class="dp-icon"></i></span><?= $this->store_model->getPriceDP($top->store_item); ?> <span class="uk-badge">&amp;</span> <span uk-tooltip="title: <?= lang('panel_vp'); ?>"><i class="vp-icon"></i></span><?= $this->store_model->getPriceVP($top->store_item); ?></span>
                           <?php endif; ?>
                         </div>
                         <div class="uk-width-auto">
-                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $top->store_item ?>" value="<?= $top->store_item ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= $this->lang->line('button_cart'); ?></button>
+                          <button class="uk-button uk-button-default uk-button-small" id="button_item<?= $top->store_item ?>" value="<?= $top->store_item ?>" onclick="AddItem(event, this.value)"><i class="fas fa-cart-plus"></i> <?= lang('button_cart'); ?></button>
                         </div>
                       </div>
                     </div>
@@ -103,8 +103,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_store_item_added'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_store_item_added'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_category'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= lang('placeholder_edit_category'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= site_url('admin/store'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -14,19 +14,19 @@
               <div class="uk-margin-small">
                 <div class="uk-grid-small" uk-grid>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?= $this->lang->line('placeholder_name'); ?></label>
+                    <label class="uk-form-label"><?= lang('placeholder_name'); ?></label>
                     <div class="uk-form-controls">
                       <div class="uk-inline uk-width-1-1">
                         <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: pencil"></span>
-                        <input class="uk-input" type="text" id="store_category_name" value="<?= $this->admin_model->getStoreCategoryName($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_name'); ?>" required>
+                        <input class="uk-input" type="text" id="store_category_name" value="<?= $this->admin_model->getStoreCategoryName($idlink); ?>" placeholder="<?= lang('placeholder_name'); ?>" required>
                       </div>
                     </div>
                   </div>
                   <div class="uk-inline uk-width-1-2@s">
-                    <label class="uk-form-label"><?= $this->lang->line('table_header_realm'); ?></label>
+                    <label class="uk-form-label"><?= lang('table_header_realm'); ?></label>
                     <div class="uk-form-controls">
                       <select class="uk-select" id="store_category_realm">
-                        <option value="0"><?= $this->lang->line('notification_select_realm'); ?></option>
+                        <option value="0"><?= lang('notification_select_realm'); ?></option>
                         <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
                         <option value="<?= $MultiRealm->realmID ?>" <?php if($this->admin_model->getStoreCategoryRealm($idlink) == $MultiRealm->realmID) echo 'selected'; ?>><?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></option>
                         <?php endforeach; ?>
@@ -36,15 +36,15 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_route'); ?></label>
+                <label class="uk-form-label"><?= lang('placeholder_route'); ?></label>
                 <div class="uk-form-controls">
                   <div class="uk-inline uk-width-1-1">
-                    <input class="uk-input" type="text" id="store_category_route" value="<?= $this->admin_model->getStoreCategoryRoute($idlink); ?>" placeholder="<?= $this->lang->line('placeholder_route'); ?>" required>
+                    <input class="uk-input" type="text" id="store_category_route" value="<?= $this->admin_model->getStoreCategoryRoute($idlink); ?>" placeholder="<?= lang('placeholder_route'); ?>" required>
                   </div>
                 </div>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upgroup"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_upgroup"><i class="fas fa-sync-alt"></i> <?= lang('button_save'); ?></button>
               </div>
             <?= form_close(); ?>
           </div>
@@ -64,8 +64,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_name_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_name_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -80,8 +80,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_realm'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_select_realm'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -101,8 +101,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -120,8 +120,8 @@
               $.amaran({
                 'theme': 'awesome error',
                 'content': {
-                  title: '<?= $this->lang->line('notification_title_error'); ?>',
-                  message: '<?= $this->lang->line('notification_route_inuse'); ?>',
+                  title: '<?= lang('notification_title_error'); ?>',
+                  message: '<?= lang('notification_route_inuse'); ?>',
                   info: '',
                   icon: 'fas fa-times-circle'
                 },
@@ -137,8 +137,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_category_edited'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_category_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

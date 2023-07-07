@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_top'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= lang('placeholder_edit_top'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= site_url('admin/store/top'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
@@ -12,10 +12,10 @@
           <div class="uk-card-body">
             <?= form_open('', 'id="updatetopForm" onsubmit="UpdateTopForm(event)"'); ?>
               <div class="uk-margin-small">
-                <label class="uk-form-label"><?= $this->lang->line('placeholder_item'); ?></label>
+                <label class="uk-form-label"><?= lang('placeholder_item'); ?></label>
                 <div class="uk-form-controls">
                   <select class="uk-select" id="store_top_item">
-                    <option value="0"><?= $this->lang->line('notification_select_item'); ?></option>
+                    <option value="0"><?= lang('notification_select_item'); ?></option>
                     <?php foreach ($this->admin_model->getStoreItems() as $item): ?>
                     <option value="<?= $item->id ?>"<?php if($this->admin_model->getTopSpecifyItem($idlink) == $item->id) echo 'selected'; ?>><?= $item->name ?> (<?= $this->admin_model->getStoreCategoryName($item->category); ?> - <?= $this->wowrealm->getRealmName($this->admin_model->getStoreCategoryRealm($item->category)); ?>)</option>
                     <?php endforeach; ?>
@@ -23,7 +23,7 @@
                 </div>
               </div>
               <div class="uk-margin-small">
-                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_uptop"><i class="fas fa-sync-alt"></i> <?= $this->lang->line('button_save'); ?></button>
+                <button class="uk-button uk-button-primary uk-width-1-1" type="submit" id="button_uptop"><i class="fas fa-sync-alt"></i> <?= lang('button_save'); ?></button>
               </div>
             <?= form_close(); ?>
           </div>
@@ -41,8 +41,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_select_item'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_select_item'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -62,8 +62,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -81,8 +81,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_top_edited'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_top_edited'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

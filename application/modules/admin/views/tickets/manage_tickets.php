@@ -2,7 +2,7 @@
   <div class="uk-container">
     <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
       <div class="uk-width-expand uk-heading-line">
-        <h3 class="uk-h3"><i class="fas fa-scroll"></i> <?= $this->lang->line('admin_nav_manage_tickets') ?></h3>
+        <h3 class="uk-h3"><i class="fas fa-scroll"></i> <?= lang('admin_nav_manage_tickets') ?></h3>
       </div>
     </div>
     <div class="uk-grid uk-grid-small" data-uk-grid>

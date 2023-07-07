@@ -58,7 +58,7 @@ class Forum extends MX_Controller {
     public function index()
     {
         $data = [
-            'pagetitle' => $this->lang->line('tab_forum'),
+            'pagetitle' => lang('tab_forum'),
         ];
 
         $this->template->build('index', $data);
@@ -76,7 +76,7 @@ class Forum extends MX_Controller {
 
         $data = [
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('tab_forum'),
+            'pagetitle' => lang('tab_forum'),
             'tiny' => $tiny
         ];
 
@@ -106,7 +106,7 @@ class Forum extends MX_Controller {
 
         $data = [
             'idlink' => $id,
-            'pagetitle' => $this->lang->line('tab_forum'),
+            'pagetitle' => lang('tab_forum'),
             'lang' => $this->lang->lang(),
             'tiny' => $tiny
         ];
@@ -128,7 +128,7 @@ class Forum extends MX_Controller {
 		
         $data = [
             'idlink' => $idlink,
-            'pagetitle' => $this->lang->line('tab_forum'),
+            'pagetitle' => lang('tab_forum'),
             'lang' => $this->lang->lang(),
             'tiny' => $tiny,
         ];

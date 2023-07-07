@@ -2,7 +2,7 @@
       <div class="uk-container">
         <div class="uk-grid uk-grid-small uk-margin-small" data-uk-grid>
           <div class="uk-width-expand uk-heading-line">
-            <h3 class="uk-h3"><i class="fas fa-donate"></i> <?= $this->lang->line('admin_nav_donate_methods'); ?></h3>
+            <h3 class="uk-h3"><i class="fas fa-donate"></i> <?= lang('admin_nav_donate_methods'); ?></h3>
           </div>
           <div class="uk-width-auto">
             <a href="<?= site_url('admin/donate/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
@@ -22,11 +22,11 @@
                 <table class="uk-table uk-table-middle uk-table-divider uk-table-small">
                   <thead>
                     <tr>
-                      <th class="uk-table-small"><?= $this->lang->line('placeholder_title'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_price'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_tax'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_points'); ?></th>
-                      <th class="uk-width-small uk-text-center"><?= $this->lang->line('table_header_actions'); ?></th>
+                      <th class="uk-table-small"><?= lang('placeholder_title'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= lang('table_header_price'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= lang('table_header_tax'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= lang('table_header_points'); ?></th>
+                      <th class="uk-width-small uk-text-center"><?= lang('table_header_actions'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -66,8 +66,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -85,8 +85,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_menu_deleted'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_menu_deleted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

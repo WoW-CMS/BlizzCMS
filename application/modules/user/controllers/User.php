@@ -56,7 +56,7 @@ class User extends MX_Controller {
 		}
 
 		$data = [
-			'pagetitle' => $this->lang->line('tab_login'),
+			'pagetitle' => lang('tab_login'),
 			'recapKey' => $this->config->item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang()
 		];
@@ -129,7 +129,7 @@ class User extends MX_Controller {
 		}
 
 		$data = [
-			'pagetitle' => $this->lang->line('tab_register'),
+			'pagetitle' => lang('tab_register'),
 			'recapKey' => $this->config->item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang()
 		];
@@ -259,7 +259,7 @@ class User extends MX_Controller {
 		}
 
 		$data = [
-			'pagetitle' => $this->lang->line('tab_reset'),
+			'pagetitle' => lang('tab_reset'),
 			'recapKey' => $this->config->item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang(),
 		];
@@ -297,7 +297,7 @@ class User extends MX_Controller {
 		}
 
 		$data = [
-			'pagetitle' => $this->lang->line('tab_account'),
+			'pagetitle' => lang('tab_account'),
 			'lang' => $this->lang->lang(),
 		];
 
@@ -322,7 +322,7 @@ class User extends MX_Controller {
 		}
 
 		$data = [
-			'pagetitle' => $this->lang->line('tab_account'),
+			'pagetitle' => lang('tab_account'),
 			'lang' => $this->lang->lang(),
 		];
 

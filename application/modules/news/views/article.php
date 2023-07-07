@@ -47,7 +47,7 @@
                       <?= $commentss->commentary ?>
                       <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
                       <div class="uk-margin-small-top">
-                        <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
+                        <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                       </div>
                       <?php endif; ?>
                     </div>
@@ -58,10 +58,10 @@
               <?php if(!$this->wowauth->isLogged()): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
-                  <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
+                  <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
                   <div class="glass-box-container">
-                    <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
-                    <a href="<?= site_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
+                    <p class="uk-margin-small"><?= lang('forum_comment_locked'); ?></p>
+                    <a href="<?= site_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a>
                   </div>
                 </div>
               </div>
@@ -69,13 +69,13 @@
               <?php if($this->wowauth->isLogged()): ?>
               <div>
                 <div class="uk-card uk-card-default uk-card-body">
-                  <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
+                  <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
                   <?= form_open('', 'id="replyForm" onsubmit="ReplyForm(event)"'); ?>
                   <div class="uk-margin-small uk-light">
                     <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= $this->lang->line('button_add_reply'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('button_add_reply'); ?></button>
                   </div>
                   <?= form_close(); ?>
                 </div>
@@ -86,7 +86,7 @@
           <div class="uk-width-1-4@m">
             <div class="uk-card uk-card-default">
               <div class="uk-card-header">
-                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-list-alt"></i> <?= $this->lang->line('home_latest_news'); ?></h5>
+                <h5 class="uk-h5 uk-text-bold"><i class="fas fa-list-alt"></i> <?= lang('home_latest_news'); ?></h5>
               </div>
               <div class="uk-card-body">
                 <ul class="uk-list uk-list-divider uk-text-small">
@@ -115,8 +115,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_reply_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_reply_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -136,8 +136,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -155,8 +155,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_reply_created'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_reply_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -183,8 +183,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -202,8 +202,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_reply_deleted'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_reply_deleted'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },

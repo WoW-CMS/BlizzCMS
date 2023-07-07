@@ -13,7 +13,7 @@
                 <?php if($this->wowauth->isLogged()): ?>
                   <?php if($this->forum_model->getTopicRow($idlink, 'author') == $this->session->userdata('wow_sess_id')): ?>
                     <div class="uk-text-center uk-text-right@s">
-                      <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= $this->lang->line('button_edit_topic'); ?></a>
+                      <a href="#" class="uk-button uk-button-default uk-button-small" uk-toggle="target: #editTopic"><i class="far fa-edit"></i> <?= lang('button_edit_topic'); ?></a>
                     </div>
                   <?php endif; ?>
                 <?php endif; ?>
@@ -33,7 +33,7 @@
                   </div>
                 </div>
                 <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($this->forum_model->getTopicRow($idlink, 'author')); ?></p>
-                <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountTopics('author', $this->forum_model->getTopicRow($idlink, 'author')); ?> <?= $this->lang->line('forum_post_count'); ?></p>
+                <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountTopics('author', $this->forum_model->getTopicRow($idlink, 'author')); ?> <?= lang('forum_post_count'); ?></p>
                 <?php if($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif; ?>
@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
-                  <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->lang->line('forum_post_count'); ?></p>
+                  <p class="uk-margin-remove uk-text-meta uk-text-center"><?= lang('forum_post_count'); ?></p>
                   <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                   <?php endif; ?>
@@ -71,7 +71,7 @@
                   <?= $commentss->commentary ?>
                   <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
-                    <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= $this->lang->line('button_remove'); ?></button>
+                    <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                   </div>
                   <?php endif; ?>
                 </div>
@@ -82,10 +82,10 @@
           <?php if(!$this->wowauth->isLogged() && $this->forum_model->getTopicRow($idlink, 'locked') == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
-              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
+              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
               <div class="glass-box-container">
-                <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
-                <a href="<?= site_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
+                <p class="uk-margin-small"><?= lang('forum_comment_locked'); ?></p>
+                <a href="<?= site_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a>
               </div>
             </div>
           </div>
@@ -93,9 +93,9 @@
           <?php if($this->forum_model->getTopicRow($idlink, 'locked') == 1): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
-              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: lock; ratio: 1.5"></span> <?= $this->lang->line('forum_not_authorized'); ?></h3>
+              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: lock; ratio: 1.5"></span> <?= lang('forum_not_authorized'); ?></h3>
               <div class="glass-box-container">
-                <p class="uk-margin-small"><?= $this->lang->line('forum_topic_locked'); ?></p>
+                <p class="uk-margin-small"><?= lang('forum_topic_locked'); ?></p>
               </div>
             </div>
           </div>
@@ -103,7 +103,7 @@
           <?php if($this->wowauth->isLogged() && $this->forum_model->getTopicRow($idlink, 'locked') == 0): ?>
           <div>
             <div class="uk-card uk-card-default uk-card-body">
-              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
+              <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= lang('forum_comment_header'); ?></h3>
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-6@s"></div>
                 <div class="uk-width-2-3@s">
@@ -112,7 +112,7 @@
                     <textarea class="uk-textarea tinyeditor" id="reply_comment" rows="10"></textarea>
                   </div>
                   <div class="uk-margin-small">
-                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= $this->lang->line('button_add_reply'); ?></button>
+                    <button class="uk-button uk-button-default uk-width-1-1" type="submit" id="button_reply"><i class="fas fa-reply"></i> <?= lang('button_add_reply'); ?></button>
                   </div>
                   <?= form_close(); ?>
                 </div>
@@ -137,8 +137,8 @@
           $.amaran({
             'theme': 'awesome error',
             'content': {
-              title: '<?= $this->lang->line('notification_title_error'); ?>',
-              message: '<?= $this->lang->line('notification_reply_empty'); ?>',
+              title: '<?= lang('notification_title_error'); ?>',
+              message: '<?= lang('notification_reply_empty'); ?>',
               info: '',
               icon: 'fas fa-times-circle'
             },
@@ -158,8 +158,8 @@
             $.amaran({
               'theme': 'awesome info',
               'content': {
-                title: '<?= $this->lang->line('notification_title_info'); ?>',
-                message: '<?= $this->lang->line('notification_checking'); ?>',
+                title: '<?= lang('notification_title_info'); ?>',
+                message: '<?= lang('notification_checking'); ?>',
                 info: '',
                 icon: 'fas fa-sign-in-alt'
               },
@@ -177,8 +177,8 @@
               $.amaran({
                 'theme': 'awesome ok',
                   'content': {
-                  title: '<?= $this->lang->line('notification_title_success'); ?>',
-                  message: '<?= $this->lang->line('notification_reply_created'); ?>',
+                  title: '<?= lang('notification_title_success'); ?>',
+                  message: '<?= lang('notification_reply_created'); ?>',
                   info: '',
                   icon: 'fas fa-check-circle'
                 },
@@ -205,8 +205,8 @@
                 $.amaran({
                     'theme': 'awesome info',
                     'content': {
-                        title: '<?= $this->lang->line('notification_title_info'); ?>',
-                        message: '<?= $this->lang->line('notification_checking'); ?>',
+                        title: '<?= lang('notification_title_info'); ?>',
+                        message: '<?= lang('notification_checking'); ?>',
                         info: '',
                         icon: 'fas fa-sign-in-alt'
                     },
@@ -221,8 +221,8 @@
                     $.amaran({
                       'theme': 'awesome error',
                       'content': {
-                          title: '<?= $this->lang->line('notification_title_error'); ?>',
-                          message: '<?= $this->lang->line('notification_delete_comment_error'); ?>',
+                          title: '<?= lang('notification_title_error'); ?>',
+                          message: '<?= lang('notification_delete_comment_error'); ?>',
                           info: '',
                           icon: 'fas fa-times-circle'
                       },
@@ -236,8 +236,8 @@
                     $.amaran({
                         'theme': 'awesome ok',
                         'content': {
-                            title: '<?= $this->lang->line('notification_title_success'); ?>',
-                            message: '<?= $this->lang->line('notification_reply_deleted'); ?>',
+                            title: '<?= lang('notification_title_success'); ?>',
+                            message: '<?= lang('notification_reply_deleted'); ?>',
                             info: '',
                             icon: 'fas fa-check-circle'
                         },
