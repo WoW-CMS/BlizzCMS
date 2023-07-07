@@ -100,7 +100,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/forgotpassword'); ?>",
+          url:"<?= site_url('forgotpassword'); ?>",
           method:"POST",
           data:{username, email},
           dataType:"text",
@@ -157,7 +157,7 @@
               });
             }
             $('#recoveryForm')[0].reset();
-            window.location.replace("<?= base_url('login'); ?>");
+            window.location.replace("<?= site_url('login'); ?>");
           }
         });
       }

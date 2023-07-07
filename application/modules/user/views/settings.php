@@ -7,24 +7,24 @@
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
-              <li class="uk-active"><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
+              <li class="uk-active"><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getStatusModule('Donation') == '1'): ?>
-              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
+              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Vote') == '1'): ?>
-              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
+              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Store') == '1'): ?>
-              <li><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
+              <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getStatusModule('Bugtracker') == '1'): ?>
-              <li><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
+              <li><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Changelogs') == '1'): ?>
-              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
+              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
@@ -38,7 +38,7 @@
 
                 <!-- Start card body changeUsername -->
                 <div class="uk-card-body">
-                  <?= form_open(base_url($lang.'/changeusername')); ?>
+                  <?= form_open(site_url('changeusername')); ?>
                     <div class="uk-margin uk-light">
                       <label class="uk-form-label"><?= $this->lang->line('panel_current_username'); ?>: </label>
                       <div class="uk-form-controls">
@@ -89,7 +89,7 @@
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-envelope"></i> <?= $this->lang->line('panel_change_email'); ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(base_url($lang.'/changemail')); ?>
+                <?= form_open(site_url('changemail')); ?>
                 <div class="uk-margin uk-light">
                   <label class="uk-form-label"><?= $this->lang->line('panel_current_email'); ?>:</label>
                   <div class="uk-form-controls">
@@ -140,7 +140,7 @@
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-key"></i> <?= $this->lang->line('panel_change_password'); ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(base_url($lang.'/changepass')); ?>
+                <?= form_open(site_url('changepass')); ?>
                 <div class="uk-margin uk-light">
                   <label class="uk-form-label"><?= $this->lang->line('placeholder_current_password'); ?>:</label>
                   <div class="uk-form-controls">
@@ -183,7 +183,7 @@
                 <h5 class="uk-h5 uk-text-uppercase uk-text-bold"><i class="fas fa-id-badge"></i> <?= $this->lang->line('button_change_avatar'); ?></h5>
               </div>
               <div class="uk-card-body">
-                <?= form_open(base_url($lang.'/changeavatar')); ?>
+                <?= form_open(site_url('changeavatar')); ?>
                 <div class="uk-margin uk-light">
                   <div class="uk-form-controls">
                     <div class="uk-grid uk-child-width-auto uk-flex uk-flex-center" data-uk-grid>

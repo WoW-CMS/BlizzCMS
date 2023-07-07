@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> Create Donate Plan</h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/donate'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/donate'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -82,7 +82,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/donate/add'); ?>",
+          url:"<?= site_url('admin/donate/add'); ?>",
           method:"POST",
           data:{name, price, tax, points},
           dataType:"text",

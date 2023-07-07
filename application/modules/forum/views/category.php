@@ -11,7 +11,7 @@
             <div class="uk-width-auto">
               <?php if($this->wowauth->isLogged()): ?>
               <div class="uk-text-center uk-text-right@s">
-                <a href="<?= base_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></a>
+                <a href="<?= site_url('forum/topic/new/'.$idlink); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-pencil-alt"></i> <?= $this->lang->line('button_new_topic'); ?></a>
               </div>
               <?php endif; ?>
             </div>
@@ -24,12 +24,12 @@
             <tbody>
               <tr>
                 <td class="uk-table-shrink uk-table-link">
-                  <a href="<?= base_url('forum/topic/'.$lists->id); ?>" class="topic-forum-staff">
+                  <a href="<?= site_url('forum/topic/'.$lists->id); ?>" class="topic-forum-staff">
                     <span uk-icon="icon: bolt;ratio: 1.5"></span>
                   </a>
                 </td>
                 <td class="uk-table-expand uk-table-link uk-text-break">
-                  <a href="<?= base_url('forum/topic/'.$lists->id); ?>" class="uk-link-reset">
+                  <a href="<?= site_url('forum/topic/'.$lists->id); ?>" class="uk-link-reset">
                     <?php if ($lists->pinned == '1') { ?>
                       <i class="fas fa-link"></i> <?= $lists->title; ?>
                     <?php } else { ?>

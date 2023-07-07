@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-file-alt"></i> <?= $this->lang->line('admin_nav_pages'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/pages/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
+            <a href="<?= site_url('admin/pages/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-card-body">
@@ -24,11 +24,11 @@
                 <?php foreach($pagesList as $pages): ?>
                 <tr>
                   <td><?= $pages->title ?></td>
-                  <td><?= base_url('page/').$pages->uri_friendly; ?></td>
+                  <td><?= site_url('page/').$pages->uri_friendly; ?></td>
                   <td><?= date('Y-m-d', $pages->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                      <a href="<?= base_url('admin/pages/edit/'.$pages->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                      <a href="<?= site_url('admin/pages/edit/'.$pages->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                       <button class="uk-button uk-button-danger" value="<?= $pages->id ?>" id="button_delete<?= $pages->id ?>" onclick="DeletePage(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                     </div>
                   </td>
@@ -52,7 +52,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/pages/delete'); ?>",
+          url:"<?= site_url('admin/pages/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -90,7 +90,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/pages'); ?>");
+            window.location.replace("<?= site_url('admin/pages'); ?>");
           }
         });
       }

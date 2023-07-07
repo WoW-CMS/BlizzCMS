@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('placeholder_create_news'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/news'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/news'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <?php if(isset($_POST['button_news'])) {

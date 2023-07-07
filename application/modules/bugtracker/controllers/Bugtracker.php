@@ -45,13 +45,13 @@ class Bugtracker extends MX_Controller {
         $this->load->library('pagination');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
 
         if (!$this->wowmodule->getStatusModule('Bugtracker'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if(!$this->wowauth->isLogged())
-            redirect(base_url('login'),'refresh');
+            redirect(site_url('login'));
     }
 
     public function index()
@@ -67,7 +67,7 @@ class Bugtracker extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(3);
-            $config['base_url'] = base_url().'bugtracker/';
+            $config['base_url'] = site_url('bugtracker');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -103,13 +103,13 @@ class Bugtracker extends MX_Controller {
     public function report($id)
     {
         if (empty($id) || is_null($id) || $id == '0')
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if (!$this->wowmodule->getStatusModule('Bugtracker'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
 		if ($this->bugtracker_model->ReportExist($id) == 0)
-			redirect(base_url('404'), 'refresh');
+			redirect(site_url('bugtracker'));
         
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');

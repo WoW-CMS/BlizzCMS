@@ -381,7 +381,7 @@ class User_model extends CI_Model
             $this->session->set_flashdata('account_activation', 'false');
         }
 
-        redirect(base_url('login'));
+        redirect(site_url('login'));
     }
 
 

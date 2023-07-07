@@ -43,10 +43,10 @@ class News extends MX_Controller {
         $this->load->model('news_model');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
 
         if (!$this->wowmodule->getStatusModule('News'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
     }
 
     public function article($id)
@@ -71,7 +71,7 @@ class News extends MX_Controller {
     public function reply()
     {
         if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $ssesid = $this->session->userdata('wow_sess_id');
         $newsid = $this->input->post('news');
@@ -82,7 +82,7 @@ class News extends MX_Controller {
     public function deletereply()
     {
         if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $id = $this->input->post('value');
         echo $this->news_model->removeComment($id);

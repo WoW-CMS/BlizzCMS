@@ -47,10 +47,10 @@ class Mod extends MX_Controller {
         $this->load->library('pagination');
 
         if(!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) < config_item('mod_access_level'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $this->template->set_theme('mod');
 

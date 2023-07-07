@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="far fa-image"></i> <?= $this->lang->line('placeholder_edit_slide'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/slides'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/slides'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -97,7 +97,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/slides/update'); ?>",
+          url:"<?= site_url('admin/slides/update'); ?>",
           method:"POST",
           data:{id, title, description, type, route},
           dataType:"text",
@@ -136,7 +136,7 @@
               });
             }
             $('#updateslideForm')[0].reset();
-            window.location.replace("<?= base_url('admin/slides/edit/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/slides/edit/'.$idlink); ?>");
           }
         });
       }

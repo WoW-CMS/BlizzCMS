@@ -12,10 +12,10 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
-                <li class="uk-active"><a href="<?= base_url('admin/settings'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('section_general_settings'); ?></a></li>
-                <li><a href="<?= base_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> <?= $this->lang->line('section_module_settings'); ?></a></li>
-                <li><a href="<?= base_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> <?= $this->lang->line('section_optional_settings'); ?></a></li>
-                <li><a href="<?= base_url('admin/settings/seo'); ?>"><i class="fas fa-search"></i> <?= $this->lang->line('section_seo_settings'); ?></a></li>
+                <li class="uk-active"><a href="<?= site_url('admin/settings'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('section_general_settings'); ?></a></li>
+                <li><a href="<?= site_url('admin/settings/module'); ?>"><i class="fas fa-puzzle-piece"></i> <?= $this->lang->line('section_module_settings'); ?></a></li>
+                <li><a href="<?= site_url('admin/settings/optional'); ?>"><i class="fas fa-layer-group"></i> <?= $this->lang->line('section_optional_settings'); ?></a></li>
+                <li><a href="<?= site_url('admin/settings/seo'); ?>"><i class="fas fa-search"></i> <?= $this->lang->line('section_seo_settings'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -168,7 +168,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/settings/update'); ?>",
+          url:"<?= site_url('admin/settings/update'); ?>",
           method:"POST",
           data:{project, timezone, maintenance, discord, realmlist, theme, facebook, twitter, youtube},
           dataType:"text",
@@ -207,7 +207,7 @@
               });
             }
             $('#updategeneralForm')[0].reset();
-            window.location.replace("<?= base_url('admin/settings'); ?>");
+            window.location.replace("<?= site_url('admin/settings'); ?>");
           }
         });
       }

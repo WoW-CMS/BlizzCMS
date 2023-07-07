@@ -5,7 +5,7 @@
         <h3 class="uk-h3"><i class="fas fa-scroll"></i> <?= $this->lang->line('admin_nav_Tickets'); ?> > <?= $this->wowrealm->getRealmName($idlink); ?></h3>
       </div>
       <div class="uk-width-auto">
-        <a href="<?= base_url('admin/tickets'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+        <a href="<?= site_url('admin/tickets'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
       </div>
     </div>
     <div class="uk-grid uk-grid-small" data-uk-grid>

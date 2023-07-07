@@ -85,7 +85,7 @@
               <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
               <div class="glass-box-container">
                 <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
-                <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
+                <a href="<?= site_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
               </div>
             </div>
           </div>
@@ -150,7 +150,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/forum/topic/reply'); ?>",
+          url:"<?= site_url('forum/topic/reply'); ?>",
           method:"POST",
           data:{topic, reply},
           dataType:"text",
@@ -189,7 +189,7 @@
               });
             }
             $('#topicreplyForm')[0].reset();
-            window.location.replace("<?= base_url('forum/topic/'.$idlink); ?>");
+            window.location.replace("<?= site_url('forum/topic/'.$idlink); ?>");
           }
         });
       }
@@ -197,7 +197,7 @@
         e.preventDefault();
 
         $.ajax({
-            url: "<?= base_url($lang.'/forum/topic/reply/delete'); ?>",
+            url: "<?= site_url('forum/topic/reply/delete'); ?>",
             method: "POST",
             data: { value },
             dataType: "text",
@@ -247,7 +247,7 @@
                         'outEffect': 'slideRight'
                     });
                     
-                    window.location.replace("<?= base_url('forum/topic/'.$idlink); ?>");
+                    window.location.replace("<?= site_url('forum/topic/'.$idlink); ?>");
                 }
             }
         });

@@ -42,7 +42,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/modules/enable'); ?>",
+          url:"<?= site_url('admin/modules/enable'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -80,7 +80,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/modules'); ?>");
+            window.location.replace("<?= site_url('admin/modules'); ?>");
           }
         });
       }
@@ -88,7 +88,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/modules/disable'); ?>",
+          url:"<?= site_url('admin/modules/disable'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -126,7 +126,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/modules'); ?>");
+            window.location.replace("<?= site_url('admin/modules'); ?>");
           }
         });
       }

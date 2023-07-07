@@ -97,7 +97,7 @@ class Vote_model extends CI_Model
         $topsite = $this->getTopsite($id);
 
         if (empty($topsite)) {
-            redirect(site_url('vote'), 'refresh');
+            redirect(site_url('vote'));
         }
 
         $userid = $this->session->userdata('wow_sess_id');
@@ -106,7 +106,7 @@ class Vote_model extends CI_Model
         if ($date <= $this->getTimeLogExpired($id, $userid)) {
             echo '<script type="text/javascript">alert("According to our records you have already voted in this top. Contact with Support Ingame for Resolving this problem")</script>';
 
-            redirect(site_url('vote'), 'refresh');
+            redirect(site_url('vote'));
         }
 
         $url       = ! preg_match("~^(?:f|ht)tps?://~i", $topsite->url) ? 'http://' . $topsite->url : $topsite->url;
@@ -129,6 +129,6 @@ class Vote_model extends CI_Model
                     window.open("' . $url . '", "_self")
                 </script>';
 
-        redirect(site_url('vote'), 'refresh');
+        redirect(site_url('vote'));
     }
 }

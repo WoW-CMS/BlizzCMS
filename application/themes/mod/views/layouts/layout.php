@@ -14,12 +14,12 @@
       <div class="uk-container">
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="<?= base_url('mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
+            <a class="uk-navbar-item uk-logo" href="<?= site_url('mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
             <div class="uk-navbar-item uk-visible@s"><span class="rev-label">Moderation</span></div>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
-              <li><a href="<?= base_url(); ?>"><i class="fas fa-home fa-lg"></i></a></li>
+              <li><a href="<?= site_url() ?>"><i class="fas fa-home fa-lg"></i></a></li>
               <li>
                 <a href="javascript:void(0)">
                   <?php if($this->wowgeneral->getUserInfoGeneral($this->session->userdata('wow_sess_id'))->num_rows()): ?>
@@ -31,14 +31,14 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
+                    <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('button_user_panel'); ?></a></li>
                     <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
                     <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
-                    <li><a href="<?= base_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
+                    <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= $this->lang->line('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>
-                    <li><a href="<?= base_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
+                    <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= $this->lang->line('button_logout'); ?></a></li>
                   </ul>
                 </div>
               </li>
@@ -48,23 +48,23 @@
               <div id="mod-mobile" data-uk-offcanvas="overlay: true">
                 <div class="uk-offcanvas-bar">
                   <div class="sidebar-head uk-text-center">
-                    <a class="uk-logo" href="<?= base_url('mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
+                    <a class="uk-logo" href="<?= site_url('mod'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
                   </div>
                   <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-                    <li><a href="<?= base_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
+                    <li><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
                     <li class="uk-parent">
                       <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comment-alt"></i></span>Forum and Post</a>
                       <ul class="uk-nav-sub">
-                        <li><a href="<?= base_url('mod/queue'); ?>"><span class="admin-subnav-icon"><i class="fas fa-list-alt"></i></span>Moderation Queue</a></li>
-                        <li><a href="<?= base_url('mod/reports'); ?>"><span class="admin-subnav-icon"><i class="fas fa-gavel"></i></span>Reports</a></li>
-                        <li><a href="<?= base_url('mod/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-book"></i></span>Moderator Logs</a></li>
+                        <li><a href="<?= site_url('mod/queue'); ?>"><span class="admin-subnav-icon"><i class="fas fa-list-alt"></i></span>Moderation Queue</a></li>
+                        <li><a href="<?= site_url('mod/reports'); ?>"><span class="admin-subnav-icon"><i class="fas fa-gavel"></i></span>Reports</a></li>
+                        <li><a href="<?= site_url('mod/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-book"></i></span>Moderator Logs</a></li>
                       </ul>
                     </li>
                     <li class="uk-parent">
                       <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?></a>
                       <ul class="uk-nav-sub">
-                        <li><a href="<?= base_url('mod/bannings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-ban"></i></span>Bannings</a></li>
-                        <li><a href="<?= base_url('mod/warnings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-exclamation-triangle"></i></span>Warnings</a></li>
+                        <li><a href="<?= site_url('mod/bannings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-ban"></i></span>Bannings</a></li>
+                        <li><a href="<?= site_url('mod/warnings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-exclamation-triangle"></i></span>Warnings</a></li>
                       </ul>
                     </li>
                   </ul>
@@ -80,14 +80,14 @@
         <div class="uk-navbar" uk-navbar="mode: click">
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <li class="uk-active"><a href="<?= base_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
+              <li class="uk-active"><a href="<?= site_url('mod'); ?>"><span class="uk-margin-small-right"><i class="fas fa-tachometer-alt"></i></span><?= $this->lang->line('admin_nav_dashboard'); ?></a></li>
               <li>
                 <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-comment-alt"></i></span>Forum and Post<span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('mod/queue'); ?>"><span class="admin-subnav-icon"><i class="fas fa-list-alt"></i></span>Moderation Queue</a></li>
-                    <li><a href="<?= base_url('mod/reports'); ?>"><span class="admin-subnav-icon"><i class="fas fa-gavel"></i></span>Reports</a></li>
-                    <li><a href="<?= base_url('mod/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-book"></i></span>Guardian Logs</a></li>
+                    <li><a href="<?= site_url('mod/queue'); ?>"><span class="admin-subnav-icon"><i class="fas fa-list-alt"></i></span>Moderation Queue</a></li>
+                    <li><a href="<?= site_url('mod/reports'); ?>"><span class="admin-subnav-icon"><i class="fas fa-gavel"></i></span>Reports</a></li>
+                    <li><a href="<?= site_url('mod/logs'); ?>"><span class="admin-subnav-icon"><i class="fas fa-book"></i></span>Guardian Logs</a></li>
                   </ul>
                 </div>
               </li>
@@ -95,8 +95,8 @@
                 <a href="javascript:void(0)"><span class="uk-margin-small-right"><i class="fas fa-users"></i></span><?= $this->lang->line('admin_nav_users'); ?><span class="uk-margin-xsmall-top" uk-icon="icon: triangle-down"></span></a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li><a href="<?= base_url('mod/bannings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-ban"></i></span>Bannings</a></li>
-                    <li><a href="<?= base_url('mod/warnings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-exclamation-triangle"></i></span>Warnings</a></li>
+                    <li><a href="<?= site_url('mod/bannings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-ban"></i></span>Bannings</a></li>
+                    <li><a href="<?= site_url('mod/warnings'); ?>"><span class="admin-subnav-icon"><i class="fas fa-exclamation-triangle"></i></span>Warnings</a></li>
                   </ul>
                 </div>
               </li>

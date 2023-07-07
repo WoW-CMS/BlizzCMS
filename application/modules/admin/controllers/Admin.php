@@ -50,13 +50,13 @@ class Admin extends MX_Controller {
 		$this->load->library('updater');
 
         if(!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) < config_item('admin_access_level'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if($this->admin_model->getBanSpecify($this->session->userdata('wow_sess_id'))->num_rows())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $this->template->set_theme('admin');
 
@@ -213,7 +213,7 @@ class Admin extends MX_Controller {
 
 		if (in_array($update['alert'], ['error', 'info', 'warning'], true)) {
 			$this->session->set_flashdata($update['alert'], $update['message']);
-			redirect(base_url($lang . '/admin/cms/'));
+			redirect(site_url('admin/cms'));
 		}
 
 		if ($this->migration->current() === false) {
@@ -221,7 +221,7 @@ class Admin extends MX_Controller {
 		}
 
 		$this->session->set_flashdata('success', $update['message']);
-		redirect(base_url($lang . '/admin/cms/'));
+		redirect(site_url('admin/cms'));
     }
 
     /**
@@ -240,7 +240,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/accounts/';
+            $config['base_url'] = site_url('admin/accounts');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -260,10 +260,10 @@ class Admin extends MX_Controller {
     public function accountmanage($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getAccountExist($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -277,10 +277,10 @@ class Admin extends MX_Controller {
     public function accountdonatelogs($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getAccountExist($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -350,10 +350,10 @@ class Admin extends MX_Controller {
     public function editmenu($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getMenuSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -407,7 +407,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/realms/';
+            $config['base_url'] = site_url('admin/realms');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -437,10 +437,10 @@ class Admin extends MX_Controller {
     public function editrealm($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getRealmsSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -502,7 +502,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/slides/';
+            $config['base_url'] = site_url('admin/slides');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -532,10 +532,10 @@ class Admin extends MX_Controller {
     public function editslide($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getSlidesSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -585,7 +585,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/news/';
+            $config['base_url'] = site_url('admin/news');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -616,10 +616,10 @@ class Admin extends MX_Controller {
     public function editnews($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getNewsSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -651,7 +651,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/changelogs/';
+            $config['base_url'] = site_url('admin/changelogs');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -682,10 +682,10 @@ class Admin extends MX_Controller {
     public function editchangelog($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getChangelogSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -732,7 +732,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/pages/';
+            $config['base_url'] = site_url('admin/pages');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -763,10 +763,10 @@ class Admin extends MX_Controller {
     public function editpage($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getPagesSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -815,7 +815,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/topsites/';
+            $config['base_url'] = site_url('admin/topsites');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -845,10 +845,10 @@ class Admin extends MX_Controller {
     public function edittopsite($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getTopsitesSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -903,7 +903,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/store/';
+            $config['base_url'] = site_url('admin/store');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -934,7 +934,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(5);
-            $config['base_url'] = base_url().'admin/store/items/';
+            $config['base_url'] = site_url('admin/store/items');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -965,7 +965,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(5);
-            $config['base_url'] = base_url().'admin/store/top/';
+            $config['base_url'] = site_url('admin/store/top');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -995,10 +995,10 @@ class Admin extends MX_Controller {
     public function editstorecategory($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getStoreCategorySpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1048,10 +1048,10 @@ class Admin extends MX_Controller {
     public function editstoreitem($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getItemSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1110,10 +1110,10 @@ class Admin extends MX_Controller {
     public function editstoretop($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getStoreTopSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1166,7 +1166,7 @@ class Admin extends MX_Controller {
     public function editdonateplan($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1241,7 +1241,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/forum/';
+            $config['base_url'] = site_url('admin/forum');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -1272,7 +1272,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(5);
-            $config['base_url'] = base_url().'admin/forum/elements/';
+            $config['base_url'] = site_url('admin/forum/elements');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -1302,10 +1302,10 @@ class Admin extends MX_Controller {
     public function editforumcategory($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getSpecifyForumCategoryRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1348,10 +1348,10 @@ class Admin extends MX_Controller {
     public function editforum($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getSpecifyForumRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1424,10 +1424,10 @@ class Admin extends MX_Controller {
     public function editdownload($id)
     {
         if (is_null($id) || empty($id))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->admin_model->getDownloadSpecifyRows($id) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = [
             'pagetitle' => $this->lang->line('button_admin_panel'),
@@ -1485,7 +1485,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(4);
-            $config['base_url'] = base_url().'admin/store/';
+            $config['base_url'] = site_url('admin/tickets');
 
             if (empty($page_number))
                 $page_number = 1;
@@ -1519,7 +1519,7 @@ class Admin extends MX_Controller {
         if ($config['total_rows'] > 0)
         {
             $page_number = $this->uri->segment(6);
-            $config['base_url'] = base_url().'admin/tickets/realm/'.$id.'/';
+            $config['base_url'] = site_url('admin/tickets/realm/' . $id);
 
             if (empty($page_number))
                 $page_number = 1;

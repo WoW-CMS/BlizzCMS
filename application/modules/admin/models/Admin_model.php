@@ -887,7 +887,7 @@ class Admin_model extends CI_Model
             'date'        => $this->wowgeneral->getTimestamp()
         ]);
 
-        redirect(site_url('admin/news'), 'refresh');
+        redirect(site_url('admin/news'));
     }
 
     /**
@@ -910,7 +910,7 @@ class Admin_model extends CI_Model
             'date'        => $this->wowgeneral->getTimestamp()
         ]);
 
-        redirect(site_url('admin/news'), 'refresh');
+        redirect(site_url('admin/news'));
     }
 
     /**

@@ -43,13 +43,13 @@ class Download extends MX_Controller {
         $this->load->model('download_model');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
 		
 		if (!$this->wowmodule->getStatusModule('Download'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if (!$this->wowauth->isLogged())
-            redirect(base_url('login'),'refresh');
+            redirect(site_url('login'));
     }
 
     public function index()

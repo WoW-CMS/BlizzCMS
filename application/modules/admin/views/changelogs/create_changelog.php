@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('placeholder_create_changelog'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/changelogs'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/changelogs'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -58,7 +58,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/changelogs/add'); ?>",
+          url:"<?= site_url('admin/changelogs/add'); ?>",
           method:"POST",
           data:{title, description},
           dataType:"text",

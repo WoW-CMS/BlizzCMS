@@ -43,13 +43,13 @@ class Store extends MX_Controller {
         $this->load->model('store_model');
 
         if (!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
 
         if (!$this->wowmodule->getStatusModule('Store'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if (!$this->wowauth->isLogged())
-            redirect(base_url('login'),'refresh');
+            redirect(site_url('login'));
     }
 
     public function index()
@@ -65,10 +65,10 @@ class Store extends MX_Controller {
     public function category($route)
     {
         if (empty($route) || is_null($route) || $route == NULL)
-            redirect(base_url('store'),'refresh');
+            redirect(site_url('store'));
 
         if ($this->store_model->getCategoryExist($route) < 1)
-            redirect(base_url('store'),'refresh');
+            redirect(site_url('store'));
 
         $data = array(
             'route' => $route,
