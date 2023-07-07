@@ -43,7 +43,7 @@ class Online extends MX_Controller {
         $this->load->model('online_model');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
     }
 
     public function index()

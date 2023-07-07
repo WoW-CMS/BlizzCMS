@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_page'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/pages'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/pages'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -69,7 +69,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/pages/update'); ?>",
+          url:"<?= site_url('admin/pages/update'); ?>",
           method:"POST",
           data:{id, title, uri, description},
           dataType:"text",
@@ -108,7 +108,7 @@
               });
             }
             $('#updatepageForm')[0].reset();
-            window.location.replace("<?= base_url('admin/pages/edit/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/pages/edit/'.$idlink); ?>");
           }
         });
       }

@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-newspaper"></i> <?= $this->lang->line('admin_nav_news'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/news/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
+            <a href="<?= site_url('admin/news/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-card-body">
@@ -26,7 +26,7 @@
                   <td><?= date('Y-m-d', $news->date); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                      <a href="<?= base_url('admin/news/edit/'.$news->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                      <a href="<?= site_url('admin/news/edit/'.$news->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                       <button class="uk-button uk-button-danger" value="<?= $news->id ?>" id="button_delete<?= $news->id ?>" onclick="DeleteNews(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                     </div>
                   </td>
@@ -50,7 +50,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/news/delete'); ?>",
+          url:"<?= site_url('admin/news/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -88,7 +88,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/news'); ?>");
+            window.location.replace("<?= site_url('admin/news'); ?>");
           }
         });
       }

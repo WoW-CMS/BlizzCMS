@@ -5,16 +5,16 @@
             <h3 class="uk-h3"><i class="fas fa-shopping-cart"></i> <?= $this->lang->line('admin_nav_manage_store'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/store/category/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
+            <a href="<?= site_url('admin/store/category/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
-                <li class="uk-active"><a href="<?= base_url('admin/store'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_store_categories'); ?></a></li>
-                <li><a href="<?= base_url('admin/store/items'); ?>"><i class="fas fa-boxes"></i> <?= $this->lang->line('section_store_items'); ?></a></li>
-                <li><a href="<?= base_url('admin/store/top'); ?>"><i class="fas fa-parachute-box"></i> <?= $this->lang->line('section_store_top'); ?></a></li>
+                <li class="uk-active"><a href="<?= site_url('admin/store'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_store_categories'); ?></a></li>
+                <li><a href="<?= site_url('admin/store/items'); ?>"><i class="fas fa-boxes"></i> <?= $this->lang->line('section_store_items'); ?></a></li>
+                <li><a href="<?= site_url('admin/store/top'); ?>"><i class="fas fa-parachute-box"></i> <?= $this->lang->line('section_store_top'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -37,7 +37,7 @@
                       <td><?= $this->wowrealm->getRealmName($list->realmid); ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                          <a href="<?= base_url('admin/store/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                          <a href="<?= site_url('admin/store/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                           <button class="uk-button uk-button-danger" value="<?= $list->id ?>" id="button_delete<?= $list->id ?>" onclick="DeleteCategory(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                         </div>
                       </td>
@@ -63,7 +63,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/store/category/delete'); ?>",
+          url:"<?= site_url('admin/store/category/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -101,7 +101,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/store'); ?>");
+            window.location.replace("<?= site_url('admin/store'); ?>");
           }
         });
       }

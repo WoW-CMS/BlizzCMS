@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-server"></i> <?= $this->lang->line('placeholder_edit_realm'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/realms'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/realms'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -140,7 +140,7 @@
         }
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/realms/update'); ?>",
+          url:"<?= site_url('admin/realms/update'); ?>",
           method:"POST",
           data:{id, realmid, soaphost, soapport, soapuser, soappass, charhost, chardb, charuser, charpass, emulator},
           dataType:"text",
@@ -178,7 +178,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/realms/'); ?>");
+            window.location.replace("<?= site_url('admin/realms'); ?>");
           }
         });
       }

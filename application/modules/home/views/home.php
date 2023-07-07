@@ -43,7 +43,7 @@
             <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1" data-uk-grid>
               <?php foreach ($NewsList as $news): ?>
               <div>
-                <a href="<?= base_url('news/'.$news->id) ;?>" title="<?= $this->lang->line('button_read_more'); ?>">
+                <a href="<?= site_url('news/'.$news->id) ;?>" title="<?= $this->lang->line('button_read_more'); ?>">
                   <div class="uk-card uk-card-default news-card uk-card-hover uk-grid-collapse uk-margin" uk-grid>
                     <div class="uk-width-1-3@s uk-card-media-left uk-cover-container">
                       <img src="<?= base_url('assets/images/news/'.$news->image); ?>" alt="<?= $news->title ?>" uk-cover>
@@ -72,7 +72,7 @@
                 <div class="uk-card uk-card-default uk-card-body card-status">
                   <div class="uk-grid uk-grid-small" data-uk-grid>
                     <div class="uk-width-expand">
-                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= base_url('online'); ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= $this->lang->line('table_header_realm'); ?> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></a></h5>
+                      <h5 class="uk-h5 uk-text-bold uk-margin-small"><a href="<?= site_url('online'); ?>" class="uk-link-reset"><i class="fas fa-server"></i> <?= $this->lang->line('table_header_realm'); ?> <?= $this->wowrealm->getRealmName($charsMultiRealm->realmID); ?></a></h5>
                     </div>
                     <div class="uk-width-auto">
                       <?php if ($this->wowrealm->RealmStatus($charsMultiRealm->realmID)): ?>

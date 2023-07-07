@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-link"></i> <?= $this->lang->line('admin_nav_menu'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/menu/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
+            <a href="<?= site_url('admin/menu/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-card-body">
@@ -29,7 +29,7 @@
                   <td><?= $menu->type ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                      <a href="<?= base_url('admin/menu/edit/'.$menu->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                      <a href="<?= site_url('admin/menu/edit/'.$menu->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                       <button class="uk-button uk-button-danger" value="<?= $menu->id ?>" id="button_delete<?= $menu->id ?>" onclick="DeleteMenu(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                     </div>
                   </td>
@@ -47,7 +47,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/menu/delete'); ?>",
+          url:"<?= site_url('admin/menu/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -85,7 +85,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/menu'); ?>");
+            window.location.replace("<?= site_url('admin/menu'); ?>");
           }
         });
       }

@@ -61,7 +61,7 @@
                         <p class="uk-margin-small uk-text-small"><?= $this->lang->line('cms_version_currently'); ?></p>
                       </div>
                       <div class="uk-width-expand uk-text-center uk-text-right@m">
-                        <a href="<?= base_url('admin/cms/update') ?>" class="uk-button uk-button-primary uk-button-large"><i class="fas fa-sync fa-spin"></i> <?= $this->lang->line('button_update_version'); ?></a>
+                        <a href="<?= site_url('admin/cms/update') ?>" class="uk-button uk-button-primary uk-button-large"><i class="fas fa-sync fa-spin"></i> <?= $this->lang->line('button_update_version'); ?></a>
                       </div>
                     </div>
                     <p class="uk-text-small uk-margin-small"><span class="uk-text-bold uk-text-warning"><i class="fas fa-exclamation-triangle"></i> <?= $this->lang->line('notification_title_warning'); ?>:</span> <?= $this->lang->line('cms_warning_update'); ?></p>

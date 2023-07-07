@@ -61,7 +61,7 @@
                   <h3 class="uk-h3 uk-text-center"><span uk-icon="icon: comment; ratio: 1.5"></span> <?= $this->lang->line('forum_comment_header'); ?></h3>
                   <div class="glass-box-container">
                     <p class="uk-margin-small"><?= $this->lang->line('forum_comment_locked'); ?></p>
-                    <a href="<?= base_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
+                    <a href="<?= site_url('login'); ?>" class="uk-button uk-button-default uk-width-1-2 uk-width-1-3@m"><i class="fas fa-sign-in-alt"></i> <?= $this->lang->line('button_login'); ?></a>
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@
                 <ul class="uk-list uk-list-divider uk-text-small">
                   <?php foreach($this->news_model->getExtendedNewsList()->result() as $list): ?>
                   <li>
-                    <a href="<?= base_url('news/'.$list->id) ?>"><i class="far fa-newspaper"></i> <?= $list->title ?></a>
+                    <a href="<?= site_url('news/'.$list->id) ?>"><i class="far fa-newspaper"></i> <?= $list->title ?></a>
                   </li>
                   <?php endforeach; ?>
                 </ul>
@@ -128,7 +128,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/news/reply'); ?>",
+          url:"<?= site_url('news/reply'); ?>",
           method:"POST",
           data:{news, reply},
           dataType:"text",
@@ -167,7 +167,7 @@
               });
             }
             $('#replyForm')[0].reset();
-            window.location.replace("<?= base_url('news/'.$idlink); ?>");
+            window.location.replace("<?= site_url('news/'.$idlink); ?>");
           }
         });
       }
@@ -175,7 +175,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/news/reply/delete'); ?>",
+          url:"<?= site_url('news/reply/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -213,7 +213,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('news/'.$idlink); ?>");
+            window.location.replace("<?= site_url('news/'.$idlink); ?>");
           }
         });
       }

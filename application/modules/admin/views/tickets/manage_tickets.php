@@ -10,10 +10,10 @@
         <div class="uk-card uk-card-secondary">
           <ul class="uk-nav uk-nav-default">
             <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
-            <li class="uk-active"><a href="<?= base_url('admin/tickets'); ?>"><i class="fas fa-arrow-circle-left"></i></a></li>
+            <li class="uk-active"><a href="<?= site_url('admin/tickets'); ?>"><i class="fas fa-arrow-circle-left"></i></a></li>
             <?php endif; ?>
             <?php foreach($realmsList as $link): ?>
-            <li><a href="<?= base_url('admin/tickets/realm/'.$link->realmID); ?>"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($link->realmID); ?></a></li>
+            <li><a href="<?= site_url('admin/tickets/realm/'.$link->realmID); ?>"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($link->realmID); ?></a></li>
             <?php endforeach; ?>
           </ul>
         </div>
@@ -24,7 +24,7 @@
             $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
           ?>
           <div>
-            <a class="uk-link-heading" href="<?= base_url('admin/tickets/realm/'.$charsMultiRealm->id); ?>">
+            <a class="uk-link-heading" href="<?= site_url('admin/tickets/realm/'.$charsMultiRealm->id); ?>">
               <div class="uk-card uk-card-default">
                 <div class="uk-card-header">
                   <div class="uk-grid uk-grid-small" data-uk-grid>

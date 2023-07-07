@@ -43,15 +43,15 @@ class Forum extends MX_Controller {
         $this->load->model('forum_model');
 
         if ($this->service->modService->checkAccBan($this->session->userdata('wow_sess_id'))) {
-            redirect(base_url('accBanned'), 'refresh');
+            redirect(site_url());
         }
 
         if (!$this->wowgeneral->getMaintenance()) {
-            redirect(base_url('maintenance'), 'refresh');
+            redirect(site_url('maintenance'));
         }
 
         if (!$this->wowmodule->getStatusModule('Forum')) {
-            redirect(base_url(), 'refresh');
+            redirect(site_url());
         }
     }
 
@@ -67,7 +67,7 @@ class Forum extends MX_Controller {
     public function category($id)
     {
         if (empty($id) || is_null($id))
-            redirect(base_url('forum'),'refresh');
+            redirect(site_url('forum'));
 
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
             $tiny = $this->wowgeneral->tinyEditor('Admin');
@@ -82,7 +82,7 @@ class Forum extends MX_Controller {
 
         if ($this->forum_model->authType($id) == 2):
             if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) <= config_item('mod_access_level')):
-                redirect(base_url('forum'),'refresh');
+                redirect(site_url('forum'));
             endif;    
         endif;
         
@@ -93,10 +93,10 @@ class Forum extends MX_Controller {
     public function topic($id)
     {
         if (empty($id) || is_null($id))
-            redirect(base_url('forum'),'refresh');
+            redirect(site_url('forum'));
 
         if ($this->forum_model->authType('1') == 2 && $this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level'))
-            redirect(base_url('forum'),'refresh');
+            redirect(site_url('forum'));
         else
 
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
@@ -118,7 +118,7 @@ class Forum extends MX_Controller {
     {		
         if (!$this->wowauth->isLogged())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 		
         if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level'))
@@ -147,7 +147,7 @@ class Forum extends MX_Controller {
     public function reply()
     {
         if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $ssesid = $this->session->userdata('wow_sess_id');
         $topicid = $this->input->post('topic');
@@ -158,7 +158,7 @@ class Forum extends MX_Controller {
     public function deletereply()
     {
         if (!$this->wowauth->isLogged())
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $ssesid = $this->session->userdata('wow_sess_id');
         $id = $this->input->post('value');

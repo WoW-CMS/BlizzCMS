@@ -47,13 +47,13 @@ class Donate extends MX_Controller
         $this->load->config('donate');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
 
         if (!$this->wowmodule->getStatusModule('Donation'))
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if(!$this->wowauth->isLogged())
-            redirect(base_url('login'),'refresh');
+            redirect(site_url('login'));
     }
     
     public function index()

@@ -5,15 +5,15 @@
             <h3 class="uk-h3"><i class="fas fa-bookmark"></i> <?= $this->lang->line('admin_nav_manage_forum'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/forum/category/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
+            <a href="<?= site_url('admin/forum/category/create'); ?>" class="uk-icon-button"><i class="fas fa-pen"></i></a>
           </div>
         </div>
         <div class="uk-grid uk-grid-small" data-uk-grid>
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default">
-                <li class="uk-active"><a href="<?= base_url('admin/forum'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_forum_categories'); ?></a></li>
-                <li><a href="<?= base_url('admin/forum/elements'); ?>"><i class="fas fa-comment-dots"></i> <?= $this->lang->line('section_forum_elements'); ?></a></li>
+                <li class="uk-active"><a href="<?= site_url('admin/forum'); ?>"><i class="fas fa-tags"></i> <?= $this->lang->line('section_forum_categories'); ?></a></li>
+                <li><a href="<?= site_url('admin/forum/elements'); ?>"><i class="fas fa-comment-dots"></i> <?= $this->lang->line('section_forum_elements'); ?></a></li>
               </ul>
             </div>
           </div>
@@ -34,7 +34,7 @@
                       <td><?= $list->name ?></td>
                       <td>
                         <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                          <a href="<?= base_url('admin/forum/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
+                          <a href="<?= site_url('admin/forum/category/edit/'.$list->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-edit"></i></a>
                           <button class="uk-button uk-button-danger" value="<?= $list->id ?>" id="button_delete<?= $list->id ?>" onclick="DeleteCategory(event, this.value)"><i class="fas fa-trash-alt"></i></button>
                         </div>
                       </td>
@@ -60,7 +60,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/category/delete'); ?>",
+          url:"<?= site_url('admin/forum/category/delete'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -98,7 +98,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/forum'); ?>");
+            window.location.replace("<?= site_url('admin/forum'); ?>");
           }
         });
       }

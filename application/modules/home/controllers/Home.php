@@ -45,7 +45,7 @@ class Home extends MX_Controller {
         $this->load->config('home');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
     }
 
     public function index()

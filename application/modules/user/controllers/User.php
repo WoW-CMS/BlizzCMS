@@ -47,12 +47,12 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowmodule->getStatusModule('Login'))
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if ($this->wowauth->isLogged())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		$data = [
@@ -115,17 +115,17 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url('maintenance'),'refresh');
+			redirect(site_url('maintenance'));
 		}
 
 		if (!$this->wowmodule->getStatusModule('Register'))
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if ($this->wowauth->isLogged())
 		{
-			redirect(base_url(), 'refresh');
+			redirect(site_url());
 		}
 
 		$data = [
@@ -234,7 +234,7 @@ class User extends MX_Controller {
 	public function logout()
 	{
 		if (! $this->wowauth->isLogged()) {
-			redirect(site_url(), 'refresh');
+			redirect(site_url());
 		}
 
 		$this->session->sess_destroy();
@@ -245,17 +245,17 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url('maintenance'),'refresh');
+			redirect(site_url('maintenance'));
 		}
 
 		if (!$this->wowmodule->getStatusModule('Recovery'))
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if ($this->wowauth->isLogged())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		$data = [
@@ -283,17 +283,17 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if (!$this->wowmodule->getStatusModule('User Panel'))
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if (!$this->wowauth->isLogged())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		$data = [
@@ -308,17 +308,17 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if (!$this->wowmodule->getStatusModule('User Panel'))
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		if (!$this->wowauth->isLogged())
 		{
-			redirect(base_url(),'refresh');
+			redirect(site_url());
 		}
 
 		$data = [
@@ -333,7 +333,7 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url('maintenance'),'refresh');
+			redirect(site_url('maintenance'));
 		}
 
 		if ($this->input->method() == 'post')
@@ -361,7 +361,7 @@ class User extends MX_Controller {
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				redirect(base_url('settings'), 'refresh');
+				redirect(site_url('settings'));
 			}
 			else
 			{
@@ -372,17 +372,17 @@ class User extends MX_Controller {
 
 				if ($change)
 				{
-					redirect(site_url('logout'), 'refresh');
+					redirect(site_url('logout'));
 				}
 				else
 				{
-					redirect(site_url('settings'), 'refresh');
+					redirect(site_url('settings'));
 				}
 			}
 		}
 		else
 		{
-			redirect(base_url(), 'refresh');
+			redirect(site_url());
 		}
 	}
 
@@ -390,7 +390,7 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url('maintenance'),'refresh');
+			redirect(site_url('maintenance'));
 		}
 
 		if ($this->input->method() == 'post')
@@ -426,7 +426,7 @@ class User extends MX_Controller {
 
 			if ($this->form_validation->run() == false)
 			{
-				redirect(base_url('settings'), 'refresh');
+				redirect(site_url('settings'));
 			}
 			else
 			{
@@ -443,17 +443,17 @@ class User extends MX_Controller {
 
 				if ($change)
 				{
-					redirect(site_url('logout'), 'refresh');
+					redirect(site_url('logout'));
 				}
 				else
 				{
-					redirect(site_url('settings'), 'refresh');
+					redirect(site_url('settings'));
 				}
 			}
 		}
 		else
 		{
-			redirect(base_url(), 'refresh');
+			redirect(site_url());
 		}
 	}
 
@@ -461,7 +461,7 @@ class User extends MX_Controller {
 	{
 		if (!$this->wowgeneral->getMaintenance())
 		{
-			redirect(base_url('maintenance'),'refresh');
+			redirect(site_url('maintenance'));
 		}
 
 		if ($this->input->method() == 'post')
@@ -497,7 +497,7 @@ class User extends MX_Controller {
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				redirect(base_url('settings'), 'refresh');
+				redirect(site_url('settings'));
 			}
 			else
 			{
@@ -508,17 +508,17 @@ class User extends MX_Controller {
 
 				if ($change)
 				{
-					redirect(site_url('logout'), 'refresh');
+					redirect(site_url('logout'));
 				}
 				else
 				{
-					redirect(site_url('settings'), 'refresh');
+					redirect(site_url('settings'));
 				}
 			}
 		}
 		else
 		{
-			redirect(base_url(), 'refresh');
+			redirect(site_url());
 		}
 	}
 
@@ -529,11 +529,11 @@ class User extends MX_Controller {
 
 		if ($change)
 		{
-			redirect(site_url('panel'), 'refresh');
+			redirect(site_url('panel'));
 		}
 		else
 		{
-			redirect(site_url('settings'), 'refresh');
+			redirect(site_url('settings'));
 		}
 	}
 }

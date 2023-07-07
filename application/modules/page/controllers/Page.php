@@ -43,16 +43,16 @@ class Page extends MX_Controller {
         $this->load->model('page_model');
 
         if(!$this->wowgeneral->getMaintenance())
-            redirect(base_url('maintenance'),'refresh');
+            redirect(site_url('maintenance'));
     }
 
     public function index($uri)
     {
         if (empty($uri) || is_null($uri) || $uri == NULL)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         if ($this->page_model->getVerifyExist($uri) < 1)
-            redirect(base_url(),'refresh');
+            redirect(site_url());
 
         $data = array(
             'uri' => $uri,

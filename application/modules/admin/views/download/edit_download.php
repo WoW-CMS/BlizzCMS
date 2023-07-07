@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_download'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/download'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/download'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -132,7 +132,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/download/update'); ?>",
+          url:"<?= site_url('admin/download/update'); ?>",
           method:"POST",
           data:{id, fileName, url, image, category, weight, type},
           dataType:"text",
@@ -171,7 +171,7 @@
               });
             }
             $('#updatedownloadForm')[0].reset();
-            window.location.replace("<?= base_url('admin/download/edit/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/download/edit/'.$idlink); ?>");
           }
         });
       }

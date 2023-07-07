@@ -34,7 +34,7 @@ class Bugtracker_model extends CI_Model
             ->where('id', $id)
             ->update('bugtracker');
 
-        redirect(site_url('bugtracker/report/' . $id), 'refresh');
+        redirect(site_url('bugtracker/report/' . $id));
     }
 
     /**
@@ -47,7 +47,7 @@ class Bugtracker_model extends CI_Model
             ->where('id', $id)
             ->update('bugtracker');
 
-        redirect(site_url('bugtracker/report/' . $id), 'refresh');
+        redirect(site_url('bugtracker/report/' . $id));
     }
 
     /**
@@ -61,7 +61,7 @@ class Bugtracker_model extends CI_Model
             ->where('id', $id)
             ->update('bugtracker');
 
-        redirect(site_url('bugtracker/report/' . $id), 'refresh');
+        redirect(site_url('bugtracker/report/' . $id));
     }
 
     /**
@@ -75,7 +75,7 @@ class Bugtracker_model extends CI_Model
             ->where('id', $id)
             ->update('bugtracker');
 
-        redirect(site_url('bugtracker/report/' . $id), 'refresh');
+        redirect(site_url('bugtracker/report/' . $id));
     }
 
     public function setLimit($limit)

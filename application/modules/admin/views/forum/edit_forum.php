@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-edit"></i> <?= $this->lang->line('placeholder_edit_forum'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/forum/elements'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/forum/elements'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -130,7 +130,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/update'); ?>",
+          url:"<?= site_url('admin/forum/update'); ?>",
           method:"POST",
           data:{id, name, description, icon, type, category},
           dataType:"text",
@@ -169,7 +169,7 @@
               });
             }
             $('#updateforumForm')[0].reset();
-            window.location.replace("<?= base_url('admin/forum/edit/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/forum/edit/'.$idlink); ?>");
           }
         });
       }

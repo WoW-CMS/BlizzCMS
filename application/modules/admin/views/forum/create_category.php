@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-plus-circle"></i> <?= $this->lang->line('placeholder_create_category'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/forum'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/forum'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default">
@@ -51,7 +51,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/forum/category/add'); ?>",
+          url:"<?= site_url('admin/forum/category/add'); ?>",
           method:"POST",
           data:{category},
           dataType:"text",

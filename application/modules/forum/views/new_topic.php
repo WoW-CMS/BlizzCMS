@@ -10,7 +10,7 @@
                 <h4 class="uk-h4 uk-text-bold"><i class="fas fa-pen-square"></i> <?= $this->lang->line('button_new_topic'); ?></h4>
               </div>
               <div class="uk-width-auto@m">
-                <a href="<?= base_url('forum'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
+                <a href="<?= site_url('forum'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/forum/topic/new/'.$idlink); ?>",
+          url:"<?= site_url('forum/topic/new/'.$idlink); ?>",
           method:"POST",
           data:{category, title, description},
           dataType:"text",
@@ -132,7 +132,7 @@
               });
             }
             $('#newtopicForm')[0].reset();
-            window.location.replace("<?= base_url('forum/category/'.$idlink); ?>");
+            window.location.replace("<?= site_url('forum/category/'.$idlink); ?>");
           }
         });
       }

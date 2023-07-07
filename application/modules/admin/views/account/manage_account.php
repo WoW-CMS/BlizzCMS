@@ -5,7 +5,7 @@
             <h3 class="uk-h3"><i class="fas fa-user-cog"></i> <?= $this->lang->line('placeholder_manage_account'); ?></h3>
           </div>
           <div class="uk-width-auto">
-            <a href="<?= base_url('admin/accounts'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
+            <a href="<?= site_url('admin/accounts'); ?>" class="uk-icon-button"><i class="fas fa-arrow-circle-left"></i></a>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-margin-small">
@@ -190,7 +190,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/update'); ?>",
+          url:"<?= site_url('admin/account/update'); ?>",
           method:"POST",
           data:{id, dp, vp},
           dataType:"text",
@@ -229,7 +229,7 @@
               });
             }
             $('#updateaccountForm')[0].reset();
-            window.location.replace("<?= base_url('admin/account/manage/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/account/manage/'.$idlink); ?>");
           }
         });
       }
@@ -255,7 +255,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/ban'); ?>",
+          url:"<?= site_url('admin/account/ban'); ?>",
           method:"POST",
           data:{id, reason},
           dataType:"text",
@@ -294,7 +294,7 @@
               });
             }
             $('#banaccountForm')[0].reset();
-            window.location.replace("<?= base_url('admin/account/manage/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/account/manage/'.$idlink); ?>");
           }
         });
       }
@@ -302,7 +302,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/unban'); ?>",
+          url:"<?= site_url('admin/account/unban'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -340,7 +340,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/account/manage/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/account/manage/'.$idlink); ?>");
           }
         });
       }
@@ -366,7 +366,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/grantrank'); ?>",
+          url:"<?= site_url('admin/account/grantrank'); ?>",
           method:"POST",
           data:{id, rank},
           dataType:"text",
@@ -405,7 +405,7 @@
               });
             }
             $('#grantrankForm')[0].reset();
-            window.location.replace("<?= base_url('admin/account/manage/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/account/manage/'.$idlink); ?>");
           }
         });
       }
@@ -413,7 +413,7 @@
         e.preventDefault();
 
         $.ajax({
-          url:"<?= base_url($lang.'/admin/account/delrank'); ?>",
+          url:"<?= site_url('admin/account/delrank'); ?>",
           method:"POST",
           data:{value},
           dataType:"text",
@@ -451,7 +451,7 @@
                 'outEffect': 'slideRight'
               });
             }
-            window.location.replace("<?= base_url('admin/account/manage/'.$idlink); ?>");
+            window.location.replace("<?= site_url('admin/account/manage/'.$idlink); ?>");
           }
         });
       }

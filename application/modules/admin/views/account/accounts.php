@@ -31,8 +31,8 @@
                   <td class="uk-text-center"><?= date('Y-m-d', $account->joindate); ?></td>
                   <td>
                     <div class="uk-flex uk-flex-left uk-flex-center@m uk-margin-small">
-                      <a href="<?= base_url('admin/account/manage/'.$account->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-user-edit"></i></a>
-                      <a href="<?= base_url('admin/account/dlogs/'.$account->id); ?>" class="uk-button uk-button-primary"><i class="fas fa-donate"></i></a>
+                      <a href="<?= site_url('admin/account/manage/'.$account->id); ?>" class="uk-button uk-button-primary uk-margin-small-right"><i class="fas fa-user-edit"></i></a>
+                      <a href="<?= site_url('admin/account/dlogs/'.$account->id); ?>" class="uk-button uk-button-primary"><i class="fas fa-donate"></i></a>
                     </div>
                   </td>
                 </tr>

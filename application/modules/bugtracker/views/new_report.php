@@ -7,24 +7,24 @@
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
               <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
-              <li><a href="<?= base_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
+              <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= $this->lang->line('tab_account'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getStatusModule('Donation') == '1'): ?>
-              <li><a href="<?= base_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
+              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?=$this->lang->line('navbar_donate_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Vote') == '1'): ?>
-              <li><a href="<?= base_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
+              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?=$this->lang->line('navbar_vote_panel'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Store') == '1'): ?>
-              <li><a href="<?= base_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
+              <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?=$this->lang->line('tab_store'); ?></a></li>
               <?php endif; ?>
               <li class="uk-nav-divider"></li>
               <?php if($this->wowmodule->getStatusModule('Bugtracker') == '1'): ?>
-              <li class="uk-active"><a href="<?= base_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
+              <li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?=$this->lang->line('tab_bugtracker'); ?></a></li>
               <?php endif; ?>
               <?php if($this->wowmodule->getStatusModule('Changelogs') == '1'): ?>
-              <li><a href="<?= base_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
+              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?=$this->lang->line('tab_changelogs'); ?></a></li>
               <?php endif; ?>
             </ul>
           </div>
@@ -36,7 +36,7 @@
                     <h4 class="uk-h4 uk-text-uppercase uk-text-bold"><i class="fas fa-bug"></i> <?= $this->lang->line('placeholder_create_bug_report'); ?></h4>
                   </div>
                   <div class="uk-width-auto@m">
-                    <a href="<?= base_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
+                    <a href="<?= site_url('bugtracker'); ?>" class="uk-button uk-button-default uk-button-small"><i class="fas fa-arrow-circle-left"></i></a>
                   </div>
                 </div>
               </div>
@@ -172,7 +172,7 @@
           return false;
         }
         $.ajax({
-          url:"<?= base_url($lang.'/bugtracker/create'); ?>",
+          url:"<?= site_url('bugtracker/create'); ?>",
           method:"POST",
           data:{title, description, type, priority},
           dataType:"text",
@@ -211,7 +211,7 @@
               });
             }
             $('#reportForm')[0].reset();
-            window.location.replace("<?= base_url('bugtracker'); ?>");
+            window.location.replace("<?= site_url('bugtracker'); ?>");
           }
         });
       }
