@@ -49,9 +49,6 @@ class Admin extends MX_Controller {
 		$this->load->library('pagination');
 		$this->load->library('updater');
 
-        if(!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
-
         if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 

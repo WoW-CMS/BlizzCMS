@@ -433,7 +433,7 @@ $config['standardize_newlines'] = FALSE;
 |          for backwards compatibility purposes!
 |
 */
-$config['global_xss_filtering'] = TRUE;
+$config['global_xss_filtering'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -488,8 +488,8 @@ $config['compress_output'] = FALSE;
 | reference, or convert it to the configured one timezone. See the 'date
 | helper' page of the user guide for information regarding date handling.
 |
-$config['time_reference'] = 'local';
 */
+$config['time_reference'] = 'UTC';
 
 /*
 |--------------------------------------------------------------------------
