@@ -46,9 +46,6 @@ class Mod extends MX_Controller {
         $this->load->model('mod_model');
         $this->load->library('pagination');
 
-        if(!ini_get('date.timezone'))
-           date_default_timezone_set($this->config->item('timezone'));
-
         if(!$this->wowauth->isLogged())
             redirect(base_url(),'refresh');
 

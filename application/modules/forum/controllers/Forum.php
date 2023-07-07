@@ -42,10 +42,6 @@ class Forum extends MX_Controller {
         parent::__construct();
         $this->load->model('forum_model');
 
-        if (!ini_get('date.timezone')) {
-            date_default_timezone_set($this->config->item('timezone'));
-        }
-        
         if ($this->service->modService->checkAccBan($this->session->userdata('wow_sess_id'))) {
             redirect(base_url('accBanned'), 'refresh');
         }
@@ -53,7 +49,7 @@ class Forum extends MX_Controller {
         if (!$this->wowgeneral->getMaintenance()) {
             redirect(base_url('maintenance'), 'refresh');
         }
-        
+
         if (!$this->wowmodule->getStatusModule('Forum')) {
             redirect(base_url(), 'refresh');
         }
