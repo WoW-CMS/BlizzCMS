@@ -224,6 +224,16 @@ class Menus extends Admin_Controller
                 'description' => "Can view {$name} {$type} item"
             ]);
 
+            $permissionId = $this->permission_model->find([
+                'key' => $itemId,
+                'module' => ':menu-item:'
+            ])->id;
+
+            $this->role_permission_model->insert([
+                'role_id'        => 5,
+                'permission_id' => $permissionId,
+            ]);
+
             $this->log_model->create('menu item', 'add', 'Added a menu item', [
                 'item' => $name,
                 'type' => $type
