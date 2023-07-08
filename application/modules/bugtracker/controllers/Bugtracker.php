@@ -42,7 +42,6 @@ class Bugtracker extends MX_Controller {
         parent::__construct();
         $this->load->model('bugtracker_model');
         $this->load->config('bugtracker');
-        $this->load->library('pagination');
 
         if(!$this->wowgeneral->getMaintenance())
             redirect(site_url('maintenance'));

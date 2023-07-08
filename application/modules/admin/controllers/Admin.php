@@ -46,8 +46,7 @@ class Admin extends MX_Controller {
         $this->load->model('admin_model');
         $this->config->load('donate/donate');
         $this->config->load('bugtracker/bugtracker');
-		$this->load->library('pagination');
-		$this->load->library('updater');
+        $this->load->library('updater');
 
         if(!$this->wowauth->isLogged())
             redirect(site_url());

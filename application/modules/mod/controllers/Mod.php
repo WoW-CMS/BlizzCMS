@@ -44,7 +44,6 @@ class Mod extends MX_Controller {
     {
         parent::__construct();
         $this->load->model('mod_model');
-        $this->load->library('pagination');
 
         if(!$this->wowauth->isLogged())
             redirect(site_url());
