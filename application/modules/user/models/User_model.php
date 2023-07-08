@@ -522,7 +522,7 @@ class User_model extends CI_Model
             $mail_message .= 'Your new password is: <span style="font-weight: bold;">' . $new_password . '</span><br>';
             $mail_message .= 'Please change your password again as soon as you log in!<br>';
             $mail_message .= 'Kind regards,<br>';
-            $mail_message .= $this->config->item('email_settings_sender_name') . ' Support.';
+            $mail_message .= config_item('email_settings_sender_name') . ' Support.';
 
             $this->wowgeneral->smtpSendEmail($email, lang('email_password_recovery'), $mail_message);
 

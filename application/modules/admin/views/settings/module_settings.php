@@ -32,7 +32,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-file-invoice-dollar"></i></span>
-                          <input class="uk-input" type="text" id="paypal_currency" value="<?= $this->config->item('paypal_currency'); ?>" required>
+                          <input class="uk-input" type="text" id="paypal_currency" value="<?= config_item('paypal_currency'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -41,7 +41,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-file-invoice-dollar"></i></span>
-                          <input class="uk-input" type="text" id="paypal_currency_symbol" value="<?= $this->config->item('paypal_currency_symbol'); ?>" required>
+                          <input class="uk-input" type="text" id="paypal_currency_symbol" value="<?= config_item('paypal_currency_symbol'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -49,8 +49,8 @@
                       <label class="uk-form-label"><?= lang('conf_paypal_mode'); ?></label>
                       <div class="uk-form-controls">
                         <select class="uk-select" id="paypal_mode">
-                          <option value="sandbox" <?php if($this->config->item('paypal_mode') == 'sandbox') echo 'selected'; ?>>Sandbox</option>
-                          <option value="live" <?php if($this->config->item('paypal_mode') == 'live') echo 'selected'; ?>>Live</option>
+                          <option value="sandbox" <?php if(config_item('paypal_mode') == 'sandbox') echo 'selected'; ?>>Sandbox</option>
+                          <option value="live" <?php if(config_item('paypal_mode') == 'live') echo 'selected'; ?>>Live</option>
                         </select>
                       </div>
                     </div>
@@ -61,7 +61,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" id="paypal_client" value="<?= $this->config->item('paypal_userid'); ?>" required>
+                      <input class="uk-input" type="text" id="paypal_client" value="<?= config_item('paypal_userid'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" id="paypal_password" value="<?= $this->config->item('paypal_secretpass'); ?>" required>
+                      <input class="uk-input" type="text" id="paypal_password" value="<?= config_item('paypal_secretpass'); ?>" required>
                     </div>
                   </div>
                 </div>
@@ -84,7 +84,7 @@
                   <label class="uk-form-label"><?= lang('conf_default_description'); ?></label>
                   <div class="uk-form-controls">
                     <div class="uk-width-1-1">
-                      <textarea class="uk-textarea tinyeditor" rows="12" id="bugtracker_description"><?= $this->config->item('textarea'); ?></textarea>
+                      <textarea class="uk-textarea tinyeditor" rows="12" id="bugtracker_description"><?= config_item('textarea'); ?></textarea>
                     </div>
                   </div>
                 </div>
