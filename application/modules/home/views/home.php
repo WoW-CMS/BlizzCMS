@@ -106,21 +106,21 @@
             </div>
             <h5 class="uk-h5 uk-text-center uk-margin dotted-divider">
               <?php if ($this->wowgeneral->getExpansionAction() == 1): ?>
-              <i class="fas fa-gamepad"></i> Set Realmlist <?= $this->config->item('realmlist'); ?>
+              <i class="fas fa-gamepad"></i> Set Realmlist <?= config_item('realmlist'); ?>
               <?php else: ?>
-              <i class="fas fa-gamepad"></i> Set Portal "<?= $this->config->item('realmlist'); ?>"
+              <i class="fas fa-gamepad"></i> Set Portal "<?= config_item('realmlist'); ?>"
               <?php endif ?>
             </h5>
             <?php endif ?>
-            <?php if ($this->wowmodule->getStatusModule('Discord') == '1' && $this->config->item('discord_type') == '1'): ?>
+            <?php if ($this->wowmodule->getStatusModule('Discord') == '1' && config_item('discord_type') == '1'): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= lang('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
-              <a target="_blank" class="discord-widget" href="https://discord.gg/<?= $this->config->item('discord_invitation'); ?>" title="Join us on Discord">
-                <img src="https://discord.com/api/guilds/<?= $discord_id ?>/widget.png?style=<?= $this->config->item('discord_style'); ?>">
+              <a target="_blank" class="discord-widget" href="https://discord.gg/<?= config_item('discord_invitation'); ?>" title="Join us on Discord">
+                <img src="https://discord.com/api/guilds/<?= $discord_id ?>/widget.png?style=<?= config_item('discord_style'); ?>">
               </a>
             </div>
             <?php endif ?>
-            <?php if ($this->wowmodule->getStatusModule('Discord') == '1' && $this->config->item('discord_type') == '2'): ?>
+            <?php if ($this->wowmodule->getStatusModule('Discord') == '1' && config_item('discord_type') == '2'): ?>
             <h4 class="uk-h4 uk-text-bold"><i class="fab fa-discord fa-sm"></i> <?= lang('home_discord'); ?></h4>
             <div class="uk-text-center uk-margin-small">
               <iframe src="https://discordapp.com/widget?id=<?= $discord_id ?>&theme=dark" width="300" height="300" allowtransparency="true" frameborder="0"></iframe>

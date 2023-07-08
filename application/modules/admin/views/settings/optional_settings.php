@@ -32,7 +32,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-crown"></i></span>
-                          <input class="uk-input" type="text" id="admin_level" value="<?= $this->config->item('admin_access_level'); ?>" required>
+                          <input class="uk-input" type="text" id="admin_level" value="<?= config_item('admin_access_level'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -41,7 +41,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-gavel"></i></span>
-                          <input class="uk-input" type="text" id="mod_level" value="<?= $this->config->item('mod_access_level'); ?>" required>
+                          <input class="uk-input" type="text" id="mod_level" value="<?= config_item('mod_access_level'); ?>" required>
                         </div>
                       </div>
                     </div>
@@ -53,7 +53,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-inline uk-width-1-1">
                       <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                      <input class="uk-input" type="text" id="recaptcha_key" value="<?= $this->config->item('recaptcha_sitekey'); ?>">
+                      <input class="uk-input" type="text" id="recaptcha_key" value="<?= config_item('recaptcha_sitekey'); ?>">
                     </div>
                   </div>
                 </div>
@@ -65,8 +65,8 @@
                   <label class="uk-form-label"><?= lang('conf_account_activation'); ?></label>
                   <div class="uk-form-controls">
                     <select class="uk-select" id="register_type">
-                      <option value="TRUE" <?php if($this->config->item('account_activation_required') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
-                      <option value="FALSE" <?php if($this->config->item('account_activation_required') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
+                      <option value="TRUE" <?php if(config_item('account_activation_required') == TRUE) echo 'selected'; ?>><?= lang('option_enabled'); ?></option>
+                      <option value="FALSE" <?php if(config_item('account_activation_required') == FALSE) echo 'selected'; ?>><?= lang('option_disabled'); ?></option>
                     </select>
                   </div>
                 </div>
@@ -78,7 +78,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-mail-bulk"></i></span>
-                          <input class="uk-input" type="text" id="smtp_hostname" value="<?= $this->config->item('smtp_host'); ?>">
+                          <input class="uk-input" type="text" id="smtp_hostname" value="<?= config_item('smtp_host'); ?>">
                         </div>
                       </div>
                     </div>
@@ -86,7 +86,7 @@
                       <label class="uk-form-label"><?= lang('conf_smtp_port'); ?></label>
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
-                          <input class="uk-input" type="number" id="smtp_port" value="<?= $this->config->item('smtp_port'); ?>">
+                          <input class="uk-input" type="number" id="smtp_port" value="<?= config_item('smtp_port'); ?>">
                         </div>
                       </div>
                     </div>
@@ -94,8 +94,8 @@
                       <label class="uk-form-label"><?= lang('conf_smtp_encryption'); ?></label>
                       <div class="uk-form-controls">
                         <select class="uk-select" id="smtp_crypto">
-                          <option value="ssl" <?php if($this->config->item('smtp_crypto') == 'ssl') echo 'selected'; ?>><?= lang('option_ssl'); ?></option>
-                          <option value="tls" <?php if($this->config->item('smtp_crypto') == 'tls') echo 'selected'; ?>><?= lang('option_tls'); ?></option>
+                          <option value="ssl" <?php if(config_item('smtp_crypto') == 'ssl') echo 'selected'; ?>><?= lang('option_ssl'); ?></option>
+                          <option value="tls" <?php if(config_item('smtp_crypto') == 'tls') echo 'selected'; ?>><?= lang('option_tls'); ?></option>
                         </select>
                       </div>
                     </div>
@@ -108,7 +108,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user"></i></span>
-                          <input class="uk-input" type="text" id="smtp_username" value="<?= $this->config->item('smtp_user'); ?>">
+                          <input class="uk-input" type="text" id="smtp_username" value="<?= config_item('smtp_user'); ?>">
                         </div>
                       </div>
                     </div>
@@ -117,7 +117,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-key"></i></span>
-                          <input class="uk-input" type="password" id="smtp_password" value="<?= $this->config->item('smtp_pass'); ?>">
+                          <input class="uk-input" type="password" id="smtp_password" value="<?= config_item('smtp_pass'); ?>">
                         </div>
                       </div>
                     </div>
@@ -130,7 +130,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-envelope"></i></span>
-                          <input class="uk-input" type="email" id="sender_email" value="<?= $this->config->item('email_settings_sender'); ?>">
+                          <input class="uk-input" type="email" id="sender_email" value="<?= config_item('email_settings_sender'); ?>">
                         </div>
                       </div>
                     </div>
@@ -139,7 +139,7 @@
                       <div class="uk-form-controls">
                         <div class="uk-inline uk-width-1-1">
                           <span class="uk-form-icon uk-form-icon-flip"><i class="fas fa-user-circle"></i></span>
-                          <input class="uk-input" type="text" id="sender_name" value="<?= $this->config->item('email_settings_sender_name'); ?>">
+                          <input class="uk-input" type="text" id="sender_name" value="<?= config_item('email_settings_sender_name'); ?>">
                         </div>
                       </div>
                     </div>

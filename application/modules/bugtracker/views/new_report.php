@@ -82,7 +82,7 @@
                   <div class="uk-form-controls">
                     <div class="uk-width-1-1">
                       <textarea class="uk-textarea tinyeditor" id="report_description" rows="12">
-                        <?= $this->config->item('textarea'); ?>
+                        <?= config_item('textarea'); ?>
                       </textarea>
                     </div>
                   </div>

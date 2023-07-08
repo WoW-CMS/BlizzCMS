@@ -50,7 +50,7 @@ class Home extends MX_Controller {
 
     public function index()
     {
-        if ($this->config->item('migrate_status') == '1')
+        if (config_item('migrate_status') == '1')
         {
             $data = array(
                 'lang' => $this->lang->lang()

@@ -61,7 +61,7 @@ endif; ?>
                   <div class="uk-card uk-card-body uk-card-donate uk-text-center uk-transition-scale-up uk-transition-opaque">
                     <i class="fab fa-paypal fa-3x"></i>
                     <h2 class="uk-margin-small uk-text-bold"><?= $donateList->name ?><br>
-                      <sup><?= $this->config->item('paypal_currency_symbol'); ?></sup><?= $donateList->price ?>
+                      <sup><?= config_item('paypal_currency_symbol'); ?></sup><?= $donateList->price ?>
                     </h2>
                     <h5 class="uk-margin-small"><span uk-icon="icon: plus-circle"></span> <?= lang('donate_get'); ?> <span class="uk-text-bold"><?= $donateList->points ?></span> <?= lang('panel_dp'); ?>
                     </h5>

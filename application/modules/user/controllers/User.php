@@ -57,7 +57,7 @@ class User extends MX_Controller {
 
 		$data = [
 			'pagetitle' => lang('tab_login'),
-			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'recapKey' => config_item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang()
 		];
 
@@ -130,7 +130,7 @@ class User extends MX_Controller {
 
 		$data = [
 			'pagetitle' => lang('tab_register'),
-			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'recapKey' => config_item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang()
 		];
 
@@ -184,7 +184,7 @@ class User extends MX_Controller {
 				$username = $this->input->post('username', TRUE);
 				$email = $this->input->post('email', TRUE);
 				$password = $this->input->post('password');
-				$emulator = $this->config->item('emulator');
+				$emulator = config_item('emulator');
 
 
 				if (!$this->wowauth->account_unique($username, 'username'))
@@ -260,7 +260,7 @@ class User extends MX_Controller {
 
 		$data = [
 			'pagetitle' => lang('tab_reset'),
-			'recapKey' => $this->config->item('recaptcha_sitekey'),
+			'recapKey' => config_item('recaptcha_sitekey'),
 			'lang' => $this->lang->lang(),
 		];
 
