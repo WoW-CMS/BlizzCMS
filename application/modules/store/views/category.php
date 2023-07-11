@@ -11,7 +11,7 @@
               </div>
               <ul class="uk-nav-default nav-store uk-nav-parent-icon" uk-nav>
                 <li><a href="<?= site_url('store'); ?>"><i class="fas fa-star"></i> <?= lang('store_top_items'); ?></a></li>
-                <?php foreach ($this->wowrealm->getRealms()->result() as $MultiRealm): ?>
+                <?php foreach ($this->wowrealm->getRealms() as $MultiRealm): ?>
                 <li class="uk-parent">
                   <a href="javascript:void(0);"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($MultiRealm->realmID); ?></a>
                   <ul class="uk-nav-sub uk-nav-parent-icon" uk-nav>

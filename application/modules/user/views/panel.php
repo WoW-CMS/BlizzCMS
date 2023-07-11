@@ -71,7 +71,7 @@
               </div>
               <div class="uk-card-body">
                 <div class="uk-grid uk-child-width-1-1 uk-margin-small" data-uk-grid>
-                  <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
+                  <?php foreach ($this->wowrealm->getRealms() as $charsMultiRealm):
                     $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                   ?>
                   <div>
@@ -88,7 +88,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id'))->result() as $chars): ?>
+                          <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm , $this->session->userdata('wow_sess_id')) as $chars): ?>
                           <tr>
                             <td><?= $chars->name ?></td>
                             <td>

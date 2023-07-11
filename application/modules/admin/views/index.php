@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="uk-grid uk-grid-small uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
-          <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
+          <?php foreach ($this->wowrealm->getRealms() as $charsMultiRealm):
             $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
           ?>
           <div>
