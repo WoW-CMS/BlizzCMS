@@ -534,11 +534,12 @@ class General_model extends CI_Model
     /**
      * Get menu
      *
-     * @return mixed
+     * @return array
      */
     public function getMenu()
     {
-        return $this->db->get('menu');
+        return $this->db->get('menu')
+            ->result();
     }
 
     /**
@@ -550,6 +551,7 @@ class General_model extends CI_Model
     public function getMenuChild($id)
     {
         return $this->db->where('child', $id)
-            ->get('menu');
+            ->get('menu')
+            ->result();
     }
 }

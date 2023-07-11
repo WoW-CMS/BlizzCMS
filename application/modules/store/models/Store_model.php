@@ -265,7 +265,7 @@ class Store_model extends CI_Model
         $userid     = $this->session->userdata('wow_sess_id');
         $multirealm = $this->wowrealm->getRealmConnectionData($realmid);
 
-        if ($this->wowrealm->getCharExistGuid($multirealm, $charid) !== 1) {
+        if (! $this->wowrealm->getCharExistGuid($multirealm, $charid)) {
             return false;
         }
 
@@ -275,7 +275,7 @@ class Store_model extends CI_Model
 
         $subject  = lang('soap_send_subject');
         $message  = lang('soap_send_body');
-        $realm    = $this->wowrealm->getRealm($realmid)->row_array();
+        $realm    = $this->wowrealm->getRealm($realmid);
         $charname = $this->wowrealm->getNameCharacterSpecifyGuid($multirealm, $charid);
 
         switch ($item->type) {
@@ -315,7 +315,7 @@ class Store_model extends CI_Model
             return false;
         }
 
-        $this->wowrealm->commandSoap($command, $realm['console_username'], $realm['console_password'], $realm['console_hostname'], $realm['console_port'], $realm['emulator']);
+        $this->wowrealm->commandSoap($command, $realm->console_username, $realm->console_password, $realm->console_hostname, $realm->console_port, $realm->emulator);
 
         if ($item->price_type == 1) {
             $this->db->query("UPDATE users SET dp = (dp-$item->dp) WHERE id = $userid");

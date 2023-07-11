@@ -116,7 +116,7 @@
           <div class="uk-width-1-4@s">
             <div class="uk-card uk-card-secondary">
               <ul class="uk-nav uk-nav-default" uk-switcher="connect: #acc-characters">
-                <?php foreach($this->wowrealm->getRealms()->result() as $realm): ?>
+                <?php foreach($this->wowrealm->getRealms() as $realm): ?>
                 <li><a href="javascript:void(0)"><i class="fas fa-server"></i> <?= $this->wowrealm->getRealmName($realm->realmID); ?></a></li>
                 <?php endforeach; ?>
               </ul>
@@ -126,7 +126,7 @@
             <div class="uk-card uk-card-secondary character-list uk-card-body">
               <div class="uk-overflow-auto">
                 <ul id="acc-characters" class="uk-switcher">
-                  <?php foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm):
+                  <?php foreach ($this->wowrealm->getRealms() as $charsMultiRealm):
                     $multiRealm = $this->wowrealm->realmConnection($charsMultiRealm->username, $charsMultiRealm->password, $charsMultiRealm->hostname, $charsMultiRealm->char_database);
                   ?>
                   <li>
@@ -143,7 +143,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm, $idlink)->result() as $chars): ?>
+                        <?php foreach($this->wowrealm->getGeneralCharactersSpecifyAcc($multiRealm, $idlink) as $chars): ?>
                         <tr>
                           <td><?= $chars->guid ?></td>
                           <td><?= $chars->name ?></td>

@@ -1390,7 +1390,7 @@ class Admin extends MX_Controller {
 
     public function checkSoap()
     {
-        foreach ($this->wowrealm->getRealms()->result() as $charsMultiRealm) {
+        foreach ($this->wowrealm->getRealms() as $charsMultiRealm) {
 
             echo $this->wowrealm->commandSoap('.server info', $charsMultiRealm->console_username, $charsMultiRealm->console_password, $charsMultiRealm->console_hostname, $charsMultiRealm->console_port, $charsMultiRealm->emulator).'<br>';
         }

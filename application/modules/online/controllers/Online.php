@@ -50,7 +50,7 @@ class Online extends MX_Controller {
     {
         $data = array(
             'pagetitle' => lang('tab_online'),
-            'realms' => $this->wowrealm->getRealms()->result()
+            'realms' => $this->wowrealm->getRealms()
         );
 
         $this->template->build('index', $data);

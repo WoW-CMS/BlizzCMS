@@ -90,7 +90,7 @@
         <nav class="uk-navbar" uk-navbar="mode: click">
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-              <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
+              <?php foreach ($this->wowgeneral->getMenu() as $menulist): ?>
               <?php if($menulist->main == '2'): ?>
               <li class="uk-visible@m">
                 <a href="#">
@@ -98,7 +98,7 @@
                 </a>
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <?php foreach ($this->wowgeneral->getMenuChild($menulist->id)->result() as $menuchildlist): ?>
+                    <?php foreach ($this->wowgeneral->getMenuChild($menulist->id) as $menuchildlist): ?>
                       <li>
                         <?php if($menuchildlist->type == '1'): ?>
                         <a href="<?= base_url($menuchildlist->url); ?>">
@@ -180,14 +180,14 @@
                 <?php endif; ?>
                 <li><a href="<?= site_url('logout'); ?>"><i class="fas fa-sign-out-alt"></i> <?= lang('button_logout'); ?></a></li>
                 <?php endif; ?>
-                <?php foreach ($this->wowgeneral->getMenu()->result() as $menulist): ?>
+                <?php foreach ($this->wowgeneral->getMenu() as $menulist): ?>
                 <?php if($menulist->main == '2'): ?>
                 <li class="uk-parent">
                   <a href="#">
                     <i class="<?= $menulist->icon ?>"></i>&nbsp;<?= $menulist->name ?>
                   </a>
                   <ul class="uk-nav-sub">
-                    <?php foreach ($this->wowgeneral->getMenuChild($menulist->id)->result() as $menuchildlist): ?>
+                    <?php foreach ($this->wowgeneral->getMenuChild($menulist->id) as $menuchildlist): ?>
                     <li>
                       <?php if($menuchildlist->type == '1'): ?>
                       <a href="<?= base_url($menuchildlist->url); ?>">
