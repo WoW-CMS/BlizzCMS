@@ -32,8 +32,8 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
-                    <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
+                    <?php if ($this->wowmodule->getStatusModule('Admin Panel')): ?>
+                    <?php if ($this->wowauth->getRank() >= config_item('admin_access_level')): ?>
                     <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
