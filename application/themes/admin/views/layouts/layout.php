@@ -15,9 +15,9 @@
         <nav class="uk-navbar" uk-navbar>
           <div class="uk-navbar-left">
             <a class="uk-navbar-item uk-logo" href="<?= site_url('admin'); ?>">BlizzCMS<sup class="uk-text-success">+</sup></a>
-			<div class="uk-navbar-item uk-visible@s">
-				<span class="rev-label"><a href="<?= site_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->updater->latest_version() ?></a></span>
-			</div>
+            <div class="uk-navbar-item uk-visible@s">
+              <span class="rev-label"><a href="<?= site_url('admin/cms')?>" class="uk-link-reset">Version: <?= $this->updater->latest_version() ?></a></span>
+            </div>
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav uk-visible@m">
@@ -34,7 +34,7 @@
                 <div class="uk-navbar-dropdown">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
-                    <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
+                    <?php if ($this->wowauth->getRank() >= config_item('mod_access_level')): ?>
                     <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
                     <li class="uk-nav-divider"></li>

@@ -23,10 +23,8 @@
         </div>
         <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <?php if($this->wowmodule->getStatusModule('reCaptcha') == '1'): ?>
-            <div class="uk-margin-small">
-              <div class="g-recaptcha" data-sitekey="<?= $recapKey; ?>"></div>
-            </div>
+            <?php if ($this->wowmodule->getStatusModule('reCaptcha')): ?>
+            <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response">
             <?php endif; ?>
           </div>
           <div class="uk-width-1-2@m"></div>

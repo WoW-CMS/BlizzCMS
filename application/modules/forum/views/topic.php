@@ -23,7 +23,7 @@
           <div class="uk-card-body">
             <div class="uk-grid uk-grid-small" data-uk-grid>
               <div class="uk-width-1-6@s">
-                <div class="Author <?php if($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                <div class="Author <?php if ($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                   <div class="topic-author-avatar profile">
                     <?php if($this->wowgeneral->getUserInfoGeneral($this->forum_model->getTopicRow($idlink, 'author'))->num_rows()): ?>
                     <img src="<?= base_url('assets/images/profiles/').$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($this->forum_model->getTopicRow($idlink, 'author'))); ?>" alt="" />
@@ -34,7 +34,7 @@
                 </div>
                 <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($this->forum_model->getTopicRow($idlink, 'author')); ?></p>
                 <p class="uk-margin-remove uk-text-meta uk-text-center"><?= $this->forum_model->getCountTopics('author', $this->forum_model->getTopicRow($idlink, 'author')); ?> <?= lang('forum_post_count'); ?></p>
-                <?php if($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0): ?>
+                <?php if ($this->wowauth->getRank($this->forum_model->getTopicRow($idlink, 'author')) > 0): ?>
                 <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                 <?php endif; ?>
               </div>
@@ -51,7 +51,7 @@
             <div class="uk-card uk-card-default uk-card-body">
               <div class="uk-grid uk-grid-small" data-uk-grid>
                 <div class="uk-width-1-6@s">
-                  <div class="Author <?php if($this->wowauth->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
+                  <div class="Author <?php if ($this->wowauth->getRank($commentss->author) > 0) echo 'topic-author-staff'; ?> uk-flex uk-flex-center">
                     <div class="topic-author-avatar profile">
                       <?php if($this->wowgeneral->getUserInfoGeneral($commentss->author)->num_rows()): ?>
                       <img src="<?= base_url('assets/images/profiles/'.$this->wowauth->getNameAvatar($this->wowauth->getImageProfile($commentss->author))); ?>" alt="" />
@@ -62,14 +62,14 @@
                   </div>
                   <p class="uk-text-bold uk-text-center uk-margin-remove"><?= $this->wowauth->getUsernameID($commentss->author); ?></p>
                   <p class="uk-margin-remove uk-text-meta uk-text-center"><?= lang('forum_post_count'); ?></p>
-                  <?php if($this->wowauth->getRank($commentss->author) > 0): ?>
-                <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
+                  <?php if ($this->wowauth->getRank($commentss->author) > 0): ?>
+                  <div class="author-rank-staff"><i class="fas fa-fire"></i> Staff</div>
                   <?php endif; ?>
                 </div>
                 <div class="uk-width-expand@s">
                   <p class="uk-text-small uk-text-meta uk-margin-remove"><?= date('F d Y - H:i A', $commentss->date); ?></p>
                   <?= $commentss->commentary ?>
-                  <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
+                  <?php if ($this->wowauth->getRank() > 0 || $this->session->userdata('wow_sess_id') == $commentss->author && $this->wowgeneral->getTimestamp() < strtotime('+30 minutes', $commentss->date)): ?>
                   <div class="uk-margin-small-top uk-margin-remove-bottom">
                     <button class="uk-button uk-button-danger uk-button-small" value="<?= $commentss->id ?>" id="button_delete<?= $commentss->id ?>" onclick="DeleteTopicReply(event, this.value)"><i class="fas fa-eraser"></i> <?= lang('button_remove'); ?></button>
                   </div>

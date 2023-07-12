@@ -40,10 +40,8 @@
         </div>
         <div class="uk-grid uk-grid-small uk-grid-margin-small" data-uk-grid>
           <div class="uk-width-1-4@m">
-            <?php if ($this->wowmodule->getStatusModule('reCaptcha') == '1') : ?>
-              <div class="uk-margin-small">
-                <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response">
-              </div>
+            <?php if ($this->wowmodule->getStatusModule('reCaptcha')): ?>
+            <input type="hidden" class="g-recaptcha-response" name="g-recaptcha-response">
             <?php endif; ?>
             <a href="<?= site_url('recovery'); ?>" class="uk-button uk-button-text"><i class="fas fa-key"></i> <?= lang('button_forgot_password'); ?></a>
           </div>

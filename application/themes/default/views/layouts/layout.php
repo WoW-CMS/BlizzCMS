@@ -30,10 +30,10 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               <?php if (!$this->wowauth->isLogged()): ?>
-			  <?php if($this->wowmodule->getStatusModule('Register')): ?>
+              <?php if ($this->wowmodule->getStatusModule('Register')): ?>
               <li class="uk-visible@m"><a href="<?= site_url('register'); ?>"><i class="fas fa-user-plus"></i>&nbsp;<?= lang('button_register'); ?></a></li>
               <?php endif; ?>
-			  <?php if($this->wowmodule->getStatusModule('Login')): ?>
+              <?php if ($this->wowmodule->getStatusModule('Login')): ?>
               <li class="uk-visible@m"><a href="<?= site_url('login'); ?>"><i class="fas fa-sign-in-alt"></i>&nbsp;<?= lang('button_login'); ?></a></li>
               <?php endif; ?>
               <?php endif; ?>
@@ -50,14 +50,14 @@
                 <div class="uk-navbar-dropdown" uk-dropdown="boundary: .uk-container">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <?php if ($this->wowauth->isLogged()): ?>
-                    <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
+                    <?php if ($this->wowmodule->getStatusModule('User Panel')): ?>
                     <li><a href="<?= site_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
+                    <?php if ($this->wowauth->getRank() >= config_item('mod_access_level')): ?>
                     <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i> <?= lang('button_mod_panel'); ?></a></li>
                     <?php endif; ?>
-                    <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
-                    <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
+                    <?php if ($this->wowmodule->getStatusModule('Admin Panel')): ?>
+                    <?php if ($this->wowauth->getRank() >= config_item('admin_access_level')): ?>
                     <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                     <?php endif; ?>
                     <?php endif; ?>
@@ -159,22 +159,22 @@
               <?php endif; ?>
               <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
                 <?php if (!$this->wowauth->isLogged()): ?>
-				<?php if($this->wowmodule->getStatusModule('Register')): ?>
+                <?php if ($this->wowmodule->getStatusModule('Register')): ?>
                 <li><a href="<?= site_url('register'); ?>"><i class="fas fa-user-plus"></i> <?= lang('button_register'); ?></a></li>
                 <?php endif; ?>
-				<?php if($this->wowmodule->getStatusModule('Login')): ?>
+                <?php if ($this->wowmodule->getStatusModule('Login')): ?>
                 <li><a href="<?= site_url('login'); ?>"><i class="fas fa-sign-in-alt"></i> <?= lang('button_login'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($this->wowauth->isLogged()): ?>
-                <?php if($this->wowmodule->getStatusModule('User Panel')): ?>
+                <?php if ($this->wowmodule->getStatusModule('User Panel')): ?>
                 <li><a href="<?= site_url('panel'); ?>"><i class="far fa-user-circle"></i> <?= lang('button_user_panel'); ?></a></li>
                 <?php endif; ?>
-                <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('mod_access_level')): ?>
+                <?php if ($this->wowauth->getRank() >= config_item('mod_access_level')): ?>
                 <li><a href="<?= site_url('mod'); ?>"><i class="fas fa-gavel"></i>s <?= lang('button_mod_panel'); ?></a></li>
                 <?php endif; ?>
-                <?php if($this->wowmodule->getStatusModule('Admin Panel') == '1'): ?>
-                <?php if($this->wowauth->getRank($this->session->userdata('wow_sess_id')) >= config_item('admin_access_level')): ?>
+                <?php if ($this->wowmodule->getStatusModule('Admin Panel')): ?>
+                <?php if ($this->wowauth->getRank() >= config_item('admin_access_level')): ?>
                 <li><a href="<?= site_url('admin'); ?>"><i class="fas fa-cog"></i> <?= lang('button_admin_panel'); ?></a></li>
                 <?php endif; ?>
                 <?php endif; ?>

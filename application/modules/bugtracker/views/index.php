@@ -6,29 +6,29 @@
         <div class="uk-grid uk-grid-medium" data-uk-grid>
           <div class="uk-width-1-4@m">
             <ul class="uk-nav uk-nav-default myaccount-nav">
-				<?php if($this->wowmodule->getStatusModule('User Panel')): ?>
-				<li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('tab_account'); ?></a></li>
-				<?php endif; ?>
-				<li class="uk-nav-divider"></li>
-				<?php if($this->wowmodule->getStatusModule('Donation') == '1'): ?>
-				<li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('navbar_donate_panel'); ?></a></li>
-				<?php endif; ?>
-				<?php if($this->wowmodule->getStatusModule('Vote') == '1'): ?>
-				<li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('navbar_vote_panel'); ?></a></li>
-				<?php endif; ?>
-				<?php if($this->wowmodule->getStatusModule('Store') == '1'): ?>
-				<li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('tab_store'); ?></a></li>
-				<?php endif; ?>
-				<li class="uk-nav-divider"></li>
-				<?php if($this->wowmodule->getStatusModule('Bugtracker') == '1'): ?>
-				<li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?= lang('tab_bugtracker'); ?></a></li>
-				<?php endif; ?>
-				<?php if($this->wowmodule->getStatusModule('Changelogs') == '1'): ?>
-				<li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('tab_changelogs'); ?></a></li>
-				<?php endif; ?>
-				<?php if($this->wowmodule->getStatusModule('Download') == '1'): ?>
-				<li><a href="<?= site_url('download'); ?>"><i class="fas fa-download"></i> <?= lang('tab_download'); ?></a></li>
-				<?php endif; ?>
+              <?php if ($this->wowmodule->getStatusModule('User Panel')): ?>
+              <li><a href="<?= site_url('panel'); ?>"><i class="fas fa-user-circle"></i> <?= lang('tab_account'); ?></a></li>
+              <?php endif; ?>
+              <li class="uk-nav-divider"></li>
+              <?php if ($this->wowmodule->getStatusModule('Donation')): ?>
+              <li><a href="<?= site_url('donate'); ?>"><i class="fas fa-hand-holding-usd"></i> <?= lang('navbar_donate_panel'); ?></a></li>
+              <?php endif; ?>
+              <?php if ($this->wowmodule->getStatusModule('Vote')): ?>
+              <li><a href="<?= site_url('vote'); ?>"><i class="fas fa-vote-yea"></i> <?= lang('navbar_vote_panel'); ?></a></li>
+              <?php endif; ?>
+              <?php if ($this->wowmodule->getStatusModule('Store')): ?>
+              <li><a href="<?= site_url('store'); ?>"><i class="fas fa-store"></i> <?= lang('tab_store'); ?></a></li>
+              <?php endif; ?>
+              <li class="uk-nav-divider"></li>
+              <?php if ($this->wowmodule->getStatusModule('Bugtracker')): ?>
+              <li class="uk-active"><a href="<?= site_url('bugtracker'); ?>"><i class="fas fa-bug"></i> <?= lang('tab_bugtracker'); ?></a></li>
+              <?php endif; ?>
+              <?php if ($this->wowmodule->getStatusModule('Changelogs')): ?>
+              <li><a href="<?= site_url('changelogs'); ?>"><i class="fas fa-scroll"></i> <?= lang('tab_changelogs'); ?></a></li>
+              <?php endif; ?>
+              <?php if ($this->wowmodule->getStatusModule('Download')): ?>
+              <li><a href="<?= site_url('download'); ?>"><i class="fas fa-download"></i> <?= lang('tab_download'); ?></a></li>
+              <?php endif; ?>
             </ul>
           </div>
           <div class="uk-width-3-4@m">
