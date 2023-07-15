@@ -1,7 +1,7 @@
 # _BlizzCMS_
 
-[![Version](https://img.shields.io/github/v/release/wow-cms/blizzcms?color=green&include_prereleases&logo=github&sort=semver&style=flat-square)](https://github.com/WoW-CMS/BlizzCMS/releases)
-[![License](https://img.shields.io/github/license/wow-cms/blizzcms?color=blue&style=flat-square)](../LICENSE)
+[![Version](https://img.shields.io/github/v/release/WoW-CMS/BlizzCMS?filter=v2.*&style=flat-square&logo=github&color=green)](https://github.com/WoW-CMS/BlizzCMS/releases)
+[![License](https://img.shields.io/github/license/WoW-CMS/BlizzCMS?style=flat-square&color=blue)](../LICENSE)
 
 ## About BlizzCMS
 
