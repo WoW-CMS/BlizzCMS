@@ -150,6 +150,8 @@ $lang['wowcms_articles_empty'] = 'The most recent wow-cms news could not be foun
 $lang['wowcms_versions_empty'] = 'The versions could not be found';
 $lang['permanent_ban_note'] = 'Access will be totally restricted and will not allow login.';
 $lang['temporary_ban_note'] = 'Access will be limited only by the permissions of the banned role.';
+$lang['role_can_view_page'] = '<strong>%1$s</strong> role can view the page';
+$lang['role_can_view_item'] = '<strong>%1$s</strong> role can view the item';
 
 $lang['enter_site_name'] = 'Enter a name for the site.';
 $lang['enter_realmlist'] = 'Enter an realmlist.';

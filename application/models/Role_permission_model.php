@@ -31,4 +31,21 @@ class Role_permission_model extends BS_Model
 
         return array_column($query, 'permission_id');
     }
+
+    /**
+     * Get a list of roles ids for a permission
+     *
+     * @param int $permission
+     * @return array
+     */
+    public function roles_ids($permission)
+    {
+        $query = $this->find_all(['permission_id' => $permission], 'array');
+
+        if (empty($query)) {
+            return [];
+        }
+
+        return array_column($query, 'role_id');
+    }
 }

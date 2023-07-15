@@ -14,7 +14,7 @@
     <?= form_open(current_url()) ?>
       <div class="uk-margin" uk-grid>
         <div class="uk-width-3-5@s uk-width-2-3@m">
-          <div class="uk-card uk-card-default">
+          <div class="uk-card uk-card-default uk-margin">
             <div class="uk-card-body">
               <div class="uk-grid-small uk-margin-small" uk-grid>
                 <div class="uk-width-1-1">
@@ -41,9 +41,10 @@
               </div>
             </div>
           </div>
+          <button class="uk-button uk-button-primary uk-visible@s" type="submit"><?= lang('add') ?></button>
         </div>
         <div class="uk-width-2-5@s uk-width-1-3@m">
-          <div class="uk-card uk-card-default">
+          <div class="uk-card uk-card-default uk-margin">
             <div class="uk-card-header">
               <h3 class="uk-card-title"><i class="fa-solid fa-magnifying-glass"></i> <?= lang('seo') ?></h3>
             </div>
@@ -66,9 +67,33 @@
               </div>
             </div>
           </div>
+          <div class="uk-card uk-card-default">
+            <div class="uk-card-header">
+              <h3 class="uk-card-title"><i class="fa-solid fa-eye"></i> <?= lang('permissions') ?></h3>
+            </div>
+            <div class="uk-card-body">
+              <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                <?php foreach ($roles as $role): ?>
+                <div>
+                  <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                      <label class="uk-switch uk-display-block">
+                        <input type="checkbox" name="roles[]" value="<?= $role['id'] ?>" <?= set_checkbox('roles[]', $role['id']) ?>>
+                        <div class="uk-switch-slider"></div>
+                      </label>
+                    </div>
+                    <div class="uk-width-expand">
+                      <p class="uk-text-small uk-text-secondary uk-margin-remove"><?= lang_vars('role_can_view_page', [$role['name']]) ?></p>
+                    </div>
+                  </div>
+                </div>
+                <?php endforeach ?>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <button class="uk-button uk-button-primary" type="submit"><?= lang('add') ?></button>
+      <button class="uk-button uk-button-primary uk-hidden@s" type="submit"><?= lang('add') ?></button>
     <?= form_close() ?>
   </div>
 </section>

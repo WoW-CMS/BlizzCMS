@@ -182,7 +182,8 @@ class Menus extends Admin_Controller
 
         $data = [
             'menu'    => $menu,
-            'parents' => $this->menu_item_model->find_all(['menu_id' => $menuId, 'type' => ITEM_DROPDOWN])
+            'parents' => $this->menu_item_model->find_all(['menu_id' => $menuId, 'type' => ITEM_DROPDOWN]),
+            'roles'   => $this->_menu_item_roles()
         ];
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
@@ -224,15 +225,18 @@ class Menus extends Admin_Controller
                 'description' => "Can view {$name} {$type} item"
             ]);
 
-            $permissionId = $this->permission_model->find([
-                'key' => $itemId,
-                'module' => ':menu-item:'
-            ])->id;
+            $roles = $this->input->post('roles[]') ?? [];
 
-            $this->role_permission_model->insert([
-                'role_id'        => 5,
-                'permission_id' => $permissionId,
-            ]);
+            if (! empty($roles)) {
+                $permission = $this->permission_model->find(['key' => $itemId, 'module' => ':menu-item:']);
+                $rows       = [];
+
+                foreach ($roles as $role) {
+                    $rows[] = ['role_id' => $role, 'permission_id' => $permission->id];
+                }
+
+                $this->role_permission_model->insert_batch($rows);
+            }
 
             $this->log_model->create('menu item', 'add', 'Added a menu item', [
                 'item' => $name,
@@ -240,6 +244,7 @@ class Menus extends Admin_Controller
             ], "admin/menus/{$menuId}/edit/{$itemId}");
 
             $this->cache->delete('menu_*');
+            $this->cache->delete('permission_*');
 
             $this->session->set_flashdata('success', lang('alert_menu_item_added'));
             redirect(site_url('admin/menus/' . $menuId . '/add'));
@@ -271,7 +276,8 @@ class Menus extends Admin_Controller
         $data = [
             'menu'    => $this->menu_model->find(['id' => $item->menu_id]),
             'item'    => $item,
-            'parents' => $this->menu_item_model->find_all(['menu_id' => $item->menu_id, 'type' => ITEM_DROPDOWN])
+            'parents' => $this->menu_item_model->find_all(['menu_id' => $item->menu_id, 'type' => ITEM_DROPDOWN]),
+            'roles'   => $this->_menu_item_roles($itemId)
         ];
 
         $this->template->title(lang('admin_panel'), config_item('app_name'));
@@ -313,12 +319,28 @@ class Menus extends Admin_Controller
                 'description' => "Can view {$name} {$type} item"
             ], ['key' => $itemId, 'module' => ':menu-item:']);
 
+            $roles = $this->input->post('roles[]') ?? [];
+
+            if (! empty($roles)) {
+                $permission = $this->permission_model->find(['key' => $itemId, 'module' => ':menu-item:']);
+                $rows       = [];
+
+                foreach ($roles as $role) {
+                    $rows[] = ['role_id' => $role, 'permission_id' => $permission->id];
+                }
+
+                $this->role_permission_model->delete(['permission_id' => $permission->id]);
+
+                $this->role_permission_model->insert_batch($rows);
+            }
+
             $this->log_model->create('menu item', 'edit', 'Edited a menu item', [
                 'item' => $name,
                 'type' => $type
             ], "admin/menus/{$item->menu_id}/edit/{$itemId}");
 
             $this->cache->delete('menu_*');
+            $this->cache->delete('permission_*');
 
             $this->session->set_flashdata('success', lang('alert_menu_item_updated'));
             redirect(site_url('admin/menus/' . $item->menu_id . '/edit/' . $itemId));
@@ -436,8 +458,32 @@ class Menus extends Admin_Controller
         ]);
 
         $this->cache->delete('menu_*');
+        $this->cache->delete('permission_*');
 
         $this->session->set_flashdata('success', lang('alert_menu_item_deleted'));
         redirect(site_url('admin/menus/' . $menuId));
+    }
+
+    /**
+     * Get a list of roles has view permission on the menu item
+     *
+     * @param int|null $itemId
+     * @return array
+     */
+    private function _menu_item_roles($itemId = null)
+    {
+        $permission = $this->permission_model->find([
+            'key'    => $itemId,
+            'module' => ':menu-item:'
+        ]);
+
+        $ids   = empty($permission) ? [] : $this->role_permission_model->roles_ids($permission->id);
+        $roles = [];
+
+        foreach ($this->role_model->find_all([], 'array') as $row) {
+            $roles[] = array_merge($row, ['checked' => in_array($row['id'], $ids, true)]);
+        }
+
+        return $roles;
     }
 }

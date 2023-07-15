@@ -150,6 +150,8 @@ $lang['wowcms_articles_empty'] = 'No se pudieron encontrar las noticias más rec
 $lang['wowcms_versions_empty'] = 'Las versiones no se pudieron encontrar';
 $lang['permanent_ban_note'] = 'El acceso estará totalmente restringido y no permitirá iniciar sesión.';
 $lang['temporary_ban_note'] = 'El acceso estará limitado únicamente por los permisos del rol banned.';
+$lang['role_can_view_page'] = 'El rol <strong>%1$s</strong> puede ver la página';
+$lang['role_can_view_item'] = 'El rol <strong>%1$s</strong> puede ver el elemento';
 
 $lang['enter_site_name'] = 'Ingrese un nombre para el sitio.';
 $lang['enter_realmlist'] = 'Ingrese un realmlist.';
