@@ -23,18 +23,25 @@ class Updater
     private $CI;
 
     /**
+     * URL for check updates
+     *
+     * @var string
+     */
+    private $updateUrl = 'https://wow-cms.com/api/updates';
+
+    /**
+     * Filename for get versions from server
+     *
+     * @var string
+     */
+    private $updateFile = 'blizzcms.json';
+
+    /**
      * Current version
      *
      * @var string
      */
     private $version;
-
-    /**
-     * AutoUpdate instance
-     *
-     * @var object
-     */
-    private $autoUpdate;
 
     public function __construct()
     {
@@ -42,26 +49,17 @@ class Updater
 
         $this->version = $this->CI->config->item('cms_version');
 
-        $update = new AutoUpdate(FCPATH . 'temp', FCPATH . '', 60);
-
-        $update->setCurrentVersion($this->version);
-        $update->setUpdateUrl('https://wow-cms.com/api/updates');
-        $update->setUpdateFile('blizzcms.json');
-
-        // Set logger
-        $logger = new Logger('updater');
-
-        $logger->pushHandler(new StreamHandler(APPPATH . 'logs/updater.log'));
-        $update->setLogger($logger);
-
-        // Set cache
-        $cache = new File(APPPATH . 'cache');
-
-        $update->setCache($cache, 3600);
-
-        $this->autoUpdate = $update;
-
         log_message('info', 'Updater Class Initialized');
+    }
+
+    /**
+     * Get the current version
+     *
+     * @return string
+     */
+    public function current_version()
+    {
+        return $this->version;
     }
 
     /**
@@ -71,7 +69,8 @@ class Updater
      */
     public function latest_version()
     {
-        $latest = $this->autoUpdate->getLatestVersion();
+        $latest = $this->init_autoupdate()
+            ->getLatestVersion();
 
         if (version_compare($latest, $this->version, '<=')) {
             return $this->version;
@@ -87,14 +86,16 @@ class Updater
      */
     public function update()
     {
-        if ($this->autoUpdate->checkUpdate() === false) {
+        $autoupdate = $this->init_autoupdate();
+
+        if ($autoupdate->checkUpdate() === false) {
             return [
                 'alert'   => 'warning',
                 'message' => lang('cms_updater_not_connected')
             ];
         }
 
-        if (! $this->autoUpdate->newVersionAvailable()) {
+        if (! $autoupdate->newVersionAvailable()) {
             return [
                 'alert'   => 'info',
                 'message' => lang('cms_updater_version_not_found')
@@ -102,8 +103,8 @@ class Updater
         }
 
         // Run update
-        if ($this->autoUpdate->update(false) === true) {
-            $latest = $this->autoUpdate->getLatestVersion();
+        if ($autoupdate->update(false) === true) {
+            $latest = $autoupdate->getLatestVersion();
 
             return [
                 'alert'   => 'success',
@@ -115,5 +116,32 @@ class Updater
             'alert'   => 'error',
             'message' => lang('cms_updater_failed')
         ];
+    }
+
+    /**
+     * Init AutoUpdate
+     *
+     * @return object
+     */
+    private function init_autoupdate()
+    {
+        $update = new AutoUpdate(FCPATH . 'temp', FCPATH . '', 60);
+
+        $update->setCurrentVersion($this->version);
+        $update->setUpdateUrl($this->updateUrl);
+        $update->setUpdateFile($this->updateFile);
+
+        // Set logger
+        $logger = new Logger('updater');
+
+        $logger->pushHandler(new StreamHandler(APPPATH . 'logs/updater.log'));
+        $update->setLogger($logger);
+
+        // Set cache
+        $cache = new File(APPPATH . 'cache');
+
+        $update->setCache($cache, 3600);
+
+        return $update;
     }
 }

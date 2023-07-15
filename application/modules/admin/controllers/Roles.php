@@ -68,13 +68,14 @@ class Roles extends Admin_Controller
 
             $roleId      = $this->db->insert_id();
             $permissions = $this->input->post('permissions[]') ?? [];
-            $rows        = [];
 
-            foreach ($permissions as $item) {
-                $rows[] = ['role_id' => $roleId, 'permission_id' => $item];
-            }
+            if (! empty($permissions)) {
+                $rows = [];
 
-            if (! empty($rows)) {
+                foreach ($permissions as $item) {
+                    $rows[] = ['role_id' => $roleId, 'permission_id' => $item];
+                }
+
                 $this->role_permission_model->insert_batch($rows);
             }
 
@@ -129,16 +130,17 @@ class Roles extends Admin_Controller
                 'description' => $this->input->post('description', true)
             ], ['id' => $id]);
 
-            $this->role_permission_model->delete(['role_id' => $id]);
-
             $permissions = $this->input->post('permissions[]') ?? [];
-            $rows        = [];
 
-            foreach ($permissions as $item) {
-                $rows[] = ['role_id' => $id, 'permission_id' => $item];
-            }
+            if (! empty($permissions)) {
+                $rows = [];
 
-            if (! empty($rows)) {
+                foreach ($permissions as $item) {
+                    $rows[] = ['role_id' => $id, 'permission_id' => $item];
+                }
+
+                $this->role_permission_model->delete(['role_id' => $id]);
+
                 $this->role_permission_model->insert_batch($rows);
             }
 
