@@ -252,7 +252,12 @@ $lang['social_networks'] = 'Redes Sociales';
 $lang['registered_in'] = 'Registrado en';
 $lang['donation_points'] = 'Puntos de donación';
 $lang['voting_points'] = 'Puntos de votación';
+$lang['facebook'] = 'Facebook';
 $lang['discord'] = 'Discord';
+$lang['reddit'] = 'Reddit';
+$lang['twitch'] = 'Twitch';
+$lang['x_twitter'] = 'X (Twitter)';
+$lang['youtube'] = 'YouTube';
 $lang['cart_have_products'] = 'Tienes <strong>%1$d</strong> producto(s) en tu carrito de compras';
 $lang['cart_is_empty'] = 'El carrito de compras está vacío';
 

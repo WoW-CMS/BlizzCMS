@@ -27,9 +27,11 @@ class Settings extends Admin_Controller
         $this->form_validation->set_rules('emulator', lang('emulator'), 'trim|required|alpha_dash');
         $this->form_validation->set_rules('bnet', lang('bnet_authentication'), 'trim|required|in_list[true,false]');
         $this->form_validation->set_rules('discord', lang('discord'), 'trim|alpha_numeric');
-        $this->form_validation->set_rules('facebook', lang('facebook'), 'trim|alpha_dash');
-        $this->form_validation->set_rules('twitter', lang('twitter'), 'trim|alpha_dash');
-        $this->form_validation->set_rules('youtube', lang('youtube'), 'trim|alpha_dash');
+        $this->form_validation->set_rules('facebook', lang('facebook'), 'trim');
+        $this->form_validation->set_rules('reddit', lang('reddit'), 'trim');
+        $this->form_validation->set_rules('twitch', lang('twitch'), 'trim');
+        $this->form_validation->set_rules('x', lang('x_twitter'), 'trim');
+        $this->form_validation->set_rules('youtube', lang('youtube'), 'trim');
         $this->form_validation->set_rules('register_page', lang('register_page'), 'trim');
         $this->form_validation->set_rules('forgot_page', lang('forgot_password_page'), 'trim');
 
@@ -69,8 +71,16 @@ class Settings extends Admin_Controller
                     'value' => $this->input->post('facebook')
                 ],
                 [
-                    'key'   => 'social_twitter',
-                    'value' => $this->input->post('twitter')
+                    'key'   => 'social_reddit',
+                    'value' => $this->input->post('reddit')
+                ],
+                [
+                    'key'   => 'social_twitch',
+                    'value' => $this->input->post('twitch')
+                ],
+                [
+                    'key'   => 'social_x',
+                    'value' => $this->input->post('x')
                 ],
                 [
                     'key'   => 'social_youtube',

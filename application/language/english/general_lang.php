@@ -252,7 +252,12 @@ $lang['social_networks'] = 'Social Networks';
 $lang['registered_in'] = 'Registered in';
 $lang['donation_points'] = 'Donation points';
 $lang['voting_points'] = 'Voting points';
+$lang['facebook'] = 'Facebook';
 $lang['discord'] = 'Discord';
+$lang['reddit'] = 'Reddit';
+$lang['twitch'] = 'Twitch';
+$lang['x_twitter'] = 'X (Twitter)';
+$lang['youtube'] = 'YouTube';
 $lang['cart_have_products'] = 'You have <strong>%1$d</strong> product(s) in your shopping cart';
 $lang['cart_is_empty'] = 'The shopping cart is empty';
 

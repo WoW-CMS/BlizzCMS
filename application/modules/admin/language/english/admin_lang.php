@@ -59,9 +59,6 @@ $lang['edit_slide'] = 'Edit slide';
 
 $lang['theme'] = 'Theme';
 $lang['themes'] = 'Themes';
-$lang['facebook'] = 'Facebook';
-$lang['twitter'] = 'Twitter';
-$lang['youtube'] = 'Youtube';
 $lang['secret_password'] = 'Secret password';
 $lang['sender'] = 'Sender';
 $lang['site_key'] = 'Site key';
@@ -158,10 +155,12 @@ $lang['enter_realmlist'] = 'Enter an realmlist.';
 $lang['enter_expansion'] = 'Enter an expansion.';
 $lang['enter_emulator'] = 'Enter an emulator.';
 $lang['enter_bnet_authentication'] = 'Enter a status of bnet authentication.';
-$lang['enter_discord_id'] = 'Enter a server id of discord.';
-$lang['enter_facebook_group'] = 'Enter a group name of facebook.';
-$lang['enter_twitter_user'] = 'Enter a username of twitter.';
-$lang['enter_youtube_channel'] = 'Enter a channel name of youtube.';
+$lang['enter_discord_id'] = 'Enter the Discord server id.';
+$lang['enter_facebook_group'] = 'Enter a group id/name of Facebook.';
+$lang['enter_reddit_community'] = 'Enter a Reddit community name.';
+$lang['enter_twitch_channel'] = 'Enter a Twitch channel name.';
+$lang['enter_x_handle'] = 'Enter a X handle.';
+$lang['enter_youtube_handle'] = 'Enter a YouTube handle.';
 $lang['status_register_page'] = 'Enable the register page.';
 $lang['status_forgot_page'] = 'Enable the forgot password page.';
 

@@ -151,14 +151,42 @@
               <div>
                 <div class="uk-grid-small uk-flex uk-flex-middle uk-padding-small" uk-grid>
                   <div class="uk-width-expand">
-                    <p class="uk-text-secondary uk-text-bold uk-margin-remove"><?= lang('twitter') ?></p>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('enter_twitter_user') ?></p>
+                    <p class="uk-text-secondary uk-text-bold uk-margin-remove"><?= lang('reddit') ?></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('enter_reddit_community') ?></p>
                   </div>
                   <div class="uk-width-1-2 uk-width-2-5@m">
                     <div class="uk-form-controls">
-                      <input class="uk-input" type="text" name="twitter" value="<?= config_item('social_twitter') ?>" autocomplete="off">
+                      <input class="uk-input" type="text" name="reddit" value="<?= config_item('social_reddit') ?>" autocomplete="off">
                     </div>
-                    <?= form_error('twitter', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                    <?= form_error('reddit', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="uk-grid-small uk-flex uk-flex-middle uk-padding-small" uk-grid>
+                  <div class="uk-width-expand">
+                    <p class="uk-text-secondary uk-text-bold uk-margin-remove"><?= lang('twitch') ?></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('enter_twitch_channel') ?></p>
+                  </div>
+                  <div class="uk-width-1-2 uk-width-2-5@m">
+                    <div class="uk-form-controls">
+                      <input class="uk-input" type="text" name="twitch" value="<?= config_item('social_twitch') ?>" autocomplete="off">
+                    </div>
+                    <?= form_error('twitch', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="uk-grid-small uk-flex uk-flex-middle uk-padding-small" uk-grid>
+                  <div class="uk-width-expand">
+                    <p class="uk-text-secondary uk-text-bold uk-margin-remove"><?= lang('x_twitter') ?></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('enter_x_handle') ?></p>
+                  </div>
+                  <div class="uk-width-1-2 uk-width-2-5@m">
+                    <div class="uk-form-controls">
+                      <input class="uk-input" type="text" name="x" value="<?= config_item('social_x') ?>" autocomplete="off">
+                    </div>
+                    <?= form_error('x', '<span class="uk-text-small uk-text-danger">', '</span>') ?>
                   </div>
                 </div>
               </div>
@@ -166,7 +194,7 @@
                 <div class="uk-grid-small uk-flex uk-flex-middle uk-padding-small" uk-grid>
                   <div class="uk-width-expand">
                     <p class="uk-text-secondary uk-text-bold uk-margin-remove"><?= lang('youtube') ?></p>
-                    <p class="uk-text-small uk-margin-remove"><?= lang('enter_youtube_channel') ?></p>
+                    <p class="uk-text-small uk-margin-remove"><?= lang('enter_youtube_handle') ?></p>
                   </div>
                   <div class="uk-width-1-2 uk-width-2-5@m">
                     <div class="uk-form-controls">

@@ -124,20 +124,6 @@
               <?php endforeach ?>
             </ul>
           </div>
-          <div class="uk-navbar-right">
-            <?php if (is_logged_in()): ?>
-            <div class="uk-navbar-item">
-              <ul class="uk-subnav uk-subnav-divider">
-                <li>
-                  <span class="bc-vp-points" uk-tooltip="title: <?= lang('voting_points') ?>;pos: bottom"><?= user('vp') ?></span>
-                </li>
-                <li>
-                  <span class="bc-dp-points" uk-tooltip="title: <?= lang('donation_points') ?>;pos: bottom"><?= user('dp') ?></span>
-                </li>
-              </ul>
-            </div>
-            <?php endif ?>
-          </div>
         </nav>
       </div>
     </div>
@@ -147,11 +133,28 @@
     <footer class="uk-section uk-section-xsmall bc-footer-section">
       <div class="uk-container">
         <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
-          <div class="uk-width-auto@s">
-            <p class="uk-text-small uk-text-bold uk-text-center uk-text-left@s"><?= lang('powered_by') ?> <a target="_blank" href="https://wow-cms.com">BlizzCMS</a></p>
-          </div>
           <div class="uk-width-expand@s">
-            <p class="uk-text-small uk-text-center uk-text-right@s"><i class="fa-regular fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold"><?= config_item('app_name') ?></span> - <?= lang('rights_reserved') ?></p>
+            <p class="uk-text-small uk-text-center uk-text-left@s uk-margin-remove"><i class="fa-regular fa-copyright"></i> <?= date('Y') ?> <span class="uk-text-bold"><?= config_item('app_name') ?></span> - <?= lang('rights_reserved') ?></p>
+            <p class="uk-text-small uk-text-center uk-text-left@s uk-margin-remove"><i class="fa-solid fa-bolt fa-shake"></i> <?= lang('powered_by') ?> <a target="_blank" class="uk-text-bold" href="https://wow-cms.com">BlizzCMS</a></p>
+          </div>
+          <div class="uk-width-auto@s">
+            <div class="uk-flex uk-flex-center uk-margin">
+              <?php if (! empty(config_item('social_facebook'))): ?>
+              <a target="_blank" href="https://facebook.com/groups/<?= config_item('social_facebook') ?>" class="uk-icon-button"><i class="fa-brands fa-facebook-f"></i></a>
+              <?php endif ?>
+              <?php if (! empty(config_item('social_twitch'))): ?>
+              <a target="_blank" href="https://twitch.tv/<?= config_item('social_twitch') ?>" class="uk-icon-button uk-margin-small-left"><i class="fa-brands fa-twitch"></i></a>
+              <?php endif ?>
+              <?php if (! empty(config_item('social_reddit'))): ?>
+              <a target="_blank" href="https://reddit.com/r/<?= config_item('social_reddit') ?>" class="uk-icon-button uk-margin-small-left"><i class="fa-brands fa-reddit-alien"></i></a>
+              <?php endif ?>
+              <?php if (! empty(config_item('social_x'))): ?>
+              <a target="_blank" href="https://x.com/@<?= config_item('social_x') ?>" class="uk-icon-button uk-margin-small-left"><i class="fa-brands fa-x-twitter"></i></a>
+              <?php endif ?>
+              <?php if (! empty(config_item('social_youtube'))): ?>
+              <a target="_blank" href="https://youtube.com/@<?= config_item('social_youtube') ?>" class="uk-icon-button uk-margin-small-left"><i class="fa-brands fa-youtube"></i></a>
+              <?php endif ?>
+            </div>
           </div>
         </div>
       </div>

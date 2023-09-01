@@ -68,11 +68,11 @@
         </div>
       </div>
       <div class="uk-width-2-5@s uk-width-1-3@m">
-        <?php if (isset($realms) && ! empty($realms)): ?>
         <div class="uk-card uk-card-default">
           <div class="uk-card-header">
             <h5 class="uk-h5 uk-text-bold uk-margin-remove"><i class="fa-solid fa-server"></i> <?= lang('realm_status') ?></h5>
           </div>
+          <?php if (isset($realms) && ! empty($realms)): ?>
           <div class="uk-card-body">
             <?php foreach ($realms as $realm): ?>
             <div class="uk-grid-small" uk-grid>
@@ -98,19 +98,7 @@
             </div>
             <?php endif ?>
           </div>
-        </div>
-        <?php endif ?>
-        <div class="uk-card uk-card-default uk-margin">
-          <div class="uk-card-header">
-            <h5 class="uk-h5 uk-text-bold uk-margin-remove"><i class="fa-solid fa-share-nodes"></i> <?= lang('social_networks') ?></h5>
-          </div>
-          <div class="uk-card-body">
-            <div class="uk-flex uk-margin">
-              <a href="https://facebook.com/<?= config_item('social_facebook') ?>" class="uk-icon-button"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="https://twitter.com/<?= config_item('social_twitter') ?>" class="uk-icon-button uk-margin-small-left"><i class="fa-brands fa-twitter"></i></a>
-              <a href="https://www.youtube.com/c/<?= config_item('social_youtube') ?>" class="uk-icon-button uk-margin-small-left"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-          </div>
+          <?php endif ?>
         </div>
         <?php if (! empty(config_item('social_discord'))): ?>
         <div class="uk-card uk-card-default uk-margin">
@@ -118,7 +106,7 @@
             <h5 class="uk-h5 uk-text-bold uk-margin-remove"><i class="fa-brands fa-discord"></i> <?= lang('discord') ?></h5>
           </div>
           <div class="uk-card-body">
-            <iframe src="https://discordapp.com/widget?id=<?= config_item('social_discord') ?>&theme=dark" width="347" height="400" allowtransparency="true" frameborder="0"></iframe>
+            <iframe src="https://discordapp.com/widget?id=<?= config_item('social_discord') ?>&theme=dark" width="332" height="400" allowtransparency="true" frameborder="0"></iframe>
           </div>
         </div>
         <?php endif ?>

@@ -59,9 +59,6 @@ $lang['edit_slide'] = 'Editar diapositiva';
 
 $lang['theme'] = 'Tema';
 $lang['themes'] = 'Temas';
-$lang['facebook'] = 'Facebook';
-$lang['twitter'] = 'Twitter';
-$lang['youtube'] = 'Youtube';
 $lang['secret_password'] = 'Contraseña secreta';
 $lang['sender'] = 'Remitente';
 $lang['site_key'] = 'Llave del sitio';
@@ -158,10 +155,12 @@ $lang['enter_realmlist'] = 'Ingrese un realmlist.';
 $lang['enter_expansion'] = 'Ingrese una expansión.';
 $lang['enter_emulator'] = 'Ingrese un emulador.';
 $lang['enter_bnet_authentication'] = 'Ingrese un estado de la autenticación bnet.';
-$lang['enter_discord_id'] = 'Ingrese un id del servidor de discord.';
-$lang['enter_facebook_group'] = 'Ingrese un nombre de grupo de facebook.';
-$lang['enter_twitter_user'] = 'Ingrese un nombre de usuario de twitter.';
-$lang['enter_youtube_channel'] = 'Ingrese un nombre de canal de youtube.';
+$lang['enter_discord_id'] = 'Ingrese el id del servidor de Discord.';
+$lang['enter_facebook_group'] = 'Ingrese un id/nombre de grupo de Facebook.';
+$lang['enter_reddit_community'] = 'Ingrese un nombre de comunidad de Reddit.';
+$lang['enter_twitch_channel'] = 'Ingrese un nombre de canal de Twitch.';
+$lang['enter_x_handle'] = 'Ingrese un identificador de X.';
+$lang['enter_youtube_handle'] = 'Ingrese un identificador de YouTube.';
 $lang['status_register_page'] = 'Habilitar la página de registro.';
 $lang['status_forgot_page'] = 'Habilitar la página de contraseña olvidada.';
 
