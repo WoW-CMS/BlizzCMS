@@ -57,7 +57,7 @@ class Server_auth_model extends CI_Model
                 break;
 
             case 'cmangos':
-                $salt = strtoupper(bin2hex(random_bytes(32)));
+                $salt = bin2hex(random_bytes(32));
                 $account['v'] = client_pwd_hash($username, $password, 'hex', $salt);
                 $account['s'] = $salt;
                 break;

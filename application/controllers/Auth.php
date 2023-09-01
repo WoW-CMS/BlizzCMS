@@ -364,7 +364,7 @@ class Auth extends BS_Controller
                     break;
 
                 case 'cmangos':
-                    $salt = strtoupper(bin2hex(random_bytes(32)));
+                    $salt = bin2hex(random_bytes(32));
                     $setUser = [
                         'sessionkey' => '',
                         'v'          => client_pwd_hash($account->username, $newPassword, 'hex', $salt),
