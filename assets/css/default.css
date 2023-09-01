@@ -49,7 +49,8 @@ a:hover {
   background: #303c5b;
 }
 
-img {
+img,
+svg {
   user-select: none;
 }
 
@@ -1186,7 +1187,7 @@ a.uk-link-heading:hover {
 
 .bc-table-forum .uk-table-hover tbody tr:hover,
 .bc-table-forum .uk-table-hover > tr:hover {
-  background: #031755;
+  background: #1a2748;
 }
 
 .bc-icon-forum img {

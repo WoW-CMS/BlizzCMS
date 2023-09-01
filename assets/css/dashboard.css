@@ -28,7 +28,8 @@ html {
   color: #6f7079;
 }
 
-img {
+img,
+svg {
   user-select: none;
 }
 
