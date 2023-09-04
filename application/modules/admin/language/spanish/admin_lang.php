@@ -36,9 +36,6 @@ $lang['mail'] = 'Mail';
 $lang['sendmail'] = 'Sendmail';
 $lang['smtp'] = 'SMTP';
 
-$lang['select_theme'] = 'Seleccionar un tema';
-$lang['select_size'] = 'Seleccionar un tamaño';
-
 $lang['add_ban'] = 'Agregar suspensión';
 $lang['delete_ban'] = 'Eliminar suspensión';
 $lang['view_ban'] = 'Ver suspensión';
@@ -57,8 +54,6 @@ $lang['edit_realm'] = 'Editar reino';
 $lang['add_slide'] = 'Agregar diapositiva';
 $lang['edit_slide'] = 'Editar diapositiva';
 
-$lang['theme'] = 'Tema';
-$lang['themes'] = 'Temas';
 $lang['secret_password'] = 'Contraseña secreta';
 $lang['sender'] = 'Remitente';
 $lang['site_key'] = 'Llave del sitio';

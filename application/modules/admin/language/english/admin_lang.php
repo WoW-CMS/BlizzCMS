@@ -36,9 +36,6 @@ $lang['mail'] = 'Mail';
 $lang['sendmail'] = 'Sendmail';
 $lang['smtp'] = 'SMTP';
 
-$lang['select_theme'] = 'Select a theme';
-$lang['select_size'] = 'Select a size';
-
 $lang['add_ban'] = 'Add ban';
 $lang['delete_ban'] = 'Delete ban';
 $lang['view_ban'] = 'View ban';
@@ -57,8 +54,6 @@ $lang['edit_realm'] = 'Edit realm';
 $lang['add_slide'] = 'Add slide';
 $lang['edit_slide'] = 'Edit slide';
 
-$lang['theme'] = 'Theme';
-$lang['themes'] = 'Themes';
 $lang['secret_password'] = 'Secret password';
 $lang['sender'] = 'Sender';
 $lang['site_key'] = 'Site key';

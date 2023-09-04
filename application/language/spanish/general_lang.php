@@ -211,6 +211,8 @@ $lang['endless'] = 'Interminable';
 $lang['visible'] = 'Visible';
 $lang['hidden'] = 'Oculto';
 $lang['terms'] = 'Términos';
+$lang['theme'] = 'Tema';
+$lang['themes'] = 'Temas';
 
 $lang['offline'] = 'Offline';
 $lang['online'] = 'Online';
@@ -289,6 +291,8 @@ $lang['select_encryption'] = 'Seleccionar un cifrado';
 $lang['select_protocol'] = 'Seleccionar un protocolo';
 $lang['select_option'] = 'Seleccionar una opción';
 $lang['select_currency'] = 'Seleccionar una moneda';
+$lang['select_theme'] = 'Seleccionar un tema';
+$lang['select_size'] = 'Seleccionar un tamaño';
 
 $lang['all_types'] = 'Todos los tipos';
 $lang['all_realms'] = 'Todos los reinos';
