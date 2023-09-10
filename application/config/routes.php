@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$lang = '^(en|es|bl|fr|de|ru)';
+$lang = '^(de|en|es|fr|ja|ko|ru|zh-cn)';
 
 $route['default_controller'] = 'home';
 $route['404_override'] = 'general/error404';

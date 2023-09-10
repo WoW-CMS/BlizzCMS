@@ -16,11 +16,11 @@
   |
  */
 $config['supported_languages'] = [
-    'es' => [
-        'name' => 'Español',
-        'folder' => 'spanish',
+    'de' => [
+        'name' => 'Deutsch',
+        'folder' => 'german',
         'direction' => 'ltr',
-        'codes' => ['es', 'spanish', 'es_ES'],
+        'codes' => ['de', 'german', 'de_DE'],
     ],
     'en' => [
         'name' => 'English',
@@ -28,17 +28,41 @@ $config['supported_languages'] = [
         'direction' => 'ltr',
         'codes' => ['en', 'english', 'en_US'],
     ],
+    'es' => [
+        'name' => 'Español',
+        'folder' => 'spanish',
+        'direction' => 'ltr',
+        'codes' => ['es', 'spanish', 'es_ES'],
+    ],
     'fr' => [
-        'name' => 'French',
+        'name' => 'Français',
         'folder' => 'french',
         'direction' => 'ltr',
-        'codes' => ['fr', 'French', 'fr_FR'],
+        'codes' => ['fr', 'french', 'fr_FR'],
     ],
-    'de' => [
-        'name' => 'Deutsch',
-        'folder' => 'german',
+    'ja' => [
+        'name' => '日本語',
+        'folder' => 'japanese',
         'direction' => 'ltr',
-        'codes' => ['de', 'german', 'de_DE'],
+        'codes' => ['ja', 'japanese', 'ja_JP'],
+    ],
+    'ko' => [
+        'name' => '한국어',
+        'folder' => 'korean',
+        'direction' => 'ltr',
+        'codes' => ['ko', 'korean', 'ko_KR'],
+    ],
+    'ru' => [
+        'name' => 'Русский',
+        'folder' => 'russian',
+        'direction' => 'ltr',
+        'codes' => ['ru', 'russian', 'ru_RU'],
+    ],
+    'zh-cn' => [
+        'name' => '中文',
+        'folder' => 'simplified-chinese',
+        'direction' => 'ltr',
+        'codes' => ['zh-cn', 'simplified-chinese', 'zh_CN'],
     ]
 ];
 
