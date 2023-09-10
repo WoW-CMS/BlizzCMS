@@ -35,7 +35,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 * @filesource
 */
 
-
 /*Notification Lang*/
 $lang['cms_updater_not_connected'] = 'No se pudo conectar para buscar actualizaciones, intente nuevamente más tarde.';
 $lang['cms_updater_version_not_found'] = 'No se pudo encontrar una nueva versión disponible.';
