@@ -8721,5 +8721,10 @@ $lang['zones'] = [
     14899 => 'Bosque Fluyente',
     14900 => 'Arenas cambiantes',
     14934 => 'Forja del Cronoherrero',
-    14935 => 'Cámara de Ferrodormu'
+    14935 => 'Cámara de Ferrodormu',
+    14963 => 'Mapa de desarrollo - Entrenamiento de Misión',
+    14966 => 'Mapa de desarrollo - Confín del Exilio',
+    14967 => 'Mapa de desarrollo - Zereth Mortis',
+    14968 => 'Mapa de desarrollo - Mecandria',
+    14970 => 'El Imperio Negro'
 ];

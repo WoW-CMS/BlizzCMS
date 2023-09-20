@@ -56,8 +56,8 @@ $lang['edit_slide'] = 'Editar diapositiva';
 
 $lang['secret_password'] = 'Contraseña secreta';
 $lang['sender'] = 'Remitente';
-$lang['site_key'] = 'Llave del sitio';
-$lang['secret_key'] = 'Llave secreta';
+$lang['site_key'] = 'Clave de sitio';
+$lang['secret_key'] = 'Clave secreta';
 $lang['clear'] = 'Vaciar';
 $lang['check_soap'] = 'Comprobar SOAP';
 $lang['log'] = 'Registro';
@@ -196,8 +196,8 @@ $lang['enter_email'] = 'Ingrese un correo electrónico.';
 $lang['enter_type'] = 'Ingrese un tipo.';
 $lang['enter_size'] = 'Ingrese un tamaño.';
 $lang['enter_theme'] = 'Ingrese un tema.';
-$lang['enter_site_key'] = 'Ingrese una llave del sitio.';
-$lang['enter_secret_key'] = 'Ingrese una llave secreta.';
+$lang['enter_site_key'] = 'Ingrese una clave de sitio.';
+$lang['enter_secret_key'] = 'Ingrese una clave secreta.';
 
 $lang['current_account_username'] = 'Nombre de usuario de la cuenta actual.';
 $lang['current_account_nickname'] = 'Apodo de la cuenta actual.';
