@@ -125,7 +125,7 @@ class Updater
      */
     private function init_autoupdate()
     {
-        $update = new AutoUpdate(FCPATH . 'temp', FCPATH . '', 60);
+        $update = new AutoUpdate(FCPATH . 'uploads/temp', FCPATH . '', 60);
 
         $update->setCurrentVersion($this->version);
         $update->setUpdateUrl($this->updateUrl);
