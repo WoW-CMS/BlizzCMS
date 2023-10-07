@@ -596,7 +596,6 @@ a.uk-link-heading:hover {
   background: #293866;
   font-size: .75rem;
   padding: 0 5px;
-  text-transform: none;
 }
 
 .uk-label-success {
@@ -835,26 +834,22 @@ a.uk-link-heading:hover {
 
 .uk-pagination > * > * {
   background-color: rgba(88, 138, 215, .15);
-  border: 1px solid rgba(88, 138, 215, .3);
+  border-radius: 2px;
   color: #fff;
-  font-size: .875rem;
+  font-size: .9375rem;
   font-weight: 600;
-  min-width: 15px;
-  padding: 4px 7px;
-  text-align: center;
+  min-height: 23px;
   transition: all ease-in-out .2s;
   user-select: none;
 }
 
 .uk-pagination > * > :hover {
   background-color: #3874d0;
-  border-color: rgba(255, 255, 255, .1);
   color: #fff;
 }
 
 .uk-pagination > .uk-active > * {
   background-color: #3874d0;
-  border-color: rgba(255, 255, 255, .1);
   color: #fff;
 }
 
@@ -926,6 +921,10 @@ a.uk-link-heading:hover {
 .uk-dropdown-nav > li.uk-active > a {
   background: #162244;
   color: #fff;
+}
+
+.uk-dropdown-nav .uk-nav-divider {
+  border-color: rgba(255, 255, 255, .05);
 }
 
 .uk-text-meta {
@@ -1205,7 +1204,7 @@ a.uk-link-heading:hover {
 .tox-tinymce {
   border: none !important;
   border-radius: 2px !important;
-  box-shadow: 0px 7px 29px 0px rgba(0, 0, 0, .15) !important; 
+  box-shadow: 0px 7px 29px 0px rgba(0, 0, 0, .15) !important;
 }
 
 .tox:not(.tox-tinymce-inline).tox-tinymce--toolbar-bottom .tox-editor-header {

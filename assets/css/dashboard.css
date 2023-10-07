@@ -824,8 +824,7 @@ pre {
   color: #fff;
   font-size: .9375rem;
   font-weight: 600;
-  min-width: 14px;
-  text-align: center;
+  min-height: 23px;
   transition: all ease-in-out .2s;
   user-select: none;
 }
