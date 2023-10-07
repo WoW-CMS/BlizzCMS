@@ -35,28 +35,36 @@ if (! function_exists('current_date'))
     }
 }
 
-if (! function_exists('format_date'))
+if (! function_exists('locate_date'))
 {
     /**
-     * Change datetime format
+     * Change a specific datetime in a localized pattern
      *
-     * @see https://www.php.net/manual/en/datetime.format.php
+     * @see https://unicode-org.github.io/icu/userguide/format_parse/datetime
      *
      * @param string $date
-     * @param string|null $format
+     * @param string|null $pattern
+     * @param string|null $timezone
      * @return string
      */
-    function format_date($date, $format = null)
+    function locate_date($date, $pattern = null, $timezone = null)
     {
-        $format ??= 'Y-m-d H:i:s';
+        $pattern ??= lang('datetime_pattern');
+        $timezone ??= config_item('time_reference');
 
         if (empty($date) || $date === '0000-00-00' || $date === '0000-00-00 00:00:00') {
             return '';
         }
 
-        $dateTime = new \DateTime($date);
+        $CI =& get_instance();
+        $CI->load->library('multilanguage');
 
-        return $dateTime->format($format);
+        $dateTime  = new \DateTime($date);
+        $formatter = new \IntlDateFormatter($CI->multilanguage->current_language('locale'), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT, $timezone, \IntlDateFormatter::GREGORIAN);
+
+        $formatter->setPattern($pattern);
+
+        return $formatter->format($dateTime);
     }
 }
 

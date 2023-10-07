@@ -95,7 +95,7 @@
             <?php foreach ($articles as $item): ?>
             <li>
               <a target="_blank" href="<?= $item->link ?>" class="uk-button uk-button-text"><?= html_escape($item->title) ?></a>
-              <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($item->date, 'c') ?>"><?= format_date($item->date, 'M j, Y, h:i A') ?></time></p>
+              <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= $item->date ?>"><?= locate_date($item->date) ?></time></p>
             </li>
             <?php endforeach ?>
             <?php else: ?>

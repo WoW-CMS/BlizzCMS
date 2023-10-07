@@ -49,7 +49,7 @@
                     <a class="uk-link-reset" href="<?= site_url('news/'.$article->id.'/'.$article->slug) ?>"><?= word_limiter($article->title, 12) ?></a>
                   </h4>
                   <p class="uk-text-meta uk-margin-remove-top uk-margin-small-bottom">
-                    <i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($article->created_at, 'c') ?>"><?= format_date($article->created_at, 'M j, Y, h:i A') ?></time>
+                    <i class="fa-solid fa-calendar-day"></i> <time datetime="<?= $article->created_at ?>"><?= locate_date($article->created_at) ?></time>
                   </p>
                   <p class="uk-text-small uk-margin-small"><?= html_escape($article->summary) ?></p>
                   <div class="uk-grid-small uk-flex uk-flex-middle uk-margin-top" uk-grid>

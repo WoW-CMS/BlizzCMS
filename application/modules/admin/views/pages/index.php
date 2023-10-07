@@ -36,7 +36,9 @@
             <tr>
               <td><?= $item->title ?></td>
               <td class="uk-visible@s"><?= $item->views ?></td>
-              <td class="uk-visible@s"><?= format_date($item->created_at, 'M j, Y, h:i A') ?></td>
+              <td class="uk-visible@s">
+                <time datetime="<?= $item->created_at ?>"><?= locate_date($item->created_at) ?></time>
+              </td>
               <td>
                 <div class="uk-button-group">
                   <a target="_blank" href="<?= site_url('page/'.$item->slug) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>

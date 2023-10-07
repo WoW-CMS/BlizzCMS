@@ -66,7 +66,9 @@
                 <?php foreach ($bans as $item): ?>
                 <tr>
                   <td><?= $item->value ?></td>
-                  <td><?= $item->start_at ?></td>
+                  <td>
+                    <time datetime="<?= $item->start_at ?>"><?= locate_date($item->start_at) ?></time>
+                  </td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/bans/emails/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>

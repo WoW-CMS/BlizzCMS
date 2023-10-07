@@ -37,7 +37,7 @@
             </div>
             <div class="uk-width-expand">
               <h6 class="uk-h6 uk-text-uppercase uk-text-bold uk-margin-remove"><?= lang('start_at') ?></h6>
-              <p class="uk-text-meta uk-margin-remove"><?= format_date($ban->start_at, 'M j, Y, h:i A') ?></p>
+              <p class="uk-text-meta uk-margin-remove"><?= locate_date($ban->start_at) ?></p>
             </div>
           </div>
         </div>
@@ -53,7 +53,11 @@
             <div class="uk-width-expand">
               <h6 class="uk-h6 uk-text-uppercase uk-text-bold uk-margin-remove"><?= lang('end_at') ?></h6>
               <p class="uk-text-meta uk-margin-remove">
-                <?= $ban->end_at === '0000-00-00 00:00:00' ? lang('endless') : format_date($ban->end_at, 'M j, Y, h:i A') ?>
+                <?php if ($ban->end_at === '0000-00-00 00:00:00'): ?>
+                <?= lang('endless') ?>
+                <?php else: ?>
+                <time datetime="<?= $ban->end_at ?>"><?= locate_date($ban->end_at) ?></time>
+                <?php endif ?>
               </p>
             </div>
           </div>

@@ -18,7 +18,7 @@
           </div>
           <div class="uk-text-center uk-margin-small-top">
             <h4 class="uk-h4 uk-margin-remove"><?= $user->username ?></h4>
-            <p class="uk-text-small uk-margin-remove"><?= lang('registered_in') ?> <?= format_date($user->created_at, 'M j, Y') ?></p>
+            <p class="uk-text-small uk-margin-remove"><?= lang('registered_in') ?> <time datetime="<?= $user->created_at ?>"><?= locate_date($user->created_at) ?></time></p>
           </div>
         </div>
         <?php if ($is_banned): ?>
