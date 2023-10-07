@@ -70,7 +70,7 @@
                     <table class="uk-table bc-table-xsmall">
                       <tbody>
                         <tr>
-                          <td class="uk-width-1-2"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('registered_in') ?>:</td>
+                          <td class="uk-width-1-2"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('registered_on') ?>:</td>
                           <td>
                             <time datetime="<?= $user->created_at ?>"><?= locate_date($user->created_at) ?></time>
                           </td>

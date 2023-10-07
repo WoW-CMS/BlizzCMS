@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['my_profile'] = 'Mi Perfil';
-$lang['profile'] = 'Profile';
+$lang['profile'] = 'Perfil';
 $lang['avatar_photo_public'] = 'Tu foto de avatar es pública.';
 $lang['security'] = 'Seguridad';
 $lang['security_settings'] = 'Configuraciones de seguridad';
@@ -11,7 +11,7 @@ $lang['update_account_password'] = 'Actualiza la contraseña de tu cuenta hacien
 $lang['update_account_email'] = 'Actualiza la dirección de correo electrónico de tu cuenta haciendo clic aquí.';
 
 $lang['welcome_back'] = 'Bienvenido de nuevo,';
-$lang['welcome_back_note'] = 'Aquí podrás ver la información más relevante sobre el estado y actividad de tu cuenta. Para cambiar la configuración de su cuenta, vaya a';
+$lang['welcome_back_note'] = 'Aquí podrás ver la información más relevante sobre el estado y actividad de tu cuenta. Para cambiar la configuración de tu cuenta, acceda a';
 
 /**
  * Alerts

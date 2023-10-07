@@ -95,7 +95,7 @@ $lang['active_bans'] = 'Suspensiones activas';
 $lang['articles_added'] = 'Artículos agregados';
 $lang['pages_added'] = 'Páginas agregadas';
 
-$lang['menu_builder'] = 'Menu builder';
+$lang['menu_builder'] = 'Constructor de menú';
 $lang['optional'] = 'Opcional';
 $lang['characters_database'] = 'Base de datos de personajes';
 $lang['soap_configuration'] = 'Configuración SOAP';

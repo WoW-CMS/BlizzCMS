@@ -12,8 +12,8 @@ $lang['dashboard'] = 'Dashboard';
 $lang['powered_by'] = 'Powered by';
 
 $lang['register'] = 'Register';
-$lang['login'] = 'Log In';
-$lang['logout'] = 'Log Out';
+$lang['login'] = 'Login';
+$lang['logout'] = 'Logout';
 $lang['reset'] = 'Reset';
 $lang['forgot_your_password'] = 'Forgot your password?';
 $lang['remember'] = 'Remember me';
@@ -79,7 +79,7 @@ $lang['summary'] = 'Summary';
 $lang['content'] = 'Content';
 $lang['description'] = 'Description';
 $lang['url'] = 'URL';
-$lang['slug'] = 'Slug';
+$lang['slug'] = 'URL slug';
 $lang['highlight'] = 'Highlight';
 $lang['lock'] = 'Lock';
 $lang['unlock'] = 'Unlock';
@@ -244,14 +244,15 @@ $lang['rights_reserved'] = 'All rights reserved.';
 
 $lang['comment'] = 'Comment';
 $lang['comments'] = 'Comments';
-$lang['commented_on'] = 'Commented on';
 $lang['latest_comments'] = 'Latest Comments';
 $lang['add_comment'] = 'Add comment';
 $lang['edit_comment'] = 'Edit comment';
 $lang['latest_news'] = 'Latest News';
 $lang['realm_status'] = 'Realm Status';
 $lang['social_networks'] = 'Social Networks';
-$lang['registered_in'] = 'Registered in';
+$lang['published_on'] = 'Published on';
+$lang['written_on'] = 'Written on';
+$lang['registered_on'] = 'Registered on';
 $lang['donation_points'] = 'Donation points';
 $lang['voting_points'] = 'Voting points';
 $lang['facebook'] = 'Facebook';
@@ -298,6 +299,12 @@ $lang['all_types'] = 'All types';
 $lang['all_realms'] = 'All realms';
 $lang['all_characters'] = 'All characters';
 $lang['all_categories'] = 'All categories';
+
+/**
+ * DateTime
+*/
+$lang['datetime_pattern'] = "MMMM d, y";
+$lang['datetime_full_pattern'] = "MMMM d, y 'at' h:mm a";
 
 /**
  * Alerts

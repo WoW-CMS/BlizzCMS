@@ -46,7 +46,7 @@
                       </div>
                       <div class="uk-width-expand">
                         <h6 class="uk-h6 uk-margin-remove"><?= $comment->nickname ?></h6>
-                        <p class="uk-text-meta uk-margin-remove"><?= lang('commented_on') ?> <time datetime="<?= $comment->created_at ?>"><?= locate_date($comment->created_at) ?></time></p>
+                        <p class="uk-text-meta uk-margin-remove"><?= lang('written_on') ?> <time datetime="<?= $comment->created_at ?>"><?= locate_date($comment->created_at) ?></time></p>
                       </div>
                     </div>
                   </div>
