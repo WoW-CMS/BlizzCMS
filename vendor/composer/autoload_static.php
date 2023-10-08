@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
+class ComposerStaticInitb988c72f3d2e1384b5fcb15efc14806e
 {
     public static $files = array (
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
@@ -13,7 +13,7 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
-            'phpseclib\\' => 10,
+            'phpseclib3\\' => 11,
         ),
         'V' => 
         array (
@@ -23,6 +23,7 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         array (
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'ParagonIE\\ConstantTime\\' => 23,
         ),
         'M' => 
         array (
@@ -43,7 +44,7 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
     );
 
     public static $prefixDirsPsr4 = array (
-        'phpseclib\\' => 
+        'phpseclib3\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
         ),
@@ -58,6 +59,10 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'ParagonIE\\ConstantTime\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
         ),
         'Monolog\\' => 
         array (
@@ -94,10 +99,10 @@ class ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit5b4dc738e55589055e2888d2e06b82dd::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb988c72f3d2e1384b5fcb15efc14806e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb988c72f3d2e1384b5fcb15efc14806e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb988c72f3d2e1384b5fcb15efc14806e::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb988c72f3d2e1384b5fcb15efc14806e::$classMap;
 
         }, null, ClassLoader::class);
     }

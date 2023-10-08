@@ -10,7 +10,7 @@
 namespace Laizerox\Wowemu\SRP;
 
 use Exception;
-use phpseclib\Math\BigInteger;
+use phpseclib3\Math\BigInteger;
 
 class HostClient extends Client
 {
@@ -22,18 +22,18 @@ class HostClient extends Client
     /**
      * HostClient constructor.
      *
-     * @param  string  $identity
-     * @param  string  $salt
-     * @param  string  $verifier
-     * @param  string  $clientPublicEphemeralValue
-     * @param  array|null  $options
+     * @param string $identity
+     * @param string $salt
+     * @param string $verifier
+     * @param string $clientPublicEphemeralValue
+     * @param array|null $options
      */
     public function __construct(
         string $identity,
         string $salt,
         string $verifier,
         string $clientPublicEphemeralValue,
-        array $options = null
+        ?array $options = null
     ) {
         $this->clientPublicEphemeralValue = new BigInteger($clientPublicEphemeralValue, 16);
         $this->verifier = new BigInteger($verifier, 16);
@@ -71,7 +71,7 @@ class HostClient extends Client
     }
 
     /**
-     * @param  BigInteger  $b  Host's secret ephemeral value
+     * @param BigInteger $b Host's secret ephemeral value
      *
      * @return BigInteger Host's public ephemeral value
      */

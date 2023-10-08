@@ -1,119 +1,136 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'name' => 'wow-cms/blizzcms',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
+        'type' => 'project',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => false,
     ),
-    'reference' => '9d4690bd2f243bfc6fb795e2a1daca0913f4d094',
-    'name' => 'codeigniter/framework',
-  ),
-  'versions' => 
-  array (
-    'codeigniter/framework' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '9d4690bd2f243bfc6fb795e2a1daca0913f4d094',
+    'versions' => array(
+        'composer/semver' => array(
+            'pretty_version' => '3.4.0',
+            'version' => '3.4.0.0',
+            'reference' => '35e8d0af4486141bc745f23a29cc2091eb624a32',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/./semver',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'desarrolla2/cache' => array(
+            'pretty_version' => 'v3.0.2',
+            'version' => '3.0.2.0',
+            'reference' => '0b8f985d09abfc04a2c1535943f6f07b7206161a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../desarrolla2/cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'laizerox/php-wowemu-auth' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => 'c92fad2325c8bf36247d6bea61101b6b4b85bd5d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laizerox/php-wowemu-auth',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'monolog/monolog' => array(
+            'pretty_version' => '2.9.1',
+            'version' => '2.9.1.0',
+            'reference' => 'f259e2b15fb95494c83f52d3caad003bbf5ffaa1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../monolog/monolog',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'paragonie/constant_time_encoding' => array(
+            'pretty_version' => 'v2.6.3',
+            'version' => '2.6.3.0',
+            'reference' => '58c3f47f650c94ec05a151692652a868995d2938',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../paragonie/constant_time_encoding',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'paragonie/random_compat' => array(
+            'pretty_version' => 'v9.99.100',
+            'version' => '9.99.100.0',
+            'reference' => '996434e5492cb4c3edcb9168db6fbb1359ef965a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../paragonie/random_compat',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'paypal/rest-api-sdk-php' => array(
+            'pretty_version' => '1.14.0',
+            'version' => '1.14.0.0',
+            'reference' => '72e2f2466975bf128a31e02b15110180f059fc04',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../paypal/rest-api-sdk-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'phpseclib/phpseclib' => array(
+            'pretty_version' => '3.0.23',
+            'version' => '3.0.23.0',
+            'reference' => '866cc78fbd82462ffd880e3f65692afe928bed50',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpseclib/phpseclib',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/log' => array(
+            'pretty_version' => '1.1.4',
+            'version' => '1.1.4.0',
+            'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/log',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/log-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+            ),
+        ),
+        'psr/simple-cache' => array(
+            'pretty_version' => '1.0.1',
+            'version' => '1.0.1.0',
+            'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/simple-cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/simple-cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.0',
+            ),
+        ),
+        'visualappeal/php-auto-update' => array(
+            'pretty_version' => '1.0.2',
+            'version' => '1.0.2.0',
+            'reference' => '4454361a0fa346c7fb179deef11585c79715b645',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../visualappeal/php-auto-update',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wow-cms/blizzcms' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
+            'type' => 'project',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
     ),
-    'composer/semver' => 
-    array (
-      'pretty_version' => '3.3.2',
-      'version' => '3.3.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '3953f23262f2bff1919fc82183ad9acb13ff62c9',
-    ),
-    'desarrolla2/cache' => 
-    array (
-      'pretty_version' => 'v3.0.2',
-      'version' => '3.0.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0b8f985d09abfc04a2c1535943f6f07b7206161a',
-    ),
-    'laizerox/php-wowemu-auth' => 
-    array (
-      'pretty_version' => 'v1.0.0',
-      'version' => '1.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '6fd4fb223b4b98c857864f9f9fd226ff9579ae0d',
-    ),
-    'monolog/monolog' => 
-    array (
-      'pretty_version' => '2.8.0',
-      'version' => '2.8.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '720488632c590286b88b80e62aa3d3d551ad4a50',
-    ),
-    'paypal/rest-api-sdk-php' => 
-    array (
-      'pretty_version' => '1.14.0',
-      'version' => '1.14.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '72e2f2466975bf128a31e02b15110180f059fc04',
-    ),
-    'phpseclib/phpseclib' => 
-    array (
-      'pretty_version' => '2.0.39',
-      'version' => '2.0.39.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'f3a0e2b715c40cf1fd270d444901b63311725d63',
-    ),
-    'psr/log' => 
-    array (
-      'pretty_version' => '1.1.4',
-      'version' => '1.1.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
-    ),
-    'psr/log-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0.0 || 2.0.0 || 3.0.0',
-      ),
-    ),
-    'psr/simple-cache' => 
-    array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
-    ),
-    'psr/simple-cache-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0',
-      ),
-    ),
-    'visualappeal/php-auto-update' => 
-    array (
-      'pretty_version' => '1.0.2',
-      'version' => '1.0.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '4454361a0fa346c7fb179deef11585c79715b645',
-    ),
-  ),
 );
