@@ -3,7 +3,7 @@
  * @author Philip Sturgeon
  * @author WoW-CMS
  * @copyright Copyright (c) 2011 - 2019, Philip Sturgeon (https://phil.tech)
- * @copyright Copyright (c) 2019 - 2022, WoW-CMS (https://wow-cms.com)
+ * @copyright Copyright (c) 2019 - 2023, WoW-CMS (https://wow-cms.com)
  * @license http://dbad-license.org DBAD License
  * @license https://opensource.org/licenses/MIT MIT License
  */

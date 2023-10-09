@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com)
  * @copyright Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca)
  * @copyright Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com)
- * @copyright Copyright (c) 2019 - 2022, WoW-CMS (https://wow-cms.com)
+ * @copyright Copyright (c) 2019 - 2023, WoW-CMS (https://wow-cms.com)
  * @license https://opensource.org/licenses/MIT MIT License
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
