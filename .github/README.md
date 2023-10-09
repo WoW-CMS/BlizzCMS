@@ -17,7 +17,7 @@ BlizzCMS is a free, easy-to-use, open-source CMS developed for private World of 
 1. **Web Server**
    - Enable modules: mod_headers - mod_rewrite
 2. **PHP** 7.4 or newer recommended
-   - Enable extensions: bcmath - curl - gd - gmp - mbstring - mysqli - openssl - soap - zip
+   - Enable extensions: bcmath - curl - gd - gmp - intl - mbstring - mysqli - openssl - soap - zip
 3. **DB Server** MySQL 5.7+ or MariaDB 10.6+
 4. **Composer**
 
