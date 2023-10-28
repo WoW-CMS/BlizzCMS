@@ -76,7 +76,7 @@
             <li>
               <a class="uk-accordion-title" href="#"><i class="fa-solid fa-comment-dots"></i> <?= lang('discussion') ?></a>
               <div class="uk-accordion-content">
-                <div class="uk-grid-small uk-grid-divider uk-child-width-1-1" uk-grid>
+                <div class="uk-grid-small uk-child-width-1-1" uk-grid>
                   <div>
                     <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
                       <div class="uk-width-auto">
