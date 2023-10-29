@@ -265,6 +265,7 @@ a.uk-link-heading:hover {
 
 .uk-button {
   user-select: none;
+  padding: 0 20px;
 }
 
 .uk-button-small {
@@ -296,7 +297,7 @@ a.uk-link-heading:hover {
 }
 
 .uk-button-default:disabled {
-  background-color: #b0b0b0;
+  background-color: #989898;
   border-color: rgba(255, 255, 255, .1);
   color: #fff;
 }
@@ -321,13 +322,14 @@ a.uk-link-heading:hover {
 }
 
 .uk-button-danger:disabled {
-  background-color: #b0b0b0;
+  background-color: #989898;
   border-color: rgba(255, 255, 255, .1);
   color: #fff;
 }
 
 .uk-button-text {
   color: #ccc;
+  padding: 0;
   text-transform: none;
 }
 
@@ -345,6 +347,7 @@ a.uk-link-heading:hover {
 
 .uk-button-link {
   color: #ccc;
+  padding: 0;
   text-transform: none;
 }
 
@@ -386,12 +389,12 @@ a.uk-link-heading:hover {
 }
 
 .uk-card-body {
-  padding: 20px;
+  padding: 15px;
 }
 
 .uk-card-header,
 .uk-card-footer {
-  padding: 10px 20px;
+  padding: 10px 15px;
 }
 
 .uk-card-title {
@@ -611,7 +614,7 @@ a.uk-link-heading:hover {
 }
 
 .uk-overlay-default {
-  background: rgba(14, 27, 62, .6);
+  background: rgba(10, 20, 46, .7);
 }
 
 .uk-modal-dialog {
@@ -942,6 +945,7 @@ a.uk-link-heading:hover {
 
 .uk-text-small {
   font-size: .8125rem;
+  line-height: 1.4;
 }
 
 .uk-text-muted {
@@ -1025,9 +1029,9 @@ a.uk-link-heading:hover {
   position: relative;
   background-image: url('../img/icons/dp.svg');
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: right;
   background-size: 16px;
-  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .bc-vp-points {
@@ -1035,9 +1039,9 @@ a.uk-link-heading:hover {
   position: relative;
   background-image: url('../img/icons/vp.svg');
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: right;
   background-size: 16px;
-  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .bc-li-icon {

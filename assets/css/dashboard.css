@@ -132,6 +132,7 @@ pre {
 
 .uk-button {
   user-select: none;
+  padding: 0 20px;
 }
 
 .uk-button-small {
@@ -244,6 +245,7 @@ pre {
 
 .uk-button-text {
   color: #53545a;
+  padding: 0;
   text-transform: none;
 }
 
@@ -253,6 +255,24 @@ pre {
 
 .uk-button-text:hover {
   color: #3874d0;
+}
+
+.uk-button-text:disabled {
+  color: #53545a;
+}
+
+.uk-button-link {
+  color: #53545a;
+  padding: 0;
+  text-transform: none;
+}
+
+.uk-button-link:hover {
+  color: #3874d0;
+}
+
+.uk-button-link:disabled {
+  color: #53545a;
 }
 
 .uk-button-group > .uk-button:first-child {
@@ -1194,7 +1214,6 @@ input:checked + .uk-switch-slider::before {
   font-size: .75rem;
   font-weight: 600;
   text-align: center;
-  text-transform: uppercase;
 }
 
 .uk-radio-button-group .uk-radio-container .uk-label-container-large label {
