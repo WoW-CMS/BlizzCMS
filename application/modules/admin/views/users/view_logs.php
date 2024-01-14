@@ -18,7 +18,7 @@
           </div>
           <div class="uk-text-center uk-margin-small-top">
             <h4 class="uk-h4 uk-margin-remove"><?= $user->username ?></h4>
-            <p class="uk-text-small uk-margin-remove"><?= lang('registered_in') ?> <?= format_date($user->created_at, 'M j, Y') ?></p>
+            <p class="uk-text-small uk-margin-remove"><?= lang('registered_on') ?> <time datetime="<?= $user->created_at ?>"><?= locate_date($user->created_at) ?></time></p>
           </div>
         </div>
         <div class="uk-card uk-card-default uk-margin">
@@ -74,7 +74,9 @@
                 <tbody>
                   <?php foreach ($logs as $item): ?>
                   <tr>
-                    <td><?= format_date($item->created_at, 'M j, Y, h:i A') ?></td>
+                    <td>
+                      <time datetime="<?= $item->created_at ?>"><?= locate_date($item->created_at) ?></time>
+                    </td>
                     <td><?= $item->ip ?></td>
                     <td class="uk-text-center">
                       <?php if ($item->status === Log_model::STATUS_SUCCEEDED): ?>

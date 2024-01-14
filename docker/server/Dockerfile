@@ -15,10 +15,11 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN install-php-extensions \
     bcmath \
     gd \
+    gmp \
+    intl \
     mysqli \
     soap \
-    zip \
-    gmp
+    zip
 
 COPY  --from=composer:latest /usr/bin/composer /usr/bin/composer
 

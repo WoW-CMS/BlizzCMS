@@ -6,7 +6,7 @@
           <li><a href="<?= site_url('admin') ?>"><?= lang('dashboard') ?></a></li>
           <li><a href="<?= site_url('admin/appearance') ?>"><?= lang('appearance') ?></a></li>
           <li><a href="<?= site_url('admin/menus') ?>"><?= lang('menus') ?></a></li>
-          <li><a href="<?= site_url('admin/menus/'. $menu->id) ?>"><?= lang('builder') ?></a></li>
+          <li><a href="<?= site_url('admin/menus/'. $menu->id) ?>"><?= html_escape($menu->name) ?></a></li>
         </ul>
         <h1 class="uk-h3 uk-text-bold uk-margin-remove"><?= lang('add_menu_item') ?></h1>
       </div>

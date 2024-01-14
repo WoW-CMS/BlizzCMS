@@ -11,11 +11,7 @@
       <div class="uk-width-auto"></div>
     </div>
     <?= $template['partials']['alerts'] ?>
-    <pre>
-      <code>
-        <?= $result ?>
-      </code>
-    </pre>
+    <pre><?= $result ?></pre>
     <a href="<?= current_url() ?>" class="uk-button uk-button-primary"><?= lang('reload') ?></a>
   </div>
 </section>

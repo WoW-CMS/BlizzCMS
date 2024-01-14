@@ -11,7 +11,7 @@ $lang['update_account_password'] = 'Update your account password by clicking her
 $lang['update_account_email'] = 'Update your account email address by clicking here.';
 
 $lang['welcome_back'] = 'Welcome back,';
-$lang['welcome_back_note'] = 'Here you will see the most relevant information about the status and activity of your account. To change your account settings go to';
+$lang['welcome_back_note'] = 'Here you will see the most relevant information about the status and activity of your account. To change your account settings, go to';
 
 /**
  * Alerts

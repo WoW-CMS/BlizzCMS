@@ -55,7 +55,7 @@
             <h3 class="uk-card-title"><?= lang('profile') ?></h3>
           </div>
           <div class="uk-card-body">
-            <div uk-grid>
+            <div class="uk-grid-small" uk-grid>
               <div class="uk-width-1-4@m">
                 <div class="uk-text-center">
                   <div class="uk-flex uk-flex-center uk-margin-small">

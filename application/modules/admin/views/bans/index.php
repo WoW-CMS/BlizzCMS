@@ -73,7 +73,13 @@
                 <?php foreach ($bans as $item): ?>
                 <tr>
                   <td><?= $item->username ?></td>
-                  <td><?= $item->end_at === '0000-00-00 00:00:00' ? lang('endless') : $item->end_at ?></td>
+                  <td>
+                    <?php if ($item->end_at === '0000-00-00 00:00:00'): ?>
+                    <?= lang('endless') ?>
+                    <?php else: ?>
+                    <time datetime="<?= $item->end_at ?>"><?= locate_date($item->end_at) ?></time>
+                    <?php endif ?>
+                  </td>
                   <td>
                     <div class="uk-button-group">
                       <a href="<?= site_url('admin/bans/view/'.$item->id) ?>" class="uk-button uk-button-primary uk-button-small"><?= lang('view') ?></a>

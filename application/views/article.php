@@ -7,7 +7,7 @@
           <li><a href="<?= site_url('news') ?>"><?= lang('news') ?></a></li>
         </ul>
         <h1 class="uk-h3 uk-text-bold uk-margin-remove"><?= html_escape($article->title) ?></h1>
-        <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($article->created_at, 'c') ?>"><?= format_date($article->created_at, 'M j, Y, h:i A') ?></time></p>
+        <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= $article->created_at ?>"><?= locate_date($article->created_at) ?></time></p>
       </div>
       <div class="uk-width-auto"></div>
     </div>
@@ -46,7 +46,7 @@
                       </div>
                       <div class="uk-width-expand">
                         <h6 class="uk-h6 uk-margin-remove"><?= $comment->nickname ?></h6>
-                        <p class="uk-text-meta uk-margin-remove"><?= lang('commented_on') ?> <time datetime="<?= format_date($comment->created_at, 'c') ?>"><?= format_date($comment->created_at, 'M j, Y, h:i A') ?></time></p>
+                        <p class="uk-text-meta uk-margin-remove"><?= lang('written_on') ?> <time datetime="<?= $comment->created_at ?>"><?= locate_date($comment->created_at) ?></time></p>
                       </div>
                     </div>
                   </div>
@@ -113,7 +113,7 @@
               <?php foreach ($aside as $item): ?>
               <li>
                 <a href="<?= site_url('news/'.$item->id.'/'.$item->slug) ?>"><?= word_limiter($item->title, 10) ?></a>
-                <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= format_date($item->created_at, 'c') ?>"><?= format_date($item->created_at, 'M j, Y, h:i A') ?></time></p>
+                <p class="uk-text-meta uk-margin-remove"><i class="fa-solid fa-calendar-day"></i> <time datetime="<?= $item->created_at ?>"><?= locate_date($item->created_at) ?></time></p>
               </li>
               <?php endforeach ?>
             </ul>

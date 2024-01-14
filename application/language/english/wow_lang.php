@@ -8721,5 +8721,10 @@ $lang['zones'] = [
     14899 => 'The Flowing Forest',
     14900 => 'Shifting Sands',
     14934 => "The Chronosmith's Forge",
-    14935 => "Ironormu's Vault"
+    14935 => "Ironormu's Vault",
+    14963 => 'Dev Map - Quest Training',
+    14966 => "Dev Map - Exile's Reach",
+    14967 => 'Dev Map - Zereth Mortis',
+    14968 => 'Dev Map - Mechagon',
+    14970 => 'The Black Empire'
 ];

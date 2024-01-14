@@ -59,23 +59,25 @@
                   </div>
                   <div class="uk-width-expand">
                     <h4 class="uk-h4 uk-margin-remove"><?= lang('welcome_back') ?> <span class="uk-text-bold"><?= $user->nickname ?></span>!</h4>
-                    <p class="uk-text-small uk-margin-remove"><i class="fa-solid fa-calendar"></i> <?= format_date(current_date(), 'M j, Y') ?></p>
+                    <p class="uk-text-small uk-margin-remove"><i class="fa-solid fa-calendar"></i> <?= locate_date('now') ?></p>
                     <p class="uk-text-meta uk-margin-small"><?= lang('welcome_back_note') ?> <a href="<?= site_url('user/profile') ?>"><?= lang('my_profile') ?></a>.</p>
                   </div>
                 </div>
               </div>
               <div class="uk-card-footer">
-                <div class="uk-grid-column-small uk-grid-row-small" uk-grid>
+                <div class="uk-grid-collapse" uk-grid>
                   <div class="uk-width-expand@s">
                     <table class="uk-table bc-table-xsmall">
                       <tbody>
                         <tr>
-                          <td class="uk-width-3-5"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('registered_in') ?>:</td>
-                          <td class="uk-width-2-5"><?= format_date($user->created_at, 'M j, Y') ?></td>
+                          <td class="uk-width-1-2"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('registered_on') ?>:</td>
+                          <td>
+                            <time datetime="<?= $user->created_at ?>"><?= locate_date($user->created_at) ?></time>
+                          </td>
                         </tr>
                         <tr>
-                          <td class="uk-width-3-5"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('role') ?>:</td>
-                          <td class="uk-width-2-5 uk-text-truncate"><?= $this->role_model->get_name($user->role) ?></td>
+                          <td class="uk-width-1-2"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('role') ?>:</td>
+                          <td class="uk-text-truncate"><?= $this->role_model->get_name($user->role) ?></td>
                         </tr>
                       </tbody>
                     </table>
@@ -84,12 +86,12 @@
                     <table class="uk-table bc-table-xsmall">
                       <tbody>
                         <tr>
-                          <td class="uk-width-3-5"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('voting_points') ?>:</td>
-                          <td class="uk-width-2-5"><span class="bc-vp-points"><?= $user->vp ?></span></td>
+                          <td class="uk-width-1-2"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('voting_points') ?>:</td>
+                          <td><span class="bc-vp-points"><?= $user->vp ?></span></td>
                         </tr>
                         <tr>
-                          <td class="uk-width-3-5"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('donation_points') ?>:</td>
-                          <td class="uk-width-2-5"><span class="bc-dp-points"><?= $user->dp ?></span></td>
+                          <td class="uk-width-1-2"><i class="fa-regular fa-circle-dot fa-2xs"></i> <?= lang('donation_points') ?>:</td>
+                          <td><span class="bc-dp-points"><?= $user->dp ?></span></td>
                         </tr>
                       </tbody>
                     </table>

@@ -3,7 +3,7 @@
  * BlizzCMS
  *
  * @author WoW-CMS
- * @copyright Copyright (c) 2019 - 2022, WoW-CMS (https://wow-cms.com)
+ * @copyright Copyright (c) 2019 - 2023, WoW-CMS (https://wow-cms.com)
  * @license https://opensource.org/licenses/MIT MIT License
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -125,7 +125,7 @@ class Updater
      */
     private function init_autoupdate()
     {
-        $update = new AutoUpdate(FCPATH . 'temp', FCPATH . '', 60);
+        $update = new AutoUpdate(FCPATH . 'uploads/temp', FCPATH . '', 60);
 
         $update->setCurrentVersion($this->version);
         $update->setUpdateUrl($this->updateUrl);

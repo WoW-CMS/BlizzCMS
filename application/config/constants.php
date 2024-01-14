@@ -92,9 +92,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 | These constants are used when working with the base functions of the CMS
 |
 */
-defined('CURRENCY_BOTH') OR define('CURRENCY_BOTH', 'both');
-defined('CURRENCY_DP')   OR define('CURRENCY_DP', 'dp');
-defined('CURRENCY_VP')   OR define('CURRENCY_VP', 'vp');
 defined('ITEM_LINK')     OR define('ITEM_LINK', 'link');
 defined('ITEM_DROPDOWN') OR define('ITEM_DROPDOWN', 'dropdown');
 defined('SLIDE_IMAGE')   OR define('SLIDE_IMAGE', 'image');
