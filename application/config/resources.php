@@ -100,5 +100,13 @@ $config['emulators'] = [
     'trinity_sha' => [
         'name' => 'TrinityCore (SHA Hash)',
         'urn'  => 'TC'
+    ],
+    'trinitySRP1' => [
+        'name' => 'TrinityCore (SRP6 V1)',
+        'urn' => 'TC'
+    ],
+    'trinitySRP2' => [
+        'name' => 'TrinityCore (SRP6 V2)',
+        'urn' => 'TC'
     ]
 ];

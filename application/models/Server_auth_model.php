@@ -55,7 +55,16 @@ class Server_auth_model extends CI_Model
                 $account['salt'] = $salt;
                 $account['verifier'] = client_pwd_hash($username, $password, 'srp6', $salt);
                 break;
-
+            case 'trinitySRP1':
+                $salt = random_bytes(32);
+                $account['salt'] = $salt;
+                $account['verifier'] = client_pwd_hash($username, $password, 'srp6v1', $salt);
+                break;
+            case 'trinitySRP2':
+                $salt = random_bytes(32);
+                $account['salt'] = $salt;
+                $account['verifier'] = client_pwd_hash($username, $password, 'srp6v2', $salt);
+                break;
             case 'cmangos':
                 $salt = bin2hex(random_bytes(32));
                 $account['v'] = client_pwd_hash($username, $password, 'hex', $salt);
