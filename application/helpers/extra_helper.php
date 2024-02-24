@@ -317,6 +317,7 @@ if(!function_exists('client_pwd_hash'))
      * @param mixed $salt
      * @return mixed
      * @throws Exception
+     * @credits FusionCMS V6 (NightPrince)
      */
     function client_pwd_hash($username, $password, $type = null, $salt = null): string
     {
