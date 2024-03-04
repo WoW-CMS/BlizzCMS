@@ -1,22 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['my_profile'] = 'My Profile';
-$lang['profile'] = 'Profile';
-$lang['avatar_photo_public'] = 'Your avatar photo is public.';
-$lang['security'] = 'Security';
-$lang['security_settings'] = 'Security settings';
-$lang['security_activity'] = 'Security activity';
-$lang['update_account_password'] = 'Update your account password by clicking here.';
-$lang['update_account_email'] = 'Update your account email address by clicking here.';
+$lang['my_profile'] = '我的资料';
+$lang['profile'] = '资料';
+$lang['avatar_photo_public'] = '你的头像照片是公开的';
+$lang['security'] = '安全中心';
+$lang['security_settings'] = '安全设置';
+$lang['security_activity'] = '安全动态';
+$lang['update_account_password'] = '单击此处更新您的帐户密码';
+$lang['update_account_email'] = '单击此处更新您的帐户电子邮件地址';
 
-$lang['welcome_back'] = 'Welcome back,';
-$lang['welcome_back_note'] = 'Here you will see the most relevant information about the status and activity of your account. To change your account settings, go to';
+$lang['welcome_back'] = '欢迎回来,';
+$lang['welcome_back_note'] = '在这里，您将看到有关帐户状态和活动的最相关信息。要更改您的帐户设置，请转到';
 
 /**
  * Alerts
 */
-$lang['alert_own_profile_not_updated'] = 'Your profile has not been updated since no changes were detected';
-$lang['alert_own_profile_updated'] = 'Your profile information has been updated';
-$lang['alert_own_email_changed'] = 'Your email address has been changed';
-$lang['alert_own_password_changed'] = 'Your password has been changed';
+$lang['alert_own_profile_not_updated'] = '由于未检测到任何更改，您的配置文件尚未更';
+$lang['alert_own_profile_updated'] = '您的个人资料信息已更新';
+$lang['alert_own_email_changed'] = '您的电子邮件地址已更改';
+$lang['alert_own_password_changed'] = '您的密码已更改';
