@@ -1,0 +1,46 @@
+version: '3.9'
+
+networks:
+  cms-network:
+
+services:
+  dbserver:
+    image: mariadb:10.6.11
+    container_name: '${APP_NAME}-dbserver'
+    restart: always
+    ports:
+      - '${DB_PORT}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASS}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASS}'
+      MYSQL_DATABASE: '${MYSQL_DB}'
+    volumes:
+      - dbserver_data:/var/lib/mysql
+      - ./docker/db/mariadb/my.cnf:/etc/mysql/conf.d/my.cnf
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+      interval: 5s
+      retries: 5
+    networks:
+      - cms-network
+
+  myadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: '${APP_NAME}-myadmin'
+    ports:
+      - '${APP_DB_ADMIN_PORT}:80'
+    environment:
+      PMA_HOST: dbserver
+      UPLOAD_LIMIT: 50M
+    depends_on:
+      dbserver:
+        condition: service_healthy
+    volumes:
+      - myadmin_data:/var/www/html
+    networks:
+      - cms-network
+
+volumes:
+  dbserver_data:
+  myadmin_data:
