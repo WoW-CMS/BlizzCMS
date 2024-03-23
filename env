@@ -141,3 +141,15 @@
 #--------------------------------------------------------------------
 
 # curlrequest.shareOptions = false
+
+#--------------------------------------------------------------------
+# DOCKER
+#--------------------------------------------------------------------
+# APP_NAME=blizzcms
+# APP_DB_ADMIN_PORT=8080
+# DB_PORT=3306
+
+# MYSQL_ROOT_PASS=your-password-of-choice
+# MYSQL_USER=your-username-of-choice
+# MYSQL_PASS=your-password-of-choice
+# MYSQL_DB=your-database-of-choice
