@@ -11,7 +11,7 @@ class Home extends BaseController
         $newsModel = model(News::class);
 
         $data = [
-            'articles' => $newsModel->getArticles(),
+            'articles' => $newsModel->findAll(5),
             'realms' => null,
         ];
 
