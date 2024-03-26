@@ -1,6 +1,7 @@
 if (typeof tinymce.init === 'function') {
   tinymce.init({
     selector: 'textarea.tmce-comment',
+    license_key: 'gpl',
     element_format: 'html',
     schema: 'html5-strict',
     entity_encoding: 'raw',
