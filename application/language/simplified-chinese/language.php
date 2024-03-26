@@ -3,5 +3,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 return [
     'locale' => 'cn',
-    'name'   => 'Simplified-Chinese'
+    'name'   => '中文 (简体)'
 ];
