@@ -21,12 +21,9 @@ class News extends Model
         'category_id',
         'tags',
         'image_url',
-        'source_url',
         'status',
-        'visibility',
-        'featured',
         'comments_enabled',
-        'view_count'
+        'view'
     ];
 
     // Dates
