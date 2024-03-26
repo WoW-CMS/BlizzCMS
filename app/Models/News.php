@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\Article;
 use CodeIgniter\Model;
 
 class News extends Model
@@ -9,7 +10,7 @@ class News extends Model
     protected $table            = 'news';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = \App\Models\News::class;
+    protected $returnType       = Article::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields = [
@@ -32,13 +33,4 @@ class News extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
-
-    public function getArticles($slug = false)
-    {
-        if ($slug === false) {
-            return $this->findAll();
-        }
-
-        return $this->where(['slug' => $slug])->first();
-    }
 }
